@@ -39,12 +39,13 @@ We have established a web server for online computation using a dedicated comput
 # Citations
 
 To cite IQ-TREE please use:
-Lam Tung Nguyen, Heiko A. Schmidt, Arndt von Haeseler, and Bui Quang Minh (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. Mol. Biol. Evol., 32, 268-274. [DOI: 10.1093/molbev/msu300](http://dx.doi.org/10.1093/molbev/msu300)
+* Lam Tung Nguyen, Heiko A. Schmidt, Arndt von Haeseler, and Bui Quang Minh (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. Mol. Biol. Evol., 32, 268-274. [DOI: 10.1093/molbev/msu300](http://dx.doi.org/10.1093/molbev/msu300)
 
 To cite the ultrafast bootstrap (UFBoot) please use:
-Bui Quang Minh, Minh Anh Thi Nguyen, and Arndt von Haeseler (2013) Ultrafast approximation for phylogenetic bootstrap. Mol. Biol. Evol., 30:1188-1195. [DOI: 10.1093/molbev/mst024](http://dx.doi.org/10.1093/molbev/mst024)
+* Bui Quang Minh, Minh Anh Thi Nguyen, and Arndt von Haeseler (2013) Ultrafast approximation for phylogenetic bootstrap. Mol. Biol. Evol., 30:1188-1195. [DOI: 10.1093/molbev/mst024](http://dx.doi.org/10.1093/molbev/mst024)
+
 IQ-TREE can use PLL for likelihood computations, if you use "-pll" option please cite:
-T. Flouri, F. Izquierdo-Carrasco, D. Darriba, A.J. Aberer, L.-T. Nguyen, B.Q. Minh, A. von Haeseler, and A. Stamatakis (2015) The phylogenetic likelihood library. Syst. Biol., 64:356-362. [DOI: 10.1093/sysbio/syu084](http://dx.doi.org/10.1093/sysbio/syu084)
+* T. Flouri, F. Izquierdo-Carrasco, D. Darriba, A.J. Aberer, L.-T. Nguyen, B.Q. Minh, A. von Haeseler, and A. Stamatakis (2015) The phylogenetic likelihood library. Syst. Biol., 64:356-362. [DOI: 10.1093/sysbio/syu084](http://dx.doi.org/10.1093/sysbio/syu084)
 
 ## Acknowledgements
 
