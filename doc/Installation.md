@@ -28,7 +28,7 @@ Following is detailed compiling guide for Linux, Mac OS X, and Windows.
 
 4. Configure source code with CMake:
 
-    `cmake ..` or
+    `cmake ..`   (to build sequential version)
 
     `cmake -DIQTREE_FLAGS=omp ..` (to build multicore version)
 
