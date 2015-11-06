@@ -18,7 +18,7 @@ Following is detailed compiling guide for Linux, Mac OS X, and Windows.
 1. Open a Terminal.
 2. Change to the source code folder `iqtree-X.Y.Z-Source`:
 
-    `cd ..../iqtree-X.Y.Z-Source`
+    `cd PATH_TO_EXTRACTED_SOURCE_CODE/iqtree-X.Y.Z-Source`
 
 3. Create a subfolder, say, `build` and go into this subfolder:
 
