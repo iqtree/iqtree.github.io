@@ -3,7 +3,7 @@
 IQ-TREE is a very efficient maximum likelihood phylogenetic software with following key features among others:
 * A novel fast and effective stochastic algorithm to estimate maximum likelihood trees. **IQ-TREE outperforms both RAxML and PhyML** in terms of likelihood while requiring similar amount of computing time (see Nguyen et al., 2015)
 * An ultrafast bootstrap approximation to assess branch supports (see Minh et al., 2013).
-* Ultrafast and automatic model selection (10 to 100 times faster than jModelTest and ProtTest) and best partitioning scheme selection (like PartitionFinder).
+* Ultrafast and automatic model selection (**10 to 100 times faster than jModelTest and ProtTest**) and best partitioning scheme selection (like PartitionFinder).
 
 The strength of IQ-TREE is the availability of a wide range of models:
 
