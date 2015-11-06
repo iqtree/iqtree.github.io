@@ -47,6 +47,8 @@ The steps to compile IQ-TREE is similar to Linux (see above), except that step 4
 
 Configure source code with CMake (please change `cmake` to absolute path like `/Applications/CMake.app/Contents/bin/cmake`):
 
-    `cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..`   (to build sequential version)
+    cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..
 
-    `cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DIQTREE_FLAGS=omp ..` (to build multicore version)
+or for multicore version:
+
+    cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DIQTREE_FLAGS=omp ..
