@@ -4,7 +4,7 @@ IQ-TREE supports three major platforms Windows, Mac OS X and Linux, each with 2 
 * The sequential version that utilizes either SSE3 or AVX if supported by the hardware.
 * The parallel OpenMP version that additionally utilizes multicore CPUs, useful for long alignments.
 
-### For Windows 64-bit
+### For Windows 64-bit:
 * [iqtree-1.3.10-Windows.zip](http://www.cibiv.at/software/iqtree/download/iqtree-1.3.10/iqtree-1.3.10-Windows.zip) (sequential 64-bit version)
 * [iqtree-omp-1.3.10-Windows.zip](http://www.cibiv.at/software/iqtree/download/iqtree-1.3.10/iqtree-omp-1.3.10-Windows.zip) (multicore 64-bit version)
 
