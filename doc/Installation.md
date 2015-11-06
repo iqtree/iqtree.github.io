@@ -14,7 +14,7 @@ To compile the IQ-TREE source code:
 
 Following is detailed compiling guide for Linux, Mac OS X, and Windows.
 
-### Compiling for Linux
+### Compiling under Linux
 1. Open a Terminal.
 2. Change to the source code folder `iqtree-X.Y.Z-Source`:
 
@@ -36,4 +36,17 @@ Following is detailed compiling guide for Linux, Mac OS X, and Windows.
 
     `make`
 
-This creates an executable `iqtree` or `iqtree-omp` (`iqtree.exe` or `iqtree-omp.exe` under Windows). It can be copied to system search path so that IQ-TREE can be called from the Terminal with the command line `iqtree ....`.
+This creates an executable `iqtree` or `iqtree-omp` (`iqtree.exe` or `iqtree-omp.exe` under Windows). It can be copied to system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree`.
+
+### Compiling under Mac OS X
+
+* Make sure that `clang` compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
+* Find the path to the CMake executable, which is typically `/Applications/CMake.app/Contents/bin/cmake`.
+
+The steps to compile IQ-TREE is similar to Linux (see above), except that step 4 has to be changed to:
+
+Configure source code with CMake (please change `cmake` to absolute path like `/Applications/CMake.app/Contents/bin/cmake`):
+
+    `cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..`   (to build sequential version)
+
+    `cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DIQTREE_FLAGS=omp ..` (to build multicore version)
