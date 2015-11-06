@@ -9,6 +9,7 @@ The easiest way to install IQ-TREE is:
 To compile the IQ-TREE source code: 
 * Make sure that a C++ compiler was installed. IQ-TREE was successfully built with gcc, clang, and Intel C++ compiler. 
 * Make sure that [CMake](http://www.cmake.org) was installed in your system. 
+* If you want to compile the multicore version, make sure that the compiler supports [OpenMP](http://openmp.org/) and the OpenMP library was installed.
 * Download source code from <https://github.com/Cibiv/IQTree/wiki/Download>. Extract it to create a folder `iqtree-X.Y.Z-Source`.
 
 Following is detailed compiling guide for Linux, Mac OS X, and Windows.
@@ -27,7 +28,9 @@ Following is detailed compiling guide for Linux, Mac OS X, and Windows.
 
 4. Configure source code with CMake:
 
-    `cmake ..`
+    `cmake ..` or
+
+    `cmake -DIQTREE_FLAGS=omp ..` (to build multicore version)
 
 5. Compile source code with `make`:
 
