@@ -24,7 +24,7 @@ User Manual and Tutorial 1.0
 
 If you have questions, feedback, feature requests, and bug reports, please sign up the following Google group (if not done yet) and post a topic to the 
 
-[IQ-TREE Google group](https://groups.google.com/d/forum/iqtree)
+<https://groups.google.com/d/forum/iqtree>
 
 The average response time is one working day.
 
