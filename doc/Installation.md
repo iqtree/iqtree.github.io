@@ -21,9 +21,9 @@ Following is detailed compiling guide for Linux, Mac OS X, and Windows.
 
 3. Create a subfolder, say, `build` and go into this subfolder:
 
-      `mkdir build
+      `mkdir build`
 
-      cd build`
+      `cd build`
 
 4. Configure source code with CMake:
 
@@ -33,4 +33,4 @@ Following is detailed compiling guide for Linux, Mac OS X, and Windows.
 
     `make`
 
-This creates an executable `iqtree` or `iqtree-omp` (`iqtree.exe` or `iqtree-omp.exe` under Windows)
+This creates an executable `iqtree` or `iqtree-omp` (`iqtree.exe` or `iqtree-omp.exe` under Windows). It can be copied to system search path so that IQ-TREE can be called from the Terminal with the command line `iqtree ....`.
