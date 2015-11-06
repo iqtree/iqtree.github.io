@@ -14,6 +14,12 @@ The strength of IQ-TREE is the availability of a wide range of models:
 * Ascertainment bias correction [+ASC] model for data where constant sites are missing (e.g., SNPs or morphological data).
 * New models can be defined and imported via a NEXUS file (see Manual).
 
+# Download 
+
+You can download precompiled executables for Windows, Mac OSX and Linux as well as source code from here:
+
+<https://github.com/Cibiv/IQTree/wiki/Download>
+
 # Documentation
 
 Please read carefully before using IQ-TREE the first time or upgrading a new version! 
@@ -33,8 +39,6 @@ The average response time is one working day.
 We have established a web server for online computation using a dedicated computing cluster. It is very easy to use with as few as just 3 clicks! Try it out at
 
 <http://iqtree.cibiv.univie.ac.at>
-
-# Download 
 
 # Citations
 
