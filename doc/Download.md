@@ -18,7 +18,7 @@ IQ-TREE supports three major platforms Windows, Mac OS X and Linux, each with 2 
 
 ## For Linux 64-bit:
 * [iqtree-1.3.10-Linux.tar.gz] (http://www.cibiv.at/software/iqtree/download/iqtree-1.3.10/iqtree-1.3.10-Linux.tar.gz) (sequential version)
-* [iqtree-omp-1.3.10-Linux.tar.gz] (http://www.cibiv.at/software/iqtree/download/iqtree-1.3.10/iqtree-1.3.10-Linux.tar.gz) (multicore version)
+* [iqtree-omp-1.3.10-Linux.tar.gz] (http://www.cibiv.at/software/iqtree/download/iqtree-1.3.10/iqtree-omp-1.3.10-Linux.tar.gz) (multicore version)
 
 ## Source code:
 * [iqtree-1.3.10-Source.zip] (http://www.cibiv.at/software/iqtree/download/iqtree-1.3.10/iqtree-1.3.10-Source.zip) (zipped file)
