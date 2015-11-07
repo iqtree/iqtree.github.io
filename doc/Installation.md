@@ -18,25 +18,24 @@ The compilation guides for Linux, Mac OS X, and Windows are given in the next se
 1. Open a Terminal.
 2. Change to the source code folder `iqtree-X.Y.Z-Source`:
 
-    `cd PATH_TO_EXTRACTED_SOURCE_CODE/iqtree-X.Y.Z-Source`
+        cd PATH_TO_EXTRACTED_SOURCE_CODE/iqtree-X.Y.Z-Source`
 
 3. Create a subfolder, say, `build` and go into this subfolder:
 
-      `mkdir build`
-
-      `cd build`
+        mkdir build
+        cd build
 
 4. Configure source code with CMake:
 
-    `cmake ..`
+        cmake ..
 
-To build the multicore version please add `-DIQTREE_FLAGS=omp` to the cmake command:
+    To build the multicore version please add `-DIQTREE_FLAGS=omp` to the cmake command:
 
-    `cmake -DIQTREE_FLAGS=omp ..`
+        cmake -DIQTREE_FLAGS=omp ..
 
 5. Compile source code with `make`:
 
-    `make`
+        make
 
 This creates an executable `iqtree` or `iqtree-omp` (`iqtree.exe` or `iqtree-omp.exe` under Windows). It can be copied to system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree`.
 
