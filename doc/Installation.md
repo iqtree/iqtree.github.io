@@ -6,13 +6,13 @@ The easiest way to install IQ-TREE is:
 
 ## Compiling source code
 
-To compile the IQ-TREE source code: 
+### General requirements:
 * Make sure that a C++ compiler was installed. IQ-TREE was successfully built with GCC, Clang, and Intel C++ compiler. 
 * Make sure that [CMake](http://www.cmake.org) was installed in your system. 
 * If you want to compile the multicore version, make sure that the compiler supports [OpenMP](http://openmp.org/) and the OpenMP library was installed.
 * Download source code from <https://github.com/Cibiv/IQTree/wiki/Download>. Extract it to create a folder `iqtree-X.Y.Z-Source`.
 
-Following is detailed compiling guide for Linux, Mac OS X, and Windows.
+The compilation guides for Linux, Mac OS X, and Windows are given in the next sections.
 
 ### Compiling under Linux
 1. Open a Terminal.
@@ -28,9 +28,11 @@ Following is detailed compiling guide for Linux, Mac OS X, and Windows.
 
 4. Configure source code with CMake:
 
-    `cmake ..`   (to build sequential version)
+    `cmake ..`
 
-    `cmake -DIQTREE_FLAGS=omp ..` (to build multicore version)
+To build the multicore version please add `-DIQTREE_FLAGS=omp` to the cmake command:
+
+    `cmake -DIQTREE_FLAGS=omp ..`
 
 5. Compile source code with `make`:
 
@@ -49,7 +51,17 @@ Configure source code with CMake (please change `cmake` to absolute path like `/
 
     cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..
 
-Unfortunately, the default clang does not support OpenMP (which might change in the near future). However, you can obtain OpenMP/Clang from <https://clang-omp.github.io>. After that you can run cmake with (assuming that `clang-omp` points to the installed OpenMP/Clang):
+Unfortunately, the default clang does not support OpenMP (which might change in the near future). However, you can obtain OpenMP/Clang from <https://clang-omp.github.io> and the OpenMP library from <http://openmp.llvm.org>. After that you can run cmake with (assuming that `clang-omp` points to the installed OpenMP/Clang):
 
     cmake -DCMAKE_C_COMPILER=clang-omp -DCMAKE_CXX_COMPILER=clang-omp++ -DIQTREE_FLAGS=omp ..
 
+### Compiling under Windows
+
+The sequential IQ-TREE version was successfully compiled with TDM-GCC from <http://tdm-gcc.tdragon.net>. Since TDM-GCC is essentially a GCC version for Windows, the compiling steps are like under Linux, except that for step 1, you need to open the Terminal called `TDM-GCC-64`, which can be assessed from the Start menu.
+
+To build multicore version, please switch to MS Visual Studio and Intel C++ compiler because somehow TDM-GCC caused downgraded performance under our test. Assuming that you have installed MS Visual Studio 2013 and Intel Parallel Studio XE 2015. Then change the CMake step to:
+
+    cmake -G "Visual Studio 12 Win64" -T "Intel C++ Compiler XE 15.0" -DIQTREE_FLAGS=omp ..
+
+This will create solution and projects files for MS Visual Studio inside the build folder. Now exit the command prompt, open Windows explorer and navigate into this build folder. Double-click file `iqtree.sln` (so-called Visual Studio solution file). This will open MS Visual Studio and load IQ-TREE projects. Build the solution (Menu BUILD ! Build solution or press F7). This creates an executable Release\iqtree.exe. This executable can be copied to
+your system search path such that it is found by your system.
