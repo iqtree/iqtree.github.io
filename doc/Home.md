@@ -16,7 +16,7 @@ The strength of IQ-TREE is the availability of a wide range of models:
 
 # Download 
 
-You can download precompiled executables for Windows, Mac OS X and Linux, each with a sequential and a parallel multi-threaded version from here:
+You can download source code and precompiled executables for Windows, Mac OS X and Linux, each with a sequential and a parallel multi-threaded version from here:
 
 <https://github.com/Cibiv/IQTree/releases>
 
