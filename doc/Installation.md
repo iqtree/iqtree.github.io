@@ -3,6 +3,7 @@ The easiest way to install IQ-TREE is:
 * Download the precompiled executables (available for Windows, Mac OS X, and Linux) from the Download page <https://github.com/Cibiv/IQTree/wiki/Download>. 
 * Extract the files to create a directory `iqtree-X.Y.Z-OS`, where `X.Y.Z` is the version number and `OS` is the operating system name. Note that the multicore version is named `iqtree-omp-X.Y.Z-OS`.
 * You will find the executable in the `bin` sub-folder. It is named `iqtree` or `iqtree-omp` (multicore version) (`iqtree.exe` or `iqtree-omp.exe` under Windows). 
+* Open a Terminal (or Console) to run IQ-TREE as it is a command-line program.
 
 The executable can be copied to your system search path such that it is found by your system.
 
