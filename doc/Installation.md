@@ -4,6 +4,8 @@ The easiest way to install IQ-TREE is:
 * Extract the files to create a directory `iqtree-X.Y.Z-OS`, where `X.Y.Z` is the version number and `OS` is the operating system name. Note that the multicore version is named `iqtree-omp-X.Y.Z-OS`.
 * You will find the executable in the `bin` sub-folder. It is named `iqtree` or `iqtree-omp` (multicore version) (`iqtree.exe` or `iqtree-omp.exe` under Windows). 
 
+The executable can be copied to your system search path such that it is found by your system.
+
 ## Compiling source code
 
 ### General requirements:
