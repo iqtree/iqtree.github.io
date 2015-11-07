@@ -23,6 +23,8 @@ Minimal command-line examples (replace `iqtree` with actual path to executable):
 
 5. Perform model selection only: use `-m TESTONLY` or `-m TESTMERGEONLY`
 
-6. Show all available options: 
+6. Use 4 CPU cores to speed up computation: use `iqtree-omp` and add `-nt 4` option
+
+7. Show all available options: 
 
         iqtree -h
