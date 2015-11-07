@@ -13,7 +13,8 @@ The executable can be copied to your system search path such that it is found by
 
 ## Compiling source code
 
-### General requirements:
+**General requirements:**
+
 * Make sure that a C++ compiler was installed. IQ-TREE was successfully built with GCC, Clang, and Intel C++ compiler. 
 * Make sure that [CMake](http://www.cmake.org) was installed in your system. 
 * If you want to compile the multicore version, make sure that the compiler supports [OpenMP](http://openmp.org/) and the OpenMP library was installed.
