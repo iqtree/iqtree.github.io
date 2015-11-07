@@ -65,3 +65,7 @@ To build multicore version, please switch to MS Visual Studio and Intel C++ comp
 
 This will create solution and projects files for MS Visual Studio inside the build folder. Now exit the command prompt, open Windows explorer and navigate into this build folder. Double-click file `iqtree.sln` (so-called Visual Studio solution file). This will open MS Visual Studio and load IQ-TREE projects. Build the solution (Menu BUILD ! Build solution or press F7). This creates an executable Release\iqtree.exe. This executable can be copied to
 your system search path such that it is found by your system.
+
+### Compiling 32-bit version
+
+The compilation guides above will generate 64-bit binaries. To compile 32-bit version instead, simply add `m32` into `IQTREE_FLAGS` of the cmake command. That means, `-DIQTREE_FLAGS=m32` to build 32-bit sequential version and `-DIQTREE_FLAGS="omp m32"` to build 32-bit multicore version.
