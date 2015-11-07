@@ -26,6 +26,12 @@ After you download IQ-TREE please follow the Installation guide here:
 
 <https://github.com/Cibiv/IQTree/wiki/Installation>
 
+## IQ-TREE Web service
+
+For a quick start you can try the IQ-TREE web server, which performs online computation using a dedicated computing cluster. It is very easy to use with as few as just 3 clicks! Try it out at
+
+<http://iqtree.cibiv.univie.ac.at>
+
 ## Documentation
 
 Please read carefully before using IQ-TREE the first time or upgrading a new version! 
@@ -39,12 +45,6 @@ If you have questions, feedback, feature requests, and bug reports, please sign 
 <https://groups.google.com/d/forum/iqtree>
 
 The average response time is one working day.
-
-## IQ-TREE Web service
-
-We have established a web server for online computation using a dedicated computing cluster. It is very easy to use with as few as just 3 clicks! Try it out at
-
-<http://iqtree.cibiv.univie.ac.at>
 
 ## Citations
 
