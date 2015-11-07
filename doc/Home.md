@@ -34,9 +34,11 @@ For a quick start you can try the IQ-TREE web server, which performs online comp
 
 ## Documentation
 
-Please read carefully before using IQ-TREE the first time or upgrading a new version! 
+* Quickstart guide: <https://github.com/Cibiv/IQTree/wiki/Quickstart>
 
-User Manual and Tutorial 1.0
+* Tutorial:
+
+* User Manual:
 
 ## User support
 
