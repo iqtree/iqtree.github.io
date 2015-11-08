@@ -338,3 +338,8 @@ wall-clock running time for this  example alignment:
 
 Therefore, I would only use 2 cores for this specific alignment.
 
+
+
+[guindon2010]: http://dx.doi.org/10.1093/sysbio/syq010
+[lanfear2012]: http://dx.doi.org/10.1093/molbev/mss020
+[adachi1996b]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
