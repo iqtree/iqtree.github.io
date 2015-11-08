@@ -17,7 +17,7 @@ If you only want to evaluate the trees without reconstructing the ML tree, you c
 
 Here, IQ-TREE performs a very quick tree reconstruction using only 1 iteration  and uses that tree to estimate the model parameters, which are normally accurate enough for our purpose.
 
-IQ-TREE also supports several tree topology tests using the RELL approximation ([kishino1990]). This includes bootstrap proportion (BP), Kishino-Hasegawa test ([kishino1989]), Shimodaira-Hasegawa test [shimodaira1999], expected likelihood weights [strimmer2002], weighted-KH (WKH), and weighted-SH (WSH) tests. The trees are passed via `-z` option:
+IQ-TREE also supports several tree topology tests using the RELL approximation ([Kishino et al., 1990]). This includes bootstrap proportion (BP), Kishino-Hasegawa test ([Kishino and Hasegawa, 1989]), Shimodaira-Hasegawa test [Shimodaira and Hasegawa, 1999], expected likelihood weights [Strimmer and Rambaut, 2002], weighted-KH (WKH), and weighted-SH (WSH) tests. The trees are passed via `-z` option:
 
 
     iqtree -s example.phy -z example.treels -n 1 -zb 1000
@@ -157,3 +157,8 @@ If you want to generate a random tree for your alignment, simply add the `-s <al
 
 Note that, you still need to specify the `-r` option with the correct number of taxa that is contained in the alignment. 
 
+
+[Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483
+[Kishino and Hasegawa, 1989]: http://dx.doi.org/10.1007/BF02100115
+[Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
+[Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
