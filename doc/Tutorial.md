@@ -107,7 +107,7 @@ Since version 1.0 IQ-TREE supports discrete morphological alignment by  `-st MOR
 
     iqtree -s morphology.phy -st MORPH
 
-IQ-TREE implements to two morphological ML models (MK and ORDERED; see Lewis 2001), where MK is the default model.
+IQ-TREE implements to two morphological ML models: MK and ORDERED ([Lewis, 2001]), where MK is the default model.
 MK is a Juke-Cantor-like model. ORDERED model considers only transitions between neighboring states `i, i+1`. Morphological data typically do not have constant (uninformative) sites. 
 In such case, you should apply ascertainment bias correction model by e.g.:
  
@@ -159,13 +159,13 @@ is the minimum recommended number. The output files are similar to those produce
 Assessing branch supports with single branch tests
 --------------------------------------------------
 
-IQ-TREE provides an implementation of the SH-like approximate likelihood ratio test [guindon2010]. To perform this test,  run:
+IQ-TREE provides an implementation of the SH-like approximate likelihood ratio test ([Guindon et al., 2010]). To perform this test,  run:
 
     iqtree -s example.phy -m TIM+I+G -alrt 1000
 
  `-alrt` specifies the number of bootstrap replicates for SH-aLRT where 1000 is the minimum number recommended. 
 
-IQ-TREE also provides a fast implementation of the local bootstrap probabilities method [adachi1996b], 
+IQ-TREE also provides a fast implementation of the local bootstrap probabilities method ([Adachi and Hasegawa, 1996]), 
 which we call Fast-LBP. Fast-LBP computes the branch support by comparing the tree log-likelihood
 with the log-likelihoods of the two alternative nearest-neighbor-interchange (NNI) trees around the branch of interest.
 However, Fast-LBP is different from LBP where we compute the log-likelihoods of the two alternative NNI trees
@@ -273,7 +273,7 @@ A partition model with joint branch lengths is specified by:
 Choosing the right partitioning scheme
 --------------------------------------
 
-Since version 0.9.6 IQ-TREE implements a greedy strategy [lanfear2012] that starts with the full partition model and sequentially
+Since version 0.9.6 IQ-TREE implements a greedy strategy ([Lanfear et al., 2012]) that starts with the full partition model and sequentially
 merges two genes until the model fit does not increase any further:
 
     iqtree -sp example.nex -m TESTLINK
@@ -340,6 +340,7 @@ Therefore, I would only use 2 cores for this specific alignment.
 
 
 
-[guindon2010]: http://dx.doi.org/10.1093/sysbio/syq010
-[lanfear2012]: http://dx.doi.org/10.1093/molbev/mss020
-[adachi1996b]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
+[Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
+[Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
+[Lanfear et al., 2012]: http://dx.doi.org/10.1093/molbev/mss020
+[Lewis, 2001]: http://dx.doi.org/10.1080/106351501753462876
