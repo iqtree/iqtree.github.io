@@ -22,9 +22,7 @@ You can download source code and precompiled executables for Windows, Mac OS X a
 
 ## Installation
 
-After you download IQ-TREE please follow the Installation guide here:
-
-<https://github.com/Cibiv/IQTree/wiki/Installation>
+Please follow the [[Installation guide|Installation]] once you downloaded IQ-TREE.
 
 ## IQ-TREE Web service
 
@@ -34,7 +32,7 @@ For a quick start you can try the IQ-TREE web server, which performs online comp
 
 ## Documentation
 
-* Quickstart guide: <https://github.com/Cibiv/IQTree/wiki/Quickstart>
+* [[Quickstart guide|Quickstart]]
 
 * Tutorial:
 
