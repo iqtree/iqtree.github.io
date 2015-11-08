@@ -1,5 +1,6 @@
 
-This advanced tutorial is intended for more experienced users. For beginners please read the normal [[Tutorial]] first.
+
+This advanced tutorial is intended for more experienced users. If not, please read the [[Beginner's Tutorial|Tutorial]] first.
 
 
 Tree topology tests
@@ -17,7 +18,7 @@ If you only want to evaluate the trees without reconstructing the ML tree, you c
 
 Here, IQ-TREE performs a very quick tree reconstruction using only 1 iteration  and uses that tree to estimate the model parameters, which are normally accurate enough for our purpose.
 
-IQ-TREE also supports several tree topology tests using the RELL approximation ([Kishino et al., 1990]). This includes bootstrap proportion (BP), Kishino-Hasegawa test ([Kishino and Hasegawa, 1989]), Shimodaira-Hasegawa test [Shimodaira and Hasegawa, 1999], expected likelihood weights [Strimmer and Rambaut, 2002], weighted-KH (WKH), and weighted-SH (WSH) tests. The trees are passed via `-z` option:
+IQ-TREE also supports several tree topology tests using the RELL approximation ([Kishino et al., 1990]). This includes bootstrap proportion (BP), Kishino-Hasegawa test ([Kishino and Hasegawa, 1989]), Shimodaira-Hasegawa test ([Shimodaira and Hasegawa, 1999]), expected likelihood weights ([Strimmer and Rambaut, 2002]), weighted-KH (WKH), and weighted-SH (WSH) tests. The trees are passed via `-z` option:
 
 
     iqtree -s example.phy -z example.treels -n 1 -zb 1000
