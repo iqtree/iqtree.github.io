@@ -100,3 +100,241 @@ You can change to other genetic code (see <http://www.ncbi.nlm.nih.gov/Taxonomy/
 | `-st CODON25` | Candidate Division SR1 and Gracilibacteria Code |
 
 
+Morphological or SNP data
+-------------------------
+
+Since version 1.0 IQ-TREE supports discrete morphological alignment by  `-st MORPH` option:
+
+    iqtree -s morphology.phy -st MORPH
+
+IQ-TREE implements to two morphological ML models (MK and ORDERED; see Lewis 2001), where MK is the default model.
+MK is a Juke-Cantor-like model. ORDERED model considers only transitions between states $i\rightarrow i-1$, $i\rightarrow i$, and $i \rightarrow i+1$. Morphological data typically do not have constant (uninformative) sites. 
+In such case, you should apply ascertainment bias correction model by e.g.:
+ 
+    iqtree -s morphology.phy -st MORPH -m MK+ASC
+
+You can again select best-fit model with  `-m TEST` (which also consider +G):
+
+    iqtree -s morphology.phy -st MORPH -m TEST
+
+For SNP data (DNA) that typically do not contain constant sites, you can explicitly tell model to include
+ascertainment bias correction:
+
+    iqtree -s SNP_data.phy -m GTR+ASC
+
+You can explicitly tell model testing to only include  `+ASC` model with:
+
+    iqtree -s SNP_data.phy -m TEST+ASC
+
+
+Assessing branch supports with ultrafast bootstrap approximation
+----------------------------------------------------------------
+
+To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) that is  orders of magnitude faster than the standard procedure and provide unbias branch support values. To run UFBoot, use the option  `-bb`:
+
+    iqtree -s example.phy -m TIM+I+G -bb 1000
+
+ `-bb`  specifies the number of bootstrap replicates where 1000
+is the minimum number recommended. The section  `MAXIMUM LIKELIHOOD TREE` in  `example.phy.iqtree` shows a textual representation of the maximum likelihood tree with branch support values in percentage. The NEWICK format of the tree is printed to the file  `example.phy.treefile`. In addition, IQ-TREE writes the following files:
+
+* `example.phy.contree`: the consensus tree with assigned branch supports where branch lengths are optimized  on the original alignment.
+*  `example.phy.splits`: support values in percentage for all splits (bipartitions),
+computed as the occurence frequencies in the bootstrap trees. This file is in "star-dot" format.
+*  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
+but in NEXUS format, which can be viewed with SplitsTree program. 
+
+
+Assessing branch supports with  standard nonparametric bootstrap
+----------------------------------------------------------------
+
+The standard nonparametric bootstrap is invoked by  the  `-b` option:
+
+    iqtree -s example.phy -m TIM+I+G -b 100
+
+ `-b` specifies the number of bootstrap replicates where 100
+is the minimum recommended number. The output files are similar to those produced by the UFBoot procedure. 
+
+
+
+Assessing branch supports with single branch tests
+--------------------------------------------------
+
+IQ-TREE provides an implementation of the SH-like approximate likelihood ratio test [guindon2010]. To perform this test,  run:
+
+    iqtree -s example.phy -m TIM+I+G -alrt 1000
+
+ `-alrt` specifies the number of bootstrap replicates for SH-aLRT where 1000 is the minimum number recommended. 
+
+IQ-TREE also provides a fast implementation of the local bootstrap probabilities method [adachi1996b], 
+which we call Fast-LBP. Fast-LBP computes the branch support by comparing the tree log-likelihood
+with the log-likelihoods of the two alternative nearest-neighbor-interchange (NNI) trees around the branch of interest.
+However, Fast-LBP is different from LBP where we compute the log-likelihoods of the two alternative NNI trees
+by only reoptimizing five branches around the branch of interest (Similar idea is used in the SH-aLRT test).
+To perform Fast-LBP, simply run:
+
+    iqtree -s example.phy -m TIM+I+G -lbp 1000
+
+
+You can also perform both tests:
+
+    iqtree -s example.phy -m TIM+I+G -alrt 1000 -lbp 1000
+
+The branches of the resulting ML tree are assigned with both SH-aLRT and Fast-LBP support values.
+Finally, you can also combine the ultrafast bootstrap approximation with single branch tests within one single run:
+
+    iqtree -s example.phy -m TIM+I+G -bb 1000 -alrt 1000 -lbp 1000
+
+
+Partitioned analysis for multi-gene alignments
+----------------------------------------------
+
+In the partition model, you can specify a substitution model for each gene/character set. 
+IQ-TREE will then estimate the model parameters and branch lengths separately for every partition. 
+**Since version 1.3.X IQ-TREE supports RAxML-style partition input file**, which looks like:
+
+    DNA, part1 = 1-100
+    DNA, part2 = 101-384
+
+If your partition file is called  `example.partitions`, the partition analysis can be run with:
+
+
+    iqtree -s example.phy -q example.partitions -m GTR+I+G
+
+
+Note that using RAxML-style partition file, all partitions will use the same rate heterogeneity model given in `-m` option (`+I+G` in this example). If you want to specify, say, `+G` for the first partition and `+I+G` for the second partition, then you need to create a NEXUS file which is more flexible. This file contains a  `SETS` block with
+ `CharSet` and  `CharPartition` commands to specify individual genes and the partition, respectively.
+For example:
+
+    #nexus
+    begin sets;
+        charset part1 = 1-100;
+        charset part2 = 101-384;
+        charpartition mine = HKY+G:part1, GTR+I+G:part2;
+    end;
+
+
+If your NEXUS file is called  `example.nex`, then use the option  `-sp` to input the file as following:
+
+    iqtree -s example.phy -sp example.nex
+
+Here, IQ-TREE partitions the alignment  `example.phy` into 2 sub-alignments named  `part1` and  `part2`
+containing sites (columns) 1-100 and 101-384, respectively. Moreover, IQ-TREE applies the
+subtitution models  `HKY+G` and  `GTR+I+G` to  `part1` and  `part2`, respectively. Substitution model parameters and trees with branch lengths can be found in the result file  `example.nex.iqtree`. 
+
+Moreover, the  `CharSet` command allows to specify non-consecutive sites using comma-separated list of ranges with e.g.:
+
+    charset part1 = 1-100 200-384;
+
+That means,  `part1` contains sites 1-100 and 200-384 of the alignment. Another example is:
+
+    charset part1 = 1-100\3;
+
+for extracting sites 1,4,7,...,100 from the alignment. This is useful for getting codon positions from the protein-coding alignment.
+
+IQ-TREE also allows combining sub-alignments from different alignment files. For example:
+
+    #nexus
+    begin sets;
+        charset part1 = part1.phy: 1-100\3 201-300\3;
+        charset part2 = part2.phy: 101-300;
+        charpartition mine = HKY:part1, GTR+G:part2;
+    end;
+
+Here,  `part1` and  `part2` contain sub-alignments from alignment files  `part1.phy` and  `part2.phy`, respectively. The `:` is needed to separate the alignment file name and site specification. Because the alignment file names are now specified in this NEXUS file, you can omit the  `-s` option:
+
+    iqtree -sp example.nex
+
+
+Note that 
+ `part1.phy` and  `part2.phy` does not need to contain the same set of sequences. For instance, if some sequence occurs
+in   `part1.phy` but not in   `part2.phy`, IQ-TREE will treat the corresponding parts of sequence
+in  `part2.phy` as missing data. For your convenience IQ-TREE writes the concatenated alignment
+into the file  `example.nex.conaln`.
+
+Since version 0.9.6 IQ-TREE supports partition models with joint and proportional branch lengths between genes. This is
+to reduce the number of parameters in case of model overfitting for the full partition model. For example:
+
+
+    iqtree -spp example.nex
+
+
+applies a proportional partition model. That means, we have only one set of branch lengths for species tree 
+but allow each gene to evolve under a specific rate (scaling factor) normalized to the average of 1.
+
+A partition model with joint branch lengths is specified by:
+
+
+    iqtree -spj example.nex
+
+ 
+(i.e., all gene-specific rates are equal to 1). 
+ 
+ 
+Choosing the right partitioning scheme
+--------------------------------------
+
+Since version 0.9.6 IQ-TREE implements a greedy strategy [lanfear2012] that starts with the full partition model and sequentially
+merges two genes until the model fit does not increase any further:
+
+  iqtree -sp example.nex -m TESTLINK
+
+
+After the best partition is found IQ-TREE will immediately start the tree reconstruction under the best-fit partition model.
+Sometimes you only want to find the best-fit partition model without doing tree reconstruction, then run:
+
+  iqtree -sp example.nex -m TESTONLYLINK
+
+
+
+Ultrafast bootstrapping with partition model
+--------------------------------------------
+
+IQ-TREE can perform the ultrafast bootstrap with partition models by e.g.,
+
+    iqtree -sp example.nex -bb 1000
+
+Here, IQ-TREE will resample the sites \emph{within} subsets of the partitions (i.e., 
+the bootstrap replicates are generated per subset separately and then concatenated together).
+The same holds true if you do the standard nonparametric bootstrap. 
+
+Since version 0.9.6 IQ-TREE supports the gene-resampling strategy: 
+
+
+    iqtree -sp example.nex -bb 1000 -bspec GENE
+
+
+is to resample genes instead of sites. Moreover, IQ-TREE allows an even more complicated
+strategy: resampling genes and sites within resampled genes:
+
+
+    iqtree -sp example.nex -bb 1000 -bspec GENESITE
+
+
+
+Utilizing multi-core CPUs
+-------------------------
+
+We also have a specialized version of IQ-TREE (`iqtree-omp`), which uses the OpenMP library, allows running analyses with multiple CPU cores.
+You can download the binary from the software website or compile the source code
+yourself (see [[Installation]]).  A complement option `-nt` allows specifying the number of CPU to be used. For example:
+
+
+  iqtree-omp -s example.phy -nt 2
+
+
+Here, IQ-TREE will use 2 CPU cores to perform the analysis. 
+
+> Note that the parallel efficiency is only good long alignments. Because the speedup gain depends on the alignment length, a good practice is to try this version with increasing number of cores until no substantial reduction of running time is observed. 
+
+For example, on my computer (Linux, Intel Core i5-2500K, 3.3 GHz, quad cores) I observed the following 
+wall-clock running time for this  example alignment:
+
+| No. cores | Wall-clock time |
+|-----------|-----------------|
+| 1         | 21.465 sec      |
+| 2         | 13.627 sec      |
+| 3         | 11.119 sec      |
+| 4         | 10.807 sec      |
+
+Therefore, I would only use 2 cores for this specific alignment.
+
