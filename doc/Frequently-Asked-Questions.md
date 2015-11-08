@@ -31,18 +31,21 @@ Here, it is assumed that `dna.phy` and `protein.phy` are DNA and protein alignme
 
     #nexus
     begin sets;
-        charset part1=dna.phy: DNA, *;
-        charset part2=protein.phy: AA, *;
-        charpartition mymodel=GTR+G: part1, LG+I+G: part2;
+        charset part1=dna.phy:DNA, *;
+        charset part2=protein.phy:AA, *;
+        charset part3=dna2.phy:CODON, *;
+        charpartition mymodel=GTR+G: part1, LG+I+G: part2, GY:part3;
     end;
  
+The advantage is that you can specify a codon partition (see above), which would not be possible in the first example because `part3` will be detected as a DNA partition.
+
 Finally, please note that you can also specify the site ranges within each alignment. For example:
 
     #nexus
     begin sets;
-        charset part1=dna.phy: DNA, 1-150;
-        charset part2=protein.phy: AA, 1-100 201-300;
-        charset part3=protein.phy: AA, 101-200;
+        charset part1=dna.phy:DNA, 1-150;
+        charset part2=protein.phy:AA, 1-100 201-300;
+        charset part3=protein.phy:AA, 101-200;
         charpartition mymodel=GTR+G: part1, LG+I+G: part2, WAG+I: part3;
     end;
  
