@@ -6,11 +6,11 @@ DNA models
 
 IQ-TREE includes all common DNA models including (with citations):
 
-* JC or JC69: equal rates and equal base frequencies ([Jukes and Cantor, 1969]).
-* F81: equal rates but unequal base freq. ([Felsenstein, 1981]).
-* K80 or K2P: unequal transition/transversion rates and equal base freq. ([Kimura, 1980]).
-* HKY or HKY85: Like K80 but unequal base freq. ([Hasegawa, Kishino and Yano, 1985]).
-* TN or TN93: Like HKY but unequal purine/pyrimidine rates ([Tamura and Nei, 1993]).
+* `JC` or `JC69`: equal rates and equal base frequencies ([Jukes and Cantor, 1969]).
+* `F81`: equal rates but unequal base freq. ([Felsenstein, 1981]).
+* `K80` or `K2P`: unequal transition/transversion rates and equal base freq. ([Kimura, 1980]).
+* `HKY` or `HKY85`: Like K80 but unequal base freq. ([Hasegawa, Kishino and Yano, 1985]).
+* `TN` or `TN93`: Like HKY but unequal purine/pyrimidine rates ([Tamura and Nei, 1993]).
 * TNe: Like TN model but equal base freq.
 * K81 or K3P: three substitution types model and equal base freq. ([Kimura, 1981]).
 * K81u: Like K81 but unequal base freq.
@@ -31,8 +31,16 @@ IQ-TREE includes all common DNA models including (with citations):
 
 Moreover, IQ-TREE supports arbitrarily restricted DNA model via a 6-digit code. The 6 digits define the equality for 6 nucleotide substitution types: A-C, A-G, A-T, C-G, C-T and G-T. `010010` means that A-G rate is equal to C-T rate and the remaining four substitution rates are equal. Thus, `010010` is equivalent to K80 or HKY model (depending on whether base frequencies are equal or not). `123450` is equivalent to GTR or SYM model as there is no restriction defined by such 6-digit code.
 
-If users want to fix model parameters, append the model name with a curly bracket `{`, followed by the comma-separated rate parameters, and a close curly bracket `}`. For example, `GTR{1.0,2.0,1.5,3.7,2.8,1.0}` is a valid model.
+If users want to fix model parameters, append the model name with a curly bracket `{`, followed by the comma-separated rate parameters, and a closing curly bracket `}`. For example, `GTR{1.0,2.0,1.5,3.7,2.8,1.0}` is a valid model.
 
+
+Finally, users can specify three different kinds of base frequencies:
+
+* `+F`: empirical base frequencies. This is the default if model has unequal base freq.
+* `+FQ`: equal base frequencies.
+* `+FO`: optimized base frequencies by maximum-likelihood.
+
+For example, `GTR+FO` optimizes base frequencies by ML whereas `GTR+F` (default) counts base frequencies from directly the alignment.
 
 
 Protein models
