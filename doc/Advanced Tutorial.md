@@ -1,6 +1,5 @@
 
-This advanced tutorial is intended for more experienced users. It includes several advanced features
-like tree topology test, user-defined substitution models.
+This advanced tutorial is intended for more experienced users. For beginners please read the normal [[Tutorial]] first.
 
 
 Tree topology tests
