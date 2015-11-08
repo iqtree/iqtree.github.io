@@ -15,5 +15,37 @@ for a site (column) of an alignment containing `AC-AG-A` (i.e. A for sequence 1,
 of a tree T is equal to the site-likelihood of the subtree of T restricted to those sequences containing non-gap characters (`ACAGA`).
 
 
+Can I mix DNA and protein data in a partitioned analysis?
+---------------------------------------------------------
+
+Yes, you can! In fact, you can mix any data types supported in IQ-TREE, including also codon, binary, morphological data. To do so, each partition should be in a separate alignment file. Then, prepare a NEXUS partition file which may look like:
+
+    #nexus
+    begin sets;
+        charset part1=dna.phy: *;
+        charset part2=protein.phy: *;
+        charpartition mymodel=GTR+G: part1, LG+I+G: part2;
+    end;
+
+Here, it is assumed that `dna.phy` and `protein.phy` are DNA and protein alignment files, respectively. IQ-TREE will automatically detect the sequence types, which works correctly in 99% of the cases. If you want to explicitly specify the sequence type, the partition file may look like:
+
+    #nexus
+    begin sets;
+        charset part1=dna.phy: DNA, *;
+        charset part2=protein.phy: AA, *;
+        charpartition mymodel=GTR+G: part1, LG+I+G: part2;
+    end;
+ 
+Finally, please note that you can also specify the site ranges within each alignment. For example:
+
+    #nexus
+    begin sets;
+        charset part1=dna.phy: DNA, 1-150;
+        charset part2=protein.phy: AA, 1-100 201-300;
+        charset part3=protein.phy: AA, 101-200;
+        charpartition mymodel=GTR+G: part1, LG+I+G: part2, WAG+I: part3;
+    end;
+ 
+
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
