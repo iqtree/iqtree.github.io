@@ -9,7 +9,13 @@ The easiest way to install IQ-TREE is:
 * You will find the executable in the `bin` sub-folder. It is named `iqtree` or `iqtree-omp` (multicore version) (`iqtree.exe` or `iqtree-omp.exe` under Windows). 
 * Open a Terminal (or Console) to run IQ-TREE as it is a command-line program.
 
-The executable can be copied to your system search path such that it is found by your system.
+The executable (together with the `.dll` files for Windows version) can be copied to your system search path such that you can run `iqtree` command from the Terminal.
+
+### For Windows users
+
+Please read the quickstart guide how to run IQ-TREE from Command Prompt: 
+
+<https://github.com/Cibiv/IQTree/wiki/Quickstart>
 
 ## Compiling source code
 
