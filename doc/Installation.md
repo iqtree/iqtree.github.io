@@ -1,4 +1,6 @@
-## Binary release
+Binary release
+--------------
+
 The easiest way to install IQ-TREE is: 
 * Download the precompiled executables (available for Windows, Mac OS X, and Linux) from the release page <https://github.com/Cibiv/IQTree/releases>. 
     - `iqtree-X.Y.Z-OS` is the sequential 64-bit version, where `X.Y.Z` is the version number and OS is the operating system name.
@@ -12,7 +14,8 @@ The easiest way to install IQ-TREE is:
 
 The executable (together with the `.dll` files for Windows version) can be copied to your system search path such that you can run `iqtree` command from the Terminal.
 
-### For Window users
+
+#### For Window users
 
 IQ-TREE is a command-line program, i.e., clicking on `iqtree.exe` will not work. You have to open a command prompt for all analyses. As an example, if you download `iqtree-1.3.10-Windows.zip` into your `Downloads` folder, then extract it into the same folder and do the following steps:
 
@@ -33,7 +36,7 @@ IQ-TREE is a command-line program, i.e., clicking on `iqtree.exe` will not work.
 Congratulations ;-) You have finished the first IQ-TREE analysis.
 
 
-### For Mac OS X users
+#### For Mac OS X users
 
 IQ-TREE is a command-line program. You have to open a "Terminal" for all analyses. As an example, if you download `iqtree-1.3.10-MacOSX.zip` into your `Downloads` folder, then extract it into the same folder and do the following steps:
 
@@ -53,9 +56,10 @@ IQ-TREE is a command-line program. You have to open a "Terminal" for all analyse
 Congratulations ;-) You have finished the first IQ-TREE analysis.
 
 
-## Compiling source code
+Compiling source code
+---------------------
 
-**General requirements:**
+#### General requirements
 
 * Make sure that a C++ compiler was installed. IQ-TREE was successfully built with GCC, Clang, and Intel C++ compiler. 
 * Make sure that [CMake](http://www.cmake.org) was installed in your system. 
@@ -64,7 +68,9 @@ Congratulations ;-) You have finished the first IQ-TREE analysis.
 
 The compilation guides for Linux, Mac OS X, and Windows are given in the next sections.
 
-### Compiling under Linux
+
+#### Compiling under Linux
+
 1. Open a Terminal.
 2. Change to the source code folder `iqtree-X.Y.Z-Source`:
 
@@ -89,7 +95,8 @@ The compilation guides for Linux, Mac OS X, and Windows are given in the next se
 
 This creates an executable `iqtree` or `iqtree-omp` (`iqtree.exe` or `iqtree-omp.exe` under Windows). It can be copied to system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree`.
 
-### Compiling under Mac OS X
+
+#### Compiling under Mac OS X
 
 * Make sure that `clang` compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
 * Find the path to the CMake executable, which is typically `/Applications/CMake.app/Contents/bin/cmake`.
@@ -104,7 +111,8 @@ Unfortunately, the default clang does not support OpenMP (which might change in 
 
     cmake -DCMAKE_C_COMPILER=clang-omp -DCMAKE_CXX_COMPILER=clang-omp++ -DIQTREE_FLAGS=omp ..
 
-### Compiling under Windows
+
+#### Compiling under Windows
 
 The sequential IQ-TREE version was successfully compiled with TDM-GCC from <http://tdm-gcc.tdragon.net>. Since TDM-GCC is essentially a GCC version for Windows, the compiling steps are like under Linux, except that for step 1, you need to open the Terminal called `TDM-GCC-64`, which can be assessed from the Start menu.
 
@@ -115,6 +123,7 @@ To build multicore version, please switch to MS Visual Studio and Intel C++ comp
 This will create solution and projects files for MS Visual Studio inside the build folder. Now exit the command prompt, open Windows explorer and navigate into this build folder. Double-click file `iqtree.sln` (so-called Visual Studio solution file). This will open MS Visual Studio and load IQ-TREE projects. Build the solution (Menu BUILD -> Build solution or press F7). This creates an executable Release\iqtree.exe. This executable can be copied to
 your system search path such that it is found by your system.
 
-### Compiling 32-bit version
+
+#### Compiling 32-bit version
 
 The compilation guides above will generate 64-bit binaries. To compile 32-bit version instead, simply add `m32` into `IQTREE_FLAGS` of the cmake command. That means, `-DIQTREE_FLAGS=m32` to build 32-bit sequential version and `-DIQTREE_FLAGS="omp m32"` to build 32-bit multicore version.
