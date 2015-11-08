@@ -61,20 +61,22 @@ Compiling source code
 
 #### General requirements
 
-* Make sure that a C++ compiler was installed. IQ-TREE was successfully built with GCC, Clang, and Intel C++ compiler. 
-* Make sure that [CMake](http://www.cmake.org) was installed in your system. 
+* Make sure that a C++ compiler was installed. IQ-TREE was successfully built with GCC, Clang, MS Visual Studio and Intel C++ compiler. 
+* Install [CMake](http://www.cmake.org) if not yet available in your system. 
+* Install [git](https://git-scm.com) if not yet available in your system.
 * If you want to compile the multicore version, make sure that the compiler supports [OpenMP](http://openmp.org/) and the OpenMP library was installed.
-* Download source code from <https://github.com/Cibiv/IQTree/wiki/Download>. Extract it to create a folder `iqtree-X.Y.Z-Source`.
+* Download source code. Since IQ-TREE has a submodule ([the phylogenetic likelihood library](http://www.libpll.org/)), the best way to obtain source code is to use `git`:
 
-The compilation guides for Linux, Mac OS X, and Windows are given in the next sections.
+        git clone --recursive https://github.com/Cibiv/IQTree.git
 
+The compilation guides for Linux, Mac OS X, and Windows are given below.
 
 #### Compiling under Linux
 
 1. Open a Terminal.
-2. Change to the source code folder `iqtree-X.Y.Z-Source`:
+2. Change to the source code folder:
 
-        cd PATH_TO_EXTRACTED_SOURCE_CODE/iqtree-X.Y.Z-Source`
+        cd PATH_TO_EXTRACTED_SOURCE_CODE
 
 3. Create a subfolder, say, `build` and go into this subfolder:
 
