@@ -13,9 +13,7 @@ The executable (together with the `.dll` files for Windows version) can be copie
 
 ### For Windows users
 
-Please read the quickstart guide how to run IQ-TREE from Command Prompt: 
-
-<https://github.com/Cibiv/IQTree/wiki/Quickstart>
+Please read the [[quickstart guide|Quickstart]] to run IQ-TREE from Command Prompt.
 
 ## Compiling source code
 
