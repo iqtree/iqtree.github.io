@@ -78,15 +78,15 @@ If you are not sure which model to use, simply add `-m TEST`, which also works f
 By default IQ-TREE uses the standard genetic code.
 You can change to other genetic code (see <http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi>) with following options:
 
-| Option | Genetic code |
-|--------|--------------|
-|`-st CODON1` | The Standard Code (same as `-st CODON`)|
-| `-st CODON2` | The Vertebrate Mitochondrial Code |
-| `-st CODON3` | The Yeast Mitochondrial Code |
-| `-st CODON4` | The Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code |
-| `-st CODON5` | The Invertebrate Mitochondrial Code |
-| `-st CODON6` | The Ciliate, Dasycladacean and Hexamita Nuclear Code |
-| `-st CODON9` | The Echinoderm and Flatworm Mitochondrial Code |
+| Option        | Genetic code |
+|---------------|--------------|
+|`-st CODON1`   | The Standard Code (same as `-st CODON`)|
+| `-st CODON2`  | The Vertebrate Mitochondrial Code |
+| `-st CODON3`  | The Yeast Mitochondrial Code |
+| `-st CODON4`  | The Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code |
+| `-st CODON5`  | The Invertebrate Mitochondrial Code |
+| `-st CODON6`  | The Ciliate, Dasycladacean and Hexamita Nuclear Code |
+| `-st CODON9`  | The Echinoderm and Flatworm Mitochondrial Code |
 | `-st CODON10` | The Euplotid Nuclear Code |
 | `-st CODON11` | The Bacterial, Archaeal and Plant Plastid Code |
 | `-st CODON12` | The Alternative Yeast Nuclear Code |
@@ -108,7 +108,7 @@ Since version 1.0 IQ-TREE supports discrete morphological alignment by  `-st MOR
     iqtree -s morphology.phy -st MORPH
 
 IQ-TREE implements to two morphological ML models (MK and ORDERED; see Lewis 2001), where MK is the default model.
-MK is a Juke-Cantor-like model. ORDERED model considers only transitions between states $i\rightarrow i-1$, $i\rightarrow i$, and $i \rightarrow i+1$. Morphological data typically do not have constant (uninformative) sites. 
+MK is a Juke-Cantor-like model. ORDERED model considers only transitions between neighboring states `i, i+1`. Morphological data typically do not have constant (uninformative) sites. 
 In such case, you should apply ascertainment bias correction model by e.g.:
  
     iqtree -s morphology.phy -st MORPH -m MK+ASC
@@ -130,7 +130,7 @@ You can explicitly tell model testing to only include  `+ASC` model with:
 Assessing branch supports with ultrafast bootstrap approximation
 ----------------------------------------------------------------
 
-To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) that is  orders of magnitude faster than the standard procedure and provide unbias branch support values. To run UFBoot, use the option  `-bb`:
+To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) that is  orders of magnitude faster than the standard procedure and provide relatively unbiased branch support values. To run UFBoot, use the option  `-bb`:
 
     iqtree -s example.phy -m TIM+I+G -bb 1000
 
@@ -264,7 +264,7 @@ but allow each gene to evolve under a specific rate (scaling factor) normalized 
 A partition model with joint branch lengths is specified by:
 
 
-    iqtree -spj example.nex
+    iqtree -q example.nex
 
  
 (i.e., all gene-specific rates are equal to 1). 
@@ -276,13 +276,13 @@ Choosing the right partitioning scheme
 Since version 0.9.6 IQ-TREE implements a greedy strategy [lanfear2012] that starts with the full partition model and sequentially
 merges two genes until the model fit does not increase any further:
 
-  iqtree -sp example.nex -m TESTLINK
+    iqtree -sp example.nex -m TESTLINK
 
 
 After the best partition is found IQ-TREE will immediately start the tree reconstruction under the best-fit partition model.
 Sometimes you only want to find the best-fit partition model without doing tree reconstruction, then run:
 
-  iqtree -sp example.nex -m TESTONLYLINK
+    iqtree -sp example.nex -m TESTONLYLINK
 
 
 
@@ -293,7 +293,7 @@ IQ-TREE can perform the ultrafast bootstrap with partition models by e.g.,
 
     iqtree -sp example.nex -bb 1000
 
-Here, IQ-TREE will resample the sites \emph{within} subsets of the partitions (i.e., 
+Here, IQ-TREE will resample the sites __within__ subsets of the partitions (i.e., 
 the bootstrap replicates are generated per subset separately and then concatenated together).
 The same holds true if you do the standard nonparametric bootstrap. 
 
@@ -324,7 +324,7 @@ yourself (see [[Installation]]).  A complement option `-nt` allows specifying th
 
 Here, IQ-TREE will use 2 CPU cores to perform the analysis. 
 
-> Note that the parallel efficiency is only good long alignments. Because the speedup gain depends on the alignment length, a good practice is to try this version with increasing number of cores until no substantial reduction of running time is observed. 
+> Note that the parallel efficiency is only good for long alignments. Because the speedup gain depends on the alignment length, a good practice is to try this version with increasing number of cores until no substantial reduction of running time is observed. 
 
 For example, on my computer (Linux, Intel Core i5-2500K, 3.3 GHz, quad cores) I observed the following 
 wall-clock running time for this  example alignment:
