@@ -73,6 +73,11 @@ IQ-TREE can use PLL for likelihood computations, if you use "-pll" option please
 * T. Flouri, F. Izquierdo-Carrasco, D. Darriba, A.J. Aberer, L.-T. Nguyen, B.Q. Minh, A. von Haeseler, and A. Stamatakis (2015) The phylogenetic likelihood library. Syst. Biol., 64:356-362. [DOI: 10.1093/sysbio/syu084](http://dx.doi.org/10.1093/sysbio/syu084)
 
 
-#### Acknowledgements
+#### Credits and Acknowledgements
+
+Some parts of the code were taken from the following packages/libraries: [Phylogenetic likelihood library](http://www.libpll.org), [TREE-PUZZLE](http://www.tree-puzzle.de), 
+[BIONJ](http://dx.doi.org/10.1093/oxfordjournals.molbev.a025808), [Nexus Class Libary](http://dx.doi.org/10.1093/bioinformatics/btg319), [Eigen library](http://eigen.tuxfamily.org/),
+[SPRNG library](http://www.sprng.org), [Zlib library](http://www.zlib.net), [vectorclass library](http://www.agner.org/optimize/).
+
 
 IQ-TREE was partially funded by the Austrian Science Fund - FWF (grant no. I760-B17 from 2012-2015) and the University of Vienna (Initiativkolleg I059-N).
