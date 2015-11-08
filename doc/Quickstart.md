@@ -1,3 +1,4 @@
+
 ## For Window users
 
 IQ-TREE is a command-line program, i.e., clicking on `iqtree.exe` will not work. You have to open a command prompt for all analyses. As an example, if you download `iqtree-1.3.10-Windows.zip` into your `Downloads` folder, then extract it into the same folder and do the following steps:
@@ -7,14 +8,14 @@ IQ-TREE is a command-line program, i.e., clicking on `iqtree.exe` will not work.
 3. Type in `cd Downloads\iqtree-1.3.10-Windows` and press "Enter" to go into IQ-TREE folder.
 4. Optionally, type in `dir` to display folder content, which may look like this:
 
-\includegraphics[width=\linewidth]{win-cmd.png}
+    [[images/win-cmd.png]]
 
-You see that there is a `bin` folder (that contains the executable `iqtree.exe`), an example alignment file `example.phy`, and a manual pdf file.
+    You see that there is a `bin` folder (that contains the executable `iqtree.exe`), an example alignment file `example.phy`, and a manual pdf file.
 
 5. Now you can try an example run by entering `bin\iqtree -s example.phy`.
 6. After a few seconds, IQ-TREE finishes and you may see something like this:
 
-\includegraphics[width=\linewidth]{win-cmd2.png}
+[[images/win-cmd2.png]]
 
 Congratulations ;-) You have finished the first IQ-TREE analysis.
 
