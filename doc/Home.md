@@ -43,10 +43,13 @@ Documentation
 
 * [[Quickstart guide|Quickstart]]
 
-* Tutorial:
+* [[Beginner's tutorial|Tutorial]]
 
-* User Manual:
+* [[Advanced tutorial|Advanced-Tutorial]]
 
+* [[Frequently asked questions (FAQ)|Frequently-Asked-Questions]]
+
+* [[Installation guide|Installation]]
 
 User support
 ------------
