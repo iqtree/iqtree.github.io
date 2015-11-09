@@ -166,7 +166,7 @@ IQ-TREE supports the following codon frequencies:
 * `+F`: empirical codon frequencies counted from the data.
 * `+FQ`: equal codon frequencies.
 * `+F1X4`: unequal nucleotide frequencies but equal nt frequencies over three codon positions.
-* `+F3X4`: unequal nucleotide frequencies but unequal nt frequencies over three codon positions.
+* `+F3X4`: unequal nucleotide frequencies and unequal nt frequencies over three codon positions.
 
 If not specified, the default codon frequency will be `+F3X4` for `MG`-type models, `+F` for `GY`-type models and given by the model for empirical codon models. 
 
@@ -174,10 +174,14 @@ If not specified, the default codon frequency will be `+F3X4` for `MG`-type mode
 Binary and morphological models
 -------------------------------
 
-* `JC2`:
-* `GTR2`:
-* `MK`
-* `ORDERED`:
+The binary alignments should contain state `0` and `1`. Whereas for morphological data, the valid states are `0` to `9` and `A` to `Z`.
+
+* `JC2`: Jukes-Cantor type model for binary data.
+* `GTR2`: general time reversible model for binary data.
+* `MK`: Jukes-Cantor type model for morphological data.
+* `ORDERED`: only allowing exchange for neighboring states.
+
+If morphological alignments do not contain constant sites (typically the case), then an ascertainment bias correction model (see [[#Ascertainment bias correction]]) should be applied to correct the branch lengths for the absence of constant sites.
 
 
 Ascertainment bias correction
