@@ -209,7 +209,7 @@ Here, IQ-TREE partitions the alignment  `example.phy` into 2 sub-alignments name
 containing sites (columns) 1-100 and 101-384, respectively. Moreover, IQ-TREE applies the
 subtitution models  `HKY+G` and  `GTR+I+G` to  `part1` and  `part2`, respectively. Substitution model parameters and trees with branch lengths can be found in the result file  `example.nex.iqtree`. 
 
-Moreover, the  `CharSet` command allows to specify non-consecutive sites using comma-separated list of ranges with e.g.:
+Moreover, the  `CharSet` command allows to specify non-consecutive sites with e.g.:
 
     charset part1 = 1-100 200-384;
 

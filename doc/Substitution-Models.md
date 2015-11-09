@@ -240,17 +240,6 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 >**NOTICE**: For `+G` model IQ-TREE implements the _mean_ approximation approach ([Yang, 1994]). The same is done in RAxML and PhyML. However, some software like TREE-PUZZLE implements the _median_ approximation approach, which makes the resulting log-likelihood not comparable. IQ-TREE can change to this approach via `-gmedian` option.
 
 
-Partition models
-----------------
-
-
-Mixture models
---------------
-
-
-Customized models
------------------
-
 
 [Abascal et al., 2007]: http://dx.doi.org/10.1093/molbev/msl136
 [Adachi and Hasegawa, 1996]: http://dx.doi.org/10.1007/BF02498640
