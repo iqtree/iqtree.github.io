@@ -1,9 +1,8 @@
 
 IQ-TREE supports a wide range of substitution models, including advanced partition and mixture models. This guide gives a detailed information of all available models.
 
-| **TIP**: If you do not know which model to use, simply run IQ-TREE with the standard model selection (`-m TEST` option) or the new model selection procedure (`-m TESTNEW`). It automatically determines best-fit model for your data. |
+>**TIP**: If you do not know which model to use, simply run IQ-TREE with the standard model selection (`-m TEST` option) or the new model selection procedure (`-m TESTNEW`). It automatically determines best-fit model for your data.
 
------
 
 DNA models
 ----------
