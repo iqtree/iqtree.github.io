@@ -6,10 +6,10 @@ DNA models
 
 IQ-TREE includes all common DNA models (ordered by complexity):
 
-* `JC` or `JC69`: equal rates and equal base frequencies ([Jukes and Cantor, 1969]).
+* `JC` or `JC69`: equal substitution rates and equal base frequencies ([Jukes and Cantor, 1969]).
 * `F81`: equal rates but unequal base freq. ([Felsenstein, 1981]).
 * `K80` or `K2P`: unequal transition/transversion rates and equal base freq. ([Kimura, 1980]).
-* `HKY` or `HKY85`: Like `K80` but unequal base freq. ([Hasegawa, Kishino and Yano, 1985]).
+* `HKY` or `HKY85`: unequal transition/transversion rates and unequal base freq. ([Hasegawa, Kishino and Yano, 1985]).
 * `TN` or `TN93`: Like `HKY` but unequal purine/pyrimidine rates ([Tamura and Nei, 1993]).
 * `TNe`: Like `TN` but equal base freq.
 * `K81` or `K3P`: three substitution types model and equal base freq. ([Kimura, 1981]).
@@ -29,9 +29,9 @@ IQ-TREE includes all common DNA models (ordered by complexity):
 * `SYM`: Symmetric model with unequal rates and equal base freq. ([Zharkihk, 1994]).
 * `GTR`: General time reversible model with unequal rates and unequal base freq. ([Tavare, 1986]).
 
-Moreover, IQ-TREE supports arbitrarily restricted DNA model via a 6-digit code. The 6 digits define the equality for 6 nucleotide substitution types: A-C, A-G, A-T, C-G, C-T and G-T. `010010` means that A-G rate is equal to C-T rate and the remaining four substitution rates are equal. Thus, `010010` is equivalent to K80 or HKY model (depending on whether base frequencies are equal or not). `123450` is equivalent to GTR or SYM model as there is no restriction defined by such 6-digit code.
+Moreover, IQ-TREE supports arbitrarily restricted DNA model via a 6-digit code. The 6 digits define the equality for 6 nucleotide substitution rates: A-C, A-G, A-T, C-G, C-T and G-T. `010010` means that A-G rate is equal to C-T rate and the remaining four substitution rates are equal. Thus, `010010` is equivalent to K80 or HKY model (depending on whether base frequencies are equal or not). `123450` is equivalent to GTR or SYM model as there is no restriction defined by such 6-digit code.
 
-If users want to fix model parameters, append the model name with a curly bracket `{`, followed by the comma-separated rate parameters, and a closing curly bracket `}`. For example, `GTR{1.0,2.0,1.5,3.7,2.8,1.0}` is a valid model.
+If users want to fix model parameters, append the model name with a curly bracket `{`, followed by the comma-separated rate parameters, and a closing curly bracket `}`. For example, `GTR{1.0,2.0,1.5,3.7,2.8,1.0}` specifies 6 substitution rates A-C=1.0, A-G=2.0, A-T=1.5, C-G=3.7, C-T=2.8 and G-T=1.0.
 
 
 Users can also specify three different kinds of base frequencies:
@@ -51,25 +51,27 @@ Protein models
 
 IQ-TREE supports all common empirical amino-acid exchange rate matrices:
 
-* `Blosum62`: BLOcks SUbstitution Matrix ([Henikoff and Henikoff, 1992]), although not recommended.
-* `cpREV`: chloroplast matrix ([Adachi et al., 2000])
-* `Dayhoff`: ([Dayhoff et al., 1978]).
-* `DCMut`: ([Kosiol and Goldman, 2005]).
-* `FLU`: ([Dang et al., 2010]).
-* `HIVb`: ([Dang et al., 2010]).
-* `HIVw`: ([Dang et al., 2010]).
-* `JTT`: ([Jones et al., 1992]).
-* `JTTDCMut`:
-* `LG`: ([Le and Gascuel, 2008]).
-* `mtART`: ([Abascal et al., 2007]).
-* `mtMAM`: ([Yang et al., 1998]).
-* `mtREV`: ([Adachi and Hasegawa, 1996]).
-* `mtZOA`: ([Rota-Stabelli et al., 2009]).
-* `PMB`: ([Veerassamy et al., 2004]).
-* `rtREV`: ([Dimmic et al., 2002]).
-* `VT`: ([Mueller and Vingron, 2000]).
-* `WAG`: ([Whelan and Goldman, 2001]).
-        
+* `BLOSUM62`: BLOcks SUbstitution Matrix ([Henikoff and Henikoff, 1992]). Note that `BLOSUM62` is not recommended as it was designed mainly for sequence alignment.
+* `cpREV`: chloroplast matrix ([Adachi et al., 2000]).
+* `Dayhoff`: general matrix ([Dayhoff et al., 1978]).
+* `DCMut`: revised `Dayhoff` matrix ([Kosiol and Goldman, 2005]).
+* `FLU`: influenza virus ([Dang et al., 2010]).
+* `HIVb`: HIV matrix ([Dang et al., 2010]).
+* `HIVw`: HIV matrix ([Dang et al., 2010]).
+* `JTT`: general matrix ([Jones et al., 1992]).
+* `JTTDCMut`: revised `JTT` matrix ([Kosiol and Goldman, 2005]).
+* `LG`: general matrix ([Le and Gascuel, 2008]).
+* `mtART`: mitochondrial Arthropoda ([Abascal et al., 2007]).
+* `mtMAM`: mitochondrial Mammalia ([Yang et al., 1998]).
+* `mtREV`: mitochondrial Verterbrate ([Adachi and Hasegawa, 1996]).
+* `mtZOA`: mitochondrial Metazoa (Animals) ([Rota-Stabelli et al., 2009]).
+* `PMB`: Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]).
+* `rtREV`: Retrovirus ([Dimmic et al., 2002]).
+* `VT`: general matrix ([Mueller and Vingron, 2000]).
+* `WAG`: general matrix ([Whelan and Goldman, 2001]).
+
+
+
 Codon models
 ------------
 
@@ -106,8 +108,8 @@ Customized models
 [Abascal et al., 2007]: http://dx.doi.org/10.1093/molbev/msl136
 [Adachi and Hasegawa, 1996]: http://dx.doi.org/10.1007/BF02498640
 [Adachi et al., 2000]: http://dx.doi.org/10.1007/s002399910038
-[Dang et al., 2010]: 10.1186/1471-2148-10-99
-[Dayhoff et al., 1978]:
+[Dang et al., 2010]: http://dx.doi.org/10.1186/1471-2148-10-99
+[Dayhoff et al., 1978]: http://compbio.berkeley.edu/class/c246/Reading/dayhoff-1978-apss.pdf
 [Dimmic et al., 2002]: http://dx.doi.org/10.1007/s00239-001-2304-y
 [Felsenstein, 1981]: https://dx.doi.org/10.1007%2FBF01734359
 [Hasegawa, Kishino and Yano, 1985]: https://dx.doi.org/10.1007%2FBF02101694
