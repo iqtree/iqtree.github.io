@@ -181,7 +181,7 @@ The binary alignments should contain state `0` and `1`. Whereas for morphologica
 * `MK`: Jukes-Cantor type model for morphological data.
 * `ORDERED`: only allowing exchange for neighboring states.
 
-If morphological alignments do not contain constant sites (typically the case), then an ascertainment bias correction model (see [[#Ascertainment bias correction]]) should be applied to correct the branch lengths for the absence of constant sites.
+If morphological alignments do not contain constant sites (typically the case), then an ascertainment bias correction model (see [[#ascertainment-bias-correction]]) should be applied to correct the branch lengths for the absence of constant sites.
 
 
 Ascertainment bias correction
