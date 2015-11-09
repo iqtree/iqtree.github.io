@@ -1,5 +1,8 @@
-This tutorial gives users a quick starting guide. You can either download the binary
-for your platform from the IQ-TREE website or the source code (see [[Installation]]). For the next steps, the folder containing your  `iqtree` executable should added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Instructions for how to set the PATH variable in a specific operating system can be easily found on the Internet. For quick overview of all supported options in IQ-TREE, run the command  `iqtree -h`. 
+
+This tutorial gives users a quick starting guide. Please first [download and install](Installation) the binary
+for your platform . For the next steps, the folder containing your  `iqtree` executable should added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
+
+>**TIP**: For quick overview of all supported options in IQ-TREE, run the command  `iqtree -h`. 
 
 
 First running example
@@ -32,7 +35,7 @@ This prevents output files to be overwritten when you perform multiple analyses 
 Choosing the right substitution model
 -------------------------------------
 
-IQ-TREE supports a wide range of substitution models for binary, DNA, protein, codon and morphological alignments. If the substitution model is not specified, IQ-TREE will use the default model (e.g. HKY for DNA, WAG for protein). In case you do not know which model is appropriate for your data,  IQ-TREE can automatically determine the best-fit model 
+IQ-TREE supports a wide range of [substitution models](Substitution Models) for DNA, protein, codon, binary and morphological alignments. If the model is not specified, IQ-TREE will use the default model (e.g. HKY for DNA, WAG for protein). In case you do not know which model is appropriate for your data,  IQ-TREE can automatically determine the best-fit model 
 for your alignment using the `-m TEST` option. For example:
 
     iqtree -s example.phy -m TEST
@@ -40,7 +43,7 @@ for your alignment using the `-m TEST` option. For example:
 `-m` is the option to specify the model name to use during the analysis. `TEST`
 is a key word telling IQ-TREE to perform the model test procedure and select the best-fit model. The remaining analysis
 will be done using the selected model. More specifically, IQ-TREE computes the log-likelihoods
-of the initial parsimony tree for many different models and the Akaike information criterion (AIC), corrected Akaike information criterion (AICc), and the Bayesian information criterion (BIC).
+of the initial parsimony tree for many different models and the *Akaike information criterion* (AIC), *corrected Akaike information criterion* (AICc), and the *Bayesian information criterion* (BIC).
 Then IQ-TREE chooses the model that minimizes the BIC score (you can also change to AIC or AICc by 
 adding the option `-AIC` or `-AICc`, respectively.
 Here, IQ-TREE will write an additional file:
@@ -58,35 +61,34 @@ Sometimes you only want to find the best-fit model without doing tree reconstruc
 
     iqtree -s example.phy -m TESTONLY
 
-Here, IQ-TREE will stop after finishing the model selection. The name of the best-fit model will be printed on the screen.
-Note that if the file `*.model` exists and is correct, IQ-TREE will reuse the computed log-likelihoods  to speed up the model selection procedure. 
+Here, IQ-TREE will stop after finishing the model selection. Note that if the file `*.model` exists and is correct, IQ-TREE will reuse the computed log-likelihoods  to speed up the model selection procedure. 
 
 
 Codon models
 ------------
 
-Since version 1.0 IQ-TREE supports basic codon models (GY, MG, and ECM). You need to input a protein-coding DNA alignment and specify codon data by option `-st CODON` (Otherwise, IQ-TREE applies DNA model because it detects that your alignment has DNA sequences):
+IQ-TREE supports a number of [codon models](Substitution Models#codon-models). You need to input a protein-coding DNA alignment and specify codon data by option `-st CODON` (Otherwise, IQ-TREE applies DNA model because it detects that your alignment has DNA sequences):
 
     iqtree -s coding_gene.phy -st CODON 
 
-If your alignment length is not divisible by 3, an error message will occur. IQ-TREE will group sites 1,2,3 into codon site 1; site 4,5,6 to codon site 2; etc. Moreover, any codon, which has at least one gap/unknown/ambiguous nucleotide, will be treated as unknown codon character.
+If your alignment length is not divisible by 3, IQ-TREE will stop with an error message. IQ-TREE will group sites 1,2,3 into codon site 1; site 4,5,6 to codon site 2; etc. Moreover, any codon, which has at least one gap/unknown/ambiguous nucleotide, will be treated as unknown codon character.
 
 If you are not sure which model to use, simply add `-m TEST`, which also works for codon alignments: 
 
     iqtree -s coding_gene.phy -st CODON -m TEST
 
-By default IQ-TREE uses the standard genetic code. If you want to change the genetic code, please refer to [codon models here](Substitution Models#codon-models).
+By default IQ-TREE uses the standard genetic code. If you want to change the genetic code, please refer to [codon models guide](Substitution Models#codon-models).
 
-Morphological or SNP data
--------------------------
 
-Since version 1.0 IQ-TREE supports discrete morphological alignment by  `-st MORPH` option:
+Binary, morphological and SNP data
+---------------------------------
+
+IQ-TREE supports discrete morphological alignment by  `-st MORPH` option:
 
     iqtree -s morphology.phy -st MORPH
 
-IQ-TREE implements to two morphological ML models: MK and ORDERED ([Lewis, 2001]), where MK is the default model.
-MK is a Juke-Cantor-like model. ORDERED model considers only transitions between neighboring states `i, i+1`. Morphological data typically do not have constant (uninformative) sites. 
-In such case, you should apply ascertainment bias correction model by e.g.:
+IQ-TREE implements to two morphological ML models: [MK and ORDERED](Subtitution Models#bin-morph). Morphological data typically do not have constant (uninformative) sites. 
+In such case, you should apply [ascertainment bias correction](Substitution Models#ascertainment-bias-correction) model by e.g.:
  
     iqtree -s morphology.phy -st MORPH -m MK+ASC
 
@@ -121,6 +123,7 @@ computed as the occurence frequencies in the bootstrap trees. This file is in "s
 but in NEXUS format, which can be viewed with SplitsTree program. 
 
 >**TIP**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [[Frequently Asked Questions#interpret-ufboot]] for more information.
+
 
 Assessing branch supports with  standard nonparametric bootstrap
 ----------------------------------------------------------------
@@ -167,8 +170,15 @@ Partitioned analysis for multi-gene alignments
 ----------------------------------------------
 
 In the partition model, you can specify a substitution model for each gene/character set. 
-IQ-TREE will then estimate the model parameters and branch lengths separately for every partition. 
-**Since version 1.3.X IQ-TREE supports RAxML-style partition input file**, which looks like:
+IQ-TREE will then estimate the model parameters separately for every partition. Moreover, IQ-TREE provides edge-linked or edge-unlinked branch lengths between partitions:
+
+* `-q partition_file`: all partitions share the same set of branch lengths (like `-q` option of RAxML).
+* `-spp partition_file`: like above but allowing each partition to have its own evolution rate.
+* `-sp partition_file`: each partition has its own set of branch lengths (like combination of `-q` and `-M` options in RAxML) to account for e.g., *heterotachy* ([Lopez et al., 2002]).
+
+>**TIP**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
+
+IQ-TREE supports RAxML-style and NEXUS partition input file. The RAxML-style partition file may look like:
 
     DNA, part1 = 1-100
     DNA, part2 = 101-384
@@ -179,7 +189,7 @@ If your partition file is called  `example.partitions`, the partition analysis c
     iqtree -s example.phy -q example.partitions -m GTR+I+G
 
 
-Note that using RAxML-style partition file, all partitions will use the same rate heterogeneity model given in `-m` option (`+I+G` in this example). If you want to specify, say, `+G` for the first partition and `+I+G` for the second partition, then you need to create a NEXUS file which is more flexible. This file contains a  `SETS` block with
+Note that using RAxML-style partition file, all partitions will use the same rate heterogeneity model given in `-m` option (`+I+G` in this example). If you want to specify, say, `+G` for the first partition and `+I+G` for the second partition, then you need to create the more flexible NEXUS partition file. This file contains a  `SETS` block with
  `CharSet` and  `CharPartition` commands to specify individual genes and the partition, respectively.
 For example:
 
@@ -191,9 +201,9 @@ For example:
     end;
 
 
-If your NEXUS file is called  `example.nex`, then use the option  `-sp` to input the file as following:
+If your NEXUS file is called  `example.nex`, then you can use the option  `-spp` to input the file as following:
 
-    iqtree -s example.phy -sp example.nex
+    iqtree -s example.phy -spp example.nex
 
 Here, IQ-TREE partitions the alignment  `example.phy` into 2 sub-alignments named  `part1` and  `part2`
 containing sites (columns) 1-100 and 101-384, respectively. Moreover, IQ-TREE applies the
@@ -229,39 +239,27 @@ in   `part1.phy` but not in   `part2.phy`, IQ-TREE will treat the corresponding 
 in  `part2.phy` as missing data. For your convenience IQ-TREE writes the concatenated alignment
 into the file  `example.nex.conaln`.
 
-Since version 0.9.6 IQ-TREE supports partition models with joint and proportional branch lengths between genes. This is
-to reduce the number of parameters in case of model overfitting for the full partition model. For example:
-
-
-    iqtree -spp example.nex
-
-
-applies a proportional partition model. That means, we have only one set of branch lengths for species tree 
-but allow each gene to evolve under a specific rate (scaling factor) normalized to the average of 1.
-
-A partition model with joint branch lengths is specified by:
-
-
-    iqtree -q example.nex
-
- 
-(i.e., all gene-specific rates are equal to 1). 
- 
  
 Choosing the right partitioning scheme
 --------------------------------------
 
-Since version 0.9.6 IQ-TREE implements a greedy strategy ([Lanfear et al., 2012]) that starts with the full partition model and sequentially
+IQ-TREE implements a greedy strategy ([Lanfear et al., 2012]) that starts with the full partition model and subsequentially
 merges two genes until the model fit does not increase any further:
 
-    iqtree -sp example.nex -m TESTLINK
+    iqtree -sp example.nex -m TESTMERGE
 
 
 After the best partition is found IQ-TREE will immediately start the tree reconstruction under the best-fit partition model.
 Sometimes you only want to find the best-fit partition model without doing tree reconstruction, then run:
 
-    iqtree -sp example.nex -m TESTONLYLINK
+    iqtree -sp example.nex -m TESTONLYMERGE
 
+
+To reduce the computational burden IQ-TREE implements the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]):
+
+    iqtree -sp example.nex -m TESTONLYMERGE -rcluster 10
+
+to only examine the top 10% partition merging schemes (like `--rcluster-percent 10` option in PartitionFinder).
 
 
 Ultrafast bootstrapping with partition model
@@ -269,23 +267,23 @@ Ultrafast bootstrapping with partition model
 
 IQ-TREE can perform the ultrafast bootstrap with partition models by e.g.,
 
-    iqtree -sp example.nex -bb 1000
+    iqtree -spp example.nex -bb 1000
 
 Here, IQ-TREE will resample the sites *within* subsets of the partitions (i.e., 
 the bootstrap replicates are generated per subset separately and then concatenated together).
 The same holds true if you do the standard nonparametric bootstrap. 
 
-Since version 0.9.6 IQ-TREE supports the gene-resampling strategy: 
+IQ-TREE supports the gene-resampling strategy: 
 
 
-    iqtree -sp example.nex -bb 1000 -bspec GENE
+    iqtree -spp example.nex -bb 1000 -bspec GENE
 
 
 is to resample genes instead of sites. Moreover, IQ-TREE allows an even more complicated
-strategy: resampling genes and sites within resampled genes:
+strategy: resampling genes and sites within resampled genes, which may reduce false positives of the standard bootstrap resampling ([Gadagkar et al., 2005]):
 
 
-    iqtree -sp example.nex -bb 1000 -bspec GENESITE
+    iqtree -spp example.nex -bb 1000 -bspec GENESITE
 
 
 
@@ -297,7 +295,7 @@ You can download the binary from the software website or compile the source code
 yourself (see [[Installation]]).  A complement option `-nt` allows specifying the number of CPU to be used. For example:
 
 
-  iqtree-omp -s example.phy -nt 2
+    iqtree-omp -s example.phy -nt 2
 
 
 Here, IQ-TREE will use 2 CPU cores to perform the analysis. 
@@ -319,6 +317,10 @@ Therefore, I would only use 2 cores for this specific alignment.
 
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
+[Gadagkar et al., 2005]: http://dx.doi.org/10.1002/jez.b.21026
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Lanfear et al., 2012]: http://dx.doi.org/10.1093/molbev/mss020
+[Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82
 [Lewis, 2001]: http://dx.doi.org/10.1080/106351501753462876
+[Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
+
