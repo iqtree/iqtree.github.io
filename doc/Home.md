@@ -12,7 +12,7 @@ The strength of IQ-TREE is the **availability of a wide range of models**:
 * [[Ascertainment bias correction|Substitution Models#ascertainment-bias-correction]] model when constant sites are absent (e.g., SNPs or morphological data).
 * [[Rate heterogeneity among sites|Substitution Models#rate-heterogeneity-across-sites]] including invariable site model, discrete Gamma, and FreeRate model.
 * [[Phylogenomic partition models|Substitution Models#partition-models]] allowing for mixed data types between partitions, linked or unlinked branch lengths, and different rate types (e.g. one partition under GTR+G and another under WAG+I+G).
-* [[Mixture models||Substitution Models#mixture-models]] such as predefined protein mixture models (e.g., LG4X, CAT C10-C60), customizable mixture models (e.g., "MIX{HKY,GTR}").
+* [[Mixture models|Substitution Models#mixture-models]] such as predefined protein mixture models (e.g., LG4X, CAT C10-C60), customizable mixture models (e.g., "MIX{HKY,GTR}").
 
 Download 
 --------
