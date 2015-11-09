@@ -179,14 +179,22 @@ The binary alignments should contain state `0` and `1`. Whereas for morphologica
 * `JC2`: Jukes-Cantor type model for binary data.
 * `GTR2`: general time reversible model for binary data.
 * `MK`: Jukes-Cantor type model for morphological data.
-* `ORDERED`: only allowing exchange for neighboring states.
+* `ORDERED`: allowing exchange of neighboring states only.
 
->NOTICE: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
+Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies.
+
+>NOTICE: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model (`+ASC`)](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
 
 
 Ascertainment bias correction
 -----------------------------
 
+An ascertainment bias correction (`+ASC`) model ([Lewis, 2001]) should be applied if the alignment does not contain constant sites (such as morphological or SNPs data). For example:
+
+* `MK+ASC`: for morphological data.
+* `GTR+ASC`: for SNPs data.
+
+`+ASC` will correct the likelihood conditioned on variable sites. Without `+ASC`, the branch lengths might be overestimated.
 
 Rate heterogeneity across sites
 -------------------------------
@@ -222,6 +230,7 @@ Customized models
 [Kosiol and Goldman, 2005]: http://dx.doi.org/10.1093/molbev/msi005
 [Kosiol et al., 2007]: http://dx.doi.org/10.1093/molbev/msm064
 [Le and Gascuel, 2008]: http://dx.doi.org/10.1093/molbev/msn067
+[Lewis, 2001]: http://dx.doi.org/10.1080/106351501753462876
 [Mueller and Vingron, 2000]: http://dx.doi.org/10.1089/10665270050514918
 [Muse and Gaut, 1994]: http://mbe.oxfordjournals.org/content/11/5/715.abstract
 [Rota-Stabelli et al., 2009]: http://dx.doi.org/10.1016/j.ympev.2009.01.011
