@@ -1,6 +1,7 @@
 
 IQ-TREE supports a wide range of substitution models, including advanced partition and mixture models. This guide gives a detailed information of all available models.
 
+>NOTICE: If you do not know which model to use, simply run IQ-TREE with `-m TEST` option, which automatically determines best-fit model for your data.
 
 DNA models
 ----------
@@ -144,7 +145,9 @@ IQ-TREE supports several codon models:
 * `ECMrest`: restricted version of `ECMK07` that allows only one nucleotide exchange.
 * `ECMS05` or `SCHN05`: empirical codon model ([Schneider et al., 2005]).
 
-IQ-TREE also support combined empirical-mechanistic codon models, where the name of an empirical model (`ECMK07`, `ECMrest` or `ECMS05`) and a mechanistic model (remaining ones) are combined with an underscore separator (`_`). For example:
+The last three models (`ECMK07`, `ECMrest` or `ECMS05`) are called __empirical__ codon models, whereas the others are called __mechanistic__ codon models.
+
+IQ-TREE also supports combined empirical-mechanistic codon models, where the name of an empirical model and a mechanistic model are combined with an underscore separator (`_`). For example:
 
 * `ECMK07_GY2K`: The combined `ECMK07` and `GY2K` model, with the rate entries being multiplication of the two corresponding rate matrices.
 
@@ -157,6 +160,15 @@ If the model name does not match the above listed models, IQ-TREE assumes that i
 
 
 #### Codon frequencies
+
+IQ-TREE supports the following codon frequencies:
+
+* `+F`: empirical codon frequencies counted from the data.
+* `+FQ`: equal codon frequencies.
+* `+F1X4`: unequal nucleotide frequencies but equal nt frequencies over three codon positions.
+* `+F3X4`: unequal nucleotide frequencies but unequal nt frequencies over three codon positions.
+
+If not specified, the default codon frequency will be `+F3X4` for `MG`-type models, `+F` for `GY`-type models and given by the model for empirical codon models. 
 
 
 Binary and morphological models
