@@ -1,10 +1,11 @@
 
 IQ-TREE supports a wide range of substitution models, including advanced partition and mixture models. This guide gives a detailed information of all available models.
 
+
 DNA models
 ----------
 
-#### Substitution rates
+#### Base substitution rates
 
 IQ-TREE includes all common DNA models (ordered by complexity):
 
@@ -126,13 +127,45 @@ Users can also specify AA frequencies with, e.g.:
 Codon models
 ------------
 
-"MG", "MGK", "GY", "KOSI07", "SCHN05"
+#### Codon substitution rates
+
+IQ-TREE supports several codon models:
+
+* `MG`: nonsynonymous/synonymous (dn/ds) rate ratio ([[Muse and Gaut, 1994]]).
+* `MGK`: Like `MG` with additional transition/transversion (ts/tv) rate ratio.
+* `MG1KTS` or `MGKAP2`: Like `MG` with a transition rate ([Kosiol et al., 2007]).
+* `MG1KTV` or `MGKAP3`: Like `MG` with a transversion rate ([Kosiol et al., 2007]).
+* `MG2K` or `MGKAP4`: Like `MG` with a transition rate and a transversion rate ([Kosiol et al., 2007]).
+* `GY`: nonsynonymous/synonymous and transition/transversion rate ratios ([Goldman and Yang, 1994]).
+* `GY1KTS` or `GYKAP2`: Like `GY` with a transition rate ([Kosiol et al., 2007]).
+* `GY1KTV` or `GYKAP3`: Like `GY` with a transversion rate ([Kosiol et al., 2007]).
+* `GY2K` or `GYKAP4`: Like `GY` with a transition rate and a transversion rate ([Kosiol et al., 2007]).
+* `ECMK07` or `KOSI07`: empirical codon model ([Kosiol et al., 2007]).
+* `ECMrest`: restricted version of `ECMK07` that allows only one nucleotide exchange.
+* `ECMS05` or `SCHN05`: empirical codon model ([Schneider et al., 2005]).
+
+IQ-TREE also support combined empirical-mechanistic codon models, where the name of an empirical model (`ECMK07`, `ECMrest` or `ECMS05`) and a mechanistic model (remaining ones) are combined with an underscore separator (`_`). For example:
+
+* `ECMK07_GY2K`: The combined `ECMK07` and `GY2K` model, with the rate entries being multiplication of the two corresponding rate matrices.
+
+Thus, there can be many such combinations.
+
+If the model name does not match the above listed models, IQ-TREE assumes that it is a file containing codon exchange rates and frequencies in PAML format. It contains the lower diagonal part of the matrix and codon frequencies. For an example, see <http://www.ebi.ac.uk/goldman/ECM/>.
+
+
+>NOTICE: Branch lengths under codon models are interpreted as number of nucleotide substitutions per codon site. Thus, they are typically 3 times longer than under DNA models.
+
+
+#### Codon frequencies
+
 
 Binary and morphological models
 -------------------------------
 
-"JC2", "GTR2"
-{"MK", "ORDERED"}
+* `JC2`:
+* `GTR2`:
+* `MK`
+* `ORDERED`:
 
 
 Ascertainment bias correction
@@ -162,7 +195,8 @@ Customized models
 [Dang et al., 2010]: http://dx.doi.org/10.1186/1471-2148-10-99
 [Dayhoff et al., 1978]: http://compbio.berkeley.edu/class/c246/Reading/dayhoff-1978-apss.pdf
 [Dimmic et al., 2002]: http://dx.doi.org/10.1007/s00239-001-2304-y
-[Felsenstein, 1981]: https://dx.doi.org/10.1007%2FBF01734359
+[Felsenstein, 1981]: http://dx.doi.org/10.1007%2FBF01734359
+[Goldman and Yang, 1994]: http://mbe.oxfordjournals.org/content/11/5/725.abstract
 [Hasegawa, Kishino and Yano, 1985]: https://dx.doi.org/10.1007%2FBF02101694
 [Henikoff and Henikoff, 1992]: https://dx.doi.org/10.1073%2Fpnas.89.22.10915
 [Jones et al., 1992]: https://dx.doi.org/10.1093%2Fbioinformatics%2F8.3.275
@@ -170,9 +204,12 @@ Customized models
 [Kimura, 1980]: http://dx.doi.org/10.1007%2FBF01731581
 [Kimura, 1981]: http://dx.doi.org/10.1073/pnas.78.1.454
 [Kosiol and Goldman, 2005]: http://dx.doi.org/10.1093/molbev/msi005
+[Kosiol et al., 2007]: http://dx.doi.org/10.1093/molbev/msm064
 [Le and Gascuel, 2008]: http://dx.doi.org/10.1093/molbev/msn067
 [Mueller and Vingron, 2000]: http://dx.doi.org/10.1089/10665270050514918
+[Muse and Gaut, 1994]: http://mbe.oxfordjournals.org/content/11/5/715.abstract
 [Rota-Stabelli et al., 2009]: http://dx.doi.org/10.1016/j.ympev.2009.01.011
+[Schneider et al., 2005]: http://dx.doi.org/10.1186/1471-2105-6-134
 [Tamura and Nei, 1993]: http://mbe.oxfordjournals.org/cgi/content/abstract/10/3/512
 [Tavare, 1986]: http://www.damtp.cam.ac.uk/user/st321/CV_&_Publications_files/STpapers-pdf/T86.pdf
 [Veerassamy et al., 2004]: http://dx.doi.org/10.1089/106652703322756195
