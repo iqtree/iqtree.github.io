@@ -151,7 +151,7 @@ To use codon model one should use option `-st CODON`, which implicitly assumes s
 | `-st CODON24` | Pterobranchia Mitochondrial Code |
 | `-st CODON25` | Candidate Division SR1 and Gracilibacteria Code |
 
-(the IDs correspond to see specification at <http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi>).
+(the IDs correspond to the specification at <http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi>).
 
 #### Codon substitution rates
 
@@ -221,9 +221,20 @@ An ascertainment bias correction (`+ASC`) model ([Lewis, 2001]) should be applie
 
 `+ASC` will correct the likelihood conditioned on variable sites. Without `+ASC`, the branch lengths might be overestimated.
 
+
 Rate heterogeneity across sites
 -------------------------------
 
+IQ-TREE supports all common rate heterogeneity across sites model:
+
+* `+I`: allowing for a proportion of invariable sites.
+* `+G`: discrete Gamma model ([Yang, 1994]) with default 4 rate categories. The number of categories can be changed with e.g. `+G8`.
+* `+I+G`: invariable site plus discrete Gamma model ([Gu et al., 1995]).
+* `+R`: FreeRate model ([Yang, 1995];[Soubrier et al., 2012]) that relaxes the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). The FreeRate model typically fits data better than `+G` model.
+
+>TIP: the new model selection procedure (`-m TESTNEW` option) tests the FreeRate model, whereas the standard procedure (`-m TEST`) does not.
+
+>NOTICE: For `+G` model IQ-TREE implements the _mean_ approximation approach ([Yang, 1994]). The same is done in RAxML and PhyML. However, some software like TREE-PUZZLE implements the _median_ approximation approach, which makes the resulting log-likelihood not comparable. IQ-TREE can change to this approach via `-gmedian` option.
 
 
 Partition models
@@ -246,6 +257,7 @@ Customized models
 [Dimmic et al., 2002]: http://dx.doi.org/10.1007/s00239-001-2304-y
 [Felsenstein, 1981]: http://dx.doi.org/10.1007%2FBF01734359
 [Goldman and Yang, 1994]: http://mbe.oxfordjournals.org/content/11/5/725.abstract
+[Gu et al., 1995]: http://mbe.oxfordjournals.org/content/12/4/546.abstract
 [Hasegawa, Kishino and Yano, 1985]: https://dx.doi.org/10.1007%2FBF02101694
 [Henikoff and Henikoff, 1992]: https://dx.doi.org/10.1073%2Fpnas.89.22.10915
 [Jones et al., 1992]: https://dx.doi.org/10.1093%2Fbioinformatics%2F8.3.275
@@ -260,10 +272,13 @@ Customized models
 [Muse and Gaut, 1994]: http://mbe.oxfordjournals.org/content/11/5/715.abstract
 [Rota-Stabelli et al., 2009]: http://dx.doi.org/10.1016/j.ympev.2009.01.011
 [Schneider et al., 2005]: http://dx.doi.org/10.1186/1471-2105-6-134
+[Soubrier et al., 2012]: http://dx.doi.org/10.1093/molbev/mss140
 [Tamura and Nei, 1993]: http://mbe.oxfordjournals.org/cgi/content/abstract/10/3/512
 [Tavare, 1986]: http://www.damtp.cam.ac.uk/user/st321/CV_&_Publications_files/STpapers-pdf/T86.pdf
 [Veerassamy et al., 2004]: http://dx.doi.org/10.1089/106652703322756195
 [Whelan and Goldman, 2001]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a003851
+[Yang, 1994]: http://dx.doi.org/10.1007/BF00160154
+[Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 [Yang et al., 1998]: http://mbe.oxfordjournals.org/content/15/12/1600.abstract
 [Zharkihk, 1994]: http://dx.doi.org/10.1007/BF00160155
 
