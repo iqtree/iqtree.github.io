@@ -182,7 +182,7 @@ Thus, there can be many such combinations.
 If the model name does not match the above listed models, IQ-TREE assumes that it is a file containing codon exchange rates and frequencies in PAML format. It contains the lower diagonal part of the matrix and codon frequencies. For an example, see <http://www.ebi.ac.uk/goldman/ECM/>.
 
 
->NOTICE: Branch lengths under codon models are interpreted as number of nucleotide substitutions per codon site. Thus, they are typically 3 times longer than under DNA models.
+>**NOTICE**: Branch lengths under codon models are interpreted as number of nucleotide substitutions per codon site. Thus, they are typically 3 times longer than under DNA models.
 
 
 #### Codon frequencies
@@ -209,7 +209,7 @@ The binary alignments should contain state `0` and `1`. Whereas for morphologica
 
 Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies.
 
->NOTICE: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model (`+ASC`)](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
+>**NOTICE**: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model (`+ASC`)](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
 
 
 Ascertainment bias correction
@@ -237,7 +237,7 @@ IQ-TREE supports all common rate heterogeneity across sites model:
 
 Users can fix the parameters of the model. For example, `+I{0.2}` will fix the proportion of invariable sites (pinvar) to 0.2; `+G{0.9}` will fix the Gamma shape parameter (alpha) to 0.9; `+I{0.2}+G{0.9}` will fix both pinvar and alpha. To fix the FreeRate model parameters, use the syntax `+Rk{w1,r1,...,wk,rk}` (replacing `k` with number of categories). Here, `w1, ..., wk` are the weights and `r1, ..., rk` the rates for each category. 
 
->NOTICE: For `+G` model IQ-TREE implements the _mean_ approximation approach ([Yang, 1994]). The same is done in RAxML and PhyML. However, some software like TREE-PUZZLE implements the _median_ approximation approach, which makes the resulting log-likelihood not comparable. IQ-TREE can change to this approach via `-gmedian` option.
+>**NOTICE**: For `+G` model IQ-TREE implements the _mean_ approximation approach ([Yang, 1994]). The same is done in RAxML and PhyML. However, some software like TREE-PUZZLE implements the _median_ approximation approach, which makes the resulting log-likelihood not comparable. IQ-TREE can change to this approach via `-gmedian` option.
 
 
 Partition models

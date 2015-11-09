@@ -1,5 +1,5 @@
 
-How do I interpret ultrafast bootstrap (UFBoot) support values?
+<a name="interpret-ufboot"/> How do I interpret ultrafast bootstrap (UFBoot) support values?
 ---------------------------------------------------------------
 
 This feature (`-bb` option) was published in  ([Minh et al., 2013]). One of the main conclusion, is that UFBoot support values are more unbiased: 95% support correspond roughly to the probability of 95% that a clade is true. So this has a different meaning than the normal bootstrap supports (where you start to believe in the clade if it has >80% BS support). For UFBoot, you should only start to believe in the clade if its support >= 95%. Thus, the interpretations are different and you should not compare BS% with UFBoot% directly. 

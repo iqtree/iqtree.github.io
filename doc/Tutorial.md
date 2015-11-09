@@ -120,6 +120,7 @@ computed as the occurence frequencies in the bootstrap trees. This file is in "s
 *  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
 but in NEXUS format, which can be viewed with SplitsTree program. 
 
+>**TIP**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [[Frequently Asked Questions#interpret-ufboot]] for more information.
 
 Assessing branch supports with  standard nonparametric bootstrap
 ----------------------------------------------------------------
@@ -301,7 +302,7 @@ yourself (see [[Installation]]).  A complement option `-nt` allows specifying th
 
 Here, IQ-TREE will use 2 CPU cores to perform the analysis. 
 
-> Note that the parallel efficiency is only good for long alignments. Because the speedup gain depends on the alignment length, a good practice is to try this version with increasing number of cores until no substantial reduction of running time is observed. 
+>**NOTICE**: the parallel efficiency is only good for long alignments. A good practice is to test with increasing number of cores until no substantial reduction of wall-clock time is observed. 
 
 For example, on my computer (Linux, Intel Core i5-2500K, 3.3 GHz, quad cores) I observed the following 
 wall-clock running time for this  example alignment:
