@@ -270,7 +270,7 @@ IQ-TREE can perform the ultrafast bootstrap with partition models by e.g.,
 
     iqtree -sp example.nex -bb 1000
 
-Here, IQ-TREE will resample the sites __within__ subsets of the partitions (i.e., 
+Here, IQ-TREE will resample the sites *within* subsets of the partitions (i.e., 
 the bootstrap replicates are generated per subset separately and then concatenated together).
 The same holds true if you do the standard nonparametric bootstrap. 
 

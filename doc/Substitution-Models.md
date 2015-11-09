@@ -1,7 +1,9 @@
 
 IQ-TREE supports a wide range of substitution models, including advanced partition and mixture models. This guide gives a detailed information of all available models.
 
->NOTICE: If you do not know which model to use, simply run IQ-TREE with `-m TEST` option, which automatically determines best-fit model for your data.
+---
+| **TIP**: If you do not know which model to use, simply run IQ-TREE with the standard model selection (`-m TEST` option) or the new model selection procedure (`-m TESTNEW`). It automatically determines best-fit model for your data. |
+---
 
 DNA models
 ----------
@@ -128,7 +130,7 @@ Users can also specify AA frequencies with, e.g.:
 Codon models
 ------------
 
-To use codon model one should use option `-st CODON`, which implicitly assumes standard genetic code. You can change to other genetic code with following options:
+To apply codon model one should use option `-st CODON` to tell IQ-TREE that the alignment contains protein coding sequences (otherwise, IQ-TREE thinks that it contains DNA sequences and will apply DNA models). This implicitly applies the standard genetic code. You can change to other genetic code by appending appropriate ID:
 
 | Option        | Genetic code |
 |---------------|--------------|
@@ -151,7 +153,7 @@ To use codon model one should use option `-st CODON`, which implicitly assumes s
 | `-st CODON24` | Pterobranchia Mitochondrial Code |
 | `-st CODON25` | Candidate Division SR1 and Gracilibacteria Code |
 
-(the IDs correspond to the specification at <http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi>).
+(the IDs follow the specification at <http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi>).
 
 #### Codon substitution rates
 
@@ -170,9 +172,9 @@ IQ-TREE supports several codon models:
 * `ECMrest`: restricted version of `ECMK07` that allows only one nucleotide exchange.
 * `ECMS05` or `SCHN05`: empirical codon model ([Schneider et al., 2005]).
 
-The last three models (`ECMK07`, `ECMrest` or `ECMS05`) are called __empirical__ codon models, whereas the others are called __mechanistic__ codon models.
+The last three models (`ECMK07`, `ECMrest` or `ECMS05`) are called *empirical* codon models, whereas the others are called *mechanistic* codon models.
 
-IQ-TREE also supports combined empirical-mechanistic codon models, where the name of an empirical model and a mechanistic model are combined with an underscore separator (`_`). For example:
+Moreover, IQ-TREE supports combined empirical-mechanistic codon models using an underscore separator (`_`). For example:
 
 * `ECMK07_GY2K`: The combined `ECMK07` and `GY2K` model, with the rate entries being multiplication of the two corresponding rate matrices.
 
@@ -232,7 +234,7 @@ IQ-TREE supports all common rate heterogeneity across sites model:
 * `+I+G`: invariable site plus discrete Gamma model ([Gu et al., 1995]).
 * `+R`: FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes `+G` model by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). The FreeRate model typically fits data better than `+G` model and is recommended for analysis of large data sets.
 
->TIP: the new model selection procedure (`-m TESTNEW` option) tests the FreeRate model, whereas the standard procedure (`-m TEST`) does not.
+>**TIP**: the new model selection procedure (`-m TESTNEW` option) tests the FreeRate model, whereas the standard procedure (`-m TEST`) does not.
 
 Users can fix the parameters of the model. For example, `+I{0.2}` will fix the proportion of invariable sites (pinvar) to 0.2; `+G{0.9}` will fix the Gamma shape parameter (alpha) to 0.9; `+I{0.2}+G{0.9}` will fix both pinvar and alpha. To fix the FreeRate model parameters, use the syntax `+Rk{w1,r1,...,wk,rk}` (replacing `k` with number of categories). Here, `w1, ..., wk` are the weights and `r1, ..., rk` the rates for each category. 
 
