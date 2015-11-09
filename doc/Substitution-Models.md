@@ -158,7 +158,7 @@ To apply codon model one should use option `-st CODON` to tell IQ-TREE that the 
 
 IQ-TREE supports several codon models:
 
-* `MG`: nonsynonymous/synonymous (dn/ds) rate ratio ([[Muse and Gaut, 1994]]).
+* `MG`: nonsynonymous/synonymous (dn/ds) rate ratio ([Muse and Gaut, 1994]).
 * `MGK`: Like `MG` with additional transition/transversion (ts/tv) rate ratio.
 * `MG1KTS` or `MGKAP2`: Like `MG` with a transition rate ([Kosiol et al., 2007]).
 * `MG1KTV` or `MGKAP3`: Like `MG` with a transversion rate ([Kosiol et al., 2007]).

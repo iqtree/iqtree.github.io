@@ -122,7 +122,7 @@ computed as the occurence frequencies in the bootstrap trees. This file is in "s
 *  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
 but in NEXUS format, which can be viewed with SplitsTree program. 
 
->**TIP**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [[Frequently Asked Questions#interpret-ufboot]] for more information.
+>**TIP**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently Asked Questions#interpret-ufboot) for more information.
 
 
 Assessing branch supports with  standard nonparametric bootstrap
@@ -290,9 +290,8 @@ strategy: resampling genes and sites within resampled genes, which may reduce fa
 Utilizing multi-core CPUs
 -------------------------
 
-We also have a specialized version of IQ-TREE (`iqtree-omp`), which uses the OpenMP library, allows running analyses with multiple CPU cores.
-You can download the binary from the software website or compile the source code
-yourself (see [[Installation]]).  A complement option `-nt` allows specifying the number of CPU to be used. For example:
+A specialized version of IQ-TREE (`iqtree-omp`) can utilize multiple CPU cores to speed up the analysis.
+To obtain this version please refer to the [installation guide](Installation).  A complement option `-nt` allows specifying the number of CPU to be used. For example:
 
 
     iqtree-omp -s example.phy -nt 2
@@ -312,7 +311,7 @@ wall-clock running time for this  example alignment:
 | 3         | 11.119 sec      |
 | 4         | 10.807 sec      |
 
-Therefore, I would only use 2 cores for this specific alignment.
+Therefore, I would only use 2 cores, which seems to balance the trade-off between the number of cores and waiting time.
 
 
 

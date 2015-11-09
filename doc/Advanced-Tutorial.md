@@ -1,6 +1,6 @@
 
 
-This advanced tutorial is intended for more experienced users. If not, please read the [[Beginner's Tutorial|Tutorial]] first.
+This advanced tutorial is intended for more experienced users. If not, please read the [Beginner's Tutorial](Tutorial) first.
 
 
 Tree topology tests

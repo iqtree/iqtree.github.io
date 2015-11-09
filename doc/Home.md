@@ -9,8 +9,8 @@ IQ-TREE is a very efficient maximum likelihood phylogenetic software with follow
 The strength of IQ-TREE is the **availability of a wide range of models**:
 
 * All common [substitution models](Substitution Models) for DNA, protein, codon, binary and morphological data.
-* [Ascertainment bias correction|Substitution Models#ascertainment-bias-correction]] to account for absence of constant sites in e.g., SNPs or morphological data.
-* All common [[rate heterogeneity among sites|Substitution Models#rate-heterogeneity-across-sites]] including invariable site (`+I`), discrete Gamma (`+G`), and FreeRate (`+R`) model.
+* [Ascertainment bias correction](Substitution Models#ascertainment-bias-correction) to account for absence of constant sites in e.g., SNPs or morphological data.
+* All common [rate heterogeneity among sites](Substitution Models#rate-heterogeneity-across-sites) including invariable site (`+I`), discrete Gamma (`+G`), and FreeRate (`+R`) model.
 * [Phylogenomic partition models](Substitution Models#partition-models) allowing for mixed data types between partitions, linked or unlinked branch lengths, and different rate types (e.g. one partition under `GTR+G` and another under `WAG+I+G`).
 * [Mixture models](Substitution Models#mixture-models) such as predefined protein mixture models (e.g., LG4X, CAT C10-C60), customizable mixture models (e.g., "MIX{HKY,GTR}").
 
