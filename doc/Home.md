@@ -6,15 +6,13 @@ IQ-TREE is a very efficient maximum likelihood phylogenetic software with follow
 * An ultrafast bootstrap approximation to assess branch supports (see Minh et al., 2013).
 * Ultrafast and automatic model selection (**10 to 100 times faster than jModelTest and ProtTest**) and best partitioning scheme selection (like PartitionFinder).
 
-The strength of IQ-TREE is the availability of a wide range of models:
+The strength of IQ-TREE is the **availability of a wide range of models**:
 
-* All common substitution models for DNA, protein, codon, binary and morphological data.
-* Rate heterogeneity among sites including invariable site [+I] model, discrete Gamma [+G], and FreeRate model [+R].
-* Phylogenomic partition models allowing for mixed data types between partitions, linked or unlinked branch lengths, and different rate types (e.g. one partition under GTR+G and another under WAG+I+G).
-* Mixture models such as predefined protein mixture models (e.g., LG4X, CAT C10-C60), customizable mixture models (e.g., "MIX{HKY,GTR}"), and frequency/profile mixture models.
-* Ascertainment bias correction [+ASC] model for data where constant sites are missing (e.g., SNPs or morphological data).
-* New models can be defined and imported via a NEXUS file (see Manual).
-
+* All common [[substitution models|Substitution Models]] for DNA, protein, codon, binary and morphological data.
+* [[Ascertainment bias correction|Substitution Models#ascertainment-bias-correction]] model when constant sites are absent (e.g., SNPs or morphological data).
+* [[Rate heterogeneity among sites|Substitution Models#rate-heterogeneity-across-sites]] including invariable site model, discrete Gamma, and FreeRate model.
+* [[Phylogenomic partition models|Substitution Models#partition-models]] allowing for mixed data types between partitions, linked or unlinked branch lengths, and different rate types (e.g. one partition under GTR+G and another under WAG+I+G).
+* [[Mixture models||Substitution Models#mixture-models]] such as predefined protein mixture models (e.g., LG4X, CAT C10-C60), customizable mixture models (e.g., "MIX{HKY,GTR}").
 
 Download 
 --------

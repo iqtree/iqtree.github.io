@@ -230,7 +230,7 @@ IQ-TREE supports all common rate heterogeneity across sites model:
 * `+I`: allowing for a proportion of invariable sites.
 * `+G`: discrete Gamma model ([Yang, 1994]) with default 4 rate categories. The number of categories can be changed with e.g. `+G8`.
 * `+I+G`: invariable site plus discrete Gamma model ([Gu et al., 1995]).
-* `+R`: FreeRate model ([Yang, 1995];[Soubrier et al., 2012]) that relaxes the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). The FreeRate model typically fits data better than `+G` model.
+* `+R`: FreeRate model ([Yang, 1995];[Soubrier et al., 2012]) that generalizes `+G` model by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). The FreeRate model typically fits data better than `+G` model and is recommended for analysis of large data sets.
 
 >TIP: the new model selection procedure (`-m TESTNEW` option) tests the FreeRate model, whereas the standard procedure (`-m TEST`) does not.
 
