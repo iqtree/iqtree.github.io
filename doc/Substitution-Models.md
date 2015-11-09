@@ -128,6 +128,31 @@ Users can also specify AA frequencies with, e.g.:
 Codon models
 ------------
 
+To use codon model one should use option `-st CODON`, which implicitly assumes standard genetic code. You can change to other genetic code with following options:
+
+| Option        | Genetic code |
+|---------------|--------------|
+|`-st CODON1`   | The Standard Code (same as `-st CODON`)|
+| `-st CODON2`  | The Vertebrate Mitochondrial Code |
+| `-st CODON3`  | The Yeast Mitochondrial Code |
+| `-st CODON4`  | The Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code |
+| `-st CODON5`  | The Invertebrate Mitochondrial Code |
+| `-st CODON6`  | The Ciliate, Dasycladacean and Hexamita Nuclear Code |
+| `-st CODON9`  | The Echinoderm and Flatworm Mitochondrial Code |
+| `-st CODON10` | The Euplotid Nuclear Code |
+| `-st CODON11` | The Bacterial, Archaeal and Plant Plastid Code |
+| `-st CODON12` | The Alternative Yeast Nuclear Code |
+| `-st CODON13` | The Ascidian Mitochondrial Code |
+| `-st CODON14` | The Alternative Flatworm Mitochondrial Code |
+| `-st CODON16` | Chlorophycean Mitochondrial Code |
+| `-st CODON21` | Trematode Mitochondrial Code |
+| `-st CODON22` | Scenedesmus obliquus Mitochondrial Code |
+| `-st CODON23` | Thraustochytrium Mitochondrial Code |
+| `-st CODON24` | Pterobranchia Mitochondrial Code |
+| `-st CODON25` | Candidate Division SR1 and Gracilibacteria Code |
+
+(the IDs correspond to see specification at <http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi>).
+
 #### Codon substitution rates
 
 IQ-TREE supports several codon models:
