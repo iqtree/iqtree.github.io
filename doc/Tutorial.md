@@ -75,7 +75,7 @@ If you are not sure which model to use, simply add `-m TEST`, which also works f
 
     iqtree -s coding_gene.phy -st CODON -m TEST
 
-By default IQ-TREE uses the standard genetic code. If you want to change the genetic code, please refer to [Codon models here](Substitution Models#Codon-models).
+By default IQ-TREE uses the standard genetic code. If you want to change the genetic code, please refer to [codon models here](Substitution Models#codon-models).
 
 Morphological or SNP data
 -------------------------
