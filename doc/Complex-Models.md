@@ -11,7 +11,7 @@ Partition models are intended for phylogenomic (e.g., multi-gene) alignments, wh
 2. *Edge-proportional* partition model with proportional branch lengths: Like above but each partition has its own partition specific rate, that rescale all its branch lengths. This model accomodates different evolutionary rates between partitions (e.g. between 1st, 2nd, and 3rd codon positions).
 3. *Edge-unlinked* partition model: each partition has its own set of branch lengths. This is the most parameter-rich partition model, that accounts for e.g., *heterotachy* ([Lopez et al., 2002]).
 
-The edge-equal partition model is typically unrealistic as it does not account for different evolutionary speeds between partitions, whereas edge-unlinked partition model can be overfitting if there any many short partitions. Therefore, the edge-proportional partition model is recommended for a typical analysis. 
+>**NOTICE**: The edge-equal partition model is typically unrealistic as it does not account for different evolutionary speeds between partitions, whereas edge-unlinked partition model can be overfitting if there any many short partitions. Therefore, the edge-proportional partition model is recommended for a typical analysis. 
 
 #### Partition file format
 
@@ -73,7 +73,12 @@ If you want to specify codon model for a partition, use the `CODON` keyword (oth
         charpartition mine = GY:part1, GTR+G:part2, WAG+I+G:part3;
     end;
 
-Note that this assumes `part1` has standard genetic code. If not, append `CODON` with an ID of the [right genetic code](Substition-Models#codon-models).
+Note that this assumes `part1` has standard genetic code. If not, append `CODON` with an ID of the [right genetic code](Substitution-Models#codon-models).
+
+
+#### Partitioned analysis
+
+Having prepared a partition file, one is ready to start a partitioned analysis with `-q` (edge-equal), `-spp` (edge-proportional) or `-sp` (edge-unlinked) option. See [this tutorial](Tutorial#partition-analysis) for more details.
 
 
 Mixture models
