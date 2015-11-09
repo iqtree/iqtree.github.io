@@ -87,7 +87,7 @@ IQ-TREE supports discrete morphological alignment by  `-st MORPH` option:
 
     iqtree -s morphology.phy -st MORPH
 
-IQ-TREE implements to two morphological ML models: [MK and ORDERED](Subtitution Models#bin-morph). Morphological data typically do not have constant (uninformative) sites. 
+IQ-TREE implements to two morphological ML models: [MK and ORDERED](Substitution-Models#bin-morph). Morphological data typically do not have constant (uninformative) sites. 
 In such case, you should apply [ascertainment bias correction](Substitution Models#ascertainment-bias-correction) model by e.g.:
  
     iqtree -s morphology.phy -st MORPH -m MK+ASC
@@ -166,7 +166,7 @@ Finally, you can also combine the ultrafast bootstrap approximation with single 
     iqtree -s example.phy -m TIM+I+G -bb 1000 -alrt 1000 -lbp 1000
 
 
-Partitioned analysis for multi-gene alignments
+<a name="partition-analysis"/> Partitioned analysis for multi-gene alignments
 ----------------------------------------------
 
 In the partition model, you can specify a substitution model for each gene/character set. 
