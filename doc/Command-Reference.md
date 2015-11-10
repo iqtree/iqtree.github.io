@@ -27,7 +27,7 @@ General options
 | -q or -spj | Specify partition file in [NEXUS or RAxML-style format](Complex-Models#partition-file-format) for edge-equal [partition model](Complex-Models#partition-models). That means, all partitions share the same set of branch lengths (like `-q` option of RAxML). |
 | -spp | Like `-q` but each partition has its own rate ([edge-proportional partition model](Complex-Models#partition-models)). |
 | -sp  | Specify partition file for [edge-unlinked partition model](Complex-Models#partition-models). That means, each partition has its own set of branch lengths (like `-M` option of RAxML). |
-| -t   | Specify starting tree for tree search. The special option `-t BIONJ` starts tree search from BIONJ tree and `-t RANDOM` starts tree search from completely random tree. *DEFAULT: IQ-TREE starts from 100 parsimony trees plus BIONJ tree* |
+| -t   | Specify a file containing starting tree for tree search. The special option `-t BIONJ` starts tree search from BIONJ tree and `-t RANDOM` starts tree search from completely random tree. *DEFAULT: 100 parsimony trees + BIONJ tree* |
 | -te  | Like `-t` but fixing user tree. That means, no tree search is performed and IQ-TREE computes the log-likelihood of the fixed user tree. |
 | -o   | Specify an outgroup taxon name to root the tree. The output tree in `.treefile` will be rooted accordingly. *DEFAULT: first taxon in alignment* |
 | -pre | Specify a prefix for all output files. *DEFAULT: either alignment file name (`-s`) or partition file name (`-q`, `-spp` or `-sp`) |
@@ -38,15 +38,20 @@ General options
 Tree search parameters
 ----------------------
 
+The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters that can be changed with:
+
 |Option| Usage and meaning |
 |------|-------------------|
 | -numpars | Specify number of initial parsimony trees. *DEFAULT: 100* |
 | -toppars | Specify number of top parsimony trees of initial ones for further search. *DEFAULT: 20* |
 | -numcand | Specify number of top candidate trees to maintain during tree search. *DEFAULT: 5* |
 | -sprrad  | Specify radius for subtree prunning and regrafting parsimony search. *DEFAULT: 6* |
-| -pers    | Specify perturbation strength (between 0 and 1) for randomized nearest neighbor interchange (NNI) *DEFAULT: 0.5* |
-| -allnni  | Turn on more thorough NNI during tree search. It means that IQ-TREE will consider all possible NNIs instead of only those in the vicinity of previously applied NNIs. *DEFAULT: OFF* |
+| -pers    | Specify perturbation strength (between 0 and 1) for randomized nearest neighbor interchange (NNI). *DEFAULT: 0.5* |
+| -allnni  | Turn on more thorough and slower NNI search. It means that IQ-TREE will consider all possible NNIs instead of only those in the vicinity of previously applied NNIs. *DEFAULT: OFF* |
 | -numstop | Specify number of unsuccessful iterations to stop. *DEFAULT: 100* |
 | -n       | Specify number of iterations to stop. This option overrides `-numstop` criterion. |
 
+>**NOTICE**: The default parameters were empirically determined to work well under our tests. However, this might not hold true for all data sets. If in doubt that tree search is still stuck in local optima, one should repeat analysis with at least 10 IQ-TREE runs. Moreover, our experience showed that `-pers` and `-numstop` are the most relevant options to change in such case. For example, for data sets with many short sequences, one should reduce the perturbation strength (`-pers`) and increase `-numstop`.
+
+[Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
 
