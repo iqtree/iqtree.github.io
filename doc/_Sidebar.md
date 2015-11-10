@@ -1,3 +1,6 @@
+**Quick Navigation**
+*******
+
 [[Home]]
 
 [Download](Home#download)
