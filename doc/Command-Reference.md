@@ -10,7 +10,7 @@ Assuming that IQ-TREE can be run by simply entering `iqtree`. If not, please rea
 General options
 ---------------
 
-***
+
 
 |  -? or -h             | Printing help usage |
 |  -s <alignment>       | Input alignment in PHYLIP/FASTA/NEXUS/CLUSTAL/MSF format |
