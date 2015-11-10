@@ -75,7 +75,7 @@ The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]) has several
 Nonparametric bootstrap
 -----------------------
 
-The standard nonparametric bootstrap ([Felsenstein, 1985]) can be run with:
+The slow standard nonparametric bootstrap ([Felsenstein, 1985]) can be run with:
 
 |Option| Usage and meaning |
 |------|-------------------|
@@ -84,6 +84,26 @@ The standard nonparametric bootstrap ([Felsenstein, 1985]) can be run with:
 | -bo  | Like `-b` but only perform bootstrap analysis (no analysis on original alignment and no consensus tree). |
 
 
+Single branch tests
+-------------------
+
+The following single branch tests are faster than all bootstrap analysis and recommended for extremely large data sets (e.g., >10,000 taxa):
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -alrt| Specify number of replicates (>=1000) to perform SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). If number of replicates is set to 0 (`-alrt 0`), then the parametric aLRT test ([Anisimova and Gascuel 2006]) is performed, instead of SH-aLRT. |
+| -abayes| Perform approximate Bayes test ([Anisimova et al., 2011]). |
+| -lbp  | Specify number of replicates (>=1000) to perform fast local bootstrap probability method ([Adachi and Hasegawa, 1996]). |
+
+>**TIP**: One can combine all these options (also including UFBoot `-bb` option) in a single IQ-TREE run. Each branch in the resulting tree will be assigned with several support values separated by slash (`/`).
+
+
+[Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
+[Anisimova and Gascuel 2006]: http://dx.doi.org/10.1080/10635150600755453
+[Anisimova et al., 2011]: http://dx.doi.org/10.1093/sysbio/syr041
+[Felsenstein, 1985]: https://www.jstor.org/stable/2408678
+[Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
-[Felsenstein, 1985]: https://www.jstor.org/stable/2408678
+
+
