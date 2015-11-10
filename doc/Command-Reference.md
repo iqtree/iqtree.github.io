@@ -51,7 +51,8 @@ The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters 
 | -numstop | Specify number of unsuccessful iterations to stop. *DEFAULT: 100* |
 | -n       | Specify number of iterations to stop. This option overrides `-numstop` criterion. |
 
->**NOTICE**: The default parameters were empirically determined to work well under our tests. However, this might not hold true for all data sets. If in doubt that tree search is still stuck in local optima, one should repeat analysis with at least 10 IQ-TREE runs. Moreover, our experience showed that `-pers` and `-numstop` are the most relevant options to change in such case. For example, for data sets with many short sequences, one should reduce the perturbation strength (`-pers`) and increase `-numstop`.
+>**NOTICE**: While the default parameters were empirically determined to work well under our extensive benchmark ([Nguyen et al., 2015]), it might not hold true for all data sets. If in doubt that tree search is still stuck in local optima, one should repeat analysis with at least 10 IQ-TREE runs. Moreover, our experience showed that `-pers` and `-numstop` are the most relevant options to change in such case. For example, data sets with many short sequences should be analyzed with smaller perturbation strength (`-pers`) and larger `-numstop`.
+
 
 [Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
 
