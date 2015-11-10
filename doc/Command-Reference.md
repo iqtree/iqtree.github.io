@@ -3,6 +3,7 @@
 **Table of Contents**
 
 - [General options](#general-options)
+- [Automatic model selection](#automatic-model-selection)
 - [Tree search parameters](#tree-search-parameters)
 - [Ultrafast bootstrap parameters](#ultrafast-bootstrap-parameters)
 - [Nonparametric bootstrap](#nonparametric-bootstrap)
