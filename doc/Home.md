@@ -29,18 +29,20 @@ Refer to <https://github.com/Cibiv/IQTree/releases> for other releases.
 Download 
 --------
 
-IQ-TREE is available for three popular platforms with a sequential and a parallel multicore version
+The latest IQ-TREE version 1.3.10 (October 16, 2015) is available for three popular platforms with a sequential and a parallel multicore version:
 
 | [[images/windows.png]] Windows | [[images/macosx.png]] Mac OS X | [[images/linux.png]] Linux |
 |------------|--------------|--------------|
 | [64-bit sequential Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Windows.tar.gz) | [64-bit sequential MacOSX](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.tar.gz) | [64-bit sequential Linux](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz) |
-| [64-bit parallel Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Windows.tar.gz) | [64-bit sequential](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.tar.gz) | [64-bit sequential](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz) |
+| [64-bit multicore Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-omp-1.3.10-Windows.tar.gz) | [64-bit multicore MacOSX](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-omp-1.3.10-MacOSX.tar.gz) | [64-bit multicore Linux](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-omp-1.3.10-Linux.tar.gz) |
+| [32-bit sequential Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree32-1.3.10-Windows.tar.gz) | | |
+| [32-bit multicore Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree32-omp-1.3.10-Windows.tar.gz) | | |
 
-Please follow the [**Installation guide**](Installation) once you downloaded IQ-TREE.
+Please follow [**Installation guide**](Installation) once you downloaded IQ-TREE.
 
-To download older releases please refer to:
+If you want to obtain and build IQ-TREE source code, please refer to [Compilation guide](Compilation-Guide).
 
-<https://github.com/Cibiv/IQTree/releases>
+To download older versions please refer to [Release notes](https://github.com/Cibiv/IQTree/releases).
 
 
 IQ-TREE web service
