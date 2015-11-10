@@ -18,7 +18,7 @@
 - [Bootstrapping partition model](Tutorial#ultrafast-bootstrapping-with-partition-model)
 - [Utilizing multi-core CPUs](Tutorial#utilizing-multi-core-cpus)
 
-[Advanced Tutorial]]
+[[Advanced Tutorial]]
 
 - [Tree topology tests](Advanced-Tutorial#tree-topology-tests)
 - [User-defined models](Advanced-Tutorial#user-defined-substitution-models)
