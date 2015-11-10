@@ -99,6 +99,28 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices:
 * `VT`: general matrix ([Mueller and Vingron, 2000]).
 * `WAG`: general matrix ([Whelan and Goldman, 2001]).
 
+Moreover, IQ-TREE also supports a series of protein mixture models:
+
+* `C10`, `C20`, `C30`, `C40`, `C50`, `C60`: 10- to 60-profile mixture models under [Gamma rate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2008a]).
+* `EX2`: two-matrix model for exposed/buried AA sites ([Le et al., 2008b]).
+* `EX3`: three-matrix model for highly exposed/intermediate/buried AA sites ([Le et al., 2008b]).
+* `EHO`: three-matrix model for extended/helix/other sites ([Le et al., 2008b]).
+* `UL2`, `UL3`: unsupervised-learning variants of `EX2` and `EX3`, respectively.
+* `EX_EHO`: six-matrix model combining `EX2` and `EHO` ([Le and Gascuel, 2010]).
+* `LG4M`: four-matrix model fused with [Gamma rate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
+* `LG4X`: four-matrix model fused with [FreeRate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
+* `CF4`: five-profile mixture model ([Wang et al., 2008]).
+
+One can even combine a protein matrix with profile mixture model like:
+
+* `LG+C20`: applying `LG` matrix for all 20 mixture classes.
+* `JTT+CF4+G`: applying `JTT` matrix for all 5 mixture classes and Gamma rate heteorogeneity.
+* `JTTCF4G`: alias for `JTT+CF4+G`.
+
+Moreover, one can override the Gamma rate by FreeRate heterogeneity:
+
+* `LG+C20+R4`: Like `LG+C20` but replace Gamma by FreeRate heterogeneity.
+
 If the matrix name does not match the above listed models, IQ-TREE assumes that it is a file containing AA exchange rates and frequencies in PAML format. It contains the lower diagonal part of the matrix and 20 AA frequencies, e.g.:
 
     0.425093 
@@ -278,6 +300,10 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Kosiol and Goldman, 2005]: http://dx.doi.org/10.1093/molbev/msi005
 [Kosiol et al., 2007]: http://dx.doi.org/10.1093/molbev/msm064
 [Le and Gascuel, 2008]: http://dx.doi.org/10.1093/molbev/msn067
+[Le et al., 2008a]: http://dx.doi.org/10.1093/bioinformatics/btn445
+[Le et al., 2008b]: http://dx.doi.org/10.1098/rstb.2008.0180
+[Le and Gascuel, 2010]: http://dx.doi.org/10.1093/sysbio/syq002
+[Le et al., 2012]: http://dx.doi.org/10.1093/molbev/mss112
 [Lewis, 2001]: http://dx.doi.org/10.1080/106351501753462876
 [Mueller and Vingron, 2000]: http://dx.doi.org/10.1089/10665270050514918
 [Muse and Gaut, 1994]: http://mbe.oxfordjournals.org/content/11/5/715.abstract
@@ -287,6 +313,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Tamura and Nei, 1993]: http://mbe.oxfordjournals.org/cgi/content/abstract/10/3/512
 [Tavare, 1986]: http://www.damtp.cam.ac.uk/user/st321/CV_&_Publications_files/STpapers-pdf/T86.pdf
 [Veerassamy et al., 2004]: http://dx.doi.org/10.1089/106652703322756195
+[Wang et al., 2008]: http://dx.doi.org/10.1186/1471-2148-8-331
 [Whelan and Goldman, 2001]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a003851
 [Yang, 1994]: http://dx.doi.org/10.1007/BF00160154
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
