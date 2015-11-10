@@ -6,7 +6,10 @@
     - [Partition file format](#partition-file-format)
     - [Partitioned analysis](#partitioned-analysis)
 - [Mixture models](#mixture-models)
-- [Customized models](#customized-models)
+    - [What is the difference between partition and mixture models?](#what-is-the-difference-between-partition-and-mixture-models)
+    - [Defining mixture models](#defining-mixture-models)
+    - [Profile mixture models](#profile-mixture-models)
+    - [NEXUS model file](#nexus-model-file)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -162,11 +165,9 @@ In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mi
         model LG4M = MIX{LG4M1,LG4M2,LG4M3,LG4M4}*G4;
     end;
 
-Here, we first defined the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in PAML format (see [protein models](Substitution-Models#protein-models)). Then `LG4M` was defined as mixture model with these four components *fused* with Gamma rate heterogeneity (via `*G4` syntax instead of `+G4`). That means, we have only 4 mixtures in total instead of 16. The first component `LG4M1` is rescaled by the rate of the lowest Gamma rate category. The fourth `LG4M4` corresponds to the highest rate.
+Here, we first defined the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in PAML format (see [protein models](Substitution-Models#protein-models)). Then `LG4M` was defined as mixture model with these four components *fused* with Gamma rate heterogeneity (via `*G4` syntax instead of `+G4`). That means, we have totally 4 mixture components instead of 16. The first component `LG4M1` is rescaled by the rate of the lowest Gamma rate category. The fourth component `LG4M4` corresponds to the highest rate.
 
-
-Customized models
------------------
+Note that both `frequency` and `model` commands can be embedded into a single model file.
 
 
 

@@ -37,6 +37,9 @@
 
 [[Complex Models]]
 
+- [Partition models](Complex Models#partition-models)
+- [Mixture models](Complex Models#mixture-models)
+
 [[Frequently Asked Questions]]
 
 [[Compilation Guide]]

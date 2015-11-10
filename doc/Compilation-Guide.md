@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [General requirements](#general-requirements)
+- [Compiling under Linux](#compiling-under-linux)
+- [Compiling under Mac OS X](#compiling-under-mac-os-x)
+- [Compiling under Windows](#compiling-under-windows)
+- [Compiling 32-bit version](#compiling-32-bit-version)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 This document gives a compilation guide to build IQ-TREE from source code under Linux, Mac OS X and Windows.
 
