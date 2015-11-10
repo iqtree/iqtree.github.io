@@ -101,13 +101,15 @@ The following single branch tests are faster than all bootstrap analysis and rec
 Tree topology tests
 -------------------
 
+IQ-TREE provides a number of tests for significant topological difference between trees:
+
 |Option| Usage and meaning |
 |------|-------------------|
 | -z  | Specify a file containing a set of trees. IQ-TREE will compute the log-likelihoods of all trees. |
 | -zb | Specify the number of RELL ([Kishino et al., 1990]) replicates (>=1000) to perform several tree topology tests for all trees passed via `-z`. The tests include bootstrap proportion (BP), KH test ([Kishino and Hasegawa, 1989]), SH test ([Shimodaira and Hasegawa, 1999]) and expected likelihood weights (ELW) ([Strimmer and Rambaut, 2002]). |
 | -zw | Used together with `-zb` to additionally perform the weighted-KH and weighted-SH tests. |
 
-
+>We are implementing the approximately unbiased (AU) test ([Shimodaira, 2002]), which may hopefully be available in the next release.
 
 
 Constructing consensus tree
@@ -171,4 +173,6 @@ Miscellaneous options
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
 [Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
+[Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
 [Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
+
