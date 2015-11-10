@@ -36,7 +36,7 @@ The latest IQ-TREE version 1.3.10 (October 16, 2015) is available for three popu
 | [32-bit sequential Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree32-1.3.10-Windows.zip) | | |
 | [32-bit multicore Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree32-omp-1.3.10-Windows.zip) | | |
 
-Please follow [**Installation guide**](Installation) once you downloaded IQ-TREE.
+Please follow [**Quickstart guide**](Quickstart) once you downloaded IQ-TREE.
 
 If you want to obtain and build IQ-TREE source code, please refer to [Compilation guide](Compilation-Guide).
 
@@ -46,7 +46,7 @@ To download older versions please refer to [Release notes](https://github.com/Ci
 IQ-TREE web service
 -------------------
 
-For a quick start you can try the IQ-TREE web server, which performs online computation using a dedicated computing cluster. It is very easy to use with as few as just 3 clicks! Try it out at
+For a quick start you can also try the IQ-TREE web server, which performs online computation using a dedicated computing cluster. It is very easy to use with as few as just 3 clicks! Try it out at
 
 <http://iqtree.cibiv.univie.ac.at>
 

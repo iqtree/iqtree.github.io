@@ -2,8 +2,6 @@
 
 [Download](Home#download)
 
-[Installation](Installation)
-
 [Getting started](Quickstart)
 
 [Beginner's Tutorial](Tutorial)

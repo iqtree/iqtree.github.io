@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [First step](#first-step)
+- [For Windows users](#for-windows-users)
+- [For Mac OS X users](#for-mac-os-x-users)
+- [Minimal command-line examples](#minimal-command-line-examples)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 First step
 ----------
@@ -7,7 +18,7 @@ To achieve high performance IQ-TREE is a command-line program: you need to run I
 * Extract the `.zip` (Windows, MacOSX) or `.tar.gz` (Linux) file to create a directory `iqtree-X.Y.Z-OS` or `iqtree-omp-X.Y.Z-OS`.
 * You will find the executable in the `bin` sub-folder. Copy all files in `bin` folder to your system search path such that you can run IQ-TREE by entering `iqtree` or `iqtree-omp` from the Terminal.
 
-Now you need to open a Terminal (or Console) to run IQ-TREE. See below the guide for Windows and for Mac OS X.
+Now you need to open a Terminal (or Console) to run IQ-TREE. See below the guide for [Windows users](#for-windows-users) and [Mac OS X users](#for-mac-os-x-users).
 
 
 For Windows users
@@ -61,7 +72,7 @@ Minimal command-line examples
 
 A few typically analyses are listed in the following. Note that it is assumed that `iqtree` executable was already copied into system search path. If not, please replace `iqtree` with actual path to executable.
 
->**TIP**: Refer to [Beginner's tutorial][Tutorial] for more details.
+>**TIP**: Refer to [Beginner's tutorial](Tutorial) for more details.
 
 * Reconstruct maximum-likelihood tree from a sequence alignment (`example.phy`)
    with the best-fit substitution model automatically selected:
