@@ -52,14 +52,14 @@ All testing approaches are specified via `-m TEST...` option. More specifically 
 
 |Option| Usage and meaning |
 |------|-------------------|
-| TESTONLY | Perform standard model selection like jModelTest (for DNA) and ProtTest (for protein). Moreover, IQ-TREE also works for codon, binary and morphogical data. |
-| TEST | Like `-m TESTONLY` but immediately followed by tree reconstruction using the best-fit model found. So this performs both model selection and tree inference within a single run. |
-| TESTNEWONLY | Perform the new model selection that additionally includes FreeRate model compared with `-m TESTONLY`. *Recommended as replacement for `-m TESTONLY`*. |
-| TESTNEW | Like `-m TESTNEWONLY` but immediately followed by tree reconstruction using the best-fit model found. |
-| TESTMERGEONLY | Select best-fit partitioning scheme like PartitionFinder. |
-| TESTMERGE | Like `-m TESTMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found. |
-| TESTNEWMERGEONLY | Like `-m TESTMERGEONLY` but additionally includes FreeRate model. |
-| TESTNEWMERGE | Like `-m TESTNEWMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found. |
+| -m TESTONLY | Perform standard model selection like jModelTest (for DNA) and ProtTest (for protein). Moreover, IQ-TREE also works for codon, binary and morphogical data. |
+| -m TEST | Like `-m TESTONLY` but immediately followed by tree reconstruction using the best-fit model found. So this performs both model selection and tree inference within a single run. |
+| -m TESTNEWONLY | Perform the new model selection that additionally includes FreeRate model compared with `-m TESTONLY`. *Recommended as replacement for `-m TESTONLY`*. |
+| -m TESTNEW | Like `-m TESTNEWONLY` but immediately followed by tree reconstruction using the best-fit model found. |
+| -m TESTMERGEONLY | Select best-fit partitioning scheme like PartitionFinder. |
+| -m TESTMERGE | Like `-m TESTMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found. |
+| -m TESTNEWMERGEONLY | Like `-m TESTMERGEONLY` but additionally includes FreeRate model. |
+| -m TESTNEWMERGE | Like `-m TESTNEWMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found. |
 
 
 Several parameters can be set to e.g. reduce computations:
