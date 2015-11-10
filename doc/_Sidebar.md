@@ -43,6 +43,19 @@
 
 [[Command Reference]]
 
+- [Command line interface](Command Reference#command-line-interface)
+- [General options](Command Reference#general-options)
+- [Tree search parameters](Command Reference#tree-search-parameters)
+- [Ultrafast bootstrap parameters](Command Reference#ultrafast-bootstrap-parameters)
+- [Nonparametric bootstrap](Command Reference#nonparametric-bootstrap)
+- [Single branch tests](Command Reference#single-branch-tests)
+- [Tree topology tests](Command Reference#tree-topology-tests)
+- [Constructing consensus tree](Command Reference#constructing-consensus-tree)
+- [Computing Robinson-Foulds distance](Command Reference#computing-robinson-foulds-distance)
+- [Generating random trees](Command Reference#generating-random-trees)
+- [Miscellaneous options](Command Reference#miscellaneous-options)
+
+
 [[Frequently Asked Questions]]
 
 [[Compilation Guide]]
