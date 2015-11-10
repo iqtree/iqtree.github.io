@@ -138,11 +138,31 @@ Here, the NEXUS file contains a `models` block to define new models. More explic
 
     FMIX{empirical,Fclass1,Fclass2,Fclass3,Fclass4}
 
-That means, we have five components: the first corresponds to empirical AA frequencies inferred from the current data and the remaining four components specified in this NEXUS file. Please save this to a file, say, `mymodels.nex`. One can now start the analysis with:
+That means, we have five components: the first corresponds to empirical AA frequencies to be inferred from the  data and the remaining four components specified in this NEXUS file. Please save this to a file, say, `mymodels.nex`. One can now start the analysis with:
 
     iqtree -s some_protein.aln -mdef mymodels.nex -m JTT+CF4model+G
 
-`-mdef` option is to specify the NEXUS file containing user-defined models. Here, the `JTT` matrix is applied for all alignment sites and one varies the AA profiles along the alignment. 
+`-mdef` option is to specify the NEXUS file containing user-defined models. Here, the `JTT` matrix is applied for all alignment sites and one varies the AA profiles along the alignment. One can use the NEXUS syntax to define all other profile mixture models such as `C10` to `C60`.
+
+
+#### NEXUS model file
+
+In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mixture models](Substitution-Models#protein-models). In addition to define state frequencies, one can specify the entire model with rate matrix and state frequencies together. For example, the LG4M model ([Le et al., 2012]) was defined by:
+
+    #nexus
+    begin models;
+        model LG4M1 =
+            0.269343
+            0.254612 0.150988
+            0.236821 0.031863 0.659648
+            ....;
+        ....
+        model LG4M4 = ....;
+        
+        model LG4M = MIX{LG4M1,LG4M2,LG4M3,LG4M4}*G4;
+    end;
+
+Here, we first defined the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in PAML format (see [protein models](Substitution-Models#protein-models)). Then `LG4M` was defined as mixture model with these four components *fused* with Gamma rate heterogeneity (via `*G4` syntax instead of `+G4`). That means, we have only 4 mixtures in total instead of 16. The first component `LG4M1` is rescaled by the rate of the lowest Gamma rate category. The fourth `LG4M4` corresponds to the highest rate.
 
 
 Customized models
@@ -150,6 +170,8 @@ Customized models
 
 
 
+[Le et al., 2012]: http://dx.doi.org/10.1093/molbev/mss112
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Wang et al., 2008]: http://dx.doi.org/10.1186/1471-2148-8-331
+
 
