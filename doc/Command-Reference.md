@@ -13,11 +13,13 @@ Command line interface
 
     iqtree -s <alignment> [OPTIONS]
 
-Assuming that IQ-TREE can be run by simply entering `iqtree`. If not, please read the [Quick start guide](Quickstart).
+Assuming that IQ-TREE can be run by simply entering `iqtree`. If not, please change `iqtree` to the actually path to the executable or read the [Quick start guide](Quickstart).
 
 
 General options
 ---------------
+
+General options are mainly intended for specifying input and output files:
 
 |Option| Usage and meaning |
 |------|-------------------|
@@ -54,5 +56,22 @@ The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters 
 >**NOTICE**: While the default parameters were empirically determined to work well under our extensive benchmark ([Nguyen et al., 2015]), it might not hold true for all data sets. If in doubt that tree search is still stuck in local optima, one should repeat analysis with at least 10 IQ-TREE runs. Moreover, our experience showed that `-pers` and `-numstop` are the most relevant options to change in such case. For example, data sets with many short sequences should be analyzed with smaller perturbation strength (`-pers`) and larger `-numstop`.
 
 
+Ultrafast bootstrap parameters
+------------------------------
+
+The ultrafast bootstrap approximation ([Minh et al., 2013]) has several parameters that can be changed with:
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -bb  | Specify number of bootstrap replicates (>=1000). |
+| -wbt | Turn on writing bootstrap trees to `.ufboot` file. *DEFAULT: OFF* |
+| -wbtl| Like -wbt but write bootstrap trees with branch lengths. *DEFAULT: OFF* |
+| -nm  | Specify maximum number of iterations to stop. *DEFAULT: 1000* |
+| -bcor| Specify minimum correlation coefficient for UFBoot convergence criterion. *DEFAULT: 0.99* |
+| -nstep| Specify iteration interval checking for UFBoot convergence. *DEFAULT: every 100 iterations* |
+| -beps | Specify a small epsilon to break tie in RELL evaluation for bootstrap trees. *DEFAULT: 0.5* |
+
+
+[Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
 
