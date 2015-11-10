@@ -2,7 +2,6 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Command line interface](#command-line-interface)
 - [General options](#general-options)
 - [Tree search parameters](#tree-search-parameters)
 - [Ultrafast bootstrap parameters](#ultrafast-bootstrap-parameters)
@@ -17,8 +16,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-Command line interface
-----------------------
+IQ-TREE should be invoked via command-line with e.g.:
 
     iqtree -s <alignment> [OPTIONS]
 
@@ -44,6 +42,41 @@ General options are mainly intended for specifying input and output files:
 | -pre | Specify a prefix for all output files. *DEFAULT: either alignment file name (`-s`) or partition file name (`-q`, `-spp` or `-sp`) |
 | -seed| Specify a random number seed to reproduce a previous run. This is normally used for debugging purpose. *DEFAULT: based on current machine clock* |
 | -v   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purpose. *DFAULT: OFF* |
+
+
+Automatic model selection
+-------------------------
+
+All testing approaches are specified via `-m TEST...` option. More specifically (`-m` is omited for simplicity):
+
+|Option| Usage and meaning |
+|------|-------------------|
+| TESTONLY | Perform standard model selection like jModelTest (for DNA) and ProtTest (for protein). Moreover, IQ-TREE also works for codon, binary and morphogical data. |
+| TEST | Like `-m TESTONLY` but immediately followed by tree reconstruction using the best-fit model found. So this performs both model selection and tree inference within a single run. |
+| TESTNEWONLY | Perform the new model selection that additionally includes FreeRate model compared with `-m TESTONLY`. *Recommended as replacement for `-m TESTONLY`*. |
+| TESTNEW | Like `-m TESTNEWONLY` but immediately followed by tree reconstruction using the best-fit model found. |
+| TESTMERGEONLY | Select best-fit partitioning scheme like PartitionFinder. |
+| TESTMERGE | Like `-m TESTMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found. |
+| TESTNEWMERGEONLY | Like `-m TESTMERGEONLY` but additionally includes FreeRate model. |
+| TESTNEWMERGE | Like `-m TESTNEWMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found. |
+
+
+Several parameters can be set to e.g. reduce computations:
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -rcluster | Specify the percentage for the relaxed clustering algorithm ([Lanfear et al., 2014]). This is similar to `--rcluster-percent` option of PartitionFinder. For example, with `-rcluster 10` only the top 10% partition schemes are considered to save computations. |
+| -mset | Specify the name of a program (`raxml`, `phyml` or `mrbayes`) to restrict to only those models supported by the specified program. Alternatively, one can specify a comma-separated list of base models. For example, `-mset WAG,LG,JTT` will restrict model selection to WAG, LG, and JTT instead of all 18 AA models to save computations. |
+| -msub | Specify either `nuclear`, `mitochondrial`, `chloroplast` or `viral` to restrict to those AA models designed for specified source. |
+| -mfreq | Specify a comma-separated list of frequency types for model selection. *DEFAULT: `-mfreq FU,F` for protein models, `-mfreq ,F1x4,F3x4,F` for codon models* |
+| -mrate | Specify a comma-separated list of rate heterogeneity types for model selection. *DEFFAULT: `-mrate E,I,G,I+G` for standard procedure, `-mrate E,I,G,I+G,R` for new selection procedure* |
+| -cmin | Specify minimum number of categories for FreeRate model. *DEFAULT: 2* |
+| -cmax | Specify maximum number of categories for FreeRate model. It is recommended to increase if alignment is long enough. *DEFAULT: 10* |
+| –merit | Specify either `AIC`, `AICc` or `BIC` for the optimality criterion to apply for new procedure. *DEFAULT: all three criteria are consider* |
+| -mtree | Turn on full tree search for each model considered, to obtain more accurate result. Only recommended if having enough computational resource. *DEFAULT: fixed starting tree* |
+| -mredo | Ignore `.model` file computed earlier. *DEFAULT: `.model` file (if exists) is loaded to reuse previous computations* |
+| -madd | Specify a comma-separated list of mixture models to additionally consider for model selection. |
+| -mdef | Specify a [NEXUS model file](Complex-Models#nexus-model-file) to define new models. |
 
 
 Tree search parameters
@@ -183,6 +216,7 @@ Miscellaneous options
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: http://dx.doi.org/10.1007/BF02100115
+[Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
 [Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
