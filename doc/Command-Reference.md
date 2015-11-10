@@ -140,25 +140,25 @@ Generating random trees
 
 |Option| Usage and meaning |
 |------|-------------------|
-| -r <num_taxa>        Create a random tree under Yule-Harding model.
-| -ru <num_taxa>       Create a random tree under Uniform model.
-| -rcat <num_taxa>     Create a random caterpillar tree.
-| -rbal <num_taxa>     Create a random balanced tree.
-| -rcsg <num_taxa>     Create a random circular split network.
-| -rlen <min_len> <mean_len> <max_len>  
-                       min, mean, and max branch lengths of random trees.
+| -r | Specify number of taxa. IQ-TREE will create a random tree under Yule-Harding model with specified number of taxa |
+| -ru | Like `-r` but a random tree is created under uniform model. |
+| -rcat | Like `-r` but a random caterpillar tree is created. |
+| -rbal | Like `-r` but a random balanced tree is created. |
+| -rcsg | Like `-r` bur a random circular split network is created. |
+| -rlen | Specify three numbers: minimum, mean and maximum branch lengths of the random tree. *DEFAULT: `-rlen 0.001 0.1 0.999`* |
+
 
 Miscellaneous options
 ---------------------
 
 |Option| Usage and meaning |
 |------|-------------------|
-| -wt                  Write locally optimal trees into .treels file
-| -fixbr               Fix branch lengths of <treefile>.
-                       Used with -n 0 to compute log-likelihood of <treefile>
-| -wsl                 Writing site log-likelihoods to .sitelh file
-| -wslg                Writing site log-likelihoods per Gamma category
-| -fconst f1,...,fN    Add constant patterns into alignment (N=#nstates)
+| -wt  | Turn on writing all locally optimal trees into `.treels` file. *DEFAULT: OFF* |
+| -fixbr| Turn on fixing branch lengths of tree passed via `-t` or `-te`. This is useful to evaluate the log-likelihood of an input tree with fixed tolopogy and branch lengths. *DEFAULT: OFF* |
+| -wsl | Turn on writing site log-likelihoods to `.sitelh` file in [TREE-PUZZLE](http://www.tree-puzzle.de) format. Such file can then be passed on to [CONSEL](http://www.sigmath.es.osaka-u.ac.jp/shimo-lab/prog/consel/) for further tree tests. *DEFAULT: OFF* |
+| -wslg | Turn on writing site log-likelihoods per rate category. *DEFAULT: OFF* |
+| -fconst| Specify a list of comma-separated integer numbers. The number of entries should be equal to the number of states in the model (e.g. 4 for DNA and 20 for protein). IQ-TREE will then add a number of constant sites accordingly. For example, `-fconst 10,20,15,40` will add 10 constant sites of all A, 20 constant sites of all C, 15 constant sites of all G and 40 constant sites of all T into the alignment. |
+
 
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
