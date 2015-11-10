@@ -73,7 +73,7 @@ Several parameters can be set to e.g. reduce computations:
 | -mrate | Specify a comma-separated list of rate heterogeneity types for model selection. *DEFFAULT: `-mrate E,I,G,I+G` for standard procedure, `-mrate E,I,G,I+G,R` for new selection procedure* |
 | -cmin | Specify minimum number of categories for FreeRate model. *DEFAULT: 2* |
 | -cmax | Specify maximum number of categories for FreeRate model. It is recommended to increase if alignment is long enough. *DEFAULT: 10* |
-| –merit | Specify either `AIC`, `AICc` or `BIC` for the optimality criterion to apply for new procedure. *DEFAULT: all three criteria are consider* |
+| –merit | Specify either `AIC`, `AICc` or `BIC` for the optimality criterion to apply for new procedure. *DEFAULT: all three criteria are considered* |
 | -mtree | Turn on full tree search for each model considered, to obtain more accurate result. Only recommended if having enough computational resource. *DEFAULT: fixed starting tree* |
 | -mredo | Ignore `.model` file computed earlier. *DEFAULT: `.model` file (if exists) is loaded to reuse previous computations* |
 | -madd | Specify a comma-separated list of mixture models to additionally consider for model selection. |

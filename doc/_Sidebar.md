@@ -43,8 +43,8 @@
 
 [[Command Reference]]
 
-- [Command line interface](Command Reference#command-line-interface)
 - [General options](Command Reference#general-options)
+- [Automatic model selection](#automatic-model-selection)
 - [Tree search parameters](Command Reference#tree-search-parameters)
 - [Ultrafast bootstrap parameters](Command Reference#ultrafast-bootstrap-parameters)
 - [Nonparametric bootstrap](Command Reference#nonparametric-bootstrap)
