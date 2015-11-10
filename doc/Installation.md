@@ -2,7 +2,7 @@ Binary release
 --------------
 
 The easiest way to install IQ-TREE is: 
-* Download the precompiled executables (available for Windows, Mac OS X, and Linux) from the release page <https://github.com/Cibiv/IQTree/releases>. 
+* Download the precompiled executables (available for Windows, Mac OS X, and Linux) from the [release page](../releases). 
     - `iqtree-X.Y.Z-OS` is the sequential 64-bit version, where `X.Y.Z` is the version number and OS is the operating system name.
     - `iqtree-omp-X.Y.Z-OS` is the parallel multicore 64-bit version, which reduces computation time for long alignments. 
     - `iqtree32-X.Y.Z-OS` is the sequential 32-bit version.

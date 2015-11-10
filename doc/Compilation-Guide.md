@@ -10,7 +10,7 @@ General requirements
 * If you want to compile the multicore version, make sure that the compiler supports [OpenMP](http://openmp.org/) and the OpenMP library was installed.
 * Download source code. Since IQ-TREE has a submodule ([the phylogenetic likelihood library](http://www.libpll.org/)), the best way to obtain source code is to use `git`:
 
-        git clone --recursive https://github.com/Cibiv/IQTree.git
+        git clone --recursive https://github.com/Cibiv/IQ-TREE.git
 
 Compiling under Linux
 ---------------------
