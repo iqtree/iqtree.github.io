@@ -14,21 +14,34 @@ The strength of IQ-TREE is the **availability of a wide range of models**:
 * [Phylogenomic partition models](Complex Models#partition-models) allowing for mixed data types between partitions, linked or unlinked branch lengths, and different rate types (e.g. one partition under `GTR+G` and another under `WAG+I+G`).
 * Mixture models such as [empirical protein mixture models](Substitution Models#protein-models) (e.g., LG4X, C10, C60) and [customizable mixture models](Complex Models#mixture-models).
 
+Release notes
+-------------
+
+**IQ-TREE version 1.3.10 (October 16, 2015)**: We are pleased to announce version 1.3.10 with following changes:
+
+* Support unlimited number of partitions for partition model analysis (no complaint about PLL_NUM_BRANCHES anymore).
+* Improved support for mixture models.
+* Fix a bug in ascertainment bias correction (`+ASC`) model causing incorrect branch length estimates (thanks to Marcus Teixeira for reporting it).
+* Fix a rare bug when branch lengths are close to upper bound (thanks to Huaichun Wang for reporting it).
+
+Refer to <https://github.com/Cibiv/IQTree/releases> for other releases.
+
 Download 
 --------
 
-You can download source code and precompiled executables for Windows, Mac OS X and Linux, each with a sequential and a parallel multi-threaded (OpenMP) version from here:
+IQ-TREE is available for three popular platforms with a sequential and a parallel multicore version
+
+| Windows    | Mac OS X          |   Linux      |
+| [iqtree-1.3.10-Windows.tar.gz](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Windows.tar.gz) | [iqtree-1.3.10-MacOSX.tar.gz](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.tar.gz) | [iqtree-1.3.10-Linux.tar.gz](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz) |
+
+Please follow the [**Installation guide**](Installation) once you downloaded IQ-TREE.
+
+To download older releases please refer to:
 
 <https://github.com/Cibiv/IQTree/releases>
 
 
-Installation
-------------
-
-Please follow the [Installation guide](Installation) once you downloaded IQ-TREE.
-
-
-IQ-TREE Web service
+IQ-TREE web service
 -------------------
 
 For a quick start you can try the IQ-TREE web server, which performs online computation using a dedicated computing cluster. It is very easy to use with as few as just 3 clicks! Try it out at
