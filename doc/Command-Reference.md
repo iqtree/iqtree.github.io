@@ -4,6 +4,15 @@
 
 - [Command line interface](#command-line-interface)
 - [General options](#general-options)
+- [Tree search parameters](#tree-search-parameters)
+- [Ultrafast bootstrap parameters](#ultrafast-bootstrap-parameters)
+- [Nonparametric bootstrap](#nonparametric-bootstrap)
+- [Single branch tests](#single-branch-tests)
+- [Tree topology tests](#tree-topology-tests)
+- [Constructing consensus tree](#constructing-consensus-tree)
+- [Computing Robinson-Foulds distance](#computing-robinson-foulds-distance)
+- [Generating random trees](#generating-random-trees)
+- [Miscellaneous options](#miscellaneous-options)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
