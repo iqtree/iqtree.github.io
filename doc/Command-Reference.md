@@ -11,7 +11,7 @@ General options
 ---------------
 
 
-
+|-----------------------|-----------------------------|
 |  -? or -h             | Printing help usage |
 |  -s <alignment>       | Input alignment in PHYLIP/FASTA/NEXUS/CLUSTAL/MSF format |
 |  -st <data_type>      | BIN, DNA, AA, NT2AA, CODON, MORPH (default: auto-detect) |
