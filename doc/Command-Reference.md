@@ -59,19 +59,31 @@ The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters 
 Ultrafast bootstrap parameters
 ------------------------------
 
-The ultrafast bootstrap approximation ([Minh et al., 2013]) has several parameters that can be changed with:
+The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]) has several parameters that can be changed with:
 
 |Option| Usage and meaning |
 |------|-------------------|
 | -bb  | Specify number of bootstrap replicates (>=1000). |
 | -wbt | Turn on writing bootstrap trees to `.ufboot` file. *DEFAULT: OFF* |
-| -wbtl| Like -wbt but write bootstrap trees with branch lengths. *DEFAULT: OFF* |
+| -wbtl| Like `-wbt` but bootstrap trees written with branch lengths. *DEFAULT: OFF* |
 | -nm  | Specify maximum number of iterations to stop. *DEFAULT: 1000* |
 | -bcor| Specify minimum correlation coefficient for UFBoot convergence criterion. *DEFAULT: 0.99* |
 | -nstep| Specify iteration interval checking for UFBoot convergence. *DEFAULT: every 100 iterations* |
 | -beps | Specify a small epsilon to break tie in RELL evaluation for bootstrap trees. *DEFAULT: 0.5* |
 
 
+Nonparametric bootstrap
+-----------------------
+
+The standard nonparametric bootstrap ([Felsenstein, 1985]) can be run with:
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -b   | Specify number of bootstrap replicates (recommended >=100). This will perform both bootstrap and analysis on original alignment and provide a consensus tree. |
+| -bc  | Like `-b` but omit analysis on original alignment. |
+| -bo  | Like `-b` but only perform bootstrap analysis (no analysis on original alignment and no consensus tree). |
+
+
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
-
+[Felsenstein, 1985]: https://www.jstor.org/stable/2408678
