@@ -33,3 +33,20 @@ General options
 | -pre | Specify a prefix for all output files. By default, the prefix is either the alignment file name (`-s`) or the partition file name (`-q`, `-spp` or `-sp`). |
 | -seed| Specify a random number seed to reproduce a previous run. This is normally used for debugging purpose. By default, IQ-TREE draws a random number seed based on the current machine clock. |
 | -v   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purpose. |
+
+
+Tree search algorithm
+---------------------
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -numpars | Specify number of initial parsimony trees (default: 100) |
+| -toppars | Specify number of top parsimony trees of the initial trees for further optimization (default: 20). |
+| -numcand | Specify number of candidate trees maintaining during tree search. (defaut: 5). |
+| -sprrad  | Specify radius for subtree prunning and regrafting parsimony search (default: 6). |
+| -pers    | Specify perturbation strength between 0 and 0 for randomized NNI (default: 0.5). |
+| -allnni  | Turn on more thorough nearest-neighbor interchange for ML search (default: off). |
+| -numstop | Specify number of unsuccessful iterations to stop (default: 100). |
+| -n       | Specify number of iterations to stop. By default, IQ-TREE stops after 100 unsuccessful iterations. |
+
+
