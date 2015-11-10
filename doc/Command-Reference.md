@@ -27,26 +27,26 @@ General options
 | -q or -spj | Specify partition file in [NEXUS or RAxML-style format](Complex-Models#partition-file-format) for edge-equal [partition model](Complex-Models#partition-models). That means, all partitions share the same set of branch lengths (like `-q` option of RAxML). |
 | -spp | Like `-q` but each partition has its own rate ([edge-proportional partition model](Complex-Models#partition-models)). |
 | -sp  | Specify partition file for [edge-unlinked partition model](Complex-Models#partition-models). That means, each partition has its own set of branch lengths (like `-M` option of RAxML). |
-| -t   | Specify starting tree for tree search. By default, IQ-TREE starts from 100 parsimony trees and BIONJ tree. The special option `-t BIONJ` starts tree search from BIONJ tree and `-t RANDOM` starts tree search from completely random tree. |
+| -t   | Specify starting tree for tree search. The special option `-t BIONJ` starts tree search from BIONJ tree and `-t RANDOM` starts tree search from completely random tree. *DEFAULT: IQ-TREE starts from 100 parsimony trees plus BIONJ tree* |
 | -te  | Like `-t` but fixing user tree. That means, no tree search is performed and IQ-TREE computes the log-likelihood of the fixed user tree. |
-| -o   | Specify an outgroup taxon name to root the tree. The output tree in `.treefile` will be rooted accordingly. |
-| -pre | Specify a prefix for all output files. By default, the prefix is either the alignment file name (`-s`) or the partition file name (`-q`, `-spp` or `-sp`). |
-| -seed| Specify a random number seed to reproduce a previous run. This is normally used for debugging purpose. By default, IQ-TREE draws a random number seed based on the current machine clock. |
-| -v   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purpose. |
+| -o   | Specify an outgroup taxon name to root the tree. The output tree in `.treefile` will be rooted accordingly. *DEFAULT: first taxon in alignment* |
+| -pre | Specify a prefix for all output files. *DEFAULT: either alignment file name (`-s`) or partition file name (`-q`, `-spp` or `-sp`) |
+| -seed| Specify a random number seed to reproduce a previous run. This is normally used for debugging purpose. *DEFAULT: based on current machine clock* |
+| -v   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purpose. *DFAULT: OFF* |
 
 
-Tree search algorithm
----------------------
+Tree search parameters
+----------------------
 
 |Option| Usage and meaning |
 |------|-------------------|
-| -numpars | Specify number of initial parsimony trees (default: 100). |
-| -toppars | Specify number of top parsimony trees of initial ones for further search (default: 20). |
-| -numcand | Specify number of top candidate trees to maintain during tree search. (defaut: 5). |
-| -sprrad  | Specify radius for subtree prunning and regrafting parsimony search (default: 6). |
-| -pers    | Specify perturbation strength (between 0 and 1) for randomized nearest neighbor interchange (NNI) (default: 0.5). |
-| -allnni  | Turn on more thorough NNI during tree search (default: off). |
-| -numstop | Specify number of unsuccessful iterations to stop (default: 100). |
+| -numpars | Specify number of initial parsimony trees. *DEFAULT: 100* |
+| -toppars | Specify number of top parsimony trees of initial ones for further search. *DEFAULT: 20* |
+| -numcand | Specify number of top candidate trees to maintain during tree search. *DEFAULT: 5* |
+| -sprrad  | Specify radius for subtree prunning and regrafting parsimony search. *DEFAULT: 6* |
+| -pers    | Specify perturbation strength (between 0 and 1) for randomized nearest neighbor interchange (NNI) *DEFAULT: 0.5* |
+| -allnni  | Turn on more thorough NNI during tree search. It means that IQ-TREE will consider all possible NNIs instead of only those in the vicinity of previously applied NNIs. *DEFAULT: OFF* |
+| -numstop | Specify number of unsuccessful iterations to stop. *DEFAULT: 100* |
 | -n       | Specify number of iterations to stop. This option overrides `-numstop` criterion. |
 
 
