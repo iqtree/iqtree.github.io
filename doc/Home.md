@@ -55,6 +55,8 @@ Documentation
 
 * [Frequently asked questions (FAQ)](Frequently-Asked-Questions): recommended to have a look before you post a question in the [IQ-TREE group](https://groups.google.com/d/forum/iqtree).
 
+* [Command Reference](Command-Reference): Comprehensive documentation of command-line options available in IQ-TREE.
+
 * [Compilation guide](Compilation guide): for advanced users who wants to compile IQ-TREE from source code.
 
 
