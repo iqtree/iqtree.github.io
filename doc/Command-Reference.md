@@ -12,9 +12,9 @@ General options
 
 |Option| Usage and meaning |
 |------|-------------------|
-| -h   | Printing help usage. |
+|-h or -?| Printing help usage. |
 | -s   | Input alignment in PHYLIP, FASTA, NEXUS, CLUSTAL or MSF format. |
-| -st  | Specifying sequence type with `BIN` (binary), `DNA`, `AA` (amino-acid), `NT2AA` (converting NT to AA), `CODON`, `MORPH` (morphology). By default IQ-TREE automatically detects the sequence type. |
+| -st  | Specifying sequence type with `BIN` (binary), `DNA`, `AA` (amino-acid), `NT2AA` (converting NT to AA), `CODON` or `MORPH` (morphology). By default IQ-TREE automatically detects the sequence type. |
 | -q   | Edge-linked partition model (file in NEXUS/RAxML format). |
 | -spp | Like `-q` option but allowing partition-specific rates. |
 | -sp  | Edge-unlinked partition model (like `-M` option of RAxML). |
