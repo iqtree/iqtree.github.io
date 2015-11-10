@@ -20,6 +20,7 @@
 
 [[Advanced Tutorial]]
 
+- [New model selection](Advanced-Tutorial#new-model-selection)
 - [Tree topology tests](Advanced-Tutorial#tree-topology-tests)
 - [User-defined models](Advanced-Tutorial#user-defined-substitution-models)
 - [Consensus construction and bootstrap value assignment](Advanced-Tutorial#consensus-construction-and-bootstrap-value-assignment)

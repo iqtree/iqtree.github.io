@@ -2,6 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [New model selection](#new-model-selection)
 - [Tree topology tests](#tree-topology-tests)
 - [User-defined substitution models](#user-defined-substitution-models)
 - [Consensus construction and bootstrap value assignment](#consensus-construction-and-bootstrap-value-assignment)
@@ -35,9 +36,9 @@ For partitioned data, a [previous tutorial](Tutorial#choosing-the-right-partitio
 
 that includes `+R` into the candidate rate heterogeneity type.
 
-To reduce computational burden, one can use `-mset` option to restrict a subset of base models instead of the entire set of all available models. For example, `-mset WAG,LG` will test only models like `WAG+...` or `LG+...`. Another useful option in this respect is `-msub` for AA data sets. With `-msub nuclear` only general AA models are included, whereas with `-m viral` only AA models for virus are included.
+To reduce computational burden, one can use `-mset` option to restrict a subset of base models instead of the entire set of all available models. For example, `-mset WAG,LG` will test only models like `WAG+...` or `LG+...`. Another useful option in this respect is `-msub` for AA data sets. With `-msub nuclear` only general AA models are included, whereas with `-msub viral` only AA models for virus are included.
 
-Finally, if you have enough computational resource, you can perform a thorough analysis that invokes a full tree search for each model considered via `-mtree option`:
+Finally, if you have enough computational resource, you can perform a thorough and more accurate analysis that invokes a full tree search for each model considered via `-mtree option`:
 
     iqtree -s example.phy -m TESTNEWONLY -mtree
 
