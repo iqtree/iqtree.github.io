@@ -105,7 +105,7 @@ IQ-TREE supports discrete morphological alignment by  `-st MORPH` option:
 
     iqtree -s morphology.phy -st MORPH
 
-IQ-TREE implements to two morphological ML models: [MK and ORDERED](Substitution-Models#bin-morph). Morphological data typically do not have constant (uninformative) sites. 
+IQ-TREE implements to two morphological ML models: [MK and ORDERED](Substitution-Models#binary-and-morphological-models). Morphological data typically do not have constant (uninformative) sites. 
 In such case, you should apply [ascertainment bias correction](Substitution Models#ascertainment-bias-correction) model by e.g.:
  
     iqtree -s morphology.phy -st MORPH -m MK+ASC
@@ -140,7 +140,7 @@ computed as the occurence frequencies in the bootstrap trees. This file is in "s
 *  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
 but in NEXUS format, which can be viewed with SplitsTree program. 
 
->**TIP**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently Asked Questions#interpret-ufboot) for more information.
+>**TIP**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently Asked Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
 
 Assessing branch supports with  standard nonparametric bootstrap

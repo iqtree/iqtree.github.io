@@ -78,7 +78,7 @@ Note that this assumes `part1` has standard genetic code. If not, append `CODON`
 
 #### Partitioned analysis
 
-Having prepared a partition file, one is ready to start a partitioned analysis with `-q` (edge-equal), `-spp` (edge-proportional) or `-sp` (edge-unlinked) option. See [this tutorial](Tutorial#partition-analysis) for more details.
+Having prepared a partition file, one is ready to start a partitioned analysis with `-q` (edge-equal), `-spp` (edge-proportional) or `-sp` (edge-unlinked) option. See [this tutorial](Tutorial#partitioned-analysis-for-multi-gene-alignments) for more details.
 
 
 Mixture models

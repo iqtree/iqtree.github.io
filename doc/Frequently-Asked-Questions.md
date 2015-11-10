@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [How do I interpret ultrafast bootstrap (UFBoot) support values?](#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values)
+- [How does IQ-TREE treat gap/missing characters?](#how-does-iq-tree-treat-gapmissing-characters)
+- [Can I mix DNA and protein data in a partitioned analysis?](#can-i-mix-dna-and-protein-data-in-a-partitioned-analysis)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 How do I interpret ultrafast bootstrap (UFBoot) support values?
 ---------------------------------------------------------------
