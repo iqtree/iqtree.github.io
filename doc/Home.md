@@ -27,9 +27,10 @@ The latest IQ-TREE version 1.3.10 (October 16, 2015) is available for three popu
 
 Please follow [**Getting started guide**](Quickstart) once you downloaded IQ-TREE.
 
+See [Release notes](../releases) for more details of this version or to download older versions.
+
 If you want to obtain and build IQ-TREE source code, please refer to [Compilation guide](Compilation-Guide).
 
-To download older versions please refer to [Release notes](../releases).
 
 
 IQ-TREE web service
