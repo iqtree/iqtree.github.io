@@ -26,7 +26,7 @@ Release notes
 
 Refer to <https://github.com/Cibiv/IQTree/releases> for other releases.
 
-Download 
+Download
 --------
 
 The latest IQ-TREE version 1.3.10 (October 16, 2015) is available for three popular platforms with a sequential and a parallel multicore version:
