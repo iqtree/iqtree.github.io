@@ -18,8 +18,8 @@ General options
 |  `-q partition_file`  | Edge-linked partition model (file in NEXUS/RAxML format) |
 | `-spp partition_file` | Like `-q` option but allowing partition-specific rates |
 |  `-sp partition_file` | Edge-unlinked partition model (like `-M` option of RAxML) |
-|  `-t start_tree_file` `| BIONJ | RANDOM` | Starting tree (default: 100 parsimony trees and BIONJ) |
-|  `-te user_tree_file` | Like `-t` but fixing user tree (no tree search performed) |
+|  `-t tree_file | BIONJ | RANDOM` | Starting tree (default: 100 parsimony trees and BIONJ) |
+|  `-te tree_file` | Like `-t` but fixing user tree (no tree search performed) |
 |  `-o outgroup_taxon`  | Outgroup taxon name for writing `.treefile` |
 |  `-pre PREFIX`        | Using `PREFIX` for output files (default: aln/partition) |
 |  `-seed number`       | Random seed number, normally used for debugging purpose |
