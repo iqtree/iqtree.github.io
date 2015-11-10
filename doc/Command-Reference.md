@@ -95,7 +95,70 @@ The following single branch tests are faster than all bootstrap analysis and rec
 | -abayes| Perform approximate Bayes test ([Anisimova et al., 2011]). |
 | -lbp  | Specify number of replicates (>=1000) to perform fast local bootstrap probability method ([Adachi and Hasegawa, 1996]). |
 
->**TIP**: One can combine all these options (also including UFBoot `-bb` option) in a single IQ-TREE run. Each branch in the resulting tree will be assigned with several support values separated by slash (`/`).
+>**TIP**: One can combine all these tests (also including UFBoot `-bb` option) in a single IQ-TREE run. Each branch in the resulting tree will be assigned with several support values separated by slash (`/`).
+
+
+Tree topology tests
+-------------------
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -z  | Specify a file containing a set of trees. IQ-TREE will compute the log-likelihoods of all trees. |
+| -zb | Specify the number of RELL ([Kishino et al., 1990]) replicates (>=1000) to perform several tree topology tests for all trees passed via `-z`. The tests include bootstrap proportion (BP), KH test ([Kishino and Hasegawa, 1989]), SH test ([Shimodaira and Hasegawa, 1999]) and expected likelihood weights (ELW) ([Strimmer and Rambaut, 2002]). |
+| -zw | Used together with `-zb` to additionally perform the weighted-KH and weighted-SH tests. |
+
+
+
+
+Constructing consensus tree
+---------------------------
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -t   | Specify a file containing a set of trees. |
+| -con | Compute consensus tree of the trees passed via `-t`. Resulting consensus tree is written to `.contree` file |
+| -net | Compute consensus network of the trees passed via `-t`. Resulting consensus network is written to `.nex` file |
+| -minsup| Specify a minimum threshold  (between 0 and 1) to keep branches in the consensus tree. `-minsup 0.5` |means to compute majority-rule consensus tree. *DEFAULT: 0 to compute extended majority-rule consensus |
+| -bi   | Specify a burnin, which is the number beginning trees passed via `-t` to discard before consensus construction. This is useful e.g. when summarizing trees from MrBayes analysis. |
+| -sup | Specify an input "target" tree file. That means, support values are first extracted from the trees passed via `-t`, and then mapped onto the target tree. Resulting tree with assigned support values is written to `.suptree` file. This option is useful to map and compare support values from different approaches onto a single tree. |
+| -suptag | Specify name of a node in `-sup` target tree. The corresponding node of `.suptree` will then be assigned with IDs of trees where this node appears. Special option `-suptag ALL` will assign such IDs for all nodes of the target tree. |
+
+
+Computing Robinson-Foulds distance
+----------------------------------
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -t   | Specify a file containing a set of trees. |
+| -rf_all| Compute all-to-all RF distances between all trees passed via `-t` |
+| -rf_adj| Compute RF distances between adjacent trees  passed via `-t` |
+| -rf  | Specify the second set of trees. IQ-TREE computes all pairwise RF distances between two tree sets passed via `-t` and `-rf` |
+
+
+Generating random trees
+-----------------------
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -r <num_taxa>        Create a random tree under Yule-Harding model.
+| -ru <num_taxa>       Create a random tree under Uniform model.
+| -rcat <num_taxa>     Create a random caterpillar tree.
+| -rbal <num_taxa>     Create a random balanced tree.
+| -rcsg <num_taxa>     Create a random circular split network.
+| -rlen <min_len> <mean_len> <max_len>  
+                       min, mean, and max branch lengths of random trees.
+
+Miscellaneous options
+---------------------
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -wt                  Write locally optimal trees into .treels file
+| -fixbr               Fix branch lengths of <treefile>.
+                       Used with -n 0 to compute log-likelihood of <treefile>
+| -wsl                 Writing site log-likelihoods to .sitelh file
+| -wslg                Writing site log-likelihoods per Gamma category
+| -fconst f1,...,fN    Add constant patterns into alignment (N=#nstates)
 
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
@@ -103,7 +166,9 @@ The following single branch tests are faster than all bootstrap analysis and rec
 [Anisimova et al., 2011]: http://dx.doi.org/10.1093/sysbio/syr041
 [Felsenstein, 1985]: https://www.jstor.org/stable/2408678
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
+[Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483
+[Kishino and Hasegawa, 1989]: http://dx.doi.org/10.1007/BF02100115
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
-
-
+[Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
+[Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
