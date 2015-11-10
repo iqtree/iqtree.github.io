@@ -33,7 +33,8 @@ IQ-TREE is available for three popular platforms with a sequential and a paralle
 
 | [[images/windows.png]] Windows | [[images/macosx.png]] Mac OS X | [[images/linux.png]] Linux |
 |------------|--------------|--------------|
-| [64-bit sequential](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Windows.tar.gz) | [64-bit sequential](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.tar.gz) | [64-bit sequential](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz) |
+| [64-bit sequential Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Windows.tar.gz) | [64-bit sequential MacOSX](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.tar.gz) | [64-bit sequential Linux](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz) |
+| [64-bit parallel Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Windows.tar.gz) | [64-bit sequential](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.tar.gz) | [64-bit sequential](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz) |
 
 Please follow the [**Installation guide**](Installation) once you downloaded IQ-TREE.
 
