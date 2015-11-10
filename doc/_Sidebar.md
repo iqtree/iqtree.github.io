@@ -1,6 +1,6 @@
 [[Home]]
 
-[Download](#download)
+[Download](Home#download)
 
 [Installation](Installation)
 
