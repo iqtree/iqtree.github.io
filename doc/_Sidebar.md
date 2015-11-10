@@ -18,7 +18,7 @@
 - [Bootstrapping partition model](Tutorial#ultrafast-bootstrapping-with-partition-model)
 - [Utilizing multi-core CPUs](Tutorial#utilizing-multi-core-cpus)
 
-[[Advanced-Tutorial]]
+[Advanced Tutorial]]
 
 - [Tree topology tests](Advanced-Tutorial#tree-topology-tests)
 - [User-defined models](Advanced-Tutorial#user-defined-substitution-models)
@@ -26,7 +26,7 @@
 - [Computing Robinson-Foulds distance](Advanced-Tutorial#computing-robinson-foulds-distance-between-trees)
 - [Generating random trees](Advanced-Tutorial#generating-random-trees)
 
-[[Substitution-Models]]
+[[Substitution Models]]
 
 - [DNA models](Substitution-Models#dna-models)
 - [Protein models](Substitution-Models#protein-models)
@@ -35,8 +35,8 @@
 - [Ascertainment bias correction](Substitution-Models#ascertainment-bias-correction)
 - [Rate heterogeneity across sites](Substitution-Models#rate-heterogeneity-across-sites)
 
-[[Complex-Models]]
+[[Complex Models]]
 
-[[Frequently-Asked-Questions]]
+[[Frequently Asked Questions]]
 
-[[Compilation-Guide]]
+[[Compilation Guide]]
