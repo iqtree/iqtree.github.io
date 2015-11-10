@@ -85,7 +85,7 @@ If you want to specify codon model for a partition, use the `CODON` keyword (oth
         charpartition mine = GY:part1, GTR+G:part2, WAG+I+G:part3;
     end;
 
-Note that this assumes `part1` has standard genetic code. If not, append `CODON` with an ID of the [right genetic code](Substitution-Models#codon-models).
+Note that this assumes `part1` has standard genetic code. If not, append `CODON` with [the right genetic code ID](Substitution-Models#codon-models).
 
 
 #### Partitioned analysis
@@ -95,6 +95,17 @@ Having prepared a partition file, one is ready to start a partitioned analysis w
 
 Mixture models
 --------------
+
+Mixture models allow more than one substitution model along the sequences like partition models. However, while a partition model assigns each alignment site with a given specific model, mixture models do not have this information: each site has a probability of belonging to each of the mixture components (also called categories or classes). In other words, the *site-to-model assignment is unknown*.
+
+For example, the [discrete Gamma rate heterogeneity](Substitution-Models#rate-heterogeneity-across-sites) is the simplest type of mixture model, where there are several rate categories and each site belongs to a rate category with a probability. The likelihood of a site under a mixture model is computed as the weighted average of the site-likelihood under each mixture category.
+
+IQ-TREE supports a number of [predefined protein mixture models](Substitution-Models#protein-models). Here, we give more details how to define new mixture models in IQ-TREE. To start with, the following command:
+
+    iqtree -s example.phy -m "MIX{JC,HKY}"
+
+is a valid analysis. Here, we specify a mixture model (via `MIX` keyword in the model string) with two components (`JC` and `HKY` model) given in curly bracket and comma separator. IQ-TREE will then estimate the parameters of both mixture components as well as their weights: the proportion of sites belonging to each component. 
+
 
 
 Customized models
