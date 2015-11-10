@@ -20,7 +20,7 @@ The latest IQ-TREE version 1.3.10 (October 16, 2015) is available for three popu
 
 | [[images/windows.png]] Windows | [[images/macosx.png]] Mac OS X | [[images/linux.png]] Linux |
 |------------|--------------|--------------|
-| [64-bit sequential Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Windows.zip) | [64-bit sequential MacOSX](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.zip) | [64-bit sequential Linux](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz) |
+| [64-bit sequential Windows](releases/download/v1.3.10/iqtree-1.3.10-Windows.zip) | [64-bit sequential MacOSX](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.zip) | [64-bit sequential Linux](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz) |
 | [64-bit multicore Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-omp-1.3.10-Windows.zip) | [64-bit multicore MacOSX](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-omp-1.3.10-MacOSX.zip) | [64-bit multicore Linux](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-omp-1.3.10-Linux.tar.gz) |
 | [32-bit sequential Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree32-1.3.10-Windows.zip) | | |
 | [32-bit multicore Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree32-omp-1.3.10-Windows.zip) | | |
