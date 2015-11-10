@@ -51,7 +51,7 @@
 - [Single branch tests](Command Reference#single-branch-tests)
 - [Tree topology tests](Command Reference#tree-topology-tests)
 - [Constructing consensus tree](Command Reference#constructing-consensus-tree)
-- [Computing Robinson-Foulds distance](Command Reference#computing-robinson-foulds-distance)
+- [Robinson-Foulds distance](Command Reference#computing-robinson-foulds-distance)
 - [Generating random trees](Command Reference#generating-random-trees)
 - [Miscellaneous options](Command Reference#miscellaneous-options)
 
