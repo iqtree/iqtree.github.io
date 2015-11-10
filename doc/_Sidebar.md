@@ -1,8 +1,10 @@
 [[Home]]
 
-[Download and Installation](Installation)
+[Download](#download)
 
-[[Quickstart]]
+[Installation](Installation)
+
+[Getting started](Quickstart)
 
 [Beginner's Tutorial](Tutorial)
 
