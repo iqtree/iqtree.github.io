@@ -9,7 +9,7 @@
 - [First example](Tutorial#first-running-example)
 - [Model selection](Tutorial#choosing-the-right-substitution-model)
 - [Codon models](Tutorial#codon-models)
-- [Binary, Morphological, SNP data](Tutorial#binary-morphological-and-snp-data)
+- [Binary, Morphological, SNPs](Tutorial#binary-morphological-and-snp-data)
 - [Ultrafast bootstrap](Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation)
 - [Nonparametric bootstrap](Tutorial#assessing-branch-supports-with--standard-nonparametric-bootstrap)
 - [Single branch tests](Tutorial#assessing-branch-supports-with-single-branch-tests)
@@ -33,7 +33,7 @@
 - [Codon models](Substitution-Models#codon-models)
 - [Binary, morphological models](Substitution-Models#binary-and-morphological-models)
 - [Ascertainment bias correction](Substitution-Models#ascertainment-bias-correction)
-- [Rate heterogeneity across sites](Substitution-Models#rate-heterogeneity-across-sites)
+- [Rate heterogeneity](Substitution-Models#rate-heterogeneity-across-sites)
 
 [[Complex Models]]
 
