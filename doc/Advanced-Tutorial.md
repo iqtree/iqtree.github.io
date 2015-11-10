@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Tree topology tests](#tree-topology-tests)
+- [User-defined substitution models](#user-defined-substitution-models)
+- [Consensus construction and bootstrap value assignment](#consensus-construction-and-bootstrap-value-assignment)
+- [Computing Robinson-Foulds distance between trees](#computing-robinson-foulds-distance-between-trees)
+- [Generating random trees](#generating-random-trees)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 
 This advanced tutorial is intended for more experienced users. If not, please read the [Beginner's Tutorial](Tutorial) first.

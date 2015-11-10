@@ -1,3 +1,22 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [DNA models](#dna-models)
+    - [Base substitution rates](#base-substitution-rates)
+    - [Base frequencies](#base-frequencies)
+- [Protein models](#protein-models)
+    - [Amino-acid exchange rate matrices](#amino-acid-exchange-rate-matrices)
+    - [Amino-acid frequencies](#amino-acid-frequencies)
+- [Codon models](#codon-models)
+    - [Codon substitution rates](#codon-substitution-rates)
+    - [Codon frequencies](#codon-frequencies)
+- [Binary and morphological models](#binary-and-morphological-models)
+- [Ascertainment bias correction](#ascertainment-bias-correction)
+- [Rate heterogeneity across sites](#rate-heterogeneity-across-sites)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 IQ-TREE supports a wide range of substitution models, including advanced partition and mixture models. This guide gives a detailed information of all available models.
 
