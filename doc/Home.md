@@ -12,17 +12,6 @@ The strength of IQ-TREE is the **availability of a wide range of models**:
 * [Phylogenomic partition models](Complex Models#partition-models) allowing for mixed data types, linked or unlinked branch lengths, and different rate types.
 * Mixture models such as [empirical protein mixture models](Substitution Models#protein-models) and [customizable mixture models](Complex Models#mixture-models).
 
-Release notes
--------------
-
-**IQ-TREE version 1.3.10 (October 16, 2015)**: We are pleased to announce version 1.3.10 with following changes:
-
-* Support unlimited number of partitions for partition model analysis (no complaint about PLL_NUM_BRANCHES anymore).
-* Improved support for mixture models.
-* Fix a bug in ascertainment bias correction (`+ASC`) model causing incorrect branch length estimates (thanks to Marcus Teixeira for reporting it).
-* Fix a rare bug when branch lengths are close to upper bound (thanks to Huaichun Wang for reporting it).
-
-Refer to <https://github.com/Cibiv/IQTree/releases> for other releases.
 
 Download
 --------
