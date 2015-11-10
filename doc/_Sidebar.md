@@ -40,6 +40,8 @@
 - [Partition models](Complex Models#partition-models)
 - [Mixture models](Complex Models#mixture-models)
 
+[[Command Reference]]
+
 [[Frequently Asked Questions]]
 
 [[Compilation Guide]]
