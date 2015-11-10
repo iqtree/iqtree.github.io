@@ -1,3 +1,21 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [First running example](#first-running-example)
+- [Choosing the right substitution model](#choosing-the-right-substitution-model)
+- [Codon models](#codon-models)
+- [Binary, morphological and SNP data](#binary-morphological-and-snp-data)
+- [Assessing branch supports with ultrafast bootstrap approximation](#assessing-branch-supports-with-ultrafast-bootstrap-approximation)
+- [Assessing branch supports with  standard nonparametric bootstrap](#assessing-branch-supports-with--standard-nonparametric-bootstrap)
+- [Assessing branch supports with single branch tests](#assessing-branch-supports-with-single-branch-tests)
+- [Partitioned analysis for multi-gene alignments](#partitioned-analysis-for-multi-gene-alignments)
+- [Choosing the right partitioning scheme](#choosing-the-right-partitioning-scheme)
+- [Ultrafast bootstrapping with partition model](#ultrafast-bootstrapping-with-partition-model)
+- [Utilizing multi-core CPUs](#utilizing-multi-core-cpus)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 This tutorial gives users a quick starting guide. Please first [download and install](Installation) the binary
 for your platform . For the next steps, the folder containing your  `iqtree` executable should added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
@@ -166,7 +184,7 @@ Finally, you can also combine the ultrafast bootstrap approximation with single 
     iqtree -s example.phy -m TIM+I+G -bb 1000 -alrt 1000 -lbp 1000
 
 
-<a name="partition-analysis"/> Partitioned analysis for multi-gene alignments
+Partitioned analysis for multi-gene alignments
 ----------------------------------------------
 
 In the partition model, you can specify a substitution model for each gene/character set. 

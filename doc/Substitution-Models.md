@@ -197,7 +197,7 @@ IQ-TREE supports the following codon frequencies:
 If not specified, the default codon frequency will be `+F3X4` for `MG`-type models, `+F` for `GY`-type models and given by the model for empirical codon models. 
 
 
-<a name="bin-morph"/> Binary and morphological models
+Binary and morphological models
 -------------------------------
 
 The binary alignments should contain state `0` and `1`. Whereas for morphological data, the valid states are `0` to `9` and `A` to `Z`.
