@@ -115,6 +115,8 @@ IQ-TREE provides a number of tests for significant topological difference betwee
 Constructing consensus tree
 ---------------------------
 
+IQ-TREE provides a fast implementation of consensus tree construction for post analysis:
+
 |Option| Usage and meaning |
 |------|-------------------|
 | -t   | Specify a file containing a set of trees. |
@@ -128,6 +130,8 @@ Constructing consensus tree
 
 Computing Robinson-Foulds distance
 ----------------------------------
+
+IQ-TREE provides a fast implementation of Robinson-Foulds distance computation for post analysis:
 
 |Option| Usage and meaning |
 |------|-------------------|
