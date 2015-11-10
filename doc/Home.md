@@ -36,7 +36,7 @@ The latest IQ-TREE version 1.3.10 (October 16, 2015) is available for three popu
 | [32-bit sequential Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree32-1.3.10-Windows.zip) | | |
 | [32-bit multicore Windows](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree32-omp-1.3.10-Windows.zip) | | |
 
-Please follow [**Quickstart guide**](Quickstart) once you downloaded IQ-TREE.
+Please follow [**Getting started guide**](Quickstart) once you downloaded IQ-TREE.
 
 If you want to obtain and build IQ-TREE source code, please refer to [Compilation guide](Compilation-Guide).
 
@@ -54,11 +54,13 @@ For a quick start you can also try the IQ-TREE web server, which performs online
 Documentation
 -------------
 
-* [Installation guide](Installation): recommended for users who just start to use IQ-TREE.
+* [Getting started guide](Quickstart): recommended for users who just downloaded IQ-TREE.
 
-* [Quickstart guide](Quickstart) and [Beginner's tutorial](Tutorial): recommended for users starting to use IQ-TREE.
+* [Beginner's tutorial](Tutorial): recommended for users starting to use IQ-TREE.
 
-* [Advanced tutorial](Advanced Tutorial): recommended for advanced users who want to explore more features of IQ-TREE.
+* [Advanced tutorial](Advanced Tutorial): recommended for more experienced users who want to explore more features of IQ-TREE.
+
+* [[Substitution Models]] and [[Complex Models]]: learn more about maximum-likelihood models available in IQ-TREE.
 
 * [Frequently asked questions (FAQ)](Frequently-Asked-Questions): recommended to have a look before you post a question in the [IQ-TREE group](https://groups.google.com/d/forum/iqtree).
 
