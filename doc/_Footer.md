@@ -1,0 +1,1 @@
+IQ-TREE is developed by [Lam Tung Nguyen](http://www.cibiv.at/~tung/), [Olga Chernomor](http://www.cibiv.at/~olga/) and [Bui Quang Minh](http://www.cibiv.at/~minh/) with code contribution by [Heiko A. Schmidt](http://www.cibiv.at/~hschmidt/).
