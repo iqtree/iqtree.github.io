@@ -48,7 +48,7 @@ General options are mainly intended for specifying input and output files:
 Automatic model selection
 -------------------------
 
-All testing approaches are specified via `-m TEST...` option. More specifically (`-m` is omited for simplicity):
+All testing approaches are specified via `-m TEST...` option:
 
 |Option| Usage and meaning |
 |------|-------------------|
