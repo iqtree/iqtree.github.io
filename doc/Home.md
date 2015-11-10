@@ -31,7 +31,7 @@ Download
 
 IQ-TREE is available for three popular platforms with a sequential and a parallel multicore version
 
-| ![Windows](images/windows.png) Windows | ![Mac OS X](images/macosx.png) Mac OS X | ![Linux](images/linux.png) Linux |
+| [[images/windows.png]] Windows | [[images/macosx.png]] Mac OS X | [[images/linux.png]] Linux |
 |------------|--------------|--------------|
 | [64-bit sequential](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Windows.tar.gz) | [64-bit sequential](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.tar.gz) | [64-bit sequential](https://github.com/Cibiv/IQTree/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz) |
 
