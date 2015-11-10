@@ -40,13 +40,13 @@ Tree search algorithm
 
 |Option| Usage and meaning |
 |------|-------------------|
-| -numpars | Specify number of initial parsimony trees (default: 100) |
-| -toppars | Specify number of top parsimony trees of the initial trees for further optimization (default: 20). |
-| -numcand | Specify number of candidate trees maintaining during tree search. (defaut: 5). |
+| -numpars | Specify number of initial parsimony trees (default: 100). |
+| -toppars | Specify number of top parsimony trees of initial ones for further search (default: 20). |
+| -numcand | Specify number of top candidate trees to maintain during tree search. (defaut: 5). |
 | -sprrad  | Specify radius for subtree prunning and regrafting parsimony search (default: 6). |
-| -pers    | Specify perturbation strength between 0 and 0 for randomized NNI (default: 0.5). |
-| -allnni  | Turn on more thorough nearest-neighbor interchange for ML search (default: off). |
+| -pers    | Specify perturbation strength (between 0 and 1) for randomized nearest neighbor interchange (NNI) (default: 0.5). |
+| -allnni  | Turn on more thorough NNI during tree search (default: off). |
 | -numstop | Specify number of unsuccessful iterations to stop (default: 100). |
-| -n       | Specify number of iterations to stop. By default, IQ-TREE stops after 100 unsuccessful iterations. |
+| -n       | Specify number of iterations to stop. This option overrides `-numstop` criterion. |
 
 
