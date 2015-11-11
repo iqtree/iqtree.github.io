@@ -2,7 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [First step](#first-step)
+- [Installation](#installation)
 - [For Windows users](#for-windows-users)
 - [For Mac OS X users](#for-mac-os-x-users)
 - [Minimal command-line examples](#minimal-command-line-examples)
@@ -10,8 +10,8 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-First step
-----------
+Installation
+------------
 
 To achieve high performance IQ-TREE is a command-line program: you need to run IQ-TREE from a Terminal/Console (this is called Command Prompt under Windows). After you [downloaded IQ-TREE](Home#download), please:
 
