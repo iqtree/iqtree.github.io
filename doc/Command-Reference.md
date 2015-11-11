@@ -80,6 +80,49 @@ Several parameters can be set to e.g. reduce computations:
 | -mdef | Specify a [NEXUS model file](Complex-Models#nexus-model-file) to define new models. |
 
 
+Specifying substitution models
+------------------------------
+
+`-m` is a powerful option to specify substitution models, state frequency and rate heterogeneity type. The general syntax is:
+
+    `-m MODEL+FreqType+RateType`
+
+where `MODEL` is a model name, `+FreqType` (optional) is the frequency type and `+RateType` (optional) is the rate heterogeneity type. 
+
+The following `MODEL`s are available:
+
+| DataType | Model names |
+|----------|-------------|
+| DNA      | JC/JC69, F81, K2P/K80, HKY/HKY85, TN/TrN/TN93, TNe, K3P/K81, K81u, TPM2, TPM2u, TPM3, TPM3u, TIM, TIMe, TIM2, TIM2e, TIM3, TIM3e, TVM, TVMe, SYM, GTR and 6-digit specification. See [DNA models](Substitution-Models#dna-models) for more details. |
+| Protein  | BLOSUM62, cpREV, Dayhoff, DCMut, FLU, HIVb, HIVw, JTT, JTTDCMut, LG, mtART, mtMAM, mtREV, mtZOA, Poisson, PMB, rtREV, VT, WAG. Many protein mixture models are also supported: C10,...,C60, EX2, EX3, EHO, UL2, UL3, EX_EHO, LG4M, LG4X, CF4 (`-mwopt` option can be used to turn on optimizing weights of mixture models). See [Protein models](Substitution-Models#protein-models) for more details. |
+| Codon | MG, MGK, MG1KTS, MG1KTV, MG2K, GY, GY1KTS, GY1KTV, GY2K, ECMK07/KOSI07, ECMrest, ECMS05/SCHN05 and combined empirical-mechanistic models. See [Codon models](Substitution-Models#codon-models) for more details. |
+| Binary | JC2, GTR2. See [Binary and morphological models](Substitution-Models#binary-and-morphological-models) for more details. |
+| Morphology| MK, ORDERED. See [Binary and morphological models](Substitution-Models#binary-and-morphological-models) for more details. |
+
+The following `FreqType`s are supported:
+
+| FreqType | Meaning |
+|----------|---------|
+| +F       | empirical state frequency observed from the data. |
+| +FO      | state frequency optimized by maximum-likelihood from the data. |
+| +FQ      | equal state frequency. |
+| +F1x4    | See [Codon frequencies](Substitution-Models#codon-frequencies). |
+| +F3x4    | See [Codon frequencies](Substitution-Models#codon-frequencies). |
+
+The following `RateType`s are supported:
+
+| FreqType | Meaning |
+|----------|---------|
+| +I       | allowing for a proportion of invariable sites. |
+| +G       | discrete Gamma model ([Yang, 1994]) with default 4 rate categories. The number of categories can be changed with e.g. `+G8`. |
+| +I+G     | invariable site plus discrete Gamma model ([Gu et al., 1995]). |
+| +R       | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes `+G` by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6`. *DEFAULT: 4 categories* |
+
+See [Rate heterogeneity across sites](Substitution-Models#rate-heterogeneity-across-sites) for more details.
+
+Optionally, one can specify [Ascertainment bias correction](Substitution-Models#ascertainment-bias-correction) by appending `+ASC` to the model string. [Advanced mixture models](Complex-Models#mixture-models) can also be specified via `MIX{...}` and `FMIX{...}` syntax. Option `mwopt` can be used to turn on optimizing weights of mixture models.
+
+
 Tree search parameters
 ----------------------
 
@@ -214,6 +257,7 @@ Miscellaneous options
 [Anisimova and Gascuel 2006]: http://dx.doi.org/10.1080/10635150600755453
 [Anisimova et al., 2011]: http://dx.doi.org/10.1093/sysbio/syr041
 [Felsenstein, 1985]: https://www.jstor.org/stable/2408678
+[Gu et al., 1995]: http://mbe.oxfordjournals.org/content/12/4/546.abstract
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: http://dx.doi.org/10.1007/BF02100115
@@ -223,4 +267,5 @@ Miscellaneous options
 [Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
 [Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
 [Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
+[Yang, 1994]: http://dx.doi.org/10.1007/BF00160154
 
