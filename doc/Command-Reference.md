@@ -4,6 +4,7 @@
 
 - [General options](#general-options)
 - [Automatic model selection](#automatic-model-selection)
+- [Specifying substitution models](#specifying-substitution-models)
 - [Tree search parameters](#tree-search-parameters)
 - [Ultrafast bootstrap parameters](#ultrafast-bootstrap-parameters)
 - [Nonparametric bootstrap](#nonparametric-bootstrap)
@@ -111,7 +112,7 @@ The following `FreqType`s are supported:
 
 The following `RateType`s are supported:
 
-| FreqType | Meaning |
+| RateType | Meaning |
 |----------|---------|
 | +I       | allowing for a proportion of invariable sites. |
 | +G       | discrete Gamma model ([Yang, 1994]) with default 4 rate categories. The number of categories can be changed with e.g. `+G8`. |
