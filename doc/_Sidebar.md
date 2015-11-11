@@ -1,5 +1,5 @@
-**Quick Navigation**
-*******
+Quick Navigation
+-------
 
 [[Home]]
 
