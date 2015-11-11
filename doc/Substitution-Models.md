@@ -64,9 +64,11 @@ If users want to fix model parameters, append the model name with a curly bracke
 
 Users can specify three different kinds of base frequencies:
 
-* `+F`: empirical base frequencies. This is the default if model has unequal base freq.
-* `+FQ`: equal base frequencies.
-* `+FO`: optimized base frequencies by maximum-likelihood.
+| FreqType | Explanation |
+|----------|-------------|
+| +F  | empirical base frequencies. This is the default if model has unequal base freq. |
+| +FQ | equal base frequencies.|
+| +FO |  optimized base frequencies by maximum-likelihood.|
 
 For example, `GTR+FO` optimizes base frequencies by ML whereas `GTR+F` (default) counts base frequencies from directly the alignment.
 
@@ -81,37 +83,41 @@ Protein models
 
 IQ-TREE supports all common empirical amino-acid exchange rate matrices:
 
-* `BLOSUM62`: BLOcks SUbstitution Matrix ([Henikoff and Henikoff, 1992]). Note that `BLOSUM62` is not recommended as it was designed mainly for sequence alignment.
-* `cpREV`: chloroplast matrix ([Adachi et al., 2000]).
-* `Dayhoff`: general matrix ([Dayhoff et al., 1978]).
-* `DCMut`: revised `Dayhoff` matrix ([Kosiol and Goldman, 2005]).
-* `FLU`: influenza virus ([Dang et al., 2010]).
-* `HIVb`: HIV matrix ([Dang et al., 2010]).
-* `HIVw`: HIV matrix ([Dang et al., 2010]).
-* `JTT`: general matrix ([Jones et al., 1992]).
-* `JTTDCMut`: revised `JTT` matrix ([Kosiol and Goldman, 2005]).
-* `LG`: general matrix ([Le and Gascuel, 2008]).
-* `mtART`: mitochondrial Arthropoda ([Abascal et al., 2007]).
-* `mtMAM`: mitochondrial Mammalia ([Yang et al., 1998]).
-* `mtREV`: mitochondrial Verterbrate ([Adachi and Hasegawa, 1996]).
-* `mtZOA`: mitochondrial Metazoa (Animals) ([Rota-Stabelli et al., 2009]).
-* `Poisson`: equal amino-acid exchange rates and frequencies.
-* `PMB`: Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]).
-* `rtREV`: Retrovirus ([Dimmic et al., 2002]).
-* `VT`: general matrix ([Mueller and Vingron, 2000]).
-* `WAG`: general matrix ([Whelan and Goldman, 2001]).
+| Model | Explanation |
+|-------|-------------|
+| BLOSUM62 | BLOcks SUbstitution Matrix ([Henikoff and Henikoff, 1992]). Note that `BLOSUM62` is not recommended as it was designed mainly for sequence alignment. |
+| cpREV | chloroplast matrix ([Adachi et al., 2000]). |
+| Dayhoff | general matrix ([Dayhoff et al., 1978]). |
+| DCMut | revised `Dayhoff` matrix ([Kosiol and Goldman, 2005]). |
+| FLU | influenza virus ([Dang et al., 2010]). |
+| HIVb | HIV matrix ([Dang et al., 2010]). |
+| HIVw | HIV matrix ([Dang et al., 2010]). |
+| JTT | general matrix ([Jones et al., 1992]). |
+| JTTDCMut | revised `JTT` matrix ([Kosiol and Goldman, 2005]). |
+| LG | general matrix ([Le and Gascuel, 2008]). |
+| mtART | mitochondrial Arthropoda ([Abascal et al., 2007]). |
+| mtMAM | mitochondrial Mammalia ([Yang et al., 1998]). |
+| mtREV | mitochondrial Verterbrate ([Adachi and Hasegawa, 1996]). |
+| mtZOA | mitochondrial Metazoa (Animals) ([Rota-Stabelli et al., 2009]). |
+| Poisson | equal amino-acid exchange rates and frequencies. |
+| PMB | Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]). |
+| rtREV | Retrovirus ([Dimmic et al., 2002]). |
+| VT | general matrix ([Mueller and Vingron, 2000]). |
+| WAG | general matrix ([Whelan and Goldman, 2001]). |
 
 Moreover, IQ-TREE also supports a series of protein mixture models:
 
-* `C10`, `C20`, `C30`, `C40`, `C50`, `C60`: 10- to 60-profile mixture models under [Gamma rate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2008a]).
-* `EX2`: two-matrix model for exposed/buried AA sites ([Le et al., 2008b]).
-* `EX3`: three-matrix model for highly exposed/intermediate/buried AA sites ([Le et al., 2008b]).
-* `EHO`: three-matrix model for extended/helix/other sites ([Le et al., 2008b]).
-* `UL2`, `UL3`: unsupervised-learning variants of `EX2` and `EX3`, respectively.
-* `EX_EHO`: six-matrix model combining `EX2` and `EHO` ([Le and Gascuel, 2010]).
-* `LG4M`: four-matrix model fused with [Gamma rate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
-* `LG4X`: four-matrix model fused with [FreeRate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
-* `CF4`: five-profile mixture model ([Wang et al., 2008]).
+| Model | Explanation |
+|-------|-------------|
+| C10, C20, ..., C60 | 10- to 60-profile mixture models under [Gamma rate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2008a]).
+| EX2 | two-matrix model for exposed/buried AA sites ([Le et al., 2008b]).
+| EX3 | three-matrix model for highly exposed/intermediate/buried AA sites ([Le et al., 2008b]).
+| EHO | three-matrix model for extended/helix/other sites ([Le et al., 2008b]).
+| UL2, UL3 | unsupervised-learning variants of `EX2` and `EX3`, respectively.
+| EX_EHO | six-matrix model combining `EX2` and `EHO` ([Le and Gascuel, 2010]).
+| LG4M | four-matrix model fused with [Gamma rate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
+| LG4X | four-matrix model fused with [FreeRate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
+| CF4 | five-profile mixture model ([Wang et al., 2008]).
 
 One can even combine a protein matrix with profile mixture model like:
 
@@ -158,9 +164,11 @@ Note that the amino-acid order in this file is:
 
 By default, AA frequencies are given by the model. Users can change this with:
 
-* `+F`: empirical AA frequencies from the data.
-* `+FO`: ML optimized AA frequencies from the data.
-* `+FQ`: Equal AA frequencies.
+| FreqType | Explanation |
+|----------|-------------|
+| +F  | empirical AA frequencies from the data.|
+| +FO | ML optimized AA frequencies from the data.|
+| +FQ | Equal AA frequencies.|
 
 Users can also specify AA frequencies with, e.g.:
     
@@ -176,24 +184,24 @@ To apply codon model one should use option `-st CODON` to tell IQ-TREE that the 
 
 | Option        | Genetic code |
 |---------------|--------------|
-|`-st CODON1`   | The Standard Code (same as `-st CODON`)|
-| `-st CODON2`  | The Vertebrate Mitochondrial Code |
-| `-st CODON3`  | The Yeast Mitochondrial Code |
-| `-st CODON4`  | The Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code |
-| `-st CODON5`  | The Invertebrate Mitochondrial Code |
-| `-st CODON6`  | The Ciliate, Dasycladacean and Hexamita Nuclear Code |
-| `-st CODON9`  | The Echinoderm and Flatworm Mitochondrial Code |
-| `-st CODON10` | The Euplotid Nuclear Code |
-| `-st CODON11` | The Bacterial, Archaeal and Plant Plastid Code |
-| `-st CODON12` | The Alternative Yeast Nuclear Code |
-| `-st CODON13` | The Ascidian Mitochondrial Code |
-| `-st CODON14` | The Alternative Flatworm Mitochondrial Code |
-| `-st CODON16` | Chlorophycean Mitochondrial Code |
-| `-st CODON21` | Trematode Mitochondrial Code |
-| `-st CODON22` | Scenedesmus obliquus Mitochondrial Code |
-| `-st CODON23` | Thraustochytrium Mitochondrial Code |
-| `-st CODON24` | Pterobranchia Mitochondrial Code |
-| `-st CODON25` | Candidate Division SR1 and Gracilibacteria Code |
+|-st CODON1   | The Standard Code (same as `-st CODON`)|
+| -st CODON2  | The Vertebrate Mitochondrial Code |
+| -st CODON3  | The Yeast Mitochondrial Code |
+| -st CODON4  | The Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code |
+| -st CODON5  | The Invertebrate Mitochondrial Code |
+| -st CODON6  | The Ciliate, Dasycladacean and Hexamita Nuclear Code |
+| -st CODON9  | The Echinoderm and Flatworm Mitochondrial Code |
+| -st CODON10 | The Euplotid Nuclear Code |
+| -st CODON11 | The Bacterial, Archaeal and Plant Plastid Code |
+| -st CODON12 | The Alternative Yeast Nuclear Code |
+| -st CODON13 | The Ascidian Mitochondrial Code |
+| -st CODON14 | The Alternative Flatworm Mitochondrial Code |
+| -st CODON16 | Chlorophycean Mitochondrial Code |
+| -st CODON21 | Trematode Mitochondrial Code |
+| -st CODON22 | Scenedesmus obliquus Mitochondrial Code |
+| -st CODON23 | Thraustochytrium Mitochondrial Code |
+| -st CODON24 | Pterobranchia Mitochondrial Code |
+| -st CODON25 | Candidate Division SR1 and Gracilibacteria Code |
 
 (the IDs follow the specification at <http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi>).
 
@@ -201,18 +209,20 @@ To apply codon model one should use option `-st CODON` to tell IQ-TREE that the 
 
 IQ-TREE supports several codon models:
 
-* `MG`: nonsynonymous/synonymous (dn/ds) rate ratio ([Muse and Gaut, 1994]).
-* `MGK`: Like `MG` with additional transition/transversion (ts/tv) rate ratio.
-* `MG1KTS` or `MGKAP2`: Like `MG` with a transition rate ([Kosiol et al., 2007]).
-* `MG1KTV` or `MGKAP3`: Like `MG` with a transversion rate ([Kosiol et al., 2007]).
-* `MG2K` or `MGKAP4`: Like `MG` with a transition rate and a transversion rate ([Kosiol et al., 2007]).
-* `GY`: nonsynonymous/synonymous and transition/transversion rate ratios ([Goldman and Yang, 1994]).
-* `GY1KTS` or `GYKAP2`: Like `GY` with a transition rate ([Kosiol et al., 2007]).
-* `GY1KTV` or `GYKAP3`: Like `GY` with a transversion rate ([Kosiol et al., 2007]).
-* `GY2K` or `GYKAP4`: Like `GY` with a transition rate and a transversion rate ([Kosiol et al., 2007]).
-* `ECMK07` or `KOSI07`: empirical codon model ([Kosiol et al., 2007]).
-* `ECMrest`: restricted version of `ECMK07` that allows only one nucleotide exchange.
-* `ECMS05` or `SCHN05`: empirical codon model ([Schneider et al., 2005]).
+| Model | Explanation |
+|-------|-------------|
+| MG | nonsynonymous/synonymous (dn/ds) rate ratio ([Muse and Gaut, 1994]).
+| MGK | Like `MG` with additional transition/transversion (ts/tv) rate ratio.
+| MG1KTS or MGKAP2 | Like `MG` with a transition rate ([Kosiol et al., 2007]).
+| MG1KTV or MGKAP3 | Like `MG` with a transversion rate ([Kosiol et al., 2007]).
+| MG2K or MGKAP4 | Like `MG` with a transition rate and a transversion rate ([Kosiol et al., 2007]).
+| GY | nonsynonymous/synonymous and transition/transversion rate ratios ([Goldman and Yang, 1994]).
+| GY1KTS or GYKAP2 | Like `GY` with a transition rate ([Kosiol et al., 2007]).
+| GY1KTV or GYKAP3 | Like `GY` with a transversion rate ([Kosiol et al., 2007]).
+| GY2K or GYKAP4 | Like `GY` with a transition rate and a transversion rate ([Kosiol et al., 2007]).
+| ECMK07 or KOSI07 | empirical codon model ([Kosiol et al., 2007]).
+| ECMrest | restricted version of `ECMK07` that allows only one nucleotide exchange.
+| ECMS05 or SCHN05 | empirical codon model ([Schneider et al., 2005]).
 
 The last three models (`ECMK07`, `ECMrest` or `ECMS05`) are called *empirical* codon models, whereas the others are called *mechanistic* codon models.
 
@@ -232,10 +242,12 @@ If the model name does not match the above listed models, IQ-TREE assumes that i
 
 IQ-TREE supports the following codon frequencies:
 
-* `+F`: empirical codon frequencies counted from the data.
-* `+FQ`: equal codon frequencies.
-* `+F1X4`: unequal nucleotide frequencies but equal nt frequencies over three codon positions.
-* `+F3X4`: unequal nucleotide frequencies and unequal nt frequencies over three codon positions.
+| FreqType | Explanation |
+|----------|-------------|
+| +F    | empirical codon frequencies counted from the data.|
+| +FQ   | equal codon frequencies.|
+| +F1X4 | unequal nucleotide frequencies but equal nt frequencies over three codon positions.|
+| +F3X4 | unequal nucleotide frequencies and unequal nt frequencies over three codon positions.|
 
 If not specified, the default codon frequency will be `+F3X4` for `MG`-type models, `+F` for `GY`-type models and given by the model for empirical codon models. 
 
@@ -245,10 +257,12 @@ Binary and morphological models
 
 The binary alignments should contain state `0` and `1`. Whereas for morphological data, the valid states are `0` to `9` and `A` to `Z`.
 
-* `JC2`: Jukes-Cantor type model for binary data.
-* `GTR2`: general time reversible model for binary data.
-* `MK`: Jukes-Cantor type model for morphological data.
-* `ORDERED`: allowing exchange of neighboring states only.
+| Model | Explanation |
+|-------|-------------|
+| JC2   | Jukes-Cantor type model for binary data.|
+| GTR2  | general time reversible model for binary data.|
+| MK    | Jukes-Cantor type model for morphological data.|
+| ORDERED| allowing exchange of neighboring states only.|
 
 Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies.
 
@@ -271,10 +285,12 @@ Rate heterogeneity across sites
 
 IQ-TREE supports all common rate heterogeneity across sites model:
 
-* `+I`: allowing for a proportion of invariable sites.
-* `+G`: discrete Gamma model ([Yang, 1994]) with default 4 rate categories. The number of categories can be changed with e.g. `+G8`.
-* `+I+G`: invariable site plus discrete Gamma model ([Gu et al., 1995]).
-* `+R`: FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes `+G` model by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). The FreeRate model typically fits data better than `+G` model and is recommended for analysis of large data sets.
+| RateType | Explanation |
+|----------|-------------|
+| +I   | allowing for a proportion of invariable sites.
+| +G   | discrete Gamma model ([Yang, 1994]) with default 4 rate categories. The number of categories can be changed with e.g. `+G8`.
+| +I+G | invariable site plus discrete Gamma model ([Gu et al., 1995]).
+| +R   | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes `+G` model by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). The FreeRate model typically fits data better than `+G` model and is recommended for analysis of large data sets.
 
 >**TIP**: the new model selection procedure (`-m TESTNEW` option) tests the FreeRate model, whereas the standard procedure (`-m TEST`) does not.
 
