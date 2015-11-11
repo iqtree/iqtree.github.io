@@ -47,7 +47,8 @@ Quick Navigation
 [[Command Reference]]
 
 - [General options](Command Reference#general-options)
-- [Automatic model selection](#automatic-model-selection)
+- [Automatic model selection](Command Reference#automatic-model-selection)
+- [Specifying substitution models](Command Reference#specifying-substitution-models)
 - [Tree search parameters](Command Reference#tree-search-parameters)
 - [Ultrafast bootstrap parameters](Command Reference#ultrafast-bootstrap-parameters)
 - [Nonparametric bootstrap](Command Reference#nonparametric-bootstrap)

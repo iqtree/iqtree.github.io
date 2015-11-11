@@ -267,6 +267,8 @@ Miscellaneous options
 [Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
 [Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
 [Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
+[Soubrier et al., 2012]: http://dx.doi.org/10.1093/molbev/mss140
 [Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
 [Yang, 1994]: http://dx.doi.org/10.1007/BF00160154
+[Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 
