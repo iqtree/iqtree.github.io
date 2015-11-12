@@ -18,11 +18,11 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-IQ-TREE should be invoked via command-line with e.g.:
+IQ-TREE is invoked from the command-line with e.g.:
 
     iqtree -s <alignment> [OPTIONS]
 
-Assuming that IQ-TREE can be run by simply entering `iqtree`. If not, please change `iqtree` to the actually path to the executable or read the [Quick start guide](Quickstart).
+assuming that IQ-TREE can be run by simply entering `iqtree`. If not, please change `iqtree` to the actual path of the executable or read the [Quick start guide](Quickstart).
 
 
 General options
@@ -35,15 +35,15 @@ General options are mainly intended for specifying input and output files:
 |-h or -?| Print help usage. |
 | -s   | Specify input alignment file in PHYLIP, FASTA, NEXUS, CLUSTAL or MSF format. |
 | -st  | Specify sequence type: `BIN` for binary, `DNA` for DNA, `AA` for amino-acid, `NT2AA` for converting nucleotide to AA, `CODON` for coding DNA and `MORPH` for morphology. This option is typically not necessary because IQ-TREE automatically detects the sequence type. An exception is `-st CODON` which is always necessary when using codon models (otherwise, IQ-TREE applies DNA models). |
-| -q or -spj | Specify partition file in [NEXUS or RAxML-style format](Complex-Models#partition-file-format) for edge-equal [partition model](Complex-Models#partition-models). That means, all partitions share the same set of branch lengths (like `-q` option of RAxML). |
+| -q or  -spj | Specify partition file in [NEXUS or RAxML-style format](Complex-Models#partition-file-format) for edge-equal [partition model](Complex-Models#partition-models). That means, all partitions share the same set of branch lengths (like `-q` option of RAxML). |
 | -spp | Like `-q` but each partition has its own rate ([edge-proportional partition model](Complex-Models#partition-models)). |
 | -sp  | Specify partition file for [edge-unlinked partition model](Complex-Models#partition-models). That means, each partition has its own set of branch lengths (like `-M` option of RAxML). |
 | -t   | Specify a file containing starting tree for tree search. The special option `-t BIONJ` starts tree search from BIONJ tree and `-t RANDOM` starts tree search from completely random tree. *DEFAULT: 100 parsimony trees + BIONJ tree* |
 | -te  | Like `-t` but fixing user tree. That means, no tree search is performed and IQ-TREE computes the log-likelihood of the fixed user tree. |
 | -o   | Specify an outgroup taxon name to root the tree. The output tree in `.treefile` will be rooted accordingly. *DEFAULT: first taxon in alignment* |
-| -pre | Specify a prefix for all output files. *DEFAULT: either alignment file name (`-s`) or partition file name (`-q`, `-spp` or `-sp`) |
-| -seed| Specify a random number seed to reproduce a previous run. This is normally used for debugging purpose. *DEFAULT: based on current machine clock* |
-| -v   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purpose. *DFAULT: OFF* |
+| -pre | Specify a prefix for all output files. *DEFAULT: either alignment file name (`-s`) or partition file name (`-q`, `-spp` or `-sp`)* |
+| -seed| Specify a random number seed to reproduce a previous run. This is normally used for debugging purposes. *DEFAULT: based on current machine clock* |
+| -v   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purposes. *DFAULT: OFF* |
 
 
 Automatic model selection
@@ -75,7 +75,7 @@ Several parameters can be set to e.g. reduce computations:
 | -cmin | Specify minimum number of categories for FreeRate model. *DEFAULT: 2* |
 | -cmax | Specify maximum number of categories for FreeRate model. It is recommended to increase if alignment is long enough. *DEFAULT: 10* |
 | –merit | Specify either `AIC`, `AICc` or `BIC` for the optimality criterion to apply for new procedure. *DEFAULT: all three criteria are considered* |
-| -mtree | Turn on full tree search for each model considered, to obtain more accurate result. Only recommended if having enough computational resource. *DEFAULT: fixed starting tree* |
+| -mtree | Turn on full tree search for each model considered, to obtain more accurate result. Only recommended if enough computational resources are available. *DEFAULT: fixed starting tree* |
 | -mredo | Ignore `.model` file computed earlier. *DEFAULT: `.model` file (if exists) is loaded to reuse previous computations* |
 | -madd | Specify a comma-separated list of mixture models to additionally consider for model selection. |
 | -mdef | Specify a [NEXUS model file](Complex-Models#nexus-model-file) to define new models. |
@@ -104,9 +104,9 @@ The following `FreqType`s are supported:
 
 | FreqType | Meaning |
 |----------|---------|
-| +F       | empirical state frequency observed from the data. |
-| +FO      | state frequency optimized by maximum-likelihood from the data. |
-| +FQ      | equal state frequency. |
+| +F       | Empirical state frequency observed from the data. |
+| +FO      | State frequency optimized by maximum-likelihood from the data. |
+| +FQ      | Equal state frequency. |
 | +F1x4    | See [Codon frequencies](Substitution-Models#codon-frequencies). |
 | +F3x4    | See [Codon frequencies](Substitution-Models#codon-frequencies). |
 
@@ -114,9 +114,9 @@ The following `RateType`s are supported:
 
 | RateType | Meaning |
 |----------|---------|
-| +I       | allowing for a proportion of invariable sites. |
-| +G       | discrete Gamma model ([Yang, 1994]) with default 4 rate categories. The number of categories can be changed with e.g. `+G8`. |
-| +I+G     | invariable site plus discrete Gamma model ([Gu et al., 1995]). |
+| +I       | Allowing for a proportion of invariable sites. |
+| +G       | Discrete Gamma model ([Yang, 1994]) with default 4 rate categories. The number of categories can be changed with e.g. `+G8`. |
+| +I+G     | Invariable site plus discrete Gamma model ([Gu et al., 1995]). |
 | +R       | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes `+G` by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6`. *DEFAULT: 4 categories* |
 
 See [Rate heterogeneity across sites](Substitution-Models#rate-heterogeneity-across-sites) for more details.
@@ -188,7 +188,7 @@ The following single branch tests are faster than all bootstrap analysis and rec
 Tree topology tests
 -------------------
 
-IQ-TREE provides a number of tests for significant topological difference between trees:
+IQ-TREE provides a number of tests for significant topological differences between trees:
 
 |Option| Usage and meaning |
 |------|-------------------|
@@ -207,10 +207,10 @@ IQ-TREE provides a fast implementation of consensus tree construction for post a
 |Option| Usage and meaning |
 |------|-------------------|
 | -t   | Specify a file containing a set of trees. |
-| -con | Compute consensus tree of the trees passed via `-t`. Resulting consensus tree is written to `.contree` file |
-| -net | Compute consensus network of the trees passed via `-t`. Resulting consensus network is written to `.nex` file |
-| -minsup| Specify a minimum threshold  (between 0 and 1) to keep branches in the consensus tree. `-minsup 0.5` |means to compute majority-rule consensus tree. *DEFAULT: 0 to compute extended majority-rule consensus |
-| -bi   | Specify a burnin, which is the number beginning trees passed via `-t` to discard before consensus construction. This is useful e.g. when summarizing trees from MrBayes analysis. |
+| -con | Compute consensus tree of the trees passed via `-t`. Resulting consensus tree is written to `.contree` file. |
+| -net | Compute consensus network of the trees passed via `-t`. Resulting consensus network is written to `.nex` file. |
+| -minsup| Specify a minimum threshold  (between 0 and 1) to keep branches in the consensus tree. `-minsup 0.5` means to compute majority-rule consensus tree. *DEFAULT: 0 to compute extended majority-rule consensus.* |
+| -bi   | Specify a burn-in, which is the number of beginning trees passed via `-t` to discard before consensus construction. This is useful e.g. when summarizing trees from MrBayes analysis. |
 | -sup | Specify an input "target" tree file. That means, support values are first extracted from the trees passed via `-t`, and then mapped onto the target tree. Resulting tree with assigned support values is written to `.suptree` file. This option is useful to map and compare support values from different approaches onto a single tree. |
 | -suptag | Specify name of a node in `-sup` target tree. The corresponding node of `.suptree` will then be assigned with IDs of trees where this node appears. Special option `-suptag ALL` will assign such IDs for all nodes of the target tree. |
 
@@ -225,7 +225,7 @@ IQ-TREE provides a fast implementation of Robinson-Foulds distance computation f
 | -t   | Specify a file containing a set of trees. |
 | -rf_all| Compute all-to-all RF distances between all trees passed via `-t` |
 | -rf_adj| Compute RF distances between adjacent trees  passed via `-t` |
-| -rf  | Specify the second set of trees. IQ-TREE computes all pairwise RF distances between two tree sets passed via `-t` and `-rf` |
+| -rf  | Specify a second set of trees. IQ-TREE computes all pairwise RF distances between two tree sets passed via `-t` and `-rf` |
 
 
 Generating random trees
@@ -234,10 +234,10 @@ Generating random trees
 |Option| Usage and meaning |
 |------|-------------------|
 | -r | Specify number of taxa. IQ-TREE will create a random tree under Yule-Harding model with specified number of taxa |
-| -ru | Like `-r` but a random tree is created under uniform model. |
-| -rcat | Like `-r` but a random caterpillar tree is created. |
-| -rbal | Like `-r` but a random balanced tree is created. |
-| -rcsg | Like `-r` bur a random circular split network is created. |
+| -ru | Like `-r`, but a random tree is created under uniform model. |
+| -rcat | Like `-r`, but a random caterpillar tree is created. |
+| -rbal | Like `-r`, but a random balanced tree is created. |
+| -rcsg | Like `-r`, bur a random circular split network is created. |
 | -rlen | Specify three numbers: minimum, mean and maximum branch lengths of the random tree. *DEFAULT: `-rlen 0.001 0.1 0.999`* |
 
 
