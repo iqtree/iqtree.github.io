@@ -12,19 +12,19 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-This advanced tutorial is intended for more experienced users. If not, please read the [Beginner's Tutorial](Tutorial) first.
+This advanced tutorial is intended for more experienced users. To get started, please read the [Beginner's Tutorial](Tutorial) first.
 
 
 New model selection
 -------------------
 
-A [previous tutorial](Tutorial#choosing-the-right-substitution-model) gave a quick hint on the use of `-m TESTONLY` to automatically select the best-fit model for the data before performing tree reconstruction. This "standard" procedure include four rate heterogeneity types: homogeneity, `+I`, `+G` and `+I+G`. However, there is no reason to believe that the evolutionary rates follow a Gamma distribution. Therefore, we have recently reintroduced the FreeRate (`+R`) model ([Yang, 1995]) into IQ-TREE. `+R` model generalizes the Gamma model by relaxing the "Gamma constraints", where the site rates and proportions are inferred independently from the data. 
+A [previous tutorial](Tutorial#choosing-the-right-substitution-model) gave a quick hint on the use of `-m TESTONLY` to automatically select the best-fit model for the data before performing tree reconstruction. This "standard" procedure includes four rate heterogeneity types: homogeneity, `+I`, `+G` and `+I+G`. However, there is no reason to believe that the evolutionary rates follow a Gamma distribution. Therefore, we have recently introduced the FreeRate (`+R`) model ([Yang, 1995]) into IQ-TREE. The `+R` model generalizes the Gamma model by relaxing the "Gamma constraints", where the site rates and proportions are inferred independently from the data. 
 
 Therefore, we recommend a new testing procedure that includes `+R` as the 5th rate heterogeneity type. This can be invoked simply with e.g.:
 
     iqtree -s example.phy -m TESTNEWONLY
 
-It will also automatically determine the optimal number of rate categories. By default, the maximum number of categories is 10 due to computational reason. If you have long enough sequences, then you can increase this upper limit with `cmax` option:
+It will also automatically determine the optimal number of rate categories. By default, the maximum number of categories is 10 due to computational reasons. If the sequences of your alignment are long enough, then you can increase this upper limit with the `cmax` option:
 
     iqtree -s example.phy -m TESTNEWONLY -cmax 15
 
@@ -34,11 +34,11 @@ For partitioned data, a [previous tutorial](Tutorial#choosing-the-right-partitio
 
     iqtree -s example.phy -sp example.nex -m TESTNEWMERGEONLY
 
-that includes `+R` into the candidate rate heterogeneity type.
+that includes `+R` into the candidate rate heterogeneity types.
 
-To reduce computational burden, one can use `-mset` option to restrict a subset of base models instead of the entire set of all available models. For example, `-mset WAG,LG` will test only models like `WAG+...` or `LG+...`. Another useful option in this respect is `-msub` for AA data sets. With `-msub nuclear` only general AA models are included, whereas with `-msub viral` only AA models for virus are included.
+To reduce computational burden, one can use the option `-mset` to restrict the testing procedure to a subset of base models instead of testing the entire set of all available models. For example, `-mset WAG,LG` will test only models like `WAG+...` or `LG+...`. Another useful option in this respect is `-msub` for AA data sets. With `-msub nuclear` only general AA models are included, whereas with `-msub viral` only AA models for viruses are included.
 
-Finally, if you have enough computational resource, you can perform a thorough and more accurate analysis that invokes a full tree search for each model considered via `-mtree option`:
+Finally, if you have enough computational resource, you can perform a thorough and more accurate analysis that invokes a full tree search for each model considered via the `-mtree option`:
 
     iqtree -s example.phy -m TESTNEWONLY -mtree
 
@@ -46,11 +46,11 @@ Finally, if you have enough computational resource, you can perform a thorough a
 Tree topology tests
 -------------------
 
-IQ-TREE can compute log-likelihoods of a set of trees passed via `-z` option:
+IQ-TREE can compute log-likelihoods of a set of trees passed via the `-z` option:
 
     iqtree -s example.phy -z example.treels -m GTR+G
 
-assuming that `example.treels` contains the trees in NEWICK format. IQ-TREE  first reconstruct an ML tree. Then, it will compute the log-likelihood of the  trees in `example.treels` based on the estimated parameters done for the ML tree. `example.phy.iqtree` will have a section called `USER TREES` that lists the tree IDs and the corresponding log-likelihoods.
+assuming that `example.treels` contains the trees in NEWICK format. IQ-TREE  first reconstructs an ML tree. Then, it will compute the log-likelihood of the  trees in `example.treels` based on the estimated parameters done for the ML tree. `example.phy.iqtree` will have a section called `USER TREES` that lists the tree IDs and the corresponding log-likelihoods.
 The trees with optimized branch lengths can be found in `example.phy.treels.trees`
 If you only want to evaluate the trees without reconstructing the ML tree, you can run:
 
@@ -76,15 +76,15 @@ Finally, note that IQ-TREE will automatically detect duplicated tree topologies 
 User-defined substitution models
 --------------------------------
 
-Users can specify an arbitrary DNA models using a 6-letter specification that constrains which rates to be equal. 
-For example, `010010` corresponds to the HKY model and `012345` the GTR model.
-In fact, the IQ-TREE  uses this specification internally to simplify the coding. The 6-letter code is specified via `-m` option, e.g.:
+Users can specify any DNA model using a 6-letter code that defines which rates should be equal. 
+For example, `010010` corresponds to the HKY model and `012345` to the GTR model.
+In fact, IQ-TREE  uses this specification internally to simplify the coding. The 6-letter code is specified via the `-m` option, e.g.:
 
 
     iqtree -s example.phy -m 010010+G
 
 
-Moreover, with the `-m` option one can input a file name which contains the 6 rates (A-C, A-G, A-T, C-G, C-T, G-T) and 4 base frequencies (A, C, G, T).  For example:
+Moreover, with the `-m` option one can input a file which contains the 6 rates (A-C, A-G, A-T, C-G, C-T, G-T) and 4 base frequencies (A, C, G, T).  For example:
 
     iqtree -s example.phy -m mymodel+G
 
@@ -96,7 +96,7 @@ where `mymodel` is a file containing the 10 entries described above, in the corr
 
 
 That means, we use Tamura-Nei model with fixed transition-transversion rate ratio of 2.0 and purine/pyrimidine rate ratio of 3.0. Moreover, we
-use an 8-category Gamma-distributed site rates with the shape parameter (alpha) of 0.5 and a proportion of invariable sites p-inv=0.15.
+use 8-category Gamma-distributed site rates with the shape parameter (alpha) equal to 0.5 and a proportion of invariable sites p-inv=0.15.
 
 By default IQ-TREE computes empirical state frequencies from the alignment by counting, but one can also estimate the frequencies by maximum-likelihood
 with `+Fo` in the model name:
@@ -144,7 +144,7 @@ IQ-TREE can also compute a consensus network and print it into a NEXUS file by:
     iqtree -net mytrees
 
 
-Finally, an useful feature is to read in an input tree and a set of trees, then IQ-TREE can assign the
+Finally, a useful feature is to read in an input tree and a set of trees, then IQ-TREE can assign the
 support value onto the input tree (number of times each branch in the input tree occurs in the set of trees). This option is useful if you want to compute the support values for an ML tree based on alternative topologies. 
 
 
