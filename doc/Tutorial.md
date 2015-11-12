@@ -18,7 +18,7 @@
 
 
 This tutorial gives users a quick starting guide. Please first [download](Home#download) and [install](Quickstart) the binary
-for your platform . For the next steps, the folder containing your  `iqtree` executable should added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
+for your platform . For the next steps, the folder containing your  `iqtree` executable should be added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
 
 >**TIP**: For quick overview of all supported options in IQ-TREE, run the command  `iqtree -h`. 
 
@@ -53,7 +53,8 @@ This prevents output files to be overwritten when you perform multiple analyses 
 Choosing the right substitution model
 -------------------------------------
 
-IQ-TREE supports a wide range of [substitution models](Substitution Models) for DNA, protein, codon, binary and morphological alignments. If the model is not specified, IQ-TREE will use the default model (e.g. HKY for DNA, WAG for protein). In case you do not know which model is appropriate for your data,  IQ-TREE can automatically determine the best-fit model 
+IQ-TREE supports a wide range of [substitution models](Substitution Models) for DNA, protein, codon, binary and morphological alignments. If the model is not specified, IQ-TREE will use the default model (
+HKY for DNA, WAG for protein). In case you do not know which model is appropriate for your data,  IQ-TREE can automatically determine the best-fit model 
 for your alignment using the `-m TEST` option. For example:
 
     iqtree -s example.phy -m TEST
@@ -89,7 +90,7 @@ IQ-TREE supports a number of [codon models](Substitution Models#codon-models). Y
 
     iqtree -s coding_gene.phy -st CODON 
 
-If your alignment length is not divisible by 3, IQ-TREE will stop with an error message. IQ-TREE will group sites 1,2,3 into codon site 1; site 4,5,6 to codon site 2; etc. Moreover, any codon, which has at least one gap/unknown/ambiguous nucleotide, will be treated as unknown codon character.
+If your alignment length is not divisible by 3, IQ-TREE will stop with an error message. IQ-TREE will group sites 1,2,3 into codon site 1; sites 4,5,6 to codon site 2; etc. Moreover, any codon, which has at least one gap/unknown/ambiguous nucleotide, will be treated as unknown codon character.
 
 If you are not sure which model to use, simply add `-m TEST`, which also works for codon alignments: 
 
@@ -101,20 +102,20 @@ By default IQ-TREE uses the standard genetic code. If you want to change the gen
 Binary, morphological and SNP data
 ---------------------------------
 
-IQ-TREE supports discrete morphological alignment by  `-st MORPH` option:
+IQ-TREE supports discrete morphological alignments by  `-st MORPH` option:
 
     iqtree -s morphology.phy -st MORPH
 
 IQ-TREE implements to two morphological ML models: [MK and ORDERED](Substitution-Models#binary-and-morphological-models). Morphological data typically do not have constant (uninformative) sites. 
-In such case, you should apply [ascertainment bias correction](Substitution Models#ascertainment-bias-correction) model by e.g.:
+In such cases, you should apply [ascertainment bias correction](Substitution Models#ascertainment-bias-correction) model by e.g.:
  
     iqtree -s morphology.phy -st MORPH -m MK+ASC
 
-You can again select best-fit model with  `-m TEST` (which also consider +G):
+You can again select the best-fit model with  `-m TEST` (which also considers +G):
 
     iqtree -s morphology.phy -st MORPH -m TEST
 
-For SNP data (DNA) that typically do not contain constant sites, you can explicitly tell model to include
+For SNP data (DNA) that typically do not contain constant sites, you can explicitly tell the model to include
 ascertainment bias correction:
 
     iqtree -s SNP_data.phy -m GTR+ASC
@@ -127,7 +128,7 @@ You can explicitly tell model testing to only include  `+ASC` model with:
 Assessing branch supports with ultrafast bootstrap approximation
 ----------------------------------------------------------------
 
-To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) that is  orders of magnitude faster than the standard procedure and provide relatively unbiased branch support values. To run UFBoot, use the option  `-bb`:
+To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. To run UFBoot, use the option  `-bb`:
 
     iqtree -s example.phy -m TIM+I+G -bb 1000
 
@@ -138,7 +139,7 @@ is the minimum number recommended. The section  `MAXIMUM LIKELIHOOD TREE` in  `e
 *  `example.phy.splits`: support values in percentage for all splits (bipartitions),
 computed as the occurence frequencies in the bootstrap trees. This file is in "star-dot" format.
 *  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
-but in NEXUS format, which can be viewed with SplitsTree program. 
+but in NEXUS format, which can be viewed with the program SplitsTree. 
 
 >**TIP**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently Asked Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
@@ -192,7 +193,7 @@ IQ-TREE will then estimate the model parameters separately for every partition. 
 
 * `-q partition_file`: all partitions share the same set of branch lengths (like `-q` option of RAxML).
 * `-spp partition_file`: like above but allowing each partition to have its own evolution rate.
-* `-sp partition_file`: each partition has its own set of branch lengths (like combination of `-q` and `-M` options in RAxML) to account for e.g., *heterotachy* ([Lopez et al., 2002]).
+* `-sp partition_file`: each partition has its own set of branch lengths (like combination of `-q` and `-M` options in RAxML) to account for, e.g. *heterotachy* ([Lopez et al., 2002]).
 
 >**TIP**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
 
@@ -235,7 +236,7 @@ That means,  `part1` contains sites 1-100 and 200-384 of the alignment. Another 
 
     charset part1 = 1-100\3;
 
-for extracting sites 1,4,7,...,100 from the alignment. This is useful for getting codon positions from the protein-coding alignment.
+for extracting sites 1,4,7,...,100 from the alignment. This is useful for getting codon positions from the protein-coding alignment. 
 
 IQ-TREE also allows combining sub-alignments from different alignment files. For example:
 
@@ -273,11 +274,11 @@ Sometimes you only want to find the best-fit partition model without doing tree 
     iqtree -sp example.nex -m TESTONLYMERGE
 
 
-To reduce the computational burden IQ-TREE implements the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]):
+To reduce the computational burden IQ-TREE implements the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]). Use
 
     iqtree -sp example.nex -m TESTONLYMERGE -rcluster 10
 
-to only examine the top 10% partition merging schemes (like `--rcluster-percent 10` option in PartitionFinder).
+to only examine the top 10% partition merging schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
 
 
 Ultrafast bootstrapping with partition model
@@ -297,7 +298,7 @@ IQ-TREE supports the gene-resampling strategy:
     iqtree -spp example.nex -bb 1000 -bspec GENE
 
 
-is to resample genes instead of sites. Moreover, IQ-TREE allows an even more complicated
+to resample genes instead of sites. Moreover, IQ-TREE allows an even more complicated
 strategy: resampling genes and sites within resampled genes, which may reduce false positives of the standard bootstrap resampling ([Gadagkar et al., 2005]):
 
 
