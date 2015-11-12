@@ -32,25 +32,25 @@ IQ-TREE includes all common DNA models (ordered by complexity):
 
 | Model | Explanation |
 |-------|-------------|
-| JC or JC69 | equal substitution rates and equal base frequencies ([Jukes and Cantor, 1969]). |
-| F81 | equal rates but unequal base freq. ([Felsenstein, 1981]). |
-| K80 or K2P | unequal transition/transversion rates and equal base freq. ([Kimura, 1980]). |
-| HKY or HKY85 | unequal transition/transversion rates and unequal base freq. ([Hasegawa, Kishino and Yano, 1985]). |
+| JC or JC69 | Equal substitution rates and equal base frequencies ([Jukes and Cantor, 1969]). |
+| F81 | Equal rates but unequal base freq. ([Felsenstein, 1981]). |
+| K80 or K2P | Unequal transition/transversion rates and equal base freq. ([Kimura, 1980]). |
+| HKY or HKY85 | Unequal transition/transversion rates and unequal base freq. ([Hasegawa, Kishino and Yano, 1985]). |
 | TN or TN93 | Like `HKY` but unequal purine/pyrimidine rates ([Tamura and Nei, 1993]). |
 | TNe | Like `TN` but equal base freq. |
-| K81 or K3P | three substitution types model and equal base freq. ([Kimura, 1981]). |
+| K81 or K3P | Three substitution types model and equal base freq. ([Kimura, 1981]). |
 | K81u | Like `K81` but unequal base freq. |
 | TPM2 | AC=AT, AG=CT, CG=GT and equal base freq. |
 | TPM2u | Like `TPM2` but unequal base freq. |
 | TPM3 | AC=CG, AG=CT, AT=GT and equal base freq. |
 | TPM3u | Like `TPM3` but unequal base freq. |
-| TIM | transition model, AC=GT, AT=CG and unequal base freq. |
+| TIM | Transition model, AC=GT, AT=CG and unequal base freq. |
 | TIMe | Like `TIM` but equal base freq. |
 | TIM2 | AC=AT, CG=GT and unequal base freq. |
 | TIM2e | Like `TIM2` but equal base freq. |
 | TIM3 | AC=CG, AT=GT and unequal base freq. |
 | TIM3e | Like `TIM3` but equal base freq. |
-| TVM | transversion model, AG=CT and unequal base freq. |
+| TVM | Transversion model, AG=CT and unequal base freq. |
 | TVMe | Like `TVM` but equal base freq. |
 | SYM | Symmetric model with unequal rates and equal base freq. ([Zharkihk, 1994]). |
 | GTR | General time reversible model with unequal rates and unequal base freq. ([Tavare, 1986]). |
@@ -66,11 +66,11 @@ Users can specify three different kinds of base frequencies:
 
 | FreqType | Explanation |
 |----------|-------------|
-| +F  | empirical base frequencies. This is the default if model has unequal base freq. |
-| +FQ | equal base frequencies.|
-| +FO |  optimized base frequencies by maximum-likelihood.|
+| +F  | Empirical base frequencies. This is the default if the model has unequal base freq. |
+| +FQ | Equal base frequencies.|
+| +FO |  Optimized base frequencies by maximum-likelihood.|
 
-For example, `GTR+FO` optimizes base frequencies by ML whereas `GTR+F` (default) counts base frequencies from directly the alignment.
+For example, `GTR+FO` optimizes base frequencies by ML whereas `GTR+F` (default) counts base frequencies directly from the alignment.
 
 Finally, users can fix base frequencies with e.g. `GTR+F{0.1,0.2,0.3,0.4}` to fix the corresponding frequencies of A, C, G and T (must sum up to 1.0).
 
@@ -85,51 +85,51 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices:
 
 | Model | Explanation |
 |-------|-------------|
-| BLOSUM62 | BLOcks SUbstitution Matrix ([Henikoff and Henikoff, 1992]). Note that `BLOSUM62` is not recommended as it was designed mainly for sequence alignment. |
+| BLOSUM62 | BLOcks SUbstitution Matrix ([Henikoff and Henikoff, 1992]). Note that `BLOSUM62` is not recommended as it was designed mainly for sequence alignments. |
 | cpREV | chloroplast matrix ([Adachi et al., 2000]). |
-| Dayhoff | general matrix ([Dayhoff et al., 1978]). |
-| DCMut | revised `Dayhoff` matrix ([Kosiol and Goldman, 2005]). |
-| FLU | influenza virus ([Dang et al., 2010]). |
+| Dayhoff | General matrix ([Dayhoff et al., 1978]). |
+| DCMut | Revised `Dayhoff` matrix ([Kosiol and Goldman, 2005]). |
+| FLU | Influenza virus ([Dang et al., 2010]). |
 | HIVb | HIV matrix ([Dang et al., 2010]). |
 | HIVw | HIV matrix ([Dang et al., 2010]). |
-| JTT | general matrix ([Jones et al., 1992]). |
-| JTTDCMut | revised `JTT` matrix ([Kosiol and Goldman, 2005]). |
-| LG | general matrix ([Le and Gascuel, 2008]). |
-| mtART | mitochondrial Arthropoda ([Abascal et al., 2007]). |
-| mtMAM | mitochondrial Mammalia ([Yang et al., 1998]). |
-| mtREV | mitochondrial Verterbrate ([Adachi and Hasegawa, 1996]). |
-| mtZOA | mitochondrial Metazoa (Animals) ([Rota-Stabelli et al., 2009]). |
-| Poisson | equal amino-acid exchange rates and frequencies. |
+| JTT | General matrix ([Jones et al., 1992]). |
+| JTTDCMut | Revised `JTT` matrix ([Kosiol and Goldman, 2005]). |
+| LG | General matrix ([Le and Gascuel, 2008]). |
+| mtART | Mitochondrial Arthropoda ([Abascal et al., 2007]). |
+| mtMAM | Mitochondrial Mammalia ([Yang et al., 1998]). |
+| mtREV | Mitochondrial Verterbrate ([Adachi and Hasegawa, 1996]). |
+| mtZOA | Mitochondrial Metazoa (Animals) ([Rota-Stabelli et al., 2009]). |
+| Poisson | Equal amino-acid exchange rates and frequencies. |
 | PMB | Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]). |
 | rtREV | Retrovirus ([Dimmic et al., 2002]). |
-| VT | general matrix ([Mueller and Vingron, 2000]). |
-| WAG | general matrix ([Whelan and Goldman, 2001]). |
+| VT | General matrix ([Mueller and Vingron, 2000]). |
+| WAG | General matrix ([Whelan and Goldman, 2001]). |
 
 Moreover, IQ-TREE also supports a series of protein mixture models:
 
 | Model | Explanation |
 |-------|-------------|
 | C10, ..., C60 | 10- to 60-profile mixture models under [Gamma rate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2008a]).
-| EX2 | two-matrix model for exposed/buried AA sites ([Le et al., 2008b]).
-| EX3 | three-matrix model for highly exposed/intermediate/buried AA sites ([Le et al., 2008b]).
-| EHO | three-matrix model for extended/helix/other sites ([Le et al., 2008b]).
-| UL2, UL3 | unsupervised-learning variants of `EX2` and `EX3`, respectively.
-| EX_EHO | six-matrix model combining `EX2` and `EHO` ([Le and Gascuel, 2010]).
-| LG4M | four-matrix model fused with [Gamma rate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
-| LG4X | four-matrix model fused with [FreeRate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
-| CF4 | five-profile mixture model ([Wang et al., 2008]).
+| EX2 | Two-matrix model for exposed/buried AA sites ([Le et al., 2008b]).
+| EX3 | Three-matrix model for highly exposed/intermediate/buried AA sites ([Le et al., 2008b]).
+| EHO | Three-matrix model for extended/helix/other sites ([Le et al., 2008b]).
+| UL2, UL3 | Unsupervised-learning variants of `EX2` and `EX3`, respectively.
+| EX_EHO | Six-matrix model combining `EX2` and `EHO` ([Le and Gascuel, 2010]).
+| LG4M | Four-matrix model fused with [Gamma rate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
+| LG4X | Four-matrix model fused with [FreeRate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
+| CF4 | Five-profile mixture model ([Wang et al., 2008]).
 
-One can even combine a protein matrix with profile mixture model like:
+One can even combine a protein matrix with a profile mixture model like:
 
-* `LG+C20`: applying `LG` matrix for all 20 mixture classes.
-* `JTT+CF4+G`: applying `JTT` matrix for all 5 mixture classes and Gamma rate heteorogeneity.
-* `JTTCF4G`: alias for `JTT+CF4+G`.
+* `LG+C20`: Applying `LG` matrix for all 20 mixture classes.
+* `JTT+CF4+G`: Applying `JTT` matrix for all 5 mixture classes and Gamma rate heteorogeneity.
+* `JTTCF4G`: Alias for `JTT+CF4+G`.
 
 Moreover, one can override the Gamma rate by FreeRate heterogeneity:
 
 * `LG+C20+R4`: Like `LG+C20` but replace Gamma by FreeRate heterogeneity.
 
-If the matrix name does not match the above listed models, IQ-TREE assumes that it is a file containing AA exchange rates and frequencies in PAML format. It contains the lower diagonal part of the matrix and 20 AA frequencies, e.g.:
+If the matrix name does not match any of the above listed models, IQ-TREE assumes that it is a file containing AA exchange rates and frequencies in PAML format. It contains the lower diagonal part of the matrix and 20 AA frequencies, e.g.:
 
     0.425093 
     0.276818 0.751878 
@@ -153,7 +153,7 @@ If the matrix name does not match the above listed models, IQ-TREE assumes that 
 
     0.079066 0.055941 0.041977 0.053052 0.012937 0.040767 0.071586 0.057337 0.022355 0.062157 0.099081 0.064600 0.022951 0.042302 0.044040 0.061197 0.053287 0.012066 0.034155 0.069147 
 
-(this is an example of LG matrix taken from [PAML package](http://abacus.gene.ucl.ac.uk/software/paml.html)).
+(This is an example of an LG matrix taken from [PAML package](http://abacus.gene.ucl.ac.uk/software/paml.html)).
 Note that the amino-acid order in this file is:
 
      A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V
@@ -174,13 +174,13 @@ Users can also specify AA frequencies with, e.g.:
     
     +F{0.079066,0.055941,0.041977,0.053052,0.012937,0.040767,0.071586,0.057337,0.022355,0.062157,0.099081,0.064600,0.022951,0.042302,0.044040,0.061197,0.053287,0.012066,0.034155,0.069147}
 
-(example corresponds to AA frequencies of LG matrix).
+(Example corresponds to the AA frequencies of the LG matrix).
 
 
 Codon models
 ------------
 
-To apply codon model one should use option `-st CODON` to tell IQ-TREE that the alignment contains protein coding sequences (otherwise, IQ-TREE thinks that it contains DNA sequences and will apply DNA models). This implicitly applies the standard genetic code. You can change to other genetic code by appending appropriate ID to `CODON` keyword:
+To apply a codon model one should use the option `-st CODON` to tell IQ-TREE that the alignment contains protein coding sequences (otherwise, IQ-TREE thinks that it contains DNA sequences and will apply DNA models). This implicitly applies the standard genetic code. You can change to an other genetic code by appending the appropriate ID to the `CODON` keyword:
 
 | Code    | Genetic code meaning |
 |---------|--------------|
@@ -203,7 +203,7 @@ To apply codon model one should use option `-st CODON` to tell IQ-TREE that the 
 | CODON24 | Pterobranchia Mitochondrial Code |
 | CODON25 | Candidate Division SR1 and Gracilibacteria Code |
 
-(the IDs follow the specification at <http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi>).
+(The IDs follow the specification at <http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi>).
 
 #### Codon substitution rates
 
@@ -211,18 +211,18 @@ IQ-TREE supports several codon models:
 
 | Model | Explanation |
 |-------|-------------|
-| MG | nonsynonymous/synonymous (dn/ds) rate ratio ([Muse and Gaut, 1994]).
+| MG | Nonsynonymous/synonymous (dn/ds) rate ratio ([Muse and Gaut, 1994]).
 | MGK | Like `MG` with additional transition/transversion (ts/tv) rate ratio.
 | MG1KTS or MGKAP2 | Like `MG` with a transition rate ([Kosiol et al., 2007]).
 | MG1KTV or MGKAP3 | Like `MG` with a transversion rate ([Kosiol et al., 2007]).
 | MG2K or MGKAP4 | Like `MG` with a transition rate and a transversion rate ([Kosiol et al., 2007]).
-| GY | nonsynonymous/synonymous and transition/transversion rate ratios ([Goldman and Yang, 1994]).
+| GY | Nonsynonymous/synonymous and transition/transversion rate ratios ([Goldman and Yang, 1994]).
 | GY1KTS or GYKAP2 | Like `GY` with a transition rate ([Kosiol et al., 2007]).
 | GY1KTV or GYKAP3 | Like `GY` with a transversion rate ([Kosiol et al., 2007]).
 | GY2K or GYKAP4 | Like `GY` with a transition rate and a transversion rate ([Kosiol et al., 2007]).
-| ECMK07 or KOSI07 | empirical codon model ([Kosiol et al., 2007]).
-| ECMrest | restricted version of `ECMK07` that allows only one nucleotide exchange.
-| ECMS05 or SCHN05 | empirical codon model ([Schneider et al., 2005]).
+| ECMK07 or KOSI07 | Empirical codon model ([Kosiol et al., 2007]).
+| ECMrest | Restricted version of `ECMK07` that allows only one nucleotide exchange.
+| ECMS05 or SCHN05 | Empirical codon model ([Schneider et al., 2005]).
 
 The last three models (`ECMK07`, `ECMrest` or `ECMS05`) are called *empirical* codon models, whereas the others are called *mechanistic* codon models.
 
@@ -232,7 +232,7 @@ Moreover, IQ-TREE supports combined empirical-mechanistic codon models using an 
 
 Thus, there can be many such combinations.
 
-If the model name does not match the above listed models, IQ-TREE assumes that it is a file containing codon exchange rates and frequencies in PAML format. It contains the lower diagonal part of the matrix and codon frequencies. For an example, see <http://www.ebi.ac.uk/goldman/ECM/>.
+If the model name does not match any of the above listed models, IQ-TREE assumes that it is a file containing codon exchange rates and frequencies in PAML format. It contains the lower diagonal part of the matrix and codon frequencies. For an example, see <http://www.ebi.ac.uk/goldman/ECM/>.
 
 
 >**NOTICE**: Branch lengths under codon models are interpreted as number of nucleotide substitutions per codon site. Thus, they are typically 3 times longer than under DNA models.
@@ -244,10 +244,10 @@ IQ-TREE supports the following codon frequencies:
 
 | FreqType | Explanation |
 |----------|-------------|
-| +F    | empirical codon frequencies counted from the data.|
-| +FQ   | equal codon frequencies.|
-| +F1X4 | unequal nucleotide frequencies but equal nt frequencies over three codon positions.|
-| +F3X4 | unequal nucleotide frequencies and unequal nt frequencies over three codon positions.|
+| +F    | Empirical codon frequencies counted from the data.|
+| +FQ   | Equal codon frequencies.|
+| +F1X4 | Unequal nucleotide frequencies but equal nt frequencies over three codon positions.|
+| +F3X4 | Unequal nucleotide frequencies and unequal nt frequencies over three codon positions.|
 
 If not specified, the default codon frequency will be `+F3X4` for `MG`-type models, `+F` for `GY`-type models and given by the model for empirical codon models. 
 
@@ -255,14 +255,14 @@ If not specified, the default codon frequency will be `+F3X4` for `MG`-type mode
 Binary and morphological models
 -------------------------------
 
-The binary alignments should contain state `0` and `1`. Whereas for morphological data, the valid states are `0` to `9` and `A` to `Z`.
+The binary alignments should contain state `0` and `1`, whereas for morphological data, the valid states are `0` to `9` and `A` to `Z`.
 
 | Model | Explanation |
 |-------|-------------|
 | JC2   | Jukes-Cantor type model for binary data.|
-| GTR2  | general time reversible model for binary data.|
+| GTR2  | General time reversible model for binary data.|
 | MK    | Jukes-Cantor type model for morphological data.|
-| ORDERED| allowing exchange of neighboring states only.|
+| ORDERED| Allowing exchange of neighboring states only.|
 
 Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies.
 
@@ -274,8 +274,8 @@ Ascertainment bias correction
 
 An ascertainment bias correction (`+ASC`) model ([Lewis, 2001]) should be applied if the alignment does not contain constant sites (such as morphological or SNPs data). For example:
 
-* `MK+ASC`: for morphological data.
-* `GTR+ASC`: for SNPs data.
+* `MK+ASC`: For morphological data.
+* `GTR+ASC`: For SNPs data.
 
 `+ASC` will correct the likelihood conditioned on variable sites. Without `+ASC`, the branch lengths might be overestimated.
 
@@ -283,20 +283,20 @@ An ascertainment bias correction (`+ASC`) model ([Lewis, 2001]) should be applie
 Rate heterogeneity across sites
 -------------------------------
 
-IQ-TREE supports all common rate heterogeneity across sites model:
+IQ-TREE supports all common rate heterogeneity across sites models:
 
 | RateType | Explanation |
 |----------|-------------|
 | +I   | allowing for a proportion of invariable sites.
 | +G   | discrete Gamma model ([Yang, 1994]) with default 4 rate categories. The number of categories can be changed with e.g. `+G8`.
 | +I+G | invariable site plus discrete Gamma model ([Gu et al., 1995]).
-| +R   | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes `+G` model by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). The FreeRate model typically fits data better than `+G` model and is recommended for analysis of large data sets.
+| +R   | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes the `+G` model by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). The FreeRate model typically fits data better than the `+G` model and is recommended for analysis of large data sets.
 
->**TIP**: the new model selection procedure (`-m TESTNEW` option) tests the FreeRate model, whereas the standard procedure (`-m TEST`) does not.
+>**TIP**: The new model selection procedure (`-m TESTNEW` option) tests the FreeRate model, whereas the standard procedure (`-m TEST`) does not.
 
-Users can fix the parameters of the model. For example, `+I{0.2}` will fix the proportion of invariable sites (pinvar) to 0.2; `+G{0.9}` will fix the Gamma shape parameter (alpha) to 0.9; `+I{0.2}+G{0.9}` will fix both pinvar and alpha. To fix the FreeRate model parameters, use the syntax `+Rk{w1,r1,...,wk,rk}` (replacing `k` with number of categories). Here, `w1, ..., wk` are the weights and `r1, ..., rk` the rates for each category. 
+Users can fix the parameters of the model. For example, `+I{0.2}` will fix the proportion of invariable sites (pinvar) to 0.2; `+G{0.9}` will fix the Gamma shape parameter (alpha) to 0.9; `+I{0.2}+G{0.9}` will fix both pinvar and alpha. To fix the FreeRate model parameters, use the syntax `+Rk{w1,r1,...,wk,rk}` (replacing `k` with the number of categories). Here, `w1, ..., wk` are the weights and `r1, ..., rk` the rates for each category. 
 
->**NOTICE**: For `+G` model IQ-TREE implements the _mean_ approximation approach ([Yang, 1994]). The same is done in RAxML and PhyML. However, some software like TREE-PUZZLE implements the _median_ approximation approach, which makes the resulting log-likelihood not comparable. IQ-TREE can change to this approach via `-gmedian` option.
+>**NOTICE**: For the `+G` model IQ-TREE implements the _mean_ approximation approach ([Yang, 1994]). The same is done in RAxML and PhyML. However, some programs like TREE-PUZZLE implement the _median_ approximation approach, which makes the resulting log-likelihood not comparable. IQ-TREE can change to this approach via the `-gmedian` option.
 
 
 
