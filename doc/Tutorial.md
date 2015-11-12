@@ -17,7 +17,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-This tutorial gives users a quick starting guide. Please first [download and install](Installation) the binary
+This tutorial gives users a quick starting guide. Please first [download](Home#download) and [install](Quickstart) the binary
 for your platform . For the next steps, the folder containing your  `iqtree` executable should added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
 
 >**TIP**: For quick overview of all supported options in IQ-TREE, run the command  `iqtree -h`. 
@@ -309,7 +309,7 @@ Utilizing multi-core CPUs
 -------------------------
 
 A specialized version of IQ-TREE (`iqtree-omp`) can utilize multiple CPU cores to speed up the analysis.
-To obtain this version please refer to the [installation guide](Installation).  A complement option `-nt` allows specifying the number of CPU to be used. For example:
+To obtain this version please refer to the [quick starting guide](Quickstart).  A complement option `-nt` allows specifying the number of CPU to be used. For example:
 
 
     iqtree-omp -s example.phy -nt 2
