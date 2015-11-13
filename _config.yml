@@ -93,7 +93,7 @@ members:
 #    img: client03.png
     
 # Short text about your company. Shown in footer on every page and also separately on Home and Contact page.
-about: "IQ-TREE is developed at <a href='http://www.cibiv.at'>CIBIV</a> by <a href='/about'>IQ-TREE development team</a>."
+about: "IQ-TREE is developed at <a href='http://www.cibiv.at'>CIBIV</a> by <a href='/about/'>IQ-TREE development team</a>."
 
 # Testimonial content. Shown on Home and About page. 
 #testimonial:
