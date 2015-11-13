@@ -1,0 +1,29 @@
+---
+layout: doc
+title: Documentation
+permalink: /doc/
+---
+
+<div class="container mtb">
+    <div class="row">
+
+        <! -- BLOG POSTS LIST -->
+        <div class="col-md-9">
+
+            {% for post in site.categories['doc'] %}
+                <! -- Blog Post -->
+                <a href="{{ post.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ post.title }}</h3></a>
+                <p><csmall>{{ post.date | date: "%b %-d, %Y" }}. | By: {{ post.author }}</csmall></p>
+                {{ post.excerpt }}
+                <p><a href="{{ post.url | prepend: site.baseurl }}">[Read More]</a></p>
+                <div class="hline"></div>
+
+                <div class="spacing"></div>
+            {% endfor %}
+
+        </div><! --/col-md-9 -->
+
+        {% include sidebardoc.html %}
+
+    </div><! --/row -->
+</div><! --/container -->

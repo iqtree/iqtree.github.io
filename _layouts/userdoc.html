@@ -6,10 +6,9 @@ layout: default
 
 <div class="container mtb">
     <div class="row">
-        <! -- SINGLE POST -->
+        <! -- SINGLE DOC -->
         <div class="col-md-9">
-            <! -- Blog Post  -->
-            <p><img class="img-responsive" src="{{ "/assets/img/blog/" | prepend: site.baseurl }}{{ page.img }}"></p>
+            <! -- User Doc  -->
             <a href="{{ page.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ page.title }}</h3></a>
             <p><csmall>{{ page.date | date: "%b %-d, %Y" }}. | By: {{ page.author }}</csmall></p>
               
@@ -23,7 +22,7 @@ layout: default
                 <a href="#"><i class="fa fa-tumblr"></i></a>
                 <a href="#"><i class="fa fa-google-plus"></i></a>		 		
             </p> -->
-        </div><! --/col-lg-8 -->
+        </div><! --/col-md-9 -->
         
         {% include sidebardoc.html %}
 

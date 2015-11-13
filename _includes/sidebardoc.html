@@ -1,0 +1,15 @@
+<div class="col-md-3">
+   <h4>Search all documents</h4>
+        <p>
+            <input type="text" class="form-control" placeholder="Enter search text here">
+        </p>
+    <div class="spacing"></div>
+    <h4>Quick Navigation</h4>
+    <div class="hline"></div>
+            {% for post in site.categories['doc'] %}
+                <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                <div class="spacing"></div>
+            {% endfor %}
+    <div class="spacing"></div>
+
+</div>
