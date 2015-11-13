@@ -1,14 +1,14 @@
 <div class="container mtb">
     <div class="row centered">
-        <h3 class="mb">MEET OUR TEAM</h3>
+        <h3 class="mb">IQ-TREE DEVELOPMENT TEAM</h3>
         
         {% for member in site.members %}
-        <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="col-lg-3 col-md-3 col-sm-4">
             <div class="he-wrap tpl6">
             <img src="{{ "/assets/img/members/" | prepend: site.baseurl }}{{ member.img }}" alt="">
                 <div class="he-view">
                     <div class="bg a0" data-animate="fadeIn">
-                        <h3 class="a1" data-animate="fadeInDown">Contact Me:</h3>
+                        <h3 class="a1" data-animate="fadeInDown">My home page:</h3>
                         {% for entry in member.social %}
                             <a href="{{ entry.url }}" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-{{ entry.title }}"></i></a>
                         {% endfor %}
@@ -18,7 +18,6 @@
             <h4>{{ member.name }}</h4>
             <h5 class="ctitle">{{ member.position }}</h5>
             <p>{{ member.text }}</p>
-            <div class="hline"></div>
         </div><! --/col-lg-3 -->	 	
         {% endfor %}
         

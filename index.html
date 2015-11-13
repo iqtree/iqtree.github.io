@@ -7,53 +7,213 @@ permalink: /
 <div id="service">
     <div class="container">
         <div class="row centered">
-            <div class="col-md-4">
-                <i class="fa fa-heart-o"></i>
-                <h4>Handsomely Crafted</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                <p><br/><a href="#" class="btn btn-theme">More Info</a></p>
+            <div class="col-md-12">
+                <br><h3>IQ-TREE key features</h3>
             </div>
             <div class="col-md-4">
-                <i class="fa fa-flask"></i>
-                <h4>Retina Ready</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                <p><br/><a href="#" class="btn btn-theme">More Info</a></p>
+                <i class="fa fa-search"></i>
+                <h4>Efficient Search Algorithm</h4>
+                <p>A novel fast and effective stochastic algorithm to estimate maximum likelihood trees. <em>IQ-TREE outperforms RAxML and PhyML</em> in terms of likelihood while requiring similar amount of computing time (<a href="http://dx.doi.org/10.1093/molbev/msu300">Nguyen et al., 2015</a>).</p>
             </div>
             <div class="col-md-4">
-                <i class="fa fa-trophy"></i>
-                <h4>Quality Theme</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                <p><br/><a href="#" class="btn btn-theme">More Info</a></p>
+                <i class="fa fa-rocket"></i>
+                <h4>Ultrafast Bootstrap</h4>
+                <p>An ultrafast bootstrap approximation (UFBoot) to assess branch supports. UFBoot is 10 to 40 times faster than RAxML rapid bootstrap and obtains less biased support values (<a href="http://dx.doi.org/10.1093/molbev/mst024">Minh et al., 2013</a>).</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-bolt"></i>
+                <h4>Ultrafast Model Selection</h4>
+                <p>An ultrafast and automatic model selection (ModelFinder) which is <em>10 to 100 times faster than jModelTest and ProtTest</em>. ModelFinder also performs best-fit partitioning scheme selection like PartitionFinder.</p>
             </div>		 				
         </div>
     </div><! --/container -->
+    <br><div class="hline"></div><br>
+    <div class="container">
+        <div class="row centered">
+            <div class="col-md-12">
+                <h3>IQ-TREE supports a wide range of substitution models</h3>
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-refresh"></i>
+                <h4>Common Models</h4>
+                <p>All <a href="/IQ-TREE/wiki/Substitution-Models.html">common substitution models</a> for DNA, protein, codon, binary and morphological data with <a hre
+f="Substitution Models#rate-heterogeneity-across-sites">rate heterogeneity among sites</a>.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-th-large"></i>
+                <h4>Partition Models</h4>
+                <p><a href="Complex Models#partition-models">Phylogenomic partition models</a> allowing for mixed data types, linked or unlinked branch lengths, and different rate types.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-flask"></i>
+                <h4>Mixture Models</h4>
+                <p>Mixture models such as <a href="Substitution Models#protein-models">empirical protein mixture models</a> and <a href="Complex Models#mixture-models">customizable mixture models</a>.</p>
+            </div>
+        </div>
+            <a name="download"></a><!--put here to link below-->				
+        <div class="row"><br><br></div>
+    </div><! --/container -->
 </div><! --/service -->
 
-{% include portfolio.html title="LATEST WORKS" limit=10 %}
+<div class="jumbotron">
+<div id="service">    
+    <div class="container">
+        <div class="row centered">
+            <div class="col-sm-12">
+                <h2>Download</h2>
+                <p>The latest IQ-TREE release version 1.3.10 (October 16, 2015)</p>
+            </div>
+            <div class="col-sm-4">
+                <i class="fa fa-windows"></i>
+                <h4>Windows</h4>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-Windows.zip">64-bit sequential release</a>
+                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-omp-1.3.10-Windows.zip">64-bit multicore release</a>
+                </div>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree32-1.3.10-Windows.zip">32-bit sequential release</a>
+                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree32-omp-1.3.10-Windows.zip">32-bit multicore release</a>
+                </div>
+            </div>		 				
 
-<div class="container mtb">
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-1">
-            <h4>More About Our Agency.</h4>
-            <p>{{ site.about }}</p>
-            <p><br/><a href="{{ "/about/" | prepend: site.baseurl }}" class="btn btn-theme">More Info</a></p>
+            <div class="col-sm-4">
+                <i class="fa fa-apple"></i>
+                <h4>Mac OS X</h4>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.zip">64-bit sequential release</a>
+                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-omp-1.3.10-MacOSX.zip">64-bit multicore release</a>
+                </div>
+            </div>		 				
+            <div class="col-sm-4">
+                <i class="fa fa-linux"></i>
+                <h4>Linux</h4>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz">64-bit sequential release</a>
+                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-omp-1.3.10-Linux.tar.gz">64-bit multicore release</a>
+                </div>
+            </div>		 
         </div>
 
-        <div class="col-lg-3">
-            <h4>Frequently Asked</h4>
-            <div class="hline"></div>
-            {% for post in site.categories['question'] %} 
-                <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></p>
-            {% endfor %}
-        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p>Please read <a href="/IQ-TREE/wiki/Quickstart.html"><strong>Getting started guide</strong></a> once you downloaded IQ-TREE!</p>
+                <p><small>See <a href="https://github.com/Cibiv/IQ-TREE/releases">Release notes</a> for change logs and older releases.</small></p>
+                <p><small>See <a href="/IQ-TREE/wiki/Compilation-Guide.html">Compilation guide</a> to obtain and build IQ-TREE source code.</small></p>
+            </div>
+            <a name="documentation"></a><!--put here to link below-->				
+        </div><!-- /row -->
+    </div> <!-- /container -->
+</div><! --/service -->
+</div><!-- /jumbotron -->
 
-        <div class="col-lg-3">
-            <h4>Latest Posts</h4>
-            <div class="hline"></div>
-            {% for post in site.categories['blog'] limit:5 %} 
-                <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}.</a></p>
-            {% endfor %} 
-        </div>
 
-    </div><! --/row -->
-</div><! --/container -->
+<div id="service">
+    <div class="container">
+        <div class="row centered">
+            <h2>Documentation</h2><br>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">User Guide and Tutorial</h4>
+                  </div>
+                  <div class="list-group">
+                    <a href="/IQ-TREE/wiki/Quickstart.html" class="list-group-item">
+                        <h4 class="list-group-item-heading">Getting started guide</h4>
+                        <p>Recommended for users who just downloaded IQ-TREE.</p>
+                    </a>
+                    <a href="/IQ-TREE/wiki/Tutorial.html" class="list-group-item">
+                        <h4 class="list-group-item-heading">Beginner's tutorial</h4>
+                        <p>Recommended for users who start using IQ-TREE.</p>
+                    </a>
+                    <a href="/IQ-TREE/wiki/Advanced-Tutorial.html" class="list-group-item">
+                        <h4 class="list-group-item-heading">Advanced tutorial</h4>
+                        <p>Recommended for more experienced users to explore more features.</p>
+                    </a>
+                    <a href="/IQ-TREE/wiki/Frequently-Asked-Questions.html" class="list-group-item">
+                        <h4 class="list-group-item-heading">Frequently asked questions (FAQ)</h4>
+                        <p>For common questions and answers.</p>
+                    </a>
+                  </div>
+                </div><!--panel-->  
+            </div><!--col-->
+            <div class="col-sm-6">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">User Manual</h4>
+                  </div>
+                  <div class="list-group">
+                    <a href="/IQ-TREE/wiki/Substitution-Models.html" class="list-group-item">
+                        <h4 class="list-group-item-heading">Substitution models</h4>
+                        <p>All common substitution models and usages.</p>
+                    </a>
+                    <a href="/IQ-TREE/wiki/Complex-Models.html" class="list-group-item">
+                        <h4 class="list-group-item-heading">Complex models</h4>
+                        <p>Partition and mixture models and usages.</p>
+                    </a>
+                    <a href="/IQ-TREE/wiki/Command-Reference.html" class="list-group-item">
+                        <h4 class="list-group-item-heading">Command reference</h4>
+                        <p>Comprehensive documentation of command-line options.</p>
+                    </a>
+                    <a href="/IQ-TREE/wiki/Compilation-Guide.html" class="list-group-item">
+                        <h4 class="list-group-item-heading">Source code compilation</h4>
+                        <p>For advanced users to compile IQ-TREE source code.</p>
+                    </a>
+                  </div>
+                </div><!--panel-->  
+            </div><!--col-->
+        </div><!--row-->
+    </div><! --/container -->
+</div><! --/service -->
+
+<div class="jumbotron">
+<div id="service">    
+    <div class="container">
+        <div class="row centered">
+            <div class="col-sm-6">
+                <i class="fa fa-globe"></i>
+                <h4>Online Web Service</h4>
+                <p><small>For a quick start you can also try IQ-TREE web server for online computations. It is very easy to use with as few as 
+just 3 clicks:</small></p><p><a href="http://iqtree.cibiv.univie.ac.at">http://iqtree.cibiv.univie.ac.at</a></p>
+            </div>		 
+            <div class="col-sm-6">
+                <i class="fa fa-question-circle"></i>
+                <h4>User Support</h4>
+                <p><small>If you have further questions, feedback, feature requests and bug reports, please sign up (if not done yet) and post a topic to IQ-TREE Google group:</small></p>
+                <p><a href="https://groups.google.com/d/forum/iqtree">https://groups.google.com/d/forum/iqtree</a></p>
+                <p><small><em>The average response time is one working day.</em></small></p>
+            </div>
+        </div><!--row-->
+    </div><! --/container -->    
+</div><! --/service -->
+</div><!-- /jumbotron -->
+
+<div id="service">    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Citations</h4>
+                <div class="hline"></div>
+                <p><strong>To cite IQ-TREE please use:</strong></p>
+                <p>L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. <em>Mol. Biol. Evol.</em>, 32, 268-274. <a href="http://dx.doi.org/10.1093/molbev/msu300">DOI: 10.1093/molbev/msu300</a></p>
+                <p><strong>For the ultrafast bootstrap (UFBoot) please cite:</strong></p>
+                <p>B.Q. Minh, M.A.T. Nguyen, and A. von Haeseler (2013) Ultrafast approximation for phylogenetic bootstrap. <em>Mol. Biol. Evol.</em>, 30:1188-1195. <a href="http://dx.doi.org/10.1093/molbev/mst024">DOI: 10.1093/molbev/mst024</a></p>
+                <p><strong>If you use <code>-pll</code> option please cite:</strong></p>
+                <p>T. Flouri, F. Izquierdo-Carrasco, D. Darriba, A.J. Aberer, L.-T. Nguyen, B.Q. Minh, A. von Haeseler, and A. Stamatakis (2015) The phylogenetic likelihood library. <em>Syst. Biol.</em>, 64:356-362. <a href="http://dx.doi.org/10.1093/sysbio/syu084">DOI: 10.1093/sysbio/syu084</a></p>
+                <p><br></p>
+            </div>
+            <div class="col-sm-6">
+                <h4>Credits and Acknowledgements</h4>
+                <div class="hline"></div>
+                <p>Some parts of the code were taken from the following packages/libraries: <a href="http://www.libpll.org">Phylogenetic likelihood library</a>, <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a>, 
+                <a href="http://dx.doi.org/10.1093/oxfordjournals.molbev.a025808">BIONJ</a>, <a href="http://dx.doi.org/10.1093/bioinformatics/btg319">Nexus Class Libary</a>, <a href="http://eigen.tuxfamily.org/">Eigen library</a>,
+                <a href="http://www.sprng.org">SPRNG library</a>, <a href="http://www.zlib.net">Zlib library</a>, <a href="http://www.agner.org/optimize/">vectorclass library</a>.</p>
+                <p>IQ-TREE was partially funded by the <a href="http://www.fwf.ac.at">Austrian Science Fund - FWF</a> (grant no. I760-B17 from 2012-2015) and the <a href="https://www.univie.ac.at">University of Vienna</a> (Initiativkolleg I059-N).</p>
+            </div>		 
+        </div><!-- /row -->
+    </div><! --/container -->
+</div><! --/service -->
+
+<!-------------------------------------------------------------->
+

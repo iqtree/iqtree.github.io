@@ -1,11 +1,11 @@
 ### GENERAL SETTINGS ###
 
 # Site settings
-title: SOLID.
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
-analytics: #Google analytics code in the format XX-nnnnnnnn-n
+title: IQ-TREE
+description: "IQ-TREE: Efficient phylogenetic software by maximum likelihood"
+analytics: UA-38693379-1
 baseurl: "" #important: start with /
-url: "http://yourdomain.com"
+url: "www.cibiv.at"
 
 # Build settings
 markdown: kramdown
@@ -26,84 +26,78 @@ colors:  #in hex code if not noted else
 
 # Social networks usernames. Many more available: google-plus, flickr, linkedin, etc). Shown in footer.
 social:
-  - title: dribbble
+  - title: github
     url:
-  - title: facebook
+  - title: google
     url:
-  - title: twitter
-    url: 
-  - title: instagram
-    url: 
-  - title: tumblr
-    url: 
     
 # Postal address (add as many lines as necessary). Shown in footer and on Contact page.
 address:
   - lines: 
-    - Some Ave, 987,
-    - 23890, New York,
-    - United States.
-email: hello@solidtheme.com
-tel: +34 8493-4893
+    - Center for Integrative Bioinformatics Vienna
+    - University of Vienna
+email: minh.bui(at)univie.ac.at
 
 
 ### GENERAL DATA FOR VARIOUS LOCATIONS ###
     
 # Members information. Shown on About page.
 members:
-  - name: Mark Webber
-    position: CEO
-    text: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    img: team01.jpg
+  - name: Bui Quang Minh
+    position: Team leader
+    text: Design IQ-TREE core, ultrafast bootstrap and model selection. 
+    img: jule.jpg
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~minh
+  - name: Lam Tung Nguyen
+    position: Developer
+    text: Design IQ-TREE search algorithm.
+    img: jule.jpg
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~tung
+  - name: Olga Chernomor
+    position: Developer
+    text: Design partition models and terrace-aware tree search.
+    img: jule.jpg
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~olga
+  - name: Heiko A. Schmidt
+    position: Developer
+    text: Implement <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a> features into IQ-TREE.
+    img: jule.jpg
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~hschmidt
+  - name: Jana Trifinopoulos
+    position: Developer
+    text: Design and maintain IQ-TREE web service.
+    img: jule.jpg
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~jana
+  - name: Arndt von Haeseler
+    position: Advisor
+    text: Consultant, inspiring ideas and financial support.
+    img: jule.jpg
     social:
       - title: envelope #use for email address
-        url: mailto:name@domain.com
-      - title: twitter
-        url: http://twitter.com/handle
-  - name: Paul Jameson
-    position: Lead Designer
-    text: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    img: team02.jpg
-    social:
-      - title: envelope #use for email address
-        url: mailto:name@domain.com
-      - title: twitter
-        url: http://twitter.com/handle
-  - name: Laura Sommers
-    position: Lead Developer
-    text: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    img: team03.jpg
-    social:
-      - title: envelope #use for email address
-        url: mailto:name@domain.com
-      - title: twitter
-        url: http://twitter.com/handle
-  - name: Martin Blunt
-    position: Marketing
-    text: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    img: team04.jpg
-    social:
-      - title: envelope #use for email address
-        url: mailto:name@domain.com
-      - title: twitter
-        url: http://twitter.com/handle
+        url: http://www.cibiv.at/~haeseler
+
     
 # Clients information. Shown on Home and About pages.
-clients:
-  - name: dribbble
-    img: client01.png
-  - name: Code is Poetry
-    img: client02.png
-  - name: Vimeo
-    img: client03.png
-  - name: VimeoPro
-    img: client04.png
+#clients:
+#  - name: Vimeo
+#    img: client03.png
     
 # Short text about your company. Shown in footer on every page and also separately on Home and Contact page.
-about: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+about: "IQ-TREE is developed at <a href='http://www.cibiv.at'>CIBIV</a> by <a href='/about'>IQ-TREE development team</a>."
 
 # Testimonial content. Shown on Home and About page. 
-testimonial:
-    message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
-    author: Marcel Newman
-    position: WEB DESIGNER - BLACKTIE.CO
+#testimonial:
+#    message: "Helo."
+#    author: Marcel Newman
+#    position: WEB DESIGNER - BLACKTIE.CO
+    
