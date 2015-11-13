@@ -4,8 +4,8 @@
 title: IQ-TREE
 description: "IQ-TREE: Efficient phylogenetic software by maximum likelihood"
 analytics: UA-38693379-1
-baseurl: "" #important: start with /
-url: "www.cibiv.at"
+baseurl: "/IQ-TREE" #important: start with /
+url: "http://cibiv.github.io"
 
 # Build settings
 markdown: kramdown
