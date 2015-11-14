@@ -15,12 +15,12 @@ For common questions and answers.
 How do I interpret ultrafast bootstrap (UFBoot) support values?
 ---------------------------------------------------------------
 
-This feature (`-bb` option) was published in  ([Minh et al., 2013]). One of the main conclusion, is that UFBoot support values are more unbiased: 95% support correspond roughly to the probability of 95% that a clade is true. So this has a different meaning than the normal bootstrap supports (where you start to believe in the clade if it has >80% BS support). For UFBoot, you should only start to believe in the clade if its support >= 95%. Thus, the interpretations are different and you should not compare BS% with UFBoot% directly. 
+The ultrafast bootstrap (UFBoot) feature (`-bb` option) was published in  ([Minh et al., 2013]). One of the main conclusions is, that UFBoot support values are more unbiased: 95% support correspond roughly to a probability of 95% that a clade is true. So this has a different meaning than the normal bootstrap supports (where you start to believe in the clade if it has >80% BS support). For UFBoot, you should only start to believe in a clade if its support is >= 95%. Thus, the interpretations are different and you should not compare BS% with UFBoot% directly. 
 
-Moreover, it is recommended to also perform the SH-aLRT test ([Guindon et al., 2010]) by adding `-alrt 1000` into IQ-TREE command line. Each branch will then be assigned with SH-aLRT and UFBoot supports. One would typically start to rely on the clade if its SH-aLRT >= 80% and UFboot >= 95%. 
+Moreover, it is recommended to also perform the SH-aLRT test ([Guindon et al., 2010]) by adding `-alrt 1000` into the IQ-TREE command line. Each branch will then be assigned with SH-aLRT and UFBoot supports. One would typically start to rely on the clade if its SH-aLRT >= 80% and UFboot >= 95%. 
 
 
-How does IQ-TREE treat gap/missing characters?
+How does IQ-TREE treat gaps/missing characters?
 ----------------------------------------------
 
 Gaps (`-`) and missing characters (`?` or `N` for DNA alignments) are treated in the same way as `unknown` characters, which represent no information. The same treatment holds for many other ML software (e.g., RAxML, PhyML). More explicitly,
@@ -31,7 +31,7 @@ of a tree T is equal to the site-likelihood of the subtree of T restricted to th
 Can I mix DNA and protein data in a partitioned analysis?
 ---------------------------------------------------------
 
-Yes, you can! In fact, you can mix any data types supported in IQ-TREE, including also codon, binary, morphological data. To do so, each partition should be in a separate alignment file. Then, prepare a NEXUS partition file which may look like:
+Yes, you can! In fact, you can mix any data types supported in IQ-TREE, including also codon, binary and morphological data. To do so, each partition should be in a separate alignment file. Then, prepare a NEXUS partition file which may look like:
 
     #nexus
     begin sets;
@@ -50,7 +50,7 @@ Here, it is assumed that `dna.phy` and `protein.phy` are DNA and protein alignme
         charpartition mymodel=GTR+G: part1, LG+I+G: part2, GY:part3;
     end;
  
-The advantage is that you can specify a codon partition (see above), which would not be possible in the first example because `part3` will be detected as a DNA partition.
+The advantage is that you can specify a codon partition (see above), without this specification `part3` would be detected as a DNA partition.
 
 Finally, please note that you can also specify the site ranges within each alignment. For example:
 
