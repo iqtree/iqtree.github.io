@@ -1,7 +1,7 @@
 Quick Navigation
 -------
 
-[[Home]]
+[Home](Home)
 
 [Download](Home#download)
 
@@ -21,7 +21,7 @@ Quick Navigation
 - [Bootstrapping partition model](Tutorial#ultrafast-bootstrapping-with-partition-model)
 - [Utilizing multi-core CPUs](Tutorial#utilizing-multi-core-cpus)
 
-[[Advanced Tutorial]]
+[Advanced Tutorial](Advanced-Tutorial)
 
 - [New model selection](Advanced-Tutorial#new-model-selection)
 - [Tree topology tests](Advanced-Tutorial#tree-topology-tests)
@@ -30,7 +30,7 @@ Quick Navigation
 - [Computing Robinson-Foulds distance](Advanced-Tutorial#computing-robinson-foulds-distance-between-trees)
 - [Generating random trees](Advanced-Tutorial#generating-random-trees)
 
-[[Substitution Models]]
+[Substitution Models](Substitution-Models)
 
 - [DNA models](Substitution-Models#dna-models)
 - [Protein models](Substitution-Models#protein-models)
@@ -39,27 +39,27 @@ Quick Navigation
 - [Ascertainment bias correction](Substitution-Models#ascertainment-bias-correction)
 - [Rate heterogeneity](Substitution-Models#rate-heterogeneity-across-sites)
 
-[[Complex Models]]
+[Complex Models](Complex-Models)
 
-- [Partition models](Complex Models#partition-models)
-- [Mixture models](Complex Models#mixture-models)
+- [Partition models](Complex-Models#partition-models)
+- [Mixture models](Complex-Models#mixture-models)
 
-[[Command Reference]]
+[Command Reference](Command-Reference)
 
-- [General options](Command Reference#general-options)
-- [Automatic model selection](Command Reference#automatic-model-selection)
-- [Specifying substitution models](Command Reference#specifying-substitution-models)
-- [Tree search parameters](Command Reference#tree-search-parameters)
-- [Ultrafast bootstrap parameters](Command Reference#ultrafast-bootstrap-parameters)
-- [Nonparametric bootstrap](Command Reference#nonparametric-bootstrap)
-- [Single branch tests](Command Reference#single-branch-tests)
-- [Tree topology tests](Command Reference#tree-topology-tests)
-- [Constructing consensus tree](Command Reference#constructing-consensus-tree)
-- [Robinson-Foulds distance](Command Reference#computing-robinson-foulds-distance)
-- [Generating random trees](Command Reference#generating-random-trees)
-- [Miscellaneous options](Command Reference#miscellaneous-options)
+- [General options](Command-Reference#general-options)
+- [Automatic model selection](Command-Reference#automatic-model-selection)
+- [Specifying substitution models](Command-Reference#specifying-substitution-models)
+- [Tree search parameters](Command-Reference#tree-search-parameters)
+- [Ultrafast bootstrap parameters](Command-Reference#ultrafast-bootstrap-parameters)
+- [Nonparametric bootstrap](Command-Reference#nonparametric-bootstrap)
+- [Single branch tests](Command-Reference#single-branch-tests)
+- [Tree topology tests](Command-Reference#tree-topology-tests)
+- [Constructing consensus tree](Command-Reference#constructing-consensus-tree)
+- [Robinson-Foulds distance](Command-Reference#computing-robinson-foulds-distance)
+- [Generating random trees](Command-Reference#generating-random-trees)
+- [Miscellaneous options](Command-Reference#miscellaneous-options)
 
 
-[[Frequently Asked Questions]]
+[Frequently Asked Questions](Frequently-Asked-Questions)
 
-[[Compilation Guide]]
+[Compilation Guide](Compilation-Guide)

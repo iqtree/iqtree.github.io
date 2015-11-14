@@ -1,3 +1,6 @@
+This tutorial gives users a quick starting guide. 
+<!--more-->
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -17,7 +20,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-This tutorial gives users a quick starting guide. Please first [download](Home#download) and [install](Quickstart) the binary
+Please first [download](Home#download) and [install](Quickstart) the binary
 for your platform . For the next steps, the folder containing your  `iqtree` executable should be added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
 
 >**TIP**: For quick overview of all supported options in IQ-TREE, run the command  `iqtree -h`. 
@@ -53,7 +56,7 @@ This prevents output files to be overwritten when you perform multiple analyses 
 Choosing the right substitution model
 -------------------------------------
 
-IQ-TREE supports a wide range of [substitution models](Substitution Models) for DNA, protein, codon, binary and morphological alignments. If the model is not specified, IQ-TREE will use the default model (
+IQ-TREE supports a wide range of [substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological alignments. If the model is not specified, IQ-TREE will use the default model (
 HKY for DNA, WAG for protein). In case you do not know which model is appropriate for your data,  IQ-TREE can automatically determine the best-fit model 
 for your alignment using the `-m TEST` option. For example:
 
@@ -86,7 +89,7 @@ Here, IQ-TREE will stop after finishing the model selection. Note that if the fi
 Codon models
 ------------
 
-IQ-TREE supports a number of [codon models](Substitution Models#codon-models). You need to input a protein-coding DNA alignment and specify codon data by option `-st CODON` (Otherwise, IQ-TREE applies DNA model because it detects that your alignment has DNA sequences):
+IQ-TREE supports a number of [codon models](Substitution-Models#codon-models). You need to input a protein-coding DNA alignment and specify codon data by option `-st CODON` (Otherwise, IQ-TREE applies DNA model because it detects that your alignment has DNA sequences):
 
     iqtree -s coding_gene.phy -st CODON 
 
@@ -96,7 +99,7 @@ If you are not sure which model to use, simply add `-m TEST`, which also works f
 
     iqtree -s coding_gene.phy -st CODON -m TEST
 
-By default IQ-TREE uses the standard genetic code. If you want to change the genetic code, please refer to [codon models guide](Substitution Models#codon-models).
+By default IQ-TREE uses the standard genetic code. If you want to change the genetic code, please refer to [codon models guide](Substitution-Models#codon-models).
 
 
 Binary, morphological and SNP data
@@ -107,7 +110,7 @@ IQ-TREE supports discrete morphological alignments by  `-st MORPH` option:
     iqtree -s morphology.phy -st MORPH
 
 IQ-TREE implements to two morphological ML models: [MK and ORDERED](Substitution-Models#binary-and-morphological-models). Morphological data typically do not have constant (uninformative) sites. 
-In such cases, you should apply [ascertainment bias correction](Substitution Models#ascertainment-bias-correction) model by e.g.:
+In such cases, you should apply [ascertainment bias correction](Substitution-Models#ascertainment-bias-correction) model by e.g.:
  
     iqtree -s morphology.phy -st MORPH -m MK+ASC
 
@@ -141,7 +144,7 @@ computed as the occurence frequencies in the bootstrap trees. This file is in "s
 *  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
 but in NEXUS format, which can be viewed with the program SplitsTree. 
 
->**TIP**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently Asked Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
+>**TIP**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
 
 Assessing branch supports with  standard nonparametric bootstrap

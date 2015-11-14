@@ -1,3 +1,6 @@
+Recommended for experienced users to explore more features.
+<!--more-->
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -12,7 +15,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-This advanced tutorial is intended for more experienced users. To get started, please read the [Beginner's Tutorial](Tutorial) first.
+To get started, please read the [Beginner's Tutorial](Tutorial) first if not done so yet.
 
 
 New model selection

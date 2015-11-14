@@ -1,3 +1,5 @@
+<!--more-->
+
 About IQ-TREE
 -------------
 
@@ -19,7 +21,7 @@ Download
 
 The latest **IQ-TREE version 1.3.10** (October 16, 2015) is available for three popular platforms with a sequential and a parallel multicore version:
 
-| [[images/windows.png]] Windows | [[images/macosx.png]] Mac OS X | [[images/linux.png]] Linux |
+| ![Windows logo](images/windows.png) Windows | ![Mac logo](images/macosx.png) Mac OS X | ![Linux logo](images/linux.png) Linux |
 |------------|--------------|--------------|
 | [64-bit sequential Windows](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-Windows.zip) | [64-bit sequential MacOSX](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.zip) | [64-bit sequential Linux](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz) |
 | [64-bit multicore Windows](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-omp-1.3.10-Windows.zip) | [64-bit multicore MacOSX](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-omp-1.3.10-MacOSX.zip) | [64-bit multicore Linux](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-omp-1.3.10-Linux.tar.gz) |
@@ -51,7 +53,7 @@ Documentation
 
 * [Advanced tutorial](Advanced Tutorial): recommended for more experienced users who want to explore more features of IQ-TREE.
 
-* [[Substitution Models]] and [[Complex Models]]: learn more about maximum-likelihood models available in IQ-TREE.
+* [Substitution Models](Substitution-Models) and [Complex Models](Complex-Models): learn more about maximum-likelihood models available in IQ-TREE.
 
 * [Frequently asked questions (FAQ)](Frequently-Asked-Questions): recommended to have a look before you post a question in the [IQ-TREE group](https://groups.google.com/d/forum/iqtree).
 
