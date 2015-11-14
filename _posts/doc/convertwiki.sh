@@ -9,8 +9,10 @@ source_dir=$1
 dest_dir=`cd $2; pwd`
 cd $source_dir
 
+doc_dir="/IQ-TREE/doc/"
+
 for f in *.md; do
-    if [ "$f" == "Home.md" -o "$f" == "_Sidebar.md" -o "$f" == "_Footer.md" ]; then
+    if [ "$f" == "Home.md" -o "$f" == "_Footer.md" ]; then
         continue
     fi
 	datef=`git log --date=short $f | grep Date: | tail -n 1 | awk '{print $2}'`
@@ -23,12 +25,17 @@ for f in *.md; do
     echo "---" >> $destf 
     
     while IFS='' read -r line || [[ -n "$line" ]]; do
-        newl=`echo "$line" | grep '](Home' | sed 's/](Home/](..\/..\//g'`
+        newl=`echo "$line" | grep '](Home' | sed 's/](Home/](\/IQ-TREE\//g'`
         if [ "$newl" != "" ]; then
             echo "$newl" >> $destf
             continue
         fi
-        newl=`echo "$line" | grep '](' | grep -v '](\#' | grep -v '](http' | sed 's/](/](..\//g'`
+        newl=`echo "$line" | grep '](images' | sed 's/](images/](\/IQ-TREE\/assets\/img\/doc/g'`
+        if [ "$newl" != "" ]; then
+            echo "$newl" >> $destf
+            continue
+        fi
+        newl=`echo "$line" | grep '](' | grep -v '](\#' | grep -v '](http' | sed 's/](/](\/IQ-TREE\/doc\//g'`
         if [ "$newl" == "" ]; then
             echo "$line" >> $destf
         else

@@ -24,7 +24,7 @@ Recommended for users who just downloaded IQ-TREE.
 Installation
 ------------
 
-To achieve high performance IQ-TREE is a command-line program: you need to run IQ-TREE from a Terminal/Console (this is called Command Prompt under Windows). After you [downloaded IQ-TREE](../../#download), please:
+To achieve high performance IQ-TREE is a command-line program: you need to run IQ-TREE from a Terminal/Console (this is called Command Prompt under Windows). After you [downloaded IQ-TREE](/IQ-TREE/#download), please:
 
 * Extract the `.zip` (Windows, MacOSX) or `.tar.gz` (Linux) file to create a directory `iqtree-X.Y.Z-OS` or `iqtree-omp-X.Y.Z-OS`.
 * You will find the executable in the `bin` sub-folder. Copy all files in `bin` folder to your system search path such that you can run IQ-TREE by entering `iqtree` or `iqtree-omp` from the Terminal.
@@ -51,7 +51,7 @@ Since IQ-TREE is a command-line program, clicking on `iqtree.exe` will not work.
     (`example.phy` is the example PHYLIP alignment file also extracted in that folder).
 5. After a few seconds, IQ-TREE finishes and you may see something like this:
 
-    ![Windows command prompt](../images/win-cmd2.png)
+    ![Windows command prompt](/IQ-TREE/assets/img/doc/win-cmd2.png)
 
 Congratulations ;-) You have finished the first IQ-TREE analysis.
 
@@ -72,7 +72,7 @@ For Mac OS X users
     (`example.phy` is the example PHYLIP alignment file also extracted in that folder).
 4. After a few seconds, IQ-TREE finishes and you may see something like this:
 
-    ![Mac terminal](../images/mac-cmd2.png)
+    ![Mac terminal](/IQ-TREE/assets/img/doc/mac-cmd2.png)
 
 Congratulations ;-) You have finished the first IQ-TREE analysis.
 
@@ -83,7 +83,7 @@ Minimal command-line examples
 
 A few typically analyses are listed in the following. Note that it is assumed that `iqtree` executable was already copied into system search path. If not, please replace `iqtree` with actual path to executable.
 
->**TIP**: Refer to [Beginner's tutorial](../Tutorial) for more details.
+>**TIP**: Refer to [Beginner's tutorial](/IQ-TREE/doc/Tutorial) for more details.
 
 * Reconstruct maximum-likelihood tree from a sequence alignment (`example.phy`)
    with the best-fit substitution model automatically selected:

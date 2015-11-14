@@ -4,12 +4,81 @@
             <input type="text" class="form-control" placeholder="Enter search text here">
         </p>
     <div class="spacing"></div>
-    <h4>Quick Navigation</h4>
-    <div class="hline"></div>
-            {% for post in site.categories['doc'] %}
-                <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-                <div class="spacing"></div>
-            {% endfor %}
-    <div class="spacing"></div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Quick Navigation</h3>
+        </div>
+        <div class="panel-body">
+
+            <p><a href="/IQ-TREE/doc/Quickstart">Getting started</a></p>
+
+            <p><a href="/IQ-TREE/doc/Tutorial">Beginner’s Tutorial</a></p>
+
+            <ul>
+              <li><a href="/IQ-TREE/doc/Tutorial#first-running-example">First example</a></li>
+              <li><a href="/IQ-TREE/doc/Tutorial#choosing-the-right-substitution-model">Model selection</a></li>
+              <li><a href="/IQ-TREE/doc/Tutorial#codon-models">Codon models</a></li>
+              <li><a href="/IQ-TREE/doc/Tutorial#binary-morphological-and-snp-data">Binary, Morphological, SNPs</a></li>
+              <li><a href="/IQ-TREE/doc/Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation">Ultrafast bootstrap</a></li>
+              <li><a href="/IQ-TREE/doc/Tutorial#assessing-branch-supports-with--standard-nonparametric-bootstrap">Nonparametric bootstrap</a></li>
+              <li><a href="/IQ-TREE/doc/Tutorial#assessing-branch-supports-with-single-branch-tests">Single branch tests</a></li>
+              <li><a href="/IQ-TREE/doc/Tutorial#partitioned-analysis-for-multi-gene-alignments">Partitioned analysis</a></li>
+              <li><a href="/IQ-TREE/doc/Tutorial#choosing-the-right-partitioning-scheme">Partition scheme selection</a></li>
+              <li><a href="/IQ-TREE/doc/Tutorial#ultrafast-bootstrapping-with-partition-model">Bootstrapping partition model</a></li>
+              <li><a href="/IQ-TREE/doc/Tutorial#utilizing-multi-core-cpus">Utilizing multi-core CPUs</a></li>
+            </ul>
+
+            <p><a href="/IQ-TREE/doc/Advanced-Tutorial">Advanced Tutorial</a></p>
+
+            <ul>
+              <li><a href="/IQ-TREE/doc/Advanced-Tutorial#new-model-selection">New model selection</a></li>
+              <li><a href="/IQ-TREE/doc/Advanced-Tutorial#tree-topology-tests">Tree topology tests</a></li>
+              <li><a href="/IQ-TREE/doc/Advanced-Tutorial#user-defined-substitution-models">User-defined models</a></li>
+              <li><a href="/IQ-TREE/doc/Advanced-Tutorial#consensus-construction-and-bootstrap-value-assignment">Consensus construction and bootstrap value assignment</a></li>
+              <li><a href="/IQ-TREE/doc/Advanced-Tutorial#computing-robinson-foulds-distance-between-trees">Computing Robinson-Foulds distance</a></li>
+              <li><a href="/IQ-TREE/doc/Advanced-Tutorial#generating-random-trees">Generating random trees</a></li>
+            </ul>
+
+            <p><a href="/IQ-TREE/doc/Substitution-Models">Substitution Models</a></p>
+
+            <ul>
+              <li><a href="/IQ-TREE/doc/Substitution-Models#dna-models">DNA models</a></li>
+              <li><a href="/IQ-TREE/doc/Substitution-Models#protein-models">Protein models</a></li>
+              <li><a href="/IQ-TREE/doc/Substitution-Models#codon-models">Codon models</a></li>
+              <li><a href="/IQ-TREE/doc/Substitution-Models#binary-and-morphological-models">Binary, morphological models</a></li>
+              <li><a href="/IQ-TREE/doc/Substitution-Models#ascertainment-bias-correction">Ascertainment bias correction</a></li>
+              <li><a href="/IQ-TREE/doc/Substitution-Models#rate-heterogeneity-across-sites">Rate heterogeneity</a></li>
+            </ul>
+
+            <p><a href="/IQ-TREE/doc/Complex-Models">Complex Models</a></p>
+
+            <ul>
+              <li><a href="/IQ-TREE/doc/Complex-Models#partition-models">Partition models</a></li>
+              <li><a href="/IQ-TREE/doc/Complex-Models#mixture-models">Mixture models</a></li>
+            </ul>
+
+            <p><a href="/IQ-TREE/doc/Command-Reference">Command Reference</a></p>
+
+            <ul>
+              <li><a href="/IQ-TREE/doc/Command-Reference#general-options">General options</a></li>
+              <li><a href="/IQ-TREE/doc/Command-Reference#automatic-model-selection">Automatic model selection</a></li>
+              <li><a href="/IQ-TREE/doc/Command-Reference#specifying-substitution-models">Specifying substitution models</a></li>
+              <li><a href="/IQ-TREE/doc/Command-Reference#tree-search-parameters">Tree search parameters</a></li>
+              <li><a href="/IQ-TREE/doc/Command-Reference#ultrafast-bootstrap-parameters">Ultrafast bootstrap parameters</a></li>
+              <li><a href="/IQ-TREE/doc/Command-Reference#nonparametric-bootstrap">Nonparametric bootstrap</a></li>
+              <li><a href="/IQ-TREE/doc/Command-Reference#single-branch-tests">Single branch tests</a></li>
+              <li><a href="/IQ-TREE/doc/Command-Reference#tree-topology-tests">Tree topology tests</a></li>
+              <li><a href="/IQ-TREE/doc/Command-Reference#constructing-consensus-tree">Constructing consensus tree</a></li>
+              <li><a href="/IQ-TREE/doc/Command-Reference#computing-robinson-foulds-distance">Robinson-Foulds distance</a></li>
+              <li><a href="/IQ-TREE/doc/Command-Reference#generating-random-trees">Generating random trees</a></li>
+              <li><a href="/IQ-TREE/doc/Command-Reference#miscellaneous-options">Miscellaneous options</a></li>
+            </ul>
+
+            <p><a href="/IQ-TREE/doc/Frequently-Asked-Questions">Frequently Asked Questions</a></p>
+
+            <p><a href="/IQ-TREE/doc/Compilation-Guide">Compilation Guide</a></p>
+        </div>
+    </div>              
 
 </div>

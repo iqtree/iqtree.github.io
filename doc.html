@@ -11,6 +11,7 @@ permalink: /doc/
         <div class="col-md-9">
 
             {% for post in site.categories['doc'] %}
+            {% if post.title != "_Sidebar" %}
                 <! -- Blog Post -->
                 <a href="{{ post.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ post.title }}</h3></a>
                 <p><csmall>{{ post.date | date: "%b %-d, %Y" }}. | By: {{ post.author }}</csmall></p>
@@ -19,6 +20,7 @@ permalink: /doc/
                 <div class="hline"></div>
 
                 <div class="spacing"></div>
+            {% endif %}
             {% endfor %}
 
         </div><! --/col-md-9 -->
