@@ -10,7 +10,8 @@
             <h3 class="panel-title">Quick Navigation</h3>
         </div>
         <div class="panel-body">
-            {% markdown ../_posts/doc/2015-11-07-_Sidebar.md %}
+            {% capture sidebar %}{% include 2015-11-07-_Sidebar.md %}{% endcapture %}
+            {{ sidebar | markdownify }}
         </div>
     </div>              
 
