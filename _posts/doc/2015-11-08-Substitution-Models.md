@@ -3,7 +3,7 @@ layout: userdoc
 title: "Substitution Models"
 categories:
 - doc
-author: minh <minh.bui@univie.ac.at>
+author: minh
 date:   2015-11-14
 ---
 All common substitution models and usages.

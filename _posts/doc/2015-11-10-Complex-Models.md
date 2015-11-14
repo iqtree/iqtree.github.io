@@ -3,7 +3,7 @@ layout: userdoc
 title: "Complex Models"
 categories:
 - doc
-author: minh <minh.bui@univie.ac.at>
+author: minh
 date:   2015-11-14
 ---
 Partition and mixture models and usages.
@@ -34,14 +34,14 @@ Partition models
 Partition models are intended for phylogenomic (e.g., multi-gene) alignments, which allow each partition to have its own substitution models and evolutionary rates. IQ-TREE supports three types of partition models:
 
 1. *Edge-equal* partition model with equal branch lengths: All partitions share the same set of branch lengths.
-2. *Edge-proportional* partition model with proportional branch lengths: Like above but each partition has its own partition specific rate, that rescale all its branch lengths. This model accomodates different evolutionary rates between partitions (e.g. between 1st, 2nd, and 3rd codon positions).
-3. *Edge-unlinked* partition model: each partition has its own set of branch lengths. This is the most parameter-rich partition model, that accounts for e.g., *heterotachy* ([Lopez et al., 2002]).
+2. *Edge-proportional* partition model with proportional branch lengths: Like above but each partition has its own partition specific rate, that rescales all its branch lengths. This model accomodates different evolutionary rates between partitions (e.g. between 1st, 2nd, and 3rd codon positions).
+3. *Edge-unlinked* partition model: Each partition has its own set of branch lengths. This is the most parameter-rich partition model, that accounts for e.g., *heterotachy* ([Lopez et al., 2002]).
 
->**NOTICE**: The edge-equal partition model is typically unrealistic as it does not account for different evolutionary speeds between partitions, whereas edge-unlinked partition model can be overfitting if there are many short partitions. Therefore, the edge-proportional partition model is recommended for a typical analysis. 
+>**NOTICE**: The edge-equal partition model is typically unrealistic as it does not account for different evolutionary speeds between partitions, whereas the edge-unlinked partition model can be overfitting if there are many short partitions. Therefore, the edge-proportional partition model is recommended for a typical analysis. 
 
 #### Partition file format
 
-To apply partition models users must first prepare a partition file in RAxML-style or NEXUS format. The RAxML-style is defined by the RAxML software, which may look like:
+To apply partition models users must first prepare a partition file in RAxML-style or NEXUS format. The RAxML-style is defined by the RAxML software and may look like:
 
     DNA, part1 = 1-100
     DNA, part2 = 101-384
@@ -57,7 +57,7 @@ The NEXUS format is more complex but more powerful. For example, the above parti
         charpartition mine = HKY+G:part1, GTR+I+G:part2;
     end;
 
-The first line contains the keyword `#nexus` to indicate a NEXUS file. It has a `sets` block, which contains two character sets (`charset` command) named `part1` and `part2`. Furthermore, with `charpartition` command we set the model `HKY+G` for `part1` and `GTR+I+G` for `part2`. This is not possible with RAxML-style format (i.e., one cannot specify `+G` rate model for one partition and `+I+G` rate model for the other partition). 
+The first line contains the keyword `#nexus` to indicate a NEXUS file. It has a `sets` block, which contains two character sets (`charset` command) named `part1` and `part2`. Furthermore, with the `charpartition` command we set the model `HKY+G` for `part1` and `GTR+I+G` for `part2`. This is not possible with the RAxML-style format (i.e., one cannot specify `+G` rate model for one partition and `+I+G` rate model for the other partition). 
 
 One can also specify non-consecutive sites of a partition, e.g. under RAxML-style format:
 
@@ -76,7 +76,7 @@ or under NEXUS format:
 
 This means, `part2` contains sites 101, 102, 104, 105, 107, ..., 246, 248, 249; whereas `part3` contains sites 103, 106, ..., 247. This is useful to specify partitions corresponding to 1st, 2nd and 3rd codon positions.
 
-Moreover, the NEXUS file allows each partition to come from separate alignment file (not possible under RAxML-style format) with e.g.:
+Moreover, the NEXUS file allows each partition to come from a separate alignment file (not possible under RAxML-style format) with e.g.:
 
     #nexus
     begin sets;
@@ -112,7 +112,7 @@ Mixture models
 
 #### What is the difference between partition and mixture models?
 
-Mixture models allow more than one substitution model along the sequences like partition models. However, while a partition model assigns each alignment site with a given specific model, mixture models do not have this information: each site has a probability of belonging to each of the mixture components (also called categories or classes). In other words, the *site-to-model assignment is unknown*.
+Mixture models,  like partition models, allow more than one substitution model along the sequences. However, while a partition model assigns each alignment site a given specific model, mixture models do not have this information: each site has a probability of belonging to each of the mixture components (also called categories or classes). In other words, the *site-to-model assignment is unknown*.
 
 For example, the [discrete Gamma rate heterogeneity](../Substitution-Models#rate-heterogeneity-across-sites) is the simplest type of mixture model, where there are several rate categories and each site belongs to a rate category with a probability. The likelihood of a site under a mixture model is computed as the weighted average of the site-likelihood under each mixture category.
 
@@ -148,20 +148,20 @@ Sometimes one only wants to model the changes in nucleotide or amino-acid freque
         frequency CF4model = FMIX{empirical,Fclass1,Fclass2,Fclass3,Fclass4};
     end;
 
-Here, the NEXUS file contains a `models` block to define new models. More explicitly, we define four AA profiles `Fclass1` to `Fclass4` (each containing 20 AA frequencies). Then, the frequency mixture was defined with
+Here, the NEXUS file contains a `models` block to define new models. More explicitly, we define four AA profiles `Fclass1` to `Fclass4` (each containing 20 AA frequencies). Then, the frequency mixture is defined with
 
     FMIX{empirical,Fclass1,Fclass2,Fclass3,Fclass4}
 
-That means, we have five components: the first corresponds to empirical AA frequencies to be inferred from the  data and the remaining four components specified in this NEXUS file. Please save this to a file, say, `mymodels.nex`. One can now start the analysis with:
+That means, we have five components: the first corresponds to empirical AA frequencies to be inferred from the  data and the remaining four components are specified in this NEXUS file. Please save this to a file, say, `mymodels.nex`. One can now start the analysis with:
 
     iqtree -s some_protein.aln -mdef mymodels.nex -m JTT+CF4model+G
 
-`-mdef` option is to specify the NEXUS file containing user-defined models. Here, the `JTT` matrix is applied for all alignment sites and one varies the AA profiles along the alignment. One can use the NEXUS syntax to define all other profile mixture models such as `C10` to `C60`.
+The `-mdef` option specifies the NEXUS file containing user-defined models. Here, the `JTT` matrix is applied for all alignment sites and one varies the AA profiles along the alignment. One can use the NEXUS syntax to define all other profile mixture models such as `C10` to `C60`.
 
 
 #### NEXUS model file
 
-In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mixture models](../Substitution-Models#protein-models). In addition to define state frequencies, one can specify the entire model with rate matrix and state frequencies together. For example, the LG4M model ([Le et al., 2012]) was defined by:
+In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mixture models](../Substitution-Models#protein-models). In addition to defining state frequencies, one can specify the entire model with rate matrix and state frequencies together. For example, the LG4M model ([Le et al., 2012]) can be defined by:
 
     #nexus
     begin models;
@@ -176,7 +176,7 @@ In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mi
         model LG4M = MIX{LG4M1,LG4M2,LG4M3,LG4M4}*G4;
     end;
 
-Here, we first defined the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in PAML format (see [protein models](../Substitution-Models#protein-models)). Then `LG4M` was defined as mixture model with these four components *fused* with Gamma rate heterogeneity (via `*G4` syntax instead of `+G4`). That means, we have totally 4 mixture components instead of 16. The first component `LG4M1` is rescaled by the rate of the lowest Gamma rate category. The fourth component `LG4M4` corresponds to the highest rate.
+Here, we first define the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in PAML format (see [protein models](../Substitution-Models#protein-models)). Then `LG4M` is defined as mixture model with these four components *fused* with Gamma rate heterogeneity (via `*G4` syntax instead of `+G4`). This means that, in total, we have 4 mixture components instead of 16. The first component `LG4M1` is rescaled by the rate of the lowest Gamma rate category. The fourth component `LG4M4` corresponds to the highest rate.
 
 Note that both `frequency` and `model` commands can be embedded into a single model file.
 

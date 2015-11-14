@@ -3,7 +3,7 @@ layout: userdoc
 title: "Quickstart"
 categories:
 - doc
-author: minh <minh.bui@univie.ac.at>
+author: minh
 date:   2015-11-14
 ---
 Recommended for users who just downloaded IQ-TREE.

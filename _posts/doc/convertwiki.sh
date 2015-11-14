@@ -1,6 +1,6 @@
 #! /bin/bash
 
-if [ "$3" == "" ]; then
+if [ "$2" == "" ]; then
 	echo "Usage: $0 source_dir dest_dir files"
 	exit 1
 fi
@@ -13,7 +13,7 @@ cd $source_dir
 
 doc_dir="/IQ-TREE/doc/"
 
-for f in `ls $files`; do
+for f in *.md; do
     if [ "$f" == "Home.md" -o "$f" == "_Footer.md" ]; then
         continue
     fi
@@ -26,7 +26,7 @@ for f in `ls $files`; do
         echo -n -e "---\nlayout: userdoc\ntitle: \"" > $destf
         echo $f | sed 's/\..*/\"/' | sed 's/-/ /g' >> $destf
         echo -e "categories:\n- doc" >> $destf
-        git log $f | grep Author: | head -n 1 | sed 's/Author/author/' >> $destf
+        git log $f | grep Author: | head -n 1 | sed 's/Author/author/' | sed 's/ <.*//' >> $destf
         git log --date=short $f | grep Date: | head -n 1 | sed 's/Date/date/' >> $destf
         echo "---" >> $destf 
         while IFS='' read -r line || [[ -n "$line" ]]; do
