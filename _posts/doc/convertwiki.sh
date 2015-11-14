@@ -1,17 +1,19 @@
 #! /bin/bash
 
-if [ "$2" == "" ]; then
-	echo "Usage: $0 source_dir dest_dir"
+if [ "$3" == "" ]; then
+	echo "Usage: $0 source_dir dest_dir files"
 	exit 1
 fi
 
 source_dir=$1
 dest_dir=`cd $2; pwd`
+files=$3
+
 cd $source_dir
 
 doc_dir="/IQ-TREE/doc/"
 
-for f in *.md; do
+for f in `ls $files`; do
     if [ "$f" == "Home.md" -o "$f" == "_Footer.md" ]; then
         continue
     fi
