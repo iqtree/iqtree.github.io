@@ -5,9 +5,9 @@ Quick Navigation
 
 [Download](Home#download)
 
-[Getting started](Quickstart)
+[**Getting started**](Quickstart)
 
-[Beginner's Tutorial](Tutorial)
+[**Beginner's Tutorial**](Tutorial)
 
 - [First example](Tutorial#first-running-example)
 - [Model selection](Tutorial#choosing-the-right-substitution-model)
@@ -21,7 +21,7 @@ Quick Navigation
 - [Bootstrapping partition model](Tutorial#ultrafast-bootstrapping-with-partition-model)
 - [Utilizing multi-core CPUs](Tutorial#utilizing-multi-core-cpus)
 
-[Advanced Tutorial](Advanced-Tutorial)
+[**Advanced Tutorial**](Advanced-Tutorial)
 
 - [New model selection](Advanced-Tutorial#new-model-selection)
 - [Tree topology tests](Advanced-Tutorial#tree-topology-tests)
@@ -30,7 +30,7 @@ Quick Navigation
 - [Computing Robinson-Foulds distance](Advanced-Tutorial#computing-robinson-foulds-distance-between-trees)
 - [Generating random trees](Advanced-Tutorial#generating-random-trees)
 
-[Substitution Models](Substitution-Models)
+[**Substitution Models**](Substitution-Models)
 
 - [DNA models](Substitution-Models#dna-models)
 - [Protein models](Substitution-Models#protein-models)
@@ -39,12 +39,12 @@ Quick Navigation
 - [Ascertainment bias correction](Substitution-Models#ascertainment-bias-correction)
 - [Rate heterogeneity](Substitution-Models#rate-heterogeneity-across-sites)
 
-[Complex Models](Complex-Models)
+[**Complex Models**](Complex-Models)
 
 - [Partition models](Complex-Models#partition-models)
 - [Mixture models](Complex-Models#mixture-models)
 
-[Command Reference](Command-Reference)
+[**Command Reference**](Command-Reference)
 
 - [General options](Command-Reference#general-options)
 - [Automatic model selection](Command-Reference#automatic-model-selection)
@@ -60,6 +60,6 @@ Quick Navigation
 - [Miscellaneous options](Command-Reference#miscellaneous-options)
 
 
-[Frequently Asked Questions](Frequently-Asked-Questions)
+[**Frequently Asked Questions**](Frequently-Asked-Questions)
 
-[Compilation Guide](Compilation-Guide)
+[**Compilation Guide**](Compilation-Guide)
