@@ -48,28 +48,30 @@ members:
   - name: Bui Quang Minh
     position: Team leader
     text: Design IQ-TREE core, ultrafast bootstrap and model selection. 
-    img: jule.jpg
+    img: minh2.jpg
     social:
       - title: home #use for email address
         url: http://www.cibiv.at/~minh
+      - title: university
+        url: https://scholar.google.com/citations?user=UI0xN_QAAAAJ
   - name: Lam Tung Nguyen
     position: Developer
     text: Design IQ-TREE search algorithm.
-    img: jule.jpg
+    img: tung_nguyen.png
     social:
       - title: home #use for email address
         url: http://www.cibiv.at/~tung
   - name: Olga Chernomor
     position: Developer
     text: Design partition models and terrace-aware tree search.
-    img: jule.jpg
+    img: olga_chernomor.png
     social:
       - title: home #use for email address
         url: http://www.cibiv.at/~olga
   - name: Heiko A. Schmidt
     position: Developer
     text: Implement <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a> features into IQ-TREE.
-    img: jule.jpg
+    img: heiko2.jpg
     social:
       - title: home #use for email address
         url: http://www.cibiv.at/~hschmidt
@@ -83,7 +85,7 @@ members:
   - name: Arndt von Haeseler
     position: Advisor
     text: Consultant, inspiring ideas and financial support.
-    img: jule.jpg
+    img: arndt2.jpg
     social:
       - title: envelope #use for email address
         url: http://www.cibiv.at/~haeseler

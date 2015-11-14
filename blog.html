@@ -8,23 +8,30 @@ permalink: /blog/
     <div class="row">
 
         <! -- BLOG POSTS LIST -->
-        <div class="col-lg-8">
+        <div class="col-md-8">
 
             {% for post in site.categories['blog'] %}
                 <! -- Blog Post -->
+                {% unless post.img == blank %}
+            <div class="col-md-6">
                 <a href="{{ post.url | prepend: site.baseurl }}">
                     <img class="img-responsive" src="{{ "/assets/img/blog/" | prepend: site.baseurl }}{{ post.img }}">
-                </a>    
+                </a>
+            </div>
+                {% endunless %}
+            <div class="col-md-6">
                 <a href="{{ post.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ post.title }}</h3></a>
                 <p><csmall>{{ post.date | date: "%b %-d, %Y" }}. | By: {{ post.author }}</csmall></p>
                 {{ post.excerpt }}
                 <p><a href="{{ post.url | prepend: site.baseurl }}">[Read More]</a></p>
+            </div>
+            <div class="col-md-12">
                 <div class="hline"></div>
-
                 <div class="spacing"></div>
+            </div>
             {% endfor %}
 
-        </div><! --/col-lg-8 -->
+        </div><! --/col-md-8 -->
 
         {% include sidebar.html %}
 
