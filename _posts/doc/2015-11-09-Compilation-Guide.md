@@ -4,7 +4,7 @@ title: "Compilation Guide"
 categories:
 - doc
 author: minh <minh.bui@univie.ac.at>
-date:   2015-11-10
+date:   2015-11-14
 ---
 For advanced users to compile IQ-TREE source code.
 <!--more-->

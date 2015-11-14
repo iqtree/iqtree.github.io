@@ -3,8 +3,8 @@ layout: userdoc
 title: "Substitution Models"
 categories:
 - doc
-author: Jana Trifinopoulos <jana.trifinopoulos@gmail.com>
-date:   2015-11-12
+author: minh <minh.bui@univie.ac.at>
+date:   2015-11-14
 ---
 All common substitution models and usages.
 <!--more-->

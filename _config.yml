@@ -13,7 +13,7 @@ permalink: /:categories/:title
 excerpt_separator: <!--more--> #use this in posts to define how long the excerpt of the post (that is shown on the Blog page) is
 
 colors:  #in hex code if not noted else
-  primary: "#00b3fe" #"#F70031" 
+  primary: "#337ab7" #"#F70031" 
   primary_rgb: "0,179,254" #"247,0,49" #rgb of the primary. Needed in some places for the transparency effect.  
   secondary: "#384452" #"#33004D"
   link: "#428bca"
@@ -47,7 +47,7 @@ email: minh.bui(at)univie.ac.at
 members:
   - name: Bui Quang Minh
     position: Team leader
-    text: Design IQ-TREE core, ultrafast bootstrap and model selection. 
+    text: Design IQ-TREE software core, ultrafast bootstrap, model selection. 
     img: minh2.jpg
     social:
       - title: home #use for email address
@@ -70,7 +70,7 @@ members:
         url: http://www.cibiv.at/~olga
   - name: Heiko A. Schmidt
     position: Developer
-    text: Implement <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a> features into IQ-TREE.
+    text: Integrate <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a> features into IQ-TREE.
     img: heiko2.jpg
     social:
       - title: home #use for email address
@@ -97,7 +97,7 @@ members:
 #    img: client03.png
     
 # Short text about your company. Shown in footer on every page and also separately on Home and Contact page.
-about: "Copyright (c) 2010-2015 <a href='/IQ-TREE/about/'>IQ-TREE development team</a> at <a href='http://www.cibiv.at'>CIBIV</a>."
+about: "Copyright (c) 2010-2015 <a href='/IQ-TREE/about/'>IQ-TREE development team</a>."
 
 # Testimonial content. Shown on Home and About page. 
 #testimonial:

@@ -4,7 +4,7 @@ title: "Frequently Asked Questions"
 categories:
 - doc
 author: minh <minh.bui@univie.ac.at>
-date:   2015-11-10
+date:   2015-11-14
 ---
 For common questions and answers.
 <!--more-->

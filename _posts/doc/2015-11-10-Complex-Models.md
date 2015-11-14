@@ -4,7 +4,7 @@ title: "Complex Models"
 categories:
 - doc
 author: minh <minh.bui@univie.ac.at>
-date:   2015-11-10
+date:   2015-11-14
 ---
 Partition and mixture models and usages.
 <!--more-->
@@ -25,7 +25,7 @@ Partition and mixture models and usages.
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-This document gives detailed descriptions of complex maximum-likelihood models available in IQ-TREE. It is assumed that you know the [basic substitution models](/IQ-TREE/doc/Substitution-Models) already.
+This document gives detailed descriptions of complex maximum-likelihood models available in IQ-TREE. It is assumed that you know the [basic substitution models](../Substitution-Models) already.
 
 
 Partition models
@@ -99,12 +99,12 @@ If you want to specify codon model for a partition, use the `CODON` keyword (oth
         charpartition mine = GY:part1, GTR+G:part2, WAG+I+G:part3;
     end;
 
-Note that this assumes `part1` has standard genetic code. If not, append `CODON` with [the right genetic code ID](/IQ-TREE/doc/Substitution-Models#codon-models).
+Note that this assumes `part1` has standard genetic code. If not, append `CODON` with [the right genetic code ID](../Substitution-Models#codon-models).
 
 
 #### Partitioned analysis
 
-Having prepared a partition file, one is ready to start a partitioned analysis with `-q` (edge-equal), `-spp` (edge-proportional) or `-sp` (edge-unlinked) option. See [this tutorial](/IQ-TREE/doc/Tutorial#partitioned-analysis-for-multi-gene-alignments) for more details.
+Having prepared a partition file, one is ready to start a partitioned analysis with `-q` (edge-equal), `-spp` (edge-proportional) or `-sp` (edge-unlinked) option. See [this tutorial](../Tutorial#partitioned-analysis-for-multi-gene-alignments) for more details.
 
 
 Mixture models
@@ -114,12 +114,12 @@ Mixture models
 
 Mixture models allow more than one substitution model along the sequences like partition models. However, while a partition model assigns each alignment site with a given specific model, mixture models do not have this information: each site has a probability of belonging to each of the mixture components (also called categories or classes). In other words, the *site-to-model assignment is unknown*.
 
-For example, the [discrete Gamma rate heterogeneity](/IQ-TREE/doc/Substitution-Models#rate-heterogeneity-across-sites) is the simplest type of mixture model, where there are several rate categories and each site belongs to a rate category with a probability. The likelihood of a site under a mixture model is computed as the weighted average of the site-likelihood under each mixture category.
+For example, the [discrete Gamma rate heterogeneity](../Substitution-Models#rate-heterogeneity-across-sites) is the simplest type of mixture model, where there are several rate categories and each site belongs to a rate category with a probability. The likelihood of a site under a mixture model is computed as the weighted average of the site-likelihood under each mixture category.
 
 
 #### Defining mixture models
 
-IQ-TREE supports a number of [predefined protein mixture models](/IQ-TREE/doc/Substitution-Models#protein-models). Here, we give more details how to define new mixture models in IQ-TREE. To start with, the following command:
+IQ-TREE supports a number of [predefined protein mixture models](../Substitution-Models#protein-models). Here, we give more details how to define new mixture models in IQ-TREE. To start with, the following command:
 
     iqtree -s example.phy -m "MIX{JC,HKY}"
 
@@ -136,7 +136,7 @@ Here, we specify two models and four Gamma rate categories. Effectively it means
 
 #### Profile mixture models
 
-Sometimes one only wants to model the changes in nucleotide or amino-acid frequencies along the sequences while keeping the substitution rate matrix the same. This can be specified in IQ-TREE via `FMIX{...}` model syntax. For convenience the mixture components can be defined in a NEXUS file like this (example corresponds to [the CF4 model](/IQ-TREE/doc/Substitution-Models#protein-models) of ([Wang et al., 2008])): 
+Sometimes one only wants to model the changes in nucleotide or amino-acid frequencies along the sequences while keeping the substitution rate matrix the same. This can be specified in IQ-TREE via `FMIX{...}` model syntax. For convenience the mixture components can be defined in a NEXUS file like this (example corresponds to [the CF4 model](../Substitution-Models#protein-models) of ([Wang et al., 2008])): 
 
     #nexus
     begin models;
@@ -161,7 +161,7 @@ That means, we have five components: the first corresponds to empirical AA frequ
 
 #### NEXUS model file
 
-In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mixture models](/IQ-TREE/doc/Substitution-Models#protein-models). In addition to define state frequencies, one can specify the entire model with rate matrix and state frequencies together. For example, the LG4M model ([Le et al., 2012]) was defined by:
+In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mixture models](../Substitution-Models#protein-models). In addition to define state frequencies, one can specify the entire model with rate matrix and state frequencies together. For example, the LG4M model ([Le et al., 2012]) was defined by:
 
     #nexus
     begin models;
@@ -176,7 +176,7 @@ In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mi
         model LG4M = MIX{LG4M1,LG4M2,LG4M3,LG4M4}*G4;
     end;
 
-Here, we first defined the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in PAML format (see [protein models](/IQ-TREE/doc/Substitution-Models#protein-models)). Then `LG4M` was defined as mixture model with these four components *fused* with Gamma rate heterogeneity (via `*G4` syntax instead of `+G4`). That means, we have totally 4 mixture components instead of 16. The first component `LG4M1` is rescaled by the rate of the lowest Gamma rate category. The fourth component `LG4M4` corresponds to the highest rate.
+Here, we first defined the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in PAML format (see [protein models](../Substitution-Models#protein-models)). Then `LG4M` was defined as mixture model with these four components *fused* with Gamma rate heterogeneity (via `*G4` syntax instead of `+G4`). That means, we have totally 4 mixture components instead of 16. The first component `LG4M1` is rescaled by the rate of the lowest Gamma rate category. The fourth component `LG4M4` corresponds to the highest rate.
 
 Note that both `frequency` and `model` commands can be embedded into a single model file.
 

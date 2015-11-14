@@ -9,8 +9,8 @@ layout: default
         <! -- SINGLE DOC -->
         <div class="col-md-9">
             <! -- User Doc  -->
-            <a href="{{ page.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ page.title }}</h3></a>
-            <p><csmall>{{ page.date | date: "%b %-d, %Y" }}. | By: {{ page.author }}</csmall></p>
+            <h3 class="ctitle">{{ page.title }}</h3>
+            <p><csmall>{{ page.date | date: "%b %-d, %Y" }}. | Updated by: {{ page.author }}</csmall></p>
               
             {{ content }}
 

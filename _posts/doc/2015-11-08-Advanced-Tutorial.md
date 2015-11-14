@@ -3,8 +3,8 @@ layout: userdoc
 title: "Advanced Tutorial"
 categories:
 - doc
-author: TRIFINOPOULOS Jana <jana@haldane.cibiv.univie.ac.at>
-date:   2015-11-12
+author: minh <minh.bui@univie.ac.at>
+date:   2015-11-14
 ---
 Recommended for experienced users to explore more features.
 <!--more-->
@@ -23,13 +23,13 @@ Recommended for experienced users to explore more features.
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-To get started, please read the [Beginner's Tutorial](/IQ-TREE/doc/Tutorial) first if not done so yet.
+To get started, please read the [Beginner's Tutorial](../Tutorial) first if not done so yet.
 
 
 New model selection
 -------------------
 
-A [previous tutorial](/IQ-TREE/doc/Tutorial#choosing-the-right-substitution-model) gave a quick hint on the use of `-m TESTONLY` to automatically select the best-fit model for the data before performing tree reconstruction. This "standard" procedure includes four rate heterogeneity types: homogeneity, `+I`, `+G` and `+I+G`. However, there is no reason to believe that the evolutionary rates follow a Gamma distribution. Therefore, we have recently introduced the FreeRate (`+R`) model ([Yang, 1995]) into IQ-TREE. The `+R` model generalizes the Gamma model by relaxing the "Gamma constraints", where the site rates and proportions are inferred independently from the data. 
+A [previous tutorial](../Tutorial#choosing-the-right-substitution-model) gave a quick hint on the use of `-m TESTONLY` to automatically select the best-fit model for the data before performing tree reconstruction. This "standard" procedure includes four rate heterogeneity types: homogeneity, `+I`, `+G` and `+I+G`. However, there is no reason to believe that the evolutionary rates follow a Gamma distribution. Therefore, we have recently introduced the FreeRate (`+R`) model ([Yang, 1995]) into IQ-TREE. The `+R` model generalizes the Gamma model by relaxing the "Gamma constraints", where the site rates and proportions are inferred independently from the data. 
 
 Therefore, we recommend a new testing procedure that includes `+R` as the 5th rate heterogeneity type. This can be invoked simply with e.g.:
 
@@ -41,7 +41,7 @@ It will also automatically determine the optimal number of rate categories. By d
 
 will test `+R2` up to `+R15` instead of at most `+R10`.
 
-For partitioned data, a [previous tutorial](/IQ-TREE/doc/Tutorial#choosing-the-right-partitioning-scheme) gave a quick hint on the use of `-m TESTMERGEONLY` to find the best partitioning scheme. Likewise, our new testing procedure also introduces a new option:
+For partitioned data, a [previous tutorial](../Tutorial#choosing-the-right-partitioning-scheme) gave a quick hint on the use of `-m TESTMERGEONLY` to find the best partitioning scheme. Likewise, our new testing procedure also introduces a new option:
 
     iqtree -s example.phy -sp example.nex -m TESTNEWMERGEONLY
 
