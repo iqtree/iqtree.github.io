@@ -4,7 +4,7 @@ title: "Frequently Asked Questions"
 categories:
 - doc
 author: minh
-date:   2015-11-14
+date:   2015-11-15
 ---
 For common questions and answers.
 <!--more-->

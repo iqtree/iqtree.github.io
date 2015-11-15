@@ -4,7 +4,7 @@ title: "Command Reference"
 categories:
 - doc
 author: minh
-date:   2015-11-14
+date:   2015-11-15
 ---
 Commprehensive documentation of command-line options.
 <!--more-->

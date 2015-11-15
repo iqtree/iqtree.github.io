@@ -520,14 +520,47 @@ table {
       border: 1px solid #cccccc;
       text-align: left;
       margin: 0;
-      padding: 6px 13px; }
+      padding: 6px 6px; 
+      background-color: #337ab7; 
+      color: white; }
     table tr td {
       border: 1px solid #cccccc;
       text-align: left;
       margin: 0;
-      padding: 6px 13px; }
+      padding: 3px 6px; }
     table tr th :first-child, table tr td :first-child {
       margin-top: 0; }
     table tr th :last-child, table tr td :last-child {
       margin-bottom: 0; }
+
+blockquote {
+  background: #f8f8f8;
+  border-left: 7px solid #337ab7;
+  margin: 1.5em 0px;
+  padding: 0.5em 10px;
+  quotes: "";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}
       
+  #sidebar.affix-top {
+    position: static;
+    margin-top:30px;
+    width:228px;
+  }
+
+  #sidebar.affix {
+    position: fixed;
+    top:70px;
+    width:228px;
+  }
+        

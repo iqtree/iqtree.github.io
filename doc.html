@@ -7,25 +7,18 @@ permalink: /doc/
 <div class="container mtb">
     <div class="row">
 
-        <! -- BLOG POSTS LIST -->
-        <div class="col-md-9">
+        {% for post in site.categories['doc'] %}
+        {% if post.title != "_Sidebar" %}
+        <! -- Document -->
+        <div class="col-md-6">
 
-            {% for post in site.categories['doc'] %}
-            {% if post.title != "_Sidebar" %}
-                <! -- Blog Post -->
                 <a href="{{ post.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ post.title }}</h3></a>
-                <p><csmall>{{ post.date | date: "%b %-d, %Y" }}. | Updated by: {{ post.author }}</csmall></p>
                 {{ post.excerpt }}
                 <p><a href="{{ post.url | prepend: site.baseurl }}">[Read More]</a></p>
                 <div class="hline"></div>
-
-                <div class="spacing"></div>
-            {% endif %}
-            {% endfor %}
-
-        </div><! --/col-md-9 -->
-
-        {% include sidebardoc.html %}
+        </div>
+        {% endif %}
+        {% endfor %}
 
     </div><! --/row -->
 </div><! --/container -->

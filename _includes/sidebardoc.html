@@ -1,15 +1,15 @@
 <div class="col-md-3">
-   <h4>Search all documents</h4>
+<!--   <h4>Search all documents</h4>
         <p>
             <input type="text" class="form-control" placeholder="Enter search text here">
         </p>
-    <div class="spacing"></div>
+    <div class="spacing"></div>-->
 
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Quick Navigation</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" id="sidebar">
             {% capture sidebar %}{% include 2015-11-07-_Sidebar.md %}{% endcapture %}
             {{ sidebar | markdownify }}
         </div>

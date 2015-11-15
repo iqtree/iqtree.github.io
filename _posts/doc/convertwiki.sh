@@ -21,7 +21,7 @@ for f in *.md; do
     destf=$dest_dir/$datef-$f
     
     if [ "$f" == "_Sidebar.md" ]; then
-        tail +9 $f | sed 's/](/](\/IQ-TREE\/doc\//g' > $destf
+        tail +8 $f | sed 's/](/](\/IQ-TREE\/doc\//g' > $destf
     else
         echo -n -e "---\nlayout: userdoc\ntitle: \"" > $destf
         echo $f | sed 's/\..*/\"/' | sed 's/-/ /g' >> $destf

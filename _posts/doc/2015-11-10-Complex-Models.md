@@ -4,7 +4,7 @@ title: "Complex Models"
 categories:
 - doc
 author: minh
-date:   2015-11-14
+date:   2015-11-15
 ---
 Partition and mixture models and usages.
 <!--more-->
