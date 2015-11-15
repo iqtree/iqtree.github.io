@@ -96,8 +96,8 @@ a:focus {
 	BOOTSTRAP MODIFICATIONS & TWEAKS
 ################################################################# */
 .navbar {
-	min-height: 70px;
-	padding-top: 10px;
+	min-height: 40px;
+	padding-top: 0px;
 	margin-bottom: 0px;
 }
 
@@ -190,16 +190,16 @@ a:focus {
 }
 
 .mtb {
-	margin-top: 80px;
-	margin-bottom: 80px;
+	margin-top: 20px;
+	margin-bottom: 30px;
 }
 
 .mb {
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 }
 
 .mt {
-	margin-top: 60px;
+	margin-top: 20px;
 }
 
 .hline {
@@ -355,8 +355,8 @@ a:focus {
 
 /* Footer */
 #footerwrap {
-	padding-top: 60px;
-	padding-bottom: 60px;
+	padding-top: 10px;
+	padding-bottom: 20px;
 	background: {{ site.colors.secondary }};
 }
 
@@ -385,10 +385,10 @@ a:focus {
 
 #blue {
 	background: {{ site.colors.primary }};
-	margin-top: 60px;
-	margin-bottom: 60px;
-	padding-top: 25px;
-	padding-bottom: 25px;
+	margin-top: 45px;
+	margin-bottom: 20px;
+	padding-top: 0px;
+	padding-bottom: 5px;
 }
 
 #blue h3 {
@@ -521,7 +521,7 @@ table {
       text-align: left;
       margin: 0;
       padding: 6px 6px; 
-      background-color: #337ab7; 
+      background-color: {{ site.colors.primary }}; 
       color: white; }
     table tr td {
       border: 1px solid #cccccc;
@@ -535,7 +535,7 @@ table {
 
 blockquote {
   background: #f8f8f8;
-  border-left: 7px solid #337ab7;
+  border-left: 7px solid {{ site.colors.primary }};
   margin: 1.5em 0px;
   padding: 0.5em 10px;
   quotes: "";
