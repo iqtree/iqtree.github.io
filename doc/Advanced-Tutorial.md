@@ -1,3 +1,22 @@
+<!--jekyll 
+docid: 03
+doctype: tutorial
+tags:
+- tutorial
+sections:
+  - name: New model selection
+    url: new-model-selection
+  - name: Tree topology tests
+    url: tree-topology-tests
+  - name: User-defined models
+    url: user-defined-substitution-models
+  - name: Consensus construction and bootstrap value assignment
+    url: consensus-construction-and-bootstrap-value-assignment
+  - name: Computing Robinson-Foulds distance
+    url: computing-robinson-foulds-distance-between-trees
+  - name: Generating random trees
+    url: generating-random-trees
+jekyll-->
 Recommended for experienced users to explore more features.
 <!--more-->
 

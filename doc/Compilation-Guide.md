@@ -1,3 +1,20 @@
+<!--jekyll
+docid: 20
+doctype: manual
+tags:
+- manual
+sections:
+- name: General requirements
+  url: general-requirements
+- name: Compiling under Linux
+  url: compiling-under-linux
+- name: Compiling under Mac OS X
+  url: compiling-under-mac-os-x
+- name: Compiling under Windows
+  url: compiling-under-windows
+- name: Compiling 32-bit version
+  url: compiling-32-bit-version
+jekyll-->
 For advanced users to compile IQ-TREE source code.
 <!--more-->
 

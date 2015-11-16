@@ -1,3 +1,14 @@
+<!--jekyll
+docid: 11
+doctype: manual
+tags:
+- manual
+sections:
+- name: Partition models
+  url: partition-models
+- name: Mixture models
+  url: mixture-models
+jekyll-->
 Partition and mixture models and usages.
 <!--more-->
 
@@ -51,6 +62,8 @@ The NEXUS format is more complex but more powerful. For example, the above parti
 
 The first line contains the keyword `#nexus` to indicate a NEXUS file. It has a `sets` block, which contains two character sets (`charset` command) named `part1` and `part2`. Furthermore, with the `charpartition` command we set the model `HKY+G` for `part1` and `GTR+I+G` for `part2`. This is not possible with the RAxML-style format (i.e., one cannot specify `+G` rate model for one partition and `+I+G` rate model for the other partition). 
 
+> **TIP**: IQ-TREE fully supports mixed rate heterogeneity types types between partitions (see above example).
+
 One can also specify non-consecutive sites of a partition, e.g. under RAxML-style format:
 
     DNA, part1 = 1-100, 250-384
@@ -78,8 +91,9 @@ Moreover, the NEXUS file allows each partition to come from a separate alignment
         charpartition mine = HKY:part1, GTR+G:part2, WAG+I+G:part3;
     end;
 
-Here, `part1` and `part2` correspond to sub-alignments of `aln1.phy` file and `part3` is the entire alignment file `aln2.phy`. Note that `aln2.phy` is a protein alignment in this example. In fact, **IQ-TREE fully supports mixed data types between partitions**!
+Here, `part1` and `part2` correspond to sub-alignments of `aln1.phy` file and `part3` is the entire alignment file `aln2.phy`. Note that `aln2.phy` is a protein alignment in this example. 
 
+> **TIP**: IQ-TREE fully supports mixed data types between partitions.
 
 If you want to specify codon model for a partition, use the `CODON` keyword (otherwise, the partition may be detected as DNA):
 

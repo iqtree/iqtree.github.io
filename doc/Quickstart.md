@@ -1,3 +1,18 @@
+<!--jekyll 
+docid: 01
+doctype: tutorial
+tags:
+- tutorial
+sections:
+- name: Installation
+  url: installation
+- name: For Windows users
+  url: for-windows-users
+- name: For Mac OS X users
+  url: for-mac-os-x-users
+- name: Minimal command-line examples
+  url: minimal-command-line-examples
+jekyll-->
 Recommended for users who just downloaded IQ-TREE.
 <!--more-->
 

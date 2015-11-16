@@ -1,3 +1,16 @@
+<!--jekyll 
+docid: 04
+doctype: tutorial
+tags:
+- tutorial
+sections:
+- name: How to interpret ultrafast bootstrap (UFBoot) supports?
+  url: how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values
+- name: How does IQ-TREE treat gap/missing characters?
+  url: how-does-iq-tree-treat-gapmissing-characters
+- name: Can I mix DNA and protein data in a partitioned analysis?
+  url: can-i-mix-dna-and-protein-data-in-a-partitioned-analysis
+jekyll-->
 For common questions and answers.
 <!--more-->
 

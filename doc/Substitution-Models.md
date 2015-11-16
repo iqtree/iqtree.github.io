@@ -1,3 +1,22 @@
+<!--jekyll 
+docid: 10
+doctype: manual
+tags:
+- manual
+sections:
+- name: DNA models
+  url: dna-models
+- name: Protein models
+  url: protein-models
+- name: Codon models
+  url: codon-models
+- name: Binary, morphological models
+  url: binary-and-morphological-models
+- name: Ascertainment bias correction
+  url: ascertainment-bias-correction
+- name: Rate heterogeneity
+  url: rate-heterogeneity-across-sites
+jekyll-->
 All common substitution models and usages.
 <!--more-->
 

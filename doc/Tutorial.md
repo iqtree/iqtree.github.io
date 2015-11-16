@@ -1,3 +1,32 @@
+<!--jekyll 
+docid: 02
+doctype: tutorial
+tags:
+- tutorial
+sections:
+- name: First example
+  url: first-running-example
+- name: Model selection
+  url: choosing-the-right-substitution-model
+- name: Codon models
+  url: codon-models
+- name: Binary, Morphological, SNPs
+  url: binary-morphological-and-snp-data
+- name: Ultrafast bootstrap
+  url: assessing-branch-supports-with-ultrafast-bootstrap-approximation
+- name: Nonparametric bootstrap
+  url: assessing-branch-supports-with--standard-nonparametric-bootstrap
+- name: Single branch tests
+  url: assessing-branch-supports-with-single-branch-tests
+- name: Partitioned analysis
+  url: partitioned-analysis-for-multi-gene-alignments
+- name: Partition scheme selection
+  url: choosing-the-right-partitioning-scheme
+- name: Bootstrapping partition model
+  url: ultrafast-bootstrapping-with-partition-model
+- name: Utilizing multi-core CPUs
+  url: utilizing-multi-core-cpus
+jekyll-->
 This tutorial gives users a quick starting guide. 
 <!--more-->
 
