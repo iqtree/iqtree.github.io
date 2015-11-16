@@ -13,7 +13,7 @@ sections:
 - name: Minimal command-line examples
   url: minimal-command-line-examples
 jekyll-->
-Recommended for users who just downloaded IQ-TREE.
+Recommended for users who just downloaded IQ-TREE the first time.
 <!--more-->
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->

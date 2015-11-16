@@ -6,8 +6,8 @@ tags:
 sections:
 - name: How to interpret ultrafast bootstrap (UFBoot) supports?
   url: how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values
-- name: How does IQ-TREE treat gap/missing characters?
-  url: how-does-iq-tree-treat-gapmissing-characters
+- name: How does IQ-TREE treat gap/missing/ambiguous characters?
+  url: how-does-iq-tree-treat-gapmissingambiguous-characters
 - name: Can I mix DNA and protein data in a partitioned analysis?
   url: can-i-mix-dna-and-protein-data-in-a-partitioned-analysis
 jekyll-->
@@ -19,7 +19,7 @@ For common questions and answers.
 **Table of Contents**
 
 - [How do I interpret ultrafast bootstrap (UFBoot) support values?](#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values)
-- [How does IQ-TREE treat gap/missing characters?](#how-does-iq-tree-treat-gapmissing-characters)
+- [How does IQ-TREE treat gap/missing/ambiguous characters?](#how-does-iq-tree-treat-gapmissingambiguous-characters)
 - [Can I mix DNA and protein data in a partitioned analysis?](#can-i-mix-dna-and-protein-data-in-a-partitioned-analysis)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -33,48 +33,44 @@ The ultrafast bootstrap (UFBoot) feature (`-bb` option) was published in  ([Minh
 Moreover, it is recommended to also perform the SH-aLRT test ([Guindon et al., 2010]) by adding `-alrt 1000` into the IQ-TREE command line. Each branch will then be assigned with SH-aLRT and UFBoot supports. One would typically start to rely on the clade if its SH-aLRT >= 80% and UFboot >= 95%. 
 
 
-How does IQ-TREE treat gaps/missing characters?
-----------------------------------------------
+How does IQ-TREE treat gap/missing/ambiguous characters?
+---------------------------------------------------------
 
 Gaps (`-`) and missing characters (`?` or `N` for DNA alignments) are treated in the same way as `unknown` characters, which represent no information. The same treatment holds for many other ML software (e.g., RAxML, PhyML). More explicitly,
 for a site (column) of an alignment containing `AC-AG-A` (i.e. A for sequence 1, C for sequence 2, `-` for sequence 3, and so on), the site-likelihood
 of a tree T is equal to the site-likelihood of the subtree of T restricted to those sequences containing non-gap characters (`ACAGA`).
 
+Ambiguous characters that represent more than one character are also supported: each represented character will have equal likelihood. For DNA the following ambigous nucleotides are supported according to [IUPAC nomenclature](https://en.wikipedia.org/wiki/Nucleic_acid_notation):
+
+| Nucleotide | Meaning |
+|------|---------|
+| R    | A or G (purine)  |
+| Y    | C or T (pyrimidine) |
+| W    | A or T (weak) |
+| S    | G or C (strong) |
+| M    | A or C (amino)|
+| K    | G or T (keto)|
+| B    | C, G or T (next letter after A) |
+| H    | A, C or T (next letter after G) |
+| D    | A, G or T (next letter after C) |
+| V    | A, G or C (next letter after T) |
+| ?, -, ., ~, O, N, X | A, G, C or T (unknown; all 4 nucleotides are equally likely) |
+
+For protein the following ambiguous amino-acids are supported:
+
+| Amino-acid | Meaning |
+|------------| --------|
+| B | N or D |
+| Z | Q or E |
+| J | I or L |
+| U | unknown AA (although it is the 21st AA) |
+| ?, -, ., ~, * or X | unknown AA (all 20 AAs are equally likely) |
+
 
 Can I mix DNA and protein data in a partitioned analysis?
 ---------------------------------------------------------
 
-Yes, you can! In fact, you can mix any data types supported in IQ-TREE, including also codon, binary and morphological data. To do so, each partition should be in a separate alignment file. Then, prepare a NEXUS partition file which may look like:
-
-    #nexus
-    begin sets;
-        charset part1=dna.phy: *;
-        charset part2=protein.phy: *;
-        charpartition mymodel=GTR+G: part1, LG+I+G: part2;
-    end;
-
-Here, it is assumed that `dna.phy` and `protein.phy` are DNA and protein alignment files, respectively. IQ-TREE will automatically detect the sequence types, which works correctly in 99% of the cases. If you want to explicitly specify the sequence type, the partition file may look like:
-
-    #nexus
-    begin sets;
-        charset part1=dna.phy:DNA, *;
-        charset part2=protein.phy:AA, *;
-        charset part3=dna2.phy:CODON, *;
-        charpartition mymodel=GTR+G: part1, LG+I+G: part2, GY:part3;
-    end;
- 
-The advantage is that you can specify a codon partition (see above), without this specification `part3` would be detected as a DNA partition.
-
-Finally, please note that you can also specify the site ranges within each alignment. For example:
-
-    #nexus
-    begin sets;
-        charset part1=dna.phy:DNA, 1-150;
-        charset part2=protein.phy:AA, 1-100 201-300;
-        charset part3=protein.phy:AA, 101-200;
-        charpartition mymodel=GTR+G: part1, LG+I+G: part2, WAG+I: part3;
-    end;
- 
+Yes! You can specify this via a NEXUS partition file. In fact, you can mix any data types supported in IQ-TREE, including also codon, binary and morphological data. To do so, each data type should be stored in a separate alignment file. For further information please read [partition file format](Complex-Models#partition-file-format). 
 
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
