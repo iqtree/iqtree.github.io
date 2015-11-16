@@ -10,8 +10,15 @@
             <h3 class="panel-title">Quick Navigation</h3>
         </div>
         <div class="panel-body" id="sidebar">
-            {% for post in site.categories['doc'] %}
-                <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></p>
+            {% assign sorted_posts = (site.categories['doc'] | sort: 'docid') %}
+            {% for post in sorted_posts %}
+                <p>
+                    {% if post.title == page.title %}
+                        <i class="fa fa-folder-open"></i> {{ post.title }}
+                    {% else %}
+                        <a href="{{ post.url | prepend: site.baseurl }}"><i class="fa fa-book"></i> {{ post.title }}</a>
+                    {% endif %}
+                </p>
                 {% if post.title == page.title %}
                     <ul>
                     {% for section in post.sections %}
@@ -20,8 +27,6 @@
                     </ul>                
                 {% endif %}
             {% endfor %}
-<!--            {% capture sidebar %}{% include 2015-11-07-_Sidebar.md %}{% endcapture %}
-            {{ sidebar | markdownify }}-->
         </div>
     </div>              
 

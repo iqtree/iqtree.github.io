@@ -5,6 +5,8 @@ author: minh
 date:   2015-11-14
 categories:
 - doc
+docid: 03
+doctype: tutorial
 tags:
 - tutorial
 sections:

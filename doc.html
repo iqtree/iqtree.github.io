@@ -1,18 +1,23 @@
 ---
 layout: doc
 title: Documentation
+doctypes:
+  - tutorial
+  - manual
 permalink: /doc/
 ---
 
 <div class="container mtb">
     <div class="row">
-        <! -- Document -->
-        <div class="col-md-6">        
-            {% for post in site.tags['tutorial'] %}
+        {% for dt in page.doctypes %}
+        <div class="col-md-6">
+            {% assign sorted_posts = (site.categories['doc'] | where: 'doctype', dt | sort: 'docid') %}
+            {% for post in sorted_posts %}
             <! -- Document -->
             <div class="row"><div class="col-md-12">
                 <a href="{{ post.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ post.title }}</h3></a>
                 {{ post.excerpt }}
+                <p><a href="{{ post.url | prepend: site.baseurl }}">Read All Here</a> or go directly to a specific section:</p>
                 {% if post.sections %}
                     <ul>
                     {% for section in post.sections %}
@@ -24,23 +29,6 @@ permalink: /doc/
             </div></div>
             {% endfor %}
         </div>
-        <div class="col-md-6">        
-            {% for post in site.tags['manual'] %}
-            <! -- Document -->
-            <div class="row"><div class="col-md-12">
-                <a href="{{ post.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ post.title }}</h3></a>
-                {{ post.excerpt }}
-                {% if post.sections %}
-                    <ul>
-                    {% for section in post.sections %}
-                    <li><a href="{{ post.url | prepend: site.baseurl }}/#{{ section.url }}">{{ section.name }}</a></li>
-                    {% endfor %}
-                    </ul>
-                {% endif %}
-                <div class="hline"></div>
-            </div></div>
-            {% endfor %}
-        </div>
-
+        {% endfor %}
     </div><! --/row -->
 </div><! --/container -->

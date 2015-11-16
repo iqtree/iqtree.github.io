@@ -5,6 +5,8 @@ author: minh
 date:   2015-11-15
 categories:
 - doc
+docid: 12
+doctype: manual
 tags:
 - manual
 sections:
