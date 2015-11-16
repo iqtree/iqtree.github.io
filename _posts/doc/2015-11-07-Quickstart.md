@@ -1,10 +1,21 @@
 ---
 layout: userdoc
 title: "Quickstart"
-categories:
-- doc
 author: minh
 date:   2015-11-14
+categories:
+- doc
+tags:
+- tutorial
+sections:
+- name: Installation
+  url: installation
+- name: For Windows users
+  url: for-windows-users
+- name: For Mac OS X users
+  url: for-mac-os-x-users
+- name: Minimal command-line examples
+  url: minimal-command-line-examples
 ---
 Recommended for users who just downloaded IQ-TREE.
 <!--more-->

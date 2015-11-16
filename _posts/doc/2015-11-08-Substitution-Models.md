@@ -1,10 +1,25 @@
 ---
 layout: userdoc
 title: "Substitution Models"
-categories:
-- doc
 author: minh
 date:   2015-11-14
+categories:
+- doc
+tags:
+- manual
+sections:
+- name: DNA models
+  url: dna-models
+- name: Protein models
+  url: protein-models
+- name: Codon models
+  url: codon-models
+- name: Binary, morphological models
+  url: binary-and-morphological-models
+- name: Ascertainment bias correction
+  url: ascertainment-bias-correction
+- name: Rate heterogeneity
+  url: rate-heterogeneity-across-sites
 ---
 All common substitution models and usages.
 <!--more-->

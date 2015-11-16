@@ -1,10 +1,37 @@
 ---
 layout: userdoc
 title: "Command Reference"
-categories:
-- doc
 author: minh
 date:   2015-11-15
+categories:
+- doc
+tags:
+- manual
+sections:
+  - name: General options
+    url: general-options
+  - name: Automatic model selection
+    url: automatic-model-selection
+  - name: Specifying substitution models
+    url: specifying-substitution-models
+  - name: Tree search parameters
+    url: tree-search-parameters
+  - name: Ultrafast bootstrap parameters
+    url: ultrafast-bootstrap-parameters
+  - name: Nonparametric bootstrap
+    url: nonparametric-bootstrap
+  - name: Single branch tests
+    url: single-branch-tests
+  - name: Tree topology tests
+    url: tree-topology-tests
+  - name: Constructing consensus tree
+    url: constructing-consensus-tree
+  - name: Robinson-Foulds distance
+    url: computing-robinson-foulds-distance
+  - name: Generating random trees
+    url: generating-random-trees
+  - name: Miscellaneous options
+    url: miscellaneous-options
 ---
 Commprehensive documentation of command-line options.
 <!--more-->

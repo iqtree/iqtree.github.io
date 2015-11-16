@@ -1,10 +1,19 @@
 ---
 layout: userdoc
 title: "Frequently Asked Questions"
-categories:
-- doc
 author: minh
 date:   2015-11-15
+categories:
+- doc
+tags:
+- tutorial
+sections:
+- name: How to interpret ultrafast bootstrap (UFBoot) supports?
+  url: how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values
+- name: How does IQ-TREE treat gap/missing characters?
+  url: how-does-iq-tree-treat-gapmissing-characters
+- name: Can I mix DNA and protein data in a partitioned analysis?
+  url: can-i-mix-dna-and-protein-data-in-a-partitioned-analysis
 ---
 For common questions and answers.
 <!--more-->

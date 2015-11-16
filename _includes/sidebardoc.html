@@ -10,8 +10,18 @@
             <h3 class="panel-title">Quick Navigation</h3>
         </div>
         <div class="panel-body" id="sidebar">
-            {% capture sidebar %}{% include 2015-11-07-_Sidebar.md %}{% endcapture %}
-            {{ sidebar | markdownify }}
+            {% for post in site.categories['doc'] %}
+                <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></p>
+                {% if post.title == page.title %}
+                    <ul>
+                    {% for section in post.sections %}
+                    <li><a href="{{ post.url | prepend: site.baseurl }}/#{{ section.url }}">{{ section.name }}</a></li>
+                    {% endfor %}
+                    </ul>                
+                {% endif %}
+            {% endfor %}
+<!--            {% capture sidebar %}{% include 2015-11-07-_Sidebar.md %}{% endcapture %}
+            {{ sidebar | markdownify }}-->
         </div>
     </div>              
 

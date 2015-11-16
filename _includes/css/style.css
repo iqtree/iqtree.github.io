@@ -535,7 +535,7 @@ table {
 
 blockquote {
   background: #f8f8f8;
-  border-left: 7px solid {{ site.colors.primary }};
+  border-left: 7px solid #a94442;
   margin: 1.5em 0px;
   padding: 0.5em 10px;
   quotes: "";

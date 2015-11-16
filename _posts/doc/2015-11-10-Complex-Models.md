@@ -1,10 +1,17 @@
 ---
 layout: userdoc
 title: "Complex Models"
-categories:
-- doc
 author: minh
 date:   2015-11-15
+categories:
+- doc
+tags:
+- manual
+sections:
+- name: Partition models
+  url: partition-models
+- name: Mixture models
+  url: mixture-models
 ---
 Partition and mixture models and usages.
 <!--more-->
