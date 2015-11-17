@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Compilation Guide"
 author: minh
-date:   2015-11-15
+date:   2015-11-16
 categories:
 - doc
 docid: 20

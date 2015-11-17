@@ -51,6 +51,7 @@ for f in *.md; do
         if [ "$newl" != "" ]; then
             line="$newl"
         fi
+        line=`echo "$line" | sed -e "s/\([a-z]\)#/\1\/#/g"`
         newl=`echo "$line" | grep '](' | grep -v '](\#' | grep -v '](http' | sed 's/](/](..\//g'`
         if [ "$newl" == "" ]; then
             echo "$line" >> $destf

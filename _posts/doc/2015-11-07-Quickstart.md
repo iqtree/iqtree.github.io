@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Quickstart"
 author: minh
-date:   2015-11-14
+date:   2015-11-17
 categories:
 - doc
 docid: 01
@@ -19,7 +19,7 @@ sections:
 - name: Minimal command-line examples
   url: minimal-command-line-examples
 ---
-Recommended for users who just downloaded IQ-TREE.
+Recommended for users who just downloaded IQ-TREE the first time.
 <!--more-->
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->

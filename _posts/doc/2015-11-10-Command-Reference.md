@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Command Reference"
 author: minh
-date:   2015-11-15
+date:   2015-11-16
 categories:
 - doc
 docid: 12
@@ -75,9 +75,9 @@ General options are mainly intended for specifying input and output files:
 |-h or -?| Print help usage. |
 | -s   | Specify input alignment file in PHYLIP, FASTA, NEXUS, CLUSTAL or MSF format. |
 | -st  | Specify sequence type: `BIN` for binary, `DNA` for DNA, `AA` for amino-acid, `NT2AA` for converting nucleotide to AA, `CODON` for coding DNA and `MORPH` for morphology. This option is typically not necessary because IQ-TREE automatically detects the sequence type. An exception is `-st CODON` which is always necessary when using codon models (otherwise, IQ-TREE applies DNA models). |
-| -q or  -spj | Specify partition file in [NEXUS or RAxML-style format](../Complex-Models#partition-file-format) for edge-equal [partition model](../Complex-Models#partition-models). That means, all partitions share the same set of branch lengths (like `-q` option of RAxML). |
-| -spp | Like `-q` but each partition has its own rate ([edge-proportional partition model](../Complex-Models#partition-models)). |
-| -sp  | Specify partition file for [edge-unlinked partition model](../Complex-Models#partition-models). That means, each partition has its own set of branch lengths (like `-M` option of RAxML). |
+| -q or  -spj | Specify partition file in [NEXUS or RAxML-style format](../Complex-Models/#partition-file-format) for edge-equal [partition model](../Complex-Models/#partition-models). That means, all partitions share the same set of branch lengths (like `-q` option of RAxML). |
+| -spp | Like `-q` but each partition has its own rate ([edge-proportional partition model](../Complex-Models/#partition-models)). |
+| -sp  | Specify partition file for [edge-unlinked partition model](../Complex-Models/#partition-models). That means, each partition has its own set of branch lengths (like `-M` option of RAxML). |
 | -t   | Specify a file containing starting tree for tree search. The special option `-t BIONJ` starts tree search from BIONJ tree and `-t RANDOM` starts tree search from completely random tree. *DEFAULT: 100 parsimony trees + BIONJ tree* |
 | -te  | Like `-t` but fixing user tree. That means, no tree search is performed and IQ-TREE computes the log-likelihood of the fixed user tree. |
 | -o   | Specify an outgroup taxon name to root the tree. The output tree in `.treefile` will be rooted accordingly. *DEFAULT: first taxon in alignment* |
@@ -118,7 +118,7 @@ Several parameters can be set to e.g. reduce computations:
 | -mtree | Turn on full tree search for each model considered, to obtain more accurate result. Only recommended if enough computational resources are available. *DEFAULT: fixed starting tree* |
 | -mredo | Ignore `.model` file computed earlier. *DEFAULT: `.model` file (if exists) is loaded to reuse previous computations* |
 | -madd | Specify a comma-separated list of mixture models to additionally consider for model selection. |
-| -mdef | Specify a [NEXUS model file](../Complex-Models#nexus-model-file) to define new models. |
+| -mdef | Specify a [NEXUS model file](../Complex-Models/#nexus-model-file) to define new models. |
 
 
 Specifying substitution models
@@ -134,11 +134,11 @@ The following `MODEL`s are available:
 
 | DataType | Model names |
 |----------|-------------|
-| DNA      | JC/JC69, F81, K2P/K80, HKY/HKY85, TN/TrN/TN93, TNe, K3P/K81, K81u, TPM2, TPM2u, TPM3, TPM3u, TIM, TIMe, TIM2, TIM2e, TIM3, TIM3e, TVM, TVMe, SYM, GTR and 6-digit specification. See [DNA models](../Substitution-Models#dna-models) for more details. |
-| Protein  | BLOSUM62, cpREV, Dayhoff, DCMut, FLU, HIVb, HIVw, JTT, JTTDCMut, LG, mtART, mtMAM, mtREV, mtZOA, Poisson, PMB, rtREV, VT, WAG. Many protein mixture models are also supported: C10,...,C60, EX2, EX3, EHO, UL2, UL3, EX_EHO, LG4M, LG4X, CF4 (`-mwopt` option can be used to turn on optimizing weights of mixture models). See [Protein models](../Substitution-Models#protein-models) for more details. |
-| Codon | MG, MGK, MG1KTS, MG1KTV, MG2K, GY, GY1KTS, GY1KTV, GY2K, ECMK07/KOSI07, ECMrest, ECMS05/SCHN05 and combined empirical-mechanistic models. See [Codon models](../Substitution-Models#codon-models) for more details. |
-| Binary | JC2, GTR2. See [Binary and morphological models](../Substitution-Models#binary-and-morphological-models) for more details. |
-| Morphology| MK, ORDERED. See [Binary and morphological models](../Substitution-Models#binary-and-morphological-models) for more details. |
+| DNA      | JC/JC69, F81, K2P/K80, HKY/HKY85, TN/TrN/TN93, TNe, K3P/K81, K81u, TPM2, TPM2u, TPM3, TPM3u, TIM, TIMe, TIM2, TIM2e, TIM3, TIM3e, TVM, TVMe, SYM, GTR and 6-digit specification. See [DNA models](../Substitution-Models/#dna-models) for more details. |
+| Protein  | BLOSUM62, cpREV, Dayhoff, DCMut, FLU, HIVb, HIVw, JTT, JTTDCMut, LG, mtART, mtMAM, mtREV, mtZOA, Poisson, PMB, rtREV, VT, WAG. Many protein mixture models are also supported: C10,...,C60, EX2, EX3, EHO, UL2, UL3, EX_EHO, LG4M, LG4X, CF4 (`-mwopt` option can be used to turn on optimizing weights of mixture models). See [Protein models](../Substitution-Models/#protein-models) for more details. |
+| Codon | MG, MGK, MG1KTS, MG1KTV, MG2K, GY, GY1KTS, GY1KTV, GY2K, ECMK07/KOSI07, ECMrest, ECMS05/SCHN05 and combined empirical-mechanistic models. See [Codon models](../Substitution-Models/#codon-models) for more details. |
+| Binary | JC2, GTR2. See [Binary and morphological models](../Substitution-Models/#binary-and-morphological-models) for more details. |
+| Morphology| MK, ORDERED. See [Binary and morphological models](../Substitution-Models/#binary-and-morphological-models) for more details. |
 
 The following `FreqType`s are supported:
 
@@ -147,8 +147,8 @@ The following `FreqType`s are supported:
 | +F       | Empirical state frequency observed from the data. |
 | +FO      | State frequency optimized by maximum-likelihood from the data. |
 | +FQ      | Equal state frequency. |
-| +F1x4    | See [Codon frequencies](../Substitution-Models#codon-frequencies). |
-| +F3x4    | See [Codon frequencies](../Substitution-Models#codon-frequencies). |
+| +F1x4    | See [Codon frequencies](../Substitution-Models/#codon-frequencies). |
+| +F3x4    | See [Codon frequencies](../Substitution-Models/#codon-frequencies). |
 
 The following `RateType`s are supported:
 
@@ -159,9 +159,9 @@ The following `RateType`s are supported:
 | +I+G     | Invariable site plus discrete Gamma model ([Gu et al., 1995]). |
 | +R       | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes `+G` by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6`. *DEFAULT: 4 categories* |
 
-See [Rate heterogeneity across sites](../Substitution-Models#rate-heterogeneity-across-sites) for more details.
+See [Rate heterogeneity across sites](../Substitution-Models/#rate-heterogeneity-across-sites) for more details.
 
-Optionally, one can specify [Ascertainment bias correction](../Substitution-Models#ascertainment-bias-correction) by appending `+ASC` to the model string. [Advanced mixture models](../Complex-Models#mixture-models) can also be specified via `MIX{...}` and `FMIX{...}` syntax. Option `mwopt` can be used to turn on optimizing weights of mixture models.
+Optionally, one can specify [Ascertainment bias correction](../Substitution-Models/#ascertainment-bias-correction) by appending `+ASC` to the model string. [Advanced mixture models](../Complex-Models/#mixture-models) can also be specified via `MIX{...}` and `FMIX{...}` syntax. Option `mwopt` can be used to turn on optimizing weights of mixture models.
 
 
 Tree search parameters
