@@ -32,12 +32,16 @@ social:
 # Postal address (add as many lines as necessary). Shown in footer and on Contact page.
 address:
   - lines: 
-    - <a href="http://www.cibiv.at">Center for Integrative Bioinformatics Vienna</a>
-    - <a href="http://www.mfpl.ac.at">Max F. Perutz Laboratories</a>
-    - <a href="https://www.univie.ac.at">University of Vienna</a>
-    - <a href="http://www.meduniwien.ac.at">Medical University of Vienna</a>
+
 email: minh.bui(at)univie.ac.at
 
+links:
+  - <a href="http://www.cibiv.at">Center for Integrative Bioinformatics Vienna</a>
+  - <a href="https://www.univie.ac.at">University of Vienna</a>
+  - <a href="http://www.fwf.ac.at/">Austrian Science Fund</a>
+
+supports:
+  - <a href="https://groups.google.com/d/forum/iqtree">IQ-TREE Google group</a>
 
 ### GENERAL DATA FOR VARIOUS LOCATIONS ###
     
@@ -95,7 +99,7 @@ members:
 #    img: client03.png
     
 # Short text about your company. Shown in footer on every page and also separately on Home and Contact page.
-about: "Copyright (c) 2010-2015 <a href='/IQ-TREE/about/'>IQ-TREE development team</a>."
+about: IQ-TREE code is hosted at <a href="https://github.com/Cibiv/IQ-TREE">GitHub repository</a>.
 
 # Testimonial content. Shown on Home and About page. 
 #testimonial:

@@ -2,26 +2,31 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <h4>About</h4>
+                <h4>Software</h4>
                 <div class="hline-w"></div>
-                <p>{{ site.about }}</p>
+                <p>
+                    <a href="{{"/about/" | prepend: site.baseurl }}">IQ-TREE development team</a><br>
+                    <a href="https://github.com/Cibiv/IQ-TREE">IQ-TREE github repository</a><br>
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <h4>User support</h4>
+                <div class="hline-w"></div>
+                <p>
+                    <a href="{{"/doc/Frequently-Asked-Questions/" | prepend: site.baseurl }}">Frequently asked questions</a><br>
+                    <a href="{{"/doc/" | prepend: site.baseurl }}">User documentation</a><br>
+                    <a href="https://groups.google.com/d/forum/iqtree">IQ-TREE Google group</a><br>
+                    <a href="http://iqtree.cibiv.univie.ac.at/" target="_blank">IQ-TREE online web service</a><br>
+                </p>
             </div>
             <div class="col-sm-4">
                 <h4>Links</h4>
                 <div class="hline-w"></div>
                 <p>
-                    {% for network in site.social %}
-                        <a href="{{ network.url }}" class="btn-social btn-outline"><i class="fa fa-{{ network.title }}"></i></a>
-                    {% endfor %}
-                </p>
-            </div>
-            <div class="col-sm-4">
-                <h4>Contact</h4>
-                <div class="hline-w"></div>
-                <p>
-                    {% for line in site.address.first.lines %}
-                        {{ line }} <br>
-                    {% endfor %}
+                  <a href="http://www.cibiv.at">Center for Integrative Bioinformatics Vienna</a><br>
+                  <a href="http://www.mfpl.ac.at">Max F. Perutz Laboratories</a><br>
+                  <a href="https://www.univie.ac.at">University of Vienna</a><br>
+                  <a href="http://www.meduniwien.ac.at">Medical University of Vienna</a>
                 </p>
             </div>
         </div><! --/row -->
