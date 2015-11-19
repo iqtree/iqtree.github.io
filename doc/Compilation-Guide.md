@@ -6,6 +6,8 @@ tags:
 sections:
 - name: General requirements
   url: general-requirements
+- name: Downloading source code
+  url: downloading-source-code
 - name: Compiling under Linux
   url: compiling-under-linux
 - name: Compiling under Mac OS X
@@ -23,6 +25,7 @@ For advanced users to compile IQ-TREE source code.
 **Table of Contents**
 
 - [General requirements](#general-requirements)
+- [Downloading source code](#downloading-source-code)
 - [Compiling under Linux](#compiling-under-linux)
 - [Compiling under Mac OS X](#compiling-under-mac-os-x)
 - [Compiling under Windows](#compiling-under-windows)
@@ -38,11 +41,31 @@ General requirements
 
 * Make sure that a C++ compiler is installed. IQ-TREE was successfully built with GCC, Clang, MS Visual Studio and Intel C++ compiler. 
 * Install [CMake](http://www.cmake.org) if not yet available in your system. 
-* Install [git](https://git-scm.com) if not yet available in your system.
-* If you want to compile the multicore version, make sure that the compiler supports [OpenMP](http://openmp.org/) and that the OpenMP library was installed.
-* Download source code. Since IQ-TREE has a submodule ([the phylogenetic likelihood library](http://www.libpll.org/)), the best way to obtain the source code is to use `git`:
+* [Optional] Install [git](https://git-scm.com) if you want to clone source code from [GitHub](https://github.com).
+* [Optional] If you want to compile the multicore version, make sure that the compiler supports [OpenMP](http://openmp.org/) and that the OpenMP library was installed.
 
-        git clone --recursive https://github.com/Cibiv/IQ-TREE.git
+Downloading source code
+-----------------------
+
+Download the latest source code of IQ-TREE release version 1.3.10 (October 16, 2015) in either `zip` or `tar.gz`:
+
+* [iqtree-1.3.10-Source.zip](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-Source.zip)
+* [iqtree-1.3.10-Source.tar.gz](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-Source.tar.gz)
+
+Alternatively, you can also clone the source code from github with:
+
+    git clone --recursive https://github.com/Cibiv/IQ-TREE.git
+
+Please note that `--recursive` is necessary to download the submodule ([the phylogenetic likelihood library](http://www.libpll.org/)) used by IQ-TREE. If not, you have to run
+
+    git submodule init
+    git submodule update
+    
+inside source code folder just cloned from github to download the submodule.
+
+Please find below separate compilation guide for [Linux][#compiling-under-linux], [Mac OS X](#compiling-under-mac-os-x), and [Windows](#compiling-under-windows) as well as for [32-bit version](#compiling-32-bit-version).
+
+>**NOTE**: Typically a 64-bit IQ-TREE version is built and recommended! The 32-bit version has several restriction like maximal RAM usage of 2GB and no AVX support. 
 
 Compiling under Linux
 ---------------------
