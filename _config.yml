@@ -72,7 +72,7 @@ members:
         url: http://www.cibiv.at/~olga
   - name: Heiko A. Schmidt
     position: Developer
-    text: Integrate <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a> features into IQ-TREE.
+    text: Integrates <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a> features into IQ-TREE.
     img: heiko2.jpg
     social:
       - title: home #use for email address
@@ -86,7 +86,7 @@ members:
         url: http://www.cibiv.at/~jana
   - name: Arndt von Haeseler
     position: Advisor
-    text: Consultant, inspiring ideas and financial support.
+    text: Provides advice, inspiring ideas and financial support.
     img: arndt2.jpg
     social:
       - title: envelope #use for email address
