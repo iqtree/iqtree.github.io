@@ -11,14 +11,20 @@ permalink: /category/
         {% for tag in site.tags %}
         {% unless tag.first == "tutorial" or tag.first == "manual" %}
             <span id="{{ tag.first }}"></span>
-            <div class='post hidden {{ tag.first }}'>
-            <h2>{{ tag.first | capitalize }}</h2>
-                    {% for post in site.tags[tag.first] %}
-                        <p><a href="{{ post.url | prepend: site.baseurl }}"><h4 class="ctitle">{{ post.title }}</h4></a></p>
-                        <p><csmall>{{ post.date | date: "%b %-d, %Y" }}. | By: {{ post.author }}</csmall></p>
-                        {{ post.excerpt }}
+            <div class='hidden {{ tag.first }}'>
+            <div id="blue"><h3 style="padding-top: 15px">{{ tag.first | capitalize }}</h3></div>
+                {% assign counter = 0 %}
+                {% for post in site.tags[tag.first] %}
+                    {% if counter != 0 %}
                         <div class="hline"></div>
-                    {% endfor %}
+                    {% endif %}
+                    {% if post.img %}
+                    <p><img class="img-responsive" src="{{ "/assets/img/blog/" | prepend: site.baseurl }}{{ post.img }}"></p>
+                    {% endif %}                <a href="{{ post.url | prepend: site.baseurl }}"><h3                         <p><a href="{{ post.url | prepend: site.baseurl }}"><h4 class="ctitle">{{ post.title }}</h4></a></p>
+                        <p><csmall>{{ post.date | date: "%b %-d, %Y" }}. | By: {{ post.author }}</csmall></p>
+                        {{ post.content }}
+                    {% assign counter = counter | plus: 1 %}
+                {% endfor %}
             </div>
         {% endunless %}
         {% endfor %}

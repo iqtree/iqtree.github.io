@@ -42,7 +42,7 @@
     <p>
     {% for tag in site.tags %}
     {% if tag.first != "tutorial" and tag.first != "manual" %}
-            <a class="btn btn-theme" href="{{ '/category/?tagName='  | prepend: site.baseurl  }}{{ tag | first }}" role="button">{{ tag | first | capitalize }} ({{ tag | last | size }})</a>	         
+            <a class="btn btn-theme" href="{{ '/category/?tagName='  | prepend: site.baseurl  }}{{ tag | first }}" role="button">{{ tag | first | capitalize }} <span class="badge">{{ tag | last | size }}</span></a>	         
     {% endif %}
     {% endfor %}
     </p>
