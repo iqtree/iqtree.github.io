@@ -49,7 +49,7 @@ supports:
 members:
   - name: Bui Quang Minh
     position: Team leader
-    text: Design IQ-TREE software core, ultrafast bootstrap, model selection. 
+    text: Designs IQ-TREE software core, ultrafast bootstrap, model selection. 
     img: minh2.jpg
     social:
       - title: home #use for email address
@@ -58,14 +58,14 @@ members:
         url: https://scholar.google.com/citations?user=UI0xN_QAAAAJ
   - name: Lam Tung Nguyen
     position: Developer
-    text: Design IQ-TREE search algorithm.
+    text: Designs IQ-TREE search algorithm.
     img: tungbeo.jpg
     social:
       - title: home #use for email address
         url: http://www.cibiv.at/~tung
   - name: Olga Chernomor
     position: Developer
-    text: Design partition models and terrace-aware tree search.
+    text: Designs partition models and terrace-aware tree search.
     img: olga_chernomor.png
     social:
       - title: home #use for email address
@@ -79,7 +79,7 @@ members:
         url: http://www.cibiv.at/~hschmidt
   - name: Jana Trifinopoulos
     position: Developer
-    text: Design and maintain IQ-TREE web service.
+    text: Designs and maintains IQ-TREE web service.
     img: jule.jpg
     social:
       - title: home #use for email address

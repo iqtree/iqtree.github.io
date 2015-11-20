@@ -5,8 +5,9 @@ date: 2015-08-29
 author: Admin
 categories: 
 - blog 
+tags:
+- publication
 img: post20150829.png
-thumb: thumb20150829.png
 ---
 Congratulations to [Olga Chernomor](http://www.cibiv.at/~olga/) for an ultrafast acceptance of her paper ([Chernomor et al., 2015]) at [*Journal of Computational Biology*](http://www.liebertpub.com/overview/journal-of-computational-biology/31/). It was accepted just **after 8 days of submission**!
 
