@@ -9,10 +9,6 @@ permalink: /doc/
 
 <div class="container mtb">
     <div class="row">
-        <div class="col-md-12 centered">
-            Search this documentation and IQ-TREE Google group:
-            {% include googlesearch.html %}
-        </div>
         {% for dt in page.doctypes %}
         <div class="col-md-6">
             {% assign sorted_posts = (site.categories['doc'] | where: 'doctype', dt | sort: 'docid') %}

@@ -1,6 +1,7 @@
 <div id="blue">
     <div class="container">
         <div class="row">
+            <div class="col-sm-6">
             <h3>
                 {% if page.tags %}
                     {{ page.tags.first | capitalize }}
@@ -8,6 +9,12 @@
                     {% if page.wrap_title %}{{ page.wrap_title }}{% else %}{{ page.title }}{% endif %}
                 {% endif %}
             </h3>
+            </div>
+            {% if page.categories.first == "doc" or page.title == "Documentation" %}
+            <div class="col-sm-6">
+                {% include googlesearch.html %}
+            </div>
+            {% endif %}
         </div><!-- /row -->
     </div> <!-- /container -->
 </div><!-- /blue -->

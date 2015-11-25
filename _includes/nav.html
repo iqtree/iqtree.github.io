@@ -15,8 +15,8 @@
         <li {% if page.title == "XXX" %}class="active"{% endif %}><a data-toggle="collapse" data-target=".navbar-collapse" href="{{"/#download" | prepend: site.baseurl }}">DOWNLOAD</a></li>
         <li {% if page.title == "Release Notes" %}class="active"{% endif %}><a href="{{"/release/" | prepend: site.baseurl }}">NEWS</a></li>
         <li {% if page.title == "XXX" %}class="active"{% endif %}><a href="http://iqtree.cibiv.univie.ac.at" target="_blank">WEB SERVICE</a></li>
-        <li {% if page.title == "Documentation" %}class="active"{% endif %}><a href="{{"/doc/" | prepend: site.baseurl }}">DOCUMENTATION</a></li>
-        <li {% if page.title == "Blog" %}class="active"{% endif %}><a href="{{"/blog/" | prepend: site.baseurl }}">BLOG</a></li>
+        <li {% if page.title == "Documentation" or page.categories.first == "doc" %}class="active"{% endif %}><a href="{{"/doc/" | prepend: site.baseurl }}">DOCUMENTATION</a></li>
+        <li {% if page.title == "Blog" or page.categories.first == "blog" %}class="active"{% endif %}><a href="{{"/blog/" | prepend: site.baseurl }}">BLOG</a></li>
         <li {% if page.title == "About IQ-TREE" %}class="active"{% endif %}><a href="{{"/about/" | prepend: site.baseurl }}">ABOUT</a></li>
       </ul>
     </div><!--/.nav-collapse -->
