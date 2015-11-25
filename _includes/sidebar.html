@@ -6,44 +6,36 @@
             <input type="text" class="form-control" placeholder="Search something">
         </p>
     <div class="spacing"></div> -->
-    <h4>Subscribe</h4>
-    <div class="hline"></div>
-        <p>
-            <p class="rss-subscribe">Subscribe to this blog <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a>.</p>
-        </p>
-    <div class="spacing"></div>
-
-    <h4>Recent Posts</h4>
-    <div class="hline"></div>
-    <div class="row">
-    <div class="popular-posts">
-        {% for post in site.categories['blog'] limit:5 %} 
-            {% if post.thumb %}
-            <div class="col-xs-8">
-            {% else %}
-            <div class="col-xs-12">
-            {% endif %}
-                <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></p>
-                <em>Posted on {{ post.date | date_to_string }}</em>
-            </div>
-            {% if post.thumb %}            
-                <div class="col-xs-4">
+    <div class="well well-sm">
+        <h4 class="rss-subscribe"><i class="fa fa-rss"></i> Subscribe to this blog <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></h4>
+    </div>
+    
+    <div class="well">
+        <h4 class="centered">Recent Posts</h4>
+        <div class="row">
+        <div class="popular-posts">
+            {% for post in site.categories['blog'] limit:5 %} 
+                {% if post.thumb %}
+                <div class="col-xs-12">
                     <a href="{{ post.url | prepend: site.baseurl }}"><img src="{{ "/assets/img/blog/thumbs/" | prepend: site.baseurl }}{{ post.thumb }}" alt="Popular Post"></a>
                 </div>
-            {% endif %}
-        {% endfor %} 
+                {% endif %}
+                <div class="col-xs-12">
+                    <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></p><br><br>
+                </div>
+            {% endfor %} 
+        </div>
+        </div>
     </div>
+    
+    <div class="well">
+        <h4>Popular Tags</h4>
+        <p>
+        {% for tag in site.tags %}
+        {% if tag.first != "tutorial" and tag.first != "manual" %}
+                <a class="btn btn-theme" href="{{ '/category/?tagName='  | prepend: site.baseurl  }}{{ tag | first }}" role="button">{{ tag | first | capitalize }} <span class="badge">{{ tag | last | size }}</span></a>	         
+        {% endif %}
+        {% endfor %}
+        </p>
     </div>
-
-    <div class="spacing"></div>
-
-    <h4>Popular Tags</h4>
-    <div class="hline"></div>
-    <p>
-    {% for tag in site.tags %}
-    {% if tag.first != "tutorial" and tag.first != "manual" %}
-            <a class="btn btn-theme" href="{{ '/category/?tagName='  | prepend: site.baseurl  }}{{ tag | first }}" role="button">{{ tag | first | capitalize }} <span class="badge">{{ tag | last | size }}</span></a>	         
-    {% endif %}
-    {% endfor %}
-    </p>
 </div>

@@ -9,7 +9,7 @@ layout: default
         <! -- SINGLE POST -->
         <div class="col-md-8">
             <! -- Blog Post  -->
-            <h3 class="ctitle">{{ page.title }}</h3>
+            <h3>{{ page.title }}</h3>
             <p><csmall>{{ page.date | date: "%b %-d, %Y" }} {% if page.author %} | By: {{ page.author }} {% endif %}</csmall></p>
             {% if page.img %}
             <p><img class="img-responsive" src="{{ "/assets/img/blog/" | prepend: site.baseurl }}{{ page.img }}"></p>

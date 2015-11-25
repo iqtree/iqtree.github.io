@@ -7,23 +7,20 @@ permalink: /blog/
 <div class="container mtb">
     <div class="row">
         <! -- BLOG POSTS LIST -->
-        <div class="col-md-8">
-            {% assign counter=0 %}
-            {% for post in site.categories['blog'] %}
-                <! -- Blog Post -->
-                {% if counter != 0 %}
-                    <div class="hline"></div>
-                {% endif %}
+        {% assign counter=0 %}
+        {% for post in site.categories['blog'] %}
+            <! -- Blog Post -->
+            <div class="col-md-6">
+                <a href="{{ post.url | prepend: site.baseurl }}">
                 {% if post.img %}
-                <p><img class="img-responsive" src="{{ "/assets/img/blog/" | prepend: site.baseurl }}{{ post.img }}"></p>
-                {% endif %}                <a href="{{ post.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ post.title }}</h3></a>
+                <p><img style="text-align:center;" src="{{ "/assets/img/blog/" | prepend: site.baseurl }}{{ post.img }}"></p>
+                {% endif %}
+                <h3 class="ctitle">{{ post.title }}</h3></a>
                 <p><csmall>{{ post.date | date: "%b %-d, %Y" }}. | By: {{ post.author }}</csmall></p>
-                {{ post.content }}
-            {% assign counter = counter | plus: 1 %}
-            {% endfor %}
-        </div><! --/col-md-8 -->
-
-        {% include sidebar.html %}
-
+                {{ post.excerpt }}
+                    <div class="hline"></div>
+            </div><! --/col-md-6 -->
+        {% assign counter = counter | plus: 1 %}
+        {% endfor %}
     </div><! --/row -->
 </div><! --/container -->
