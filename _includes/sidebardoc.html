@@ -1,14 +1,12 @@
-<div class="col-md-3">
-
 <!--   <h4>Search all documents</h4>
         <p>
             <input type="text" class="form-control" placeholder="Enter search text here">
         </p>
     <div class="spacing"></div>-->
 
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Quick Navigation</h3>
+            <h3 class="panel-title">User documentation</h3>
         </div>
         <div class="panel-body" id="sidebar">
             {% assign sorted_posts = (site.categories['doc'] | sort: 'docid') %}
@@ -30,5 +28,3 @@
             {% endfor %}
         </div>
     </div>              
-
-</div>

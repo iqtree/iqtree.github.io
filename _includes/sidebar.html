@@ -1,20 +1,16 @@
-<div class="col-md-4">
-    <div class="well well-sm">
-        <h4 class="rss-subscribe"><i class="fa fa-rss"></i> Subscribe to this blog <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></h4>
-    </div>
-    
     <div class="well">
+        <h4 class="rss-subscribe"><i class="fa fa-rss"></i> Subscribe to IQ-TREE blog <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></h4>
+        <div class="hline"></div>
         <h4 class="centered">Recent Posts</h4>
         <div class="row">
         <div class="popular-posts">
             {% for post in site.categories['blog'] limit:5 %} 
-                {% if post.thumb %}
-                <div class="col-xs-12">
-                    <a href="{{ post.url | prepend: site.baseurl }}"><img src="{{ "/assets/img/blog/thumbs/" | prepend: site.baseurl }}{{ post.thumb }}" alt="Popular Post"></a>
-                </div>
-                {% endif %}
-                <div class="col-xs-12">
-                    <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></p><br><br>
+                <div class="col-md-12 col-sm-6 col-xs-6">
+                    <br>
+                    {% if post.thumb %}
+                    <p><a href="{{ post.url | prepend: site.baseurl }}"><img src="{{ "/assets/img/blog/thumbs/" | prepend: site.baseurl }}{{ post.thumb }}" alt="Popular Post"></a></p>
+                    {% endif %}
+                    <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></p>
                 </div>
             {% endfor %} 
         </div>
@@ -31,4 +27,3 @@
         {% endfor %}
         </p>
     </div>-->
-</div>

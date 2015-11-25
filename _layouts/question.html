@@ -8,7 +8,7 @@ wrap_title: 'Frequently asked'
 <div class="container mtb">
     <div class="row">
         <! -- SINGLE POST -->
-        <div class="col-lg-8">
+        <div class="col-md-8">
             <! -- Blog Post  -->
           <a href="{{ page.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ page.title }}</h3></a>
 
@@ -24,7 +24,9 @@ wrap_title: 'Frequently asked'
             </p> -->
         </div><! --/col-lg-8 -->
         
-        {% include sidebar.html %}
+        <div class="col-md-4">
+            {% include sidebar.html %}
+        </div>
 
     </div><! --/row -->
 </div><! --/container -->
