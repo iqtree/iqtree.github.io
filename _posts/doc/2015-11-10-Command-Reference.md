@@ -1,11 +1,12 @@
 ---
 layout: userdoc
 title: "Command Reference"
-author: minh
-date:   2015-11-16
+author: jtrifinopoulos
+date:   2015-11-24
 categories:
 - doc
 docid: 12
+icon: book
 doctype: manual
 tags:
 - manual
@@ -110,8 +111,8 @@ Several parameters can be set to e.g. reduce computations:
 | -rcluster | Specify the percentage for the relaxed clustering algorithm ([Lanfear et al., 2014]). This is similar to `--rcluster-percent` option of PartitionFinder. For example, with `-rcluster 10` only the top 10% partition schemes are considered to save computations. |
 | -mset | Specify the name of a program (`raxml`, `phyml` or `mrbayes`) to restrict to only those models supported by the specified program. Alternatively, one can specify a comma-separated list of base models. For example, `-mset WAG,LG,JTT` will restrict model selection to WAG, LG, and JTT instead of all 18 AA models to save computations. |
 | -msub | Specify either `nuclear`, `mitochondrial`, `chloroplast` or `viral` to restrict to those AA models designed for specified source. |
-| -mfreq | Specify a comma-separated list of frequency types for model selection. *DEFAULT: `-mfreq FU,F` for protein models, `-mfreq ,F1x4,F3x4,F` for codon models* |
-| -mrate | Specify a comma-separated list of rate heterogeneity types for model selection. *DEFFAULT: `-mrate E,I,G,I+G` for standard procedure, `-mrate E,I,G,I+G,R` for new selection procedure* |
+| -mfreq | Specify a comma-separated list of frequency types for model selection. *DEFAULT: `-mfreq FU,F` for protein models (FU = AA frequencies given by the protein matrix, F = empirical AA frequencies from the data), `-mfreq ,F1x4,F3x4,F` for codon models* |
+| -mrate | Specify a comma-separated list of rate heterogeneity types for model selection. *DEFAULT: `-mrate E,I,G,I+G` for standard procedure, `-mrate E,I,G,I+G,R` for new selection procedure* |
 | -cmin | Specify minimum number of categories for FreeRate model. *DEFAULT: 2* |
 | -cmax | Specify maximum number of categories for FreeRate model. It is recommended to increase if alignment is long enough. *DEFAULT: 10* |
 | –merit | Specify either `AIC`, `AICc` or `BIC` for the optimality criterion to apply for new procedure. *DEFAULT: all three criteria are considered* |

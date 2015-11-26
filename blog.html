@@ -11,14 +11,19 @@ permalink: /blog/
         {% for post in site.categories['blog'] %}
             <! -- Blog Post -->
             <div class="col-md-6">
-                <a href="{{ post.url | prepend: site.baseurl }}">
-                {% if post.img %}
-                <p><img style="text-align:center;" src="{{ "/assets/img/blog/" | prepend: site.baseurl }}{{ post.img }}"></p>
-                {% endif %}
-                <h3 class="ctitle">{{ post.title }}</h3></a>
-                <p><csmall>{{ post.date | date: "%b %-d, %Y" }}. | By: {{ post.author }}</csmall></p>
-                {{ post.excerpt }}
-                    <div class="hline"></div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="{{ post.url | prepend: site.baseurl }}">
+                        {% if post.img %}
+                        <p><img style="text-align:center;" src="{{ "/assets/img/blog/" | prepend: site.baseurl }}{{ post.img }}"></p>
+                        {% endif %}
+                        <h3 class="panel-title">{{ post.title }}</h3></a>
+                    </div>
+                    <div class="panel-body">
+                        <p><csmall>{{ post.date | date: "%b %-d, %Y" }}. | By: {{ post.author }}</csmall></p>
+                        {{ post.excerpt }}
+                    </div>
+                </div>
             </div><! --/col-md-6 -->
         {% assign counter = counter | plus: 1 %}
         {% endfor %}

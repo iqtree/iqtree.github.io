@@ -6,6 +6,7 @@ date:   2015-11-16
 categories:
 - doc
 docid: 03
+icon: info-circle
 doctype: tutorial
 tags:
 - tutorial

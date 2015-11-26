@@ -10,23 +10,31 @@ permalink: /doc/
 <div class="container mtb">
     <div class="row">
         {% for dt in page.doctypes %}
-        <div class="col-md-6">
+        <div class="col-sm-6">
             {% assign sorted_posts = (site.categories['doc'] | where: 'doctype', dt | sort: 'docid') %}
             {% for post in sorted_posts %}
             <! -- Document -->
-            <div class="row"><div class="col-md-12">
-                <a href="{{ post.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ post.title }}</h3></a>
-                {{ post.excerpt }}
-                <p><a href="{{ post.url | prepend: site.baseurl }}">Read All Here</a> or go directly to a specific section:</p>
-                {% if post.sections %}
-                    <ul>
-                    {% for section in post.sections %}
-                    <li><a href="{{ post.url | prepend: site.baseurl }}/#{{ section.url }}">{{ section.name }}</a></li>
-                    {% endfor %}
-                    </ul>
-                {% endif %}
-                <div class="hline"></div>
-            </div></div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="{{ post.url | prepend: site.baseurl }}">
+                        <h3 class="panel-title">
+                            {% if post.icon %}<i class="fa fa-{{ post.icon }} fa-lg"></i> {% endif %}
+                            {{ post.title }}
+                        </h3>
+                    </a>
+                </div>
+                <div class="panel-body">
+                    {{ post.excerpt }}
+                    <p><a href="{{ post.url | prepend: site.baseurl }}">Read All Here</a> or go directly to a specific section:</p>
+                    {% if post.sections %}
+                        <ul>
+                        {% for section in post.sections %}
+                        <li><a href="{{ post.url | prepend: site.baseurl }}/#{{ section.url }}">{{ section.name }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
             {% endfor %}
         </div>
         {% endfor %}

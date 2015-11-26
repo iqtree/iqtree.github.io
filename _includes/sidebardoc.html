@@ -13,9 +13,17 @@
             {% for post in sorted_posts %}
                 <p>
                     {% if post.title == page.title %}
-                        <i class="fa fa-folder-open"></i> {{ post.title }}
+                        {% if post.icon %}
+                            <i class="fa fa-{{ post.icon }}"></i> 
+                        {% endif %}
+                        {{ post.title }}
                     {% else %}
-                        <a href="{{ post.url | prepend: site.baseurl }}"><i class="fa fa-book"></i> {{ post.title }}</a>
+                        <a href="{{ post.url | prepend: site.baseurl }}">
+                            {% if post.icon %}
+                                <i class="fa fa-{{ post.icon }}"></i> 
+                            {% endif %}
+                            {{ post.title }}
+                        </a>
                     {% endif %}
                 </p>
                 {% if post.title == page.title %}

@@ -6,6 +6,7 @@ date:   2015-11-16
 categories:
 - doc
 docid: 10
+icon: book
 doctype: manual
 tags:
 - manual
