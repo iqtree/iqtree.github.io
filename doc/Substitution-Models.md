@@ -61,7 +61,7 @@ IQ-TREE includes all common DNA models (ordered by complexity):
 | HKY or HKY85 | Unequal transition/transversion rates and unequal base freq. ([Hasegawa, Kishino and Yano, 1985]). | 010010 |
 | TN or TN93 | Like `HKY` but unequal purine/pyrimidine rates ([Tamura and Nei, 1993]). | 010020 |
 | TNe | Like `TN` but equal base freq. | 010020 |
-| K81 or K3P | Three substitution types model and equal base freq. ([Kimura, 1981]). | 
+| K81 or K3P | Three substitution types model and equal base freq. ([Kimura, 1981]). | 012210 |
 | K81u | Like `K81` but unequal base freq. | 012210 |
 | TPM2 | AC=AT, AG=CT, CG=GT and equal base freq. | 121020 |
 | TPM2u | Like `TPM2` but unequal base freq. | 121020 |
