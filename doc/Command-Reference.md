@@ -1,5 +1,6 @@
 <!--jekyll
 docid: 12
+icon: book
 doctype: manual
 tags:
 - manual

@@ -1,5 +1,6 @@
 <!--jekyll 
 docid: 02
+icon: info-circle
 doctype: tutorial
 tags:
 - tutorial
