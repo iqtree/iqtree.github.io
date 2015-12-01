@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Substitution Models"
 author: minh
-date:   2015-11-16
+date:   2015-12-01
 categories:
 - doc
 docid: 10
@@ -59,34 +59,40 @@ DNA models
 
 IQ-TREE includes all common DNA models (ordered by complexity):
 
-| Model | Explanation |
-|-------|-------------|
-| JC or JC69 | Equal substitution rates and equal base frequencies ([Jukes and Cantor, 1969]). |
-| F81 | Equal rates but unequal base freq. ([Felsenstein, 1981]). |
-| K80 or K2P | Unequal transition/transversion rates and equal base freq. ([Kimura, 1980]). |
-| HKY or HKY85 | Unequal transition/transversion rates and unequal base freq. ([Hasegawa, Kishino and Yano, 1985]). |
-| TN or TN93 | Like `HKY` but unequal purine/pyrimidine rates ([Tamura and Nei, 1993]). |
-| TNe | Like `TN` but equal base freq. |
-| K81 or K3P | Three substitution types model and equal base freq. ([Kimura, 1981]). |
-| K81u | Like `K81` but unequal base freq. |
-| TPM2 | AC=AT, AG=CT, CG=GT and equal base freq. |
-| TPM2u | Like `TPM2` but unequal base freq. |
-| TPM3 | AC=CG, AG=CT, AT=GT and equal base freq. |
-| TPM3u | Like `TPM3` but unequal base freq. |
-| TIM | Transition model, AC=GT, AT=CG and unequal base freq. |
-| TIMe | Like `TIM` but equal base freq. |
-| TIM2 | AC=AT, CG=GT and unequal base freq. |
-| TIM2e | Like `TIM2` but equal base freq. |
-| TIM3 | AC=CG, AT=GT and unequal base freq. |
-| TIM3e | Like `TIM3` but equal base freq. |
-| TVM | Transversion model, AG=CT and unequal base freq. |
-| TVMe | Like `TVM` but equal base freq. |
-| SYM | Symmetric model with unequal rates and equal base freq. ([Zharkihk, 1994]). |
-| GTR | General time reversible model with unequal rates and unequal base freq. ([Tavare, 1986]). |
+| Model | Explanation | Code |
+|-------|-------------|------|
+| JC or JC69 | Equal substitution rates and equal base frequencies ([Jukes and Cantor, 1969]). | 000000 |
+| F81 | Equal rates but unequal base freq. ([Felsenstein, 1981]). | 000000 |
+| K80 or K2P | Unequal transition/transversion rates and equal base freq. ([Kimura, 1980]). | 010010 |
+| HKY or HKY85 | Unequal transition/transversion rates and unequal base freq. ([Hasegawa, Kishino and Yano, 1985]). | 010010 |
+| TN or TN93 | Like `HKY` but unequal purine/pyrimidine rates ([Tamura and Nei, 1993]). | 010020 |
+| TNe | Like `TN` but equal base freq. | 010020 |
+| K81 or K3P | Three substitution types model and equal base freq. ([Kimura, 1981]). | 
+| K81u | Like `K81` but unequal base freq. | 012210 |
+| TPM2 | AC=AT, AG=CT, CG=GT and equal base freq. | 121020 |
+| TPM2u | Like `TPM2` but unequal base freq. | 121020 |
+| TPM3 | AC=CG, AG=CT, AT=GT and equal base freq. | 120120 |
+| TPM3u | Like `TPM3` but unequal base freq. | 120120 |
+| TIM | Transition model, AC=GT, AT=CG and unequal base freq. | 012230 |
+| TIMe | Like `TIM` but equal base freq. | 012230 |
+| TIM2 | AC=AT, CG=GT and unequal base freq. | 121030 |
+| TIM2e | Like `TIM2` but equal base freq. | 121030 |
+| TIM3 | AC=CG, AT=GT and unequal base freq. | 120130 |
+| TIM3e | Like `TIM3` but equal base freq. | 120130 |
+| TVM | Transversion model, AG=CT and unequal base freq. | 412310 |
+| TVMe | Like `TVM` but equal base freq. | 412310 |
+| SYM | Symmetric model with unequal rates and equal base freq. ([Zharkihk, 1994]). | 123450 |
+| GTR | General time reversible model with unequal rates and unequal base freq. ([Tavare, 1986]). | 123450 |
 
-Moreover, IQ-TREE supports arbitrarily restricted DNA model via a 6-digit code. The 6 digits define the equality for 6 nucleotide substitution rates: A-C, A-G, A-T, C-G, C-T and G-T. `010010` means that A-G rate is equal to C-T rate and the remaining four substitution rates are equal. Thus, `010010` is equivalent to K80 or HKY model (depending on whether base frequencies are equal or not). `123450` is equivalent to GTR or SYM model as there is no restriction defined by such 6-digit code.
+The last column `Code` is a 6-digit code definining the equality constraints for 6 *relative* substitution rates: A-C, A-G, A-T, C-G, C-T and G-T. `010010` means that A-G rate is equal to C-T rate (corresponding to `1` in the code) and the remaining four substitution rates are equal (corresponding to `0` in the code). Thus, `010010` is equivalent to K80 or HKY model (depending on whether base frequencies are equal or not). `123450` is equivalent to GTR or SYM model as there is no restriction defined by such 6-digit code.
 
-If users want to fix model parameters, append the model name with a curly bracket `{`, followed by the comma-separated rate parameters, and a closing curly bracket `}`. For example, `GTR{1.0,2.0,1.5,3.7,2.8,1.0}` specifies 6 substitution rates A-C=1.0, A-G=2.0, A-T=1.5, C-G=3.7, C-T=2.8 and G-T=1.0.
+Moreover, IQ-TREE supports arbitrarily restricted DNA model via a 6-digit code, e.g. with option `-m 120120+G`.
+
+>**NOTICE**: The last digit in this code must always be `0`. It corresponds to G-T rate which is always equal to 1.0 for convenience because the rates are relative.
+
+If users want to fix model parameters, append the model name with a curly bracket `{`, followed by the comma-separated rate parameters, and a closing curly bracket `}`. For example, `GTR{1.0,2.0,1.5,3.7,2.8,1.0}` specifies 6 substitution rates A-C=1.0, A-G=2.0, A-T=1.5, C-G=3.7, C-T=2.8 and G-T=1.0. 
+
+Another example is for model `TIM2` that has the 6-digit code `121030`. Thus, `TIM2{4.39,5.30,12.1}` means that A-C=A-T=4.39 (coded `1`), A-G=5.30 (coded `2`), C-T=12.1 (coded `3`) and C-G=G-T=1.0 (coded `0`). This is, in turn, equivalent to specifying `GTR{4.39,5.30,4.39,1.0,12.1,1.0}`.
 
 
 #### Base frequencies

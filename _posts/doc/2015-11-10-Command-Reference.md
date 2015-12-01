@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Command Reference"
-author: jtrifinopoulos
-date:   2015-11-24
+author: minh
+date:   2015-12-01
 categories:
 - doc
 docid: 12
