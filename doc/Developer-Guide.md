@@ -22,6 +22,9 @@ Alignment
 The `Alignment` class stores the data as a `vector` of `Pattern`. Each `Pattern` is in turn a `string` representing the characters across the sequences at an alignment site, with a `frequency` of occurrences in the `Alignment` (from header file [`pattern.h`](https://github.com/Cibiv/IQ-TREE/blob/master/pattern.h)):
 
 ```C++
+/**
+	Site-patterns in a multiple sequence alignment
+*/
 class Pattern : public string {
 public:
 	/** 
@@ -48,6 +51,9 @@ The rationale for storing the data this way (instead of storing a set of sequenc
 As noted above, the `Alignment` class is defined as (from header file [alignment.h](https://github.com/Cibiv/IQ-TREE/blob/master/alignment.h)): 
 
 ```C++
+/**
+    Multiple Sequence Alignment. Stored by a vector of site-patterns
+*/
 class Alignment : public vector<Pattern> {
 public:
     /**
@@ -67,3 +73,6 @@ public:
 
 };
 ```
+
+>**NOTICE**: Please follow the commenting style of the code when declaring new components (classes, functions or variables). The comments should start with `/**`, followed by a concise description of the new component, and ended with `*/`. If component is a function, explain the purpose of each parameter with `@param` keyword, followed by the parameter name and a short description. If the function returns a parameter as output, append `(OUT)` right after the parameter name. If the function returns a value, add `@return` followed by a short description of the returned value meaning.
+
