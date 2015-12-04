@@ -1,15 +1,15 @@
 <!--jekyll 
 docid: 02
-icon: info-circle
-doctype: tutorial
+icon: codepen
+doctype: manual
 tags:
-- tutorial
+- manual
 sections:
 - name: Alignment
   url: alignment
 jekyll-->
 
-This guide gives developers an overview of IQ-TREE software design, data structure and discusses possibility of implementing new models into IQ-TREE code.
+This guide gives developers an overview of IQ-TREE software design, data structures and discusses possibility of incorporating new models into IQ-TREE.
 <!--more-->
 
 To achieve both high performance and flexibility, IQ-TREE software has been entirely written in object oriented C++. Thus, it faciliates extending with new sequence data types or new models. IQ-TREE code consists of C++ *classes*, most of which inherits from three basal classes: `Alignment`, `ModelSubst` and `PhyloTree` to handle sequence alignments, models of substitution and phylogenetic trees, respectively. In the following we introduce these basal classes.
