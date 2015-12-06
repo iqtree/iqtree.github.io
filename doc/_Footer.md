@@ -1,1 +1,1 @@
-IQ-TREE code is developed by [Lam Tung Nguyen](http://www.cibiv.at/~tung/), [Olga Chernomor](http://www.cibiv.at/~olga/), [Heiko A. Schmidt](http://www.cibiv.at/~hschmidt/) and [Bui Quang Minh](http://www.cibiv.at/~minh/) with code contributions by [Thomas Wong](https://scholar.google.com/citations?user=zZT0fKUAAAAJ).
+Copyright (c) 2010-2016 [IQ-TREE development team](http://www.cibiv.at/software/iqtree/).
