@@ -60,8 +60,10 @@ public:
 
 >**NOTICE**: Please follow the commenting style of the code when declaring new components (classes, functions or variables) like the example above. That way, the source code documentation can be generated with tools like [Doxygen](http://doxygen.org/). See [Doxygen commenting manual](http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html) for more details.
 
-ModelSubst class (model of substitution)
------------------------------------------
+Model of substitution
+---------------------
+
+### `ModelSubst`
 
 `ModelSubst` is the base class for all substitution models implemented in IQ-TREE. It implements the basic Juke-Cantor-type model (equal substitution rates and equal state frequencies) that works for all data type. `ModelSubst` class declares a number of `virtual` methods, that need to be overriden when implementing a new model, for example (from header file [model/modelsubst.h](https://github.com/Cibiv/IQ-TREE/blob/master/model/modelsubst.h)): 
 
@@ -89,10 +91,42 @@ public:
 
 As an example, the method `getNDim()` should return the number of free parameters of the model, which is 0 for the default JC-type model.
 
+### `ModelGTR`
+
+`ModelGTR` class extends `ModelSubst` and implements the general time reversible model. `ModelGTR` is the base class for all models currently used in IQ-TREE. Some important ingredients of `ModelGTR` (from [model/modelgtr.h](https://github.com/Cibiv/IQ-TREE/blob/master/model/modelgtr.h)):
+
+```C++
+/**
+    General Time Reversible (GTR) model of substitution.
+    This works for all kind of data, not only DNA
+*/
+class ModelGTR : public ModelSubst, public EigenDecomposition
+{
+public:
+	/**
+		constructor
+		@param tree associated tree for the model
+	*/
+    ModelGTR(PhyloTree *tree, bool count_rates = true);
+
+	/**
+		@return the number of dimensions
+	*/
+	virtual int getNDim();
+    ...
+
+protected:
+    /**
+		rates between pairs of states of the unit rate matrix Q.
+		In order A-C, A-G, A-T, C-G, C-T (rate G-T = 1 always)
+	*/
+	double *rates;
+    ....
+};
+```
 
 PhyloTree class (phylogenetic tree)
 -----------------------------------
 
 `PhyloTree` is the base class for phylogenetic trees.
-
 
