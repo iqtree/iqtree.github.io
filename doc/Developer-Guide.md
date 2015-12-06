@@ -16,8 +16,8 @@ To achieve both high performance and flexibility, IQ-TREE software has been enti
 
 >**TIP**: IQ-TREE extensively uses *Standard Template Library (STL)* in C++. Thus, be first familiar with STL and fundamental STL data structures like `string`, `vector`, `set` and `map`.
 
-Alignment
----------
+Alignment class
+---------------
 
 The `Alignment` class stores the data as a `vector` of `Pattern`. Each `Pattern` is in turn a `string` representing the characters across the sequences at an alignment site, with a `frequency` of occurrences in the `Alignment` (from header file [`pattern.h`](https://github.com/Cibiv/IQ-TREE/blob/master/pattern.h)):
 
@@ -59,3 +59,40 @@ public:
 ```
 
 >**NOTICE**: Please follow the commenting style of the code when declaring new components (classes, functions or variables) like the example above. That way, the source code documentation can be generated with tools like [Doxygen](http://doxygen.org/). See [Doxygen commenting manual](http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html) for more details.
+
+ModelSubst class (model of substitution)
+-----------------------------------------
+
+`ModelSubst` is the base class for all substitution models implemented in IQ-TREE. It implements the basic Juke-Cantor-type model (equal substitution rates and equal state frequencies) that works for all data type. `ModelSubst` class declares a number of `virtual` methods, that need to be overriden when implementing a new model, for example (from header file [model/modelsubst.h](https://github.com/Cibiv/IQ-TREE/blob/master/model/modelsubst.h)): 
+
+```C++
+/**
+    Substitution model abstract class
+*/
+class ModelSubst: public Optimization
+{
+public:
+	/**
+		constructor
+		@param nstates number of states, e.g. 4 for DNA, 20 for proteins.
+	*/
+    ModelSubst(int nstates);
+
+	/**
+		@return the number of dimensions
+	*/
+	virtual int getNDim() { return 0; }
+
+    ...
+};
+```
+
+As an example, the method `getNDim()` should return the number of free parameters of the model, which is 0 for the default JC-type model.
+
+
+PhyloTree class (phylogenetic tree)
+-----------------------------------
+
+`PhyloTree` is the base class for phylogenetic trees.
+
+
