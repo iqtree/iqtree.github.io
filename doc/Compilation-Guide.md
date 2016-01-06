@@ -89,6 +89,7 @@ Compiling under Linux
     
 This creates an executable `iqtree` or `iqtree-omp`. It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree`.
 
+>**NOTICE**: The above guide typically compiles IQ-TREE with `gcc`. If you have Clang installed and want to compile with Clang, the compilation will be similar to Mac OS X like below.
 
 Compiling under Mac OS X
 ------------------------
@@ -115,6 +116,8 @@ Compiling under Windows
 * Please first install TDM-GCC (a GCC version for Windows) from <http://tdm-gcc.tdragon.net>.
 * Then install Clang for Windows from <http://clang.llvm.org>.
 
+>**NOTICE**: Although IQ-TREE can also be built with TDM-GCC, the executable does not run properly due to stack alignment issue and the `libgomp` library causes downgraded performance for the OpenMP version. Thus, it is recommended to compile IQ-TREE with Clang.
+
 1. Open Command Prompt. 
 2. Change to the source code folder:
 
@@ -131,7 +134,7 @@ Compiling under Windows
 
         cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_MAKE_PROGRAM=mingw32-make ..
 
-    To build the multicore version please add `-DIQTREE_FLAGS=omp` to the cmake command. Note that the make program shipped with TDM-GCC is called `mingw32-make`, thus needed to specify like above.
+    To build the multicore version please add `-DIQTREE_FLAGS=omp` to the cmake command. Note that the make program shipped with TDM-GCC is called `mingw32-make`, thus needed to specify like above. You can also copy `mingw32-make` to `make` to simplify this step.
 
 5. Compile source code with:
 
