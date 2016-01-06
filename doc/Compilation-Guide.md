@@ -48,7 +48,7 @@ Downloading source code
 
 Download the latest source code of IQ-TREE in either `zip` or `tar.gz` from:
 
-    https://github.com/Cibiv/IQ-TREE/releases/latest
+<https://github.com/Cibiv/IQ-TREE/releases/latest>
 
 Alternatively, you can also clone the source code from github with:
 
