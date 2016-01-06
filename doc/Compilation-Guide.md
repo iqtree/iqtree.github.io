@@ -38,7 +38,7 @@ For advanced users to compile IQ-TREE source code.
 General requirements
 --------------------
 
-* Make sure that a C++ compiler is installed. IQ-TREE was successfully built with GCC, Clang, MS Visual Studio and Intel C++ compiler. 
+* Make sure that a C++ compiler is installed. IQ-TREE was successfully built with GCC (ver. 4.6 at least), Clang, MS Visual Studio and Intel C++ compiler. 
 * Install [CMake](http://www.cmake.org) if not yet available in your system. 
 * *(Optional)* Install [git](https://git-scm.com) if you want to clone source code from [IQ-TREE GitHub repository](https://github.com/Cibiv/IQ-TREE).
 * *(Optional)* If you want to compile the multicore version, make sure that the compiler supports [OpenMP](http://openmp.org/) and that the OpenMP library was installed.
@@ -46,25 +46,15 @@ General requirements
 Downloading source code
 -----------------------
 
-Download the latest source code of IQ-TREE release version 1.3.10 (October 16, 2015) in either `zip` or `tar.gz`:
+Download the latest source code of IQ-TREE in either `zip` or `tar.gz` from:
 
-* [iqtree-1.3.10-Source.zip](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-Source.zip)
-* [iqtree-1.3.10-Source.tar.gz](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-Source.tar.gz)
+    https://github.com/Cibiv/IQ-TREE/releases/latest
 
 Alternatively, you can also clone the source code from github with:
 
-    git clone --recursive https://github.com/Cibiv/IQ-TREE.git
+    git clone https://github.com/Cibiv/IQ-TREE.git
 
-Please note that `--recursive` is necessary to download the submodule ([the phylogenetic likelihood library](http://www.libpll.org/)) used by IQ-TREE. If not, you have to run
-
-    git submodule init
-    git submodule update
-    
-inside source code folder just cloned from github to download the submodule.
-
-Please find below separate compilation guide for [Linux](#compiling-under-linux), [Mac OS X](#compiling-under-mac-os-x), and [Windows](#compiling-under-windows) as well as for [32-bit version](#compiling-32-bit-version).
-
->**NOTE**: Typically a 64-bit IQ-TREE version is built and recommended! The 32-bit version has several restriction like maximal RAM usage of 2GB and no AVX support, thus not suitable to analyze large data sets.
+Please find below separate compilation guide fors [Linux](#compiling-under-linux), [Mac OS X](#compiling-under-mac-os-x), and [Windows](#compiling-under-windows) as well as for [32-bit version](#compiling-32-bit-version).
 
 Compiling under Linux
 ---------------------
@@ -90,41 +80,73 @@ Compiling under Linux
 5. Compile source code with `make`:
 
         make
+        
+    You can speed up by specifying the number of CPU cores to use with `make` by e.g.:
 
-This creates an executable `iqtree` or `iqtree-omp` (`iqtree.exe` or `iqtree-omp.exe` under Windows). It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree`.
+        make -j4
+
+    to use 4 cores instead of the default 1 core.
+    
+This creates an executable `iqtree` or `iqtree-omp`. It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree`.
 
 
 Compiling under Mac OS X
 ------------------------
 
-* Make sure that `clang` compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
-* Find the path to the CMake executable, which is typically `/Applications/CMake.app/Contents/bin/cmake`.
+* Make sure that Clang compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
+* Find the path to the CMake executable, which is typically `/Applications/CMake.app/Contents/bin/cmake`. For later convenience, please create a symbolic link `cmake` to this cmake executable, so that cmake can be invoked from the Terminal by simply entering `cmake`.
 
-The steps to compile IQ-TREE are similar to Linux (see above), except that step 4 has to be changed:
-
-4. Configure source code with CMake (please change `cmake` to absolute path like `/Applications/CMake.app/Contents/bin/cmake`):
+The steps to compile IQ-TREE are similar to Linux (see above), except that you need to specify `clang` as compiler when configuring source code with CMake (step 4):
 
     cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..
 
-    To compile the multicore version, the default clang unfortunately does not support OpenMP (which might change in the near future). However, you can obtain and install OpenMP/Clang from <https://clang-omp.github.io> and the OpenMP library from <http://openmp.llvm.org>. After that you can run cmake with (assuming that `clang-omp` points to the installed OpenMP/Clang):
+(please change `cmake` to absolute path like `/Applications/CMake.app/Contents/bin/cmake`).
+
+To compile the multicore version, the default installed Clang unfortunately does not support OpenMP (which might change in the near future). However, the latest Clang 3.7 supports OpenMP, which can be downloaded from <http://clang.llvm.org>. After that you can run CMake with:
 
     cmake -DCMAKE_C_COMPILER=clang-omp -DCMAKE_CXX_COMPILER=clang-omp++ -DIQTREE_FLAGS=omp ..
+
+(assuming that `clang-omp` and `clang-omp++` points to the installed Clang 3.7).
 
 
 Compiling under Windows
 -----------------------
 
-The sequential IQ-TREE version was successfully compiled with TDM-GCC from <http://tdm-gcc.tdragon.net>. Since TDM-GCC is essentially a GCC version for Windows, the compiling steps are like under Linux, except that for step 1, you need to open the Terminal called `TDM-GCC-64`, which can be assessed from the Start menu.
+* Please first install TDM-GCC (a GCC version for Windows) from <http://tdm-gcc.tdragon.net>.
+* Then install Clang for Windows from <http://clang.llvm.org>.
 
-To build the multicore version, please switch to MS Visual Studio and Intel C++ compiler because somehow TDM-GCC caused downgraded performance under our tests. Assuming that you have installed MS Visual Studio 2013 and Intel Parallel Studio XE 2015. Then change the CMake step to:
+1. Open Command Prompt. 
+2. Change to the source code folder:
 
-    cmake -G "Visual Studio 12 Win64" -T "Intel C++ Compiler XE 15.0" -DIQTREE_FLAGS=omp ..
+        cd PATH_TO_EXTRACTED_SOURCE_CODE
 
-This will create solution and projects files for MS Visual Studio inside the build folder. Now exit the command prompt, open Windows explorer and navigate into this build folder. Double-click file `iqtree.sln` (so-called Visual Studio solution file). This will open MS Visual Studio and load IQ-TREE projects. Build the solution (Menu BUILD -> Build solution or press F7). This creates an executable Release\iqtree.exe. This executable and the `.dll` files can be copied to
-your system search path such that IQ-TREE can be invoked from the command line by simply entering `iqtree`.
+    Please note that Windows uses back-slash (`\`) instead of slash (`/`) as path name separator.
+
+3. Create a subfolder, say, `build` and go into this subfolder:
+
+        mkdir build
+        cd build
+
+4. Configure source code with CMake:
+
+        cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_MAKE_PROGRAM=mingw32-make ..
+
+    To build the multicore version please add `-DIQTREE_FLAGS=omp` to the cmake command. Note that the make program shipped with TDM-GCC is called `mingw32-make`, thus needed to specify like above.
+
+5. Compile source code with:
+
+        mingw32-make
+        
+    or
+    
+        mingw32-make -j4
+        
+    to use 4 cores instead of only 1.
 
 
 Compiling 32-bit version
 ------------------------
 
-The compilation guides above will generate 64-bit binaries. To compile the 32-bit version instead, simply add `m32` into `IQTREE_FLAGS` of the cmake command. That means, `-DIQTREE_FLAGS=m32` to build the 32-bit sequential version and `-DIQTREE_FLAGS="omp m32"` to build the 32-bit multicore version.
+>**NOTE**: Typically a 64-bit IQ-TREE version is built and recommended! The 32-bit version has several restriction like maximal RAM usage of 2GB and no AVX support, thus not suitable to analyze large data sets.
+
+To compile the 32-bit version instead, simply add `m32` into `IQTREE_FLAGS` of the cmake command. That means, `-DIQTREE_FLAGS=m32` to build the 32-bit sequential version and `-DIQTREE_FLAGS="omp m32"` to build the 32-bit multicore version.
