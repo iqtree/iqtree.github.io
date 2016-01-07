@@ -5,8 +5,6 @@ doctype: tutorial
 tags:
 - tutorial
 sections:
-  - name: New model selection
-    url: new-model-selection
   - name: Tree topology tests
     url: tree-topology-tests
   - name: User-defined models
@@ -36,34 +34,6 @@ Recommended for experienced users to explore more features.
 
 
 To get started, please read the [Beginner's Tutorial](Tutorial) first if not done so yet.
-
-
-New model selection
--------------------
-
-A [previous tutorial](Tutorial#choosing-the-right-substitution-model) gave a quick hint on the use of `-m TESTONLY` to automatically select the best-fit model for the data before performing tree reconstruction. This "standard" procedure includes four rate heterogeneity types: homogeneity, `+I`, `+G` and `+I+G`. However, there is no reason to believe that the evolutionary rates follow a Gamma distribution. Therefore, we have recently introduced the FreeRate (`+R`) model ([Yang, 1995]) into IQ-TREE. The `+R` model generalizes the Gamma model by relaxing the "Gamma constraints", where the site rates and proportions are inferred independently from the data. 
-
-Therefore, we recommend a new testing procedure that includes `+R` as the 5th rate heterogeneity type. This can be invoked simply with e.g.:
-
-    iqtree -s example.phy -m TESTNEWONLY
-
-It will also automatically determine the optimal number of rate categories. By default, the maximum number of categories is 10 due to computational reasons. If the sequences of your alignment are long enough, then you can increase this upper limit with the `cmax` option:
-
-    iqtree -s example.phy -m TESTNEWONLY -cmax 15
-
-will test `+R2` up to `+R15` instead of at most `+R10`.
-
-For partitioned data, a [previous tutorial](Tutorial#choosing-the-right-partitioning-scheme) gave a quick hint on the use of `-m TESTMERGEONLY` to find the best partitioning scheme. Likewise, our new testing procedure also introduces a new option:
-
-    iqtree -s example.phy -sp example.nex -m TESTNEWMERGEONLY
-
-that includes `+R` into the candidate rate heterogeneity types.
-
-To reduce computational burden, one can use the option `-mset` to restrict the testing procedure to a subset of base models instead of testing the entire set of all available models. For example, `-mset WAG,LG` will test only models like `WAG+...` or `LG+...`. Another useful option in this respect is `-msub` for AA data sets. With `-msub nuclear` only general AA models are included, whereas with `-msub viral` only AA models for viruses are included.
-
-Finally, if you have enough computational resource, you can perform a thorough and more accurate analysis that invokes a full tree search for each model considered via the `-mtree option`:
-
-    iqtree -s example.phy -m TESTNEWONLY -mtree
 
 
 Tree topology tests

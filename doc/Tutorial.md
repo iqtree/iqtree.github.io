@@ -9,6 +9,8 @@ sections:
   url: first-running-example
 - name: Model selection
   url: choosing-the-right-substitution-model
+- name: New model selection
+  url: new-model-selection
 - name: Codon models
   url: codon-models
 - name: Binary, Morphological, SNPs
@@ -114,6 +116,27 @@ Sometimes you only want to find the best-fit model without doing tree reconstruc
     iqtree -s example.phy -m TESTONLY
 
 Here, IQ-TREE will stop after finishing the model selection. Note that if the file `*.model` exists and is correct, IQ-TREE will reuse the computed log-likelihoods  to speed up the model selection procedure. 
+
+New model selection
+-------------------
+
+The previous section described the "standard" model selection to automatically select the best-fit model for the data before performing tree reconstruction. This "standard" procedure includes four rate heterogeneity types: homogeneity, `+I`, `+G` and `+I+G`. However, there is no reason to believe that the evolutionary rates follow a Gamma distribution. Therefore, we have recently introduced the FreeRate (`+R`) model ([Yang, 1995]) into IQ-TREE. The `+R` model generalizes the Gamma model by relaxing the "Gamma constraints", where the site rates and proportions are inferred independently from the data. 
+
+Therefore, we recommend a new testing procedure that includes `+R` as the 5th rate heterogeneity type. This can be invoked simply with e.g.:
+
+    iqtree -s example.phy -m TESTNEWONLY
+
+It will also automatically determine the optimal number of rate categories. By default, the maximum number of categories is 10 due to computational reasons. If the sequences of your alignment are long enough, then you can increase this upper limit with the `cmax` option:
+
+    iqtree -s example.phy -m TESTNEWONLY -cmax 15
+
+will test `+R2` up to `+R15` instead of at most `+R10`.
+
+To reduce computational burden, one can use the option `-mset` to restrict the testing procedure to a subset of base models instead of testing the entire set of all available models. For example, `-mset WAG,LG` will test only models like `WAG+...` or `LG+...`. Another useful option in this respect is `-msub` for AA data sets. With `-msub nuclear` only general AA models are included, whereas with `-msub viral` only AA models for viruses are included.
+
+Finally, if you have enough computational resource, you can perform a thorough and more accurate analysis that invokes a full tree search for each model considered via the `-mtree` option:
+
+    iqtree -s example.phy -m TESTNEWONLY -mtree
 
 
 Codon models
@@ -312,6 +335,12 @@ To reduce the computational burden IQ-TREE implements the *relaxed hierarchical 
     iqtree -sp example.nex -m TESTONLYMERGE -rcluster 10
 
 to only examine the top 10% partition merging schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
+
+Finally, it is recommended to use the [new testing procedure](new-model-selection):
+
+    iqtree -s example.phy -sp example.nex -m TESTNEWMERGEONLY
+
+that additionally includes the FreeRate model (`+R`) into the candidate rate heterogeneity types.
 
 
 Ultrafast bootstrapping with partition model
