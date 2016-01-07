@@ -23,7 +23,6 @@ Recommended for experienced users to explore more features.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [New model selection](#new-model-selection)
 - [Tree topology tests](#tree-topology-tests)
 - [User-defined substitution models](#user-defined-substitution-models)
 - [Consensus construction and bootstrap value assignment](#consensus-construction-and-bootstrap-value-assignment)
