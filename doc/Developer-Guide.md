@@ -36,7 +36,7 @@ Alignment class
 
 The `Alignment` class stores the data as a `vector` of `Pattern`. Each `Pattern` is in turn a `string` representing the characters across the sequences at an alignment site, with a `frequency` of occurrences in the `Alignment` (from header file [`pattern.h`](https://github.com/Cibiv/IQ-TREE/blob/master/pattern.h)):
 
-~~~
+~~~cpp
 /**
 	Site-patterns in a multiple sequence alignment
 */
@@ -55,7 +55,7 @@ The rationale for storing the data this way (instead of storing a set of sequenc
 
 As noted above, the `Alignment` class is defined as (from header file [alignment.h](https://github.com/Cibiv/IQ-TREE/blob/master/alignment.h)): 
 
-~~~
+~~~cpp
 /**
     Multiple Sequence Alignment. Stored by a vector of site-patterns
 */
@@ -82,7 +82,7 @@ Model of substitution
 
 `ModelSubst` is the base class for all substitution models implemented in IQ-TREE. It implements the basic Juke-Cantor-type model (equal substitution rates and equal state frequencies) that works for all data type. `ModelSubst` class declares a number of `virtual` methods, that need to be overriden when implementing a new model, for example (from header file [model/modelsubst.h](https://github.com/Cibiv/IQ-TREE/blob/master/model/modelsubst.h)): 
 
-~~~
+~~~cpp
 /**
     Substitution model abstract class
 */
@@ -110,7 +110,7 @@ As an example, the method `getNDim()` should return the number of free parameter
 
 `ModelGTR` class extends `ModelSubst` and implements the general time reversible model. `ModelGTR` is the base class for all models currently used in IQ-TREE. Some important ingredients of `ModelGTR` (from [model/modelgtr.h](https://github.com/Cibiv/IQ-TREE/blob/master/model/modelgtr.h)):
 
-~~~
+~~~cpp
 /**
     General Time Reversible (GTR) model of substitution.
     This works for all kind of data, not only DNA
