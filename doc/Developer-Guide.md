@@ -6,13 +6,26 @@ tags:
 - manual
 sections:
 - name: Alignment
-  url: alignment
+  url: alignment-class
 jekyll-->
 
 This guide gives developers an overview of IQ-TREE software design, data structures and discusses possibility to incorporate new models into IQ-TREE.
 <!--more-->
 
 >**NOTICE**: This guide is still under preparation, thus the contents may change frequently.
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Alignment class](#alignment-class)
+- [Model of substitution](#model-of-substitution)
+  - [ModelSubst](#modelsubst)
+  - [ModelGTR](#modelgtr)
+- [PhyloTree class (phylogenetic tree)](#phylotree-class-phylogenetic-tree)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 To achieve both high performance and flexibility, IQ-TREE software has been entirely written in object oriented C++. Thus, it faciliates extending with new sequence data types or new models. IQ-TREE code consists of C++ *classes*, most of which inherits from three basal classes: `Alignment`, `ModelSubst` and `PhyloTree` to handle sequence alignments, models of substitution and phylogenetic trees, respectively. In the following we introduce these basal classes.
 
@@ -65,7 +78,7 @@ public:
 Model of substitution
 ---------------------
 
-### `ModelSubst`
+### ModelSubst
 
 `ModelSubst` is the base class for all substitution models implemented in IQ-TREE. It implements the basic Juke-Cantor-type model (equal substitution rates and equal state frequencies) that works for all data type. `ModelSubst` class declares a number of `virtual` methods, that need to be overriden when implementing a new model, for example (from header file [model/modelsubst.h](https://github.com/Cibiv/IQ-TREE/blob/master/model/modelsubst.h)): 
 
@@ -93,7 +106,7 @@ public:
 
 As an example, the method `getNDim()` should return the number of free parameters of the model, which is 0 for the default JC-type model.
 
-### `ModelGTR`
+### ModelGTR
 
 `ModelGTR` class extends `ModelSubst` and implements the general time reversible model. `ModelGTR` is the base class for all models currently used in IQ-TREE. Some important ingredients of `ModelGTR` (from [model/modelgtr.h](https://github.com/Cibiv/IQ-TREE/blob/master/model/modelgtr.h)):
 
