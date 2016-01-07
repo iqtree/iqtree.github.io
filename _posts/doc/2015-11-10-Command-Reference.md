@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Command Reference"
 author: minh
-date:   2015-12-01
+date:   2016-01-07
 categories:
 - doc
 docid: 12
@@ -127,7 +127,7 @@ Specifying substitution models
 
 `-m` is a powerful option to specify substitution models, state frequency and rate heterogeneity type. The general syntax is:
 
-    `-m MODEL+FreqType+RateType`
+    -m MODEL+FreqType+RateType
 
 where `MODEL` is a model name, `+FreqType` (optional) is the frequency type and `+RateType` (optional) is the rate heterogeneity type. 
 
@@ -162,7 +162,7 @@ The following `RateType`s are supported:
 
 See [Rate heterogeneity across sites](../Substitution-Models/#rate-heterogeneity-across-sites) for more details.
 
-Optionally, one can specify [Ascertainment bias correction](../Substitution-Models/#ascertainment-bias-correction) by appending `+ASC` to the model string. [Advanced mixture models](../Complex-Models/#mixture-models) can also be specified via `MIX{...}` and `FMIX{...}` syntax. Option `mwopt` can be used to turn on optimizing weights of mixture models.
+Optionally, one can specify [Ascertainment bias correction](../Substitution-Models/#ascertainment-bias-correction) by appending `+ASC` to the model string. [Advanced mixture models](../Complex-Models/#mixture-models) can also be specified via `MIX{...}` and `FMIX{...}` syntax. Option `-mwopt` can be used to turn on optimizing weights of mixture models.
 
 
 Tree search parameters

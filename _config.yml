@@ -9,6 +9,11 @@ url: "http://www.cibiv.at"
 
 # Build settings
 markdown: kramdown
+kramdown:
+  enable_coderay: true
+  syntax_highlighter: coderay
+  syntax_highlighter_opts: { line_numbers: false }
+
 permalink: /:categories/:title
 excerpt_separator: <!--more--> #use this in posts to define how long the excerpt of the post (that is shown on the Blog page) is
 
