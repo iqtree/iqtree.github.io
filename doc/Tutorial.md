@@ -337,7 +337,7 @@ To reduce the computational burden IQ-TREE implements the *relaxed hierarchical 
 
 to only examine the top 10% partition merging schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
 
-Finally, it is recommended to use the [new testing procedure](new-model-selection):
+Finally, it is recommended to use the [new testing procedure](#new-model-selection):
 
     iqtree -s example.phy -sp example.nex -m TESTNEWMERGEONLY
 
