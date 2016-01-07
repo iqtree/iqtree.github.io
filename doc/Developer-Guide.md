@@ -23,7 +23,7 @@ Alignment class
 
 The `Alignment` class stores the data as a `vector` of `Pattern`. Each `Pattern` is in turn a `string` representing the characters across the sequences at an alignment site, with a `frequency` of occurrences in the `Alignment` (from header file [`pattern.h`](https://github.com/Cibiv/IQ-TREE/blob/master/pattern.h)):
 
-```C++
+~~~
 /**
 	Site-patterns in a multiple sequence alignment
 */
@@ -36,13 +36,13 @@ public:
 	*/
 	int frequency;
 };
-```
+~~~
 
 The rationale for storing the data this way (instead of storing a set of sequences) is that most computations are carried out along the site-patterns of the `Alignment`. Thus, it makes all operations more convenient and faster.
 
 As noted above, the `Alignment` class is defined as (from header file [alignment.h](https://github.com/Cibiv/IQ-TREE/blob/master/alignment.h)): 
 
-```C++
+~~~
 /**
     Multiple Sequence Alignment. Stored by a vector of site-patterns
 */
@@ -58,7 +58,7 @@ public:
 
     ...
 };
-```
+~~~
 
 >**NOTICE**: Please follow the commenting style of the code when declaring new components (classes, functions or variables) like the example above. That way, the source code documentation can be generated with tools like [Doxygen](http://doxygen.org/). See [Doxygen commenting manual](http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html) for more details.
 
@@ -69,7 +69,7 @@ Model of substitution
 
 `ModelSubst` is the base class for all substitution models implemented in IQ-TREE. It implements the basic Juke-Cantor-type model (equal substitution rates and equal state frequencies) that works for all data type. `ModelSubst` class declares a number of `virtual` methods, that need to be overriden when implementing a new model, for example (from header file [model/modelsubst.h](https://github.com/Cibiv/IQ-TREE/blob/master/model/modelsubst.h)): 
 
-```C++
+~~~
 /**
     Substitution model abstract class
 */
@@ -89,7 +89,7 @@ public:
 
     ...
 };
-```
+~~~
 
 As an example, the method `getNDim()` should return the number of free parameters of the model, which is 0 for the default JC-type model.
 
@@ -97,7 +97,7 @@ As an example, the method `getNDim()` should return the number of free parameter
 
 `ModelGTR` class extends `ModelSubst` and implements the general time reversible model. `ModelGTR` is the base class for all models currently used in IQ-TREE. Some important ingredients of `ModelGTR` (from [model/modelgtr.h](https://github.com/Cibiv/IQ-TREE/blob/master/model/modelgtr.h)):
 
-```C++
+~~~
 /**
     General Time Reversible (GTR) model of substitution.
     This works for all kind of data, not only DNA
@@ -125,7 +125,7 @@ protected:
 	double *rates;
     ....
 };
-```
+~~~
 
 PhyloTree class (phylogenetic tree)
 -----------------------------------
