@@ -11,6 +11,7 @@ Quick Navigation
 
 - [First example](Tutorial#first-running-example)
 - [Model selection](Tutorial#choosing-the-right-substitution-model)
+- [New model selection](Tutorial#new-model-selection)
 - [Codon models](Tutorial#codon-models)
 - [Binary, Morphological, SNPs](Tutorial#binary-morphological-and-snp-data)
 - [Ultrafast bootstrap](Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation)
@@ -23,7 +24,6 @@ Quick Navigation
 
 [**Advanced Tutorial**](Advanced-Tutorial)
 
-- [New model selection](Advanced-Tutorial#new-model-selection)
 - [Tree topology tests](Advanced-Tutorial#tree-topology-tests)
 - [User-defined models](Advanced-Tutorial#user-defined-substitution-models)
 - [Consensus construction and bootstrap value assignment](Advanced-Tutorial#consensus-construction-and-bootstrap-value-assignment)

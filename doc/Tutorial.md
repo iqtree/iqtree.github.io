@@ -39,6 +39,7 @@ This tutorial gives users a quick starting guide.
 
 - [First running example](#first-running-example)
 - [Choosing the right substitution model](#choosing-the-right-substitution-model)
+- [New model selection](#new-model-selection)
 - [Codon models](#codon-models)
 - [Binary, morphological and SNP data](#binary-morphological-and-snp-data)
 - [Assessing branch supports with ultrafast bootstrap approximation](#assessing-branch-supports-with-ultrafast-bootstrap-approximation)
@@ -403,4 +404,5 @@ Therefore, I would only use 2 cores, which seems to balance the trade-off betwee
 [Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82
 [Lewis, 2001]: http://dx.doi.org/10.1080/106351501753462876
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
+[Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 
