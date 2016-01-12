@@ -28,3 +28,12 @@ This tutorial gives users a quick starting guide for the IQ-TREE Web Server.
 
 This tutorial explains briefly how to use the IQ-TREE web server for fast online phylogenetic inference, accessible at [iqtree.cibiv.univie.ac.at](iqtree.cibiv.univie.ac.at).
 
+There are three tabs: [Tree Inference](#tree-inference), [Model Selection](#model-selection) and [Analysis Results](#analysis-results). 
+
+------------
+
+
+Tree Inference
+------------
+
+
