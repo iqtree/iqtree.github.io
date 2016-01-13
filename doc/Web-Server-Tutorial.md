@@ -26,7 +26,7 @@ This tutorial gives users a quick starting guide for the IQ-TREE Web Server.
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-This tutorial explains briefly how to use the IQ-TREE web server for fast online phylogenetic inference, accessible at [iqtree.cibiv.univie.ac.at](iqtree.cibiv.univie.ac.at).
+This tutorial explains briefly how to use the IQ-TREE web server for fast online phylogenetic inference, accessible at [iqtree.cibiv.univie.ac.at](http://iqtree.cibiv.univie.ac.at){:target="_blank"}.
 
 There are three tabs: [Tree Inference](#tree-inference), [Model Selection](#model-selection) and [Analysis Results](#analysis-results). 
 
@@ -36,7 +36,7 @@ There are three tabs: [Tree Inference](#tree-inference), [Model Selection](#mode
 Tree Inference
 ------------
 
-Tree Inference provides the most frequently used features of IQ-TREE and allows users to carry out phylogenetic analysis on a multiple sequence alignment (MSA). In the most basic case, no more than an MSA file is required to submit the job. Without further input, IQ-TREE will run with the default parameters and auto-detect the sequence type as well as the best-fitting substitution model. Additionally, Ultrafast Bootstrap ([Minh et al., 2013](http://mbe.oxfordjournals.org/content/30/5/1188)) and the SH-aLRT branch test ([Guindon et al., 2010](http://sysbio.oxfordjournals.org/content/59/3/307)) will be performed. 
+Tree Inference provides the most frequently used features of IQ-TREE and allows users to carry out phylogenetic analysis on a multiple sequence alignment (MSA). In the most basic case, no more than an MSA file is required to submit the job. Without further input, IQ-TREE will run with the default parameters and auto-detect the sequence type as well as the best-fitting substitution model. Additionally, Ultrafast Bootstrap ([Minh et al., 2013](http://mbe.oxfordjournals.org/content/30/5/1188){:target="_blank"}) and the SH-aLRT branch test ([Guindon et al., 2010](http://sysbio.oxfordjournals.org/content/59/3/307){:target="_blank"}) will be performed. 
 
 You can either try out the web server with an example alignment by ticking the corresponding box or upload your own alignment file. By clicking on 'Browse' a dialog will open where you can select your MSA; the file formats Phylip, Fasta, Nexus, Clustal and MSF are supported. 
 
