@@ -61,6 +61,7 @@ Documentation
 
 * [Compilation guide](Compilation guide): for advanced users who wants to compile IQ-TREE from source code.
 
+* [Web Server Tutorial](Web-Server-Tutorial): A quick starting guide for the IQ-TREE Web Server.
 
 User support
 ------------
