@@ -217,7 +217,7 @@ The following single branch tests are faster than all bootstrap analysis and rec
 | -abayes| Perform approximate Bayes test ([Anisimova et al., 2011]). |
 | -lbp  | Specify number of replicates (>=1000) to perform fast local bootstrap probability method ([Adachi and Hasegawa, 1996]). |
 
->**TIP**: One can combine all these tests (also including UFBoot `-bb` option) in a single IQ-TREE run. Each branch in the resulting tree will be assigned with several support values separated by slash (`/`).
+>**TIP**: One can combine all these tests (also including UFBoot `-bb` option) within a single IQ-TREE run. Each branch in the resulting tree will be assigned several support values separated by slash (`/`), where the order of support values is stated in the `.iqtree` report file.
 
 
 Tree topology tests
