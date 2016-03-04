@@ -112,6 +112,16 @@ Starting with version 1.4.0 IQ-TREE implements the likelihood mapping approach  
 
 >**TIP**: The number of quartets specified via `-lmap` is recommended to be at least 25 times the number of sequences in the alignment, such that each sequence is covered ~100 times in the set of quartets drawn.
 
+An example NEXUS cluster file:
+
+    #NEXUS
+    begin sets;
+        taxset Cluster1 = A B C;
+        taxset Cluster2 = D E;
+        taxset Cluster3 = F G H I;
+        taxset Cluster4 = J;
+    end;
+
 Automatic model selection
 -------------------------
 
