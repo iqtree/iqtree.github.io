@@ -7,6 +7,10 @@ tags:
 sections:
   - name: General options
     url: general-options
+  - name: Checkpointing to resume stopped run
+    url: checkpointing-to-resume-stopped-run
+  - name: Likelihood mapping analysis
+    url: likelihood-mapping-analysis
   - name: Automatic model selection
     url: automatic-model-selection
   - name: Specifying substitution models
@@ -38,6 +42,8 @@ Commprehensive documentation of command-line options.
 **Table of Contents**
 
 - [General options](#general-options)
+- [Checkpointing to resume stopped run](#checkpointing-to-resume-stopped-run)
+- [Likelihood mapping analysis](#likelihood-mapping-analysis)
 - [Automatic model selection](#automatic-model-selection)
 - [Specifying substitution models](#specifying-substitution-models)
 - [Tree search parameters](#tree-search-parameters)
