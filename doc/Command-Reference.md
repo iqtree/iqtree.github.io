@@ -96,7 +96,7 @@ Starting with version 1.4.0 IQ-TREE supports checkpointing: If an IQ-TREE run wa
 | -redo | Redo the entire analysis no matter if it was stopped or successful. WARNING: This option will overwrite all existing output files. |
 | -cptime | Specify the minimum checkpoint time interval in seconds (default: 20s) | 
 
-
+>**NOTE**: IQ-TREE writes a checkpoint file with name suffix `.ckp.gz` in gzip format. Please do not delete or modify this file!
 
 Likelihood mapping analysis
 ---------------------------
@@ -107,12 +107,12 @@ Starting with version 1.4.0 IQ-TREE implements the likelihood mapping approach  
 |Option| Usage and meaning |
 |------|-------------------|
 | -lmap | Specify the number of quartets to be randomly drawn. |
-| -lmclust | Specify a NEXUS file containing taxon clusters. |
+| -lmclust | Specify a NEXUS file containing taxon clusters (see below for example). |
 | -wql | Write quartet log-likelihoods into .quartetlh file. |
 
 >**TIP**: The number of quartets specified via `-lmap` is recommended to be at least 25 times the number of sequences in the alignment, such that each sequence is covered ~100 times in the set of quartets drawn.
 
-An example NEXUS cluster file:
+An example NEXUS cluster file (where A, B, C, etc. are sequence names):
 
     #NEXUS
     begin sets;
