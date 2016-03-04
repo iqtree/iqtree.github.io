@@ -80,6 +80,31 @@ General options are mainly intended for specifying input and output files:
 | -seed| Specify a random number seed to reproduce a previous run. This is normally used for debugging purposes. *DEFAULT: based on current machine clock* |
 | -v   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purposes. *DFAULT: OFF* |
 
+Checkpointing to resume stopped run
+-----------------------------------
+
+Starting with version 1.4.0 IQ-TREE supports checkpointing: If an IQ-TREE run was interrupted for some reason, rerunning it with the same command line and input data will automatically resume the analysis from the last stopped point. The previous log file will then be appended. If a run successfully finished, IQ-TREE will deny to rerun and issue an error message. A few options that control checkpointing behavior:
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -redo | Redo the entire analysis no matter if it was stopped or successful. WARNING: This option will overwrite all existing output files. |
+| -cptime | Specify the minimum checkpoint time interval in seconds (default: 20s) | 
+
+
+
+Likelihood mapping analysis
+---------------------------
+
+Starting with version 1.4.0 IQ-TREE implements the likelihood mapping approach  ([Strimmer and von Haeseler, 1997]) to assess the phylogenetic information of an input alignment. Compared with the original implementation in TREE-PUZZLE, IQ-TREE is much more computationally efficient and supports many more substitution models (including partition and mixture models). 
+
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -lmap | Specify the number of quartets to be randomly drawn. |
+| -lmclust | Specify a NEXUS file containing taxon clusters. |
+| -wql | Write quartet log-likelihoods into .quartetlh file. |
+
+>**TIP**: The number of quartets specified via `-lmap` is recommended to be at least 25 times the number of sequences in the alignment, such that each sequence is covered ~100 times in the set of quartets drawn.
 
 Automatic model selection
 -------------------------
@@ -232,9 +257,9 @@ IQ-TREE provides a number of tests for significant topological differences betwe
 | -z  | Specify a file containing a set of trees. IQ-TREE will compute the log-likelihoods of all trees. |
 | -zb | Specify the number of RELL ([Kishino et al., 1990]) replicates (>=1000) to perform several tree topology tests for all trees passed via `-z`. The tests include bootstrap proportion (BP), KH test ([Kishino and Hasegawa, 1989]), SH test ([Shimodaira and Hasegawa, 1999]) and expected likelihood weights (ELW) ([Strimmer and Rambaut, 2002]). |
 | -zw | Used together with `-zb` to additionally perform the weighted-KH and weighted-SH tests. |
+| -au | Perform the approximately unbiased (AU) test ([Shimodaira, 2002]). |
 
->We are implementing the approximately unbiased (AU) test ([Shimodaira, 2002]), which may hopefully be available in the next release.
-
+>**NOTE**: The AU test implementation in IQ-TREE is much more efficient than the original CONSEL by supporting SSE, AVX and multicore parallelization. Moreover, it is more appropriate than CONSEL for partition analysis by bootstrap resampling sites *within* partitions, whereas CONSEL is not partition-aware.
 
 Constructing consensus tree
 ---------------------------
@@ -306,6 +331,6 @@ Miscellaneous options
 [Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
 [Soubrier et al., 2012]: http://dx.doi.org/10.1093/molbev/mss140
 [Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
+[Strimmer and von Haeseler, 1997]: http://www.pnas.org/content/94/13/6815.long
 [Yang, 1994]: http://dx.doi.org/10.1007/BF00160154
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
-
