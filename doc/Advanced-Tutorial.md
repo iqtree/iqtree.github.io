@@ -46,21 +46,26 @@ assuming that `example.treels` contains the trees in NEWICK format. IQ-TREE  fir
 The trees with optimized branch lengths can be found in `example.phy.treels.trees`
 If you only want to evaluate the trees without reconstructing the ML tree, you can run:
 
-    iqtree -s example.phy -z example.treels -n 1
+    iqtree -s example.phy -z example.treels -n 0
 
 Here, IQ-TREE performs a very quick tree reconstruction using only 1 iteration  and uses that tree to estimate the model parameters, which are normally accurate enough for our purpose.
 
-IQ-TREE also supports several tree topology tests using the RELL approximation ([Kishino et al., 1990]). This includes bootstrap proportion (BP), Kishino-Hasegawa test ([Kishino and Hasegawa, 1989]), Shimodaira-Hasegawa test ([Shimodaira and Hasegawa, 1999]), expected likelihood weights ([Strimmer and Rambaut, 2002]), weighted-KH (WKH), and weighted-SH (WSH) tests. The trees are passed via `-z` option:
-
+IQ-TREE also supports several tree topology tests using the RELL approximation ([Kishino et al., 1990]). This includes bootstrap proportion (BP), Kishino-Hasegawa test ([Kishino and Hasegawa, 1989]), Shimodaira-Hasegawa test ([Shimodaira and Hasegawa, 1999]), expected likelihood weights ([Strimmer and Rambaut, 2002]):
 
     iqtree -s example.phy -z example.treels -n 1 -zb 1000
 
 
-Here, `-zb` specifies the number of RELL replicates, where 1000 is the recommended minimum number. The `USER TREES` section of `example.phy.iqtree` will list the results of BP, KH, SH, and ELW methods. If you also want to perform the WKH and WSH, simply add `-zw` option:
+Here, `-zb` specifies the number of RELL replicates, where 1000 is the recommended minimum number. The `USER TREES` section of `example.phy.iqtree` will list the results of BP, KH, SH, and ELW methods. 
 
+If you also want to perform the weighted KH and weighted SH tests, simply add `-zw` option:
 
     iqtree -s example.phy -z example.treels -n 1 -zb 1000 -zw
 
+Starting with version 1.4.0 IQ-TREE supports approximately unbiased (AU) test ([Shimodaira, 2002]) via `-au` option:
+
+    iqtree -s example.phy -z example.treels -n 1 -zb 1000 -zw -au
+
+This will perform all above tests plus the AU test.
 
 Finally, note that IQ-TREE will automatically detect duplicated tree topologies and omit them during the evaluation.
 
@@ -194,5 +199,6 @@ Note that, you still need to specify the `-r` option with the correct number of 
 [Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: http://dx.doi.org/10.1007/BF02100115
 [Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
+[Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
 [Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
