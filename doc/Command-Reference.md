@@ -101,14 +101,16 @@ Starting with version 1.4.0 IQ-TREE supports checkpointing: If an IQ-TREE run wa
 Likelihood mapping analysis
 ---------------------------
 
-Starting with version 1.4.0 IQ-TREE implements the likelihood mapping approach  ([Strimmer and von Haeseler, 1997]) to assess the phylogenetic information of an input alignment. Compared with the original implementation in TREE-PUZZLE, IQ-TREE is much more computationally efficient and supports many more substitution models (including partition and mixture models). 
+Starting with version 1.4.0, IQ-TREE implements the likelihood mapping approach  ([Strimmer and von Haeseler, 1997]) to assess the phylogenetic information of an input alignment. The detailed results will be printed to `.iqtree` report file. The likelihood mapping plots will be printed to `.lmap.svg` and `.lmap.eps` files. 
+
+Compared with the original implementation in TREE-PUZZLE, IQ-TREE is much faster and supports many more substitution models (including partition and mixture models). 
 
 
 |Option| Usage and meaning |
 |------|-------------------|
 | -lmap | Specify the number of quartets to be randomly drawn. |
-| -lmclust | Specify a NEXUS file containing taxon clusters (see below for example). |
-| -wql | Write quartet log-likelihoods into .quartetlh file. |
+| -lmclust | Specify a NEXUS file containing taxon clusters (see below for example) for quartet mapping analysis. |
+| -wql | Write quartet log-likelihoods into `.lmap.quartetlh` file. |
 
 >**TIP**: The number of quartets specified via `-lmap` is recommended to be at least 25 times the number of sequences in the alignment, such that each sequence is covered ~100 times in the set of quartets drawn.
 
@@ -121,6 +123,8 @@ An example NEXUS cluster file (where A, B, C, etc. are sequence names):
         taxset Cluster3 = F G H I;
         taxset Cluster4 = J;
     end;
+
+Here, `Cluster1` to `Cluster4` are four user-defined clusters of sequences. Note that users can give any names to the clusters instead of `Cluster1`, etc.
 
 Automatic model selection
 -------------------------
