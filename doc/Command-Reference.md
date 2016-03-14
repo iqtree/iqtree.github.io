@@ -127,7 +127,7 @@ An example NEXUS cluster file (where A, B, C, etc. are sequence names):
 
 Here, `Cluster1` to `Cluster4` are four user-defined clusters of sequences. Note that users can give any names to the clusters instead of `Cluster1`, etc. If a cluster is named `ignored` or `IGNORED` the sequences included will be ignored in the likelihood mapping analysis.
 
-If you provide a cluster file it has to contain between 1 and 4 clusters (plus an optional IGNORED cluster), which will tell IQ-TREE to perform an unclustered (default without a cluster file) or a clustered analysis with 2, 3 or 4 groups, respectively.
+If you provide a cluster file it has to contain between 1 and 4 clusters (plus an optional `IGNORED` or `ignored` cluster), which will tell IQ-TREE to perform an unclustered (default without a cluster file) or a clustered analysis with 2, 3 or 4 groups, respectively.
 
 The names given to the clusters in the cluster file will be used to label the corners of the triangle diagrams.
 
