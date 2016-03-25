@@ -75,7 +75,8 @@ Once a job is finished, you can select it by checking the corresponding box and 
 |**.iqtree** | Full result of the run, this is the main report file  |
 |**.log** | Run log |
 | **.treefile** | Maximum likelihood tree in NEWICK format, can be visualized with treeviewer programs |
-| .svg |  Graphical tree representation, done with ete view |
+| .svg |  Graphical tree representation in SVG format, done with ete view |
+| .pdf |  Graphical tree representation in PDF format, done with ete view |
 | .contree | Consensus tree with assigned branch supports where branch lengths are optimized on the original alignment; printed if Ultrafast Bootstrap is selected |
 | .ckp.gz | Checkpoint file; included if a job was stopped because of RAM/CPU limits |
 
