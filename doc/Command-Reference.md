@@ -108,7 +108,7 @@ Compared with the original implementation in TREE-PUZZLE, IQ-TREE is much faster
 
 |Option| Usage and meaning |
 |------|-------------------|
-| -lmap | Specify the number of quartets to be randomly drawn. |
+| -lmap | Specify the number of quartets to be randomly drawn. If you specify `-lmap ALL`, all unique quartets will be drawn, instead.|
 | -lmclust | Specify a NEXUS file containing taxon clusters (see below for example) for quartet mapping analysis. |
 | -wql | Write quartet log-likelihoods into `.lmap.quartetlh` file (typically not needed). |
 
