@@ -15,6 +15,8 @@ sections:
     url: automatic-model-selection
   - name: Specifying substitution models
     url: specifying-substitution-models
+  - name: Rate heterogeneity
+    url: rate-heterogeneity
   - name: Tree search parameters
     url: tree-search-parameters
   - name: Ultrafast bootstrap parameters
@@ -46,6 +48,7 @@ Commprehensive documentation of command-line options.
 - [Likelihood mapping analysis](#likelihood-mapping-analysis)
 - [Automatic model selection](#automatic-model-selection)
 - [Specifying substitution models](#specifying-substitution-models)
+- [Rate heterogeneity](#rate-heterogeneity)
 - [Tree search parameters](#tree-search-parameters)
 - [Ultrafast bootstrap parameters](#ultrafast-bootstrap-parameters)
 - [Nonparametric bootstrap](#nonparametric-bootstrap)
