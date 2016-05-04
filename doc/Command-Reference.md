@@ -198,6 +198,9 @@ The following `FreqType`s are supported:
 | +F1x4    | See [Codon frequencies](Substitution-Models#codon-frequencies). |
 | +F3x4    | See [Codon frequencies](Substitution-Models#codon-frequencies). |
 
+Rate heterogeneity
+------------------
+
 The following `RateType`s are supported:
 
 | RateType | Meaning |
@@ -208,6 +211,16 @@ The following `RateType`s are supported:
 | +R       | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes `+G` by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6`. *DEFAULT: 4 categories* |
 
 See [Rate heterogeneity across sites](Substitution-Models#rate-heterogeneity-across-sites) for more details.
+
+Further options:
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -a   | Specify the Gamma shape parameter (default: estimate) |
+| -gmedian | Perform the *median* approximation for Gamma rate heterogeneity instead of the default *mean* approximation ([Yang, 1994]) |
+| -i   | Specify the proportion of invariable sites (default: estimate) |
+|  --opt-gamma-inv | Perform more thorough estimation for +I+G model parameters |
+| -wsr | Write per-site rates to `.rate` file | 
 
 Optionally, one can specify [Ascertainment bias correction](Substitution-Models#ascertainment-bias-correction) by appending `+ASC` to the model string. [Advanced mixture models](Complex-Models#mixture-models) can also be specified via `MIX{...}` and `FMIX{...}` syntax. Option `-mwopt` can be used to turn on optimizing weights of mixture models.
 
