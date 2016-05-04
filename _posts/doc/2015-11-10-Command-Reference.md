@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Command Reference"
 author: minh
-date:   2016-01-07
+date:   2016-04-18
 categories:
 - doc
 docid: 12
@@ -13,6 +13,10 @@ tags:
 sections:
   - name: General options
     url: general-options
+  - name: Checkpointing to resume stopped run
+    url: checkpointing-to-resume-stopped-run
+  - name: Likelihood mapping analysis
+    url: likelihood-mapping-analysis
   - name: Automatic model selection
     url: automatic-model-selection
   - name: Specifying substitution models
@@ -44,6 +48,8 @@ Commprehensive documentation of command-line options.
 **Table of Contents**
 
 - [General options](#general-options)
+- [Checkpointing to resume stopped run](#checkpointing-to-resume-stopped-run)
+- [Likelihood mapping analysis](#likelihood-mapping-analysis)
 - [Automatic model selection](#automatic-model-selection)
 - [Specifying substitution models](#specifying-substitution-models)
 - [Tree search parameters](#tree-search-parameters)
@@ -86,6 +92,51 @@ General options are mainly intended for specifying input and output files:
 | -seed| Specify a random number seed to reproduce a previous run. This is normally used for debugging purposes. *DEFAULT: based on current machine clock* |
 | -v   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purposes. *DFAULT: OFF* |
 
+Checkpointing to resume stopped run
+-----------------------------------
+
+Starting with version 1.4.0 IQ-TREE supports checkpointing: If an IQ-TREE run was interrupted for some reason, rerunning it with the same command line and input data will automatically resume the analysis from the last stopped point. The previous log file will then be appended. If a run successfully finished, IQ-TREE will deny to rerun and issue an error message. A few options that control checkpointing behavior:
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -redo | Redo the entire analysis no matter if it was stopped or successful. WARNING: This option will overwrite all existing output files. |
+| -cptime | Specify the minimum checkpoint time interval in seconds (default: 20s) | 
+
+>**NOTE**: IQ-TREE writes a checkpoint file with name suffix `.ckp.gz` in gzip format. Please do not delete or modify this file!
+
+Likelihood mapping analysis
+---------------------------
+
+Starting with version 1.4.0, IQ-TREE implements the likelihood mapping approach  ([Strimmer and von Haeseler, 1997]) to assess the phylogenetic information of an input alignment. The detailed results will be printed to `.iqtree` report file. The likelihood mapping plots will be printed to `.lmap.svg` and `.lmap.eps` files. 
+
+Compared with the original implementation in TREE-PUZZLE, IQ-TREE is much faster and supports many more substitution models (including partition and mixture models). 
+
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -lmap | Specify the number of quartets to be randomly drawn. If you specify `-lmap ALL`, all unique quartets will be drawn, instead.|
+| -lmclust | Specify a NEXUS file containing taxon clusters (see below for example) for quartet mapping analysis. |
+| -wql | Write quartet log-likelihoods into `.lmap.quartetlh` file (typically not needed). |
+
+>**TIP**: The number of quartets specified via `-lmap` is recommended to be at least 25 times the number of sequences in the alignment, such that each sequence is covered ~100 times in the set of quartets drawn.
+
+An example NEXUS cluster file (where A, B, C, etc. are sequence names):
+
+    #NEXUS
+    begin sets;
+        taxset Cluster1 = A B C;
+        taxset Cluster2 = D E;
+        taxset Cluster3 = F G H I;
+        taxset Cluster4 = J;
+        taxset IGNORED = X;
+    end;
+
+Here, `Cluster1` to `Cluster4` are four user-defined clusters of sequences. Note that users can give any names to the clusters instead of `Cluster1`, etc. If a cluster is named `ignored` or `IGNORED` the sequences included will be ignored in the likelihood mapping analysis.
+
+If you provide a cluster file it has to contain between 1 and 4 clusters (plus an optional `IGNORED` or `ignored` cluster), which will tell IQ-TREE to perform an unclustered (default without a cluster file) or a clustered analysis with 2, 3 or 4 groups, respectively.
+
+The names given to the clusters in the cluster file will be used to label the corners of the triangle diagrams.
+
 
 Automatic model selection
 -------------------------
@@ -96,13 +147,14 @@ All testing approaches are specified via `-m TEST...` option:
 |------|-------------------|
 | -m TESTONLY | Perform standard model selection like jModelTest (for DNA) and ProtTest (for protein). Moreover, IQ-TREE also works for codon, binary and morphogical data. |
 | -m TEST | Like `-m TESTONLY` but immediately followed by tree reconstruction using the best-fit model found. So this performs both model selection and tree inference within a single run. |
-| -m TESTNEWONLY | Perform the new model selection that additionally includes FreeRate model compared with `-m TESTONLY`. *Recommended as replacement for `-m TESTONLY`*. |
+| -m TESTNEWONLY | Perform the new model selection that additionally includes FreeRate model compared with `-m TESTONLY`. *Recommended as replacement for `-m TESTONLY`*. Note that `LG4X` is a FreeRate model, but by default is not included because it is also a protein mixture model. To include it, use `-madd` option (see table below).  |
 | -m TESTNEW | Like `-m TESTNEWONLY` but immediately followed by tree reconstruction using the best-fit model found. |
 | -m TESTMERGEONLY | Select best-fit partitioning scheme like PartitionFinder. |
 | -m TESTMERGE | Like `-m TESTMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found. |
 | -m TESTNEWMERGEONLY | Like `-m TESTMERGEONLY` but additionally includes FreeRate model. |
 | -m TESTNEWMERGE | Like `-m TESTNEWMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found. |
 
+>**TIP**: During model section run, IQ-TREE will write a file with suffix `.model` that stores information of all models tested so far. Thus, if IQ-TREE is interrupted for whatever reason, restarting the run will load this file to reuse the computation. Thus, this file acts like a checkpoint to resume the model selection.
 
 Several parameters can be set to e.g. reduce computations:
 
@@ -118,9 +170,10 @@ Several parameters can be set to e.g. reduce computations:
 | –merit | Specify either `AIC`, `AICc` or `BIC` for the optimality criterion to apply for new procedure. *DEFAULT: all three criteria are considered* |
 | -mtree | Turn on full tree search for each model considered, to obtain more accurate result. Only recommended if enough computational resources are available. *DEFAULT: fixed starting tree* |
 | -mredo | Ignore `.model` file computed earlier. *DEFAULT: `.model` file (if exists) is loaded to reuse previous computations* |
-| -madd | Specify a comma-separated list of mixture models to additionally consider for model selection. |
+| -madd | Specify a comma-separated list of mixture models to additionally consider for model selection. For example, `-madd LG4M,LG4X` to additionally include these two [protein mixture models](../Substitution-Models/#protein-models). |
 | -mdef | Specify a [NEXUS model file](../Complex-Models/#nexus-model-file) to define new models. |
 
+>**NOTE**: Some of the above options require a comma-separated list, which should not contain any empty space!
 
 Specifying substitution models
 ------------------------------
@@ -151,6 +204,9 @@ The following `FreqType`s are supported:
 | +F1x4    | See [Codon frequencies](../Substitution-Models/#codon-frequencies). |
 | +F3x4    | See [Codon frequencies](../Substitution-Models/#codon-frequencies). |
 
+Rate heterogeneity
+------------------
+
 The following `RateType`s are supported:
 
 | RateType | Meaning |
@@ -161,6 +217,16 @@ The following `RateType`s are supported:
 | +R       | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes `+G` by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6`. *DEFAULT: 4 categories* |
 
 See [Rate heterogeneity across sites](../Substitution-Models/#rate-heterogeneity-across-sites) for more details.
+
+Further options:
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -a   | Specify the Gamma shape parameter (default: estimate) |
+| -gmedian | Perform the *median* approximation for Gamma rate heterogeneity instead of the default *mean* approximation ([Yang, 1994]) |
+| -i   | Specify the proportion of invariable sites (default: estimate) |
+|  --opt-gamma-inv | Perform more thorough estimation for +I+G model parameters |
+| -wsr | Write per-site rates to `.rate` file | 
 
 Optionally, one can specify [Ascertainment bias correction](../Substitution-Models/#ascertainment-bias-correction) by appending `+ASC` to the model string. [Advanced mixture models](../Complex-Models/#mixture-models) can also be specified via `MIX{...}` and `FMIX{...}` syntax. Option `-mwopt` can be used to turn on optimizing weights of mixture models.
 
@@ -223,7 +289,7 @@ The following single branch tests are faster than all bootstrap analysis and rec
 | -abayes| Perform approximate Bayes test ([Anisimova et al., 2011]). |
 | -lbp  | Specify number of replicates (>=1000) to perform fast local bootstrap probability method ([Adachi and Hasegawa, 1996]). |
 
->**TIP**: One can combine all these tests (also including UFBoot `-bb` option) in a single IQ-TREE run. Each branch in the resulting tree will be assigned with several support values separated by slash (`/`).
+>**TIP**: One can combine all these tests (also including UFBoot `-bb` option) within a single IQ-TREE run. Each branch in the resulting tree will be assigned several support values separated by slash (`/`), where the order of support values is stated in the `.iqtree` report file.
 
 
 Tree topology tests
@@ -236,9 +302,9 @@ IQ-TREE provides a number of tests for significant topological differences betwe
 | -z  | Specify a file containing a set of trees. IQ-TREE will compute the log-likelihoods of all trees. |
 | -zb | Specify the number of RELL ([Kishino et al., 1990]) replicates (>=1000) to perform several tree topology tests for all trees passed via `-z`. The tests include bootstrap proportion (BP), KH test ([Kishino and Hasegawa, 1989]), SH test ([Shimodaira and Hasegawa, 1999]) and expected likelihood weights (ELW) ([Strimmer and Rambaut, 2002]). |
 | -zw | Used together with `-zb` to additionally perform the weighted-KH and weighted-SH tests. |
+| -au | Perform the approximately unbiased (AU) test ([Shimodaira, 2002]). |
 
->We are implementing the approximately unbiased (AU) test ([Shimodaira, 2002]), which may hopefully be available in the next release.
-
+>**NOTE**: The AU test implementation in IQ-TREE is much more efficient than the original CONSEL by supporting SSE, AVX and multicore parallelization. Moreover, it is more appropriate than CONSEL for partition analysis by bootstrap resampling sites *within* partitions, whereas CONSEL is not partition-aware.
 
 Constructing consensus tree
 ---------------------------
@@ -310,6 +376,6 @@ Miscellaneous options
 [Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
 [Soubrier et al., 2012]: http://dx.doi.org/10.1093/molbev/mss140
 [Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
+[Strimmer and von Haeseler, 1997]: http://www.pnas.org/content/94/13/6815.long
 [Yang, 1994]: http://dx.doi.org/10.1007/BF00160154
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
-
