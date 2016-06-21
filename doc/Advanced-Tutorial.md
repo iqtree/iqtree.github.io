@@ -124,13 +124,13 @@ by MrBayes):
 To build a majority-rule consensus tree, simply set the minimum support threshold to 0.5:
 
 
-    iqtree -con mytrees -t 0.5
+    iqtree -con mytrees -minsup 0.5
 
 
 If you want to specify a burn-in (the number of beginning trees to ignore from the trees file), use `-bi` option:
 
 
-    iqtree -con mytrees -t 0.5 -bi 100
+    iqtree -con mytrees -minsup 0.5 -bi 100
 
 
 to skip the first 100 trees in the file.
