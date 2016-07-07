@@ -18,6 +18,7 @@ jekyll-->
 
 - [First running example](#first-running-example)
 - [Counts files](#counts-files)
+- [Tree length](#tree-length)
 - [Substitution models](#model-selection)
 - [Virtual population size](#virtual-population-size)
 - [Sampling method](#sampling-method)
@@ -43,6 +44,8 @@ If you use PoMo, please cite
     and Carolin Kosiol (2016) Reversible polymorphism-aware phylogenetic
     models and their application to tree inference. J. Theor. Biol., in
     press.
+    
+A preprint is available on bioRxiv: [Schrempf et al., 2016].
 
 First running example
 ---------------------
@@ -117,6 +120,31 @@ An example:
     .
     .
     Y  \t end    \t 0,0,0,1 \t 0,1,0,0    \t 0,1,0,0  \t 0,5,0,0 \t 0,0,1,0
+
+Tree length
+-----------
+
+PoMo estimates the tree length in number of mutations and frequency
+shifts (drift) per site.  Number number of drift events compared to
+the number of mutations becomes higher if the
+[virtual population size](#virtual-population-size) is increased.  To
+get the tree length measured in number of substitutions per site which
+enables a comparison to the tree length estimated by standard DNA
+substitution models, it has to be divided by N^2.  PoMo also outputs
+the total tree length measured in number of substitution per site in
+`example.cf.iqtree`.  An example of the relevant section:
+
+    NOTE: The branch lengths of PoMo measure mutations and frequency shifts.
+    To compare PoMo branch lengths to DNA substitution models use the tree length
+    measured in substitutions per site.
+
+    Total tree length (sum of branch lengths)
+     - measured in number of mutations and frequency shifts per site: 0.71200751
+     - measured in number of substitutions per site (divided by N^2): 0.00879022
+    Sum of internal branch lengths
+    - measured in mutations and frequency shifts per site: 0.01767814 (2.48285810% of tree length)
+    - measured in substitutions per site: 0.01767814 (2.48285810% of tree length)
+
 
 Substitution models
 -------------------
