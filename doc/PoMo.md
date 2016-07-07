@@ -165,8 +165,9 @@ Sampling method
 ---------------
 
 For advanced users.  PoMo offers two different methods to read in the
-data.  For a detailed description, please refer to [Schrempf].  Again,
-the sequence type option `-st` can be used to change the input method.
+data.  For a detailed description, please refer to
+[Schrempf et al., 2016].  Again, the sequence type option `-st` can be
+used to change the input method.
 
 - To use the *sampled* input method (`R` for random):
 
@@ -194,8 +195,8 @@ e.g., for 100 replicates:
 
     iqtree -s example.cf -b 100
 
-For a detailed description, please refer to the [bootstrap].
+For a detailed description, please refer to the [bootstrap tutorial].
 
 
-[bootstrap]: Tutorial.md#assessing-branch-supports-with-ultrafast-bootstrap-approximation "bootstrap tutorial"
-[Schrempf]: http://dx.doi.org/10.1101/048496 "Schrempf et al., 2016"
+[bootstrap tutorial]: Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation
+[Schrempf et al., 2016]: http://dx.doi.org/10.1101/048496
