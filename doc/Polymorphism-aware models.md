@@ -21,7 +21,7 @@ sections:
   url: interpretation-of-branch-lengths
 jekyll-->
 
-**Po**lymoprhism-aware phylogenetic **Mo**dels (PoMo) related documentation.
+**Po**lymorphism-aware phylogenetic **Mo**dels (PoMo) related documentation.
 <!--more-->
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -63,7 +63,7 @@ Counts files
 ------------
 
 The input of PoMo is allele frequency data.  Especially, when
-populations have many individuals it is preferrable to count the
+populations have many individuals it is preferable to count the
 number of bases at each position.  This decreases file size and speeds
 up the parser.
 
@@ -71,9 +71,9 @@ Counts files contain:
 
 - One headerline that specifies the file as counts file and states the
   number of populations as well as the number of sites (separated by
-  whitespace).
+  white space).
 
-- A second headerline with whitespace separated headers: CRHOM
+- A second headerline with white space separated headers: CRHOM
   (chromosome), POS (position) and sequence names.
    
 - Many lines with counts of A, C, G and T bases and their respective
@@ -142,13 +142,13 @@ model, run IQ-TREE with:
     iqtree -s example.cf -m GTR
 
 If a counts file is given as input file, the PoMo model will be
-automatically chosen.  You can also explicitely specify to run the
+automatically chosen.  You can also explicitly specify to run the
 (reversible) PoMo model with:
 
     iqtree -s example.cf -m GTR+rP
 
 
-The frequency tupe can also be selected With `-m`.  The default is to
+The frequency type can also be selected With `-m`.  The default is to
 empirically estimate allele frequencies.  To estimate the allele
 frequencies together with the rate parameters, use:
 
@@ -205,15 +205,15 @@ method.
 Bootstrap branch support
 ------------------------
 
-To overcome the computational burden required by the nonparametric
-bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation
+To overcome the computational burden required by the non-parametric
+bootstrap, IQ-TREE introduces an ultra fast bootstrap approximation
 (UFBoot) that is orders of magnitude faster than the standard
 procedure and provides relatively unbiased branch support values. To
 run UFBoot, use the option `-bb`, e.g., for 1000 replicates:
 
     iqtree -s example.cf -bb 1000
 
-The standard nonparametric bootstrap is invoked by the `-b` option,
+The standard non-parametric bootstrap is invoked by the `-b` option,
 e.g., for 100 replicates:
 
     iqtree -s example.cf -b 100
