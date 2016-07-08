@@ -5,10 +5,10 @@ doctype: manual
 tags:
 - manual
 sections:
-- name: First example
-  url: first-running-example
 - name: Counts files
   url: counts-files
+- name: First example
+  url: first-running-example
 - name: Tree length
   url: three-length
 - name: Substitution models
@@ -28,8 +28,8 @@ jekyll-->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [First running example](#first-running-example)
 - [Counts files](#counts-files)
+- [First running example](#first-running-example)
 - [Tree length](#tree-length)
 - [Substitution models](#substitution-models)
 - [Virtual population size](#virtual-population-size)
@@ -58,38 +58,6 @@ If you use PoMo, please cite
     press.
     
 A preprint is available on bioRxiv: [Schrempf et al., 2016].
-
-First running example
----------------------
-
-The download includes an example alignment called `example.cf` in
-counts file format (so far, PoMo only supports counts files).  You can
-now start to reconstruct a maximum-likelihood tree from this alignment
-by entering (assuming that you are now in the same folder with
-`example.cf`):
-
-    iqtree -s example.cf
-
-`-s` is the option to specify the name of the alignment file.  At the
-end of the run IQ-TREE writes several output files.  Among others:
-
-* `example.cf.iqtree`: the main report file that is self-readable.
-You should look at this file to see the computational results.  It
-also contains a textual representation of the final tree.
-* `example.cf.treefile`: the ML tree in NEWICK format, which can be
-visualized by any supported tree viewer programs like FigTree or iTOL.
-* `example.cf.log`: log file of the entire run (also printed on the
-screen).  To report bugs, please send this log file and the original
-alignment file to the authors.
-
-The default prefix of all output files is the alignment file
-name.  However, you can always change the prefix using the `-pre`
-option, e.g.:
-
-    iqtree -s example.cf -pre myprefix
-
-This prevents output files to be overwritten when you perform multiple
-analyses on the same alignment within the same folder.
 
 Counts files
 ------------
@@ -130,6 +98,38 @@ An example:
     .
     .
     Y  \t end    \t 0,0,0,1 \t 0,1,0,0    \t 0,1,0,0  \t 0,5,0,0 \t 0,0,1,0
+
+First running example
+---------------------
+
+The download includes an example alignment called `example.cf` in
+counts file format (so far, PoMo only supports counts files).  You can
+now start to reconstruct a maximum-likelihood tree from this alignment
+by entering (assuming that you are now in the same folder with
+`example.cf`):
+
+    iqtree -s example.cf
+
+`-s` is the option to specify the name of the alignment file.  At the
+end of the run IQ-TREE writes several output files.  Among others:
+
+* `example.cf.iqtree`: the main report file that is self-readable.
+You should look at this file to see the computational results.  It
+also contains a textual representation of the final tree.
+* `example.cf.treefile`: the ML tree in NEWICK format, which can be
+visualized by any supported tree viewer programs like FigTree or iTOL.
+* `example.cf.log`: log file of the entire run (also printed on the
+screen).  To report bugs, please send this log file and the original
+alignment file to the authors.
+
+The default prefix of all output files is the alignment file
+name.  However, you can always change the prefix using the `-pre`
+option, e.g.:
+
+    iqtree -s example.cf -pre myprefix
+
+This prevents output files to be overwritten when you perform multiple
+analyses on the same alignment within the same folder.
 
 Tree length
 -----------
