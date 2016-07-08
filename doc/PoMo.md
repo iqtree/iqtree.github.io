@@ -7,6 +7,18 @@ tags:
 sections:
 - name: First example
   url: first-running-example
+- name: Counts files
+  url: counts-files
+- name: Tree length
+  url: three-length
+- name: Substitution models
+  url: substitution-models
+- name: Virtual population size
+  url: virtual-population-size
+- name: Sampling method
+  url: sampling-method
+- name: Bootstrap branch support
+  url: bootstrap-branch-support
 jekyll-->
 
 **Po**lymoprhism-aware phylogenetic **Mo**dels (PoMo) related documentation.
@@ -19,10 +31,10 @@ jekyll-->
 - [First running example](#first-running-example)
 - [Counts files](#counts-files)
 - [Tree length](#tree-length)
-- [Substitution models](#model-selection)
+- [Substitution models](#substitution-models)
 - [Virtual population size](#virtual-population-size)
 - [Sampling method](#sampling-method)
-- [Bootstrap branch support](#bbotstrap-branch-support)
+- [Bootstrap branch support](#bootstrap-branch-support)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -49,8 +61,6 @@ A preprint is available on bioRxiv: [Schrempf et al., 2016].
 
 First running example
 ---------------------
-
-<!-- TODO Provide sample counts file. -->
 
 The download includes an example alignment called `example.cf` in
 counts file format (so far, PoMo only supports counts files).  You can
