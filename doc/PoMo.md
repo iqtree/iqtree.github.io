@@ -9,14 +9,14 @@ sections:
   url: counts-files
 - name: First example
   url: first-running-example
-- name: Tree length
-  url: three-length
 - name: Substitution models
   url: substitution-models
 - name: Virtual population size
   url: virtual-population-size
 - name: Sampling method
   url: sampling-method
+- name: Tree length
+  url: three-length
 - name: Bootstrap branch support
   url: bootstrap-branch-support
 jekyll-->
@@ -30,10 +30,10 @@ jekyll-->
 
 - [Counts files](#counts-files)
 - [First running example](#first-running-example)
-- [Tree length](#tree-length)
 - [Substitution models](#substitution-models)
 - [Virtual population size](#virtual-population-size)
 - [Sampling method](#sampling-method)
+- [Tree length](#tree-length)
 - [Bootstrap branch support](#bootstrap-branch-support)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -111,7 +111,8 @@ by entering (assuming that you are now in the same folder with
     iqtree -s example.cf
 
 `-s` is the option to specify the name of the alignment file.  At the
-end of the run IQ-TREE writes several output files.  Among others:
+end of the run IQ-TREE writes the same output files as in the standard
+version (see [tutorial]).
 
 * `example.cf.iqtree`: the main report file that is self-readable.
 You should look at this file to see the computational results.  It
@@ -130,31 +131,6 @@ option, e.g.:
 
 This prevents output files to be overwritten when you perform multiple
 analyses on the same alignment within the same folder.
-
-Tree length
------------
-
-PoMo estimates the tree length in number of mutations and frequency
-shifts (drift) per site.  Number number of drift events compared to
-the number of mutations becomes higher if the
-[virtual population size](#virtual-population-size) is increased.  To
-get the tree length measured in number of substitutions per site which
-enables a comparison to the tree length estimated by standard DNA
-substitution models, it has to be divided by N^2.  PoMo also outputs
-the total tree length measured in number of substitution per site in
-`example.cf.iqtree`.  An example of the relevant section:
-
-    NOTE: The branch lengths of PoMo measure mutations and frequency shifts.
-    To compare PoMo branch lengths to DNA substitution models use the tree length
-    measured in substitutions per site.
-
-    Total tree length (sum of branch lengths)
-     - measured in number of mutations and frequency shifts per site: 0.71200751
-     - measured in number of substitutions per site (divided by N^2): 0.00879022
-    Sum of internal branch lengths
-    - measured in mutations and frequency shifts per site: 0.01767814 (2.48285810% of tree length)
-    - measured in substitutions per site: 0.01767814 (2.48285810% of tree length)
-
 
 Substitution models
 -------------------
@@ -216,6 +192,29 @@ used to change the input method.
 
         iqtree -s example.cf -st CF
         
+Tree length
+-----------
+
+PoMo estimates the tree length in number of mutations and frequency
+shifts (drift) per site.  The number of drift events compared to the
+number of mutations becomes higher if the
+[virtual population size](#virtual-population-size) is increased.  To
+get the tree length measured in number of substitutions per site which
+enables a comparison to the tree length estimated by standard DNA
+substitution models, it has to be divided by N^2.  PoMo also outputs
+the total tree length measured in number of substitution per site in
+`example.cf.iqtree`.  An example of the relevant section:
+
+    NOTE: The branch lengths of PoMo measure mutations and frequency shifts.
+    To compare PoMo branch lengths to DNA substitution models use the tree length
+    measured in substitutions per site.
+
+    Total tree length (sum of branch lengths)
+     - measured in number of mutations and frequency shifts per site: 0.71200751
+     - measured in number of substitutions per site (divided by N^2): 0.00879022
+    Sum of internal branch lengths
+    - measured in mutations and frequency shifts per site: 0.01767814 (2.48285810% of tree length)
+    - measured in substitutions per site: 0.01767814 (2.48285810% of tree length)
 
 Bootstrap branch support
 ------------------------
@@ -235,6 +234,6 @@ e.g., for 100 replicates:
 
 For a detailed description, please refer to the [bootstrap tutorial].
 
-
+[tutorial]: Tutorial
 [bootstrap tutorial]: Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation
 [Schrempf et al., 2016]: http://dx.doi.org/10.1101/048496
