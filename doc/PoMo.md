@@ -161,19 +161,20 @@ frequencies together with the rate parameters, use:
 Virtual population size
 -----------------------
 
-The default virtual population size (which will be denoted N) is nine.
-The optimal N depends on the data.  If only very few chromosomes have
-been sequenced per population (e.g., two to four), N should be lowered
-to five.  If enough data is available and calculations are not too
-time consuming, we advise to increase N up to a maximum of 19.  This
-can be done with the sequence type option `-st`.  You can choose odd
-values from three to 19 as well as two and ten.  E.g., to set N to 19:
+PoMo models the evolution of populations by means of a virtual
+population of constant size N, which defaults to nine (for details,
+see [Schrempf et al., 2016]).  The optimal choice of N depends on the
+data.  If only very few chromosomes have been sequenced per population
+(e.g., two to four), N should be lowered to five.  If enough data is
+available and calculations are not too time consuming, we advise to
+increase N up to a maximum of 19.  This can be done with the sequence
+type option `-st`.  You can choose odd values from three to 19 as well
+as two and ten.  E.g., to set N to 19:
 
     iqtree -s example.cf -st CF19
 
-Odd values of N ensure that the number of states is divisible by four
-which allows usage of the fast AVX instruction set.  This results in a
-considerable decrease of runtime.
+Odd values of N allows the usage of the fast AVX instruction set.
+This results in a considerable decrease of runtime.
 
 Sampling method
 ---------------
