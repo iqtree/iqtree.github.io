@@ -39,6 +39,11 @@ jekyll-->
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 <!-- TODO link to PoMo executable. -->
+
+The binary of IQ-TREE with PoMo can be
+[downloaded](https://github.com/Cibiv/IQ-TREE/releases/tag/v1.5.0-pomo)
+or
+[built from source](https://github.com/Cibiv/IQ-TREE/tree/v1.5.0-pomo).
 Please confirm that your version of IQ-TREE supports PoMo.
 
     iqtree
