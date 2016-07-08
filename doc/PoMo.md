@@ -17,8 +17,8 @@ sections:
   url: sampling-method
 - name: Bootstrap branch support
   url: bootstrap-branch-support
-- name: Tree length
-  url: three-length
+- name: Interpretation of branch lengths
+  url: interpretation-of-branch-lengths
 jekyll-->
 
 **Po**lymoprhism-aware phylogenetic **Mo**dels (PoMo) related documentation.
@@ -34,7 +34,7 @@ jekyll-->
 - [Virtual population size](#virtual-population-size)
 - [Sampling method](#sampling-method)
 - [Bootstrap branch support](#bootstrap-branch-support)
-- [Tree length](#tree-length)
+- [Interpretation of branch lengths](#interpretation-of-branch-lengths)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -180,9 +180,18 @@ Sampling method
 ---------------
 
 For advanced users.  PoMo offers two different methods to read in the
-data.  For a detailed description, please refer to
-[Schrempf et al., 2016].  Again, the sequence type option `-st` can be
-used to change the input method.
+data ([Schrempf et al., 2016]). Briefly, each species and site are
+treated as follows
+
+1. *Sampled*: randomly draw N samples with replacement from the given
+data and set the PoMo state to the chosen one;
+
+2. *Weighted*: assign the likelihood of each PoMo state to its
+probability of leading to the observed data, assuming it is binomially
+sampled.
+
+Again, the sequence type option `-st` can be used to change the input
+method.
 
 - To use the *sampled* input method (`R` for random):
 
@@ -211,15 +220,15 @@ e.g., for 100 replicates:
 
 For a detailed description, please refer to the [bootstrap tutorial].
 
-Tree length
------------
+Interpretation of branch lengths
+--------------------------------
 
-PoMo estimates the tree length in number of mutations and frequency
+PoMo estimates the branch length in number of mutations and frequency
 shifts (drift) per site.  The number of drift events compared to the
 number of mutations becomes higher if the
 [virtual population size](#virtual-population-size) is increased.  To
-get the tree length measured in number of substitutions per site which
-enables a comparison to the tree length estimated by standard DNA
+get the branch length measured in number of substitutions per site which
+enables a comparison to the branch length estimated by standard DNA
 substitution models, it has to be divided by N^2.  PoMo also outputs
 the total tree length measured in number of substitution per site in
 `example.cf.iqtree`.  An example of the relevant section:
