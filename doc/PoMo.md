@@ -70,11 +70,11 @@ up the parser.
 Counts files contain:
 
 - One headerline that specifies the file as counts file and states the
-  number of populations as well as the number of sites (tab
-  separated).
+  number of populations as well as the number of sites (separated by
+  whitespace).
 
-- A second headerline with tab separated headers: CRHOM (chromosome),
-  POS (position) and sequence names.
+- A second headerline with whitespace separated headers: CRHOM
+  (chromosome), POS (position) and sequence names.
    
 - Many lines with counts of A, C, G and T bases and their respective
   positions.
@@ -86,18 +86,18 @@ Comments:
 
 An example:
 
-    COUNTSFILE   \t NPOP 5  \t NSITES N
-    CHROM \t POS \t Sheep   \t BlackSheep \t RedSheep \t Wolf    \t RedWolf
-    1  \t s      \t 0,0,1,0 \t 0,0,1,0    \t 0,0,1,0  \t 0,0,5,0 \t 0,0,0,1
-    1  \t s + 1  \t 0,0,0,1 \t 0,0,0,1    \t 0,0,0,1  \t 0,0,0,5 \t 0,0,0,1
+    COUNTSFILE    NPOP 5   NSITES N
+    CHROM  POS  Sheep    BlackSheep  RedSheep  Wolf     RedWolf
+    1   s       0,0,1,0  0,0,1,0     0,0,1,0   0,0,5,0  0,0,0,1
+    1   s + 1   0,0,0,1  0,0,0,1     0,0,0,1   0,0,0,5  0,0,0,1
     .
     .
     .
-    9  \t 8373   \t 0,0,0,1 \t 1,0,0,0    \t 0,1,0,0  \t 0,1,4,0 \t 0,0,1,0
+    9   8373    0,0,0,1  1,0,0,0     0,1,0,0   0,1,4,0  0,0,1,0
     .
     .
     .
-    Y  \t end    \t 0,0,0,1 \t 0,1,0,0    \t 0,1,0,0  \t 0,5,0,0 \t 0,0,1,0
+    Y   end     0,0,0,1  0,1,0,0     0,1,0,0   0,5,0,0  0,0,1,0
 
 First running example
 ---------------------
