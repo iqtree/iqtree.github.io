@@ -15,10 +15,10 @@ sections:
   url: virtual-population-size
 - name: Sampling method
   url: sampling-method
-- name: Tree length
-  url: three-length
 - name: Bootstrap branch support
   url: bootstrap-branch-support
+- name: Tree length
+  url: three-length
 jekyll-->
 
 **Po**lymoprhism-aware phylogenetic **Mo**dels (PoMo) related documentation.
@@ -33,8 +33,8 @@ jekyll-->
 - [Substitution models](#substitution-models)
 - [Virtual population size](#virtual-population-size)
 - [Sampling method](#sampling-method)
-- [Tree length](#tree-length)
 - [Bootstrap branch support](#bootstrap-branch-support)
+- [Tree length](#tree-length)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -192,6 +192,24 @@ used to change the input method.
 
         iqtree -s example.cf -st CF
         
+Bootstrap branch support
+------------------------
+
+To overcome the computational burden required by the nonparametric
+bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation
+(UFBoot) that is orders of magnitude faster than the standard
+procedure and provides relatively unbiased branch support values. To
+run UFBoot, use the option `-bb`, e.g., for 1000 replicates:
+
+    iqtree -s example.cf -bb 1000
+
+The standard nonparametric bootstrap is invoked by the `-b` option,
+e.g., for 100 replicates:
+
+    iqtree -s example.cf -b 100
+
+For a detailed description, please refer to the [bootstrap tutorial].
+
 Tree length
 -----------
 
@@ -215,24 +233,6 @@ the total tree length measured in number of substitution per site in
     Sum of internal branch lengths
     - measured in mutations and frequency shifts per site: 0.01767814 (2.48285810% of tree length)
     - measured in substitutions per site: 0.01767814 (2.48285810% of tree length)
-
-Bootstrap branch support
-------------------------
-
-To overcome the computational burden required by the nonparametric
-bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation
-(UFBoot) that is orders of magnitude faster than the standard
-procedure and provides relatively unbiased branch support values. To
-run UFBoot, use the option `-bb`, e.g., for 1000 replicates:
-
-    iqtree -s example.cf -bb 1000
-
-The standard nonparametric bootstrap is invoked by the `-b` option,
-e.g., for 100 replicates:
-
-    iqtree -s example.cf -b 100
-
-For a detailed description, please refer to the [bootstrap tutorial].
 
 [tutorial]: Tutorial
 [bootstrap tutorial]: Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation
