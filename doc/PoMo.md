@@ -183,12 +183,12 @@ For advanced users.  PoMo offers two different methods to read in the
 data ([Schrempf et al., 2016]). Briefly, each species and site are
 treated as follows
 
-1. *Sampled*: randomly draw N samples with replacement from the given
-data and set the PoMo state to the chosen one;
+1. *Weighted* (default): assign the likelihood of each PoMo state to
+its probability of leading to the observed data, assuming it is
+binomially sampled.
 
-2. *Weighted*: assign the likelihood of each PoMo state to its
-probability of leading to the observed data, assuming it is binomially
-sampled.
+2. *Sampled*: randomly draw N samples with replacement from the given
+data and set the PoMo state to the chosen one;
 
 Again, the sequence type option `-st` can be used to change the input
 method.
