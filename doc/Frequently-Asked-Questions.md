@@ -22,6 +22,8 @@ For common questions and answers.
 - [How do I interpret ultrafast bootstrap (UFBoot) support values?](#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values)
 - [How does IQ-TREE treat gap/missing/ambiguous characters?](#how-does-iq-tree-treat-gapmissingambiguous-characters)
 - [Can I mix DNA and protein data in a partitioned analysis?](#can-i-mix-dna-and-protein-data-in-a-partitioned-analysis)
+- [What is the interpretation of branch lengths when mixing codon and DNA data?](#what-is-the-interpretation-of-branch-lengths-when-mixing-codon-and-dna-data)
+- [What is the purpose of the composition test?](#what-is-the-purpose-of-the-composition-test)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
