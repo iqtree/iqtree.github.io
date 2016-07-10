@@ -90,7 +90,7 @@ At the beginning of each run, IQ-TREE performs a composition chi-square test for
 
 Typically one would call this a Chi^2 goodness-of-fit test computing: 
 
-chi2 = sum[i from 1 to k] (O_i - E_i)^2 / E_i 
+    chi2 = \sum_{i=1}^k (O_i - E_i)^2 / E_i
 
 where k is the size of the alphabet (e.g. 4 for DNA, 20 for amino acids) and the values 1 to k correspond uniquely to one of the characters. 
 O_i is the character frequency in the sequence tested. 
