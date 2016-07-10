@@ -44,6 +44,16 @@ Quick Navigation
 - [Partition models](Complex-Models#partition-models)
 - [Mixture models](Complex-Models#mixture-models)
 
+[**Polymorphism-aware Models**](Polymorphism-Aware-Models)
+
+- [Counts files](Polymorphism-Aware-Models#counts-files)
+- [First running example](Polymorphism-Aware-Models#first-running-example)
+- [Substitution models](Polymorphism-Aware-Models#substitution-models)
+- [Virtual population size](Polymorphism-Aware-Models#virtual-population-size)
+- [Sampling method](Polymorphism-Aware-Models#sampling-method)
+- [Bootstrap branch support](Polymorphism-Aware-Models#bootstrap-branch-support)
+- [Interpretation of branch lengths](Polymorphism-Aware-Models#interpretation-of-branch-lengths)
+
 [**Command Reference**](Command-Reference)
 
 - [General options](Command-Reference#general-options)
