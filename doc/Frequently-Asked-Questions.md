@@ -71,9 +71,18 @@ For protein the following ambiguous amino-acids are supported:
 Can I mix DNA and protein data in a partitioned analysis?
 ---------------------------------------------------------
 
-Yes! You can specify this via a NEXUS partition file. In fact, you can mix any data types supported in IQ-TREE, including also codon, binary and morphological data. To do so, each data type should be stored in a separate alignment file (see also [partition file format](Complex-Models#partition-file-format)).
+Yes! You can specify this via a NEXUS partition file. In fact, you can mix any data types supported in IQ-TREE, including also codon, binary and morphological data. To do so, each data type should be stored in a separate alignment file (see also [partition file format](Complex-Models#partition-file-format)). As an example, assuming `dna.phy` is a DNA alignment and and `prot.phy` is a protein alignment. Then a partition file mixing two types of data can be specified as follows:
 
->**NOTE**: The site count for each alignment should start from 1, and **not** continue from the last position of a previous alignment.
+    #nexus
+    begin sets;
+        charset part1 = dna.phy: 1-100 201-300;
+        charset part2 = dna.phy: 101-200;
+        charset part3 = prot.phy: 1-150;
+        charset part4 = prot.phy: 151-400;
+        charpartition mine = HKY:part1, GTR+G:part2, WAG+I+G:part3, LG+G:part4;
+    end;
+  
+>**NOTE**: The site count for each alignment should start from 1, and **not** continue from the last position of a previous alignment (e.g., see `part3` and `part4` declared above).
 
 What is the interpretation of branch lengths when mixing codon and DNA data?
 ----------------------------------------------------------------------------
@@ -88,18 +97,17 @@ What is the purpose of the composition test?
 
 At the beginning of each run, IQ-TREE performs a composition chi-square test for every sequence in the alignment.  The purpose is to test for homogeneity of character composition (e.g., nucleotide for DNA, amino-acid for protein sequences). A sequence is denoted `failed` if its character composition significantly deviates from the average composition of the alignment.    
 
-Typically one would call this a Chi^2 goodness-of-fit test computing: 
+More specifically, for each sequence, compute: 
 
     chi2 = \sum_{i=1}^k (O_i - E_i)^2 / E_i
 
 where k is the size of the alphabet (e.g. 4 for DNA, 20 for amino acids) and the values 1 to k correspond uniquely to one of the characters. 
 O_i is the character frequency in the sequence tested. 
-E_i is the character frequency expected from the ‘master’ distribution (e.g. the overall frequencies - depends on what one is using). 
+E_i is the overall character frequency from the entire alignment.
 
-Whether the character composition deviates significantly for the ‘master’ distribution is done by testing the chi2 value using the chi2-distribution with k-1 degrees of freedom (df=3 for DNA or df=19 for amino acids). 
+Whether the character composition deviates significantly from the overall composition is done by testing the chi2 value using the chi2-distribution with k-1 degrees of freedom (df=3 for DNA or df=19 for amino acids). 
 
 By and large it is a normal Chi^2 test. 
-
 
 
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
