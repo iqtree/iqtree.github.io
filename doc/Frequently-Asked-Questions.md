@@ -11,6 +11,10 @@ sections:
   url: how-does-iq-tree-treat-gapmissingambiguous-characters
 - name: Can I mix DNA and protein data in a partitioned analysis?
   url: can-i-mix-dna-and-protein-data-in-a-partitioned-analysis
+- name: What is the interpretation of branch lengths when mixing codon and DNA data?
+  url: what-is-the-interpretation-of-branch-lengths-when-mixing-codon-and-dna-data
+- name: What is the purpose of the composition test?
+  url: what-is-the-purpose-of-the-composition-test
 jekyll-->
 For common questions and answers.
 <!--more-->
