@@ -23,6 +23,8 @@ sections:
   url: assessing-branch-supports-with-single-branch-tests
 - name: Partitioned analysis
   url: partitioned-analysis-for-multi-gene-alignments
+- name: Partitioning with mixed data
+  url: partitioned-analysis-with-mixed-data
 - name: Partition scheme selection
   url: choosing-the-right-partitioning-scheme
 - name: Bootstrapping partition model
@@ -46,6 +48,7 @@ This tutorial gives users a quick starting guide.
 - [Assessing branch supports with  standard nonparametric bootstrap](#assessing-branch-supports-with--standard-nonparametric-bootstrap)
 - [Assessing branch supports with single branch tests](#assessing-branch-supports-with-single-branch-tests)
 - [Partitioned analysis for multi-gene alignments](#partitioned-analysis-for-multi-gene-alignments)
+- [Partitioned analysis with mixed data](#partitioned-analysis-with-mixed-data)
 - [Choosing the right partitioning scheme](#choosing-the-right-partitioning-scheme)
 - [Ultrafast bootstrapping with partition model](#ultrafast-bootstrapping-with-partition-model)
 - [Utilizing multi-core CPUs](#utilizing-multi-core-cpus)
