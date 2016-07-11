@@ -295,7 +295,10 @@ That means,  `part1` contains sites 1-100 and 200-384 of the alignment. Another 
 
 for extracting sites 1,4,7,...,100 from the alignment. This is useful for getting codon positions from the protein-coding alignment. 
 
-IQ-TREE also allows combining sub-alignments from different alignment files, which is helpful if you want to combine mixed data in one analysis. For example:
+Partitioned analysis with mixed data
+------------------------------------
+
+IQ-TREE also allows combining sub-alignments from different alignment files, which is helpful if you want to combine mixed data (e.g. DNA and protein) in a single analysis. Here is an example for mixing DNA, protein and codon models:
 
     #nexus
     begin sets;
