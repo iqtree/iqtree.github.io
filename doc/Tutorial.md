@@ -185,7 +185,7 @@ You can explicitly tell model testing to only include  `+ASC` model with:
 Assessing branch supports with ultrafast bootstrap approximation
 ----------------------------------------------------------------
 
-To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. To run UFBoot, use the option  `-bb`:
+To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. To run UFBoot, use the option  `-bb`:
 
     iqtree -s example.phy -m TIM+I+G -bb 1000
 
@@ -302,11 +302,14 @@ IQ-TREE also allows combining sub-alignments from different alignment files, whi
         charset part1 = dna.phy: 1-100 201-300;
         charset part2 = dna.phy: 101-200;
         charset part3 = prot.phy: 1-400;
-        charset part4 = codon.phy: *;
-        charpartition mine = HKY:part1, GTR+G:part2, LG+G:part3, GY:part4;
+        charset part4 = prot.phy: 401-600;
+        charset part5 = codon.phy: *;
+        charpartition mine = HKY:part1, GTR+G:part2, LG+G:part3, WAG+I+G:part4, GY:part5;
     end;
 
-Here,  `part1` and  `part2` contain sub-alignments from alignment file `dna.phy`, whereas `part3` is loaded from alignment file `prot.phy` and `part4` from `codon.phy`. The `:` is needed to separate the alignment file name and site specification. Note that `*` in `part4` specification means that `part4` corresponds to the entire alignment `codon.phy`. Because the alignment file names are now specified in this NEXUS file, you can omit the  `-s` option:
+Here,  `part1` and  `part2` contain sub-alignments from alignment file `dna.phy`, whereas `part3` and `part4` are loaded from alignment file `prot.phy` and `part5` from `codon.phy`. The `:` is needed to separate the alignment file name and site specification. Note that, for convenience `*` in `part5` specification means that `part5` corresponds to the entire alignment `codon.phy`. 
+
+Because the alignment file names are now specified in this NEXUS file, you can omit the  `-s` option:
 
     iqtree -sp example.nex
 
@@ -406,5 +409,6 @@ Therefore, I would only use 2 cores, which seems to balance the trade-off betwee
 [Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82
 [Lewis, 2001]: http://dx.doi.org/10.1080/106351501753462876
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
+[Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 
