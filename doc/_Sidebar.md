@@ -18,6 +18,7 @@ Quick Navigation
 - [Nonparametric bootstrap](Tutorial#assessing-branch-supports-with--standard-nonparametric-bootstrap)
 - [Single branch tests](Tutorial#assessing-branch-supports-with-single-branch-tests)
 - [Partitioned analysis](Tutorial#partitioned-analysis-for-multi-gene-alignments)
+- [Partitioning with mixed data](Tutorial#partitioned-analysis-with-mixed-data)
 - [Partition scheme selection](Tutorial#choosing-the-right-partitioning-scheme)
 - [Bootstrapping partition model](Tutorial#ultrafast-bootstrapping-with-partition-model)
 - [Utilizing multi-core CPUs](Tutorial#utilizing-multi-core-cpus)
