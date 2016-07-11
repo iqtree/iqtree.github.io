@@ -295,24 +295,26 @@ That means,  `part1` contains sites 1-100 and 200-384 of the alignment. Another 
 
 for extracting sites 1,4,7,...,100 from the alignment. This is useful for getting codon positions from the protein-coding alignment. 
 
-IQ-TREE also allows combining sub-alignments from different alignment files. For example:
+IQ-TREE also allows combining sub-alignments from different alignment files, which is helpful if you want to combine mixed data in one analysis. For example:
 
     #nexus
     begin sets;
-        charset part1 = part1.phy: 1-100\3 201-300\3;
-        charset part2 = part2.phy: 101-300;
-        charpartition mine = HKY:part1, GTR+G:part2;
+        charset part1 = dna.phy: 1-100 201-300;
+        charset part2 = dna.phy: 101-200;
+        charset part3 = prot.phy: 1-400;
+        charset part4 = codon.phy: *;
+        charpartition mine = HKY:part1, GTR+G:part2, LG+G:part3, GY:part4;
     end;
 
-Here,  `part1` and  `part2` contain sub-alignments from alignment files  `part1.phy` and  `part2.phy`, respectively. The `:` is needed to separate the alignment file name and site specification. Because the alignment file names are now specified in this NEXUS file, you can omit the  `-s` option:
+Here,  `part1` and  `part2` contain sub-alignments from alignment file `dna.phy`, whereas `part3` is loaded from alignment file `prot.phy` and `part4` from `codon.phy`. The `:` is needed to separate the alignment file name and site specification. Note that `*` in `part4` specification means that `part4` corresponds to the entire alignment `codon.phy`. Because the alignment file names are now specified in this NEXUS file, you can omit the  `-s` option:
 
     iqtree -sp example.nex
 
 
 Note that 
- `part1.phy` and  `part2.phy` does not need to contain the same set of sequences. For instance, if some sequence occurs
-in   `part1.phy` but not in   `part2.phy`, IQ-TREE will treat the corresponding parts of sequence
-in  `part2.phy` as missing data. For your convenience IQ-TREE writes the concatenated alignment
+ `aln.phy` and  `prot.phy` does not need to contain the same set of sequences. For instance, if some sequence occurs
+in   `aln.phy` but not in   `prot.phy`, IQ-TREE will treat the corresponding parts of sequence
+in  `prot.phy` as missing data. For your convenience IQ-TREE writes the concatenated alignment
 into the file  `example.nex.conaln`.
 
  
