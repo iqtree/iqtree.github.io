@@ -139,26 +139,26 @@ How do I speed up the standard bootstrap?
 
 The standard bootstrap is rather slow and may take weeks/months for large data sets. One way to speed up is to use the multicore version. However, this only works well for long alignments (see [What is the good number of CPU cores to use?](#what-is-the-good-number-of-cpu-cores-to-use)). Another way is to use many machines or a computing cluster and split the computation among the machines. To illustrate, you want to perform 100 bootstrap replicates and have 5 PCs, each has 4 CPU cores. Then you can:
 
-- Perform 5 independent bootstrap runs (each with 20 replicates) on the 5 machines with 5 prefix outputs (such that output files are not overwritten). For example: 
+1. Perform 5 independent bootstrap runs (each with 20 replicates) on the 5 machines with 5 prefix outputs (such that output files are not overwritten). For example: 
 
-    iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot1
-    iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot2
-    iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot3
-    iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot4
-    iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot5
+        iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot1
+        iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot2
+        iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot3
+        iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot4
+        iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot5
     
-- Combine the 5 `.boottrees` file into one file (e.g. by `cat` command under Linux):
+2. Combine the 5 `.boottrees` file into one file (e.g. by `cat` command under Linux):
 
-    cat boot*.boottrees > alltrees
+        cat boot*.boottrees > alltrees
      
-- Construct a consensus tree from the combined bootstrap trees:
+3. Construct a consensus tree from the combined bootstrap trees:
 
-    iqtree -con -t alltrees
+        iqtree -con -t alltrees
     
-- You can also perform the analysis on the original alignment and map the support values onto the obtained ML tree by:
+4. You can also perform the analysis on the original alignment and map the support values onto the obtained ML tree by:
 
-    iqtree-omp -nt 4 -s input_alignment ...
-    iqtree -sup input_alignment.treefile -t alltrees 
+        iqtree-omp -nt 4 -s input_alignment ...
+        iqtree -sup input_alignment.treefile -t alltrees 
 
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
