@@ -147,7 +147,7 @@ The standard bootstrap is rather slow and may take weeks/months for large data s
         iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot4
         iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot5
     
-2. Combine the 5 `.boottrees` file into one file (e.g. by `cat` command under Linux):
+2. Once all 5 runs finished, combine the 5 `.boottrees` file into one file (e.g. by `cat` command under Linux):
 
         cat boot*.boottrees > alltrees
      
@@ -157,9 +157,12 @@ The standard bootstrap is rather slow and may take weeks/months for large data s
         
     The consensus tree is then written to `.contree` file.
      
-4. You can also perform the analysis on the original alignment and map the support values onto the obtained ML tree by:
+4. You can also perform the analysis on the original alignment:
 
         iqtree-omp -nt 4 -s input_alignment ...
+
+    and map the support values onto the obtained ML tree:
+
         iqtree -sup input_alignment.treefile -t alltrees 
 
     The ML tree with assigned bootstrap supports is written to `.suptree` file.
