@@ -150,7 +150,9 @@ The standard bootstrap is rather slow and may take weeks/months for large data s
         iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot3
         iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot4
         iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot5
-    
+
+    Note that if you have access to a computing cluster, you may want to submit these jobs onto the cluster queue in parallel and with even more fined grained parallelization (e.g. one replicate per job).
+        
 2. Once all 5 runs finished, combine the 5 `.boottrees` file into one file (e.g. by `cat` command under Linux):
 
         cat boot*.boottrees > alltrees
