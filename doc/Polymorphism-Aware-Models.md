@@ -38,7 +38,13 @@ jekyll-->
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!-- TODO link to PoMo executable. -->
+The **Po**lymorphism-aware phylogenetic **Mo**del (PoMo) tries to use
+population data (site frequency data) to improve phylogenetic
+inference.  Thereby it builds on top of DNA substitution models and
+naturally accounts for incomplete lineage sorting.  In order to run
+PoMo, you need more sequences per species (ideally about ten
+chromosomes) so that information about the site frequency spectrum is
+available.
 
 The binary of IQ-TREE with PoMo can be
 [downloaded](https://github.com/Cibiv/IQ-TREE/releases/tag/v1.5.0-pomo)
