@@ -154,11 +154,15 @@ The standard bootstrap is rather slow and may take weeks/months for large data s
 3. Construct a consensus tree from the combined bootstrap trees:
 
         iqtree -con -t alltrees
-    
+        
+    The consensus tree is then written to `.contree` file.
+     
 4. You can also perform the analysis on the original alignment and map the support values onto the obtained ML tree by:
 
         iqtree-omp -nt 4 -s input_alignment ...
         iqtree -sup input_alignment.treefile -t alltrees 
+
+    The ML tree with assigned bootstrap supports is written to `.suptree` file.
 
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
