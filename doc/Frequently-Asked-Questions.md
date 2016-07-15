@@ -15,6 +15,10 @@ sections:
   url: what-is-the-interpretation-of-branch-lengths-when-mixing-codon-and-dna-data
 - name: What is the purpose of the composition test?
   url: what-is-the-purpose-of-the-composition-test
+- name: What is the good number of CPU cores to use
+  url: what-is-the-good-number-of-cpu-cores-to-use
+- name: How do I save time for standard bootstrap?
+  url: how-do-i-save-time-for-standard-bootstrap
 jekyll-->
 For common questions and answers.
 <!--more-->
@@ -29,7 +33,7 @@ For common questions and answers.
 - [What is the interpretation of branch lengths when mixing codon and DNA data?](#what-is-the-interpretation-of-branch-lengths-when-mixing-codon-and-dna-data)
 - [What is the purpose of the composition test?](#what-is-the-purpose-of-the-composition-test)
 - [What is the good number of CPU cores to use?](#what-is-the-good-number-of-cpu-cores-to-use)
-- [How do I speed up the standard bootstrap?](#how-do-i-speed-up-the-standard-bootstrap)
+- [How do I save time for standard bootstrap?](#how-do-i-save-time-for-standard-bootstrap)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -134,7 +138,7 @@ IQ-TREE can utilize multicore machines to speed up the analysis via `-nt` option
 
 Please note that the more proper way is to actually run some quick analysis with increasing number of cores for your data and choose the one that best balances the trade-off between number of cores and waiting time. [See this tutorial for more details.](Tutorial#utilizing-multi-core-cpus)
 
-How do I speed up the standard bootstrap?
+How do I save time for standard bootstrap?
 --------------------------------------------
 
 The standard bootstrap is rather slow and may take weeks/months for large data sets. One way to speed up is to use the multicore version. However, this only works well for long alignments (see [What is the good number of CPU cores to use?](#what-is-the-good-number-of-cpu-cores-to-use)). Another way is to use many machines or a computing cluster and split the computation among the machines. To illustrate, you want to perform 100 bootstrap replicates and have 5 PCs, each has 4 CPU cores. Then you can:
