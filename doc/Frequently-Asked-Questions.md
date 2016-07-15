@@ -13,8 +13,8 @@ sections:
   url: can-i-mix-dna-and-protein-data-in-a-partitioned-analysis
 - name: What is the interpretation of branch lengths when mixing codon and DNA data?
   url: what-is-the-interpretation-of-branch-lengths-when-mixing-codon-and-dna-data
-- name: What is the purpose of the composition test?
-  url: what-is-the-purpose-of-the-composition-test
+- name: What is the purpose of composition test?
+  url: what-is-the-purpose-of-composition-test
 - name: What is the good number of CPU cores to use
   url: what-is-the-good-number-of-cpu-cores-to-use
 - name: How do I save time for standard bootstrap?
@@ -31,7 +31,7 @@ For common questions and answers.
 - [How does IQ-TREE treat gap/missing/ambiguous characters?](#how-does-iq-tree-treat-gapmissingambiguous-characters)
 - [Can I mix DNA and protein data in a partitioned analysis?](#can-i-mix-dna-and-protein-data-in-a-partitioned-analysis)
 - [What is the interpretation of branch lengths when mixing codon and DNA data?](#what-is-the-interpretation-of-branch-lengths-when-mixing-codon-and-dna-data)
-- [What is the purpose of the composition test?](#what-is-the-purpose-of-the-composition-test)
+- [What is the purpose of composition test?](#what-is-the-purpose-of-composition-test)
 - [What is the good number of CPU cores to use?](#what-is-the-good-number-of-cpu-cores-to-use)
 - [How do I save time for standard bootstrap?](#how-do-i-save-time-for-standard-bootstrap)
 
@@ -104,7 +104,7 @@ When mixing codon and DNA data in a partitioned analysis, the branch lengths are
 Note that if you mix codon, DNA and protein data, the branch lengths are then the number of character substitutions per site, where character is either nucleotide or amino-acid.
 
 
-What is the purpose of the composition test?
+What is the purpose of composition test?
 --------------------------------------------
 
 At the beginning of each run, IQ-TREE performs a composition chi-square test for every sequence in the alignment.  The purpose is to test for homogeneity of character composition (e.g., nucleotide for DNA, amino-acid for protein sequences). A sequence is denoted `failed` if its character composition significantly deviates from the average composition of the alignment.    
