@@ -47,14 +47,14 @@ chromosomes) so that information about the site frequency spectrum is
 available.
 
 The binary of IQ-TREE with PoMo can be
-[downloaded](https://github.com/Cibiv/IQ-TREE/releases/tag/v1.5.0-pomo)
+[downloaded](https://github.com/Cibiv/IQ-TREE/releases/tag/v1.4.3-pomo)
 or
-[built from source](https://github.com/Cibiv/IQ-TREE/tree/v1.5.0-pomo).
+[built from source](https://github.com/Cibiv/IQ-TREE/tree/v1.4.3-pomo).
 Please confirm that your version of IQ-TREE supports PoMo.
 
     iqtree
     
-    >> IQ-TREE PoMo version 1.5.0 for Linux 64-bit built Jul  6 2016
+    >> IQ-TREE PoMo version 1.4.3-pomo for Linux 64-bit built Jul  6 2016
     >> ...
 
 >**TIP**: For a quick overview of all PoMo related options in IQ-TREE,
