@@ -118,6 +118,13 @@ that has been analyzed in one of our publications. It includes twelve
 great ape population with one to 23 inividuals each (two to 56
 chromosomes).
 
+### Conversion scripts
+
+If you do not want to create counts files with your own scripts, you
+can use one of the scripts that we provide.  For detailed
+instructions, please refer to the
+[GitHub repository of the counts file library `cflib`](https://github.com/pomo-dev/cflib).
+
 First running example
 ---------------------
 
