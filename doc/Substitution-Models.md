@@ -53,30 +53,30 @@ DNA models
 
 IQ-TREE includes all common DNA models (ordered by complexity):
 
-| Model | Explanation | Code |
-|-------|-------------|------|
-| JC or JC69 | Equal substitution rates and equal base frequencies ([Jukes and Cantor, 1969]). | 000000 |
-| F81 | Equal rates but unequal base freq. ([Felsenstein, 1981]). | 000000 |
-| K80 or K2P | Unequal transition/transversion rates and equal base freq. ([Kimura, 1980]). | 010010 |
-| HKY or HKY85 | Unequal transition/transversion rates and unequal base freq. ([Hasegawa, Kishino and Yano, 1985]). | 010010 |
-| TN or TN93 | Like `HKY` but unequal purine/pyrimidine rates ([Tamura and Nei, 1993]). | 010020 |
-| TNe | Like `TN` but equal base freq. | 010020 |
-| K81 or K3P | Three substitution types model and equal base freq. ([Kimura, 1981]). | 012210 |
-| K81u | Like `K81` but unequal base freq. | 012210 |
-| TPM2 | AC=AT, AG=CT, CG=GT and equal base freq. | 121020 |
-| TPM2u | Like `TPM2` but unequal base freq. | 121020 |
-| TPM3 | AC=CG, AG=CT, AT=GT and equal base freq. | 120120 |
-| TPM3u | Like `TPM3` but unequal base freq. | 120120 |
-| TIM | Transition model, AC=GT, AT=CG and unequal base freq. | 012230 |
-| TIMe | Like `TIM` but equal base freq. | 012230 |
-| TIM2 | AC=AT, CG=GT and unequal base freq. | 121030 |
-| TIM2e | Like `TIM2` but equal base freq. | 121030 |
-| TIM3 | AC=CG, AT=GT and unequal base freq. | 120130 |
-| TIM3e | Like `TIM3` but equal base freq. | 120130 |
-| TVM | Transversion model, AG=CT and unequal base freq. | 412310 |
-| TVMe | Like `TVM` but equal base freq. | 412310 |
-| SYM | Symmetric model with unequal rates and equal base freq. ([Zharkihk, 1994]). | 123450 |
-| GTR | General time reversible model with unequal rates and unequal base freq. ([Tavare, 1986]). | 123450 |
+| Model | Params. | Explanation | Code |
+|-------|---------|-------------|------|
+| JC or JC69 | 0 | Equal substitution rates and equal base frequencies ([Jukes and Cantor, 1969]). | 000000 |
+| F81        | 3 | Equal rates but unequal base freq. ([Felsenstein, 1981]). | 000000 |
+| K80 or K2P | 1 | Unequal transition/transversion rates and equal base freq. ([Kimura, 1980]). | 010010 |
+| HKY or HKY85 | 4 | Unequal transition/transversion rates and unequal base freq. ([Hasegawa, Kishino and Yano, 1985]). | 010010 |
+| TN or TN93 | 5 | Like `HKY` but unequal purine/pyrimidine rates ([Tamura and Nei, 1993]). | 010020 |
+| TNe | 2 | Like `TN` but equal base freq. | 010020 |
+| K81 or K3P | 2 | Three substitution types model and equal base freq. ([Kimura, 1981]). | 012210 |
+| K81u | 5 | Like `K81` but unequal base freq. | 012210 |
+| TPM2 | 2 | AC=AT, AG=CT, CG=GT and equal base freq. | 121020 |
+| TPM2u | 5 | Like `TPM2` but unequal base freq. | 121020 |
+| TPM3 | 2 | AC=CG, AG=CT, AT=GT and equal base freq. | 120120 |
+| TPM3u | 5 | Like `TPM3` but unequal base freq. | 120120 |
+| TIM | 6 | Transition model, AC=GT, AT=CG and unequal base freq. | 012230 |
+| TIMe | 3 | Like `TIM` but equal base freq. | 012230 |
+| TIM2 | 6 | AC=AT, CG=GT and unequal base freq. | 121030 |
+| TIM2e | 3 | Like `TIM2` but equal base freq. | 121030 |
+| TIM3 | 6| AC=CG, AT=GT and unequal base freq. | 120130 |
+| TIM3e | 3 | Like `TIM3` but equal base freq. | 120130 |
+| TVM | 7 | Transversion model, AG=CT and unequal base freq. | 412310 |
+| TVMe | 4 | Like `TVM` but equal base freq. | 412310 |
+| SYM | 5 | Symmetric model with unequal rates and equal base freq. ([Zharkihk, 1994]). | 123450 |
+| GTR | 8 | General time reversible model with unequal rates and unequal base freq. ([Tavare, 1986]). | 123450 |
 
 The last column `Code` is a 6-digit code definining the equality constraints for 6 *relative* substitution rates: A-C, A-G, A-T, C-G, C-T and G-T. `010010` means that A-G rate is equal to C-T rate (corresponding to `1` in the code) and the remaining four substitution rates are equal (corresponding to `0` in the code). Thus, `010010` is equivalent to K80 or HKY model (depending on whether base frequencies are equal or not). `123450` is equivalent to GTR or SYM model as there is no restriction defined by such 6-digit code.
 
