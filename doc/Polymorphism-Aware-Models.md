@@ -95,7 +95,7 @@ Comments:
 - Lines starting with # before the first headerline are treated as
   comments.
 
-An example:
+A toy example:
 
     COUNTSFILE  NPOP 5   NSITES N
     CHROM  POS  Sheep    BlackSheep  RedSheep  Wolf     RedWolf
@@ -110,14 +110,27 @@ An example:
     .
     Y      9999 0,0,0,1  0,1,0,0     0,1,0,0   0,5,0,0  0,0,1,0
 
+The download also includes an example counts file called
+[`example.cf`](https://github.com/Cibiv/IQ-TREE/blob/PoMo/example/example.cf).
+This file is a subset of the
+[great ape data](https://github.com/pomo-dev/data/tree/master/SystBiol2015)
+that has been analyzed in one of our publications. It includes twelve
+great ape population with one to 23 inividuals each (two to 56
+chromosomes).
+
+### Conversion scripts
+
+If you do not want to create counts files with your own scripts, you
+can use one of the scripts that we provide.  For detailed
+instructions, please refer to the
+[GitHub repository of the counts file library `cflib`](https://github.com/pomo-dev/cflib).
+
 First running example
 ---------------------
 
-The download includes an example alignment called `example.cf` in
-counts file format (so far, PoMo only supports counts files).  You can
-now start to reconstruct a maximum-likelihood tree from this alignment
-by entering (assuming that you are now in the same folder with
-`example.cf`):
+You can now start to reconstruct a maximum-likelihood tree from this
+alignment by entering (assuming that you are now in the same folder
+with `example.cf`):
 
     iqtree -s example.cf
 
