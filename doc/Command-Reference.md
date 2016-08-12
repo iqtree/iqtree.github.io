@@ -1,7 +1,7 @@
 <!--jekyll
-docid: 13
+docid: 06
 icon: book
-doctype: manual
+doctype: tutorial
 tags:
 - manual
 sections:

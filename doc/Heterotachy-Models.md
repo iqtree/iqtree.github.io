@@ -5,7 +5,7 @@ doctype: manual
 tags:
 - manual
 sections:
-- name: What is heterotachy model
+- name: What is heterotachy model?
   url: what-is-heterotachy-model
 - name: Download
   url: download
