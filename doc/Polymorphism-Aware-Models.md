@@ -61,14 +61,13 @@ Please confirm that your version of IQ-TREE supports PoMo.
 >run the command `iqtree -h` and scroll to the heading `POLYMORPHISM
 >AWARE MODELS (PoMo)`.
 
-If you use PoMo, please cite
+If you use PoMo, please cite [Schrempf et al., 2016]:
 
-    Dominik Schrempf, Bui Quang Minh, Nicola De Maio, Arndt von Haeseler,
-    and Carolin Kosiol (2016) Reversible polymorphism-aware phylogenetic
-    models and their application to tree inference. J. Theor. Biol., in
-    press.
-    
-A preprint is available on bioRxiv: [Schrempf et al., 2016].
+    Dominik Schrempf, Bui Quang Minh, Nicola De Maio, Arndt von
+    Haeseler, and Carolin Kosiol (2016) Reversible polymorphism-aware
+    phylogenetic models and their application to tree inference.
+    J. Theor. Biol., 407, 362–370.
+    http://doi.org/10.1016/j.jtbi.2016.07.042.
 
 Counts files
 ------------
@@ -270,4 +269,4 @@ the total tree length measured in number of substitution per site in
 
 [tutorial]: Tutorial
 [bootstrap tutorial]: Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation
-[Schrempf et al., 2016]: http://dx.doi.org/10.1101/048496
+[Schrempf et al., 2016]: http://dx.doi.org/10.1016/j.jtbi.2016.07.042
