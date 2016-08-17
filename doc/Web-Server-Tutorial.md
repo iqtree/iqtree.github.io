@@ -80,4 +80,4 @@ Once a job is finished, you can select it by checking the corresponding box and 
 | .contree | Consensus tree with assigned branch supports where branch lengths are optimized on the original alignment; printed if Ultrafast Bootstrap is selected |
 | .ckp.gz | Checkpoint file; included if a job was stopped because of RAM/CPU limits |
 
->**NOTE**: Jobs which require more than 24 hours or 1GB RAM will be stopped. In such a case, you can download the stopped job and resume the run from the last checkpoint on your local PC as described <a target="_blank" href="http://www.cibiv.at/software/iqtree/doc/Command-Reference/#checkpointing-to-resume-stopped-run"> <b>here</b></a>. 
+>**NOTE**: Jobs which require more than 24 hours or 1GB RAM will be stopped. In such a case, you can download the stopped job and resume the run from the last checkpoint on your local PC as described <a target="_blank" href="http://www.iqtree.org/doc/Command-Reference/#checkpointing-to-resume-stopped-run"> <b>here</b></a>. 

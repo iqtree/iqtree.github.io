@@ -1,1 +1,1 @@
-Copyright (c) 2010-2016 [IQ-TREE development team](http://www.cibiv.at/software/iqtree/).
+Copyright (c) 2010-2016 [IQ-TREE development team](http://www.iqtree.org).
