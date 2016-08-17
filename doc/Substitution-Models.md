@@ -138,7 +138,7 @@ Moreover, IQ-TREE also supports a series of protein mixture models:
 
 | Model | Explanation |
 |-------|-------------|
-| C10, ..., C60 | 10- to 60-profile mixture models under [Gamma rate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2008a]).
+| C10, ..., C60 | 10- to 60-profile mixture models ([Le et al., 2008a]) as variants of the CAT model ([Lartillot and Philippe, 2004]) for ML. Note that these models assume `Poisson` AA replacement and implicitly include a [Gamma rate heterogeneity among sites](#rate-heterogeneity-across-sites).
 | EX2 | Two-matrix model for exposed/buried AA sites ([Le et al., 2008b]).
 | EX3 | Three-matrix model for highly exposed/intermediate/buried AA sites ([Le et al., 2008b]).
 | EHO | Three-matrix model for extended/helix/other sites ([Le et al., 2008b]).
@@ -150,9 +150,9 @@ Moreover, IQ-TREE also supports a series of protein mixture models:
 
 One can even combine a protein matrix with a profile mixture model like:
 
-* `LG+C20`: Applying `LG` matrix for all 20 mixture classes.
-* `JTT+CF4+G`: Applying `JTT` matrix for all 5 mixture classes and Gamma rate heteorogeneity.
-* `JTTCF4G`: Alias for `JTT+CF4+G`.
+* `LG+C20`: Applying `LG` matrix instead of `Poisson` for all 20 classes of AA profiles and a Gamma rate heterogeneity.
+* `LG+C20+F`: Applying `LG` matrix for 20 classes plus the 21th class of empirical AA profile (counted from the current data) and Gamma rate heterogeneity.
+* `JTT+CF4+G`: Applying `JTT` matrix for all 5 classes of AA profiles and Gamma rate heteorogeneity.
 
 Moreover, one can override the Gamma rate by FreeRate heterogeneity:
 
@@ -346,6 +346,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Kimura, 1981]: http://dx.doi.org/10.1073/pnas.78.1.454
 [Kosiol and Goldman, 2005]: http://dx.doi.org/10.1093/molbev/msi005
 [Kosiol et al., 2007]: http://dx.doi.org/10.1093/molbev/msm064
+[Lartillot and Philippe, 2004]: http://dx.doi.org/10.1093/molbev/msh112
 [Le and Gascuel, 2008]: http://dx.doi.org/10.1093/molbev/msn067
 [Le et al., 2008a]: http://dx.doi.org/10.1093/bioinformatics/btn445
 [Le et al., 2008b]: http://dx.doi.org/10.1098/rstb.2008.0180

@@ -138,13 +138,14 @@ The names given to the clusters in the cluster file will be used to label the co
 Automatic model selection
 -------------------------
 
-All testing approaches are specified via `-m TEST...` option:
+The default model (e.g., `HKY+F` for DNA, `LG` for protein data) may not fit well to the data. Therefore, IQ-TREE
+allows to automatically determine the best-fit model via a series of `-m TEST...` option:
 
 |Option| Usage and meaning |
 |------|-------------------|
 | -m TESTONLY | Perform standard model selection like jModelTest (for DNA) and ProtTest (for protein). Moreover, IQ-TREE also works for codon, binary and morphogical data. |
 | -m TEST | Like `-m TESTONLY` but immediately followed by tree reconstruction using the best-fit model found. So this performs both model selection and tree inference within a single run. |
-| -m TESTNEWONLY | Perform the new model selection that additionally includes FreeRate model compared with `-m TESTONLY`. *Recommended as replacement for `-m TESTONLY`*. Note that `LG4X` is a FreeRate model, but by default is not included because it is also a protein mixture model. To include it, use `-madd` option (see table below).  |
+| -m TESTNEWONLY | Perform an extended model selection that additionally includes FreeRate model compared with `-m TESTONLY`. *Recommended as replacement for `-m TESTONLY`*. Note that `LG4X` is a FreeRate model, but by default is not included because it is also a protein mixture model. To include it, use `-madd` option (see table below).  |
 | -m TESTNEW | Like `-m TESTNEWONLY` but immediately followed by tree reconstruction using the best-fit model found. |
 | -m TESTMERGEONLY | Select best-fit partitioning scheme like PartitionFinder. |
 | -m TESTMERGE | Like `-m TESTMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found. |
@@ -186,7 +187,7 @@ The following `MODEL`s are available:
 | DataType | Model names |
 |----------|-------------|
 | DNA      | JC/JC69, F81, K2P/K80, HKY/HKY85, TN/TrN/TN93, TNe, K3P/K81, K81u, TPM2, TPM2u, TPM3, TPM3u, TIM, TIMe, TIM2, TIM2e, TIM3, TIM3e, TVM, TVMe, SYM, GTR and 6-digit specification. See [DNA models](Substitution-Models#dna-models) for more details. |
-| Protein  | BLOSUM62, cpREV, Dayhoff, DCMut, FLU, HIVb, HIVw, JTT, JTTDCMut, LG, mtART, mtMAM, mtREV, mtZOA, Poisson, PMB, rtREV, VT, WAG. Many protein mixture models are also supported: C10,...,C60, EX2, EX3, EHO, UL2, UL3, EX_EHO, LG4M, LG4X, CF4 (`-mwopt` option can be used to turn on optimizing weights of mixture models). See [Protein models](Substitution-Models#protein-models) for more details. |
+| Protein  | BLOSUM62, cpREV, Dayhoff, DCMut, FLU, HIVb, HIVw, JTT, JTTDCMut, LG, mtART, mtMAM, mtREV, mtZOA, Poisson, PMB, rtREV, VT, WAG. Many protein mixture models are also supported: C10,...,C60 (CAT model) ([Lartillot and Philippe, 2004]), EX2, EX3, EHO, UL2, UL3, EX_EHO, LG4M, LG4X, CF4 (`-mwopt` option can be used to turn on optimizing weights of mixture models). See [Protein models](Substitution-Models#protein-models) for more details. |
 | Codon | MG, MGK, MG1KTS, MG1KTV, MG2K, GY, GY1KTS, GY1KTV, GY2K, ECMK07/KOSI07, ECMrest, ECMS05/SCHN05 and combined empirical-mechanistic models. See [Codon models](Substitution-Models#codon-models) for more details. |
 | Binary | JC2, GTR2. See [Binary and morphological models](Substitution-Models#binary-and-morphological-models) for more details. |
 | Morphology| MK, ORDERED. See [Binary and morphological models](Substitution-Models#binary-and-morphological-models) for more details. |
@@ -367,6 +368,7 @@ Miscellaneous options
 [Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: http://dx.doi.org/10.1007/BF02100115
 [Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82
+[Lartillot and Philippe, 2004]: http://dx.doi.org/10.1093/molbev/msh112
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
 [Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
