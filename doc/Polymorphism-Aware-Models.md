@@ -135,7 +135,7 @@ with `example.cf`):
 
 `-s` is the option to specify the name of the alignment file.  At the
 end of the run IQ-TREE writes the same output files as in the standard
-version (see [tutorial]).
+version (see [tutorial](Tutorial)).
 
 * `example.cf.iqtree`: the main report file that is self-readable.
 You should look at this file to see the computational results.  It
@@ -241,7 +241,7 @@ e.g., for 100 replicates:
 
     iqtree -s example.cf -b 100
 
-For a detailed description, please refer to the [bootstrap tutorial].
+For a detailed description, please refer to the [bootstrap tutorial](Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation).
 
 Interpretation of branch lengths
 --------------------------------
@@ -267,6 +267,4 @@ the total tree length measured in number of substitution per site in
     - measured in mutations and frequency shifts per site: 0.01767814 (2.48285810% of tree length)
     - measured in substitutions per site: 0.01767814 (2.48285810% of tree length)
 
-[tutorial]: Tutorial
-[bootstrap tutorial]: Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation
 [Schrempf et al., 2016]: http://dx.doi.org/10.1016/j.jtbi.2016.07.042
