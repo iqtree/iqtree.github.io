@@ -153,3 +153,12 @@ Compiling 32-bit version
 >**NOTE**: Typically a 64-bit IQ-TREE version is built and recommended! The 32-bit version has several restriction like maximal RAM usage of 2GB and no AVX support, thus not suitable to analyze large data sets.
 
 To compile the 32-bit version instead, simply add `m32` into `IQTREE_FLAGS` of the cmake command. That means, `-DIQTREE_FLAGS=m32` to build the 32-bit sequential version and `-DIQTREE_FLAGS="omp m32"` to build the 32-bit multicore version.
+
+Compiling MPI version
+---------------------
+
+Please first install an MPI library (e.g., (OpenMPI)[http://open-mpi.org/]) if not available in your system. The MPI C/C++ compiler are then typically named `mpicc`, `mpicxx`, which can be used for subsequent CMake command, for example:
+
+    cmake -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx ..
+
+
