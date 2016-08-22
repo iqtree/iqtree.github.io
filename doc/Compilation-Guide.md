@@ -157,7 +157,7 @@ To compile the 32-bit version instead, simply add `m32` into `IQTREE_FLAGS` of t
 Compiling MPI version
 ---------------------
 
-Please first install an MPI library (e.g., (OpenMPI)[http://open-mpi.org/]) if not available in your system. The MPI C/C++ compiler are then typically named `mpicc`, `mpicxx`, which can be used for subsequent CMake command, for example:
+Please first install an MPI library (e.g., [OpenMPI](http://open-mpi.org/)) if not available in your system. The MPI C/C++ compiler are then typically named `mpicc`, `mpicxx`, which can be used for subsequent CMake command, for example:
 
     cmake -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx ..
 
