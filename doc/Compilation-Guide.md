@@ -17,6 +17,8 @@ sections:
   url: compiling-under-windows
 - name: Compiling 32-bit version
   url: compiling-32-bit-version
+- name: Compiling MPI version
+  url: compiling-mpi-version
 jekyll-->
 For advanced users to compile IQ-TREE source code.
 <!--more-->
@@ -31,6 +33,7 @@ For advanced users to compile IQ-TREE source code.
 - [Compiling under Mac OS X](#compiling-under-mac-os-x)
 - [Compiling under Windows](#compiling-under-windows)
 - [Compiling 32-bit version](#compiling-32-bit-version)
+- [Compiling MPI version](#compiling-mpi-version)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -157,8 +160,22 @@ To compile the 32-bit version instead, simply add `m32` into `IQTREE_FLAGS` of t
 Compiling MPI version
 ---------------------
 
-Please first install an MPI library (e.g., [OpenMPI](http://open-mpi.org/)) if not available in your system. The MPI C/C++ compiler are then typically named `mpicc`, `mpicxx`, which can be used for subsequent CMake command, for example:
+Please first install an MPI library (e.g., [OpenMPI](http://open-mpi.org/)) if not available in your system. The MPI C/C++ compilers are then typically named `mpicc` and `mpicxx`, which can be used for subsequent CMake command, for example:
 
     cmake -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx ..
+    make -j4
+
+The executable is named `iqtree-mpi`. One can then run `mpirun` to start the MPI version with e.g. 2 processes:
+
+    mpirun -np 2 iqtree-mpi -s alignment ...
+
+If you want to compile the hybrid MPI/OpenMP version, simply add `-DIQTREE_FLAGS=omp` into this `cmake` command. The resulting executable is then named `iqtree-omp-mpi`. This can be used to start an MPI run with e.g. 4 processes and 2 cores each (i.e., a total of 8 cores will be used):
+
+    mpirun -np 4 iqtree-omp-mpi -nt 2 -s alignment ...
+
+
+
+>**NOTE**: Please be aware that [OpenMP](http://openmp.org/) and [OpenMPI](http://open-mpi.org/) are different! OpenMP is the standard to implement multithreading program, that we use to provide the multicore IQ-TREE version `iqtree-omp`. Whereas OpenMPI is an MPI library, that is used to compile `iqtree-mpi`. Thus, one cannot use `iqtree-omp` for an `mpirun`!
+
 
 
