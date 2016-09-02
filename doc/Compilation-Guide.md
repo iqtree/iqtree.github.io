@@ -155,12 +155,28 @@ Compiling 32-bit version
 
 >**NOTE**: Typically a 64-bit IQ-TREE version is built and recommended! The 32-bit version has several restriction like maximal RAM usage of 2GB and no AVX support, thus not suitable to analyze large data sets.
 
-To compile the 32-bit version instead, simply add `m32` into `IQTREE_FLAGS` of the cmake command. That means, `-DIQTREE_FLAGS=m32` to build the 32-bit sequential version and `-DIQTREE_FLAGS="omp m32"` to build the 32-bit multicore version.
+To compile the 32-bit version instead, simply add `m32` into `IQTREE_FLAGS` of the cmake command:
+
+    cmake -DIQTREE_FLAGS=m32 .. 
+    
+To build the 32-bit multicore version, run: 
+
+    cmake -DIQTREE_FLAGS="omp m32" ..
+
 
 Compiling MPI version
 ---------------------
 
-Please first install an MPI library (e.g., [OpenMPI](http://open-mpi.org/)) if not available in your system. The MPI C/C++ compilers are then typically named `mpicc` and `mpicxx`, which can be used for subsequent CMake command, for example:
+* **Requirements**: Please first install an MPI library (e.g., [OpenMPI](http://open-mpi.org/)) if not available in your system. For Mac OS X, the easiest is to install [Homebrew package manager](http://brew.sh), and then install OpenMPI library from the command line with:
+
+        brew install openmpi
+
+Then simply run `CMake` and `make` by:
+
+    cmake -DIQTREE_FLAGS=mpi ..
+    make -j4
+
+IQ-TREE will automatically detect and setup the MPI paths and library. Alternatively, you can also use the MPI C/C++ compiler wrappers (typically named `mpicc` and `mpicxx`), for example:
 
     cmake -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx ..
     make -j4
@@ -169,13 +185,18 @@ The executable is named `iqtree-mpi`. One can then run `mpirun` to start the MPI
 
     mpirun -np 2 iqtree-mpi -s alignment ...
 
-If you want to compile the hybrid MPI/OpenMP version, simply add `-DIQTREE_FLAGS=omp` into this `cmake` command. The resulting executable is then named `iqtree-omp-mpi`. This can be used to start an MPI run with e.g. 4 processes and 2 cores each (i.e., a total of 8 cores will be used):
+If you want to compile the hybrid MPI/OpenMP version, simply run:
+
+    cmake -DIQTREE_FLAGS="mpi omp" ..
+    make -j4
+
+The resulting executable is then named `iqtree-omp-mpi`. This can be used to start an MPI run with e.g. 4 processes and 2 cores each (i.e., a total of 8 cores will be used):
 
     mpirun -np 4 iqtree-omp-mpi -nt 2 -s alignment ...
 
 
 
->**NOTE**: Please be aware that [OpenMP](http://openmp.org/) and [OpenMPI](http://open-mpi.org/) are different! OpenMP is the standard to implement multithreading program, that we use to provide the multicore IQ-TREE version `iqtree-omp`. Whereas OpenMPI is an MPI library, that is used to compile `iqtree-mpi`. Thus, one cannot use `iqtree-omp` for an `mpirun`!
+>**NOTE**: Please be aware that [OpenMP](http://openmp.org/) and [OpenMPI](http://open-mpi.org/) are different! OpenMP is the standard to implement shared-memory multithreading program, that we use to provide the multicore IQ-TREE version `iqtree-omp`. Whereas OpenMPI is a message passing interface (MPI) library for distributed memory parallel system, that is used to compile `iqtree-mpi`. Thus, **one cannot run `iqtree-omp` with `mpirun`!*
 
 
 
