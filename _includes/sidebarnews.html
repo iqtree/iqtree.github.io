@@ -1,0 +1,13 @@
+<div class="well">
+    <h4>Recent news</h4>
+    <div class="row">
+        <div class="popular-posts">
+            {% for post in site.categories['news'] limit:10 %} 
+                <div class="col-md-12 col-sm-6 col-xs-6">
+                    <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a><br><csmall>{{ post.date | date: "%b %-d, %Y" }}</csmall></p>
+                </div>
+            {% endfor %} 
+        </div>
+    </div>
+    <p><strong><a href="{{site.url}}/news">&#8594; See all news</a></strong></p>
+</div>

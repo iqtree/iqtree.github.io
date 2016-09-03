@@ -1,5 +1,5 @@
-http://www.cibiv.at/software/iqtree/
-http://www.cibiv.at/software/iqtree/doc/
-http://www.cibiv.at/software/iqtree/release/
-http://www.cibiv.at/software/iqtree/blog/
-http://www.cibiv.at/software/iqtree/about/
+http://www.iqtree.org
+http://www.iqtree.org/doc/
+http://www.iqtree.org/release/
+http://www.iqtree.org/blog/
+http://www.iqtree.org/about/

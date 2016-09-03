@@ -10,7 +10,7 @@ layout: default
         <div class="col-md-9">
             <! -- User Doc  -->
             <h3>{{ page.title }}</h3>
-            <p><csmall>{{ page.date | date: "%b %-d, %Y" }}. | Updated by: {{ page.author }}</csmall></p>
+            <p><em>Last update: {{ page.date | date: "%b %-d, %Y" }} by {{ page.author }}</em></p>
               
             {{ content }}
 
@@ -25,9 +25,9 @@ layout: default
         </div><! --/col-md-9 -->
         
         <div class="col-md-3">
-        <div data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+        <!--<div data-spy="affix" data-offset-top="60" data-offset-bottom="200">-->
             {% include sidebardoc.html %}
-        </div>
+        <!--</div>-->
         </div>
 
     </div><! --/row -->

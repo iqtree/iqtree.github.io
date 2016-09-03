@@ -4,8 +4,8 @@
 title: IQ-TREE
 description: "IQ-TREE: Efficient phylogenetic software by maximum likelihood"
 analytics: UA-38693379-1
-baseurl: "/software/iqtree" #important: start with /
-url: "http://www.cibiv.at"
+baseurl: "" #important: start with /
+url: "http://www.iqtree.org"
 
 # Build settings
 markdown: kramdown
@@ -89,6 +89,13 @@ members:
         url: http://www.cibiv.at/~minh
       - title: university
         url: https://scholar.google.com/citations?user=UI0xN_QAAAAJ
+  - name: Dominik Schrempf
+    position: Developer
+    text: Implements polymorphism-aware models (PoMo).
+    img: jule.jpg
+    social:
+      - title: home #use for email address
+        url: http://i122server.vu-wien.ac.at/pop/lab_members/Dominik_Schrempf.html
   - name: Arndt von Haeseler
     position: Advisor
     text: Provides advice, inspiring ideas and financial support.

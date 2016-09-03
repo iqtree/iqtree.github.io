@@ -15,7 +15,7 @@ layout: default
             <p><img class="img-responsive" src="{{ "/assets/img/blog/" | prepend: site.baseurl }}{{ page.img }}"></p>
             {% endif %}
             {{ content }}
-
+            <button type="button" class="btn btn-warning" onclick="window.history.back();">&#8592; Back to all news</button>
             <div class="spacing"></div>
             <!-- <h6>SHARE:</h6>
             <p class="share">
@@ -27,7 +27,7 @@ layout: default
         </div><! --/col-md-8 -->
         
         <div class="col-md-4">
-            {% include sidebar.html %}
+            {% include sidebarnews.html %}
         </div>
 
     </div><! --/row -->

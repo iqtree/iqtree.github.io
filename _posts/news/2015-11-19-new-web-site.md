@@ -3,7 +3,7 @@ layout: post
 title: "New IQ-TREE web site"
 author: Admin
 categories: 
-- blog 
+- news 
 tags:
 - announcement
 img: post20151119.png
