@@ -245,7 +245,7 @@ The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters 
 | -allnni  | Turn on more thorough and slower NNI search. It means that IQ-TREE will consider all possible NNIs instead of only those in the vicinity of previously applied NNIs. *DEFAULT: OFF* |
 | -numstop | Specify number of unsuccessful iterations to stop. *DEFAULT: 100* |
 | -n       | Specify number of iterations to stop. This option overrides `-numstop` criterion. |
-| -djc     | Avoid computing ML pairwise distances ad BIONJ tree. |
+| -djc     | Avoid computing ML pairwise distances and BIONJ tree. |
 
 >**NOTICE**: While the default parameters were empirically determined to work well under our extensive benchmark ([Nguyen et al., 2015]), it might not hold true for all data sets. If in doubt that tree search is still stuck in local optima, one should repeat analysis with at least 10 IQ-TREE runs. Moreover, our experience showed that `-pers` and `-numstop` are the most relevant options to change in such case. For example, data sets with many short sequences should be analyzed with smaller perturbation strength (`-pers`) and larger `-numstop`.
 
@@ -302,7 +302,8 @@ IQ-TREE provides a number of tests for significant topological differences betwe
 | -z  | Specify a file containing a set of trees. IQ-TREE will compute the log-likelihoods of all trees. |
 | -zb | Specify the number of RELL ([Kishino et al., 1990]) replicates (>=1000) to perform several tree topology tests for all trees passed via `-z`. The tests include bootstrap proportion (BP), KH test ([Kishino and Hasegawa, 1989]), SH test ([Shimodaira and Hasegawa, 1999]) and expected likelihood weights (ELW) ([Strimmer and Rambaut, 2002]). |
 | -zw | Used together with `-zb` to additionally perform the weighted-KH and weighted-SH tests. |
-| -au | Perform the approximately unbiased (AU) test ([Shimodaira, 2002]). |
+| -au | Used together with `-zb` to additionally perform the approximately unbiased (AU) test ([Shimodaira, 2002]). Note that you have to specify the number of replicates for the AU test via `-zb`. |
+| -te | Specify a fixed user tree to estimate model parameters. Without this option, IQ-TREE will by default invoke a full tree search before performing the tree topology tests. |
 
 >**NOTE**: The AU test implementation in IQ-TREE is much more efficient than the original CONSEL by supporting SSE, AVX and multicore parallelization. Moreover, it is more appropriate than CONSEL for partition analysis by bootstrap resampling sites *within* partitions, whereas CONSEL is not partition-aware.
 
