@@ -134,9 +134,9 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | VT | General matrix ([Mueller and Vingron, 2000]). |
 | WAG | General matrix ([Whelan and Goldman, 2001]). |
 |-------|-------------|
-| GTR20 | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having phylogenetic information (e.g. not long enough alignments). * |
+| GTR20 | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments). * |
 
-#### Protein mixturel models
+#### Protein mixture models
 
 IQ-TREE also supports a series of protein mixture models:
 
