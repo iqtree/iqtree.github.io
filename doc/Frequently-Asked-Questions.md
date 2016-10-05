@@ -19,6 +19,8 @@ sections:
   url: what-is-the-good-number-of-cpu-cores-to-use
 - name: How do I save time for standard bootstrap?
   url: how-do-i-save-time-for-standard-bootstrap
+- name: Why does IQ-TREE complain about the use of +ASC model?
+  url: why-does-iq-tree-complain-about-the-use-of-asc-model
 jekyll-->
 For common questions and answers.
 <!--more-->
@@ -34,6 +36,7 @@ For common questions and answers.
 - [What is the purpose of composition test?](#what-is-the-purpose-of-composition-test)
 - [What is the good number of CPU cores to use?](#what-is-the-good-number-of-cpu-cores-to-use)
 - [How do I save time for standard bootstrap?](#how-do-i-save-time-for-standard-bootstrap)
+- [Why does IQ-TREE complain about the use of +ASC model?](#why-does-iq-tree-complain-about-the-use-of-asc-model)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -172,6 +175,28 @@ The standard bootstrap is rather slow and may take weeks/months for large data s
         iqtree -sup input_alignment.treefile -t alltrees 
 
     The ML tree with assigned bootstrap supports is written to `.suptree` file.
+
+Why does IQ-TREE complain about the use of +ASC model?
+--------------------------------------------------------
+
+When using ascertainment bias correction (ASC) model, sometimes you may get an error message:
+
+`ERROR: Invaid use of +ASC because of ... invariant sites in the alignment`
+
+or when performing model testing:
+
+`Skipped since +ASC is not applicable`
+
+This is because your alignment contains _invariant_ sites (columns), which violate the mathematical condition of the model. The invariant sites can be:
+
+* Constant sites: containing a single character state over all sequences. For example, all sequences show an `A` (Adenine) at a particular site in a DNA alignment. 
+* Partially constant sites: containing a single character, gap or unknown character. For example, at a particular site some sequences show a `G` (Guanine), some sequences have `-` (gap) and the other have `N`.
+* Ambiguously constant sites: For example, some sequences show a `C` (Cytosine), some show a `Y` (meaning `C` or `T`) and some show a `-` (gap). 
+
+All these sites must be removed from the alignment before a +ASC model can be applied.
+
+>**TIP**: Starting with IQ-TREE version 1.5.0, an output alignment file with suffix `.varsites` is written in such cases, which contain only variable sites from the input alignment. The `.varsites` alignment can then be used with the +ASC model.
+
 
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
