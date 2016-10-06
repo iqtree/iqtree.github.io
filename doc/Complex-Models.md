@@ -9,6 +9,8 @@ sections:
   url: partition-models
 - name: Mixture models
   url: mixture-models
+- name: Site-specific frequency models
+  url: site-specific-frequency-models
 jekyll-->
 Partition and mixture models and usages.
 <!--more-->
@@ -25,6 +27,7 @@ Partition and mixture models and usages.
     - [Defining mixture models](#defining-mixture-models)
     - [Profile mixture models](#profile-mixture-models)
     - [NEXUS model file](#nexus-model-file)
+- [Site-specific frequency models](#site-specific-frequency-models)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -188,7 +191,32 @@ Here, we first define the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in
 Note that both `frequency` and `model` commands can be embedded into a single model file.
 
 
+Site-specific frequency models
+------------------------------
 
+Starting with version 1.5.0, IQ-TREE provides a new site-specific frequency model as a rapid approximation to the time and memory consuming profile mixture models C10 to C60 ([Le et al., 2008a]; a variant of PhyloBayes' `CAT` model). The site-specific frequency model is much faster than `C10` to `C60` and requires slightly more RAM than a single non-mixture model, regardless of the number of mixture classes. Our extensive simulations and empirical phylogenomic data analyses demonstrate that the site-specific frequency models can effectively ameliorate long branch attraction artefacts as well.  
+
+To use this model you have to provide a *guide tree*, which, for example, can be obtained by a quick analysis under the simpler `LG+F+G` model. The guide tree can then be specified via `-ft` option, for example:
+
+    iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree>
+
+Here, IQ-TREE will perform two phases. In the first phase, IQ-TREE estimates mixture model parameters given the guide tree and then infers the site-specific frequency profile (printed to `.sitefreq` file). In the second phase, IQ-TREE will conduct typical analysis using the inferred frequency model instead of the mixture model to save RAM and running time. This allows, for the first time, to conduct nonparametric bootstrap under such complex models, for example (with 100 bootstrap replicates):
+
+    iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree> -b 100
+
+Please note that the first phase still consumes as much RAM as the mixture model. To overcome this, you can perform the first phase in a high-memory server and the second phase in a normal PC as follows:
+
+    iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree> -n 0
+
+This will stop the analysis after the first phase and also write a `.sitefreq` file. You can now copy this `.sitefreq` file to another machine and run with the same alignment:
+
+    iqtree -s <alignment> -m LG+C20+F+G -fs <file.sitefreq>
+
+This will omit the first phase and thus need much less RAM. 
+
+
+[Lartillot and Philippe, 2004]: http://dx.doi.org/10.1093/molbev/msh112
+[Le et al., 2008a]: http://dx.doi.org/10.1093/bioinformatics/btn445
 [Le et al., 2012]: http://dx.doi.org/10.1093/molbev/mss112
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Wang et al., 2008]: http://dx.doi.org/10.1186/1471-2148-8-331
