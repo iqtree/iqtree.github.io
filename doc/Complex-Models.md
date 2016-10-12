@@ -194,17 +194,17 @@ Note that both `frequency` and `model` commands can be embedded into a single mo
 Site-specific frequency models
 ------------------------------
 
-Starting with version 1.5.0, IQ-TREE provides a new site-specific frequency model as a rapid approximation to the time and memory consuming profile mixture models C10 to C60 ([Le et al., 2008a]; a variant of PhyloBayes' `CAT` model). The site-specific frequency model is much faster than `C10` to `C60` and requires slightly more RAM than a single non-mixture model, regardless of the number of mixture classes. Our extensive simulations and empirical phylogenomic data analyses demonstrate that the site-specific frequency models can effectively ameliorate long branch attraction artefacts as well.  
+Starting with version 1.5.0, IQ-TREE provides a new posterior mean site frequency (PMSF) model as a rapid approximation to the time and memory consuming profile mixture models C10 to C60 ([Le et al., 2008a]; a variant of PhyloBayes' `CAT` model). The PMSF are the amino-acid profiles for each alignment site computed from an input mixture model and a guide tree. The PMSF model is much faster than `C10` to `C60` and only requires slightly more RAM than a single non-mixture model, regardless of the number of mixture classes. Our extensive simulations and empirical phylogenomic data analyses demonstrate that the PMSF models can effectively ameliorate long branch attraction artefacts as well.
 
 If you use this model in a publication please cite:
 
 > __Wang, H.C., Susko, S, Minh B.Q and Roger A.J.__ Modeling site heterogeneity with posterior mean site frequencies accelerates accurate phylogenomic estimation. _in prep_
 
-To use this model you have to provide a *guide tree*, which, for example, can be obtained by a quick analysis under the simpler `LG+F+G` model. The guide tree can then be specified via `-ft` option, for example:
+To use the PMSF model you have to provide a *guide tree*, which, for example, can be obtained by a quicker analysis under the simpler `LG+F+G` model. The guide tree can then be specified via `-ft` option, for example:
 
     iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree>
 
-Here, IQ-TREE will perform two phases. In the first phase, IQ-TREE estimates mixture model parameters given the guide tree and then infers the site-specific frequency profile (printed to `.sitefreq` file). In the second phase, IQ-TREE will conduct typical analysis using the inferred frequency model instead of the mixture model to save RAM and running time. This allows, for the first time, to conduct nonparametric bootstrap under such complex models, for example (with 100 bootstrap replicates):
+Here, IQ-TREE will perform two phases. In the first phase, IQ-TREE estimates mixture model parameters given the guide tree and then infers the site-specific frequency profile (printed to `.sitefreq` file). In the second phase, IQ-TREE will conduct typical analysis using the inferred frequency model instead of the mixture model to save RAM and running time. This allows one, for the first time, to conduct nonparametric bootstrap under such complex models, for example (with 100 bootstrap replicates):
 
     iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree> -b 100
 
@@ -212,12 +212,16 @@ Please note that the first phase still consumes as much RAM as the mixture model
 
     iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree> -n 0
 
-This will stop the analysis after the first phase and also write a `.sitefreq` file. You can now copy this `.sitefreq` file to another machine and run with the same alignment:
+This will stop the analysis after the first phase and also write a `.sitefreq` file. You can now copy this `.sitefreq` file to another low-memory machine and run with the same alignment:
 
     iqtree -s <alignment> -m LG+C20+F+G -fs <file.sitefreq>
 
 This will omit the first phase and thus need much less RAM. 
 
+Finally, note that for long (phylogenomic) alignments you can utilize the multicore IQ-TREE version to further save the computing times with, say, 24 cores by:
+
+    iqtree-omp -nt 24 -s <alignment> -m LG+C20+F+G -fs <file.sitefreq>
+ 
 
 [Lartillot and Philippe, 2004]: http://dx.doi.org/10.1093/molbev/msh112
 [Le et al., 2008a]: http://dx.doi.org/10.1093/bioinformatics/btn445
