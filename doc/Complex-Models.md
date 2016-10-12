@@ -196,6 +196,10 @@ Site-specific frequency models
 
 Starting with version 1.5.0, IQ-TREE provides a new site-specific frequency model as a rapid approximation to the time and memory consuming profile mixture models C10 to C60 ([Le et al., 2008a]; a variant of PhyloBayes' `CAT` model). The site-specific frequency model is much faster than `C10` to `C60` and requires slightly more RAM than a single non-mixture model, regardless of the number of mixture classes. Our extensive simulations and empirical phylogenomic data analyses demonstrate that the site-specific frequency models can effectively ameliorate long branch attraction artefacts as well.  
 
+If you use this model in a publication please cite:
+
+> __Wang, H.C., Susko, S, Minh B.Q and Roger A.J.__ Modeling site heterogeneity with posterior mean site frequencies accelerates accurate phylogenomic estimation. _in prep_
+
 To use this model you have to provide a *guide tree*, which, for example, can be obtained by a quick analysis under the simpler `LG+F+G` model. The guide tree can then be specified via `-ft` option, for example:
 
     iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree>
