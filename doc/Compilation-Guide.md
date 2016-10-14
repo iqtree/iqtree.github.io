@@ -43,21 +43,21 @@ General requirements
 
 * Make sure that a C++ compiler is installed. IQ-TREE was successfully built with GCC (version 4.6 at least), Clang, MS Visual Studio and Intel C++ compiler. 
 * Install [CMake](http://www.cmake.org) if not yet available in your system. 
+* *(Optional)* If you want to compile the multicore version, make sure that the OpenMP library was installed. This should typically be the case with `gcc` under Linux.
 * *(Optional)* Install [git](https://git-scm.com) if you want to clone source code from [IQ-TREE GitHub repository](https://github.com/Cibiv/IQ-TREE).
-* *(Optional)* If you want to compile the multicore version, make sure that the compiler supports [OpenMP](http://openmp.org/) and that the OpenMP library was installed.
 
 Downloading source code
 -----------------------
 
-Download the latest source code of IQ-TREE in either `zip` or `tar.gz` from:
+Choose the source code (`zip` or `tar.gz`) of the IQ-TREE release you want to use from:
 
-<https://github.com/Cibiv/IQ-TREE/releases/latest>
+<https://github.com/Cibiv/IQ-TREE/releases/>
 
-Alternatively, you can also clone the source code from github with:
+Alternatively, if you have `git` installed, you can also clone the source code from GitHub with:
 
     git clone https://github.com/Cibiv/IQ-TREE.git
 
-Please find below separate compilation guide fors [Linux](#compiling-under-linux), [Mac OS X](#compiling-under-mac-os-x), and [Windows](#compiling-under-windows) as well as for [32-bit version](#compiling-32-bit-version).
+Please find below separate compilation guide fors [Linux](#compiling-under-linux), [Mac OS X](#compiling-under-mac-os-x), and [Windows](#compiling-under-windows) as well as for [32-bit version](#compiling-32-bit-version) or for [MPI version](#compiling-mpi-version).
 
 Compiling under Linux
 ---------------------
