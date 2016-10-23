@@ -1,5 +1,5 @@
 <!--jekyll 
-docid: 13
+docid: 12
 icon: book
 doctype: manual
 tags:
@@ -12,6 +12,9 @@ sections:
 - name: Quick usage
   url: quick-usage
 jekyll-->
+
+Heterotachy models
+==================
 
 Heterotachy mixture models documentation.
 <!--more-->

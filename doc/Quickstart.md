@@ -14,6 +14,10 @@ sections:
 - name: Minimal command-line examples
   url: minimal-command-line-examples
 jekyll-->
+
+Getting started
+===============
+
 Recommended for users who just downloaded IQ-TREE the first time.
 <!--more-->
 

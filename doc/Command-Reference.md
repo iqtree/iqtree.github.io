@@ -36,6 +36,10 @@ sections:
   - name: Miscellaneous options
     url: miscellaneous-options
 jekyll-->
+
+Command reference
+=================
+
 Commprehensive documentation of command-line options.
 <!--more-->
 

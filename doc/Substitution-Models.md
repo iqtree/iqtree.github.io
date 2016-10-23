@@ -18,6 +18,10 @@ sections:
 - name: Rate heterogeneity
   url: rate-heterogeneity-across-sites
 jekyll-->
+
+Substitution models
+===================
+
 All common substitution models and usages.
 <!--more-->
 

@@ -16,6 +16,10 @@ sections:
   - name: Generating random trees
     url: generating-random-trees
 jekyll-->
+
+Advanced tutorial
+=================
+
 Recommended for experienced users to explore more features.
 <!--more-->
 

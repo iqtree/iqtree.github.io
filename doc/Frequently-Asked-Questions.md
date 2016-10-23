@@ -22,6 +22,10 @@ sections:
 - name: Why does IQ-TREE complain about the use of +ASC model?
   url: why-does-iq-tree-complain-about-the-use-of-asc-model
 jekyll-->
+
+Frequently asked questions
+==========================
+
 For common questions and answers.
 <!--more-->
 

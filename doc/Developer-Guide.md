@@ -9,6 +9,9 @@ sections:
   url: alignment-class
 jekyll-->
 
+Developer guide
+===============
+
 This guide gives developers an overview of IQ-TREE software design, data structures and discusses possibility to incorporate new models into IQ-TREE.
 <!--more-->
 

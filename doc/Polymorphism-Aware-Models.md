@@ -1,5 +1,5 @@
 <!--jekyll 
-docid: 12
+docid: 13
 icon: book
 doctype: manual
 tags:
@@ -20,6 +20,9 @@ sections:
 - name: Interpretation of branch lengths
   url: interpretation-of-branch-lengths
 jekyll-->
+
+Polymorphism-aware models
+=========================
 
 **Po**lymorphism-aware phylogenetic **Mo**dels (PoMo) related documentation.
 <!--more-->

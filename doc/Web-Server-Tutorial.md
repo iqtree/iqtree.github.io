@@ -12,6 +12,10 @@ sections:
 - name: Analysis Results
   url: analysis-results
 jekyll-->
+
+Web server tutorial
+===================
+
 A quick starting guide for the IQ-TREE Web Server.
 <!--more-->
 

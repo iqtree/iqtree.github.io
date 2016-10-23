@@ -1,7 +1,7 @@
 <!--more-->
 
-About IQ-TREE
--------------
+Introduction
+============
 
 IQ-TREE is a very efficient maximum likelihood phylogenetic software with following key features among others:
 

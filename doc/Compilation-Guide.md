@@ -20,6 +20,10 @@ sections:
 - name: Compiling MPI version
   url: compiling-mpi-version
 jekyll-->
+
+Compilation guide
+=================
+
 For advanced users to compile IQ-TREE source code.
 <!--more-->
 

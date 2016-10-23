@@ -12,6 +12,10 @@ sections:
 - name: Site-specific frequency models
   url: site-specific-frequency-models
 jekyll-->
+
+Complex models
+==============
+
 Partition and mixture models and usages.
 <!--more-->
 
@@ -194,11 +198,22 @@ Note that both `frequency` and `model` commands can be embedded into a single mo
 Site-specific frequency models
 ------------------------------
 
-Starting with version 1.5.0, IQ-TREE provides a new posterior mean site frequency (PMSF) model as a rapid approximation to the time and memory consuming profile mixture models C10 to C60 ([Le et al., 2008a]; a variant of PhyloBayes' `CAT` model). The PMSF are the amino-acid profiles for each alignment site computed from an input mixture model and a guide tree. The PMSF model is much faster than `C10` to `C60` and only requires slightly more RAM than a single non-mixture model, regardless of the number of mixture classes. Our extensive simulations and empirical phylogenomic data analyses demonstrate that the PMSF models can effectively ameliorate long branch attraction artefacts as well.
+Starting with version 1.5.0, IQ-TREE provides a new posterior mean site frequency (PMSF) model as a rapid approximation to the time and memory consuming profile mixture models `C10` to `C60` ([Le et al., 2008a]; a variant of PhyloBayes' `CAT` model). The PMSF are the amino-acid profiles for each alignment site computed from an input mixture model and a guide tree. The PMSF model is much faster and requires much less RAM than `C10` to `C60` (see table below), regardless of the number of mixture classes. Our extensive simulations and empirical phylogenomic data analyses demonstrate that the PMSF models can effectively ameliorate long branch attraction artefacts.
 
 If you use this model in a publication please cite:
 
-> __Wang, H.C., Susko, S, Minh B.Q and Roger A.J.__ Modeling site heterogeneity with posterior mean site frequencies accelerates accurate phylogenomic estimation. _in prep_
+> __Wang, H.C., Susko, S, Minh B.Q and Roger A.J.__ (2016) Modeling site heterogeneity with posterior mean site frequencies accelerates accurate phylogenomic estimation, _Submitted_.
+
+Here is an example of computation time and RAM usage for an Obazoa data set (68 sequences, 43615 amino-acid sites) from [Brown et al. (2013)] using 16 CPU cores: 
+
+
+| Models    | CPU time      | Wall-clock time |	RAM usage |
+|-----------|--------------:|----------------:|---------:|
+| LG+F+G    |   43h:38m:23s |  3h:37m:23s |   1.8 GB    |
+| LG+C20+F+G|  584h:25m:29s	| 46h:39m:06s |	 38.8 GB   |
+| LG+C60+F+G| 1502h:25m:31s |125h:15m:29s |	112.8 GB   |
+| LG+PMSF+G	|   73h:30m:37s |   5h:7m:27s |	  2.2 GB   |
+
 
 To use the PMSF model you have to provide a *guide tree*, which, for example, can be obtained by a quicker analysis under the simpler `LG+F+G` model. The guide tree can then be specified via `-ft` option, for example:
 
@@ -223,6 +238,7 @@ Finally, note that for long (phylogenomic) alignments you can utilize the multic
     iqtree-omp -nt 24 -s <alignment> -m LG+C20+F+G -fs <file.sitefreq>
  
 
+[Brown et al. (2013)]: http://dx.doi.org/10.1098/rspb.2013.1755
 [Lartillot and Philippe, 2004]: http://dx.doi.org/10.1093/molbev/msh112
 [Le et al., 2008a]: http://dx.doi.org/10.1093/bioinformatics/btn445
 [Le et al., 2012]: http://dx.doi.org/10.1093/molbev/mss112

@@ -32,7 +32,11 @@ sections:
 - name: Utilizing multi-core CPUs
   url: utilizing-multi-core-cpus
 jekyll-->
-This tutorial gives users a quick starting guide. 
+
+Beginner's tutorial
+===================
+
+This tutorial gives a beginner's guide. 
 <!--more-->
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
