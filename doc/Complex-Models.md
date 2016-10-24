@@ -126,14 +126,15 @@ Mixture models
 
 #### What is the difference between partition and mixture models?
 
-Mixture models,  like partition models, allow more than one substitution model along the sequences. However, while a partition model assigns each alignment site a given specific model, mixture models do not have this information: each site has a probability of belonging to each of the mixture components (also called categories or classes). In other words, the *site-to-model assignment is unknown*.
+Mixture models,  like partition models, allow more than one substitution model along the sequences. However, while a partition model assigns each alignment site a given specific model, mixture models do not need this information: it will compute for each site its probability of belonging to each of the mixture classes (also called categories or components). Since the site-to-class assignment is not known, the site likelihood under mixture models is the weighted sum of site likelihoods per mixture class.
 
-For example, the [discrete Gamma rate heterogeneity](Substitution-Models#rate-heterogeneity-across-sites) is the simplest type of mixture model, where there are several rate categories and each site belongs to a rate category with a probability. The likelihood of a site under a mixture model is computed as the weighted average of the site-likelihood under each mixture category.
+For example, the [discrete Gamma rate heterogeneity](Substitution-Models#rate-heterogeneity-across-sites) is a simple type of mixture model, which have several rate categories with equal probability. IQ-TREE also supports a number of [predefined protein mixture models](Substitution-Models#protein-models) such as the profile mixture models `C10` to `C60` (The ML variants of Bayesian `CAT` models).
 
+Here, we discuss several possibilities to define new mixture models in IQ-TREE.
 
 #### Defining mixture models
 
-IQ-TREE supports a number of [predefined protein mixture models](Substitution-Models#protein-models). Here, we give more details how to define new mixture models in IQ-TREE. To start with, the following command:
+To start with, the following command:
 
     iqtree -s example.phy -m "MIX{JC,HKY}"
 
@@ -219,9 +220,12 @@ To use the PMSF model you have to provide a *guide tree*, which, for example, ca
 
     iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree>
 
-Here, IQ-TREE will perform two phases. In the first phase, IQ-TREE estimates mixture model parameters given the guide tree and then infers the site-specific frequency profile (printed to `.sitefreq` file). In the second phase, IQ-TREE will conduct typical analysis using the inferred frequency model instead of the mixture model to save RAM and running time. This allows one, for the first time, to conduct nonparametric bootstrap under such complex models, for example (with 100 bootstrap replicates):
+Here, IQ-TREE will perform two phases. In the first phase, IQ-TREE estimates mixture model parameters given the guide tree and then infers the site-specific frequency profile (printed to `.sitefreq` file). In the second phase, IQ-TREE will conduct typical analysis using the inferred frequency model instead of the mixture model to save RAM and running time. Note that without `-ft` option, IQ-TREE will conduct the analysis under the specified mixture model.
+
+The PMSF model allows one, for the first time, to conduct nonparametric bootstrap under such complex models, for example (with 100 bootstrap replicates):
 
     iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree> -b 100
+
 
 Please note that the first phase still consumes as much RAM as the mixture model. To overcome this, you can perform the first phase in a high-memory server and the second phase in a normal PC as follows:
 
@@ -229,14 +233,22 @@ Please note that the first phase still consumes as much RAM as the mixture model
 
 This will stop the analysis after the first phase and also write a `.sitefreq` file. You can now copy this `.sitefreq` file to another low-memory machine and run with the same alignment:
 
-    iqtree -s <alignment> -m LG+C20+F+G -fs <file.sitefreq>
+    iqtree -s <alignment> -m LG+C20+F+G -fs <file.sitefreq> -b 100
 
 This will omit the first phase and thus need much less RAM. 
 
 Finally, note that for long (phylogenomic) alignments you can utilize the multicore IQ-TREE version to further save the computing times with, say, 24 cores by:
 
     iqtree-omp -nt 24 -s <alignment> -m LG+C20+F+G -fs <file.sitefreq>
- 
+
+Here is the list of relevant command line options:
+
+|Option| Usage and meaning |
+|------|-------------------|
+|  -ft | Specify a guide tree tree to infer site frequency model |
+|  -fs | Specify a site frequency model file |
+| -fmax| Switch to posterior maximum instead of posterior mean approximation | 
+
 
 [Brown et al. (2013)]: http://dx.doi.org/10.1098/rspb.2013.1755
 [Lartillot and Philippe, 2004]: http://dx.doi.org/10.1093/molbev/msh112

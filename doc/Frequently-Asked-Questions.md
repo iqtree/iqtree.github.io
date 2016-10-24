@@ -5,6 +5,8 @@ doctype: tutorial
 tags:
 - tutorial
 sections:
+- name: How do I get help?
+  url: how-do-i-get-help
 - name: How to interpret ultrafast bootstrap (UFBoot) supports?
   url: how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values
 - name: How does IQ-TREE treat gap/missing/ambiguous characters?
@@ -33,6 +35,7 @@ For common questions and answers.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [How do I get help?](#how-do-i-get-help)
 - [How do I interpret ultrafast bootstrap (UFBoot) support values?](#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values)
 - [How does IQ-TREE treat gap/missing/ambiguous characters?](#how-does-iq-tree-treat-gapmissingambiguous-characters)
 - [Can I mix DNA and protein data in a partitioned analysis?](#can-i-mix-dna-and-protein-data-in-a-partitioned-analysis)
@@ -43,6 +46,29 @@ For common questions and answers.
 - [Why does IQ-TREE complain about the use of +ASC model?](#why-does-iq-tree-complain-about-the-use-of-asc-model)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+How do I get help?
+------------------
+
+If you have questions please follow the steps below:
+
+1. Continue to read the FAQ below, which may answer your questions already.
+2. If not,  read the documentation <http://www.iqtree.org/doc>.
+3. If you still could not find the answer, search the [IQ-TREE Google group](https://groups.google.com/d/forum/iqtree). There is a "Search for topics" box at the top of the Google group web page.
+4. Finally, if no answer is found, post a question to the IQ-TREE group. The average response time is one to two working days.
+
+For bug report, please send the following information to the [IQ-TREE Google group](https://groups.google.com/d/forum/iqtree):
+
+1. A description of the behaviour, which you think might be unexpected or caused by a bug. 
+2. The first 10 lines and last 10 lines of the `.log` file.
+3. (If possible) the assertion message printed on the screen, which may look like this:
+
+        iqtree-omp: ....cpp:140: ...: Assertion '...' failed.
+ 
+The development team will get back to you and may ask for the full `.log` file and input data files for debugging purpose, if necessary. In such case please **only send your data files directly to the developers for confidential reason**! Keep in mind that everyone can see all emails sent to the group!
+
+For other feedback and feature request, please post a topic to the [IQ-TREE Google group](https://groups.google.com/d/forum/iqtree). We welcome all suggestions to further improve IQ-TREE! For feature request, please also explain why you think such a new feature would be useful or how can it help for your work.
 
 
 How do I interpret ultrafast bootstrap (UFBoot) support values?
@@ -128,9 +154,11 @@ Whether the character composition deviates significantly from the overall compos
 
 This test should be regarded as an *explorative tool* which might help to nail down problems in a dataset. One would typically not remove failing sequences by default. But if the tree shows unexpected topology the test might point in direction of the origin of the problem. 
 
-Furthermore, please keep in mind, this test is performed at the very beginning, where IQ-TREE does not know anything about partitions yet. That means, it might be more reasonable to test this separately for each partition in a partition analysis. Here, one might want to be able to decide whether some partitions should better be discarded if it is hard to find a composition representing the sequences in the partition. Or on the other hand if a sequence fails for many partitions and show very unexpected phylogenetic topologies, try without it. 
+Furthermore, please keep in mind, this test is performed at the very beginning, where IQ-TREE does not know anything about the models yet. That means:
 
-In any case if one has sequences that fail, it is recommended to always check the alignment (something one should always do anyway), especially if they have been collected and produced automatically.
+* If you have partitioned (multi-gene) data, it might be more reasonable to test this separately for each partition in a partition analysis. Here, one might want to be able to decide whether some partitions should better be discarded if it is hard to find a composition representing the sequences in the partition. Or on the other hand if a sequence fails for many partitions and show very unexpected phylogenetic topologies, try without it.
+* If you have (phylogenomic) protein data, you can also try several [protein mixture models](Substitution-Models#protein-models), which account for different amino-acid compositions along the sequences, for example, the `C10` to `C60` profile mixture models.
+* Finally, it is recommended to always check the alignment (something one should always do anyway), especially if they have been collected and produced automatically.
 
 
 What is the good number of CPU cores to use?

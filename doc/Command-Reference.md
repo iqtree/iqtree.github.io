@@ -250,6 +250,7 @@ The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters 
 | -numstop | Specify number of unsuccessful iterations to stop. *DEFAULT: 100* |
 | -n       | Specify number of iterations to stop. This option overrides `-numstop` criterion. |
 | -djc     | Avoid computing ML pairwise distances and BIONJ tree. |
+| -g       | Specify a topological constraint tree file in NEWICK format. The constraint tree can be a multifurcating tree and need not to include all taxa. |
 
 >**NOTICE**: While the default parameters were empirically determined to work well under our extensive benchmark ([Nguyen et al., 2015]), it might not hold true for all data sets. If in doubt that tree search is still stuck in local optima, one should repeat analysis with at least 10 IQ-TREE runs. Moreover, our experience showed that `-pers` and `-numstop` are the most relevant options to change in such case. For example, data sets with many short sequences should be analyzed with smaller perturbation strength (`-pers`) and larger `-numstop`.
 

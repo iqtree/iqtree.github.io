@@ -29,6 +29,7 @@ Recommended for users who just downloaded IQ-TREE the first time.
 - [For Windows users](#for-windows-users)
 - [For Mac OS X users](#for-mac-os-x-users)
 - [Minimal command-line examples](#minimal-command-line-examples)
+- [Where to continue from here?](#where-to-continue-from-here)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -38,7 +39,7 @@ Installation
 
 To achieve high performance IQ-TREE is a command-line program: you need to run IQ-TREE from a Terminal/Console (this is called Command Prompt under Windows). After you [downloaded IQ-TREE](Home#download), please:
 
-* Extract the `.zip` (Windows, MacOSX) or `.tar.gz` (Linux) file to create a directory `iqtree-X.Y.Z-OS` or `iqtree-omp-X.Y.Z-OS`.
+* Extract the `.zip` (Windows, MacOSX) or `.tar.gz` (Linux) file to create a directory `iqtree-X.Y.Z-OS` or `iqtree-omp-X.Y.Z-OS`, where `X.Y.Z` is the version number and `OS` is the operating system (Windows, MacOSX or Linux).
 * You will find the executable in the `bin` sub-folder. Copy all files in `bin` folder to your system search path such that you can run IQ-TREE by entering `iqtree` or `iqtree-omp` from the Terminal.
 
 Now you need to open a Terminal (or Console) to run IQ-TREE. See below the guide for [Windows users](#for-windows-users) and [Mac OS X users](#for-mac-os-x-users).
@@ -51,9 +52,9 @@ Since IQ-TREE is a command-line program, clicking on `iqtree.exe` will not work.
 
 1. Click on "Start" menu (below left corner of Windows screen).
 2. Type in "cmd" and press "Enter". It will open the Command Prompt window (see Figure below).
-3. Go into IQ-TREE folder you just extracted by entering e.g.:
+3. Go into IQ-TREE folder you just extracted by entering e.g. (assuming you downloaded version 1.5.0):
 
-        cd Downloads\iqtree-1.3.10-Windows
+        cd Downloads\iqtree-1.5.0-Windows
         
     (assuming that IQ-TREE was downloaded into `Downloads` folder).
 4. Now you can try an example run by entering:
@@ -72,9 +73,9 @@ For Mac OS X users
 ------------------
 
 1. Open the "Terminal", e.g., by clicking on the Spotlight icon (top-right corner), typing "terminal" and press "Enter".
-2. Go into IQ-TREE folder by entering:
+2. Go into IQ-TREE folder by entering (assuming you downloaded version 1.5.0):
 
-        cd Downloads/iqtree-1.2.0-MacOSX
+        cd Downloads/iqtree-1.5.0-MacOSX
 
     (assuming that IQ-TREE was downloaded into `Downloads` folder).
 3. Now you can try an example run by entering 
@@ -94,8 +95,6 @@ Minimal command-line examples
 -----------------------------
 
 A few typically analyses are listed in the following. Note that it is assumed that `iqtree` executable was already copied into system search path. If not, please replace `iqtree` with actual path to executable.
-
->**TIP**: Refer to [Beginner's tutorial](Tutorial) for more details.
 
 * Reconstruct maximum-likelihood tree from a sequence alignment (`example.phy`)
    with the best-fit substitution model automatically selected:
@@ -130,3 +129,9 @@ A few typically analyses are listed in the following. Note that it is assumed th
 
         iqtree -h
         
+
+Where to continue from here?
+----------------------------
+
+Please continue with the **[Beginner's tutorial](Tutorial)** for further usages.
+
