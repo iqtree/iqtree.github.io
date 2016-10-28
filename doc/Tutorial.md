@@ -460,7 +460,7 @@ A specialized version of IQ-TREE (`iqtree-omp`) can utilize multiple CPU cores t
 To obtain this version please refer to the [quick starting guide](Quickstart).  A complement option `-nt` allows specifying the number of CPU to be used. For example:
 
 
-    iqtree-omp -s example.phy -nt 2
+    iqtree-omp -s example.phy -m TIM2+I+G -nt 2
 
 
 Here, IQ-TREE will use 2 CPU cores to perform the analysis. 
@@ -472,12 +472,12 @@ wall-clock running time for this  example alignment:
 
 | No. cores | Wall-clock time |
 |-----------|-----------------|
-| 1         | 21.465 sec      |
-| 2         | 13.627 sec      |
-| 3         | 11.119 sec      |
-| 4         | 10.807 sec      |
+| 1         | 9.0 sec      |
+| 2         | 5.6 sec      |
+| 3         | 4.5 sec      |
+| 4         | 4.2 sec      |
 
-Therefore, I would only use 2 cores, which seems to balance the trade-off between the number of cores and waiting time.
+Therefore, I would only use 2 or 3 cores, which seems to balance the trade-off between the number of cores and waiting time.
 
 
 

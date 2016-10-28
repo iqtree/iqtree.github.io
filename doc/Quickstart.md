@@ -64,7 +64,7 @@ Since IQ-TREE is a command-line program, clicking on `iqtree.exe` will not work.
     (`example.phy` is the example PHYLIP alignment file also extracted in that folder).
 5. After a few seconds, IQ-TREE finishes and you may see something like this:
 
-    ![Windows command prompt](images/win-cmd2.png)
+![Windows command prompt](images/win-cmd2.png)
 
 Congratulations ;-) You have finished the first IQ-TREE analysis.
 
@@ -85,7 +85,7 @@ For Mac OS X users
     (`example.phy` is the example PHYLIP alignment file also extracted in that folder).
 4. After a few seconds, IQ-TREE finishes and you may see something like this:
 
-    ![Mac terminal](images/mac-cmd2.png)
+![Mac terminal](images/mac-cmd2.png)
 
 Congratulations ;-) You have finished the first IQ-TREE analysis.
 
