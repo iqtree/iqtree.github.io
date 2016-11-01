@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Compilation Guide"
-author: minh
-date:   2016-09-02
+author: Jana Trifinopoulos, Minh Bui
+date:   2016-10-28
 categories:
 - doc
 docid: 20
@@ -26,6 +26,10 @@ sections:
 - name: Compiling MPI version
   url: compiling-mpi-version
 ---
+
+Compilation guide
+=================
+
 For advanced users to compile IQ-TREE source code.
 <!--more-->
 
@@ -49,21 +53,21 @@ General requirements
 
 * Make sure that a C++ compiler is installed. IQ-TREE was successfully built with GCC (version 4.6 at least), Clang, MS Visual Studio and Intel C++ compiler. 
 * Install [CMake](http://www.cmake.org) if not yet available in your system. 
+* *(Optional)* If you want to compile the multicore version, make sure that the OpenMP library was installed. This should typically be the case with `gcc` under Linux.
 * *(Optional)* Install [git](https://git-scm.com) if you want to clone source code from [IQ-TREE GitHub repository](https://github.com/Cibiv/IQ-TREE).
-* *(Optional)* If you want to compile the multicore version, make sure that the compiler supports [OpenMP](http://openmp.org/) and that the OpenMP library was installed.
 
 Downloading source code
 -----------------------
 
-Download the latest source code of IQ-TREE in either `zip` or `tar.gz` from:
+Choose the source code (`zip` or `tar.gz`) of the IQ-TREE release you want to use from:
 
-<https://github.com/Cibiv/IQ-TREE/releases/latest>
+<https://github.com/Cibiv/IQ-TREE/releases/>
 
-Alternatively, you can also clone the source code from github with:
+Alternatively, if you have `git` installed, you can also clone the source code from GitHub with:
 
     git clone https://github.com/Cibiv/IQ-TREE.git
 
-Please find below separate compilation guide fors [Linux](#compiling-under-linux), [Mac OS X](#compiling-under-mac-os-x), and [Windows](#compiling-under-windows) as well as for [32-bit version](#compiling-32-bit-version).
+Please find below separate compilation guide fors [Linux](#compiling-under-linux), [Mac OS X](#compiling-under-mac-os-x), and [Windows](#compiling-under-windows) as well as for [32-bit version](#compiling-32-bit-version) or for [MPI version](#compiling-mpi-version).
 
 Compiling under Linux
 ---------------------
@@ -90,7 +94,7 @@ Compiling under Linux
 
         make
         
-    You can speed up by specifying the number of CPU cores to use with `make` by e.g.:
+    You can speed up the compilation by specifying the number of CPU cores to use with `make` by e.g.:
 
         make -j4
 
@@ -108,15 +112,15 @@ Compiling under Mac OS X
 
 The steps to compile IQ-TREE are similar to Linux (see above), except that you need to specify `clang` as compiler when configuring source code with CMake (step 4):
 
-    cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..
+    CC=clang CXX=clang++ cmake ..
 
 (please change `cmake` to absolute path like `/Applications/CMake.app/Contents/bin/cmake`).
 
 To compile the multicore version, the default installed Clang unfortunately does not support OpenMP (which might change in the near future). However, the latest Clang 3.7 supports OpenMP, which can be downloaded from <http://clang.llvm.org>. After that you can run CMake with:
 
-    cmake -DCMAKE_C_COMPILER=clang-omp -DCMAKE_CXX_COMPILER=clang-omp++ -DIQTREE_FLAGS=omp ..
+    CC=clang-3.7 CXX=clang++-3.7 cmake -DIQTREE_FLAGS=omp ..
 
-(assuming that `clang-omp` and `clang-omp++` points to the installed Clang 3.7).
+(assuming that `clang-3.7` and `clang++-3.7` points to the installed Clang 3.7).
 
 
 Compiling under Windows
@@ -125,7 +129,7 @@ Compiling under Windows
 * Please first install TDM-GCC (a GCC version for Windows) from <http://tdm-gcc.tdragon.net>.
 * Then install Clang for Windows from <http://clang.llvm.org>.
 
->**NOTICE**: Although IQ-TREE can also be built with TDM-GCC, the executable does not run properly due to stack alignment issue and the `libgomp` library causes downgraded performance for the OpenMP version. Thus, it is recommended to compile IQ-TREE with Clang.
+>**NOTICE**: Although IQ-TREE can also be built with TDM-GCC, the executable does not run properly due to stack alignment issue and the `libgomp` library causes downgraded performance for the OpenMP version. Thus, it is recommended to compile IQ-TREE with Clang. 
 
 1. Open Command Prompt. 
 2. Change to the source code folder:
@@ -141,7 +145,9 @@ Compiling under Windows
 
 4. Configure source code with CMake:
 
-        cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_MAKE_PROGRAM=mingw32-make ..
+        set CC=clang
+        set CXX=clang++
+        cmake -G "Unix Makefiles" -DCMAKE_C_FLAGS=--target=x86_64-pc-windows-gnu -DCMAKE_CXX_FLAGS=--target=x86_64-pc-windows-gnu -DCMAKE_MAKE_PROGRAM=mingw32-make ..
 
     To build the multicore version please add `-DIQTREE_FLAGS=omp` to the cmake command. Note that the make program shipped with TDM-GCC is called `mingw32-make`, thus needed to specify like above. You can also copy `mingw32-make` to `make` to simplify this step.
 
@@ -153,7 +159,7 @@ Compiling under Windows
     
         mingw32-make -j4
         
-    to use 4 cores instead of only 1.
+    to use 4 cores for compilation instead of only 1.
 
 
 Compiling 32-bit version
@@ -167,7 +173,11 @@ To compile the 32-bit version instead, simply add `m32` into `IQTREE_FLAGS` of t
     
 To build the 32-bit multicore version, run: 
 
-    cmake -DIQTREE_FLAGS="omp m32" ..
+    cmake -DIQTREE_FLAGS=omp-m32 ..
+
+For Windows you need to change Clang target with:
+
+    cmake -G "Unix Makefiles" -DCMAKE_C_FLAGS=--target=i686-pc-windows-gnu -DCMAKE_CXX_FLAGS=--target=i686-pc-windows-gnu -DCMAKE_MAKE_PROGRAM=mingw32-make ..
 
 
 Compiling MPI version
@@ -193,7 +203,7 @@ The executable is named `iqtree-mpi`. One can then run `mpirun` to start the MPI
 
 If you want to compile the hybrid MPI/OpenMP version, simply run:
 
-    cmake -DIQTREE_FLAGS="mpi omp" ..
+    cmake -DIQTREE_FLAGS=omp-mpi ..
     make -j4
 
 The resulting executable is then named `iqtree-omp-mpi`. This can be used to start an MPI run with e.g. 4 processes and 2 cores each (i.e., a total of 8 cores will be used):

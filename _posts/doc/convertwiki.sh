@@ -22,7 +22,8 @@ for f in *.md; do
     
     echo -n -e "---\nlayout: userdoc\ntitle: \"" > $destf
     echo $f | sed 's/\..*/\"/' | sed 's/-/ /g' >> $destf
-    git log $f | grep Author: | head -n 1 | sed 's/Author/author/' | sed 's/ <.*//' >> $destf
+    echo -n "author: " >> $destf
+    git log $f | grep Author: | sed 's/.* <//' | sed 's/@.*//' | sed 's/\./ /g' | sort | uniq | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g' | awk '{for(i=1;i<=NF;i++){ $i=toupper(substr($i,1,1)) substr($i,2) }}1' >> $destf
     git log --date=short $f | grep Date: | head -n 1 | sed 's/Date/date/' >> $destf
     echo -e "categories:\n- doc" >> $destf
     # insert jekyll headers

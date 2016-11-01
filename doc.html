@@ -14,26 +14,16 @@ permalink: /doc/
             {% assign sorted_posts = (site.categories['doc'] | where: 'doctype', dt | sort: 'docid') %}
             {% for post in sorted_posts %}
             <! -- Document -->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a href="{{ post.url | prepend: site.baseurl }}">
-                        <h3 class="panel-title">
-                            {% if post.icon %}<i class="fa fa-{{ post.icon }} fa-lg"></i> {% endif %}
-                            {{ post.title }}
-                        </h3>
-                    </a>
-                </div>
-                <div class="panel-body">
-                    {{ post.excerpt }}
-                    <p><a href="{{ post.url | prepend: site.baseurl }}">Read All Here</a> or go directly to a specific section:</p>
-                    {% if post.sections %}
-                        <ul>
-                        {% for section in post.sections %}
-                        <li><a href="{{ post.url | prepend: site.baseurl }}/#{{ section.url }}">{{ section.name }}</a></li>
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
+            <div class="well">
+                {{ post.excerpt }}
+                {% if post.sections %}
+                    <ul>
+                    {% for section in post.sections %}
+                    <li><a href="{{ post.url | prepend: site.baseurl }}/#{{ section.url }}">{{ section.name }}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                <p><a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-primary" role="button">&#8594; Read All {{post.title}} Here</a></p>
             </div>
             {% endfor %}
         </div>

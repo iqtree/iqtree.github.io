@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Advanced Tutorial"
-author: minh
-date:   2016-06-21
+author: Jana, Minh Bui
+date:   2016-10-23
 categories:
 - doc
 docid: 03
@@ -22,6 +22,10 @@ sections:
   - name: Generating random trees
     url: generating-random-trees
 ---
+
+Advanced tutorial
+=================
+
 Recommended for experienced users to explore more features.
 <!--more-->
 

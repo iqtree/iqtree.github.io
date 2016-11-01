@@ -1,6 +1,7 @@
 ---
 layout: post
-version: 1.3.X
+title: IQ-TREE version XX
+version: XX
 categories: 
 - release
 ---

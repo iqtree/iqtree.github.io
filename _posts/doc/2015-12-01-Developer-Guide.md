@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Developer Guide"
-author: minh
-date:   2016-01-07
+author: Minh Bui
+date:   2016-10-23
 categories:
 - doc
 docid: 30
@@ -14,6 +14,9 @@ sections:
 - name: Alignment
   url: alignment-class
 ---
+
+Developer guide
+===============
 
 This guide gives developers an overview of IQ-TREE software design, data structures and discusses possibility to incorporate new models into IQ-TREE.
 <!--more-->

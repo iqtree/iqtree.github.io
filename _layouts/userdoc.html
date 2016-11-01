@@ -9,8 +9,7 @@ layout: default
         <! -- SINGLE DOC -->
         <div class="col-md-9">
             <! -- User Doc  -->
-            <h3>{{ page.title }}</h3>
-            <p><em>Last update: {{ page.date | date: "%b %-d, %Y" }} by {{ page.author }}</em></p>
+            <p><em>Last update: {{ page.date | date: "%b %-d, %Y" }}, Contributors: {{ page.author }}</em></p>
               
             {{ content }}
 

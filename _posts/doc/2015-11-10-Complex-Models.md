@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Complex Models"
-author: minh
-date:   2015-12-01
+author: Jana Trifinopoulos, Minh Bui
+date:   2016-10-24
 categories:
 - doc
 docid: 11
@@ -15,7 +15,13 @@ sections:
   url: partition-models
 - name: Mixture models
   url: mixture-models
+- name: Site-specific frequency models
+  url: site-specific-frequency-models
 ---
+
+Complex models
+==============
+
 Partition and mixture models and usages.
 <!--more-->
 
@@ -31,6 +37,7 @@ Partition and mixture models and usages.
     - [Defining mixture models](#defining-mixture-models)
     - [Profile mixture models](#profile-mixture-models)
     - [NEXUS model file](#nexus-model-file)
+- [Site-specific frequency models](#site-specific-frequency-models)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -125,14 +132,15 @@ Mixture models
 
 #### What is the difference between partition and mixture models?
 
-Mixture models,  like partition models, allow more than one substitution model along the sequences. However, while a partition model assigns each alignment site a given specific model, mixture models do not have this information: each site has a probability of belonging to each of the mixture components (also called categories or classes). In other words, the *site-to-model assignment is unknown*.
+Mixture models,  like partition models, allow more than one substitution model along the sequences. However, while a partition model assigns each alignment site a given specific model, mixture models do not need this information: it will compute for each site its probability of belonging to each of the mixture classes (also called categories or components). Since the site-to-class assignment is not known, the site likelihood under mixture models is the weighted sum of site likelihoods per mixture class.
 
-For example, the [discrete Gamma rate heterogeneity](../Substitution-Models/#rate-heterogeneity-across-sites) is the simplest type of mixture model, where there are several rate categories and each site belongs to a rate category with a probability. The likelihood of a site under a mixture model is computed as the weighted average of the site-likelihood under each mixture category.
+For example, the [discrete Gamma rate heterogeneity](../Substitution-Models/#rate-heterogeneity-across-sites) is a simple type of mixture model, which have several rate categories with equal probability. IQ-TREE also supports a number of [predefined protein mixture models](../Substitution-Models/#protein-models) such as the profile mixture models `C10` to `C60` (The ML variants of Bayesian `CAT` models).
 
+Here, we discuss several possibilities to define new mixture models in IQ-TREE.
 
 #### Defining mixture models
 
-IQ-TREE supports a number of [predefined protein mixture models](../Substitution-Models/#protein-models). Here, we give more details how to define new mixture models in IQ-TREE. To start with, the following command:
+To start with, the following command:
 
     iqtree -s example.phy -m "MIX{JC,HKY}"
 
@@ -194,7 +202,63 @@ Here, we first define the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in
 Note that both `frequency` and `model` commands can be embedded into a single model file.
 
 
+Site-specific frequency models
+------------------------------
 
+Starting with version 1.5.0, IQ-TREE provides a new posterior mean site frequency (PMSF) model as a rapid approximation to the time and memory consuming profile mixture models `C10` to `C60` ([Le et al., 2008a]; a variant of PhyloBayes' `CAT` model). The PMSF are the amino-acid profiles for each alignment site computed from an input mixture model and a guide tree. The PMSF model is much faster and requires much less RAM than `C10` to `C60` (see table below), regardless of the number of mixture classes. Our extensive simulations and empirical phylogenomic data analyses demonstrate that the PMSF models can effectively ameliorate long branch attraction artefacts.
+
+If you use this model in a publication please cite:
+
+> __Wang, H.C., Susko, S, Minh B.Q and Roger A.J.__ (2016) Modeling Site Heterogeneity with Posterior Mean Site Frequency Profiles Accelerates Accurate Phylogenomic Estimation. _Submitted_.
+
+Here is an example of computation time and RAM usage for an Obazoa data set (68 sequences, 43615 amino-acid sites) from [Brown et al. (2013)] using 16 CPU cores: 
+
+
+| Models    | CPU time      | Wall-clock time |	RAM usage |
+|-----------|--------------:|----------------:|---------:|
+| LG+F+G    |   43h:38m:23s |  3h:37m:23s |   1.8 GB    |
+| LG+C20+F+G|  584h:25m:29s	| 46h:39m:06s |	 38.8 GB   |
+| LG+C60+F+G| 1502h:25m:31s |125h:15m:29s |	112.8 GB   |
+| LG+PMSF+G	|   73h:30m:37s |   5h:7m:27s |	  2.2 GB   |
+
+
+To use the PMSF model you have to provide a *guide tree*, which, for example, can be obtained by a quicker analysis under the simpler `LG+F+G` model. The guide tree can then be specified via `-ft` option, for example:
+
+    iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree>
+
+Here, IQ-TREE will perform two phases. In the first phase, IQ-TREE estimates mixture model parameters given the guide tree and then infers the site-specific frequency profile (printed to `.sitefreq` file). In the second phase, IQ-TREE will conduct typical analysis using the inferred frequency model instead of the mixture model to save RAM and running time. Note that without `-ft` option, IQ-TREE will conduct the analysis under the specified mixture model.
+
+The PMSF model allows one, for the first time, to conduct nonparametric bootstrap under such complex models, for example (with 100 bootstrap replicates):
+
+    iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree> -b 100
+
+
+Please note that the first phase still consumes as much RAM as the mixture model. To overcome this, you can perform the first phase in a high-memory server and the second phase in a normal PC as follows:
+
+    iqtree -s <alignment> -m LG+C20+F+G -ft <guide_tree> -n 0
+
+This will stop the analysis after the first phase and also write a `.sitefreq` file. You can now copy this `.sitefreq` file to another low-memory machine and run with the same alignment:
+
+    iqtree -s <alignment> -m LG+C20+F+G -fs <file.sitefreq> -b 100
+
+This will omit the first phase and thus need much less RAM. 
+
+Finally, note that for long (phylogenomic) alignments you can utilize the multicore IQ-TREE version to further save the computing times with, say, 24 cores by:
+
+    iqtree-omp -nt 24 -s <alignment> -m LG+C20+F+G -fs <file.sitefreq>
+
+Here is the list of relevant command line options:
+
+|Option| Usage and meaning |
+|------|-------------------|
+|  -ft | Specify a guide tree tree to infer site frequency model |
+|  -fs | Specify a site frequency model file |
+| -fmax| Switch to posterior maximum instead of posterior mean approximation | 
+
+
+[Brown et al. (2013)]: http://dx.doi.org/10.1098/rspb.2013.1755
+[Lartillot and Philippe, 2004]: http://dx.doi.org/10.1093/molbev/msh112
+[Le et al., 2008a]: http://dx.doi.org/10.1093/bioinformatics/btn445
 [Le et al., 2012]: http://dx.doi.org/10.1093/molbev/mss112
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Wang et al., 2008]: http://dx.doi.org/10.1186/1471-2148-8-331

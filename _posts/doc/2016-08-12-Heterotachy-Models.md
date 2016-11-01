@@ -1,11 +1,11 @@
 ---
 layout: userdoc
 title: "Heterotachy Models"
-author: minh
-date:   2016-08-22
+author: Minh Bui
+date:   2016-10-23
 categories:
 - doc
-docid: 13
+docid: 12
 icon: book
 doctype: manual
 tags:
@@ -18,6 +18,9 @@ sections:
 - name: Quick usage
   url: quick-usage
 ---
+
+Heterotachy models
+==================
 
 Heterotachy mixture models documentation.
 <!--more-->

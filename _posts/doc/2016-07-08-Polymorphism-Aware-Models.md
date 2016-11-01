@@ -1,11 +1,11 @@
 ---
 layout: userdoc
 title: "Polymorphism Aware Models"
-author: minh
-date:   2016-08-18
+author: Dominik Schrempf, Minh Bui
+date:   2016-10-23
 categories:
 - doc
-docid: 12
+docid: 13
 icon: book
 doctype: manual
 tags:
@@ -26,6 +26,9 @@ sections:
 - name: Interpretation of branch lengths
   url: interpretation-of-branch-lengths
 ---
+
+Polymorphism-aware models
+=========================
 
 **Po**lymorphism-aware phylogenetic **Mo**dels (PoMo) related documentation.
 <!--more-->

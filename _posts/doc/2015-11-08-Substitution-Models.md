@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Substitution Models"
-author: minh
-date:   2016-08-17
+author: Jana Trifinopoulos, Minh Bui
+date:   2016-10-23
 categories:
 - doc
 docid: 10
@@ -24,6 +24,10 @@ sections:
 - name: Rate heterogeneity
   url: rate-heterogeneity-across-sites
 ---
+
+Substitution models
+===================
+
 All common substitution models and usages.
 <!--more-->
 
@@ -116,7 +120,7 @@ Protein models
 
 #### Amino-acid exchange rate matrices
 
-IQ-TREE supports all common empirical amino-acid exchange rate matrices:
+IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabetical order):
 
 | Model | Explanation |
 |-------|-------------|
@@ -139,8 +143,12 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices:
 | rtREV | Retrovirus ([Dimmic et al., 2002]). |
 | VT | General matrix ([Mueller and Vingron, 2000]). |
 | WAG | General matrix ([Whelan and Goldman, 2001]). |
+|-------|-------------|
+| GTR20 | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments). * |
 
-Moreover, IQ-TREE also supports a series of protein mixture models:
+#### Protein mixture models
+
+IQ-TREE also supports a series of protein mixture models:
 
 | Model | Explanation |
 |-------|-------------|
@@ -163,6 +171,8 @@ One can even combine a protein matrix with a profile mixture model like:
 Moreover, one can override the Gamma rate by FreeRate heterogeneity:
 
 * `LG+C20+R4`: Like `LG+C20` but replace Gamma by FreeRate heterogeneity.
+
+#### User-defined empirical protein models
 
 If the matrix name does not match any of the above listed models, IQ-TREE assumes that it is a file containing AA exchange rates and frequencies in PAML format. It contains the lower diagonal part of the matrix and 20 AA frequencies, e.g.:
 

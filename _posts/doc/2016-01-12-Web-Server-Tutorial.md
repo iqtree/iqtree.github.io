@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Web Server Tutorial"
-author: minh
-date:   2016-08-17
+author: Jana Trifinopoulos, Minh Bui
+date:   2016-10-23
 categories:
 - doc
 docid: 05
@@ -18,6 +18,10 @@ sections:
 - name: Analysis Results
   url: analysis-results
 ---
+
+Web server tutorial
+===================
+
 A quick starting guide for the IQ-TREE Web Server.
 <!--more-->
 

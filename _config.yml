@@ -119,3 +119,8 @@ about: IQ-TREE code is hosted at <a href="https://github.com/Cibiv/IQ-TREE">GitH
 #    author: Marcel Newman
 #    position: WEB DESIGNER - BLACKTIE.CO
     
+#gems: [jekyll-paginate]
+#paginate: 10
+#paginate_path: "/blog/page:num/"
+num_pages: 3
+
