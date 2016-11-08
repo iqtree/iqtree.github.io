@@ -465,19 +465,7 @@ To obtain this version please refer to the [quick starting guide](Quickstart).  
 
 Here, IQ-TREE will use 2 CPU cores to perform the analysis. 
 
->**NOTICE**: the parallel efficiency is only good for long alignments. A good practice is to test with increasing number of cores until no substantial reduction of wall-clock time is observed. 
-
-For example, on my computer (Linux, Intel Core i5-2500K, 3.3 GHz, quad cores) I observed the following 
-wall-clock running time for this  example alignment:
-
-| No. cores | Wall-clock time |
-|-----------|-----------------|
-| 1         | 9.0 sec      |
-| 2         | 5.6 sec      |
-| 3         | 4.5 sec      |
-| 4         | 4.2 sec      |
-
-Therefore, I would only use 2 or 3 cores, which seems to balance the trade-off between the number of cores and waiting time.
+>**NOTICE**: the parallel efficiency is only good for long alignments. A good practice is to use `-nt AUTO` to determine the best number of cores. For later analysis with the same data set, you can stick to the determined number.
 
 
 

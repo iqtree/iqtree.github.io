@@ -45,7 +45,7 @@ For advanced users to compile IQ-TREE source code.
 General requirements
 --------------------
 
-* Make sure that a C++ compiler is installed. IQ-TREE was successfully built with GCC (version 4.6 at least), Clang, MS Visual Studio and Intel C++ compiler. 
+* Make sure that a C++ compiler is installed. IQ-TREE was successfully built with GCC (version 4.8 at least), Clang, MS Visual Studio and Intel C++ compiler. 
 * Install [CMake](http://www.cmake.org) if not yet available in your system. 
 * *(Optional)* If you want to compile the multicore version, make sure that the OpenMP library was installed. This should typically be the case with `gcc` under Linux.
 * *(Optional)* Install [git](https://git-scm.com) if you want to clone source code from [IQ-TREE GitHub repository](https://github.com/Cibiv/IQ-TREE).
@@ -177,7 +177,10 @@ For Windows you need to change Clang target with:
 Compiling MPI version
 ---------------------
 
-* **Requirements**: Please first install an MPI library (e.g., [OpenMPI](http://open-mpi.org/)) if not available in your system. For Mac OS X, the easiest is to install [Homebrew package manager](http://brew.sh), and then install OpenMPI library from the command line with:
+**Requirements**:
+
+* Download source code of IQ-TREE version 1.5.1 or later. 
+* Install an MPI library (e.g., [OpenMPI](http://open-mpi.org/)) if not available in your system. For Mac OS X, the easiest is to install [Homebrew package manager](http://brew.sh), and then install OpenMPI library from the command line with:
 
         brew install openmpi
 
