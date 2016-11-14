@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Frequently Asked Questions"
 author: Jana Trifinopoulos, Minh Bui
-date:   2016-10-24
+date:   2016-11-08
 categories:
 - doc
 docid: 07
@@ -170,14 +170,9 @@ Furthermore, please keep in mind, this test is performed at the very beginning, 
 What is the good number of CPU cores to use?
 --------------------------------------------
 
-IQ-TREE can utilize multicore machines to speed up the analysis via `-nt` option. However, it does not mean that using more cores will always result in less running time: if your alignment is short, using too many cores may even slow down the analysis. This is because IQ-TREE parallelizes the likelihood computation along the alignment. Thus, the parallel efficiency is only increased with longer alignments. As a rule of thumb:
+Starting with version 1.5.1, you can use option `-nt AUTO` to automatically determine the best number of threads for your current data and computer.
 
-* For DNA data: 1 core for every 500 alignment sites. For example, if your alignment length is 1300 bp, use at most 3 cores.
-* For protein data: 1 core for every 100 sites.
-* For codon data: 1 core for every 50 sites.
-* For binary data: 1 core for every 1000 sites.
-
-Please note that the more proper way is to actually run some quick analysis with increasing number of cores for your data and choose the one that best balances the trade-off between number of cores and waiting time. [See this tutorial for more details.](../Tutorial/#utilizing-multi-core-cpus)
+If you want to know more details: IQ-TREE can utilize multicore machines to speed up the analysis via `-nt` option. However, it does not mean that using more cores will always result in less running time: if your alignment is short, using too many cores may even slow down the analysis. This is because IQ-TREE parallelizes the likelihood computation along the alignment. Thus, the parallel efficiency is only increased with longer alignments. 
 
 How do I save time for standard bootstrap?
 --------------------------------------------

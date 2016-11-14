@@ -216,6 +216,8 @@ a:focus {
 
 #headerwrap {
 	background-color: {{ site.colors.primary }};
+    background-image: url('iqtree-background.svg');
+    background-size: cover;
 	min-height: 0px;
 	padding-top: 100px;
 	padding-bottom: 50px;

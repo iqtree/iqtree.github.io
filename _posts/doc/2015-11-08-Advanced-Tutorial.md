@@ -11,6 +11,14 @@ doctype: tutorial
 tags:
 - tutorial
 sections:
+  - name: Partitioned analysis
+    url: partitioned-analysis-for-multi-gene-alignments
+  - name: Partitioning with mixed data
+    url: partitioned-analysis-with-mixed-data
+  - name: Partition scheme selection
+    url: choosing-the-right-partitioning-scheme
+  - name: Bootstrapping partition model
+    url: ultrafast-bootstrapping-with-partition-model
   - name: Tree topology tests
     url: tree-topology-tests
   - name: User-defined models
@@ -33,6 +41,10 @@ Recommended for experienced users to explore more features.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Partitioned analysis for multi-gene alignments](#partitioned-analysis-for-multi-gene-alignments)
+- [Partitioned analysis with mixed data](#partitioned-analysis-with-mixed-data)
+- [Choosing the right partitioning scheme](#choosing-the-right-partitioning-scheme)
+- [Ultrafast bootstrapping with partition model](#ultrafast-bootstrapping-with-partition-model)
 - [Tree topology tests](#tree-topology-tests)
 - [User-defined substitution models](#user-defined-substitution-models)
 - [Consensus construction and bootstrap value assignment](#consensus-construction-and-bootstrap-value-assignment)
@@ -43,6 +55,140 @@ Recommended for experienced users to explore more features.
 
 
 To get started, please read the [Beginner's Tutorial](../Tutorial) first if not done so yet.
+
+Partitioned analysis for multi-gene alignments
+----------------------------------------------
+
+In the partition model, you can specify a substitution model for each gene/character set. 
+IQ-TREE will then estimate the model parameters separately for every partition. Moreover, IQ-TREE provides edge-linked or edge-unlinked branch lengths between partitions:
+
+* `-q partition_file`: all partitions share the same set of branch lengths (like `-q` option of RAxML).
+* `-spp partition_file`: like above but allowing each partition to have its own evolution rate.
+* `-sp partition_file`: each partition has its own set of branch lengths (like combination of `-q` and `-M` options in RAxML) to account for, e.g. *heterotachy* ([Lopez et al., 2002]).
+
+>**TIP**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
+
+IQ-TREE supports RAxML-style and NEXUS partition input file. The RAxML-style partition file may look like:
+
+    DNA, part1 = 1-100
+    DNA, part2 = 101-384
+
+If your partition file is called  `example.partitions`, the partition analysis can be run with:
+
+
+    iqtree -s example.phy -q example.partitions -m GTR+I+G
+
+
+Note that using RAxML-style partition file, all partitions will use the same rate heterogeneity model given in `-m` option (`+I+G` in this example). If you want to specify, say, `+G` for the first partition and `+I+G` for the second partition, then you need to create the more flexible NEXUS partition file. This file contains a  `SETS` block with
+ `CharSet` and  `CharPartition` commands to specify individual genes and the partition, respectively.
+For example:
+
+    #nexus
+    begin sets;
+        charset part1 = 1-100;
+        charset part2 = 101-384;
+        charpartition mine = HKY+G:part1, GTR+I+G:part2;
+    end;
+
+
+If your NEXUS file is called  `example.nex`, then you can use the option  `-spp` to input the file as following:
+
+    iqtree -s example.phy -spp example.nex
+
+Here, IQ-TREE partitions the alignment  `example.phy` into 2 sub-alignments named  `part1` and  `part2`
+containing sites (columns) 1-100 and 101-384, respectively. Moreover, IQ-TREE applies the
+subtitution models  `HKY+G` and  `GTR+I+G` to  `part1` and  `part2`, respectively. Substitution model parameters and trees with branch lengths can be found in the result file  `example.nex.iqtree`. 
+
+Moreover, the  `CharSet` command allows to specify non-consecutive sites with e.g.:
+
+    charset part1 = 1-100 200-384;
+
+That means,  `part1` contains sites 1-100 and 200-384 of the alignment. Another example is:
+
+    charset part1 = 1-100\3;
+
+for extracting sites 1,4,7,...,100 from the alignment. This is useful for getting codon positions from the protein-coding alignment. 
+
+Partitioned analysis with mixed data
+------------------------------------
+
+IQ-TREE also allows combining sub-alignments from different alignment files, which is helpful if you want to combine mixed data (e.g. DNA and protein) in a single analysis. Here is an example for mixing DNA, protein and codon models:
+
+    #nexus
+    begin sets;
+        charset part1 = dna.phy: 1-100 201-300;
+        charset part2 = dna.phy: 101-200;
+        charset part3 = prot.phy: 1-400;
+        charset part4 = prot.phy: 401-600;
+        charset part5 = codon.phy: *;
+        charpartition mine = HKY:part1, GTR+G:part2, LG+G:part3, WAG+I+G:part4, GY:part5;
+    end;
+
+Here,  `part1` and  `part2` contain sub-alignments from alignment file `dna.phy`, whereas `part3` and `part4` are loaded from alignment file `prot.phy` and `part5` from `codon.phy`. The `:` is needed to separate the alignment file name and site specification. Note that, for convenience `*` in `part5` specification means that `part5` corresponds to the entire alignment `codon.phy`. 
+
+Because the alignment file names are now specified in this NEXUS file, you can omit the  `-s` option:
+
+    iqtree -sp example.nex
+
+
+Note that 
+ `aln.phy` and  `prot.phy` does not need to contain the same set of sequences. For instance, if some sequence occurs
+in   `aln.phy` but not in   `prot.phy`, IQ-TREE will treat the corresponding parts of sequence
+in  `prot.phy` as missing data. For your convenience IQ-TREE writes the concatenated alignment
+into the file  `example.nex.conaln`.
+
+ 
+Choosing the right partitioning scheme
+--------------------------------------
+
+IQ-TREE implements a greedy strategy ([Lanfear et al., 2012]) that starts with the full partition model and subsequentially
+merges two genes until the model fit does not increase any further:
+
+    iqtree -sp example.nex -m TESTMERGE
+
+
+After the best partition is found IQ-TREE will immediately start the tree reconstruction under the best-fit partition model.
+Sometimes you only want to find the best-fit partition model without doing tree reconstruction, then run:
+
+    iqtree -sp example.nex -m TESTONLYMERGE
+
+
+To reduce the computational burden IQ-TREE implements the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]). Use
+
+    iqtree -sp example.nex -m TESTONLYMERGE -rcluster 10
+
+to only examine the top 10% partition merging schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
+
+Finally, it is recommended to use the [new testing procedure](#new-model-selection):
+
+    iqtree -s example.phy -sp example.nex -m TESTNEWMERGEONLY
+
+that additionally includes the FreeRate model (`+R`) into the candidate rate heterogeneity types.
+
+
+Ultrafast bootstrapping with partition model
+--------------------------------------------
+
+IQ-TREE can perform the ultrafast bootstrap with partition models by e.g.,
+
+    iqtree -spp example.nex -bb 1000
+
+Here, IQ-TREE will resample the sites *within* subsets of the partitions (i.e., 
+the bootstrap replicates are generated per subset separately and then concatenated together).
+The same holds true if you do the standard nonparametric bootstrap. 
+
+IQ-TREE supports the gene-resampling strategy: 
+
+
+    iqtree -spp example.nex -bb 1000 -bspec GENE
+
+
+to resample genes instead of sites. Moreover, IQ-TREE allows an even more complicated
+strategy: resampling genes and sites within resampled genes, which may reduce false positives of the standard bootstrap resampling ([Gadagkar et al., 2005]):
+
+
+    iqtree -spp example.nex -bb 1000 -bspec GENESITE
+
 
 
 Tree topology tests
@@ -206,8 +352,12 @@ If you want to generate a random tree for your alignment, simply add the `-s <al
 Note that, you still need to specify the `-r` option with the correct number of taxa that is contained in the alignment. 
 
 
+[Gadagkar et al., 2005]: http://dx.doi.org/10.1002/jez.b.21026
 [Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: http://dx.doi.org/10.1007/BF02100115
+[Lanfear et al., 2012]: http://dx.doi.org/10.1093/molbev/mss020
+[Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82
+[Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
 [Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
 [Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862

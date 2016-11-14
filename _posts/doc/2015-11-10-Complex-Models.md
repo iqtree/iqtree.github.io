@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Complex Models"
 author: Jana Trifinopoulos, Minh Bui
-date:   2016-10-24
+date:   2016-11-08
 categories:
 - doc
 docid: 11

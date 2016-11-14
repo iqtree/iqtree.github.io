@@ -88,16 +88,33 @@ General options are mainly intended for specifying input and output files:
 |------|-------------------|
 |-h or -?| Print help usage. |
 | -s   | Specify input alignment file in PHYLIP, FASTA, NEXUS, CLUSTAL or MSF format. |
-| -st  | Specify sequence type: `BIN` for binary, `DNA` for DNA, `AA` for amino-acid, `NT2AA` for converting nucleotide to AA, `CODON` for coding DNA and `MORPH` for morphology. This option is typically not necessary because IQ-TREE automatically detects the sequence type. An exception is `-st CODON` which is always necessary when using codon models (otherwise, IQ-TREE applies DNA models). |
-| -q or  -spj | Specify partition file in [NEXUS or RAxML-style format](../Complex-Models/#partition-file-format) for edge-equal [partition model](../Complex-Models/#partition-models). That means, all partitions share the same set of branch lengths (like `-q` option of RAxML). |
-| -spp | Like `-q` but each partition has its own rate ([edge-proportional partition model](../Complex-Models/#partition-models)). |
-| -sp  | Specify partition file for [edge-unlinked partition model](../Complex-Models/#partition-models). That means, each partition has its own set of branch lengths (like `-M` option of RAxML). |
+| -st  | Specify sequence type, only necessary if IQ-TREE did not detect the sequence type correctly. `st BIN` for binary, `st DNA` for DNA, `st AA` for amino-acid, `st NT2AA` for converting nucleotide to AA, `st CODON` for coding DNA and `st MORPH` for morphology. Note that `-st CODON` is always necessary when using codon models (otherwise, IQ-TREE applies DNA models) and you also need to specify a [genetic code like this](../Substitution-Models/#codon-models) if differed from the standard genetic code. |
 | -t   | Specify a file containing starting tree for tree search. The special option `-t BIONJ` starts tree search from BIONJ tree and `-t RANDOM` starts tree search from completely random tree. *DEFAULT: 100 parsimony trees + BIONJ tree* |
 | -te  | Like `-t` but fixing user tree. That means, no tree search is performed and IQ-TREE computes the log-likelihood of the fixed user tree. |
 | -o   | Specify an outgroup taxon name to root the tree. The output tree in `.treefile` will be rooted accordingly. *DEFAULT: first taxon in alignment* |
 | -pre | Specify a prefix for all output files. *DEFAULT: either alignment file name (`-s`) or partition file name (`-q`, `-spp` or `-sp`)* |
-| -seed| Specify a random number seed to reproduce a previous run. This is normally used for debugging purposes. *DEFAULT: based on current machine clock* |
+| -nt | Specify the number of CPU cores for `iqtree-omp` version. A special option `-nt AUTO` will tell IQ-TREE to automatically determine the best number of cores given the current data and computer. |
+| -seed | Specify a random number seed to reproduce a previous run. This is normally used for debugging purposes. *DEFAULT: based on current machine clock* |
 | -v   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purposes. *DFAULT: OFF* |
+| -quiet |  Silent mode, suppress printing to the screen. Note that `.log` file is still written. |
+|  -keep-ident | Keep identical sequences in the alignment. Bu default: IQ-TREE will remove them during the analysis and add them in the end. |
+|  -safe  | Turn on safe numerical mode to avoid numerical underflow for large data sets with many sequences (typically in the order of thousands). This mode is automatically turned on when having more than 2000 sequences. |
+| -mem | Specify maximal RAM usage, for example, `-mem 64G` to use at most 64 GB of RAM. By default, IQ-TREE will try to not to exceed the computer RAM size. |
+
+### Example usages:
+
+* Reconstruct a maximum-likelihood tree given a sequence alignment file `data.phy`:
+
+        iqtree -s data.phy 
+
+* Reconstruct a maximum-likelihood tree using 4 CPU cores and at most 8 GB RAM:
+
+        iqtree-omp -s data.phy -nt 4 -mem 8G
+
+* Like above and also write all output to `myrun.*` files:
+
+        iqtree-omp -s data.phy -nt 4 -mem 8G -pre myrun
+
 
 Checkpointing to resume stopped run
 -----------------------------------
@@ -109,7 +126,8 @@ Starting with version 1.4.0 IQ-TREE supports checkpointing: If an IQ-TREE run wa
 | -redo | Redo the entire analysis no matter if it was stopped or successful. WARNING: This option will overwrite all existing output files. |
 | -cptime | Specify the minimum checkpoint time interval in seconds (default: 20s) | 
 
->**NOTE**: IQ-TREE writes a checkpoint file with name suffix `.ckp.gz` in gzip format. Please do not delete or modify this file!
+>**NOTE**: IQ-TREE writes a checkpoint file with name suffix `.ckp.gz` in gzip format. Do not modify this file. If you delete this file, all checkpointing information will be lost!
+
 
 Likelihood mapping analysis
 ---------------------------
@@ -145,6 +163,12 @@ If you provide a cluster file it has to contain between 1 and 4 clusters (plus a
 
 The names given to the clusters in the cluster file will be used to label the corners of the triangle diagrams.
 
+
+### Example usages:
+
+* Perform solely likelihood mapping analysis (ignoring tree search) with 2000 quartets for an alignment `data.phy` with model being automatically selected:
+
+        iqtree -s data.phy -lmap 2000 -n 0 -m TEST
 
 Automatic model selection
 -------------------------
@@ -184,6 +208,21 @@ Several parameters can be set to e.g. reduce computations:
 
 >**NOTE**: Some of the above options require a comma-separated list, which should not contain any empty space!
 
+### Example usages:
+
+* Select best-fit model for alignment `data.phy` based on Bayesian information criterion (BIC):
+
+        iqtree -s data.phy -m TESTONLY
+
+* Select best-fit model for a protein alignment `prot.phy` using the new testing procedure and only consider WAG, LG and JTT matrix to save time:
+
+        iqtree -s prot.phy -m TESTNEWONLY -mset WAG,LG,JTT
+        
+* Find the best partitioning scheme for alignment `data.phy` and partition file `partition.nex` with a relaxed clustering at 10% to save time:
+
+        iqtree -s data.phy -spp partition.nex -m TESTMERGEONLY -rcluster 10
+
+
 Specifying substitution models
 ------------------------------
 
@@ -198,7 +237,8 @@ The following `MODEL`s are available:
 | DataType | Model names |
 |----------|-------------|
 | DNA      | JC/JC69, F81, K2P/K80, HKY/HKY85, TN/TrN/TN93, TNe, K3P/K81, K81u, TPM2, TPM2u, TPM3, TPM3u, TIM, TIMe, TIM2, TIM2e, TIM3, TIM3e, TVM, TVMe, SYM, GTR and 6-digit specification. See [DNA models](../Substitution-Models/#dna-models) for more details. |
-| Protein  | BLOSUM62, cpREV, Dayhoff, DCMut, FLU, HIVb, HIVw, JTT, JTTDCMut, LG, mtART, mtMAM, mtREV, mtZOA, Poisson, PMB, rtREV, VT, WAG. Many protein mixture models are also supported: C10,...,C60 (CAT model) ([Lartillot and Philippe, 2004]), EX2, EX3, EHO, UL2, UL3, EX_EHO, LG4M, LG4X, CF4 (`-mwopt` option can be used to turn on optimizing weights of mixture models). See [Protein models](../Substitution-Models/#protein-models) for more details. |
+| Protein  | BLOSUM62, cpREV, Dayhoff, DCMut, FLU, HIVb, HIVw, JTT, JTTDCMut, LG, mtART, mtMAM, mtREV, mtZOA, Poisson, PMB, rtREV, VT, WAG. |
+| Protein | Mixture models: C10, ..., C60 (CAT model) ([Lartillot and Philippe, 2004]), EX2, EX3, EHO, UL2, UL3, EX_EHO, LG4M, LG4X, CF4. See [Protein models](../Substitution-Models/#protein-models) for more details. |
 | Codon | MG, MGK, MG1KTS, MG1KTV, MG2K, GY, GY1KTS, GY1KTV, GY2K, ECMK07/KOSI07, ECMrest, ECMS05/SCHN05 and combined empirical-mechanistic models. See [Codon models](../Substitution-Models/#codon-models) for more details. |
 | Binary | JC2, GTR2. See [Binary and morphological models](../Substitution-Models/#binary-and-morphological-models) for more details. |
 | Morphology| MK, ORDERED. See [Binary and morphological models](../Substitution-Models/#binary-and-morphological-models) for more details. |
@@ -208,10 +248,31 @@ The following `FreqType`s are supported:
 | FreqType | Meaning |
 |----------|---------|
 | +F       | Empirical state frequency observed from the data. |
-| +FO      | State frequency optimized by maximum-likelihood from the data. |
+| +FO      | State frequency optimized by maximum-likelihood from the data. Note that this is with letter-O and not digit-0. |
 | +FQ      | Equal state frequency. |
 | +F1x4    | See [Codon frequencies](../Substitution-Models/#codon-frequencies). |
 | +F3x4    | See [Codon frequencies](../Substitution-Models/#codon-frequencies). |
+
+Further options:
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -mwopt | Turn on optimizing weights of mixture models. Note that for models like `LG+C20+F+G` this mode is automatically turned on, but not for `LG+C20+G`. |
+
+### Example usages:
+
+* Infer an ML tree for a DNA alignment `dna.phy` under GTR+I+G model:
+
+        iqtree -s dna.phy -m GTR+I+G
+
+* Infer an ML tree for a protein alignment `prot.phy` under LG+F+G model:
+
+        iqtree -s prot.phy -m LG+F+G
+
+* Infer an ML tree for a protein alignment `prot.phy` under profile mixture model LG+C10+F+G:
+
+        iqtree -s prot.phy -m LG+C10+F+G
+
 
 Rate heterogeneity
 ------------------
@@ -240,6 +301,28 @@ Further options:
 Optionally, one can specify [Ascertainment bias correction](../Substitution-Models/#ascertainment-bias-correction) by appending `+ASC` to the model string. [Advanced mixture models](../Complex-Models/#mixture-models) can also be specified via `MIX{...}` and `FMIX{...}` syntax. Option `-mwopt` can be used to turn on optimizing weights of mixture models.
 
 
+Partition models
+----------------
+
+Partition models are used for phylogenomic data with multiple genes. You first have to prepare [a partition file in NEXUS or RAxML-style format](../Complex-Models/#partition-file-format). Then use the following options to input the partition file:
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -q | Specify partition file for edge-equal [partition model](../Complex-Models/#partition-models). That means, all partitions share the same set of branch lengths (like `-q` option of RAxML). |
+| -spp | Like `-q` but allowing partitions to have different evolutionary speeds ([edge-proportional partition model](../Complex-Models/#partition-models)). |
+| -sp  | Specify partition file for [edge-unlinked partition model](../Complex-Models/#partition-models). That means, each partition has its own set of branch lengths (like `-M` option of RAxML). This is the most parameter-rich partition model to accomodate *heterotachy*. |
+
+Site-specific frequency models
+------------------------------
+
+The site-specific frequency model is used to substantially reduce the time and memory requirement compared with full profile mixture models `C10` to `C60`. For full details see [site-specific frequency model](../Complex-Models/#site-specific-frequency-models). To use this model you have to specify a profile mixture model with e.g. `-m LG+C20+F+G` together with a guide tree or a site frequency file: 
+
+|Option| Usage and meaning |
+|------|-------------------|
+| -ft | Specify a guide tree (in Newick format) to infer site frequency profiles. |
+| -fs | Specify a site frequency file, e.g. the `.sitefreq` file obtained from `-ft` run. This will save memory used for the first phase of the analysis. | 
+| -fmax | Switch to posterior maximum mode for obtaining site-specific profiles. Default: posterior mean. |
+
 Tree search parameters
 ----------------------
 
@@ -247,19 +330,28 @@ The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters 
 
 |Option| Usage and meaning |
 |------|-------------------|
-| -numpars | Specify number of initial parsimony trees. *DEFAULT: 100* |
-| -toppars | Specify number of top parsimony trees of initial ones for further search. *DEFAULT: 20* |
-| -numcand | Specify number of top candidate trees to maintain during tree search. *DEFAULT: 5* |
+| -ninit | Specify number of initial parsimony trees. *DEFAULT: 100* |
+| -ntop | Specify number of top parsimony trees of initial ones for further search. *DEFAULT: 20* |
+| -nbest | Specify number of top candidate trees to maintain during tree search. *DEFAULT: 5* |
+| -nstop | Specify number of unsuccessful iterations to stop. *DEFAULT: 100* |
+| -n       | Specify number of iterations to stop. This option overrides `-nstop` criterion. |
 | -sprrad  | Specify radius for subtree prunning and regrafting parsimony search. *DEFAULT: 6* |
 | -pers    | Specify perturbation strength (between 0 and 1) for randomized nearest neighbor interchange (NNI). *DEFAULT: 0.5* |
 | -allnni  | Turn on more thorough and slower NNI search. It means that IQ-TREE will consider all possible NNIs instead of only those in the vicinity of previously applied NNIs. *DEFAULT: OFF* |
-| -numstop | Specify number of unsuccessful iterations to stop. *DEFAULT: 100* |
-| -n       | Specify number of iterations to stop. This option overrides `-numstop` criterion. |
 | -djc     | Avoid computing ML pairwise distances and BIONJ tree. |
 | -g       | Specify a topological constraint tree file in NEWICK format. The constraint tree can be a multifurcating tree and need not to include all taxa. |
 
->**NOTICE**: While the default parameters were empirically determined to work well under our extensive benchmark ([Nguyen et al., 2015]), it might not hold true for all data sets. If in doubt that tree search is still stuck in local optima, one should repeat analysis with at least 10 IQ-TREE runs. Moreover, our experience showed that `-pers` and `-numstop` are the most relevant options to change in such case. For example, data sets with many short sequences should be analyzed with smaller perturbation strength (`-pers`) and larger `-numstop`.
+>**NOTICE**: While the default parameters were empirically determined to work well under our extensive benchmark ([Nguyen et al., 2015]), it might not hold true for all data sets. If in doubt that tree search is still stuck in local optima, one should repeat analysis with at least 10 IQ-TREE runs. Moreover, our experience showed that `-pers` and `-nstop` are the most relevant options to change in such case. For example, data sets with many short sequences should be analyzed with smaller perturbation strength (e.g. `-pers 0.2`) and larger number of stop iterations (e.g. `-nstop 500`).
 
+### Example usages:
+
+* Infer an ML tree for an alignment `data.phy` with increased stopping iteration of 500 and reduced perturbation strength of 0.2:
+
+        iqtree -s data.phy -m TEST -nstop 500 -pers 0.2
+
+* Infer an ML tree for an alignment `data.phy` obeying a topological constraint tree `constraint.tree`:
+
+        iqtree -s data.phy -m TEST -g constraint.tree
 
 Ultrafast bootstrap parameters
 ------------------------------
@@ -275,6 +367,16 @@ The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]) has several
 | -bcor| Specify minimum correlation coefficient for UFBoot convergence criterion. *DEFAULT: 0.99* |
 | -nstep| Specify iteration interval checking for UFBoot convergence. *DEFAULT: every 100 iterations* |
 | -beps | Specify a small epsilon to break tie in RELL evaluation for bootstrap trees. *DEFAULT: 0.5* |
+
+### Example usages:
+
+* Select best-fit model, infer an ML tree and perform ultrafast bootstrap with 1000 replicates:
+
+        iqtree -s data.phy -m TEST -bb 1000
+
+* Reconstruct ML and perform ultrafast bootstrap (5000 replicates) under a partition model file `partition.nex`:
+
+        iqtree -s data.phy -spp partition.nex -m TEST -bb 5000
 
 
 Nonparametric bootstrap
@@ -302,6 +404,12 @@ The following single branch tests are faster than all bootstrap analysis and rec
 
 >**TIP**: One can combine all these tests (also including UFBoot `-bb` option) within a single IQ-TREE run. Each branch in the resulting tree will be assigned several support values separated by slash (`/`), where the order of support values is stated in the `.iqtree` report file.
 
+### Example usages:
+
+* Infer an ML tree and perform SH-aLRT test as well as ultrafast bootstrap with 1000 replicates:
+
+        iqtree -s data.phy -m TEST -alrt 1000 -bb 1000
+
 
 Tree topology tests
 -------------------
@@ -314,9 +422,21 @@ IQ-TREE provides a number of tests for significant topological differences betwe
 | -zb | Specify the number of RELL ([Kishino et al., 1990]) replicates (>=1000) to perform several tree topology tests for all trees passed via `-z`. The tests include bootstrap proportion (BP), KH test ([Kishino and Hasegawa, 1989]), SH test ([Shimodaira and Hasegawa, 1999]) and expected likelihood weights (ELW) ([Strimmer and Rambaut, 2002]). |
 | -zw | Used together with `-zb` to additionally perform the weighted-KH and weighted-SH tests. |
 | -au | Used together with `-zb` to additionally perform the approximately unbiased (AU) test ([Shimodaira, 2002]). Note that you have to specify the number of replicates for the AU test via `-zb`. |
-| -te | Specify a fixed user tree to estimate model parameters. Without this option, IQ-TREE will by default invoke a full tree search before performing the tree topology tests. |
+| -n 0 | Only estimate model parameters on an initial parsimony tree and ignore a full tree search to save time. |
+| -te | Specify a fixed user tree to estimate model parameters. Thus it behaves like `-n 0` but uses a user-defined tree instead of parsimony tree. |
 
 >**NOTE**: The AU test implementation in IQ-TREE is much more efficient than the original CONSEL by supporting SSE, AVX and multicore parallelization. Moreover, it is more appropriate than CONSEL for partition analysis by bootstrap resampling sites *within* partitions, whereas CONSEL is not partition-aware.
+
+### Example usages:
+
+* Given alignment `data.phy`, test a set of trees in `data.trees` using AU test with 10,000 replicates:
+
+        iqtree -s data.phy -m GTR+G -n 0 -z data.trees -zb 10000 -au 
+
+* Same above but for a partitioned data `partition.nex` and additionally performing weighted test:
+
+        iqtree -s data.phy -spp partition.nex -n 0 -z data.trees -zb 10000 -au -zw
+
 
 Constructing consensus tree
 ---------------------------
