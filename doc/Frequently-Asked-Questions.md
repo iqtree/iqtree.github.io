@@ -7,6 +7,8 @@ tags:
 sections:
 - name: How do I get help?
   url: how-do-i-get-help
+- name: How do I report bug?
+  url: how-do-i-report-bug
 - name: How to interpret ultrafast bootstrap (UFBoot) supports?
   url: how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values
 - name: How does IQ-TREE treat gap/missing/ambiguous characters?
@@ -36,6 +38,7 @@ For common questions and answers.
 **Table of Contents**
 
 - [How do I get help?](#how-do-i-get-help)
+- [How do I report bug?](#how-do-i-report-bug)
 - [How do I interpret ultrafast bootstrap (UFBoot) support values?](#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values)
 - [How does IQ-TREE treat gap/missing/ambiguous characters?](#how-does-iq-tree-treat-gapmissingambiguous-characters)
 - [Can I mix DNA and protein data in a partitioned analysis?](#can-i-mix-dna-and-protein-data-in-a-partitioned-analysis)
@@ -58,6 +61,12 @@ If you have questions please follow the steps below:
 3. If you still could not find the answer, search the [IQ-TREE Google group](https://groups.google.com/d/forum/iqtree). There is a "Search for topics" box at the top of the Google group web page.
 4. Finally, if no answer is found, post a question to the IQ-TREE group. The average response time is one to two working days.
 
+
+> For other feedback and feature request, please post a topic to the [IQ-TREE Google group](https://groups.google.com/d/forum/iqtree). We welcome all suggestions to further improve IQ-TREE! For feature request, please also explain why you think such a new feature would be useful or how can it help for your work.
+
+How do I report bug?
+--------------------
+
 For bug report, please send the following information to the [IQ-TREE Google group](https://groups.google.com/d/forum/iqtree):
 
 1. A description of the behaviour, which you think might be unexpected or caused by a bug. 
@@ -68,7 +77,6 @@ For bug report, please send the following information to the [IQ-TREE Google gro
  
 The development team will get back to you and may ask for the full `.log` file and input data files for debugging purpose, if necessary. In such case please **only send your data files directly to the developers for confidential reason**! Keep in mind that everyone can see all emails sent to the group!
 
-For other feedback and feature request, please post a topic to the [IQ-TREE Google group](https://groups.google.com/d/forum/iqtree). We welcome all suggestions to further improve IQ-TREE! For feature request, please also explain why you think such a new feature would be useful or how can it help for your work.
 
 
 How do I interpret ultrafast bootstrap (UFBoot) support values?

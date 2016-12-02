@@ -5,6 +5,8 @@ doctype: tutorial
 tags:
 - tutorial
 sections:
+- name: Input data
+  url: input-data
 - name: First example
   url: first-running-example
 - name: Model selection
@@ -21,14 +23,6 @@ sections:
   url: assessing-branch-supports-with--standard-nonparametric-bootstrap
 - name: Single branch tests
   url: assessing-branch-supports-with-single-branch-tests
-- name: Partitioned analysis
-  url: partitioned-analysis-for-multi-gene-alignments
-- name: Partitioning with mixed data
-  url: partitioned-analysis-with-mixed-data
-- name: Partition scheme selection
-  url: choosing-the-right-partitioning-scheme
-- name: Bootstrapping partition model
-  url: ultrafast-bootstrapping-with-partition-model
 - name: Utilizing multi-core CPUs
   url: utilizing-multi-core-cpus
 jekyll-->
@@ -43,6 +37,7 @@ This tutorial gives a beginner's guide.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Input data](#input-data)
 - [First running example](#first-running-example)
 - [Choosing the right substitution model](#choosing-the-right-substitution-model)
 - [New model selection](#new-model-selection)
@@ -51,11 +46,8 @@ This tutorial gives a beginner's guide.
 - [Assessing branch supports with ultrafast bootstrap approximation](#assessing-branch-supports-with-ultrafast-bootstrap-approximation)
 - [Assessing branch supports with  standard nonparametric bootstrap](#assessing-branch-supports-with--standard-nonparametric-bootstrap)
 - [Assessing branch supports with single branch tests](#assessing-branch-supports-with-single-branch-tests)
-- [Partitioned analysis for multi-gene alignments](#partitioned-analysis-for-multi-gene-alignments)
-- [Partitioned analysis with mixed data](#partitioned-analysis-with-mixed-data)
-- [Choosing the right partitioning scheme](#choosing-the-right-partitioning-scheme)
-- [Ultrafast bootstrapping with partition model](#ultrafast-bootstrapping-with-partition-model)
 - [Utilizing multi-core CPUs](#utilizing-multi-core-cpus)
+- [Where to go from here?](#where-to-go-from-here)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -65,12 +57,44 @@ for your platform . For the next steps, the folder containing your  `iqtree` exe
 
 >**TIP**: For quick overview of all supported options in IQ-TREE, run the command  `iqtree -h`. 
 
+Input data
+----------
+
+IQ-TREE takes as input a *multiple sequence alignment* and will reconstruct an evolutionary tree that is best explained by the input data. The input alignment can be in various common formats. For example the [PHYLIP format](http://evolution.genetics.washington.edu/phylip/doc/sequence.html) which may look like:
+
+    7 28
+    Frog       AAATTTGGTCCTGTGATTCAGCAGTGAT
+    Turtle     CTTCCACACCCCAGGACTCAGCAGTGAT
+    Bird       CTACCACACCCCAGGACTCAGCAGTAAT
+    Human      CTACCACACCCCAGGAAACAGCAGTGAT
+    Cow        CTACCACACCCCAGGAAACAGCAGTGAC
+    Whale      CTACCACGCCCCAGGACACAGCAGTGAT
+    Mouse      CTACCACACCCCAGGACTCAGCAGTGAT
+
+This tiny alignment contains 7 DNA sequences from several animals with the sequence length of 28 nucleotides. IQ-TREE also supports other file formats such as FASTA, NEXUS, CLUSTALW. The FASTA file for the above example may look like this:
+
+    >Frog       
+    AAATTTGGTCCTGTGATTCAGCAGTGAT
+    >Turtle     
+    CTTCCACACCCCAGGACTCAGCAGTGAT
+    >Bird       
+    CTACCACACCCCAGGACTCAGCAGTAAT
+    >Human      
+    CTACCACACCCCAGGAAACAGCAGTGAT
+    >Cow        
+    CTACCACACCCCAGGAAACAGCAGTGAC
+    >Whale      
+    CTACCACGCCCCAGGACACAGCAGTGAT
+    >Mouse      
+    CTACCACACCCCAGGACTCAGCAGTGAT
+
+>**TIP**: If you have raw sequences, you need to first apply alignment programs like [MAFFT](http://mafft.cbrc.jp/alignment/software/) or [ClustalW](http://www.clustal.org) to align the sequences, before feeding them into IQ-TREE.
 
 First running example
 ---------------------
 
 From the download there is an example alignment called `example.phy`
- in PHYLIP format (IQ-TREE also supports FASTA, NEXUS, CLUSTAL and MSF files). This example contains parts of the mitochondrial DNA sequences of several animals.
+ in PHYLIP format. This example contains parts of the mitochondrial DNA sequences of several animals (Source: [Phylogenetic Handbook](http://www.kuleuven.be/aidslab/phylogenybook/home.html)).
  
 You can now start to reconstruct a maximum-likelihood tree
 from this alignment by entering (assuming that you are now in the same folder with `example.phy`):
@@ -88,6 +112,8 @@ by any supported tree viewer programs like FigTree or  iTOL.
 bugs, please send this log file and the original alignment file to the authors.
 
 For this example data the resulting maximum-likelihood tree may look like this (extracted from `.iqtree` file):
+
+    NOTE: Tree is UNROOTED although outgroup taxon 'LngfishAu' is drawn at root
 
     +--------------LngfishAu
     |
@@ -318,146 +344,12 @@ The branches of the resulting `.treefile` will be assigned with both SH-aLRT and
 
 From this figure, the branching patterns within reptiles are poorly supported (e.g. `Sphenodon` with SH-aLRT: 39%, UFBoot: 51% and `Turtle` with SH-aLRT: 85%, UFBoot: 72%) as well as the phylogenetic position of `Seal` within mammals (SH-aLRT: 68.3%, UFBoot: 75%). Other branches appear to be well supported.
 
-Partitioned analysis for multi-gene alignments
-----------------------------------------------
-
-In the partition model, you can specify a substitution model for each gene/character set. 
-IQ-TREE will then estimate the model parameters separately for every partition. Moreover, IQ-TREE provides edge-linked or edge-unlinked branch lengths between partitions:
-
-* `-q partition_file`: all partitions share the same set of branch lengths (like `-q` option of RAxML).
-* `-spp partition_file`: like above but allowing each partition to have its own evolution rate.
-* `-sp partition_file`: each partition has its own set of branch lengths (like combination of `-q` and `-M` options in RAxML) to account for, e.g. *heterotachy* ([Lopez et al., 2002]).
-
->**TIP**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
-
-IQ-TREE supports RAxML-style and NEXUS partition input file. The RAxML-style partition file may look like:
-
-    DNA, part1 = 1-100
-    DNA, part2 = 101-384
-
-If your partition file is called  `example.partitions`, the partition analysis can be run with:
-
-
-    iqtree -s example.phy -q example.partitions -m GTR+I+G
-
-
-Note that using RAxML-style partition file, all partitions will use the same rate heterogeneity model given in `-m` option (`+I+G` in this example). If you want to specify, say, `+G` for the first partition and `+I+G` for the second partition, then you need to create the more flexible NEXUS partition file. This file contains a  `SETS` block with
- `CharSet` and  `CharPartition` commands to specify individual genes and the partition, respectively.
-For example:
-
-    #nexus
-    begin sets;
-        charset part1 = 1-100;
-        charset part2 = 101-384;
-        charpartition mine = HKY+G:part1, GTR+I+G:part2;
-    end;
-
-
-If your NEXUS file is called  `example.nex`, then you can use the option  `-spp` to input the file as following:
-
-    iqtree -s example.phy -spp example.nex
-
-Here, IQ-TREE partitions the alignment  `example.phy` into 2 sub-alignments named  `part1` and  `part2`
-containing sites (columns) 1-100 and 101-384, respectively. Moreover, IQ-TREE applies the
-subtitution models  `HKY+G` and  `GTR+I+G` to  `part1` and  `part2`, respectively. Substitution model parameters and trees with branch lengths can be found in the result file  `example.nex.iqtree`. 
-
-Moreover, the  `CharSet` command allows to specify non-consecutive sites with e.g.:
-
-    charset part1 = 1-100 200-384;
-
-That means,  `part1` contains sites 1-100 and 200-384 of the alignment. Another example is:
-
-    charset part1 = 1-100\3;
-
-for extracting sites 1,4,7,...,100 from the alignment. This is useful for getting codon positions from the protein-coding alignment. 
-
-Partitioned analysis with mixed data
-------------------------------------
-
-IQ-TREE also allows combining sub-alignments from different alignment files, which is helpful if you want to combine mixed data (e.g. DNA and protein) in a single analysis. Here is an example for mixing DNA, protein and codon models:
-
-    #nexus
-    begin sets;
-        charset part1 = dna.phy: 1-100 201-300;
-        charset part2 = dna.phy: 101-200;
-        charset part3 = prot.phy: 1-400;
-        charset part4 = prot.phy: 401-600;
-        charset part5 = codon.phy: *;
-        charpartition mine = HKY:part1, GTR+G:part2, LG+G:part3, WAG+I+G:part4, GY:part5;
-    end;
-
-Here,  `part1` and  `part2` contain sub-alignments from alignment file `dna.phy`, whereas `part3` and `part4` are loaded from alignment file `prot.phy` and `part5` from `codon.phy`. The `:` is needed to separate the alignment file name and site specification. Note that, for convenience `*` in `part5` specification means that `part5` corresponds to the entire alignment `codon.phy`. 
-
-Because the alignment file names are now specified in this NEXUS file, you can omit the  `-s` option:
-
-    iqtree -sp example.nex
-
-
-Note that 
- `aln.phy` and  `prot.phy` does not need to contain the same set of sequences. For instance, if some sequence occurs
-in   `aln.phy` but not in   `prot.phy`, IQ-TREE will treat the corresponding parts of sequence
-in  `prot.phy` as missing data. For your convenience IQ-TREE writes the concatenated alignment
-into the file  `example.nex.conaln`.
-
- 
-Choosing the right partitioning scheme
---------------------------------------
-
-IQ-TREE implements a greedy strategy ([Lanfear et al., 2012]) that starts with the full partition model and subsequentially
-merges two genes until the model fit does not increase any further:
-
-    iqtree -sp example.nex -m TESTMERGE
-
-
-After the best partition is found IQ-TREE will immediately start the tree reconstruction under the best-fit partition model.
-Sometimes you only want to find the best-fit partition model without doing tree reconstruction, then run:
-
-    iqtree -sp example.nex -m TESTONLYMERGE
-
-
-To reduce the computational burden IQ-TREE implements the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]). Use
-
-    iqtree -sp example.nex -m TESTONLYMERGE -rcluster 10
-
-to only examine the top 10% partition merging schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
-
-Finally, it is recommended to use the [new testing procedure](#new-model-selection):
-
-    iqtree -s example.phy -sp example.nex -m TESTNEWMERGEONLY
-
-that additionally includes the FreeRate model (`+R`) into the candidate rate heterogeneity types.
-
-
-Ultrafast bootstrapping with partition model
---------------------------------------------
-
-IQ-TREE can perform the ultrafast bootstrap with partition models by e.g.,
-
-    iqtree -spp example.nex -bb 1000
-
-Here, IQ-TREE will resample the sites *within* subsets of the partitions (i.e., 
-the bootstrap replicates are generated per subset separately and then concatenated together).
-The same holds true if you do the standard nonparametric bootstrap. 
-
-IQ-TREE supports the gene-resampling strategy: 
-
-
-    iqtree -spp example.nex -bb 1000 -bspec GENE
-
-
-to resample genes instead of sites. Moreover, IQ-TREE allows an even more complicated
-strategy: resampling genes and sites within resampled genes, which may reduce false positives of the standard bootstrap resampling ([Gadagkar et al., 2005]):
-
-
-    iqtree -spp example.nex -bb 1000 -bspec GENESITE
-
-
 
 Utilizing multi-core CPUs
 -------------------------
 
 A specialized version of IQ-TREE (`iqtree-omp`) can utilize multiple CPU cores to speed up the analysis.
-To obtain this version please refer to the [quick starting guide](Quickstart).  A complement option `-nt` allows specifying the number of CPU to be used. For example:
+To obtain this version please refer to the [quick starting guide](Quickstart).  A complement option `-nt` allows specifying the number of CPU cores to use. For example:
 
 
     iqtree-omp -s example.phy -m TIM2+I+G -nt 2
@@ -465,8 +357,25 @@ To obtain this version please refer to the [quick starting guide](Quickstart).  
 
 Here, IQ-TREE will use 2 CPU cores to perform the analysis. 
 
->**NOTICE**: the parallel efficiency is only good for long alignments. A good practice is to use `-nt AUTO` to determine the best number of cores. For later analysis with the same data set, you can stick to the determined number.
+Note that the parallel efficiency is only good for long alignments. A good practice is to use `-nt AUTO` to determine the best number of cores:
 
+    iqtree-omp -s example.phy -m TIM2+I+G -nt AUTO
+
+Then while running IQ-TREE may print something like this on to the screen:
+
+    Measuring multi-threading efficiency up to 8 CPU cores
+    Threads: 1 / Time: 8.001 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -22217
+    Threads: 2 / Time: 4.346 sec / Speedup: 1.841 / Efficiency: 92% / LogL: -22217
+    Threads: 3 / Time: 3.381 sec / Speedup: 2.367 / Efficiency: 79% / LogL: -22217
+    Threads: 4 / Time: 4.385 sec / Speedup: 1.825 / Efficiency: 46% / LogL: -22217
+    BEST NUMBER OF THREADS: 3
+
+Therefore, I would only use 3 cores for this example data. For later analysis with your same data set, you can stick to the determined number.
+
+Where to go from here?
+----------------------------
+
+Once confident enough you can go on with a **[more advanced tutorial](Advanced-Tutorial)**, which covers topics like phylogenomic (multi-gene) analyses using partition models or mixture models.
 
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
