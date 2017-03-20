@@ -106,13 +106,13 @@ Compiling under Mac OS X
 
 The steps to compile IQ-TREE are similar to Linux (see above), except that you need to specify `clang` as compiler when configuring source code with CMake (step 4):
 
-    CC=clang CXX=clang++ cmake ..
+    cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..
 
 (please change `cmake` to absolute path like `/Applications/CMake.app/Contents/bin/cmake`).
 
 To compile the multicore version, the default installed Clang unfortunately does not support OpenMP (which might change in the near future). However, the latest Clang 3.7 supports OpenMP, which can be downloaded from <http://clang.llvm.org>. After that you can run CMake with:
 
-    CC=clang-3.7 CXX=clang++-3.7 cmake -DIQTREE_FLAGS=omp ..
+    cmake -DIQTREE_FLAGS=omp -DCMAKE_C_COMPILER=clang-3.7 -DCMAKE_CXX_COMPILER=clang++-3.7 ..
 
 (assuming that `clang-3.7` and `clang++-3.7` points to the installed Clang 3.7).
 
@@ -139,9 +139,7 @@ Compiling under Windows
 
 4. Configure source code with CMake:
 
-        set CC=clang
-        set CXX=clang++
-        cmake -G "Unix Makefiles" -DCMAKE_C_FLAGS=--target=x86_64-pc-windows-gnu -DCMAKE_CXX_FLAGS=--target=x86_64-pc-windows-gnu -DCMAKE_MAKE_PROGRAM=mingw32-make ..
+        cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_FLAGS=--target=x86_64-pc-windows-gnu -DCMAKE_CXX_FLAGS=--target=x86_64-pc-windows-gnu -DCMAKE_MAKE_PROGRAM=mingw32-make ..
 
     To build the multicore version please add `-DIQTREE_FLAGS=omp` to the cmake command. Note that the make program shipped with TDM-GCC is called `mingw32-make`, thus needed to specify like above. You can also copy `mingw32-make` to `make` to simplify this step.
 
