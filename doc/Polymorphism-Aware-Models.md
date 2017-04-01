@@ -4,6 +4,7 @@ icon: book
 doctype: manual
 tags:
 - manual
+description: <strong>Po</strong>lymorphism-aware phylogenetic <strong>Mo</strong>dels (PoMo) related documentation.
 sections:
 - name: Counts files
   url: counts-files

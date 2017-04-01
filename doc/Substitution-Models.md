@@ -4,6 +4,7 @@ icon: book
 doctype: manual
 tags:
 - manual
+description: All common substitution models and usages.
 sections:
 - name: DNA models
   url: dna-models
@@ -47,7 +48,7 @@ All common substitution models and usages.
 
 IQ-TREE supports a wide range of substitution models, including advanced partition and mixture models. This guide gives a detailed information of all available models.
 
->**TIP**: If you do not know which model to use, simply run IQ-TREE with the standard model selection (`-m TEST` option) or the new model selection procedure (`-m TESTNEW`). It automatically determines best-fit model for your data.
+>**TIP**: If you do not know which model to use, simply run IQ-TREE with the standard model selection (`-m TEST` option) or the new ModelFinder (`-m MFP`). It automatically determines best-fit model for your data.
 
 
 DNA models
@@ -331,7 +332,7 @@ IQ-TREE supports all common rate heterogeneity across sites models:
 | +I+G | invariable site plus discrete Gamma model ([Gu et al., 1995]).
 | +R   | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes the `+G` model by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). The FreeRate model typically fits data better than the `+G` model and is recommended for analysis of large data sets.
 
->**TIP**: The new model selection procedure (`-m TESTNEW` option) tests the FreeRate model, whereas the standard procedure (`-m TEST`) does not.
+>**TIP**: The new ModelFinder (`-m MFP` option) tests the FreeRate model, whereas the standard procedure (`-m TEST`) does not.
 
 Users can fix the parameters of the model. For example, `+I{0.2}` will fix the proportion of invariable sites (pinvar) to 0.2; `+G{0.9}` will fix the Gamma shape parameter (alpha) to 0.9; `+I{0.2}+G{0.9}` will fix both pinvar and alpha. To fix the FreeRate model parameters, use the syntax `+Rk{w1,r1,...,wk,rk}` (replacing `k` with the number of categories). Here, `w1, ..., wk` are the weights and `r1, ..., rk` the rates for each category. 
 

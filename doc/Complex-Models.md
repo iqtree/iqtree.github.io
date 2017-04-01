@@ -4,6 +4,7 @@ icon: book
 doctype: manual
 tags:
 - manual
+description: Partition and mixture models and usages.
 sections:
 - name: Partition models
   url: partition-models

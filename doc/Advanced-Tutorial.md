@@ -4,6 +4,7 @@ icon: info-circle
 doctype: tutorial
 tags:
 - tutorial
+description: Recommended for experienced users to explore more features.
 sections:
   - name: Partitioned analysis
     url: partitioned-analysis-for-multi-gene-alignments
@@ -157,7 +158,9 @@ to only examine the top 10% partition merging schemes (similar to the `--rcluste
 
 Finally, it is recommended to use the [new testing procedure](#new-model-selection):
 
-    iqtree -s example.phy -sp example.nex -m TESTNEWMERGEONLY
+    iqtree -s example.phy -sp example.nex -m MF+MERGE
+    # for old version use -m TESTNEWMERGEONLY
+
 
 that additionally includes the FreeRate model (`+R`) into the candidate rate heterogeneity types.
 

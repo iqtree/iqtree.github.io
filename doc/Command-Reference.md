@@ -4,6 +4,7 @@ icon: book
 doctype: tutorial
 tags:
 - manual
+description: Commprehensive documentation of command-line options.
 sections:
   - name: General options
     url: general-options
@@ -174,12 +175,12 @@ allows to automatically determine the best-fit model via a series of `-m TEST...
 |------|-------------------|
 | -m TESTONLY | Perform standard model selection like jModelTest (for DNA) and ProtTest (for protein). Moreover, IQ-TREE also works for codon, binary and morphogical data. |
 | -m TEST | Like `-m TESTONLY` but immediately followed by tree reconstruction using the best-fit model found. So this performs both model selection and tree inference within a single run. |
-| -m TESTNEWONLY | Perform an extended model selection that additionally includes FreeRate model compared with `-m TESTONLY`. *Recommended as replacement for `-m TESTONLY`*. Note that `LG4X` is a FreeRate model, but by default is not included because it is also a protein mixture model. To include it, use `-madd` option (see table below).  |
-| -m TESTNEW | Like `-m TESTNEWONLY` but immediately followed by tree reconstruction using the best-fit model found. |
+| -m TESTNEWONLY or -m MF | Perform an extended model selection that additionally includes FreeRate model compared with `-m TESTONLY`. *Recommended as replacement for `-m TESTONLY`*. Note that `LG4X` is a FreeRate model, but by default is not included because it is also a protein mixture model. To include it, use `-madd` option (see table below).  |
+| -m TESTNEW or -m MFP | Like `-m MF` but immediately followed by tree reconstruction using the best-fit model found. |
 | -m TESTMERGEONLY | Select best-fit partitioning scheme like PartitionFinder. |
 | -m TESTMERGE | Like `-m TESTMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found. |
-| -m TESTNEWMERGEONLY | Like `-m TESTMERGEONLY` but additionally includes FreeRate model. |
-| -m TESTNEWMERGE | Like `-m TESTNEWMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found. |
+| -m TESTNEWMERGEONLY or -m MF+MERGE | Like `-m TESTMERGEONLY` but additionally includes FreeRate model. |
+| -m TESTNEWMERGE or -m MFP+MERGE | Like `-m MF+MERGE` but immediately followed by tree reconstruction using the best partitioning scheme found. |
 
 >**TIP**: During model section run, IQ-TREE will write a file with suffix `.model` that stores information of all models tested so far. Thus, if IQ-TREE is interrupted for whatever reason, restarting the run will load this file to reuse the computation. Thus, this file acts like a checkpoint to resume the model selection.
 
@@ -210,7 +211,7 @@ Several parameters can be set to e.g. reduce computations:
 
 * Select best-fit model for a protein alignment `prot.phy` using the new testing procedure and only consider WAG, LG and JTT matrix to save time:
 
-        iqtree -s prot.phy -m TESTNEWONLY -mset WAG,LG,JTT
+        iqtree -s prot.phy -m MF -mset WAG,LG,JTT
         
 * Find the best partitioning scheme for alignment `data.phy` and partition file `partition.nex` with a relaxed clustering at 10% to save time:
 

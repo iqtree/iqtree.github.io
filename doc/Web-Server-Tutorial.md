@@ -4,7 +4,8 @@ icon: info-circle
 doctype: tutorial
 tags:
 - tutorial
-sections:
+description: A quick starting guide for the IQ-TREE Web Server.
+sections: 
 - name: Tree Inference
   url: tree-inference
 - name: Model Selection

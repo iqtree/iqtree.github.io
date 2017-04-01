@@ -4,6 +4,7 @@ icon: codepen
 doctype: manual
 tags:
 - manual
+description: This guide gives developers an overview of IQ-TREE software design, data structures and discusses possibility to incorporate new models into IQ-TREE.
 sections:
 - name: Alignment
   url: alignment-class

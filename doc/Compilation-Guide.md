@@ -4,6 +4,7 @@ icon: book
 doctype: manual
 tags:
 - manual
+description: For advanced users to compile IQ-TREE source code.
 sections:
 - name: General requirements
   url: general-requirements

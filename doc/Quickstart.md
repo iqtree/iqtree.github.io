@@ -4,6 +4,7 @@ icon: info-circle
 doctype: tutorial
 tags:
 - tutorial
+description: Recommended for users who just downloaded IQ-TREE the first time.
 sections:
 - name: Installation
   url: installation

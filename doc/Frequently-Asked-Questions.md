@@ -4,6 +4,7 @@ icon: question-circle
 doctype: tutorial
 tags:
 - tutorial
+description: For common questions and answers.
 sections:
 - name: How do I get help?
   url: how-do-i-get-help

@@ -4,6 +4,7 @@ icon: book
 doctype: manual
 tags:
 - manual
+description: Heterotachy mixture models documentation.
 sections:
 - name: What is heterotachy model?
   url: what-is-heterotachy-model
