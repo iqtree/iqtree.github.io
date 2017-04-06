@@ -6,29 +6,28 @@ layout: default
 
 <div class="container mtb">
     <div class="row">
-        <! -- SINGLE POST -->
+        <!-- SINGLE POST -->
         <div class="col-md-8">
-            <! -- Blog Post  -->
+            <!-- Blog Post  -->
             <h3>{{ page.title }}</h3>
-            <p><csmall>{{ page.date | date: "%b %-d, %Y" }} {% if page.author %} | By: {{ page.author }} {% endif %}</csmall></p>
+            <p class="csmall">{{ page.date | date: "%b %-d, %Y" }} {% if page.author %} | By: {{ page.author }} {% endif %}</p>
             {% if page.img %}
             <p><img class="img-responsive" src="{{ "/assets/img/blog/" | prepend: site.baseurl }}{{ page.img }}"></p>
             {% endif %}
             {{ content }}
-            <button type="button" class="btn btn-warning" onclick="window.history.back();">&#8592; Back to all news</button>
-            <div class="spacing"></div>
-            <!-- <h6>SHARE:</h6>
-            <p class="share">
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-tumblr"></i></a>
-                <a href="#"><i class="fa fa-google-plus"></i></a>		 		
-            </p> -->
-        </div><! --/col-md-8 -->
+            {% if page.categories contains "news" %}
+            <button type="button" class="btn btn-warning" onclick="window.history.back();">&#8592; Go Back</button>
+            {% endif %}
+
+            {% if page.categories contains "release" %}
+                <a href="https://github.com/Cibiv/IQ-TREE/releases/tag/v{{ page.version }}" class="btn btn-primary" role="button">Download version {{ page.version }} from GitHub</a>
+            {% endif %}
+            {% include share-page.html %}
+        </div><!--/col-md-8 -->
         
         <div class="col-md-4">
             {% include sidebarnews.html %}
         </div>
 
-    </div><! --/row -->
-</div><! --/container -->
+    </div><!--/row -->
+</div><!--/container -->

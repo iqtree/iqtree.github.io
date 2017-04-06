@@ -1,8 +1,7 @@
 {% assign numPages = 0 %}
 {% assign latest_release = 0 %}
 {% for post in site.posts %}
-    {% if post.categories contains "news" or post.categories contains "release" %}
-        <! -- Blog Post -->
+        <!-- Blog Post -->
         {% if numPages >= page.entry_start %}
             {% if numPages > page.entry_start %}
                 <br><div class="hline"></div>
@@ -22,7 +21,7 @@
                 {% if latest_release == 0 %}
                     <a href="{{site.baseurl}}/#download" class="btn btn-primary" role="button">Download latest version {{ post.version }}</a>
                 {% else %}
-                    <a href="https://github.com/Cibiv/IQ-TREE/releases/tag/v{{ post.version }}" class="btn btn-primary" role="button">Download version {{ post.version }}</a>
+                    <a href="https://github.com/Cibiv/IQ-TREE/releases/tag/v{{ post.version }}" class="btn btn-primary" role="button">Download version {{ post.version }} from GitHub</a>
                 {% endif %}
                 <br>
                 {% assign latest_release = latest_release | plus: 1 %}
@@ -32,6 +31,5 @@
         {% if numPages == page.entry_end %}
             {% break %}
         {% endif %}
-    {% endif %}
 {% endfor %}
 

@@ -1,0 +1,181 @@
+---
+layout: userdoc
+title: "Quickstart"
+author: Minh Bui
+date:   2017-04-01
+permalink: doc/Quickstart/
+docid: 01
+icon: info-circle
+doctype: tutorial
+tags:
+- tutorial
+description: Recommended for users who just downloaded IQ-TREE the first time.
+sections:
+- name: Installation
+  url: installation
+- name: For Windows users
+  url: for-windows-users
+- name: For Mac OS X users
+  url: for-mac-os-x-users
+- name: Minimal command-line examples
+  url: minimal-command-line-examples
+---
+
+Getting started
+===============
+
+Recommended for users who just downloaded IQ-TREE the first time.
+<!--more-->
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Installation](#installation)
+- [For Windows users](#for-windows-users)
+- [For Mac OS X users](#for-mac-os-x-users)
+- [Minimal command-line examples](#minimal-command-line-examples)
+- [Where to continue from here?](#where-to-continue-from-here)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+Installation
+------------
+
+To achieve high performance IQ-TREE is a command-line program: you need to run IQ-TREE from a Terminal/Console (this is called Command Prompt under Windows). After you [downloaded IQ-TREE](../../#download), please:
+
+* Extract the `.zip` (Windows, MacOSX) or `.tar.gz` (Linux) file to create a directory `iqtree-X.Y.Z-OS` or `iqtree-omp-X.Y.Z-OS`, where `X.Y.Z` is the version number and `OS` is the operating system (Windows, MacOSX or Linux).
+* You will find the executable in the `bin` sub-folder. Copy all files in `bin` folder to your system search path such that you can run IQ-TREE by entering `iqtree` or `iqtree-omp` from the Terminal.
+
+Now you need to open a Terminal (or Console) to run IQ-TREE. See below the guide for [Windows users](#for-windows-users) and [Mac OS X users](#for-mac-os-x-users).
+
+
+For Windows users
+-----------------
+
+Since IQ-TREE is a command-line program, clicking on `iqtree.exe` will not work. You have to open a Command Prompt for all analyses:
+
+1. Click on "Start" menu (below left corner of Windows screen).
+2. Type in "cmd" and press "Enter". It will open the Command Prompt window (see Figure below).
+3. Go into IQ-TREE folder you just extracted by entering e.g. (assuming you downloaded version 1.5.0):
+
+        cd Downloads\iqtree-1.5.0-Windows
+        
+    (assuming that IQ-TREE was downloaded into `Downloads` folder).
+4. Now you can try an example run by entering:
+
+        bin\iqtree -s example.phy
+        
+    (`example.phy` is the example PHYLIP alignment file also extracted in that folder).
+5. After a few seconds, IQ-TREE finishes and you may see something like this:
+
+![Windows command prompt](../images/win-cmd2.png)
+
+Congratulations ;-) You have finished the first IQ-TREE analysis.
+
+
+For Mac OS X users
+------------------
+
+1. Open the "Terminal", e.g., by clicking on the Spotlight icon (top-right corner), typing "terminal" and press "Enter".
+2. Go into IQ-TREE folder by entering (assuming you downloaded version 1.5.0):
+
+        cd Downloads/iqtree-1.5.0-MacOSX
+
+    (assuming that IQ-TREE was downloaded into `Downloads` folder).
+3. Now you can try an example run by entering 
+
+        bin/iqtree -s example.phy
+
+    (`example.phy` is the example PHYLIP alignment file also extracted in that folder).
+4. After a few seconds, IQ-TREE finishes and you may see something like this:
+
+![Mac terminal](../images/mac-cmd2.png)
+
+Congratulations ;-) You have finished the first IQ-TREE analysis.
+
+
+
+Minimal command-line examples
+-----------------------------
+
+A few typically analyses are listed in the following. Note that it is assumed that `iqtree` executable was already copied into system search path. If not, please replace `iqtree` with actual path to executable.
+
+* Infer maximum-likelihood tree from a sequence alignment (`example.phy`)
+   with the best-fit model automatically selected by ModelFinder:
+
+        # for version >= 1.5.4
+        iqtree -s example.phy
+
+        # for version <= 1.5.3
+        iqtree -s example.phy -m TESTNEW
+
+        (use '-m TEST' to resemble jModelTest/ProtTest)
+
+* Infer maximum-likelihood tree using `GTR+I+G` model:
+
+        iqtree -s example.phy -m GTR+I+G
+
+* Perform ModelFinder without subsequent tree inference:
+        
+        # for version >= 1.5.4
+        iqtree -s example.phy -m MF
+
+        # for version <= 1.5.3
+        iqtree -s example.phy -m TESTNEWONLY
+
+        (use '-m TESTONLY' to resemble jModelTest/ProtTest)
+
+* Combine ModelFinder, tree search, SH-aLRT test and ultrafast bootstrap with 1000 replicates:
+
+        # for version >= 1.5.4
+        iqtree -s example.phy -alrt 1000 -bb 1000
+
+        # for version <= 1.5.3
+        iqtree -s example.phy -m TESTNEW -alrt 1000 -bb 1000
+
+* Perform edge-linked proportional partition model (`example.nex`):
+
+        iqtree -s example.phy -spp example.nex
+
+        (replace '-spp' by '-sp' for edge-unlinked model)
+
+* Find best partition scheme by possibly merging partitions:
+
+        # for version >= 1.5.4
+        iqtree -s example.phy -sp example.nex -m MF+MERGE
+
+        # for version <= 1.5.3
+        iqtree -s example.phy -sp example.nex -m TESTNEWMERGEONLY
+        
+        (use '-m TESTMERGEONLY' to resemble PartitionFinder)
+
+* Find best partition scheme followed by tree inference and ultrafast bootstrap:
+
+        # for version >= 1.5.4
+        iqtree -s example.phy -spp example.nex -m MFP+MERGE -bb 1000
+
+        # for version <= 1.5.3
+        iqtree -s example.phy -spp example.nex -m TESTNEWMERGE -bb 1000
+
+        (use '-m TESTMERGE' to resemble PartitionFinder)
+
+* Use 4 CPU cores to speed up computation:
+
+        iqtree-omp -s example.phy -nt 4
+
+* Determine the best number of cores to use under `GTR+R4` model:
+
+        iqtree-omp -s example.phy -m GTR+R4 -nt AUTO
+
+* Show all available options: 
+
+        iqtree -h
+        
+
+Where to continue from here?
+----------------------------
+
+Please continue with the **[Beginner's tutorial](../Tutorial)** for further usages.
+

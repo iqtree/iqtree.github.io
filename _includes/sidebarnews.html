@@ -2,16 +2,15 @@
     {% assign tag = alltag | first %}
     {% if tag != 'tutorial' and tag != 'manual' %}
     <div class="well">
-        <h4>Recent {{tag}}</h4>
+        <h4>Recent {{tag}}s</h4>
         <div class="row">
             <div class="popular-posts">
                 {% assign numPages = 0 %}
                 {% for post in site.posts %}
                 {% if post.tags contains tag %}
                     <div class="col-md-12 col-sm-6 col-xs-6">
-                        <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a><br>
-                            <csmall>{{ post.date | date: "%b %-d, %Y" }}</csmall>
-                        </p>
+                        <p><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></p>
+                            <div class="csmall">{{ post.date | date: "%b %-d, %Y" }}</div>
                     </div>
                     {% assign numPages = numPages | plus: 1 %}
                     {% if numPages == 15 %}

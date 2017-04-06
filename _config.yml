@@ -33,6 +33,8 @@ colors:  #in hex code if not noted else
 social:
   - title: github
     url: https://github.com/Cibiv/IQ-TREE
+
+twitter_username: bq_minh
     
 # Postal address (add as many lines as necessary). Shown in footer and on Contact page.
 address:

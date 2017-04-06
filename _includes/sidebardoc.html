@@ -9,7 +9,7 @@
             <h3 class="panel-title">User documentation</h3>
         </div>
         <div class="panel-body" id="sidebar">
-            {% assign sorted_posts = (site.categories['doc'] | sort: 'docid') %}
+            {% assign sorted_posts = (site.pages | where: "layout", "userdoc" | sort: 'docid') %}
             {% for post in sorted_posts %}
                 <p>
                     {% if post.title == page.title %}
@@ -29,7 +29,7 @@
                 {% if post.title == page.title %}
                     <ul>
                     {% for section in post.sections %}
-                    <li><a href="{{ post.url | prepend: site.baseurl }}/#{{ section.url }}">{{ section.name }}</a></li>
+                    <li><a href="{{ post.url | prepend: site.baseurl }}#{{ section.url }}">{{ section.name }}</a></li>
                     {% endfor %}
                     </ul>                
                 {% endif %}
