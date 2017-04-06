@@ -126,3 +126,12 @@ about: IQ-TREE code is hosted at <a href="https://github.com/Cibiv/IQ-TREE">GitH
 #paginate_path: "/blog/page:num/"
 num_pages: 3
 
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  ignore:
+    envs: []
+  blanklines: false
+  profile: false
+  startings: []
