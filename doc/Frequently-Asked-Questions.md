@@ -1,9 +1,9 @@
 <!--jekyll 
-docid: 07
+docid: 09
 icon: question-circle
-doctype: tutorial
+doctype: manual
 tags:
-- tutorial
+- manual
 description: For common questions and answers.
 sections:
 - name: How do I get help?
