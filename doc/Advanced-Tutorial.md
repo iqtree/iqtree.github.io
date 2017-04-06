@@ -14,16 +14,16 @@ sections:
     url: choosing-the-right-partitioning-scheme
   - name: Bootstrapping partition model
     url: ultrafast-bootstrapping-with-partition-model
+  - name: Constrained tree search
+    url: constrained-tree-search
   - name: Tree topology tests
     url: tree-topology-tests
-  - name: User-defined models
-    url: user-defined-substitution-models
+  - name: Testing constrained tree
+    url: testing-constrained-tree
   - name: Consensus construction and bootstrap value assignment
     url: consensus-construction-and-bootstrap-value-assignment
-  - name: Computing Robinson-Foulds distance
-    url: computing-robinson-foulds-distance-between-trees
-  - name: Generating random trees
-    url: generating-random-trees
+  - name: User-defined models
+    url: user-defined-substitution-models
 jekyll-->
 
 Advanced tutorial
@@ -40,11 +40,11 @@ Recommended for experienced users to explore more features.
 - [Partitioned analysis with mixed data](#partitioned-analysis-with-mixed-data)
 - [Choosing the right partitioning scheme](#choosing-the-right-partitioning-scheme)
 - [Ultrafast bootstrapping with partition model](#ultrafast-bootstrapping-with-partition-model)
+- [Constrained tree search](#constrained-tree-search)
 - [Tree topology tests](#tree-topology-tests)
-- [User-defined substitution models](#user-defined-substitution-models)
+- [Testing constrained tree](#testing-constrained-tree)
 - [Consensus construction and bootstrap value assignment](#consensus-construction-and-bootstrap-value-assignment)
-- [Computing Robinson-Foulds distance between trees](#computing-robinson-foulds-distance-between-trees)
-- [Generating random trees](#generating-random-trees)
+- [User-defined substitution models](#user-defined-substitution-models)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -138,31 +138,43 @@ into the file  `example.nex.conaln`.
 Choosing the right partitioning scheme
 --------------------------------------
 
-IQ-TREE implements a greedy strategy ([Lanfear et al., 2012]) that starts with the full partition model and subsequentially
+ModelFinder implements a greedy strategy ([Lanfear et al., 2012]) that starts with the full partition model and subsequentially
 merges two genes until the model fit does not increase any further:
 
-    iqtree -sp example.nex -m TESTMERGE
+    # for IQ-TREE version >= 1.5.4:
+    iqtree -s example.phy -spp example.nex -m MFP+MERGE
+
+    # for IQ-TREE version <= 1.5.3:
+    iqtree -s example.phy -spp example.nex -m TESTNEWMERGE
 
 
-After the best partition is found IQ-TREE will immediately start the tree reconstruction under the best-fit partition model.
+Note that this command considers the FreeRate heterogeneity model (see [model selection tutorial](Tutorial#choosing-the-right-substitution-model)). If you want to resemble PartitionFinder by just considering the invariable site and Gamma rate heterogeneity (thus saving computation times), then run:
+
+    iqtree -s example.phy -spp example.nex -m TESTMERGE
+
+
+After ModelFinder found the best partition, IQ-TREE will immediately start the tree reconstruction under the best-fit partition model.
 Sometimes you only want to find the best-fit partition model without doing tree reconstruction, then run:
 
-    iqtree -sp example.nex -m TESTONLYMERGE
+    # for IQ-TREE version >= 1.5.4:
+    iqtree -s example.phy -spp example.nex -m MF+MERGE
+
+    # for IQ-TREE version <= 1.5.3:
+    iqtree -s example.phy -spp example.nex -m TESTNEWMERGEONLY
+
+    # to resemble PartitionFinder and save time:
+    iqtree -s example.phy -spp example.nex -m TESTMERGEONLY
 
 
-To reduce the computational burden IQ-TREE implements the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]). Use
+To reduce the computational burden IQ-TREE implements the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]), which is invoked via `-rcluster` option:
 
-    iqtree -sp example.nex -m TESTONLYMERGE -rcluster 10
+    # for IQ-TREE version >= 1.5.4:
+    iqtree -s example.phy -spp example.nex -m MF+MERGE -rcluster 10
+
+    # for IQ-TREE version <= 1.5.3:
+    iqtree -s example.phy -spp example.nex -m TESTNEWMERGEONLY -rcluster 10
 
 to only examine the top 10% partition merging schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
-
-Finally, it is recommended to use the [new testing procedure](#new-model-selection):
-
-    iqtree -s example.phy -sp example.nex -m MF+MERGE
-    # for old version use -m TESTNEWMERGEONLY
-
-
-that additionally includes the FreeRate model (`+R`) into the candidate rate heterogeneity types.
 
 
 Ultrafast bootstrapping with partition model
@@ -170,7 +182,7 @@ Ultrafast bootstrapping with partition model
 
 IQ-TREE can perform the ultrafast bootstrap with partition models by e.g.,
 
-    iqtree -spp example.nex -bb 1000
+    iqtree -s example.phy -spp example.nex -bb 1000
 
 Here, IQ-TREE will resample the sites *within* subsets of the partitions (i.e., 
 the bootstrap replicates are generated per subset separately and then concatenated together).
@@ -179,16 +191,67 @@ The same holds true if you do the standard nonparametric bootstrap.
 IQ-TREE supports the gene-resampling strategy: 
 
 
-    iqtree -spp example.nex -bb 1000 -bspec GENE
+    iqtree -s example.phy -spp example.nex -bb 1000 -bspec GENE
 
 
 to resample genes instead of sites. Moreover, IQ-TREE allows an even more complicated
 strategy: resampling genes and sites within resampled genes, which may reduce false positives of the standard bootstrap resampling ([Gadagkar et al., 2005]):
 
 
-    iqtree -spp example.nex -bb 1000 -bspec GENESITE
+    iqtree -s example.phy -spp example.nex -bb 1000 -bspec GENESITE
 
 
+Constrained tree search
+-----------------------
+
+Starting with version 1.5.0, IQ-TREE supports constrained tree search via `-g` option, so that the resulting tree must obey a constraint tree topology. The constraint tree can be multifurcating and need not to contain all species. To illustrate, let's return to the [first running example](Tutorial#first-running-example), where we want to force Human grouping with Seal whereas Cow with Whale. If you use the following constraint tree (NEWICK format):
+
+    ((Human,Seal),(Cow,Whale));
+
+Save this to a file `example.constr0` and run:
+
+    iqtree -s example.phy -m TIM2+I+G -g example.constr0 -pre example.constr0
+    
+(We use a prefix in order not to overwrite output files of the previous run). The resulting part of the tree extracted from `example.constr0.iqtree` looks exactly like a normal unconstrained tree search:
+
+
+            +--------------Human
+         +--|
+         |  |  +------Seal
+         |  +--|
+         |     |  +-----Cow
+         |     +--|
+         |        +-------Whale
+    +----|
+    |    |         +---Mouse
+    |    +---------|
+    |              +------Rat
+
+
+This is the correct behavior: although Human and Seal are not monophyletic, this tree indeed satisfies the constraint, because the induced subtree separates (Human,Seal) from (Cow,Whale). This comes from the fact that the tree is _unrooted_. If you want them to be sister groups, then you need to include _outgroup_ taxa into the constraint tree. For example:
+
+    ((Human,Seal),(Cow,Whale),Mouse);
+
+Save this to `example.constr1` and run:
+
+    iqtree -s example.phy -m TIM2+I+G -g example.constr1 -pre example.constr1
+
+The resulting part of the tree is then:
+
+               +---------------Human
+            +--|
+            |  +------Seal
+         +--|
+         |  |  +-----Cow
+         |  +--|
+         |     +-------Whale
+    +----|
+    |    |         +---Mouse
+    |    +---------|
+    |              +------Rat
+
+
+which shows the desired effect.
 
 Tree topology tests
 -------------------
@@ -197,7 +260,7 @@ IQ-TREE can compute log-likelihoods of a set of trees passed via the `-z` option
 
     iqtree -s example.phy -z example.treels -m GTR+G
 
-assuming that `example.treels` contains the trees in NEWICK format. IQ-TREE  first reconstructs an ML tree. Then, it will compute the log-likelihood of the  trees in `example.treels` based on the estimated parameters done for the ML tree. `example.phy.iqtree` will have a section called `USER TREES` that lists the tree IDs and the corresponding log-likelihoods.
+assuming that `example.treels` is an existing file containing a set of trees in NEWICK format. IQ-TREE  first reconstructs an ML tree. Then, it will compute the log-likelihood of the  trees in `example.treels` based on the estimated parameters done for the ML tree. `example.phy.iqtree` will have a section called `USER TREES` that lists the tree IDs and the corresponding log-likelihoods.
 The trees with optimized branch lengths can be found in `example.phy.treels.trees`
 If you only want to evaluate the trees without reconstructing the ML tree, you can run:
 
@@ -224,6 +287,100 @@ This will perform all above tests plus the AU test.
 
 Finally, note that IQ-TREE will automatically detect duplicated tree topologies and omit them during the evaluation.
 
+
+Testing constrained tree
+------------------------
+
+We now illustrate an example to use the AU test (see above) to test trees from unconstrained versus constrained search, which is helpful to know if a constrained search is sensible or not. Thus:
+
+1. Perform an unconstrained search:
+        
+        iqtree -s example.phy -m TIM2+I+G -pre example.unconstr
+        
+2. Perform a constrained search, where `example.constr1` file contains: `((Human,Seal),(Cow,Whale),Mouse);`:
+    
+        iqtree -s example.phy -m TIM2+I+G -g example.constr1 -pre example.constr1
+        
+3. Perform another constrained search, where `example.constr2` file contains `((Human,Cow,Whale),Seal,Mouse);`: 
+
+        iqtree -s example.phy -m TIM2+I+G -g example.constr2 -pre example.constr2
+
+4. Perform the last constrained search, where `example.constr3` file contains `((Human,Mouse),(Cow,Rat),Opossum);`: 
+
+        iqtree -s example.phy -m TIM2+I+G -g example.constr3 -pre example.constr3
+
+5. Concatenate all trees into a file:
+    
+        cat example.unconstr.treefile example.constr1.treefile example.constr2.treefile example.constr3.treefile > example.treels
+    
+6. Test the set of trees:
+    
+        iqtree -s example.phy -m TIM2+I+G -z example.treels -n 0 -zb 1000 -au
+
+
+Now look at the resulting `.iqtree` file:
+
+    USER TREES
+    ----------
+
+    See example.phy.trees for trees with branch lengths.
+
+    Tree      logL    deltaL  bp-RELL    p-KH     p-SH    c-ELW     p-AU
+    -------------------------------------------------------------------------
+      1   -21152.617   0.000  0.7110 + 0.7400 + 1.0000 + 0.6954 + 0.7939 + 
+      2   -21156.802   4.185  0.2220 + 0.2600 + 0.5910 + 0.2288 + 0.3079 + 
+      3   -21158.579   5.962  0.0670 + 0.1330 + 0.5130 + 0.0758 + 0.1452 + 
+      4   -21339.596 186.980  0.0000 - 0.0000 - 0.0000 - 0.0000 - 0.0000 - 
+
+    deltaL  : logL difference from the maximal logl in the set.
+    bp-RELL : bootstrap proportion using RELL method (Kishino et al. 1990).
+    p-KH    : p-value of one sided Kishino-Hasegawa test (1989).
+    p-SH    : p-value of Shimodaira-Hasegawa test (2000).
+    c-ELW   : Expected Likelihood Weight (Strimmer & Rambaut 2002).
+    p-AU    : p-value of approximately unbiased (AU) test (Shimodaira, 2002).
+
+    Plus signs denote the 95% confidence sets.
+    Minus signs denote significant exclusion.
+    All tests performed 1000 resamplings using the RELL method.
+
+One sees that the AU test does not reject the first 3 trees (denoted by `+` sign below the `p-AU` column), whereas the last tree is significantly excluded (`-` sign). All other tests also agree with this. Therefore, groupings of `(Human,Mouse)` and `(Cow,Rat)` do not make sense. Whereas the phylogenetic position of `Seal` based on 3 first trees is still undecidable. This is in agreement with the SH-aLRT and ultrafast bootstrap supports [done in the Tutorial](Tutorial#assessing-branch-supports-with-single-branch-tests). 
+
+
+Consensus construction and bootstrap value assignment
+-----------------------------------------------------
+
+IQ-TREE can construct an extended majority-rule consensus tree from a set of trees written in NEWICK or NEXUS format (e.g., produced
+by MrBayes):
+
+
+    iqtree -con mytrees
+
+
+To build a majority-rule consensus tree, simply set the minimum support threshold to 0.5:
+
+
+    iqtree -con mytrees -minsup 0.5
+
+
+If you want to specify a burn-in (the number of beginning trees to ignore from the trees file), use `-bi` option:
+
+
+    iqtree -con mytrees -minsup 0.5 -bi 100
+
+
+to skip the first 100 trees in the file.
+
+IQ-TREE can also compute a consensus network and print it into a NEXUS file by:
+
+
+    iqtree -net mytrees
+
+
+Finally, a useful feature is to read in an input tree and a set of trees, then IQ-TREE can assign the
+support value onto the input tree (number of times each branch in the input tree occurs in the set of trees). This option is useful if you want to compute the support values for an ML tree based on alternative topologies. 
+
+
+    iqtree -sup input_tree set_of_trees
 
 User-defined substitution models
 --------------------------------
@@ -266,90 +423,10 @@ For amino-acid alignments, IQ-TREE use the empirical frequencies specified in th
 Note that all model specifications above can be used in the partition model NEXUS file.
 
 
-Consensus construction and bootstrap value assignment
------------------------------------------------------
+Where to go from here?
+----------------------
 
-IQ-TREE can construct an extended majority-rule consensus tree from a set of trees written in NEWICK or NEXUS format (e.g., produced
-by MrBayes):
-
-
-    iqtree -con mytrees
-
-
-To build a majority-rule consensus tree, simply set the minimum support threshold to 0.5:
-
-
-    iqtree -con mytrees -minsup 0.5
-
-
-If you want to specify a burn-in (the number of beginning trees to ignore from the trees file), use `-bi` option:
-
-
-    iqtree -con mytrees -minsup 0.5 -bi 100
-
-
-to skip the first 100 trees in the file.
-
-IQ-TREE can also compute a consensus network and print it into a NEXUS file by:
-
-
-    iqtree -net mytrees
-
-
-Finally, a useful feature is to read in an input tree and a set of trees, then IQ-TREE can assign the
-support value onto the input tree (number of times each branch in the input tree occurs in the set of trees). This option is useful if you want to compute the support values for an ML tree based on alternative topologies. 
-
-
-    iqtree -sup input_tree set_of_trees
-
-
-
-Computing Robinson-Foulds distance between trees
-------------------------------------------------
-
-IQ-TREE implements a very fast Robinson-Foulds (RF) distance computation using hash table, which is a lot faster  than PHYLIP package. For example, you can run:
-
-
-    iqtree -rf tree_set1 tree_set2
-
-
-to compute the pairwise RF distances between 2 sets of trees. If you want to compute the all-to-all RF distances of a set of trees, use:
-
-
-    iqtree -rf_all tree_set
-
-
-
-Generating random trees
------------------------
-
-IQ-TREE provides several random tree generation models. For example, to generate a 100-taxon random tree into the file `100.tree` under the Yule Harding model, use the following command:
-
-
-    iqtree -r 100 100.tree 
-
-
-Here, the branch lengths follow an exponential distribution with mean of 0.1.
-If you want to change the branch length distribution, run e.g:
-
-
-    iqtree -r 100 -rlen 0.05 0.2 0.3 100.tree 
-
-
-to set the minimum, mean, and maximum branch lengths as 0.05, 0.2, and 0.3, respectively. If you want to generate trees under uniform model instead, use `-ru` option:
-
-
-    iqtree -ru 100 100.tree 
-
-
-If you want to generate a random tree for your alignment, simply add the `-s <alignment>` option to the command line:
-
-
-    iqtree -s example.phy -r 44 example.random.tree 
-
-
-Note that, you still need to specify the `-r` option with the correct number of taxa that is contained in the alignment. 
-
+See [Command Reference](Command-Reference) for a complete list of all options available in IQ-TREE.
 
 [Gadagkar et al., 2005]: http://dx.doi.org/10.1002/jez.b.21026
 [Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483

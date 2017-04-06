@@ -54,6 +54,8 @@ Commprehensive documentation of command-line options.
 - [Automatic model selection](#automatic-model-selection)
 - [Specifying substitution models](#specifying-substitution-models)
 - [Rate heterogeneity](#rate-heterogeneity)
+- [Partition models](#partition-models)
+- [Site-specific frequency models](#site-specific-frequency-models)
 - [Tree search parameters](#tree-search-parameters)
 - [Ultrafast bootstrap parameters](#ultrafast-bootstrap-parameters)
 - [Nonparametric bootstrap](#nonparametric-bootstrap)
@@ -452,7 +454,7 @@ IQ-TREE provides a fast implementation of consensus tree construction for post a
 Computing Robinson-Foulds distance
 ----------------------------------
 
-IQ-TREE provides a fast implementation of Robinson-Foulds distance computation for post analysis:
+IQ-TREE provides a fast implementation of Robinson-Foulds (RF) distance computation between trees:
 
 |Option| Usage and meaning |
 |------|-------------------|
@@ -462,8 +464,24 @@ IQ-TREE provides a fast implementation of Robinson-Foulds distance computation f
 | -rf  | Specify a second set of trees. IQ-TREE computes all pairwise RF distances between two tree sets passed via `-t` and `-rf` |
 
 
+
+### Example usages:
+
+* Compute the pairwise RF distances between 2 sets of trees:
+
+        iqtree -rf tree_set1 tree_set2
+
+
+* Compute the all-to-all RF distances within a set of trees:
+
+        iqtree -rf_all tree_set
+
+
+
 Generating random trees
 -----------------------
+
+IQ-TREE provides several random tree generation models:
 
 |Option| Usage and meaning |
 |------|-------------------|
@@ -474,6 +492,30 @@ Generating random trees
 | -rcsg | Like `-r`, bur a random circular split network is created. |
 | -rlen | Specify three numbers: minimum, mean and maximum branch lengths of the random tree. *DEFAULT: `-rlen 0.001 0.1 0.999`* |
 
+
+### Example usages:
+
+
+* Generate a 100-taxon random tree into the file `100.tree` under the Yule Harding model:
+
+        iqtree -r 100 100.tree 
+
+
+* Generate 100-taxon random tree with mean branch lengths of 0.2 and branch lengths are between 0.05 and 0.3:
+
+        iqtree -r 100 -rlen 0.05 0.2 0.3 100.tree 
+
+
+* Generate a random tree under uniform model:
+
+        iqtree -ru 100 100.tree 
+
+
+* Generate a random tree where taxon labels follow an alignment:
+
+        iqtree -s example.phy -r 17 example.random.tree 
+
+Note that, you still need to specify the `-r` option being equal to the number of taxa in the alignment. 
 
 Miscellaneous options
 ---------------------

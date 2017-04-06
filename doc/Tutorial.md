@@ -12,8 +12,6 @@ sections:
   url: first-running-example
 - name: Model selection
   url: choosing-the-right-substitution-model
-- name: New model selection
-  url: new-model-selection
 - name: Codon models
   url: codon-models
 - name: Binary, Morphological, SNPs
@@ -41,7 +39,6 @@ This tutorial gives a beginner's guide.
 - [Input data](#input-data)
 - [First running example](#first-running-example)
 - [Choosing the right substitution model](#choosing-the-right-substitution-model)
-- [New model selection](#new-model-selection)
 - [Codon models](#codon-models)
 - [Binary, morphological and SNP data](#binary-morphological-and-snp-data)
 - [Assessing branch supports with ultrafast bootstrap approximation](#assessing-branch-supports-with-ultrafast-bootstrap-approximation)
@@ -103,7 +100,7 @@ from this alignment by entering (assuming that you are now in the same folder wi
     iqtree -s example.phy
 
 `-s` is the option to specify the name of the alignment file that is always required by
-IQ-TREE to work. At the end of the run IQ-TREE will write several output files:
+IQ-TREE to work. At the end of the run IQ-TREE will write several output files including:
 
 * `example.phy.iqtree`: the main report file that is self-readable. You
 should look at this file to see the computational results. It also contains a textual representation of the final tree (see below). 
@@ -111,6 +108,8 @@ should look at this file to see the computational results. It also contains a te
 by any supported tree viewer programs like FigTree or  iTOL. 
 * `example.phy.log`: log file of the entire run (also printed on the screen). To report
 bugs, please send this log file and the original alignment file to the authors.
+
+>**NOTE**: Starting with version 1.5.4, with this simple command IQ-TREE will by default perform ModelFinder (see [choosing the right substitution model](#choosing-the-right-substitution-model) below) to find the best-fit substitution model and then infer a phylogenetic tree using the selected model.
 
 For this example data the resulting maximum-likelihood tree may look like this (extracted from `.iqtree` file):
 
@@ -153,59 +152,85 @@ For this example data the resulting maximum-likelihood tree may look like this (
 
 This makes sense as the mammals (`Human` to `Opossum`) form a clade, whereas the reptiles (`Turtle` to `Crocodile`) and `Bird` form a separate sister clade. Here the tree is drawn at the *outgroup* Lungfish which is more accient than other species in this example. However, please note that IQ-TREE always produces an **unrooted tree** as it knows nothing about this biological background; IQ-TREE simply draws the tree this way as `LngfishAu` is the first sequence occuring in the alignment. 
 
-Finally, the default prefix of all output files is the alignment file name. However,  you can always 
-change the prefix using the `-pre` option, e.g.:
+During the example run above, IQ-TREE periodically wrote to disk a checkpoint file `example.phy.ckp.gz` (gzip-compressed to save space). This checkpoint file is used to resume an interrupted run, which is handy if you have a very large data sets or time limit on a cluster system. If the run did not finish, invoking IQ-TREE again with the very same command line will recover the analysis from the last stopped point, thus saving all computation time done before. 
+
+If the run successfully completed, running again will issue an error message:
+
+    ERROR: Checkpoint (example.phy.ckp.gz) indicates that a previous run successfully finished
+    Use `-redo` option if you really want to redo the analysis and overwrite all output files.
+    
+This prevents lost of data if you accidentally re-run IQ-TREE. However, if you really want to re-run the analysis and overwrite all previous output files, use `-redo` option: 
+
+    iqtree -s example.phy -redo
+
+
+Finally, the default prefix of all output files is the alignment file name. You can  
+change the prefix using the `-pre` option:
 
     iqtree -s example.phy -pre myprefix
 
-This prevents output files to be overwritten when you perform multiple analyses on the same alignment within the same folder. 
+This prevents output files being overwritten when you perform multiple analyses on the same alignment within the same folder.
 
 
 Choosing the right substitution model
 -------------------------------------
 
-IQ-TREE supports a wide range of [substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological alignments. If the model is not specified, IQ-TREE will use the default model (
-HKY for DNA, WAG for protein). In case you do not know which model is appropriate for your data,  IQ-TREE can automatically determine the best-fit model 
-for your alignment using the `-m TEST` option. For example:
+IQ-TREE supports a wide range of [substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological alignments. If you do not know which model is appropriate for your data, you can use ModelFinder to determine the best-fit model:
 
-    iqtree -s example.phy -m TEST
+    #for IQ-TREE version >= 1.5.4:
+    iqtree -s example.phy -m MFP
+    
+    #for IQ-TREE version <= 1.5.3:
+    iqtree -s example.phy -m TESTNEW
+    
 
-`-m` is the option to specify the model name to use during the analysis. `TEST`
-is a key word telling IQ-TREE to perform the model test procedure and select the best-fit model. The remaining analysis
-will be done using the selected model. More specifically, IQ-TREE computes the log-likelihoods
-of the initial parsimony tree for many different models and the *Akaike information criterion* (AIC), *corrected Akaike information criterion* (AICc), and the *Bayesian information criterion* (BIC).
-Then IQ-TREE chooses the model that minimizes the BIC score (you can also change to AIC or AICc by 
-adding the option `-AIC` or `-AICc`, respectively.
+`-m` is the option to specify the model name to use during the analysis. The special `MFP` key word stands for _ModelFinder Plus_, which tells IQ-TREE to perform ModelFinder and the remaining analysis using the selected model. ModelFinder computes the log-likelihoods
+of an initial parsimony tree for many different models and the *Akaike information criterion* (AIC), *corrected Akaike information criterion* (AICc), and the *Bayesian information criterion* (BIC).
+Then ModelFinder chooses the model that minimizes the BIC score (you can also change to AIC or AICc by 
+adding the option `-AIC` or `-AICc`, respectively).
+
+>**TIP**: Starting with version 1.5.4, `-m MFP` is the default behavior. Thus, this run is equivalent to `iqtree -s example.phy`.
+
 Here, IQ-TREE will write an additional file:
 
-* `example.phy.model`: log-likelihoods for all models tested.
+* `example.phy.model`: log-likelihoods for all models tested. It serves as a checkpoint file to recover an interrupted model selection.
 
-If you now look at `example.phy.iqtree` you will see that IQ-TREE selected the model `TIM2`
-with Invar+Gamma rate heterogeneity. So `TIM2+I+G` is the best-fit model
-for this example data. Thus, for additional analyses you do not have to perform the model test again and can use the selected model as follows.
-
+If you now look at `example.phy.iqtree` you will see that IQ-TREE selected `TIM2+I+G4` as the best-fit model for this example data. Thus, for additional analyses you do not have to perform the model test again and can use the selected model:
 
     iqtree -s example.phy -m TIM2+I+G
 
 Sometimes you only want to find the best-fit model without doing tree reconstruction, then run:
 
-    iqtree -s example.phy -m TESTONLY
-
-Here, IQ-TREE will stop after finishing the model selection. Note that if the file `*.model` exists and is correct, IQ-TREE will reuse the computed log-likelihoods  to speed up the model selection procedure. 
-
-New model selection
--------------------
-
-The previous section described the "standard" model selection to automatically select the best-fit model for the data before performing tree reconstruction. This "standard" procedure includes four rate heterogeneity types: homogeneity, `+I`, `+G` and `+I+G`. However, there is no reason to believe that the evolutionary rates follow a Gamma distribution. Therefore, we have recently introduced the FreeRate (`+R`) heterogeneity ([Yang, 1995]) into IQ-TREE. The `+R` model generalizes the Gamma model by relaxing the "Gamma constraints", where the site rates and proportions are inferred independently from the data. Another advantage is that `+R` allows to automatically determine the number of rate categories, which is impossible with `+G` where the default of 4 categories is used. This can be important especially for phylogenomic data, where 4 categories may "underfit" the data.
-
-Therefore, we recommend a new *ModelFinder* procedure that additionally considers `+R` rate heterogeneity. This can be invoked simply with e.g.:
-
+    #for IQ-TREE version >= 1.5.4:
     iqtree -s example.phy -m MF
-    # for IQ-TREE version <= 1.5.3 use -m TESTNEWONLY 
+    
+    #for IQ-TREE version <= 1.5.3:
+    iqtree -s example.phy -m TESTNEWONLY
 
-It will also automatically determine the optimal number of rate categories. By default, the maximum number of categories is 10 due to computational reasons. If the sequences of your alignment are long enough, then you can increase this upper limit with the `cmax` option:
+> **Why ModelFinder at all?**
+>
+>
+> ModelFinder has several advantages compared to existing approaches like jModelTest and ProtTest:
+>
+> 1. ModelFinder is up to 100 times faster than jModelTest/ProtTest.
+>
+> 2. jModelTest/ProtTest provides the invariable (`+I`) and Gamma rate (`+G`) heterogeneity across sites, but there is no reason to believe that evolution follows a Gamma distribution. ModelFinder additionally considers the [FreeRate heterogeneity model (`+R`)](Substitution-Models#rate-heterogeneity-across-sites), which relaxes the assumption of Gamma distribution, where the site rates and proportions are _free-to-vary_ and inferred independently from the data. Moreover, `+R` allows to automatically determine the number of rate categories, which is impossible with `+G`. This can be important especially for phylogenomic data, where the default 4 rate categories may "underfit" the data.
+>
+> 3. ModelFinder works transparently with tree inference in IQ-TREE, thus combining both steps in just one single run! This eliminates the need for a separate software for DNA (jModelTest) and another for protein sequences (ProtTest).
+>
+> 4. Apart from DNA and protein sequences, ModelFinder also works with codon, binary and morphological sequences.
+>
+> 5. ModelFinder can also find best partitioning scheme just like PartitionFinder ([Lanfear et al., 2012]). See [advanced tutorial for more details](Advanced-Tutorial).
+>
+> If you still want to resembles jModelTest/ProtTest, then use option `-m TEST` or `-m TESTONLY` instead.
 
+By default, the maximum number of categories is limitted to 10 due to computational reasons. If your sequence alignment is long enough, then you can increase this upper limit with the `cmax` option:
+
+    #for IQ-TREE version >= 1.5.4:
     iqtree -s example.phy -m MF -cmax 15
+    
+    #for IQ-TREE version <= 1.5.3:
+    iqtree -s example.phy -m TESTNEWONLY -cmax 15
 
 will test `+R2` to `+R15` instead of at most `+R10`.
 
@@ -213,11 +238,11 @@ To reduce computational burden, one can use the option `-mset` to restrict the t
 
 If you have enough computational resource, you can perform a thorough and more accurate analysis that invokes a full tree search for each model considered via the `-mtree` option:
 
+    #for IQ-TREE version >= 1.5.4:
     iqtree -s example.phy -m MF -mtree
 
-Finally, if you want to immediately perform tree reconstruction after model selection, then use `-m MFP`:
-
-    iqtree -s example.phy -m MFP
+    #for IQ-TREE version <= 1.5.3:
+    iqtree -s example.phy -m TESTNEWONLY -mtree
 
 
 Codon models
@@ -229,11 +254,11 @@ IQ-TREE supports a number of [codon models](Substitution-Models#codon-models). Y
 
 If your alignment length is not divisible by 3, IQ-TREE will stop with an error message. IQ-TREE will group sites 1,2,3 into codon site 1; sites 4,5,6 to codon site 2; etc. Moreover, any codon, which has at least one gap/unknown/ambiguous nucleotide, will be treated as unknown codon character.
 
-If you are not sure which model to use, simply add `-m TEST`, which also works for codon alignments: 
+Note that the above command assumes the standard genetic code. If your sequences follow 'The Invertebrate Mitochondrial Code' (see [the full list of supported genetic code here](Substitution-Models#codon-models)), then run:
 
-    iqtree -s coding_gene.phy -st CODON -m TEST
+    iqtree -s coding_gene.phy -st CODON5 
 
-By default IQ-TREE uses the standard genetic code. If you want to change the genetic code, please refer to [codon models guide](Substitution-Models#codon-models).
+Note that ModelFinder works for codon alignments. IQ-TREE version >= 1.5.4 will automatically invokes ModelFinder to find the best-fit codon model. For version <= 1.5.3, use option `-m TESTNEW` (ModelFinder and tree inference) or `-m TESTNEWONLY` (ModelFinder only).
 
 
 Binary, morphological and SNP data
@@ -248,9 +273,13 @@ In such cases, you should apply [ascertainment bias correction](Substitution-Mod
  
     iqtree -s morphology.phy -st MORPH -m MK+ASC
 
-You can again select the best-fit model with  `-m TEST` (which also considers +G):
+You can again select the best-fit binary/morphological model:
 
-    iqtree -s morphology.phy -st MORPH -m TEST
+    #for IQ-TREE version >= 1.5.4:
+    iqtree -s morphology.phy -st MORPH
+
+    #for IQ-TREE version <= 1.5.3:
+    iqtree -s morphology.phy -st MORPH -m TESTNEW
 
 For SNP data (DNA) that typically do not contain constant sites, you can explicitly tell the model to include
 ascertainment bias correction:
@@ -259,7 +288,11 @@ ascertainment bias correction:
 
 You can explicitly tell model testing to only include  `+ASC` model with:
 
-    iqtree -s SNP_data.phy -m TEST+ASC
+    #for IQ-TREE version >= 1.5.4:
+    iqtree -s SNP_data.phy -m MFP+ASC
+
+    #for IQ-TREE version <= 1.5.3:
+    iqtree -s SNP_data.phy -m TESTNEW+ASC
 
 
 Assessing branch supports with ultrafast bootstrap approximation
@@ -393,5 +426,6 @@ Once confident enough you can go on with a **[more advanced tutorial](Advanced-T
 [Lewis, 2001]: http://dx.doi.org/10.1080/106351501753462876
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
+[Yang, 1994]: http://dx.doi.org/10.1007/BF00160154
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 

@@ -97,34 +97,72 @@ Minimal command-line examples
 
 A few typically analyses are listed in the following. Note that it is assumed that `iqtree` executable was already copied into system search path. If not, please replace `iqtree` with actual path to executable.
 
-* Reconstruct maximum-likelihood tree from a sequence alignment (`example.phy`)
-   with the best-fit substitution model automatically selected:
+* Infer maximum-likelihood tree from a sequence alignment (`example.phy`)
+   with the best-fit model automatically selected by ModelFinder:
 
-        iqtree -s example.phy -m TEST
+        # for version >= 1.5.4
+        iqtree -s example.phy
 
-* Reconstruct ML tree and assess branch supports with ultrafast bootstrap
-   and SH-aLRT test (1000 replicates):
+        # for version <= 1.5.3
+        iqtree -s example.phy -m TESTNEW
 
-        iqtree -s example.phy -m TEST -alrt 1000 -bb 1000
+        (use '-m TEST' to resemble jModelTest/ProtTest)
 
-* Perform partitioned analysis with partition definition file (`example.nex`)
-   in Nexus or RAxML format using edge-linked model and gene-specific rates:
+* Infer maximum-likelihood tree using `GTR+I+G` model:
 
-        iqtree -s example.phy -spp example.nex -m TEST
+        iqtree -s example.phy -m GTR+I+G
 
-    (for edge-unlinked model replace `-spp` with `-sp` option)
+* Perform ModelFinder without subsequent tree inference:
+        
+        # for version >= 1.5.4
+        iqtree -s example.phy -m MF
 
-* Merge partitions to reduce model complexity:
+        # for version <= 1.5.3
+        iqtree -s example.phy -m TESTNEWONLY
 
-        iqtree -s example.phy -sp example.nex -m TESTMERGE
+        (use '-m TESTONLY' to resemble jModelTest/ProtTest)
 
-* Perform model selection only: use `-m TESTONLY` or `-m TESTMERGEONLY`
+* Combine ModelFinder, tree search, SH-aLRT test and ultrafast bootstrap with 1000 replicates:
 
-        iqtree -s example.phy -sp example.nex -m TESTMERGEONLY
+        # for version >= 1.5.4
+        iqtree -s example.phy -alrt 1000 -bb 1000
 
-* Use 4 CPU cores to speed up computation: use `iqtree-omp` and add `-nt 4` option, e.g.:
+        # for version <= 1.5.3
+        iqtree -s example.phy -m TESTNEW -alrt 1000 -bb 1000
 
-        iqtree-omp -s example.phy -m TEST -alrt 1000 -bb 1000 -nt 4
+* Perform edge-linked proportional partition model (`example.nex`):
+
+        iqtree -s example.phy -spp example.nex
+
+        (replace '-spp' by '-sp' for edge-unlinked model)
+
+* Find best partition scheme by possibly merging partitions:
+
+        # for version >= 1.5.4
+        iqtree -s example.phy -sp example.nex -m MF+MERGE
+
+        # for version <= 1.5.3
+        iqtree -s example.phy -sp example.nex -m TESTNEWMERGEONLY
+        
+        (use '-m TESTMERGEONLY' to resemble PartitionFinder)
+
+* Find best partition scheme followed by tree inference and ultrafast bootstrap:
+
+        # for version >= 1.5.4
+        iqtree -s example.phy -spp example.nex -m MFP+MERGE -bb 1000
+
+        # for version <= 1.5.3
+        iqtree -s example.phy -spp example.nex -m TESTNEWMERGE -bb 1000
+
+        (use '-m TESTMERGE' to resemble PartitionFinder)
+
+* Use 4 CPU cores to speed up computation:
+
+        iqtree-omp -s example.phy -nt 4
+
+* Determine the best number of cores to use under `GTR+R4` model:
+
+        iqtree-omp -s example.phy -m GTR+R4 -nt AUTO
 
 * Show all available options: 
 
