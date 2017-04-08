@@ -45,6 +45,7 @@ For advanced users to compile IQ-TREE source code.
 
 General requirements
 --------------------
+<div class="hline"></div>
 
 * Make sure that a C++ compiler is installed. IQ-TREE was successfully built with GCC (version 4.8 at least), Clang, MS Visual Studio and Intel C++ compiler. 
 * Install [CMake](http://www.cmake.org) if not yet available in your system. 
@@ -53,6 +54,7 @@ General requirements
 
 Downloading source code
 -----------------------
+<div class="hline"></div>
 
 Choose the source code (`zip` or `tar.gz`) of the IQ-TREE release you want to use from:
 
@@ -66,6 +68,7 @@ Please find below separate compilation guide fors [Linux](#compiling-under-linux
 
 Compiling under Linux
 ---------------------
+<div class="hline"></div>
 
 1. Open a Terminal.
 2. Change to the source code folder:
@@ -101,6 +104,7 @@ This creates an executable `iqtree` or `iqtree-omp`. It can be copied to your sy
 
 Compiling under Mac OS X
 ------------------------
+<div class="hline"></div>
 
 * Make sure that Clang compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
 * Find the path to the CMake executable, which is typically `/Applications/CMake.app/Contents/bin/cmake`. For later convenience, please create a symbolic link `cmake` to this cmake executable, so that cmake can be invoked from the Terminal by simply entering `cmake`.
@@ -120,6 +124,7 @@ To compile the multicore version, the default installed Clang unfortunately does
 
 Compiling under Windows
 -----------------------
+<div class="hline"></div>
 
 * Please first install TDM-GCC (a GCC version for Windows) from <http://tdm-gcc.tdragon.net>.
 * Then install Clang for Windows from <http://clang.llvm.org>.
@@ -157,6 +162,7 @@ Compiling under Windows
 
 Compiling 32-bit version
 ------------------------
+<div class="hline"></div>
 
 >**NOTE**: Typically a 64-bit IQ-TREE version is built and recommended! The 32-bit version has several restriction like maximal RAM usage of 2GB and no AVX support, thus not suitable to analyze large data sets.
 
@@ -175,6 +181,7 @@ For Windows you need to change Clang target with:
 
 Compiling MPI version
 ---------------------
+<div class="hline"></div>
 
 **Requirements**:
 

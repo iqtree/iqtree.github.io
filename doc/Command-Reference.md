@@ -1,5 +1,5 @@
 <!--jekyll
-docid: 07
+docid: 7
 icon: book
 doctype: tutorial
 tags:
@@ -78,6 +78,7 @@ assuming that IQ-TREE can be run by simply entering `iqtree`. If not, please cha
 
 General options
 ---------------
+<div class="hline"></div>
 
 General options are mainly intended for specifying input and output files:
 
@@ -115,6 +116,7 @@ General options are mainly intended for specifying input and output files:
 
 Checkpointing to resume stopped run
 -----------------------------------
+<div class="hline"></div>
 
 Starting with version 1.4.0 IQ-TREE supports checkpointing: If an IQ-TREE run was interrupted for some reason, rerunning it with the same command line and input data will automatically resume the analysis from the last stopped point. The previous log file will then be appended. If a run successfully finished, IQ-TREE will deny to rerun and issue an error message. A few options that control checkpointing behavior:
 
@@ -128,6 +130,7 @@ Starting with version 1.4.0 IQ-TREE supports checkpointing: If an IQ-TREE run wa
 
 Likelihood mapping analysis
 ---------------------------
+<div class="hline"></div>
 
 Starting with version 1.4.0, IQ-TREE implements the likelihood mapping approach  ([Strimmer and von Haeseler, 1997]) to assess the phylogenetic information of an input alignment. The detailed results will be printed to `.iqtree` report file. The likelihood mapping plots will be printed to `.lmap.svg` and `.lmap.eps` files. 
 
@@ -169,6 +172,7 @@ The names given to the clusters in the cluster file will be used to label the co
 
 Automatic model selection
 -------------------------
+<div class="hline"></div>
 
 The default model (e.g., `HKY+F` for DNA, `LG` for protein data) may not fit well to the data. Therefore, IQ-TREE
 allows to automatically determine the best-fit model via a series of `-m TEST...` option:
@@ -222,6 +226,7 @@ Several parameters can be set to e.g. reduce computations:
 
 Specifying substitution models
 ------------------------------
+<div class="hline"></div>
 
 `-m` is a powerful option to specify substitution models, state frequency and rate heterogeneity type. The general syntax is:
 
@@ -273,6 +278,7 @@ Further options:
 
 Rate heterogeneity
 ------------------
+<div class="hline"></div>
 
 The following `RateType`s are supported:
 
@@ -300,6 +306,7 @@ Optionally, one can specify [Ascertainment bias correction](Substitution-Models#
 
 Partition models
 ----------------
+<div class="hline"></div>
 
 Partition models are used for phylogenomic data with multiple genes. You first have to prepare [a partition file in NEXUS or RAxML-style format](Complex-Models#partition-file-format). Then use the following options to input the partition file:
 
@@ -311,6 +318,7 @@ Partition models are used for phylogenomic data with multiple genes. You first h
 
 Site-specific frequency models
 ------------------------------
+<div class="hline"></div>
 
 The site-specific frequency model is used to substantially reduce the time and memory requirement compared with full profile mixture models `C10` to `C60`. For full details see [site-specific frequency model](Complex-Models#site-specific-frequency-models). To use this model you have to specify a profile mixture model with e.g. `-m LG+C20+F+G` together with a guide tree or a site frequency file: 
 
@@ -322,6 +330,7 @@ The site-specific frequency model is used to substantially reduce the time and m
 
 Tree search parameters
 ----------------------
+<div class="hline"></div>
 
 The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters that can be changed with:
 
@@ -352,6 +361,7 @@ The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters 
 
 Ultrafast bootstrap parameters
 ------------------------------
+<div class="hline"></div>
 
 The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]) has several parameters that can be changed with:
 
@@ -378,6 +388,7 @@ The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]) has several
 
 Nonparametric bootstrap
 -----------------------
+<div class="hline"></div>
 
 The slow standard nonparametric bootstrap ([Felsenstein, 1985]) can be run with:
 
@@ -390,6 +401,7 @@ The slow standard nonparametric bootstrap ([Felsenstein, 1985]) can be run with:
 
 Single branch tests
 -------------------
+<div class="hline"></div>
 
 The following single branch tests are faster than all bootstrap analysis and recommended for extremely large data sets (e.g., >10,000 taxa):
 
@@ -410,6 +422,7 @@ The following single branch tests are faster than all bootstrap analysis and rec
 
 Tree topology tests
 -------------------
+<div class="hline"></div>
 
 IQ-TREE provides a number of tests for significant topological differences between trees:
 
@@ -437,6 +450,7 @@ IQ-TREE provides a number of tests for significant topological differences betwe
 
 Constructing consensus tree
 ---------------------------
+<div class="hline"></div>
 
 IQ-TREE provides a fast implementation of consensus tree construction for post analysis:
 
@@ -453,6 +467,7 @@ IQ-TREE provides a fast implementation of consensus tree construction for post a
 
 Computing Robinson-Foulds distance
 ----------------------------------
+<div class="hline"></div>
 
 IQ-TREE provides a fast implementation of Robinson-Foulds (RF) distance computation between trees:
 
@@ -480,6 +495,7 @@ IQ-TREE provides a fast implementation of Robinson-Foulds (RF) distance computat
 
 Generating random trees
 -----------------------
+<div class="hline"></div>
 
 IQ-TREE provides several random tree generation models:
 
@@ -519,6 +535,7 @@ Note that, you still need to specify the `-r` option being equal to the number o
 
 Miscellaneous options
 ---------------------
+<div class="hline"></div>
 
 |Option| Usage and meaning |
 |------|-------------------|

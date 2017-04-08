@@ -75,6 +75,7 @@ If you use PoMo, please cite [Schrempf et al., 2016]:
 
 Counts files
 ------------
+<div class="hline"></div>
 
 The input of PoMo is allele frequency data.  Especially, when
 populations have many individuals it is preferable to count the
@@ -130,6 +131,7 @@ instructions, please refer to the
 
 First running example
 ---------------------
+<div class="hline"></div>
 
 You can now start to reconstruct a maximum-likelihood tree from this
 alignment by entering (assuming that you are now in the same folder
@@ -161,6 +163,7 @@ analyses on the same alignment within the same folder.
 
 Substitution models
 -------------------
+<div class="hline"></div>
 
 By default, PoMo runs with the HKY model.  Different DNA substitution
 models can be selected with the `-m` option.  E.g., to select the GTR
@@ -187,6 +190,7 @@ frequencies together with the rate parameters, use:
 
 Virtual population size
 -----------------------
+<div class="hline"></div>
 
 PoMo models the evolution of populations by means of a virtual
 population of constant size N, which defaults to nine (for details,
@@ -205,6 +209,7 @@ This results in a considerable decrease of runtime.
 
 Sampling method
 ---------------
+<div class="hline"></div>
 
 For advanced users.  PoMo offers two different methods to read in the
 data ([Schrempf et al., 2016]). Briefly, each species and site are
@@ -231,6 +236,7 @@ method.
         
 Bootstrap branch support
 ------------------------
+<div class="hline"></div>
 
 To overcome the computational burden required by the non-parametric
 bootstrap, IQ-TREE introduces an ultra fast bootstrap approximation
@@ -249,6 +255,7 @@ For a detailed description, please refer to the [bootstrap tutorial](Tutorial#as
 
 Interpretation of branch lengths
 --------------------------------
+<div class="hline"></div>
 
 PoMo estimates the branch length in number of mutations and frequency
 shifts (drift) per site.  The number of drift events compared to the

@@ -1,20 +1,20 @@
 <!--jekyll 
-docid: 06
+docid: 6
 icon: info-circle
 doctype: tutorial
 tags:
 - tutorial
-description: Hints and strategies to analyze big data sets.
+description: "Hints and strategies to analyze big alignments with >= 1000 sequences or >= 10,000 sites."
 sections:
-- name: Input data
-  url: input-data
 jekyll-->
 
 Analyzing big data
 ==================
 
-Hints and strategies to analyze big data sets.
+Hints and strategies to analyze big alignments with >= 1000 sequences or >= 10,000 sites.
 
 
 <!--more-->
 
+
+TODO

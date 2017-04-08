@@ -1,5 +1,5 @@
 <!--jekyll 
-docid: 02
+docid: 3
 icon: info-circle
 doctype: tutorial
 tags:
@@ -57,6 +57,7 @@ for your platform . For the next steps, the folder containing your  `iqtree` exe
 
 Input data
 ----------
+<div class="hline"></div>
 
 IQ-TREE takes as input a *multiple sequence alignment* and will reconstruct an evolutionary tree that is best explained by the input data. The input alignment can be in various common formats. For example the [PHYLIP format](http://evolution.genetics.washington.edu/phylip/doc/sequence.html) which may look like:
 
@@ -90,6 +91,7 @@ This tiny alignment contains 7 DNA sequences from several animals with the seque
 
 First running example
 ---------------------
+<div class="hline"></div>
 
 From the download there is an example alignment called `example.phy`
  in PHYLIP format. This example contains parts of the mitochondrial DNA sequences of several animals (Source: [Phylogenetic Handbook](http://www.kuleuven.be/aidslab/phylogenybook/home.html)).
@@ -174,6 +176,7 @@ This prevents output files being overwritten when you perform multiple analyses 
 
 Choosing the right substitution model
 -------------------------------------
+<div class="hline"></div>
 
 IQ-TREE supports a wide range of [substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological alignments. If you do not know which model is appropriate for your data, you can use ModelFinder to determine the best-fit model:
 
@@ -247,6 +250,7 @@ If you have enough computational resource, you can perform a thorough and more a
 
 Codon models
 ------------
+<div class="hline"></div>
 
 IQ-TREE supports a number of [codon models](Substitution-Models#codon-models). You need to input a protein-coding DNA alignment and specify codon data by option `-st CODON` (Otherwise, IQ-TREE applies DNA model because it detects that your alignment has DNA sequences):
 
@@ -263,6 +267,7 @@ Note that ModelFinder works for codon alignments. IQ-TREE version >= 1.5.4 will 
 
 Binary, morphological and SNP data
 ---------------------------------
+<div class="hline"></div>
 
 IQ-TREE supports discrete morphological alignments by  `-st MORPH` option:
 
@@ -297,6 +302,7 @@ You can explicitly tell model testing to only include  `+ASC` model with:
 
 Assessing branch supports with ultrafast bootstrap approximation
 ----------------------------------------------------------------
+<div class="hline"></div>
 
 To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. To run UFBoot, use the option  `-bb`:
 
@@ -316,6 +322,7 @@ but in NEXUS format, which can be viewed with the program SplitsTree.
 
 Assessing branch supports with  standard nonparametric bootstrap
 ----------------------------------------------------------------
+<div class="hline"></div>
 
 The standard nonparametric bootstrap is invoked by  the  `-b` option:
 
@@ -328,6 +335,7 @@ is the minimum recommended number. The output files are similar to those produce
 
 Assessing branch supports with single branch tests
 --------------------------------------------------
+<div class="hline"></div>
 
 IQ-TREE provides an implementation of the SH-like approximate likelihood ratio test ([Guindon et al., 2010]). To perform this test,  run:
 
@@ -386,6 +394,7 @@ From this figure, the branching patterns within reptiles are poorly supported (e
 
 Utilizing multi-core CPUs
 -------------------------
+<div class="hline"></div>
 
 A specialized version of IQ-TREE (`iqtree-omp`) can utilize multiple CPU cores to speed up the analysis.
 To obtain this version please refer to the [quick starting guide](Quickstart).  A complement option `-nt` allows specifying the number of CPU cores to use. For example:
@@ -413,6 +422,7 @@ Therefore, I would only use 3 cores for this example data. For later analysis wi
 
 Where to go from here?
 ----------------------------
+<div class="hline"></div>
 
 Once confident enough you can go on with a **[more advanced tutorial](Advanced-Tutorial)**, which covers topics like phylogenomic (multi-gene) analyses using partition models or mixture models.
 

@@ -53,6 +53,7 @@ IQ-TREE supports a wide range of substitution models, including advanced partiti
 
 DNA models
 ----------
+<div class="hline"></div>
 
 #### Base substitution rates
 
@@ -112,6 +113,7 @@ Finally, users can fix base frequencies with e.g. `GTR+F{0.1,0.2,0.3,0.4}` to fi
 
 Protein models
 --------------
+<div class="hline"></div>
 
 #### Amino-acid exchange rate matrices
 
@@ -219,6 +221,7 @@ Users can also specify AA frequencies with, e.g.:
 
 Codon models
 ------------
+<div class="hline"></div>
 
 To apply a codon model one should use the option `-st CODON` to tell IQ-TREE that the alignment contains protein coding sequences (otherwise, IQ-TREE thinks that it contains DNA sequences and will apply DNA models). This implicitly applies the standard genetic code. You can change to an other genetic code by appending the appropriate ID to the `CODON` keyword:
 
@@ -294,6 +297,7 @@ If not specified, the default codon frequency will be `+F3X4` for `MG`-type mode
 
 Binary and morphological models
 -------------------------------
+<div class="hline"></div>
 
 The binary alignments should contain state `0` and `1`, whereas for morphological data, the valid states are `0` to `9` and `A` to `Z`.
 
@@ -311,6 +315,7 @@ Except for `GTR2` that has unequal state frequencies, all other models have equa
 
 Ascertainment bias correction
 -----------------------------
+<div class="hline"></div>
 
 An ascertainment bias correction (`+ASC`) model ([Lewis, 2001]) should be applied if the alignment does not contain constant sites (such as morphological or SNPs data). For example:
 
@@ -322,6 +327,7 @@ An ascertainment bias correction (`+ASC`) model ([Lewis, 2001]) should be applie
 
 Rate heterogeneity across sites
 -------------------------------
+<div class="hline"></div>
 
 IQ-TREE supports all common rate heterogeneity across sites models:
 

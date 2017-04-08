@@ -4,7 +4,7 @@ icon: book
 doctype: manual
 tags:
 - manual
-description: Partition and mixture models and usages.
+description: Complex models such as partition and mixture models.
 sections:
 - name: Partition models
   url: partition-models
@@ -12,12 +12,15 @@ sections:
   url: mixture-models
 - name: Site-specific frequency models
   url: site-specific-frequency-models
+- name: Heterotachy models
+  url: heterotachy-models
 jekyll-->
 
 Complex models
 ==============
 
-Partition and mixture models and usages.
+Complex models such as partition and mixture models.
+
 <!--more-->
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -33,6 +36,10 @@ Partition and mixture models and usages.
     - [Profile mixture models](#profile-mixture-models)
     - [NEXUS model file](#nexus-model-file)
 - [Site-specific frequency models](#site-specific-frequency-models)
+    - [Example usages](#example-usages)
+- [Heterotachy models](#heterotachy-models)
+    - [Download](#download)
+    - [Quick usages](#quick-usages)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -42,6 +49,8 @@ This document gives detailed descriptions of complex maximum-likelihood models a
 
 Partition models
 ----------------
+<div class="hline"></div>
+
 
 Partition models are intended for phylogenomic (e.g., multi-gene) alignments, which allow each partition to have its own substitution models and evolutionary rates. IQ-TREE supports three types of partition models:
 
@@ -124,6 +133,7 @@ Having prepared a partition file, one is ready to start a partitioned analysis w
 
 Mixture models
 --------------
+<div class="hline"></div>
 
 #### What is the difference between partition and mixture models?
 
@@ -199,6 +209,7 @@ Note that both `frequency` and `model` commands can be embedded into a single mo
 
 Site-specific frequency models
 ------------------------------
+<div class="hline"></div>
 
 Starting with version 1.5.0, IQ-TREE provides a new posterior mean site frequency (PMSF) model as a rapid approximation to the time and memory consuming profile mixture models `C10` to `C60` ([Le et al., 2008a]; a variant of PhyloBayes' `CAT` model). The PMSF are the amino-acid profiles for each alignment site computed from an input mixture model and a guide tree. The PMSF model is much faster and requires much less RAM than `C10` to `C60` (see table below), regardless of the number of mixture classes. Our extensive simulations and empirical phylogenomic data analyses demonstrate that the PMSF models can effectively ameliorate long branch attraction artefacts.
 
@@ -216,6 +227,8 @@ Here is an example of computation time and RAM usage for an Obazoa data set (68 
 | LG+C60+F+G| 1502h:25m:31s |125h:15m:29s |	112.8 GB   |
 | LG+PMSF+G	|   73h:30m:37s |   5h:7m:27s |	  2.2 GB   |
 
+
+#### Example usages
 
 To use the PMSF model you have to provide a *guide tree*, which, for example, can be obtained by a quicker analysis under the simpler `LG+F+G` model. The guide tree can then be specified via `-ft` option, for example:
 
@@ -249,6 +262,46 @@ Here is the list of relevant command line options:
 |  -ft | Specify a guide tree tree to infer site frequency model |
 |  -fs | Specify a site frequency model file |
 | -fmax| Switch to posterior maximum instead of posterior mean approximation | 
+
+
+Heterotachy models
+------------------
+<div class="hline"></div>
+
+Heterotachy (or Single Topology Heterotachy - STH) model is a mixture model composing of several site-classes, each having a separate set of branch lengths and model parameters. Thus, it is a complex model naturally accounting for heterotachous evolution ([Lopez, Casane, and Philippe, 2002](http://mbe.oxfordjournals.org/content/19/1/1.full)), which was shown to mislead conventional maximum likelihood and Bayesian inference ([Kolaczkowski and Thornton, 2004](http://dx.doi.org/10.1038/nature02917)). Our extensive simulations showed that an implementation of heterotachy models in IQ-TREE obtained almost 100% accuracy for heterotachously evolved sequences.
+
+One can think of the heterotachy model as an *edge-unlinked mixture model*, which will infer the probabilities of each alignment site belonging to each mixture class. This is in contrast to an [edge-unlinked partition model](Complex-Models/#partition-models), which requires the appropriate partitioning of the data in advance, an ambitious assumption and a potential source of error for biological datasets in practice. 
+
+
+#### Download
+
+IQ-TREE Heterotachy binaries are available for Windows, Mac OS X, and Linux:
+
+<https://github.com/Cibiv/IQ-TREE/releases/tag/v1.4.3-heterotachy>
+
+Source code is also downloadable from the above link.
+
+
+#### Quick usages
+
+The STH model with `k` mixture classes is executed by adding `+Hk` to the model option (`-m`). For example if one wants to fit a STH4 model in conjunction with the `GTR` model of DNA evolution to sequences contained in `data.fst`, one would use the following command:
+
+    iqtree -s data.fst -m GTR+H4
+
+By default the above command will infer one set of empirical base frequencies and apply those to all classes. If one wishes to infer separate base frequencies for each class then the `+FO` option is required:
+
+    iqtree -s data.fst -m GTR+FO+H4
+
+The `-wspm` option will generate a `.siteprob` output file. This contains the probability of each site belonging to each class:
+
+    iqtree -s data.fst -m GTR+FO+H4 -wspm
+
+The `-nni-eval` option controls the level to which IQ-TREE optimizes branch lengths when evaluating alternative topologies. A low value saves computation time but increases the probability of not finding the best topology. Higher values evaluate alternate tree topologies more thoroughly at the cost of extra computation time:
+
+    iqtree -s data.fst -m GTR+FO+H4 -wspm -nni-eval 20
+
+
+
 
 
 [Brown et al. (2013)]: http://dx.doi.org/10.1098/rspb.2013.1755

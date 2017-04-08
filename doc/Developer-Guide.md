@@ -8,6 +8,10 @@ description: This guide gives developers an overview of IQ-TREE software design,
 sections:
 - name: Alignment
   url: alignment-class
+- name: Model of substitution
+  url: model-of-substitution
+- name: PhyloTree class
+  url: phylotree-class-phylogenetic-tree
 jekyll-->
 
 Developer guide
@@ -37,6 +41,7 @@ To achieve both high performance and flexibility, IQ-TREE software has been enti
 
 Alignment class
 ---------------
+<div class="hline"></div>
 
 The `Alignment` class stores the data as a `vector` of `Pattern`. Each `Pattern` is in turn a `string` representing the characters across the sequences at an alignment site, with a `frequency` of occurrences in the `Alignment` (from header file [`pattern.h`](https://github.com/Cibiv/IQ-TREE/blob/master/pattern.h)):
 
@@ -81,6 +86,7 @@ public:
 
 Model of substitution
 ---------------------
+<div class="hline"></div>
 
 ### ModelSubst
 
@@ -146,6 +152,7 @@ protected:
 
 PhyloTree class (phylogenetic tree)
 -----------------------------------
+<div class="hline"></div>
 
 `PhyloTree` is the base class for phylogenetic trees.
 

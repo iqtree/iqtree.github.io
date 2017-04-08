@@ -1,5 +1,5 @@
 <!--jekyll 
-docid: 09
+docid: 9
 icon: question-circle
 doctype: manual
 tags:
@@ -54,6 +54,7 @@ For common questions and answers.
 
 How do I get help?
 ------------------
+<div class="hline"></div>
 
 If you have questions please follow the steps below:
 
@@ -67,6 +68,7 @@ If you have questions please follow the steps below:
 
 How do I report bug?
 --------------------
+<div class="hline"></div>
 
 For bug report, please send the following information to the [IQ-TREE Google group](https://groups.google.com/d/forum/iqtree):
 
@@ -82,6 +84,7 @@ The development team will get back to you and may ask for the full `.log` file a
 
 How do I interpret ultrafast bootstrap (UFBoot) support values?
 ---------------------------------------------------------------
+<div class="hline"></div>
 
 The ultrafast bootstrap (UFBoot) feature (`-bb` option) was published in  ([Minh et al., 2013]). One of the main conclusions is, that UFBoot support values are more unbiased: 95% support correspond roughly to a probability of 95% that a clade is true. So this has a different meaning than the normal bootstrap supports (where you start to believe in the clade if it has >80% BS support). For UFBoot, you should only start to believe in a clade if its support is >= 95%. Thus, the interpretations are different and you should not compare BS% with UFBoot% directly. 
 
@@ -90,6 +93,7 @@ Moreover, it is recommended to also perform the SH-aLRT test ([Guindon et al., 2
 
 How does IQ-TREE treat gap/missing/ambiguous characters?
 ---------------------------------------------------------
+<div class="hline"></div>
 
 Gaps (`-`) and missing characters (`?` or `N` for DNA alignments) are treated in the same way as `unknown` characters, which represent no information. The same treatment holds for many other ML software (e.g., RAxML, PhyML). More explicitly,
 for a site (column) of an alignment containing `AC-AG-A` (i.e. A for sequence 1, C for sequence 2, `-` for sequence 3, and so on), the site-likelihood
@@ -124,6 +128,7 @@ For protein the following ambiguous amino-acids are supported:
 
 Can I mix DNA and protein data in a partitioned analysis?
 ---------------------------------------------------------
+<div class="hline"></div>
 
 Yes! You can specify this via a NEXUS partition file. In fact, you can mix any data types supported in IQ-TREE, including also codon, binary and morphological data. To do so, each data type should be stored in a separate alignment file (see also [Partitioned analysis with mixed data](Tutorial#partitioned-analysis-with-mixed-data)). As an example, assuming `dna.phy` is a DNA alignment and and `prot.phy` is a protein alignment. Then a partition file mixing two types of data can be specified as follows:
 
@@ -140,6 +145,7 @@ Yes! You can specify this via a NEXUS partition file. In fact, you can mix any d
 
 What is the interpretation of branch lengths when mixing codon and DNA data?
 ----------------------------------------------------------------------------
+<div class="hline"></div>
 
 When mixing codon and DNA data in a partitioned analysis, the branch lengths are interpreted as the number of nucleotide substitutions per nucleotide site! This is different from having only codon data, where branch lengths are the number of nucleotide substitutions per codon site (thus typically 3 times longer than under DNA models).
 
@@ -148,6 +154,7 @@ Note that if you mix codon, DNA and protein data, the branch lengths are then th
 
 What is the purpose of composition test?
 --------------------------------------------
+<div class="hline"></div>
 
 At the beginning of each run, IQ-TREE performs a composition chi-square test for every sequence in the alignment.  The purpose is to test for homogeneity of character composition (e.g., nucleotide for DNA, amino-acid for protein sequences). A sequence is denoted `failed` if its character composition significantly deviates from the average composition of the alignment.    
 
@@ -172,6 +179,7 @@ Furthermore, please keep in mind, this test is performed at the very beginning, 
 
 What is the good number of CPU cores to use?
 --------------------------------------------
+<div class="hline"></div>
 
 Starting with version 1.5.1, you can use option `-nt AUTO` to automatically determine the best number of threads for your current data and computer.
 
@@ -179,6 +187,7 @@ If you want to know more details: IQ-TREE can utilize multicore machines to spee
 
 How do I save time for standard bootstrap?
 --------------------------------------------
+<div class="hline"></div>
 
 The standard bootstrap is rather slow and may take weeks/months for large data sets. One way to speed up is to use the multicore version. However, this only works well for long alignments (see [What is the good number of CPU cores to use?](#what-is-the-good-number-of-cpu-cores-to-use)). Another way is to use many machines or a computing cluster and split the computation among the machines. To illustrate, you want to perform 100 bootstrap replicates and have 5 PCs, each has 4 CPU cores. Then you can:
 
@@ -214,6 +223,7 @@ The standard bootstrap is rather slow and may take weeks/months for large data s
 
 Why does IQ-TREE complain about the use of +ASC model?
 --------------------------------------------------------
+<div class="hline"></div>
 
 When using ascertainment bias correction (ASC) model, sometimes you may get an error message:
 
