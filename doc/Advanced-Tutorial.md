@@ -24,6 +24,8 @@ sections:
     url: consensus-construction-and-bootstrap-value-assignment
   - name: User-defined models
     url: user-defined-substitution-models
+  - name: Inferring site-specific rates
+    url: inferring-site-specific-rates
 jekyll-->
 
 Advanced tutorial

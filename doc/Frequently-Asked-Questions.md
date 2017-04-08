@@ -102,7 +102,7 @@ of a tree T is equal to the site-likelihood of the subtree of T restricted to th
 Ambiguous characters that represent more than one character are also supported: each represented character will have equal likelihood. For DNA the following ambigous nucleotides are supported according to [IUPAC nomenclature](https://en.wikipedia.org/wiki/Nucleic_acid_notation):
 
 | Nucleotide | Meaning |
-|------|---------|
+|------------|---------------------------------------------------------------|
 | R    | A or G (purine)  |
 | Y    | C or T (pyrimidine) |
 | W    | A or T (weak) |
@@ -118,11 +118,11 @@ Ambiguous characters that represent more than one character are also supported: 
 For protein the following ambiguous amino-acids are supported:
 
 | Amino-acid | Meaning |
-|------------| --------|
-| B | N or D |
-| Z | Q or E |
-| J | I or L |
-| U | unknown AA (although it is the 21st AA) |
+|------------|---------------------------------------------------------------|
+| B          | N or D |
+| Z          | Q or E |
+| J          | I or L |
+| U          | unknown AA (although it is the 21st AA) |
 | ?, -, ., ~, * or X | unknown AA (all 20 AAs are equally likely) |
 
 

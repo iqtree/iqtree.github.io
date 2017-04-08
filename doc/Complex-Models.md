@@ -60,7 +60,7 @@ Partition models are intended for phylogenomic (e.g., multi-gene) alignments, wh
 
 >**NOTICE**: The edge-equal partition model is typically unrealistic as it does not account for different evolutionary speeds between partitions, whereas the edge-unlinked partition model can be overfitting if there are many short partitions. Therefore, the edge-proportional partition model is recommended for a typical analysis. 
 
-#### Partition file format
+### Partition file format
 
 To apply partition models users must first prepare a partition file in RAxML-style or NEXUS format. The RAxML-style is defined by the RAxML software and may look like:
 
@@ -126,7 +126,7 @@ If you want to specify codon model for a partition, use the `CODON` keyword (oth
 Note that this assumes `part1` has standard genetic code. If not, append `CODON` with [the right genetic code ID](Substitution-Models#codon-models).
 
 
-#### Partitioned analysis
+### Partitioned analysis
 
 Having prepared a partition file, one is ready to start a partitioned analysis with `-q` (edge-equal), `-spp` (edge-proportional) or `-sp` (edge-unlinked) option. See [this tutorial](Tutorial#partitioned-analysis-for-multi-gene-alignments) for more details.
 
@@ -135,7 +135,7 @@ Mixture models
 --------------
 <div class="hline"></div>
 
-#### What is the difference between partition and mixture models?
+### What is the difference between partition and mixture models?
 
 Mixture models,  like partition models, allow more than one substitution model along the sequences. However, while a partition model assigns each alignment site a given specific model, mixture models do not need this information: it will compute for each site its probability of belonging to each of the mixture classes (also called categories or components). Since the site-to-class assignment is not known, the site likelihood under mixture models is the weighted sum of site likelihoods per mixture class.
 
@@ -143,7 +143,7 @@ For example, the [discrete Gamma rate heterogeneity](Substitution-Models#rate-he
 
 Here, we discuss several possibilities to define new mixture models in IQ-TREE.
 
-#### Defining mixture models
+### Defining mixture models
 
 To start with, the following command:
 
@@ -160,7 +160,7 @@ Mixture models can be combined with rate heterogeneity, e.g.:
 Here, we specify two models and four Gamma rate categories. Effectively it means that there are 8 mixture components! Each site has a probability belonging to either `JC` or `HKY` and to one of the four rate categories.
 
 
-#### Profile mixture models
+### Profile mixture models
 
 Sometimes one only wants to model the changes in nucleotide or amino-acid frequencies along the sequences while keeping the substitution rate matrix the same. This can be specified in IQ-TREE via `FMIX{...}` model syntax. For convenience the mixture components can be defined in a NEXUS file like this (example corresponds to [the CF4 model](Substitution-Models#protein-models) of ([Wang et al., 2008])): 
 
@@ -185,7 +185,7 @@ That means, we have five components: the first corresponds to empirical AA frequ
 The `-mdef` option specifies the NEXUS file containing user-defined models. Here, the `JTT` matrix is applied for all alignment sites and one varies the AA profiles along the alignment. One can use the NEXUS syntax to define all other profile mixture models such as `C10` to `C60`.
 
 
-#### NEXUS model file
+### NEXUS model file
 
 In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mixture models](Substitution-Models#protein-models). In addition to defining state frequencies, one can specify the entire model with rate matrix and state frequencies together. For example, the LG4M model ([Le et al., 2012]) can be defined by:
 
@@ -221,14 +221,14 @@ Here is an example of computation time and RAM usage for an Obazoa data set (68 
 
 
 | Models    | CPU time      | Wall-clock time |	RAM usage |
-|-----------|--------------:|----------------:|---------:|
-| LG+F+G    |   43h:38m:23s |  3h:37m:23s |   1.8 GB    |
-| LG+C20+F+G|  584h:25m:29s	| 46h:39m:06s |	 38.8 GB   |
-| LG+C60+F+G| 1502h:25m:31s |125h:15m:29s |	112.8 GB   |
-| LG+PMSF+G	|   73h:30m:37s |   5h:7m:27s |	  2.2 GB   |
+|-----------|--------------:|----------------:|----------:|
+| LG+F+G    |   43h:38m:23s |   3h:37m:23s    |   1.8 GB  |
+| LG+C20+F+G|  584h:25m:29s	|  46h:39m:06s    |	 38.8 GB  |
+| LG+C60+F+G| 1502h:25m:31s | 125h:15m:29s    | 112.8 GB  |
+| LG+PMSF+G	|   73h:30m:37s |    5h:7m:27s    |	  2.2 GB  |
 
 
-#### Example usages
+### Example usages
 
 To use the PMSF model you have to provide a *guide tree*, which, for example, can be obtained by a quicker analysis under the simpler `LG+F+G` model. The guide tree can then be specified via `-ft` option, for example:
 
@@ -257,11 +257,11 @@ Finally, note that for long (phylogenomic) alignments you can utilize the multic
 
 Here is the list of relevant command line options:
 
-|Option| Usage and meaning |
-|------|-------------------|
-|  -ft | Specify a guide tree tree to infer site frequency model |
-|  -fs | Specify a site frequency model file |
-| -fmax| Switch to posterior maximum instead of posterior mean approximation | 
+| Option | Usage and meaning |
+|--------|---------------------------------------------------------------------|
+|  -ft   | Specify a guide tree tree to infer site frequency model |
+|  -fs   | Specify a site frequency model file |
+| -fmax  | Switch to posterior maximum instead of posterior mean approximation | 
 
 
 Heterotachy models
@@ -273,7 +273,7 @@ Heterotachy (or Single Topology Heterotachy - STH) model is a mixture model comp
 One can think of the heterotachy model as an *edge-unlinked mixture model*, which will infer the probabilities of each alignment site belonging to each mixture class. This is in contrast to an [edge-unlinked partition model](Complex-Models/#partition-models), which requires the appropriate partitioning of the data in advance, an ambitious assumption and a potential source of error for biological datasets in practice. 
 
 
-#### Download
+### Download
 
 IQ-TREE Heterotachy binaries are available for Windows, Mac OS X, and Linux:
 
@@ -282,7 +282,7 @@ IQ-TREE Heterotachy binaries are available for Windows, Mac OS X, and Linux:
 Source code is also downloadable from the above link.
 
 
-#### Quick usages
+### Quick usages
 
 The STH model with `k` mixture classes is executed by adding `+Hk` to the model option (`-m`). For example if one wants to fit a STH4 model in conjunction with the `GTR` model of DNA evolution to sequences contained in `data.fst`, one would use the following command:
 

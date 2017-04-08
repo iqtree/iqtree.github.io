@@ -1,102 +1,172 @@
+---
+title: "IQ-TREE version 1.5.4: Tutorials and Manual"
+author: 
+  - Bui Quang Minh
+  - Jana Trifinopoulos
+  - Dominik Schrempf
+  - Heiko Schmidt
+date:   "April 8, 2017"
+toc: true
+papersize: A4
+documentclass: book
+margin-left: 1in
+margin-right: 1.2in
+fontsize: 12pt
+---
+
 <!--more-->
 
 Introduction
 ============
 
-IQ-TREE is a very efficient maximum likelihood phylogenetic software with following key features among others:
+Why IQ-TREE?
+------------
 
-* A novel fast and effective stochastic algorithm to estimate maximum likelihood trees. **IQ-TREE outperforms both RAxML and PhyML** in terms of likelihood while requiring similar amount of computing time ([Nguyen et al., 2015])
-* An ultrafast bootstrap approximation to assess branch supports ([Minh et al., 2013]).
-* Ultrafast and automatic model selection (**10 to 100 times faster than jModelTest and ProtTest**) and best partitioning scheme selection (like PartitionFinder).
+Thanks to the recent advent of next-generation sequencing techniques, the amount of phylogenomic/transcriptomic data have been rapidly accumulated. This extremely facilitates resolving many "deep phylogenetic" questions in the tree of life. At the same time it poses major computational challenges to analyze such big data, where most phylogenetic software cannot handle. Moreover, there is a need to develop more complex probabilistic models to adequately capture realistic aspects of genomic sequence evolution.
 
-The strength of IQ-TREE is the **availability of a wide range of models**:
+This trends motivated us to develop the IQ-TREE software with a strong emphasis on phylogenomic inference. Our goals are:
 
-* All common [substitution models](Substitution Models) for DNA, protein, codon, binary and morphological data with possibility of [rate heterogeneity among sites](Substitution Models#rate-heterogeneity-across-sites) and [ascertainment bias correction](Substitution Models#ascertainment-bias-correction).
-* [Phylogenomic partition models](Complex Models#partition-models) allowing for mixed data types, linked or unlinked branch lengths, and different rate types.
-* Mixture models such as [empirical protein mixture models](Substitution Models#protein-models) and [customizable mixture models](Complex Models#mixture-models).
+* __Accuracy__: Proposing novel computational methods that perform better than existing approaches.
+* __Speed__: Allowing fast analysis on big data sets and utilizing high performance computing platforms.
+* __Flexibility__: Facilitating the inclusion of new (phylogenomic) models and sequence data types.
+* __Versatility__: Implementing a broad range of commonly-used maximum likelihood analyses.
 
+IQ-TREE has been developed since 2011 and freely available at <http://www.iqtree.org/> as open-source software under the [GNU-GPL license version 2](http://www.gnu.org/licenses/licenses.en.html). It is actively maintained by the core development team (see below) and a number of collabrators.
 
-Download
---------
-
-The latest **IQ-TREE version 1.3.10** (October 16, 2015) is available for three popular platforms with a sequential and a parallel multicore version:
-
-| ![Windows logo](images/windows.png) Windows | ![Mac logo](images/macosx.png) Mac OS X | ![Linux logo](images/linux.png) Linux |
-|------------|--------------|--------------|
-| [64-bit sequential Windows](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-Windows.zip) | [64-bit sequential MacOSX](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-MacOSX.zip) | [64-bit sequential Linux](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-1.3.10-Linux.tar.gz) |
-| [64-bit multicore Windows](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-omp-1.3.10-Windows.zip) | [64-bit multicore MacOSX](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-omp-1.3.10-MacOSX.zip) | [64-bit multicore Linux](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree-omp-1.3.10-Linux.tar.gz) |
-| [32-bit sequential Windows](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree32-1.3.10-Windows.zip) | | |
-| [32-bit multicore Windows](https://github.com/Cibiv/IQ-TREE/releases/download/v1.3.10/iqtree32-omp-1.3.10-Windows.zip) | | |
-
-Please follow [**Getting started guide**](Quickstart) once you downloaded IQ-TREE.
-
-See [Release notes](https://github.com/Cibiv/IQ-TREE/releases) for more details of this version or to download older versions.
-
-If you want to obtain and build IQ-TREE source code, please refer to [Compilation guide](Compilation-Guide).
+The name IQ-TREE comes from the fact that it is the successor of [_IQ_PNNI](http://www.cibiv.at/software/iqpnni/) and [_TREE_-PUZZLE](http://www.tree-puzzle.de/) software.
 
 
+Key features
+------------
 
-IQ-TREE web service
--------------------
+* __Efficient search algorithm__: Fast and effective stochastic algorithm to reconstruct phylogenetic trees by maximum likelihood. IQ-TREE compares favorably to RAxML and PhyML in terms of likelihood while requiring similar amount of computing time ([Nguyen et al., 2015]).
+* __Ultrafast bootstrap__: An ultrafast bootstrap approximation (UFBoot) to assess branch supports. UFBoot is 10 to 40 times faster than RAxML rapid bootstrap and obtains less biased support values ([Minh et al., 2013]).
+* __Ultrafast model selection__: An ultrafast and automatic model selection (ModelFinder) which is 10 to 100 times faster than jModelTest and ProtTest. ModelFinder also finds best-fit partitioning scheme like PartitionFinder.
+* __Big Data Analysis__: Supporting huge datasets with thousands of sequences or millions of alignment sites via checkpointing, safe numerical and low memory mode. Multicore CPUs and parallel MPI system are utilized to speedup analysis.
+
+* __Phylogenetic testing__: Several fast branch tests like SH-aLRT and aBayes test ([Anisimova et al., 2011]) and tree topology tests like the approximately unbiased (AU) test ([Shimodaira, 2002]).
+
+
+The strength of IQ-TREE is the availability of a wide variety of phylogenetic models:
+
+* __Common models__: All [common substitution models](http://www.iqtree.org/doc/Substitution-Models) for DNA, protein, codon, binary and morphological data with [rate heterogeneity among sites](http://www.iqtree.org/doc/Substitution-Models/#rate-heterogeneity-across-sites) and [ascertainment bias correction](http://www.iqtree.org/doc/Substitution-Models/#ascertainment-bias-correction) for e.g. SNP data.
+* __[Partition models](http://www.iqtree.org/doc/Complex-Models/#partition-models)__: Allowing individual models for different genomic loci (e.g. genes or codon positions), mixed data types, mixed rate heterogeneity types, linked or unlinked branch lengths between partitions.
+* __Mixture Models__: [fully customizable mixture models](http://www.iqtree.org/doc/Complex-Models/#mixture-models) and [empirical protein mixture models](http://www.iqtree.org/doc/Substitution-Models/#protein-models) and.
+
+
+
+Free web server
+---------------
 
 For a quick start you can also try the IQ-TREE web server, which performs online computation using a dedicated computing cluster. It is very easy to use with as few as just 3 clicks! Try it out at
 
 <http://iqtree.cibiv.univie.ac.at>
 
+User support
+------------
+
+Please refer to the [user documentation](http://www.iqtree.org/doc/) and [frequently asked questions](http://www.iqtree.org/doc/Frequently-Asked-Questions). If you have further questions, feedback, feature requests, and bug reports, please sign up the following Google group (if not done yet) and post a topic to the 
+
+<https://groups.google.com/d/forum/iqtree>
+
+_The average response time is two working days._
+
 
 Documentation
 -------------
 
+IQ-TREE has an extensive documentation with several tutorials and manual:
+
 * [Getting started guide](Quickstart): recommended for users who just downloaded IQ-TREE.
+
+* [Web Server Tutorial](Web-Server-Tutorial): A quick starting guide for the IQ-TREE Web Server.
 
 * [Beginner's tutorial](Tutorial): recommended for users starting to use IQ-TREE.
 
 * [Advanced tutorial](Advanced Tutorial): recommended for more experienced users who want to explore more features of IQ-TREE.
 
-* [Substitution Models](Substitution-Models) and [Complex Models](Complex-Models): learn more about maximum-likelihood models available in IQ-TREE.
-
-* [Frequently asked questions (FAQ)](Frequently-Asked-Questions): recommended to have a look before you post a question in the [IQ-TREE group](https://groups.google.com/d/forum/iqtree).
-
 * [Command Reference](Command-Reference): Comprehensive documentation of command-line options available in IQ-TREE.
+
+* [Substitution Models](Substitution-Models): All common substitution models and usages.
+
+* [Complex Models](Complex-Models): Complex models such as partition and mixture models.
+
+* [Polymorphism Aware Models](Polymorphism-Aware-Models): Polymorphism-aware phylogenetic Models (PoMo) related documentation.
 
 * [Compilation guide](Compilation guide): for advanced users who wants to compile IQ-TREE from source code.
 
-* [Web Server Tutorial](Web-Server-Tutorial): A quick starting guide for the IQ-TREE Web Server.
+* [Frequently asked questions (FAQ)](Frequently-Asked-Questions): recommended to have a look before you post a question in the [IQ-TREE group](https://groups.google.com/d/forum/iqtree).
 
-User support
-------------
 
-If you have questions, feedback, feature requests, and bug reports, please sign up the following Google group (if not done yet) and post a topic to the 
-
-<https://groups.google.com/d/forum/iqtree>
-
-The average response time is one working day.
 
 Citations
 ---------
 
-To cite IQ-TREE please use:
+> To maintain IQ-TREE, support users and secure fundings, it is important for us that you cite the following papers, whenever the corresponding features were applied for your analysis.
+>
+> Example 1: "...We obtained branch supports with the ultrafast bootstrap (Minh et al. 2013) implemented in the IQ-TREE software (Nguyen et al. 2015)..." 
+>
+> Example 2: "...We inferred the maximum-likelihood tree using the edge-linked partition model in IQ-TREE (Chernomor et al. 2016; Nguyen et al. 2015)..."
+
+
+If you performed tree reconstruction or other features please cite:
 
 * L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. *Mol. Biol. Evol.*, 32, 268-274. [DOI: 10.1093/molbev/msu300](http://dx.doi.org/10.1093/molbev/msu300)
 
-For the ultrafast bootstrap (UFBoot) please cite:
+If you used partition models e.g., for phylogenomic analysis please cite:
+
+* O. Chernomor, A. von Haeseler, and B.Q. Minh (2016) Terrace aware data structure for phylogenomic inference from supermatrices. *Syst. Biol.*, 65:997-1008. [DOI: 10.1093/sysbio/syw037](http://dx.doi.org/10.1093/sysbio/syw037)
+
+If you performed the ultrafast bootstrap (UFBoot) please cite:
 
 * B.Q. Minh, M.A.T. Nguyen, and A. von Haeseler (2013) Ultrafast approximation for phylogenetic bootstrap. *Mol. Biol. Evol.*, 30:1188-1195. [DOI: 10.1093/molbev/mst024](http://dx.doi.org/10.1093/molbev/mst024)
 
-IQ-TREE can use PLL for likelihood computations, if you use `-pll` option please cite:
-* T. Flouri, F. Izquierdo-Carrasco, D. Darriba, A.J. Aberer, L.-T. Nguyen, B.Q. Minh, A. von Haeseler, and A. Stamatakis (2015) The phylogenetic likelihood library. *Syst. Biol.*, 64:356-362. [DOI: 10.1093/sysbio/syu084](http://dx.doi.org/10.1093/sysbio/syu084)
+If you used the polymorphism-aware models please cite:
+
+* D. Schrempf, B.Q. Minh, N. De Maio, A. von Haeseler, and C. Kosiol (2016) Reversible polymorphism-aware phylogenetic models and their application to tree inference. *J. Theor. Biol.*, 407:362–370. [DOI: 10.1016/j.jtbi.2016.07.042](http://dx.doi.org/10.1016/j.jtbi.2016.07.042)
 
 
-#### Credits and Acknowledgements
+If you used the [IQ-TREE web server](http://iqtree.cibiv.univie.ac.at/) please cite:
+
+* J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, and B.Q. Minh (2016) W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis. *Nucleic Acids Res.*, 44 (W1):W232-W235. [DOI: 10.1093/nar/gkw256](http://dx.doi.org/10.1093/nar/gkw256)
+
+If you used ModelFinder please cite:
+
+* S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, and L.S. Jermiin (2017) ModelFinder: Fast Model Selection for Accurate Phylogenetic Estimates, *Nature Methods*, in press.
+
+Development team
+----------------
+
+IQ-TREE is actively developed by:
+
+**Bui Quang Minh**, _Team leader_, Designs IQ-TREE software core, ultrafast bootstrap, model selection.
+
+**Lam Tung Nguyen**, _Developer_, Designs and parallelizes IQ-TREE search algorithm.
+
+**Olga Chernomor**, _Developer_, Designs partition models and phylogenomic tree search.
+
+**Heiko A. Schmidt**, _Developer_, Integrates TREE-PUZZLE features into IQ-TREE.
+
+**Jana Trifinopoulos**, _Developer_, Designs and maintains IQ-TREE web service.
+
+**Dominik Schrempf**, _Developer_, Implements polymorphism-aware models (PoMo).
+
+**Arndt von Haeseler**, _Advisor_, Provides advice, inspiring ideas and financial support.
+
+
+Credits and Acknowledgements
+----------------------------
 
 Some parts of the code were taken from the following packages/libraries: [Phylogenetic likelihood library](http://www.libpll.org), [TREE-PUZZLE](http://www.tree-puzzle.de), 
 [BIONJ](http://dx.doi.org/10.1093/oxfordjournals.molbev.a025808), [Nexus Class Libary](http://dx.doi.org/10.1093/bioinformatics/btg319), [Eigen library](http://eigen.tuxfamily.org/),
-[SPRNG library](http://www.sprng.org), [Zlib library](http://www.zlib.net), [vectorclass library](http://www.agner.org/optimize/).
+[SPRNG library](http://www.sprng.org), [Zlib library](http://www.zlib.net), gzstream library, [vectorclass library](http://www.agner.org/optimize/), [GNU scientific library](https://www.gnu.org/software/gsl/).
 
 
-IQ-TREE was partially funded by the Austrian Science Fund - FWF (grant no. I760-B17 from 2012-2015) and the University of Vienna (Initiativkolleg I059-N).
+IQ-TREE was partially funded by the [Austrian Science Fund - FWF](http://www.fwf.ac.at/) (grant no. I760-B17 from 2012-2015 and and I 2508-B29 from 2016-2019) and the [University of Vienna](https://www.univie.ac.at/) (Initiativkolleg I059-N).
 
 
-[Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
+[Anisimova et al., 2011]: http://dx.doi.org/10.1093/sysbio/syr041
+[Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
-
+[Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
+[Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
