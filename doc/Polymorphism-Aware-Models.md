@@ -1,4 +1,8 @@
-<!--jekyll 
+---
+layout: userdoc
+title: "Polymorphism-Aware Models"
+author: _AUTHOR_
+date: _DATE_
 docid: 13
 icon: book
 doctype: manual
@@ -20,7 +24,7 @@ sections:
   url: bootstrap-branch-support
 - name: Interpretation of branch lengths
   url: interpretation-of-branch-lengths
-jekyll-->
+---
 
 Polymorphism-aware models
 =========================

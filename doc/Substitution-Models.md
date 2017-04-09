@@ -1,4 +1,8 @@
-<!--jekyll 
+---
+layout: userdoc
+title: "Substitution Models"
+author: _AUTHOR_
+date: _DATE_
 docid: 10
 icon: book
 doctype: manual
@@ -18,7 +22,7 @@ sections:
   url: ascertainment-bias-correction
 - name: Rate heterogeneity
   url: rate-heterogeneity-across-sites
-jekyll-->
+---
 
 Substitution models
 ===================
@@ -358,7 +362,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Hasegawa, Kishino and Yano, 1985]: https://dx.doi.org/10.1007%2FBF02101694
 [Henikoff and Henikoff, 1992]: https://dx.doi.org/10.1073%2Fpnas.89.22.10915
 [Jones et al., 1992]: https://dx.doi.org/10.1093%2Fbioinformatics%2F8.3.275
-[Jukes and Cantor, 1969]: https://books.google.at/books?hl=en&lr=&id=FDHLBAAAQBAJ&oi=fnd&pg=PA21&ots=bkfqSDR2jB&sig=zxqY3TXK5UuKVU2ndxjm_VnD4B0&redir_esc=y#v=onepage&q&f=false
+[Jukes and Cantor, 1969]: http://doi.org/10.1016/B978-1-4832-3211-9.50009-7
 [Kimura, 1980]: http://dx.doi.org/10.1007%2FBF01731581
 [Kimura, 1981]: http://dx.doi.org/10.1073/pnas.78.1.454
 [Kosiol and Goldman, 2005]: http://dx.doi.org/10.1093/molbev/msi005

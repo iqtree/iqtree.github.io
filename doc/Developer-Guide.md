@@ -1,4 +1,8 @@
-<!--jekyll 
+---
+layout: userdoc
+title: "Developer Guide"
+author: _AUTHOR_
+date: _DATE_
 docid: 30
 icon: codepen
 doctype: manual
@@ -12,7 +16,7 @@ sections:
   url: model-of-substitution
 - name: PhyloTree class
   url: phylotree-class-phylogenetic-tree
-jekyll-->
+---
 
 Developer guide
 ===============

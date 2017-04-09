@@ -1,4 +1,8 @@
-<!--jekyll 
+---
+layout: userdoc
+title: "Beginner's Tutorial"
+author: _AUTHOR_
+date: _DATE_
 docid: 3
 icon: info-circle
 doctype: tutorial
@@ -24,7 +28,7 @@ sections:
   url: assessing-branch-supports-with-single-branch-tests
 - name: Utilizing multi-core CPUs
   url: utilizing-multi-core-cpus
-jekyll-->
+---
 
 Beginner's tutorial
 ===================
@@ -50,7 +54,7 @@ This tutorial gives a beginner's guide.
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-Please first [download](Home#download) and [install](Quickstart) the binary
+Please first [download](http://www.iqtree.org/#download) and [install](Quickstart) the binary
 for your platform . For the next steps, the folder containing your  `iqtree` executable should be added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
 
 >**TIP**: For quick overview of all supported options in IQ-TREE, run the command  `iqtree -h`. 

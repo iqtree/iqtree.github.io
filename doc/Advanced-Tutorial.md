@@ -1,4 +1,8 @@
-<!--jekyll 
+---
+layout: userdoc
+title: "Advanced Tutorial"
+author: _AUTHOR_
+date: _DATE_
 docid: 4
 icon: info-circle
 doctype: tutorial
@@ -26,7 +30,7 @@ sections:
     url: user-defined-substitution-models
   - name: Inferring site-specific rates
     url: inferring-site-specific-rates
-jekyll-->
+---
 
 Advanced tutorial
 =================

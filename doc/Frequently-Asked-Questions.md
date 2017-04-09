@@ -1,4 +1,8 @@
-<!--jekyll 
+---
+layout: userdoc
+title: "Frequently Asked Questions"
+author: _AUTHOR_
+date: _DATE_
 docid: 9
 icon: question-circle
 doctype: manual
@@ -26,7 +30,7 @@ sections:
   url: how-do-i-save-time-for-standard-bootstrap
 - name: Why does IQ-TREE complain about the use of +ASC model?
   url: why-does-iq-tree-complain-about-the-use-of-asc-model
-jekyll-->
+---
 
 Frequently asked questions
 ==========================
@@ -130,7 +134,7 @@ Can I mix DNA and protein data in a partitioned analysis?
 ---------------------------------------------------------
 <div class="hline"></div>
 
-Yes! You can specify this via a NEXUS partition file. In fact, you can mix any data types supported in IQ-TREE, including also codon, binary and morphological data. To do so, each data type should be stored in a separate alignment file (see also [Partitioned analysis with mixed data](Tutorial#partitioned-analysis-with-mixed-data)). As an example, assuming `dna.phy` is a DNA alignment and and `prot.phy` is a protein alignment. Then a partition file mixing two types of data can be specified as follows:
+Yes! You can specify this via a NEXUS partition file. In fact, you can mix any data types supported in IQ-TREE, including also codon, binary and morphological data. To do so, each data type should be stored in a separate alignment file (see also [Partitioned analysis with mixed data](Advanced-Tutorial#partitioned-analysis-with-mixed-data)). As an example, assuming `dna.phy` is a DNA alignment and and `prot.phy` is a protein alignment. Then a partition file mixing two types of data can be specified as follows:
 
     #nexus
     begin sets;

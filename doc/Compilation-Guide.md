@@ -1,4 +1,8 @@
-<!--jekyll
+---
+layout: userdoc
+title: "Compilation Guide"
+author: _AUTHOR_
+date: _DATE_
 docid: 20
 icon: book
 doctype: manual
@@ -20,7 +24,7 @@ sections:
   url: compiling-32-bit-version
 - name: Compiling MPI version
   url: compiling-mpi-version
-jekyll-->
+---
 
 Compilation guide
 =================

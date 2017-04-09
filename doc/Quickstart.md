@@ -1,4 +1,8 @@
-<!--jekyll 
+---
+layout: userdoc
+title: "Getting Started"
+author: _AUTHOR_
+date: _DATE_
 docid: 1
 icon: info-circle
 doctype: tutorial
@@ -16,7 +20,7 @@ sections:
   url: for-mac-os-x-users
 - name: Minimal command-line examples
   url: minimal-command-line-examples
-jekyll-->
+---
 
 Getting started
 ===============
@@ -50,7 +54,7 @@ Installation
 ------------
 <div class="hline"></div>
 
-To achieve high performance IQ-TREE is a command-line program: you need to run IQ-TREE from a Terminal/Console (this is called Command Prompt under Windows). After you [downloaded IQ-TREE](Home#download), please:
+To achieve high performance IQ-TREE is a command-line program: you need to run IQ-TREE from a Terminal/Console (this is called Command Prompt under Windows). After you [downloaded IQ-TREE](http://www.iqtree.org/#download), please:
 
 * Extract the `.zip` (Windows, MacOSX) or `.tar.gz` (Linux) file to create a directory `iqtree-X.Y.Z-OS` or `iqtree-omp-X.Y.Z-OS`, where `X.Y.Z` is the version number and `OS` is the operating system (Windows, MacOSX or Linux).
 * You will find the executable in the `bin` sub-folder. Copy all files in `bin` folder to your system search path such that you can run IQ-TREE by entering `iqtree` or `iqtree-omp` from the Terminal.

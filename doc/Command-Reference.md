@@ -1,4 +1,8 @@
-<!--jekyll
+---
+layout: userdoc
+title: "Command Reference"
+author: _AUTHOR_
+date: _DATE_
 docid: 7
 icon: book
 doctype: tutorial
@@ -36,7 +40,7 @@ sections:
     url: generating-random-trees
   - name: Miscellaneous options
     url: miscellaneous-options
-jekyll-->
+---
 
 Command reference
 =================
@@ -204,7 +208,7 @@ Several parameters can be set to e.g. reduce computations:
 | –merit    | Specify either `AIC`, `AICc` or `BIC` for the optimality criterion to apply for new procedure. *DEFAULT: all three criteria are considered* |
 | -mtree    | Turn on full tree search for each model considered, to obtain more accurate result. Only recommended if enough computational resources are available. *DEFAULT: fixed starting tree* |
 | -mredo    | Ignore `.model` file computed earlier. *DEFAULT: `.model` file (if exists) is loaded to reuse previous computations* |
-| -madd     | Specify a comma-separated list of mixture models to additionally consider for model selection. For example, `-madd LG4M,LG4X` to additionally include these two [protein mixture models](Substitution-Models/#protein-models). |
+| -madd     | Specify a comma-separated list of mixture models to additionally consider for model selection. For example, `-madd LG4M,LG4X` to additionally include these two [protein mixture models](Substitution-Models#protein-models). |
 | -mdef     | Specify a [NEXUS model file](Complex-Models#nexus-model-file) to define new models. |
 
 >**NOTE**: Some of the above options require a comma-separated list, which should not contain any empty space!
@@ -550,7 +554,7 @@ Miscellaneous options
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
 [Anisimova and Gascuel 2006]: http://dx.doi.org/10.1080/10635150600755453
 [Anisimova et al., 2011]: http://dx.doi.org/10.1093/sysbio/syr041
-[Felsenstein, 1985]: https://www.jstor.org/stable/2408678
+[Felsenstein, 1985]: http://dx.doi.org/10.2307/2408678
 [Gu et al., 1995]: http://mbe.oxfordjournals.org/content/12/4/546.abstract
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483

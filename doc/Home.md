@@ -12,6 +12,25 @@ documentclass: book
 margin-left: 1in
 margin-right: 1.2in
 fontsize: 12pt
+header-includes:
+- \lstset{breaklines=true}
+- \lstset{language=[Motorola68k]Assembler}
+- \lstset{basicstyle=\small\ttfamily}
+- \lstset{extendedchars=true}
+- \lstset{tabsize=2}
+- \lstset{columns=fixed}
+- \lstset{showstringspaces=false}
+- \lstset{frame=trbl}
+- \lstset{framesep=5pt}
+- \lstset{xleftmargin=5pt,xrightmargin=5pt}
+- \lstset{framerule=0pt}
+- \lstset{postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}}
+- \lstset{backgroundcolor=\color{gray!15!white}}
+- \usepackage{tcolorbox}
+- \newtcolorbox{myquote}{colback=red!5!white,colframe=red!50!black}
+- \renewenvironment{quote}{\begin{myquote}}{\end{myquote}}
+- \usepackage{hyperref}
+- \hypersetup{colorlinks=true,linkcolor=blue}
 ---
 
 <!--more-->
@@ -33,7 +52,7 @@ This trends motivated us to develop the IQ-TREE software with a strong emphasis 
 
 IQ-TREE has been developed since 2011 and freely available at <http://www.iqtree.org/> as open-source software under the [GNU-GPL license version 2](http://www.gnu.org/licenses/licenses.en.html). It is actively maintained by the core development team (see below) and a number of collabrators.
 
-The name IQ-TREE comes from the fact that it is the successor of [_IQ_PNNI](http://www.cibiv.at/software/iqpnni/) and [_TREE_-PUZZLE](http://www.tree-puzzle.de/) software.
+The name IQ-TREE comes from the fact that it is the successor of [**IQ**PNNI](http://www.cibiv.at/software/iqpnni/) and [**TREE**-PUZZLE](http://www.tree-puzzle.de/) software.
 
 
 Key features
@@ -49,9 +68,9 @@ Key features
 
 The strength of IQ-TREE is the availability of a wide variety of phylogenetic models:
 
-* __Common models__: All [common substitution models](http://www.iqtree.org/doc/Substitution-Models) for DNA, protein, codon, binary and morphological data with [rate heterogeneity among sites](http://www.iqtree.org/doc/Substitution-Models/#rate-heterogeneity-across-sites) and [ascertainment bias correction](http://www.iqtree.org/doc/Substitution-Models/#ascertainment-bias-correction) for e.g. SNP data.
-* __[Partition models](http://www.iqtree.org/doc/Complex-Models/#partition-models)__: Allowing individual models for different genomic loci (e.g. genes or codon positions), mixed data types, mixed rate heterogeneity types, linked or unlinked branch lengths between partitions.
-* __Mixture Models__: [fully customizable mixture models](http://www.iqtree.org/doc/Complex-Models/#mixture-models) and [empirical protein mixture models](http://www.iqtree.org/doc/Substitution-Models/#protein-models) and.
+* __Common models__: All [common substitution models](http://www.iqtree.org/doc/Substitution-Models) for DNA, protein, codon, binary and morphological data with [rate heterogeneity among sites](http://www.iqtree.org/doc/Substitution-Models#rate-heterogeneity-across-sites) and [ascertainment bias correction](http://www.iqtree.org/doc/Substitution-Models#ascertainment-bias-correction) for e.g. SNP data.
+* __[Partition models](http://www.iqtree.org/doc/Complex-Models#partition-models)__: Allowing individual models for different genomic loci (e.g. genes or codon positions), mixed data types, mixed rate heterogeneity types, linked or unlinked branch lengths between partitions.
+* __Mixture Models__: [fully customizable mixture models](http://www.iqtree.org/doc/Complex-Models#mixture-models) and [empirical protein mixture models](http://www.iqtree.org/doc/Substitution-Models#protein-models) and.
 
 
 
@@ -83,7 +102,7 @@ IQ-TREE has an extensive documentation with several tutorials and manual:
 
 * [Beginner's tutorial](Tutorial): recommended for users starting to use IQ-TREE.
 
-* [Advanced tutorial](Advanced Tutorial): recommended for more experienced users who want to explore more features of IQ-TREE.
+* [Advanced tutorial](Advanced-Tutorial): recommended for more experienced users who want to explore more features of IQ-TREE.
 
 * [Command Reference](Command-Reference): Comprehensive documentation of command-line options available in IQ-TREE.
 
@@ -93,7 +112,7 @@ IQ-TREE has an extensive documentation with several tutorials and manual:
 
 * [Polymorphism Aware Models](Polymorphism-Aware-Models): Polymorphism-aware phylogenetic Models (PoMo) related documentation.
 
-* [Compilation guide](Compilation guide): for advanced users who wants to compile IQ-TREE from source code.
+* [Compilation guide](Compilation-Guide): for advanced users who wants to compile IQ-TREE from source code.
 
 * [Frequently asked questions (FAQ)](Frequently-Asked-Questions): recommended to have a look before you post a question in the [IQ-TREE group](https://groups.google.com/d/forum/iqtree).
 

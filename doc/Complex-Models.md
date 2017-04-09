@@ -1,4 +1,8 @@
-<!--jekyll
+---
+layout: userdoc
+title: "Complex Models"
+author: _AUTHOR_
+date: _DATE_
 docid: 11
 icon: book
 doctype: manual
@@ -14,7 +18,7 @@ sections:
   url: site-specific-frequency-models
 - name: Heterotachy models
   url: heterotachy-models
-jekyll-->
+---
 
 Complex models
 ==============
@@ -128,7 +132,7 @@ Note that this assumes `part1` has standard genetic code. If not, append `CODON`
 
 ### Partitioned analysis
 
-Having prepared a partition file, one is ready to start a partitioned analysis with `-q` (edge-equal), `-spp` (edge-proportional) or `-sp` (edge-unlinked) option. See [this tutorial](Tutorial#partitioned-analysis-for-multi-gene-alignments) for more details.
+Having prepared a partition file, one is ready to start a partitioned analysis with `-q` (edge-equal), `-spp` (edge-proportional) or `-sp` (edge-unlinked) option. See [this tutorial](Advanced-Tutorial#partitioned-analysis-for-multi-gene-alignments) for more details.
 
 
 Mixture models
@@ -270,7 +274,7 @@ Heterotachy models
 
 Heterotachy (or Single Topology Heterotachy - STH) model is a mixture model composing of several site-classes, each having a separate set of branch lengths and model parameters. Thus, it is a complex model naturally accounting for heterotachous evolution ([Lopez, Casane, and Philippe, 2002](http://mbe.oxfordjournals.org/content/19/1/1.full)), which was shown to mislead conventional maximum likelihood and Bayesian inference ([Kolaczkowski and Thornton, 2004](http://dx.doi.org/10.1038/nature02917)). Our extensive simulations showed that an implementation of heterotachy models in IQ-TREE obtained almost 100% accuracy for heterotachously evolved sequences.
 
-One can think of the heterotachy model as an *edge-unlinked mixture model*, which will infer the probabilities of each alignment site belonging to each mixture class. This is in contrast to an [edge-unlinked partition model](Complex-Models/#partition-models), which requires the appropriate partitioning of the data in advance, an ambitious assumption and a potential source of error for biological datasets in practice. 
+One can think of the heterotachy model as an *edge-unlinked mixture model*, which will infer the probabilities of each alignment site belonging to each mixture class. This is in contrast to an [edge-unlinked partition model](#partition-models), which requires the appropriate partitioning of the data in advance, an ambitious assumption and a potential source of error for biological datasets in practice. 
 
 
 ### Download
