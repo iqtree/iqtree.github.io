@@ -28,19 +28,6 @@ Getting started
 Recommended for users who just downloaded IQ-TREE the first time.
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [IQ-TREE web server](#iq-tree-web-server)
-- [Installation](#installation)
-- [For Windows users](#for-windows-users)
-- [For Mac OS X users](#for-mac-os-x-users)
-- [Minimal command-line examples](#minimal-command-line-examples)
-- [Where to go from here?](#where-to-go-from-here)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 
 IQ-TREE web server
 ------------------
@@ -193,4 +180,5 @@ Where to go from here?
 <div class="hline"></div>
 
 Please continue with the **[Beginner's tutorial](Tutorial)** for further usages.
+
 

@@ -32,20 +32,6 @@ Polymorphism-aware models
 **Po**lymorphism-aware phylogenetic **Mo**dels (PoMo) related documentation.
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [Counts files](#counts-files)
-- [First running example](#first-running-example)
-- [Substitution models](#substitution-models)
-- [Virtual population size](#virtual-population-size)
-- [Sampling method](#sampling-method)
-- [Bootstrap branch support](#bootstrap-branch-support)
-- [Interpretation of branch lengths](#interpretation-of-branch-lengths)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 The **Po**lymorphism-aware phylogenetic **Mo**del (PoMo) tries to use
 population data (site frequency data) to improve phylogenetic
 inference.  Thereby it builds on top of DNA substitution models and
@@ -66,8 +52,8 @@ Please confirm that your version of IQ-TREE supports PoMo.
     >> ...
 
 >**TIP**: For a quick overview of all PoMo related options in IQ-TREE,
->run the command `iqtree -h` and scroll to the heading `POLYMORPHISM
->AWARE MODELS (PoMo)`.
+>run the command `iqtree -h` and scroll to the heading `POLYMORPHISM AWARE MODELS (PoMo)`.
+{: .tip}
 
 If you use PoMo, please cite [Schrempf et al., 2016]:
 
@@ -189,8 +175,8 @@ frequencies together with the rate parameters, use:
     iqtree -s example.cf -m GTR+rP+FO
 
 >**TIP**: For a quick overview of all available models in IQ-TREE, run
->the command `iqtree -h` and scroll to the heading `POLYMORPHISM AWARE
->MODELS (PoMo)`.
+>the command `iqtree -h` and scroll to the heading `POLYMORPHISM AWARE MODELS (PoMo)`.
+{: .tip}
 
 Virtual population size
 -----------------------
@@ -283,3 +269,5 @@ the total tree length measured in number of substitution per site in
     - measured in substitutions per site: 0.01767814 (2.48285810% of tree length)
 
 [Schrempf et al., 2016]: http://dx.doi.org/10.1016/j.jtbi.2016.07.042
+
+

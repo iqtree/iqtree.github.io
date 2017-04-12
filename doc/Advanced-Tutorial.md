@@ -38,25 +38,6 @@ Advanced tutorial
 Recommended for experienced users to explore more features.
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [Partitioned analysis for multi-gene alignments](#partitioned-analysis-for-multi-gene-alignments)
-- [Partitioned analysis with mixed data](#partitioned-analysis-with-mixed-data)
-- [Choosing the right partitioning scheme](#choosing-the-right-partitioning-scheme)
-- [Ultrafast bootstrapping with partition model](#ultrafast-bootstrapping-with-partition-model)
-- [Constrained tree search](#constrained-tree-search)
-- [Tree topology tests](#tree-topology-tests)
-- [Testing constrained tree](#testing-constrained-tree)
-- [Consensus construction and bootstrap value assignment](#consensus-construction-and-bootstrap-value-assignment)
-- [User-defined substitution models](#user-defined-substitution-models)
-- [Inferring site-specific rates](#inferring-site-specific-rates)
-- [Where to go from here?](#where-to-go-from-here)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
 To get started, please read the [Beginner's Tutorial](Tutorial) first if not done so yet.
 
 Partitioned analysis for multi-gene alignments
@@ -71,7 +52,7 @@ IQ-TREE will then estimate the model parameters separately for every partition. 
 * `-spp partition_file`: like above but allowing each partition to have its own evolution rate.
 * `-sp partition_file`: each partition has its own set of branch lengths (like combination of `-q` and `-M` options in RAxML) to account for, e.g. *heterotachy* ([Lopez et al., 2002]).
 
->**TIP**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
+>**NOTE**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
 
 IQ-TREE supports RAxML-style and NEXUS partition input file. The RAxML-style partition file may look like:
 
@@ -134,7 +115,8 @@ IQ-TREE also allows combining sub-alignments from different alignment files, whi
 
 Here,  `part1` and  `part2` contain sub-alignments from alignment file `dna.phy`, whereas `part3` and `part4` are loaded from alignment file `prot.phy` and `part5` from `codon.phy`. The `:` is needed to separate the alignment file name and site specification. Note that, for convenience `*` in `part5` specification means that `part5` corresponds to the entire alignment `codon.phy`.
 
->**NOTE**: For `part5` the `CODON` keyword is specified so that IQ-TREE will apply a codon model. Moreover, this implicitly assumes the standard genetic code. If you want to use another genetic code, append `CODON` with the [code ID described here](Substitution-Models#codon-models)
+>**TIP**: For `part5` the `CODON` keyword is specified so that IQ-TREE will apply a codon model. Moreover, this implicitly assumes the standard genetic code. If you want to use another genetic code, append `CODON` with the [code ID described here](Substitution-Models#codon-models)
+{: .tip}
 
 Because the alignment file names are now specified in this NEXUS file, you can omit the  `-s` option:
 
@@ -307,6 +289,16 @@ This will perform all above tests plus the AU test.
 
 Finally, note that IQ-TREE will automatically detect duplicated tree topologies and omit them during the evaluation.
 
+>**NOTE**:
+>
+> 1. The KH, SH and AU tests return p-values, thus a tree is rejected if its p-value < 0.05 (marked with a `-` sign).
+>
+> 2. bp-RELL and c-ELW return posterior weights which *are not p-value*. The weights sum up to 1 across the trees tested.
+>
+> 3. The KH test ([Kishino and Hasegawa, 1989]) was designed to test 2 trees and thus has no correction for multiple testing. The SH test ([Shimodaira and Hasegawa, 1999]) fixes this problem.
+>
+> 4. However, the SH test becomes too conservative (i.e., rejecting fewer trees than expected) when testing many trees. The AU test ([Shimodaira, 2002]) fixes this problem and is thus recommended as replacement for both KH and SH tests.
+
 
 
 Testing constrained tree
@@ -333,7 +325,12 @@ We now illustrate an example to use the AU test (see above) to test trees from u
 
 5. Concatenate all trees into a file:
     
+        # for Linux or macOS
         cat example.unconstr.treefile example.constr1.treefile example.constr2.treefile example.constr3.treefile > example.treels
+        
+        # for Windows
+        type example.unconstr.treefile example.constr1.treefile example.constr2.treefile example.constr3.treefile > example.treels
+        
     
 6. Test the set of trees:
     
@@ -366,7 +363,6 @@ Now look at the resulting `.iqtree` file:
     All tests performed 1000 resamplings using the RELL method.
 
 One sees that the AU test does not reject the first 3 trees (denoted by `+` sign below the `p-AU` column), whereas the last tree is significantly excluded (`-` sign). All other tests also agree with this. Therefore, groupings of `(Human,Mouse)` and `(Cow,Rat)` do not make sense. Whereas the phylogenetic position of `Seal` based on 3 first trees is still undecidable. This is in agreement with the SH-aLRT and ultrafast bootstrap supports [done in the Tutorial](Tutorial#assessing-branch-supports-with-single-branch-tests). 
-
 
 
 Consensus construction and bootstrap value assignment
@@ -508,3 +504,4 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 [Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
 [Mayrose et al., 2004]: https://doi.org/10.1093/molbev/msh194
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
+

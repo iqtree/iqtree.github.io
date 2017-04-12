@@ -20,7 +20,7 @@ sections:
   url: binary-and-morphological-models
 - name: Ascertainment bias correction
   url: ascertainment-bias-correction
-- name: Rate heterogeneity
+- name: Rate heterogeneity across sites
   url: rate-heterogeneity-across-sites
 ---
 
@@ -30,29 +30,11 @@ Substitution models
 All common substitution models and usages.
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [DNA models](#dna-models)
-    - [Base substitution rates](#base-substitution-rates)
-    - [Base frequencies](#base-frequencies)
-- [Protein models](#protein-models)
-    - [Amino-acid exchange rate matrices](#amino-acid-exchange-rate-matrices)
-    - [Amino-acid frequencies](#amino-acid-frequencies)
-- [Codon models](#codon-models)
-    - [Codon substitution rates](#codon-substitution-rates)
-    - [Codon frequencies](#codon-frequencies)
-- [Binary and morphological models](#binary-and-morphological-models)
-- [Ascertainment bias correction](#ascertainment-bias-correction)
-- [Rate heterogeneity across sites](#rate-heterogeneity-across-sites)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 
 IQ-TREE supports a wide range of substitution models, including advanced partition and mixture models. This guide gives a detailed information of all available models.
 
 >**TIP**: If you do not know which model to use, simply run IQ-TREE with the standard model selection (`-m TEST` option) or the new ModelFinder (`-m MFP`). It automatically determines best-fit model for your data.
+{: .tip}
 
 
 DNA models
@@ -92,7 +74,7 @@ The last column `Code` is a 6-digit code definining the equality constraints for
 
 Moreover, IQ-TREE supports arbitrarily restricted DNA model via a 6-digit code, e.g. with option `-m 120120+G`.
 
->**NOTICE**: The last digit in this code must always be `0`. It corresponds to G-T rate which is always equal to 1.0 for convenience because the rates are relative.
+>**NOTE**: The last digit in this code must always be `0`. It corresponds to G-T rate which is always equal to 1.0 for convenience because the rates are relative.
 
 If users want to fix model parameters, append the model name with a curly bracket `{`, followed by the comma-separated rate parameters, and a closing curly bracket `}`. For example, `GTR{1.0,2.0,1.5,3.7,2.8}` specifies 6 substitution rates A-C=1.0, A-G=2.0, A-T=1.5, C-G=3.7, C-T=2.8 and G-T=1.0. 
 
@@ -281,7 +263,7 @@ Thus, there can be many such combinations.
 If the model name does not match any of the above listed models, IQ-TREE assumes that it is a file containing codon exchange rates and frequencies in PAML format. It contains the lower diagonal part of the matrix and codon frequencies. For an example, see <http://www.ebi.ac.uk/goldman/ECM/>.
 
 
->**NOTICE**: Branch lengths under codon models are interpreted as number of nucleotide substitutions per codon site. Thus, they are typically 3 times longer than under DNA models.
+>**NOTE**: Branch lengths under codon models are interpreted as number of nucleotide substitutions per codon site. Thus, they are typically 3 times longer than under DNA models.
 
 
 ### Codon frequencies
@@ -313,7 +295,8 @@ The binary alignments should contain state `0` and `1`, whereas for morphologica
 
 Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies.
 
->**NOTICE**: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model (`+ASC`)](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
+>**TIP**: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model (`+ASC`)](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
+{: .tip}
 
 
 Ascertainment bias correction
@@ -343,10 +326,11 @@ IQ-TREE supports all common rate heterogeneity across sites models:
 | +I+R     | invariable site plus FreeRate model. |
 
 >**TIP**: The new ModelFinder (`-m MFP` option) tests the FreeRate model, whereas the standard procedure (`-m TEST`) does not.
+{: .tip}
 
 Users can fix the parameters of the model. For example, `+I{0.2}` will fix the proportion of invariable sites (pinvar) to 0.2; `+G{0.9}` will fix the Gamma shape parameter (alpha) to 0.9; `+I{0.2}+G{0.9}` will fix both pinvar and alpha. To fix the FreeRate model parameters, use the syntax `+Rk{w1,r1,...,wk,rk}` (replacing `k` with the number of categories). Here, `w1, ..., wk` are the weights and `r1, ..., rk` the rates for each category. 
 
->**NOTICE**: For the `+G` model IQ-TREE implements the _mean_ approximation approach ([Yang, 1994]). The same is done in RAxML and PhyML. However, some programs like TREE-PUZZLE implement the _median_ approximation approach, which makes the resulting log-likelihood not comparable. IQ-TREE can change to this approach via the `-gmedian` option.
+>**NOTE**: For the `+G` model IQ-TREE implements the _mean_ approximation approach ([Yang, 1994]). The same is done in RAxML and PhyML. However, some programs like TREE-PUZZLE implement the _median_ approximation approach, which makes the resulting log-likelihood not comparable. IQ-TREE can change to this approach via the `-gmedian` option.
 
 
 

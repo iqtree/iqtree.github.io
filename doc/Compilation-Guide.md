@@ -32,21 +32,6 @@ Compilation guide
 For advanced users to compile IQ-TREE source code.
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [General requirements](#general-requirements)
-- [Downloading source code](#downloading-source-code)
-- [Compiling under Linux](#compiling-under-linux)
-- [Compiling under Mac OS X](#compiling-under-mac-os-x)
-- [Compiling under Windows](#compiling-under-windows)
-- [Compiling 32-bit version](#compiling-32-bit-version)
-- [Compiling MPI version](#compiling-mpi-version)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
 General requirements
 --------------------
 <div class="hline"></div>
@@ -104,7 +89,8 @@ Compiling under Linux
     
 This creates an executable `iqtree` or `iqtree-omp`. It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree`.
 
->**NOTICE**: The above guide typically compiles IQ-TREE with `gcc`. If you have Clang installed and want to compile with Clang, the compilation will be similar to Mac OS X like below.
+>**TIP**: The above guide typically compiles IQ-TREE with `gcc`. If you have Clang installed and want to compile with Clang, the compilation will be similar to Mac OS X like below.
+{: .tip}
 
 Compiling under Mac OS X
 ------------------------
@@ -133,7 +119,7 @@ Compiling under Windows
 * Please first install TDM-GCC (a GCC version for Windows) from <http://tdm-gcc.tdragon.net>.
 * Then install Clang for Windows from <http://clang.llvm.org>.
 
->**NOTICE**: Although IQ-TREE can also be built with TDM-GCC, the executable does not run properly due to stack alignment issue and the `libgomp` library causes downgraded performance for the OpenMP version. Thus, it is recommended to compile IQ-TREE with Clang. 
+>**WARNING**: Although IQ-TREE can also be built with TDM-GCC, the executable does not run properly due to stack alignment issue and the `libgomp` library causes downgraded performance for the OpenMP version. Thus, it is recommended to compile IQ-TREE with Clang. 
 
 1. Open Command Prompt. 
 2. Change to the source code folder:

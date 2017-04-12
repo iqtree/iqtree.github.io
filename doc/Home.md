@@ -1,36 +1,32 @@
 ---
-title: "IQ-TREE version 1.5.4: Tutorials and Manual"
-author: 
-  - Bui Quang Minh
-  - Jana Trifinopoulos
-  - Dominik Schrempf
-  - Heiko Schmidt
-date:   "April 8, 2017"
-toc: true
-papersize: A4
-documentclass: book
-margin-left: 1in
-margin-right: 1.2in
-fontsize: 12pt
-header-includes:
-- \lstset{breaklines=true}
-- \lstset{language=[Motorola68k]Assembler}
-- \lstset{basicstyle=\small\ttfamily}
-- \lstset{extendedchars=true}
-- \lstset{tabsize=2}
-- \lstset{columns=fixed}
-- \lstset{showstringspaces=false}
-- \lstset{frame=trbl}
-- \lstset{framesep=5pt}
-- \lstset{xleftmargin=5pt,xrightmargin=5pt}
-- \lstset{framerule=0pt}
-- \lstset{postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}}
-- \lstset{backgroundcolor=\color{gray!15!white}}
-- \usepackage{tcolorbox}
-- \newtcolorbox{myquote}{colback=red!5!white,colframe=red!50!black}
-- \renewenvironment{quote}{\begin{myquote}}{\end{myquote}}
-- \usepackage{hyperref}
-- \hypersetup{colorlinks=true,linkcolor=blue}
+layout: userdoc
+title: "Introduction"
+author: _AUTHOR_
+date: _DATE_
+docid: 0
+icon: info-circle
+doctype: tutorial
+tags:
+- tutorial
+description: ""
+sections:
+  - name: Why IQ-TREE?
+    url: why-iq-tree
+  - name: Key features
+    url: key-features
+  - name: Free web server
+    url: free-web-server
+  - name: User support
+    url: user-support
+  - name: Documentation
+    url: documentation
+  - name: How to cite IQ-TREE?
+    url: how-to-cite-iq-tree
+  - name: Development team
+    url: development-team
+  - name: Credits and acknowledgements
+    url: credits-and-acknowledgements
+
 ---
 
 <!--more-->
@@ -40,6 +36,7 @@ Introduction
 
 Why IQ-TREE?
 ------------
+<div class="hline"></div>
 
 Thanks to the recent advent of next-generation sequencing techniques, the amount of phylogenomic/transcriptomic data have been rapidly accumulated. This extremely facilitates resolving many "deep phylogenetic" questions in the tree of life. At the same time it poses major computational challenges to analyze such big data, where most phylogenetic software cannot handle. Moreover, there is a need to develop more complex probabilistic models to adequately capture realistic aspects of genomic sequence evolution.
 
@@ -57,25 +54,26 @@ The name IQ-TREE comes from the fact that it is the successor of [**IQ**PNNI](ht
 
 Key features
 ------------
+<div class="hline"></div>
 
 * __Efficient search algorithm__: Fast and effective stochastic algorithm to reconstruct phylogenetic trees by maximum likelihood. IQ-TREE compares favorably to RAxML and PhyML in terms of likelihood while requiring similar amount of computing time ([Nguyen et al., 2015]).
 * __Ultrafast bootstrap__: An ultrafast bootstrap approximation (UFBoot) to assess branch supports. UFBoot is 10 to 40 times faster than RAxML rapid bootstrap and obtains less biased support values ([Minh et al., 2013]).
 * __Ultrafast model selection__: An ultrafast and automatic model selection (ModelFinder) which is 10 to 100 times faster than jModelTest and ProtTest. ModelFinder also finds best-fit partitioning scheme like PartitionFinder.
-* __Big Data Analysis__: Supporting huge datasets with thousands of sequences or millions of alignment sites via checkpointing, safe numerical and low memory mode. Multicore CPUs and parallel MPI system are utilized to speedup analysis.
-
+* __Big Data Analysis__: Supporting huge datasets with thousands of sequences or millions of alignment sites via [checkpointing](Command-Reference#checkpointing-to-resume-stopped-run), safe numerical and low memory mode. [Multicore CPUs](Tutorial#utilizing-multi-core-cpus) and [parallel MPI system](Compilation-Guide#compiling-mpi-version) are utilized to speedup analysis.
 * __Phylogenetic testing__: Several fast branch tests like SH-aLRT and aBayes test ([Anisimova et al., 2011]) and tree topology tests like the approximately unbiased (AU) test ([Shimodaira, 2002]).
 
 
 The strength of IQ-TREE is the availability of a wide variety of phylogenetic models:
 
-* __Common models__: All [common substitution models](http://www.iqtree.org/doc/Substitution-Models) for DNA, protein, codon, binary and morphological data with [rate heterogeneity among sites](http://www.iqtree.org/doc/Substitution-Models#rate-heterogeneity-across-sites) and [ascertainment bias correction](http://www.iqtree.org/doc/Substitution-Models#ascertainment-bias-correction) for e.g. SNP data.
-* __[Partition models](http://www.iqtree.org/doc/Complex-Models#partition-models)__: Allowing individual models for different genomic loci (e.g. genes or codon positions), mixed data types, mixed rate heterogeneity types, linked or unlinked branch lengths between partitions.
-* __Mixture Models__: [fully customizable mixture models](http://www.iqtree.org/doc/Complex-Models#mixture-models) and [empirical protein mixture models](http://www.iqtree.org/doc/Substitution-Models#protein-models) and.
-
+* __Common models__: All [common substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological data with [rate heterogeneity among sites](Substitution-Models#rate-heterogeneity-across-sites) and [ascertainment bias correction](Substitution-Models#ascertainment-bias-correction) for e.g. SNP data.
+* __[Partition models](Complex-Models#partition-models)__: Allowing individual models for different genomic loci (e.g. genes or codon positions), mixed data types, mixed rate heterogeneity types, linked or unlinked branch lengths between partitions.
+* __Mixture models__: [fully customizable mixture models](Complex-Models#mixture-models) and [empirical protein mixture models](Substitution-Models#protein-mixture-models) and.
+* __Polymorphism-aware models__: Accounting for *incomplete lineage sorting* to infer species tree from genome-wide population data ([Schrempf et al., 2016]). 
 
 
 Free web server
 ---------------
+<div class="hline"></div>
 
 For a quick start you can also try the IQ-TREE web server, which performs online computation using a dedicated computing cluster. It is very easy to use with as few as just 3 clicks! Try it out at
 
@@ -83,6 +81,7 @@ For a quick start you can also try the IQ-TREE web server, which performs online
 
 User support
 ------------
+<div class="hline"></div>
 
 Please refer to the [user documentation](http://www.iqtree.org/doc/) and [frequently asked questions](http://www.iqtree.org/doc/Frequently-Asked-Questions). If you have further questions, feedback, feature requests, and bug reports, please sign up the following Google group (if not done yet) and post a topic to the 
 
@@ -93,6 +92,7 @@ _The average response time is two working days._
 
 Documentation
 -------------
+<div class="hline"></div>
 
 IQ-TREE has an extensive documentation with several tutorials and manual:
 
@@ -118,14 +118,15 @@ IQ-TREE has an extensive documentation with several tutorials and manual:
 
 
 
-Citations
----------
+How to cite IQ-TREE?
+--------------------
+<div class="hline"></div>
 
-> To maintain IQ-TREE, support users and secure fundings, it is important for us that you cite the following papers, whenever the corresponding features were applied for your analysis.
+> **To maintain IQ-TREE, support users and secure fundings, it is important for us that you cite the following papers, whenever the corresponding features were applied for your analysis.**
 >
-> Example 1: "...We obtained branch supports with the ultrafast bootstrap (Minh et al. 2013) implemented in the IQ-TREE software (Nguyen et al. 2015)..." 
+> *Example 1:* "...We obtained branch supports with the ultrafast bootstrap (Minh et al., 2013) implemented in the IQ-TREE software (Nguyen et al., 2015)..." 
 >
-> Example 2: "...We inferred the maximum-likelihood tree using the edge-linked partition model in IQ-TREE (Chernomor et al. 2016; Nguyen et al. 2015)..."
+> *Example 2:* "...We inferred the maximum-likelihood tree using the edge-linked partition model in IQ-TREE (Chernomor et al., 2016; Nguyen et al., 2015)..."
 
 
 If you performed tree reconstruction or other features please cite:
@@ -155,6 +156,7 @@ If you used ModelFinder please cite:
 
 Development team
 ----------------
+<div class="hline"></div>
 
 IQ-TREE is actively developed by:
 
@@ -173,8 +175,9 @@ IQ-TREE is actively developed by:
 **Arndt von Haeseler**, _Advisor_, Provides advice, inspiring ideas and financial support.
 
 
-Credits and Acknowledgements
+Credits and acknowledgements
 ----------------------------
+<div class="hline"></div>
 
 Some parts of the code were taken from the following packages/libraries: [Phylogenetic likelihood library](http://www.libpll.org), [TREE-PUZZLE](http://www.tree-puzzle.de), 
 [BIONJ](http://dx.doi.org/10.1093/oxfordjournals.molbev.a025808), [Nexus Class Libary](http://dx.doi.org/10.1093/bioinformatics/btg319), [Eigen library](http://eigen.tuxfamily.org/),
@@ -188,4 +191,7 @@ IQ-TREE was partially funded by the [Austrian Science Fund - FWF](http://www.fwf
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
+[Schrempf et al., 2016]: http://dx.doi.org/10.1016/j.jtbi.2016.07.042
 [Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
+
+

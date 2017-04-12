@@ -16,8 +16,8 @@ sections:
   url: first-running-example
 - name: Model selection
   url: choosing-the-right-substitution-model
-- name: Codon models
-  url: codon-models
+- name: Using codon models
+  url: using-codon-models
 - name: Binary, Morphological, SNPs
   url: binary-morphological-and-snp-data
 - name: Ultrafast bootstrap
@@ -36,28 +36,11 @@ Beginner's tutorial
 This tutorial gives a beginner's guide. 
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [Input data](#input-data)
-- [First running example](#first-running-example)
-- [Choosing the right substitution model](#choosing-the-right-substitution-model)
-- [Codon models](#codon-models)
-- [Binary, morphological and SNP data](#binary-morphological-and-snp-data)
-- [Assessing branch supports with ultrafast bootstrap approximation](#assessing-branch-supports-with-ultrafast-bootstrap-approximation)
-- [Assessing branch supports with  standard nonparametric bootstrap](#assessing-branch-supports-with--standard-nonparametric-bootstrap)
-- [Assessing branch supports with single branch tests](#assessing-branch-supports-with-single-branch-tests)
-- [Utilizing multi-core CPUs](#utilizing-multi-core-cpus)
-- [Where to go from here?](#where-to-go-from-here)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
 Please first [download](http://www.iqtree.org/#download) and [install](Quickstart) the binary
-for your platform . For the next steps, the folder containing your  `iqtree` executable should be added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
+for your platform. For the next steps, the folder containing your  `iqtree` executable should be added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
 
 >**TIP**: For quick overview of all supported options in IQ-TREE, run the command  `iqtree -h`. 
+{: .tip}
 
 Input data
 ----------
@@ -91,7 +74,7 @@ This tiny alignment contains 7 DNA sequences from several animals with the seque
     >Mouse      
     CTACCACACCCCAGGACTCAGCAGTGAT
 
->**TIP**: If you have raw sequences, you need to first apply alignment programs like [MAFFT](http://mafft.cbrc.jp/alignment/software/) or [ClustalW](http://www.clustal.org) to align the sequences, before feeding them into IQ-TREE.
+>**NOTE**: If you have raw sequences, you need to first apply alignment programs like [MAFFT](http://mafft.cbrc.jp/alignment/software/) or [ClustalW](http://www.clustal.org) to align the sequences, before feeding them into IQ-TREE.
 
 First running example
 ---------------------
@@ -197,6 +180,7 @@ Then ModelFinder chooses the model that minimizes the BIC score (you can also ch
 adding the option `-AIC` or `-AICc`, respectively).
 
 >**TIP**: Starting with version 1.5.4, `-m MFP` is the default behavior. Thus, this run is equivalent to `iqtree -s example.phy`.
+{: .tip}
 
 Here, IQ-TREE will write an additional file:
 
@@ -230,6 +214,7 @@ Sometimes you only want to find the best-fit model without doing tree reconstruc
 > 5. ModelFinder can also find best partitioning scheme just like PartitionFinder ([Lanfear et al., 2012]). See [advanced tutorial for more details](Advanced-Tutorial).
 >
 > If you still want to resembles jModelTest/ProtTest, then use option `-m TEST` or `-m TESTONLY` instead.
+{: .tip}
 
 By default, the maximum number of categories is limitted to 10 due to computational reasons. If your sequence alignment is long enough, then you can increase this upper limit with the `cmax` option:
 
@@ -252,8 +237,8 @@ If you have enough computational resource, you can perform a thorough and more a
     iqtree -s example.phy -m TESTNEWONLY -mtree
 
 
-Codon models
-------------
+Using codon models
+------------------
 <div class="hline"></div>
 
 IQ-TREE supports a number of [codon models](Substitution-Models#codon-models). You need to input a protein-coding DNA alignment and specify codon data by option `-st CODON` (Otherwise, IQ-TREE applies DNA model because it detects that your alignment has DNA sequences):
@@ -321,7 +306,7 @@ computed as the occurence frequencies in the bootstrap trees. This file is in "s
 *  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
 but in NEXUS format, which can be viewed with the program SplitsTree. 
 
->**TIP**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
+>**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
 
 Assessing branch supports with  standard nonparametric bootstrap

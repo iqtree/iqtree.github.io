@@ -27,27 +27,6 @@ Complex models such as partition and mixture models.
 
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [Partition models](#partition-models)
-    - [Partition file format](#partition-file-format)
-    - [Partitioned analysis](#partitioned-analysis)
-- [Mixture models](#mixture-models)
-    - [What is the difference between partition and mixture models?](#what-is-the-difference-between-partition-and-mixture-models)
-    - [Defining mixture models](#defining-mixture-models)
-    - [Profile mixture models](#profile-mixture-models)
-    - [NEXUS model file](#nexus-model-file)
-- [Site-specific frequency models](#site-specific-frequency-models)
-    - [Example usages](#example-usages)
-- [Heterotachy models](#heterotachy-models)
-    - [Download](#download)
-    - [Quick usages](#quick-usages)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
 This document gives detailed descriptions of complex maximum-likelihood models available in IQ-TREE. It is assumed that you know the [basic substitution models](Substitution-Models) already.
 
 
@@ -62,7 +41,8 @@ Partition models are intended for phylogenomic (e.g., multi-gene) alignments, wh
 2. *Edge-proportional* partition model with proportional branch lengths: Like above but each partition has its own partition specific rate, that rescales all its branch lengths. This model accomodates different evolutionary rates between partitions (e.g. between 1st, 2nd, and 3rd codon positions).
 3. *Edge-unlinked* partition model: Each partition has its own set of branch lengths. This is the most parameter-rich partition model, that accounts for e.g., *heterotachy* ([Lopez et al., 2002]).
 
->**NOTICE**: The edge-equal partition model is typically unrealistic as it does not account for different evolutionary speeds between partitions, whereas the edge-unlinked partition model can be overfitting if there are many short partitions. Therefore, the edge-proportional partition model is recommended for a typical analysis. 
+>**TIP**: The edge-equal partition model is typically unrealistic as it does not account for different evolutionary speeds between partitions, whereas the edge-unlinked partition model can be overfitting if there are many short partitions. Therefore, the edge-proportional partition model is recommended for a typical analysis. 
+{: .tip}
 
 ### Partition file format
 
@@ -85,6 +65,7 @@ The NEXUS format is more complex but more powerful. For example, the above parti
 The first line contains the keyword `#nexus` to indicate a NEXUS file. It has a `sets` block, which contains two character sets (`charset` command) named `part1` and `part2`. Furthermore, with the `charpartition` command we set the model `HKY+G` for `part1` and `GTR+I+G` for `part2`. This is not possible with the RAxML-style format (i.e., one cannot specify `+G` rate model for one partition and `+I+G` rate model for the other partition). 
 
 > **TIP**: IQ-TREE fully supports mixed rate heterogeneity types types between partitions (see above example).
+{: .tip}
 
 One can also specify non-consecutive sites of a partition, e.g. under RAxML-style format:
 
@@ -116,6 +97,7 @@ Moreover, the NEXUS file allows each partition to come from a separate alignment
 Here, `part1` and `part2` correspond to sub-alignments of `aln1.phy` file and `part3` is the entire alignment file `aln2.phy`. Note that `aln2.phy` is a protein alignment in this example. 
 
 > **TIP**: IQ-TREE fully supports mixed data types between partitions.
+{: .tip}
 
 If you want to specify codon model for a partition, use the `CODON` keyword (otherwise, the partition may be detected as DNA):
 
@@ -143,7 +125,7 @@ Mixture models
 
 Mixture models,  like partition models, allow more than one substitution model along the sequences. However, while a partition model assigns each alignment site a given specific model, mixture models do not need this information: it will compute for each site its probability of belonging to each of the mixture classes (also called categories or components). Since the site-to-class assignment is not known, the site likelihood under mixture models is the weighted sum of site likelihoods per mixture class.
 
-For example, the [discrete Gamma rate heterogeneity](Substitution-Models#rate-heterogeneity-across-sites) is a simple type of mixture model, which have several rate categories with equal probability. IQ-TREE also supports a number of [predefined protein mixture models](Substitution-Models#protein-models) such as the profile mixture models `C10` to `C60` (The ML variants of Bayesian `CAT` models).
+For example, the [discrete Gamma rate heterogeneity](Substitution-Models#rate-heterogeneity-across-sites) is a simple type of mixture model, which have several rate categories with equal probability. IQ-TREE also supports a number of [predefined protein mixture models](Substitution-Models#protein-mixture-models) such as the profile mixture models `C10` to `C60` (The ML variants of Bayesian `CAT` models).
 
 Here, we discuss several possibilities to define new mixture models in IQ-TREE.
 
@@ -155,7 +137,7 @@ To start with, the following command:
 
 is a valid analysis. Here, we specify a mixture model (via `MIX` keyword in the model string) with two components (`JC` and `HKY` model) given in curly bracket and comma separator. IQ-TREE will then estimate the parameters of both mixture components as well as their weights: the proportion of sites belonging to each component. 
 
->**NOTICE**: Do not forget the double-quotes around model string! Otherwise, the Terminal might not recognize the model string properly.
+>**NOTE**: Do not forget the double-quotes around model string! Otherwise, the Terminal/Console might not recognize the model string properly.
 
 Mixture models can be combined with rate heterogeneity, e.g.:
 
@@ -166,7 +148,7 @@ Here, we specify two models and four Gamma rate categories. Effectively it means
 
 ### Profile mixture models
 
-Sometimes one only wants to model the changes in nucleotide or amino-acid frequencies along the sequences while keeping the substitution rate matrix the same. This can be specified in IQ-TREE via `FMIX{...}` model syntax. For convenience the mixture components can be defined in a NEXUS file like this (example corresponds to [the CF4 model](Substitution-Models#protein-models) of ([Wang et al., 2008])): 
+Sometimes one only wants to model the changes in nucleotide or amino-acid frequencies along the sequences while keeping the substitution rate matrix the same. This can be specified in IQ-TREE via `FMIX{...}` model syntax. For convenience the mixture components can be defined in a NEXUS file like this (example corresponds to [the CF4 model](Substitution-Models#protein-mixture-models) of ([Wang et al., 2008])): 
 
     #nexus
     begin models;
@@ -191,7 +173,7 @@ The `-mdef` option specifies the NEXUS file containing user-defined models. Here
 
 ### NEXUS model file
 
-In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mixture models](Substitution-Models#protein-models). In addition to defining state frequencies, one can specify the entire model with rate matrix and state frequencies together. For example, the LG4M model ([Le et al., 2012]) can be defined by:
+In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mixture models](Substitution-Models#protein-mixture-models). In addition to defining state frequencies, one can specify the entire model with rate matrix and state frequencies together. For example, the LG4M model ([Le et al., 2012]) can be defined by:
 
     #nexus
     begin models;
@@ -226,10 +208,10 @@ Here is an example of computation time and RAM usage for an Obazoa data set (68 
 
 | Models    | CPU time      | Wall-clock time |	RAM usage |
 |-----------|--------------:|----------------:|----------:|
-| LG+F+G    |   43h:38m:23s |   3h:37m:23s    |   1.8 GB  |
-| LG+C20+F+G|  584h:25m:29s	|  46h:39m:06s    |	 38.8 GB  |
-| LG+C60+F+G| 1502h:25m:31s | 125h:15m:29s    | 112.8 GB  |
-| LG+PMSF+G	|   73h:30m:37s |    5h:7m:27s    |	  2.2 GB  |
+| `LG+F+G`     |   43h:38m:23s |   3h:37m:23s    |   1.8 GB  |
+| `LG+C20+F+G` |  584h:25m:29s	|  46h:39m:06s    |	 38.8 GB  |
+| `LG+C60+F+G` | 1502h:25m:31s | 125h:15m:29s    | 112.8 GB  |
+| `LG+PMSF+G`  |   73h:30m:37s |    5h:7m:27s    |	  2.2 GB  |
 
 
 ### Example usages
@@ -263,9 +245,9 @@ Here is the list of relevant command line options:
 
 | Option | Usage and meaning |
 |--------|---------------------------------------------------------------------|
-|  -ft   | Specify a guide tree tree to infer site frequency model |
-|  -fs   | Specify a site frequency model file |
-| -fmax  | Switch to posterior maximum instead of posterior mean approximation | 
+|  `-ft`   | Specify a guide tree tree to infer site frequency model |
+|  `-fs`   | Specify a site frequency model file |
+| `-fmax`  | Switch to posterior maximum instead of posterior mean approximation | 
 
 
 Heterotachy models

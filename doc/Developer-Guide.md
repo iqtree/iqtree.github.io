@@ -26,22 +26,11 @@ This guide gives developers an overview of IQ-TREE software design, data structu
 
 >**NOTICE**: This guide is still under preparation, thus the contents may change frequently.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [Alignment class](#alignment-class)
-- [Model of substitution](#model-of-substitution)
-  - [ModelSubst](#modelsubst)
-  - [ModelGTR](#modelgtr)
-- [PhyloTree class (phylogenetic tree)](#phylotree-class-phylogenetic-tree)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 
 To achieve both high performance and flexibility, IQ-TREE software has been entirely written in object oriented C++. Thus, it faciliates extending with new sequence data types or new models. IQ-TREE code consists of C++ *classes*, most of which inherits from three basal classes: `Alignment`, `ModelSubst` and `PhyloTree` to handle sequence alignments, models of substitution and phylogenetic trees, respectively. In the following we introduce these basal classes.
 
 >**TIP**: IQ-TREE extensively uses *Standard Template Library (STL)* in C++. Thus, be first familiar with STL and fundamental STL data structures like `string`, `vector`, `set` and `map`.
+{: .tip}
 
 Alignment class
 ---------------
@@ -86,7 +75,7 @@ public:
 };
 ~~~
 
->**NOTICE**: Please follow the commenting style of the code when declaring new components (classes, functions or variables) like the example above. That way, the source code documentation can be generated with tools like [Doxygen](http://doxygen.org/). See [Doxygen commenting manual](http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html) for more details.
+>**NOTE**: Please follow the commenting style of the code when declaring new components (classes, functions or variables) like the example above. That way, the source code documentation can be generated with tools like [Doxygen](http://doxygen.org/). See [Doxygen commenting manual](http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html) for more details.
 
 Model of substitution
 ---------------------

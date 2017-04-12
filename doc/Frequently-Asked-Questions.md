@@ -38,23 +38,6 @@ Frequently asked questions
 For common questions and answers.
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [How do I get help?](#how-do-i-get-help)
-- [How do I report bug?](#how-do-i-report-bug)
-- [How do I interpret ultrafast bootstrap (UFBoot) support values?](#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values)
-- [How does IQ-TREE treat gap/missing/ambiguous characters?](#how-does-iq-tree-treat-gapmissingambiguous-characters)
-- [Can I mix DNA and protein data in a partitioned analysis?](#can-i-mix-dna-and-protein-data-in-a-partitioned-analysis)
-- [What is the interpretation of branch lengths when mixing codon and DNA data?](#what-is-the-interpretation-of-branch-lengths-when-mixing-codon-and-dna-data)
-- [What is the purpose of composition test?](#what-is-the-purpose-of-composition-test)
-- [What is the good number of CPU cores to use?](#what-is-the-good-number-of-cpu-cores-to-use)
-- [How do I save time for standard bootstrap?](#how-do-i-save-time-for-standard-bootstrap)
-- [Why does IQ-TREE complain about the use of +ASC model?](#why-does-iq-tree-complain-about-the-use-of-asc-model)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 
 How do I get help?
 ------------------
@@ -177,7 +160,7 @@ This test should be regarded as an *explorative tool* which might help to nail d
 Furthermore, please keep in mind, this test is performed at the very beginning, where IQ-TREE does not know anything about the models yet. That means:
 
 * If you have partitioned (multi-gene) data, it might be more reasonable to test this separately for each partition in a partition analysis. Here, one might want to be able to decide whether some partitions should better be discarded if it is hard to find a composition representing the sequences in the partition. Or on the other hand if a sequence fails for many partitions and show very unexpected phylogenetic topologies, try without it.
-* If you have (phylogenomic) protein data, you can also try several [protein mixture models](Substitution-Models#protein-models), which account for different amino-acid compositions along the sequences, for example, the `C10` to `C60` profile mixture models.
+* If you have (phylogenomic) protein data, you can also try several [protein mixture models](Substitution-Models#protein-mixture-models), which account for different amino-acid compositions along the sequences, for example, the `C10` to `C60` profile mixture models.
 * Finally, it is recommended to always check the alignment (something one should always do anyway), especially if they have been collected and produced automatically.
 
 
@@ -246,7 +229,9 @@ This is because your alignment contains _invariant_ sites (columns), which viola
 All these sites must be removed from the alignment before a +ASC model can be applied.
 
 >**TIP**: Starting with IQ-TREE version 1.5.0, an output alignment file with suffix `.varsites` is written in such cases, which contain only variable sites from the input alignment. The `.varsites` alignment can then be used with the +ASC model.
+{: .tip}
 
 
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
+
