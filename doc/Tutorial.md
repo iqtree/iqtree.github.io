@@ -198,20 +198,17 @@ Sometimes you only want to find the best-fit model without doing tree reconstruc
     #for IQ-TREE version <= 1.5.3:
     iqtree -s example.phy -m TESTNEWONLY
 
-> **Why ModelFinder at all?**
+> **Why ModelFinder?**
+> 
+> - ModelFinder is up to 100 times faster than jModelTest/ProtTest.
 >
+> - jModelTest/ProtTest provides the invariable (`+I`) and Gamma rate (`+G`) heterogeneity across sites, but there is no reason to believe that evolution follows a Gamma distribution. ModelFinder additionally considers the [FreeRate heterogeneity model (`+R`)](Substitution-Models#rate-heterogeneity-across-sites), which relaxes the assumption of Gamma distribution, where the site rates and proportions are _free-to-vary_ and inferred independently from the data. Moreover, `+R` allows to automatically determine the number of rate categories, which is impossible with `+G`. This can be important especially for phylogenomic data, where the default 4 rate categories may "underfit" the data.
 >
-> ModelFinder has several advantages compared to existing approaches like jModelTest and ProtTest:
+> - ModelFinder works transparently with tree inference in IQ-TREE, thus combining both steps in just one single run! This eliminates the need for a separate software for DNA (jModelTest) and another for protein sequences (ProtTest).
 >
-> 1. ModelFinder is up to 100 times faster than jModelTest/ProtTest.
+> - Apart from DNA and protein sequences, ModelFinder also works with codon, binary and morphological sequences.
 >
-> 2. jModelTest/ProtTest provides the invariable (`+I`) and Gamma rate (`+G`) heterogeneity across sites, but there is no reason to believe that evolution follows a Gamma distribution. ModelFinder additionally considers the [FreeRate heterogeneity model (`+R`)](Substitution-Models#rate-heterogeneity-across-sites), which relaxes the assumption of Gamma distribution, where the site rates and proportions are _free-to-vary_ and inferred independently from the data. Moreover, `+R` allows to automatically determine the number of rate categories, which is impossible with `+G`. This can be important especially for phylogenomic data, where the default 4 rate categories may "underfit" the data.
->
-> 3. ModelFinder works transparently with tree inference in IQ-TREE, thus combining both steps in just one single run! This eliminates the need for a separate software for DNA (jModelTest) and another for protein sequences (ProtTest).
->
-> 4. Apart from DNA and protein sequences, ModelFinder also works with codon, binary and morphological sequences.
->
-> 5. ModelFinder can also find best partitioning scheme just like PartitionFinder ([Lanfear et al., 2012]). See [advanced tutorial for more details](Advanced-Tutorial).
+> - ModelFinder can also find best partitioning scheme just like PartitionFinder ([Lanfear et al., 2012]). See [advanced tutorial for more details](Advanced-Tutorial).
 >
 > If you still want to resembles jModelTest/ProtTest, then use option `-m TEST` or `-m TESTONLY` instead.
 {: .tip}

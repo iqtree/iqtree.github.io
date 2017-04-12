@@ -15,7 +15,7 @@ margin-left: 1in
 margin-right: 1.2in
 fontsize: 12pt
 linkcolor: blue
-urlcolor: green!60!black
+urlcolor: blue
 toccolor: black
 institute: Center for Integrative Bioinformatics Vienna, <http://www.cibiv.at>
 include-before: |
