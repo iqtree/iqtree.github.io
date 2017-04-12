@@ -4,35 +4,38 @@
         </p>
     <div class="spacing"></div>-->
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">User documentation</h3>
-        </div>
-        <div class="panel-body" id="sidebar">
-            {% assign sorted_posts = (site.pages | where: "layout", "userdoc" | sort: 'docid') %}
-            {% for post in sorted_posts %}
-                <p>
-                    {% if post.title == page.title %}
-                        {% if post.icon %}
-                            <i class="fa fa-{{ post.icon }}"></i> 
-                        {% endif %}
-                        {{ post.title }}
-                    {% else %}
-                        <a href="{{ post.url | prepend: site.baseurl }}">
-                            {% if post.icon %}
-                                <i class="fa fa-{{ post.icon }}"></i> 
-                            {% endif %}
-                            {{ post.title }}
-                        </a>
-                    {% endif %}
-                </p>
-                {% if post.title == page.title %}
-                    <ul>
-                    {% for section in post.sections %}
-                    <li><a href="{{ post.url | prepend: site.baseurl }}#{{ section.url }}">{{ section.name }}</a></li>
-                    {% endfor %}
-                    </ul>                
+
+<div class="well well-sm">
+    <a href="iqtree-doc.pdf"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i> Download Tutorials and Manual in one PDF</a>
+</div>
+<div class="well well-sm" id="sidebar">
+    <h4>Documentation</h4>
+    {% assign sorted_posts = (site.pages | where: "layout", "userdoc" | sort: 'docid') %}
+    {% for post in sorted_posts %}
+        {% if post.docid == nil %}
+            {% continue %}
+        {% endif %}
+        <p>
+            {% if post.title == page.title %}
+                {% if post.icon %}
+                    <i class="fa fa-{{ post.icon }}"></i> 
                 {% endif %}
+                {{ post.title }}
+            {% else %}
+                <a href="{{ post.url | prepend: site.baseurl }}">
+                    {% if post.icon %}
+                        <i class="fa fa-{{ post.icon }}"></i> 
+                    {% endif %}
+                    {{ post.title }}
+                </a>
+            {% endif %}
+        </p>
+        {% if post.title == page.title %}
+            <ul>
+            {% for section in post.sections %}
+            <li><a href="{{ post.url | prepend: site.baseurl }}#{{ section.url }}">{{ section.name }}</a></li>
             {% endfor %}
-        </div>
-    </div>              
+            </ul>                
+        {% endif %}
+    {% endfor %}
+</div>

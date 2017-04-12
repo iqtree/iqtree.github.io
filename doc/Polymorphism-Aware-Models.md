@@ -1,9 +1,8 @@
 ---
 layout: userdoc
-title: "Polymorphism Aware Models"
+title: "Polymorphism-Aware Models"
 author: Dominik Schrempf, Minh Bui
-date:   2017-04-01
-permalink: doc/Polymorphism-Aware-Models/
+date:    2017-04-12
 docid: 13
 icon: book
 doctype: manual
@@ -33,20 +32,6 @@ Polymorphism-aware models
 **Po**lymorphism-aware phylogenetic **Mo**dels (PoMo) related documentation.
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [Counts files](#counts-files)
-- [First running example](#first-running-example)
-- [Substitution models](#substitution-models)
-- [Virtual population size](#virtual-population-size)
-- [Sampling method](#sampling-method)
-- [Bootstrap branch support](#bootstrap-branch-support)
-- [Interpretation of branch lengths](#interpretation-of-branch-lengths)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 The **Po**lymorphism-aware phylogenetic **Mo**del (PoMo) tries to use
 population data (site frequency data) to improve phylogenetic
 inference.  Thereby it builds on top of DNA substitution models and
@@ -67,8 +52,8 @@ Please confirm that your version of IQ-TREE supports PoMo.
     >> ...
 
 >**TIP**: For a quick overview of all PoMo related options in IQ-TREE,
->run the command `iqtree -h` and scroll to the heading `POLYMORPHISM
->AWARE MODELS (PoMo)`.
+>run the command `iqtree -h` and scroll to the heading `POLYMORPHISM AWARE MODELS (PoMo)`.
+{: .tip}
 
 If you use PoMo, please cite [Schrempf et al., 2016]:
 
@@ -80,6 +65,7 @@ If you use PoMo, please cite [Schrempf et al., 2016]:
 
 Counts files
 ------------
+<div class="hline"></div>
 
 The input of PoMo is allele frequency data.  Especially, when
 populations have many individuals it is preferable to count the
@@ -135,6 +121,7 @@ instructions, please refer to the
 
 First running example
 ---------------------
+<div class="hline"></div>
 
 You can now start to reconstruct a maximum-likelihood tree from this
 alignment by entering (assuming that you are now in the same folder
@@ -144,7 +131,7 @@ with `example.cf`):
 
 `-s` is the option to specify the name of the alignment file.  At the
 end of the run IQ-TREE writes the same output files as in the standard
-version (see [tutorial](../Tutorial)).
+version (see [tutorial](Tutorial)).
 
 * `example.cf.iqtree`: the main report file that is self-readable.
 You should look at this file to see the computational results.  It
@@ -166,6 +153,7 @@ analyses on the same alignment within the same folder.
 
 Substitution models
 -------------------
+<div class="hline"></div>
 
 By default, PoMo runs with the HKY model.  Different DNA substitution
 models can be selected with the `-m` option.  E.g., to select the GTR
@@ -187,11 +175,12 @@ frequencies together with the rate parameters, use:
     iqtree -s example.cf -m GTR+rP+FO
 
 >**TIP**: For a quick overview of all available models in IQ-TREE, run
->the command `iqtree -h` and scroll to the heading `POLYMORPHISM AWARE
->MODELS (PoMo)`.
+>the command `iqtree -h` and scroll to the heading `POLYMORPHISM AWARE MODELS (PoMo)`.
+{: .tip}
 
 Virtual population size
 -----------------------
+<div class="hline"></div>
 
 PoMo models the evolution of populations by means of a virtual
 population of constant size N, which defaults to nine (for details,
@@ -210,6 +199,7 @@ This results in a considerable decrease of runtime.
 
 Sampling method
 ---------------
+<div class="hline"></div>
 
 For advanced users.  PoMo offers two different methods to read in the
 data ([Schrempf et al., 2016]). Briefly, each species and site are
@@ -236,6 +226,7 @@ method.
         
 Bootstrap branch support
 ------------------------
+<div class="hline"></div>
 
 To overcome the computational burden required by the non-parametric
 bootstrap, IQ-TREE introduces an ultra fast bootstrap approximation
@@ -250,10 +241,11 @@ e.g., for 100 replicates:
 
     iqtree -s example.cf -b 100
 
-For a detailed description, please refer to the [bootstrap tutorial](../Tutorial/#assessing-branch-supports-with-ultrafast-bootstrap-approximation).
+For a detailed description, please refer to the [bootstrap tutorial](Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation).
 
 Interpretation of branch lengths
 --------------------------------
+<div class="hline"></div>
 
 PoMo estimates the branch length in number of mutations and frequency
 shifts (drift) per site.  The number of drift events compared to the
@@ -277,3 +269,5 @@ the total tree length measured in number of substitution per site in
     - measured in substitutions per site: 0.01767814 (2.48285810% of tree length)
 
 [Schrempf et al., 2016]: http://dx.doi.org/10.1016/j.jtbi.2016.07.042
+
+

@@ -19,7 +19,7 @@ permalink: /release/
                 {{ post.content }}
                 <p>
                 {% if numPages == 0 %}
-                    <a href="../#download" class="btn btn-primary" role="button">Download latest version {{ post.version }}</a>
+                    <a href="{{ site.baseurl }}/#download" class="btn btn-primary" role="button">Download latest version {{ post.version }}</a>
                 {% else %}
                     <a href="https://github.com/Cibiv/IQ-TREE/releases/tag/v{{ post.version }}" class="btn btn-primary" role="button">Download version {{ post.version }} from GitHub</a>
                 {% endif %}

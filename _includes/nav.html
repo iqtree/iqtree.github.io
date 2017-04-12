@@ -16,7 +16,7 @@
         <li {% if page.title == "News" %}class="active"{% endif %}><a href="{{"/news/" | prepend: site.baseurl }}">NEWS</a></li>
         <li {% if page.title == "XXX" %}class="active"{% endif %}><a href="http://iqtree.cibiv.univie.ac.at" target="_blank">WEB SERVICE</a></li>
         <li {% if page.title == "Documentation" or page.categories.first == "doc" %}class="active"{% endif %}><a href="{{"/doc/" | prepend: site.baseurl }}">DOCUMENTATION</a></li>
-        <li {% if page.title == "FAQ" %}class="active"{% endif %}><a href="{{"/doc/Frequently-Asked-Questions/" | prepend: site.baseurl }}">FAQ</a></li>
+        <li {% if page.title == "FAQ" %}class="active"{% endif %}><a href="{{"/doc/Frequently-Asked-Questions" | prepend: site.baseurl }}">FAQ</a></li>
         <li {% if page.title == "About IQ-TREE" %}class="active"{% endif %}><a href="{{"/about/" | prepend: site.baseurl }}">ABOUT</a></li>
       </ul>
     </div><!--/.nav-collapse -->

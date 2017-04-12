@@ -68,7 +68,7 @@ releasedata_mpi: August 22, 2016
         <div class="col-sm-6">
             <i class="fa fa-tasks"></i>
             <h4>Big Data Analysis</h4>
-            <p>Supporting huge datasets with thousands of sequences or millions of alignment sites via <a href="doc/Command-Reference/#checkpointing-to-resume-stopped-run">checkpointing</a>, safe numerical and low memory mode. <a href="doc/Tutorial/#utilizing-multi-core-cpus">Multicore CPUs</a> and <a href="doc/Compilation-Guide/#compiling-mpi-version">parallel MPI system</a> are utilized to speedup analysis.</p>
+            <p>Supporting huge datasets with thousands of sequences or millions of alignment sites via <a href="doc/Command-Reference#checkpointing-to-resume-stopped-run">checkpointing</a>, safe numerical and low memory mode. <a href="doc/Tutorial#utilizing-multi-core-cpus">Multicore CPUs</a> and <a href="doc/Compilation-Guide#compiling-mpi-version">parallel MPI system</a> are utilized to speedup analysis.</p>
         </div>		 				
     </div>
     <br>
@@ -78,11 +78,11 @@ releasedata_mpi: August 22, 2016
                 <div class="list-group-item list-group-item-warning">
                     <h4 class="centered">New features in 1.5.x (<a href="news/">see all news</a>)</h4>
                     <ul>
-                        <li><a href="doc/Complex-Models/#site-specific-frequency-models">Posterior mean site frequency (PMSF) model as fast and accurate approximation for CAT model C10 to C60</a></li>
-                        <li><a href="doc/Command-Reference/#tree-search-parameters">User-defined topological constraint for tree search [-g option]</a></li>
-                        <li><a href="doc/Compilation-Guide/#compiling-mpi-version">MPI parallel version for distributing computations across cluster nodes</a></li>
-                        <li><a href="doc/Command-Reference/#general-options">Low memory [-mem] and safe numerical mode [-safe] for large data sets or complex mixture models</a></li>
-                        <li><a href="doc/Tutorial/#utilizing-multi-core-cpus">Automatic detection for the best number of threads to use [-nt AUTO]</a></li>
+                        <li><a href="doc/Complex-Models#site-specific-frequency-models">Posterior mean site frequency (PMSF) model as fast and accurate approximation for CAT model C10 to C60</a></li>
+                        <li><a href="doc/Advanced-Tutorial#constrained-tree-search">User-defined topological constraint for tree search [-g option]</a></li>
+                        <li><a href="doc/Compilation-Guide#compiling-mpi-version">MPI parallel version for distributing computations across cluster nodes</a></li>
+                        <li><a href="doc/Command-Reference#general-options">Low memory [-mem] and safe numerical mode [-safe] for large data sets or complex mixture models</a></li>
+                        <li><a href="doc/Tutorial#utilizing-multi-core-cpus">Automatic detection for the best number of threads to use [-nt AUTO]</a></li>
                     </ul>
                 </div>
             </div>
@@ -99,17 +99,17 @@ releasedata_mpi: August 22, 2016
         <div class="col-sm-4">
             <i class="fa fa-retweet"></i>
             <h4>Common Models</h4>
-            <p>All <a href="doc/Substitution-Models/">common substitution models</a> for DNA, protein, codon, binary and morphological data with <a href="doc/Substitution-Models/#rate-heterogeneity-across-sites">rate heterogeneity among sites</a>.</p>
+            <p>All <a href="doc/Substitution-Models">common substitution models</a> for DNA, protein, codon, binary and morphological data with <a href="doc/Substitution-Models#rate-heterogeneity-across-sites">rate heterogeneity among sites</a>.</p>
         </div>
         <div class="col-sm-4">
             <i class="fa fa-pie-chart"></i>
             <h4>Partition Models</h4>
-            <p><a href="doc/Complex-Models/">Phylogenomic partition models</a> allowing for mixed data types, mixed rate heterogeneity types, linked or unlinked branch lengths.</p>
+            <p><a href="doc/Complex-Models">Phylogenomic partition models</a> allowing for mixed data types, mixed rate heterogeneity types, linked or unlinked branch lengths.</p>
         </div>
         <div class="col-sm-4">
             <i class="fa fa-flask"></i>
             <h4>Mixture Models</h4>
-            <p>Mixture models such as <a href="doc/Substitution-Models/#protein-models">empirical protein mixture models</a> and <a href="doc/Complex-Models/#mixture-models">customizable mixture models</a>.</p>
+            <p>Mixture models such as <a href="doc/Substitution-Models#protein-mixture-models">empirical protein mixture models</a> and <a href="doc/Complex-Models#mixture-models">customizable mixture models</a>.</p>
         </div>
     </div>
 </div><!--/container -->
@@ -131,7 +131,7 @@ releasedata_mpi: August 22, 2016
         <div class="col-sm-4">
             <i class="fa fa-question-circle"></i>
             <h4>User Support</h4>
-            Please refer to <a href="doc/Frequently-Asked-Questions/">Frequently Asked Questions</a>.
+            Please refer to <a href="doc/Frequently-Asked-Questions">Frequently Asked Questions</a>.
             For further feedback and bug reports, please sign up and post a topic to <a href="https://groups.google.com/d/forum/iqtree">IQ-TREE Google group</a>.
             <p><em>The average response time is two working days.</em></p>
         </div>
@@ -186,7 +186,7 @@ releasedata_mpi: August 22, 2016
         <div class="row">
             <div class="col-sm-4">
                 <div class="list-group">
-                  <a href="doc/Quickstart/" class="list-group-item">
+                  <a href="doc/Quickstart" class="list-group-item">
                     <div class="list-group-item-text"><h4>Getting started</h4>Beginner's guide for a quick start.</div>
                   </a>
                 </div>
@@ -200,16 +200,16 @@ releasedata_mpi: August 22, 2016
             </div>
             <div class="col-sm-4">
                 <div class="list-group">
-                  <a href="doc/Compilation-Guide/" class="list-group-item">
+                  <a href="doc/Compilation-Guide" class="list-group-item">
                     <div class="list-group-item-text"><h4>Compilation guide</h4>Building IQ-TREE from source code.</div>
                   </a>
                 </div>
             </div>
         </div><!-- /row -->
     </div> <!-- /container -->
-    <br><div id="variant" class="hline"></div><br>
+    <br><div class="hline"></div><br>
 <!-- ========================== IQ-TREE variants ========================== -->
-    <div class="container">
+    <div id="variant" class="container">
         <div class="row centered">
             <div class="col-sm-12">
                 <h3>IQ-TREE variants <span class="label label-danger"><em>New!</em></span></h3>
@@ -219,8 +219,8 @@ releasedata_mpi: August 22, 2016
                 <h4>Polymorphism-aware Models (PoMo)</h4>
                 PoMo models accounting for <em>incomplete lineage sorting</em> to infer species tree from genome-wide population data (<a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">Schrempf et al., 2016</a>).
                 <p>
-                    <a href="https://github.com/Cibiv/IQ-TREE/releases/tag/v{{page.version_pomo}}" class="btn btn-warning" role="button">Download IQ-TREE PoMo</a>
-                    <a href="doc/Polymorphism-Aware-Models/" class="btn btn-warning" role="button">User Guide</a>
+                    <a href="https://github.com/Cibiv/IQ-TREE/releases/tag/v{{page.version_pomo}}" class="btn btn-success" role="button">Download IQ-TREE PoMo</a>
+                    <a href="doc/Polymorphism-Aware-Models" class="btn btn-success" role="button">User Guide</a>
                 </p>
             </div>
             <div class="col-sm-6">
@@ -228,8 +228,8 @@ releasedata_mpi: August 22, 2016
                 <h4>Heterotachy Models</h4>
                 Mixture models accounting for heterotachous evolution - rate heterogeneity among sites and lineages (Crotty et al., in prep.).
                 <p>
-                    <a href="https://github.com/Cibiv/IQ-TREE/releases/tag/v{{page.version_heterotachy}}" class="btn btn-warning" role="button">Download IQ-TREE Heterotachy</a>
-                    <a href="doc/Heterotachy-Models/" class="btn btn-warning" role="button">User Guide</a>
+                    <a href="https://github.com/Cibiv/IQ-TREE/releases/tag/v{{page.version_heterotachy}}" class="btn btn-success" role="button">Download IQ-TREE Heterotachy</a>
+                    <a href="doc/Complex-Models#heterotachy-models" class="btn btn-success" role="button">User Guide</a>
                 </p>
             </div>
         </div>
@@ -245,7 +245,7 @@ releasedata_mpi: August 22, 2016
         <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
             <br><h2 class="centered">How to cite IQ-TREE?</h2>
             <div class="list-group">
-                <div class="list-group-item list-group-item-success">
+                <div class="list-group-item list-group-item-danger">
                 <h4>To maintain IQ-TREE, support users and secure fundings, it is important for us that you cite the following papers, whenever the corresponding features were applied for your analysis.</h4>
                 Example 1: "...We obtained branch supports with the ultrafast bootstrap (Minh et al. 2013) implemented in the IQ-TREE software (Nguyen et al. 2015)..."
                 <br><br>

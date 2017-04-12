@@ -1,10 +1,9 @@
 ---
 layout: userdoc
-title: "Tutorial"
+title: "Beginner's Tutorial"
 author: Jana, Minh Bui
-date:   2017-04-01
-permalink: doc/Tutorial/
-docid: 02
+date:    2017-04-12
+docid: 3
 icon: info-circle
 doctype: tutorial
 tags:
@@ -17,8 +16,8 @@ sections:
   url: first-running-example
 - name: Model selection
   url: choosing-the-right-substitution-model
-- name: Codon models
-  url: codon-models
+- name: Using codon models
+  url: using-codon-models
 - name: Binary, Morphological, SNPs
   url: binary-morphological-and-snp-data
 - name: Ultrafast bootstrap
@@ -37,31 +36,15 @@ Beginner's tutorial
 This tutorial gives a beginner's guide. 
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [Input data](#input-data)
-- [First running example](#first-running-example)
-- [Choosing the right substitution model](#choosing-the-right-substitution-model)
-- [Codon models](#codon-models)
-- [Binary, morphological and SNP data](#binary-morphological-and-snp-data)
-- [Assessing branch supports with ultrafast bootstrap approximation](#assessing-branch-supports-with-ultrafast-bootstrap-approximation)
-- [Assessing branch supports with  standard nonparametric bootstrap](#assessing-branch-supports-with--standard-nonparametric-bootstrap)
-- [Assessing branch supports with single branch tests](#assessing-branch-supports-with-single-branch-tests)
-- [Utilizing multi-core CPUs](#utilizing-multi-core-cpus)
-- [Where to go from here?](#where-to-go-from-here)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
-Please first [download](../../#download) and [install](../Quickstart) the binary
-for your platform . For the next steps, the folder containing your  `iqtree` executable should be added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
+Please first [download](http://www.iqtree.org/#download) and [install](Quickstart) the binary
+for your platform. For the next steps, the folder containing your  `iqtree` executable should be added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
 
 >**TIP**: For quick overview of all supported options in IQ-TREE, run the command  `iqtree -h`. 
+{: .tip}
 
 Input data
 ----------
+<div class="hline"></div>
 
 IQ-TREE takes as input a *multiple sequence alignment* and will reconstruct an evolutionary tree that is best explained by the input data. The input alignment can be in various common formats. For example the [PHYLIP format](http://evolution.genetics.washington.edu/phylip/doc/sequence.html) which may look like:
 
@@ -91,10 +74,11 @@ This tiny alignment contains 7 DNA sequences from several animals with the seque
     >Mouse      
     CTACCACACCCCAGGACTCAGCAGTGAT
 
->**TIP**: If you have raw sequences, you need to first apply alignment programs like [MAFFT](http://mafft.cbrc.jp/alignment/software/) or [ClustalW](http://www.clustal.org) to align the sequences, before feeding them into IQ-TREE.
+>**NOTE**: If you have raw sequences, you need to first apply alignment programs like [MAFFT](http://mafft.cbrc.jp/alignment/software/) or [ClustalW](http://www.clustal.org) to align the sequences, before feeding them into IQ-TREE.
 
 First running example
 ---------------------
+<div class="hline"></div>
 
 From the download there is an example alignment called `example.phy`
  in PHYLIP format. This example contains parts of the mitochondrial DNA sequences of several animals (Source: [Phylogenetic Handbook](http://www.kuleuven.be/aidslab/phylogenybook/home.html)).
@@ -179,8 +163,9 @@ This prevents output files being overwritten when you perform multiple analyses 
 
 Choosing the right substitution model
 -------------------------------------
+<div class="hline"></div>
 
-IQ-TREE supports a wide range of [substitution models](../Substitution-Models) for DNA, protein, codon, binary and morphological alignments. If you do not know which model is appropriate for your data, you can use ModelFinder to determine the best-fit model:
+IQ-TREE supports a wide range of [substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological alignments. If you do not know which model is appropriate for your data, you can use ModelFinder to determine the best-fit model:
 
     #for IQ-TREE version >= 1.5.4:
     iqtree -s example.phy -m MFP
@@ -195,6 +180,7 @@ Then ModelFinder chooses the model that minimizes the BIC score (you can also ch
 adding the option `-AIC` or `-AICc`, respectively).
 
 >**TIP**: Starting with version 1.5.4, `-m MFP` is the default behavior. Thus, this run is equivalent to `iqtree -s example.phy`.
+{: .tip}
 
 Here, IQ-TREE will write an additional file:
 
@@ -212,22 +198,20 @@ Sometimes you only want to find the best-fit model without doing tree reconstruc
     #for IQ-TREE version <= 1.5.3:
     iqtree -s example.phy -m TESTNEWONLY
 
-> **Why ModelFinder at all?**
+> **Why ModelFinder?**
+> 
+> - ModelFinder is up to 100 times faster than jModelTest/ProtTest.
 >
+> - jModelTest/ProtTest provides the invariable (`+I`) and Gamma rate (`+G`) heterogeneity across sites, but there is no reason to believe that evolution follows a Gamma distribution. ModelFinder additionally considers the [FreeRate heterogeneity model (`+R`)](Substitution-Models#rate-heterogeneity-across-sites), which relaxes the assumption of Gamma distribution, where the site rates and proportions are _free-to-vary_ and inferred independently from the data. Moreover, `+R` allows to automatically determine the number of rate categories, which is impossible with `+G`. This can be important especially for phylogenomic data, where the default 4 rate categories may "underfit" the data.
 >
-> ModelFinder has several advantages compared to existing approaches like jModelTest and ProtTest:
+> - ModelFinder works transparently with tree inference in IQ-TREE, thus combining both steps in just one single run! This eliminates the need for a separate software for DNA (jModelTest) and another for protein sequences (ProtTest).
 >
-> 1. ModelFinder is up to 100 times faster than jModelTest/ProtTest.
+> - Apart from DNA and protein sequences, ModelFinder also works with codon, binary and morphological sequences.
 >
-> 2. jModelTest/ProtTest provides the invariable (`+I`) and Gamma rate (`+G`) heterogeneity across sites, but there is no reason to believe that evolution follows a Gamma distribution. ModelFinder additionally considers the [FreeRate heterogeneity model (`+R`)](../Substitution-Models/#rate-heterogeneity-across-sites), which relaxes the assumption of Gamma distribution, where the site rates and proportions are _free-to-vary_ and inferred independently from the data. Moreover, `+R` allows to automatically determine the number of rate categories, which is impossible with `+G`. This can be important especially for phylogenomic data, where the default 4 rate categories may "underfit" the data.
->
-> 3. ModelFinder works transparently with tree inference in IQ-TREE, thus combining both steps in just one single run! This eliminates the need for a separate software for DNA (jModelTest) and another for protein sequences (ProtTest).
->
-> 4. Apart from DNA and protein sequences, ModelFinder also works with codon, binary and morphological sequences.
->
-> 5. ModelFinder can also find best partitioning scheme just like PartitionFinder ([Lanfear et al., 2012]). See [advanced tutorial for more details](../Advanced-Tutorial).
+> - ModelFinder can also find best partitioning scheme just like PartitionFinder ([Lanfear et al., 2012]). See [advanced tutorial for more details](Advanced-Tutorial).
 >
 > If you still want to resembles jModelTest/ProtTest, then use option `-m TEST` or `-m TESTONLY` instead.
+{: .tip}
 
 By default, the maximum number of categories is limitted to 10 due to computational reasons. If your sequence alignment is long enough, then you can increase this upper limit with the `cmax` option:
 
@@ -250,16 +234,17 @@ If you have enough computational resource, you can perform a thorough and more a
     iqtree -s example.phy -m TESTNEWONLY -mtree
 
 
-Codon models
-------------
+Using codon models
+------------------
+<div class="hline"></div>
 
-IQ-TREE supports a number of [codon models](../Substitution-Models/#codon-models). You need to input a protein-coding DNA alignment and specify codon data by option `-st CODON` (Otherwise, IQ-TREE applies DNA model because it detects that your alignment has DNA sequences):
+IQ-TREE supports a number of [codon models](Substitution-Models#codon-models). You need to input a protein-coding DNA alignment and specify codon data by option `-st CODON` (Otherwise, IQ-TREE applies DNA model because it detects that your alignment has DNA sequences):
 
     iqtree -s coding_gene.phy -st CODON 
 
 If your alignment length is not divisible by 3, IQ-TREE will stop with an error message. IQ-TREE will group sites 1,2,3 into codon site 1; sites 4,5,6 to codon site 2; etc. Moreover, any codon, which has at least one gap/unknown/ambiguous nucleotide, will be treated as unknown codon character.
 
-Note that the above command assumes the standard genetic code. If your sequences follow 'The Invertebrate Mitochondrial Code' (see [the full list of supported genetic code here](../Substitution-Models/#codon-models)), then run:
+Note that the above command assumes the standard genetic code. If your sequences follow 'The Invertebrate Mitochondrial Code' (see [the full list of supported genetic code here](Substitution-Models#codon-models)), then run:
 
     iqtree -s coding_gene.phy -st CODON5 
 
@@ -268,13 +253,14 @@ Note that ModelFinder works for codon alignments. IQ-TREE version >= 1.5.4 will 
 
 Binary, morphological and SNP data
 ---------------------------------
+<div class="hline"></div>
 
 IQ-TREE supports discrete morphological alignments by  `-st MORPH` option:
 
     iqtree -s morphology.phy -st MORPH
 
-IQ-TREE implements to two morphological ML models: [MK and ORDERED](../Substitution-Models/#binary-and-morphological-models). Morphological data typically do not have constant (uninformative) sites. 
-In such cases, you should apply [ascertainment bias correction](../Substitution-Models/#ascertainment-bias-correction) model by e.g.:
+IQ-TREE implements to two morphological ML models: [MK and ORDERED](Substitution-Models#binary-and-morphological-models). Morphological data typically do not have constant (uninformative) sites. 
+In such cases, you should apply [ascertainment bias correction](Substitution-Models#ascertainment-bias-correction) model by e.g.:
  
     iqtree -s morphology.phy -st MORPH -m MK+ASC
 
@@ -302,6 +288,7 @@ You can explicitly tell model testing to only include  `+ASC` model with:
 
 Assessing branch supports with ultrafast bootstrap approximation
 ----------------------------------------------------------------
+<div class="hline"></div>
 
 To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. To run UFBoot, use the option  `-bb`:
 
@@ -316,11 +303,12 @@ computed as the occurence frequencies in the bootstrap trees. This file is in "s
 *  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
 but in NEXUS format, which can be viewed with the program SplitsTree. 
 
->**TIP**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](../Frequently-Asked-Questions/#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
+>**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
 
 Assessing branch supports with  standard nonparametric bootstrap
 ----------------------------------------------------------------
+<div class="hline"></div>
 
 The standard nonparametric bootstrap is invoked by  the  `-b` option:
 
@@ -333,6 +321,7 @@ is the minimum recommended number. The output files are similar to those produce
 
 Assessing branch supports with single branch tests
 --------------------------------------------------
+<div class="hline"></div>
 
 IQ-TREE provides an implementation of the SH-like approximate likelihood ratio test ([Guindon et al., 2010]). To perform this test,  run:
 
@@ -340,7 +329,7 @@ IQ-TREE provides an implementation of the SH-like approximate likelihood ratio t
 
  `-alrt` specifies the number of bootstrap replicates for SH-aLRT where 1000 is the minimum number recommended. 
 
-IQ-TREE also supports other tests such as the aBayes test ([Anisimova et al., 2011]) and the local bootstrap test ([Adachi and Hasegawa, 1996]). See [single branch tests](../Command-Reference/#single-branch-tests) for more details.
+IQ-TREE also supports other tests such as the aBayes test ([Anisimova et al., 2011]) and the local bootstrap test ([Adachi and Hasegawa, 1996]). See [single branch tests](Command-Reference#single-branch-tests) for more details.
 
 You can also perform both SH-aLRT and the ultrafast bootstrap within one single run:
 
@@ -391,9 +380,10 @@ From this figure, the branching patterns within reptiles are poorly supported (e
 
 Utilizing multi-core CPUs
 -------------------------
+<div class="hline"></div>
 
 A specialized version of IQ-TREE (`iqtree-omp`) can utilize multiple CPU cores to speed up the analysis.
-To obtain this version please refer to the [quick starting guide](../Quickstart).  A complement option `-nt` allows specifying the number of CPU cores to use. For example:
+To obtain this version please refer to the [quick starting guide](Quickstart).  A complement option `-nt` allows specifying the number of CPU cores to use. For example:
 
 
     iqtree-omp -s example.phy -m TIM2+I+G -nt 2
@@ -418,8 +408,9 @@ Therefore, I would only use 3 cores for this example data. For later analysis wi
 
 Where to go from here?
 ----------------------------
+<div class="hline"></div>
 
-Once confident enough you can go on with a **[more advanced tutorial](../Advanced-Tutorial)**, which covers topics like phylogenomic (multi-gene) analyses using partition models or mixture models.
+Once confident enough you can go on with a **[more advanced tutorial](Advanced-Tutorial)**, which covers topics like phylogenomic (multi-gene) analyses using partition models or mixture models.
 
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf

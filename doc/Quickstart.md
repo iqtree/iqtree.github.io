@@ -1,16 +1,17 @@
 ---
 layout: userdoc
-title: "Quickstart"
+title: "Getting Started"
 author: Minh Bui
-date:   2017-04-01
-permalink: doc/Quickstart/
-docid: 01
+date:    2017-04-12
+docid: 1
 icon: info-circle
 doctype: tutorial
 tags:
 - tutorial
 description: Recommended for users who just downloaded IQ-TREE the first time.
 sections:
+- name: IQ-TREE web server
+  url: iq-tree-web-server
 - name: Installation
   url: installation
 - name: For Windows users
@@ -27,23 +28,20 @@ Getting started
 Recommended for users who just downloaded IQ-TREE the first time.
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
 
-- [Installation](#installation)
-- [For Windows users](#for-windows-users)
-- [For Mac OS X users](#for-mac-os-x-users)
-- [Minimal command-line examples](#minimal-command-line-examples)
-- [Where to continue from here?](#where-to-continue-from-here)
+IQ-TREE web server
+------------------
+<div class="hline"></div>
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+The quickest is to try out the [IQ-TREE web server](http://iqtree.cibiv.univie.ac.at), where you only need to upload an alignment, choose the options and start the analysis. There is a [web server tutorial here](Web-Server-Tutorial). 
 
+If you want to use the command-line version, follow the instructions below.
 
 Installation
 ------------
+<div class="hline"></div>
 
-To achieve high performance IQ-TREE is a command-line program: you need to run IQ-TREE from a Terminal/Console (this is called Command Prompt under Windows). After you [downloaded IQ-TREE](../../#download), please:
+To achieve high performance IQ-TREE is a command-line program: you need to run IQ-TREE from a Terminal/Console (this is called Command Prompt under Windows). After you [downloaded IQ-TREE](http://www.iqtree.org/#download), please:
 
 * Extract the `.zip` (Windows, MacOSX) or `.tar.gz` (Linux) file to create a directory `iqtree-X.Y.Z-OS` or `iqtree-omp-X.Y.Z-OS`, where `X.Y.Z` is the version number and `OS` is the operating system (Windows, MacOSX or Linux).
 * You will find the executable in the `bin` sub-folder. Copy all files in `bin` folder to your system search path such that you can run IQ-TREE by entering `iqtree` or `iqtree-omp` from the Terminal.
@@ -53,6 +51,7 @@ Now you need to open a Terminal (or Console) to run IQ-TREE. See below the guide
 
 For Windows users
 -----------------
+<div class="hline"></div>
 
 Since IQ-TREE is a command-line program, clicking on `iqtree.exe` will not work. You have to open a Command Prompt for all analyses:
 
@@ -70,13 +69,14 @@ Since IQ-TREE is a command-line program, clicking on `iqtree.exe` will not work.
     (`example.phy` is the example PHYLIP alignment file also extracted in that folder).
 5. After a few seconds, IQ-TREE finishes and you may see something like this:
 
-![Windows command prompt](../images/win-cmd2.png)
+![Windows command prompt](images/win-cmd2.png)
 
 Congratulations ;-) You have finished the first IQ-TREE analysis.
 
 
 For Mac OS X users
 ------------------
+<div class="hline"></div>
 
 1. Open the "Terminal", e.g., by clicking on the Spotlight icon (top-right corner), typing "terminal" and press "Enter".
 2. Go into IQ-TREE folder by entering (assuming you downloaded version 1.5.0):
@@ -91,7 +91,7 @@ For Mac OS X users
     (`example.phy` is the example PHYLIP alignment file also extracted in that folder).
 4. After a few seconds, IQ-TREE finishes and you may see something like this:
 
-![Mac terminal](../images/mac-cmd2.png)
+![Mac terminal](images/mac-cmd2.png)
 
 Congratulations ;-) You have finished the first IQ-TREE analysis.
 
@@ -99,6 +99,7 @@ Congratulations ;-) You have finished the first IQ-TREE analysis.
 
 Minimal command-line examples
 -----------------------------
+<div class="hline"></div>
 
 A few typically analyses are listed in the following. Note that it is assumed that `iqtree` executable was already copied into system search path. If not, please replace `iqtree` with actual path to executable.
 
@@ -174,8 +175,10 @@ A few typically analyses are listed in the following. Note that it is assumed th
         iqtree -h
         
 
-Where to continue from here?
+Where to go from here?
 ----------------------------
+<div class="hline"></div>
 
-Please continue with the **[Beginner's tutorial](../Tutorial)** for further usages.
+Please continue with the **[Beginner's tutorial](Tutorial)** for further usages.
+
 

@@ -2,9 +2,8 @@
 layout: userdoc
 title: "Advanced Tutorial"
 author: Jana, Minh Bui
-date:   2017-04-01
-permalink: doc/Advanced-Tutorial/
-docid: 03
+date:    2017-04-12
+docid: 4
 icon: info-circle
 doctype: tutorial
 tags:
@@ -29,6 +28,8 @@ sections:
     url: consensus-construction-and-bootstrap-value-assignment
   - name: User-defined models
     url: user-defined-substitution-models
+  - name: Inferring site-specific rates
+    url: inferring-site-specific-rates
 ---
 
 Advanced tutorial
@@ -37,27 +38,12 @@ Advanced tutorial
 Recommended for experienced users to explore more features.
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [Partitioned analysis for multi-gene alignments](#partitioned-analysis-for-multi-gene-alignments)
-- [Partitioned analysis with mixed data](#partitioned-analysis-with-mixed-data)
-- [Choosing the right partitioning scheme](#choosing-the-right-partitioning-scheme)
-- [Ultrafast bootstrapping with partition model](#ultrafast-bootstrapping-with-partition-model)
-- [Constrained tree search](#constrained-tree-search)
-- [Tree topology tests](#tree-topology-tests)
-- [Testing constrained tree](#testing-constrained-tree)
-- [Consensus construction and bootstrap value assignment](#consensus-construction-and-bootstrap-value-assignment)
-- [User-defined substitution models](#user-defined-substitution-models)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
-To get started, please read the [Beginner's Tutorial](../Tutorial) first if not done so yet.
+To get started, please read the [Beginner's Tutorial](Tutorial) first if not done so yet.
 
 Partitioned analysis for multi-gene alignments
 ----------------------------------------------
+<div class="hline"></div>
+
 
 In the partition model, you can specify a substitution model for each gene/character set. 
 IQ-TREE will then estimate the model parameters separately for every partition. Moreover, IQ-TREE provides edge-linked or edge-unlinked branch lengths between partitions:
@@ -66,7 +52,7 @@ IQ-TREE will then estimate the model parameters separately for every partition. 
 * `-spp partition_file`: like above but allowing each partition to have its own evolution rate.
 * `-sp partition_file`: each partition has its own set of branch lengths (like combination of `-q` and `-M` options in RAxML) to account for, e.g. *heterotachy* ([Lopez et al., 2002]).
 
->**TIP**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
+>**NOTE**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
 
 IQ-TREE supports RAxML-style and NEXUS partition input file. The RAxML-style partition file may look like:
 
@@ -109,8 +95,11 @@ That means,  `part1` contains sites 1-100 and 200-384 of the alignment. Another 
 
 for extracting sites 1,4,7,...,100 from the alignment. This is useful for getting codon positions from the protein-coding alignment. 
 
+
+
 Partitioned analysis with mixed data
 ------------------------------------
+<div class="hline"></div>
 
 IQ-TREE also allows combining sub-alignments from different alignment files, which is helpful if you want to combine mixed data (e.g. DNA and protein) in a single analysis. Here is an example for mixing DNA, protein and codon models:
 
@@ -126,7 +115,8 @@ IQ-TREE also allows combining sub-alignments from different alignment files, whi
 
 Here,  `part1` and  `part2` contain sub-alignments from alignment file `dna.phy`, whereas `part3` and `part4` are loaded from alignment file `prot.phy` and `part5` from `codon.phy`. The `:` is needed to separate the alignment file name and site specification. Note that, for convenience `*` in `part5` specification means that `part5` corresponds to the entire alignment `codon.phy`.
 
->**NOTE**: For `part5` the `CODON` keyword is specified so that IQ-TREE will apply a codon model. Moreover, this implicitly assumes the standard genetic code. If you want to use another genetic code, append `CODON` with the [code ID described here](../Substitution-Models/#codon-models)
+>**TIP**: For `part5` the `CODON` keyword is specified so that IQ-TREE will apply a codon model. Moreover, this implicitly assumes the standard genetic code. If you want to use another genetic code, append `CODON` with the [code ID described here](Substitution-Models#codon-models)
+{: .tip}
 
 Because the alignment file names are now specified in this NEXUS file, you can omit the  `-s` option:
 
@@ -142,6 +132,7 @@ into the file  `example.nex.conaln`.
  
 Choosing the right partitioning scheme
 --------------------------------------
+<div class="hline"></div>
 
 ModelFinder implements a greedy strategy ([Lanfear et al., 2012]) that starts with the full partition model and subsequentially
 merges two genes until the model fit does not increase any further:
@@ -153,7 +144,7 @@ merges two genes until the model fit does not increase any further:
     iqtree -s example.phy -spp example.nex -m TESTNEWMERGE
 
 
-Note that this command considers the FreeRate heterogeneity model (see [model selection tutorial](../Tutorial/#choosing-the-right-substitution-model)). If you want to resemble PartitionFinder by just considering the invariable site and Gamma rate heterogeneity (thus saving computation times), then run:
+Note that this command considers the FreeRate heterogeneity model (see [model selection tutorial](Tutorial#choosing-the-right-substitution-model)). If you want to resemble PartitionFinder by just considering the invariable site and Gamma rate heterogeneity (thus saving computation times), then run:
 
     iqtree -s example.phy -spp example.nex -m TESTMERGE
 
@@ -182,8 +173,10 @@ To reduce the computational burden IQ-TREE implements the *relaxed hierarchical 
 to only examine the top 10% partition merging schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
 
 
+
 Ultrafast bootstrapping with partition model
 --------------------------------------------
+<div class="hline"></div>
 
 IQ-TREE can perform the ultrafast bootstrap with partition models by e.g.,
 
@@ -206,10 +199,12 @@ strategy: resampling genes and sites within resampled genes, which may reduce fa
     iqtree -s example.phy -spp example.nex -bb 1000 -bspec GENESITE
 
 
+
 Constrained tree search
 -----------------------
+<div class="hline"></div>
 
-Starting with version 1.5.0, IQ-TREE supports constrained tree search via `-g` option, so that the resulting tree must obey a constraint tree topology. The constraint tree can be multifurcating and need not to contain all species. To illustrate, let's return to the [first running example](../Tutorial/#first-running-example), where we want to force Human grouping with Seal whereas Cow with Whale. If you use the following constraint tree (NEWICK format):
+Starting with version 1.5.0, IQ-TREE supports constrained tree search via `-g` option, so that the resulting tree must obey a constraint tree topology. The constraint tree can be multifurcating and need not to contain all species. To illustrate, let's return to the [first running example](Tutorial#first-running-example), where we want to force Human grouping with Seal whereas Cow with Whale. If you use the following constraint tree (NEWICK format):
 
     ((Human,Seal),(Cow,Whale));
 
@@ -258,8 +253,10 @@ The resulting part of the tree is then:
 
 which shows the desired effect.
 
+
 Tree topology tests
 -------------------
+<div class="hline"></div>
 
 IQ-TREE can compute log-likelihoods of a set of trees passed via the `-z` option:
 
@@ -292,9 +289,21 @@ This will perform all above tests plus the AU test.
 
 Finally, note that IQ-TREE will automatically detect duplicated tree topologies and omit them during the evaluation.
 
+>**NOTE**:
+>
+> - The KH, SH and AU tests return p-values, thus a tree is rejected if its p-value < 0.05 (marked with a `-` sign).
+>
+> - bp-RELL and c-ELW return posterior weights which *are not p-value*. The weights sum up to 1 across the trees tested.
+>
+> - The KH test ([Kishino and Hasegawa, 1989]) was designed to test 2 trees and thus has no correction for multiple testing. The SH test ([Shimodaira and Hasegawa, 1999]) fixes this problem.
+>
+> - However, the SH test becomes too conservative (i.e., rejecting fewer trees than expected) when testing many trees. The AU test ([Shimodaira, 2002]) fixes this problem and is thus recommended as replacement for both KH and SH tests.
+
+
 
 Testing constrained tree
 ------------------------
+<div class="hline"></div>
 
 We now illustrate an example to use the AU test (see above) to test trees from unconstrained versus constrained search, which is helpful to know if a constrained search is sensible or not. Thus:
 
@@ -316,7 +325,12 @@ We now illustrate an example to use the AU test (see above) to test trees from u
 
 5. Concatenate all trees into a file:
     
+        # for Linux or macOS
         cat example.unconstr.treefile example.constr1.treefile example.constr2.treefile example.constr3.treefile > example.treels
+        
+        # for Windows
+        type example.unconstr.treefile example.constr1.treefile example.constr2.treefile example.constr3.treefile > example.treels
+        
     
 6. Test the set of trees:
     
@@ -348,11 +362,12 @@ Now look at the resulting `.iqtree` file:
     Minus signs denote significant exclusion.
     All tests performed 1000 resamplings using the RELL method.
 
-One sees that the AU test does not reject the first 3 trees (denoted by `+` sign below the `p-AU` column), whereas the last tree is significantly excluded (`-` sign). All other tests also agree with this. Therefore, groupings of `(Human,Mouse)` and `(Cow,Rat)` do not make sense. Whereas the phylogenetic position of `Seal` based on 3 first trees is still undecidable. This is in agreement with the SH-aLRT and ultrafast bootstrap supports [done in the Tutorial](../Tutorial/#assessing-branch-supports-with-single-branch-tests). 
+One sees that the AU test does not reject the first 3 trees (denoted by `+` sign below the `p-AU` column), whereas the last tree is significantly excluded (`-` sign). All other tests also agree with this. Therefore, groupings of `(Human,Mouse)` and `(Cow,Rat)` do not make sense. Whereas the phylogenetic position of `Seal` based on 3 first trees is still undecidable. This is in agreement with the SH-aLRT and ultrafast bootstrap supports [done in the Tutorial](Tutorial#assessing-branch-supports-with-single-branch-tests). 
 
 
 Consensus construction and bootstrap value assignment
 -----------------------------------------------------
+<div class="hline"></div>
 
 IQ-TREE can construct an extended majority-rule consensus tree from a set of trees written in NEWICK or NEXUS format (e.g., produced
 by MrBayes):
@@ -387,8 +402,10 @@ support value onto the input tree (number of times each branch in the input tree
 
     iqtree -sup input_tree set_of_trees
 
+
 User-defined substitution models
 --------------------------------
+<div class="hline"></div>
 
 Users can specify any DNA model using a 6-letter code that defines which rates should be equal. 
 For example, `010010` corresponds to the HKY model and `012345` to the GTR model.
@@ -428,10 +445,53 @@ For amino-acid alignments, IQ-TREE use the empirical frequencies specified in th
 Note that all model specifications above can be used in the partition model NEXUS file.
 
 
+
+Inferring site-specific rates
+------------------------------
+<div class="hline"></div>
+
+IQ-TREE allows to infer site-specific evolutionary rates if a [site-rate heterogeneity model such as Gamma or FreeRate](Substitution-Models#rate-heterogeneity-across-sites) is specified. Here, IQ-TREE will estimate model parameters and then apply an empirical Bayesian approach to assign site-rates as the mean over rate categories, weighted by the posterior probability of the site falling into each category. This approach is provided in IQ-TREE because such empirical Bayesian approach was shown to be most accurate ([Mayrose et al., 2004]). An example run:
+
+    iqtree -s example.phy -m GTR+G -wsr -n 0
+    
+`-wsr` option stands for writing site rates and the number of search iterations is set to 0, such that model parameters are quickly estimated from an initial parsimony tree. IQ-TREE will write an output file `example.phy.rate` that looks like:
+
+    Site    Rate    Category        Categorized_rate
+    1       0.26625 2       0.24393
+    2       0.99345 3       0.81124
+    3       2.69275 4       2.91367
+    4       0.25822 2       0.24393
+    5       0.25822 2       0.24393
+    6       0.42589 2       0.24393
+    7       0.30194 2       0.24393
+    8       0.72790 3       0.81124
+    9       0.25822 2       0.24393
+    10      0.09177 1       0.03116
+
+The 1st column is site index of the alignment (starting from 1), the 2nd column `Rate` shows the mean site-specific rate as explained above, and the 3rd and 4th columns show the category index and rate of the Gamma rate category with the highest probability for this site (1 for slow and 4 for fast rate).
+
+For better site-rate estimates it is recommended to use more than the default 4 rate categories ([Mayrose et al., 2004]). Moreover, one should use a more reasonable tree rather than the parsimony tree. For example:
+
+    iqtree -s example.phy -m GTR+G16 -te ml.treefile -wsr 
+
+where `-te` is the option to input a fixed tree topology and `ml.treefile` is the ML tree reconstructed previously. 
+
+Moreover, we recommend to apply the FreeRate model whenever it fits the data better than the Gamma rate model. This is because the Gamma model constrains the rates to come from a Gamma distribution and thus the highest rate may not be _high enough_ to accomodate the most fast-evolving sites in the alignment. On the contrary, the FreeRate model allows the rates to freely vary. Moreover, FreeRate allows to automatically determine the best number of rate categories, a feature missing in the Gamma model. The following command: 
+
+    # for IQ-TREE version >= 1.5.4:
+    iqtree -s example.phy -te ml.treefile -wsr 
+
+    # for IQ-TREE version <= 1.5.3:
+    iqtree -s example.phy -m TESTNEW -te ml.treefile -wsr 
+
+will apply ModelFinder to find the best fit model and then infer the site-specific rates based on a given tree file within a single run! If you omit `-te` option, then IQ-TREE will reconstruct an ML tree and use it to infer site-specific rates.
+
+
 Where to go from here?
 ----------------------
+<div class="hline"></div>
 
-See [Command Reference](../Command-Reference) for a complete list of all options available in IQ-TREE.
+See [Command Reference](Command-Reference) for a complete list of all options available in IQ-TREE.
 
 [Gadagkar et al., 2005]: http://dx.doi.org/10.1002/jez.b.21026
 [Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483
@@ -442,4 +502,6 @@ See [Command Reference](../Command-Reference) for a complete list of all options
 [Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
 [Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
 [Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
+[Mayrose et al., 2004]: https://doi.org/10.1093/molbev/msh194
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
+

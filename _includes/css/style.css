@@ -95,15 +95,21 @@ a:focus {
 /*	################################################################
 	BOOTSTRAP MODIFICATIONS & TWEAKS
 ################################################################# */
+.navbar-nav > li > a, .navbar-brand {
+	padding-top:10px !important; 
+	padding-bottom:10px !important;
+	height: 40px;
+}
+
 .navbar {
-	min-height: 40px;
+	min-height: 40px !important;
 	padding-top: 0px;
 	margin-bottom: 0px;
 }
 
 .navbar-brand {
 	font-family: 'Raleway', sans-serif;
-	font-weight: 900;
+	font-weight: 800;
 }
 
 .navbar-header .navbar-brand {
@@ -310,7 +316,6 @@ a:focus {
 }
 
 #twrap {
-    background: url(../img/t-back.jpg) no-repeat center top;
     position: relative;
     margin-top: 0px;
 	padding-top:60px;
@@ -387,7 +392,7 @@ a:focus {
 
 #blue {
 	background: {{ site.colors.primary }};
-	margin-top: 45px;
+	margin-top: 40px;
 	margin-bottom: 20px;
 	padding-top: 0px;
 	padding-bottom: 5px;
@@ -395,7 +400,6 @@ a:focus {
 
 #blue h3 {
 	color: white;
-	margin-left: 15px;
 }
 
 .carousel-inner > .item > img,
@@ -442,7 +446,6 @@ a:focus {
 
 /* Contact Page */
 #contactwrap {
-	background: url(../img/contact.jpg) no-repeat center top;
 	margin-top: -60px;
 	padding-top:0px;
 	text-align:center;
@@ -515,16 +518,14 @@ table {
     background-color: white;
     margin: 0;
     padding: 0; }
-    table tr:nth-child(2n) {
-      background-color: #f8f8f8; }
     table tr th {
       font-weight: bold;
       border: 1px solid #cccccc;
       text-align: left;
       margin: 0;
       padding: 6px 6px; 
-      background-color: {{ site.colors.primary }}; 
-      color: white; }
+      background-color: #d9edf7; 
+      color: black; }
     table tr td {
       border: 1px solid #cccccc;
       text-align: left;
@@ -536,11 +537,16 @@ table {
       margin-bottom: 0; }
 
 blockquote {
-  background: #f8f8f8;
-  border-left: 7px solid #a94442;
-  margin: 1.5em 0px;
-  padding: 0.5em 10px;
-  quotes: "";
+padding: 8px 35px 8px 14px;
+margin: 1.5em 0px;
+color: #c09853;
+text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+background-color: #f2dede;
+border: 1px solid #ebccd1;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+quotes: "";
 }
 blockquote:before {
   color: #ccc;
@@ -553,7 +559,23 @@ blockquote:before {
 blockquote p {
   display: inline;
 }
-      
+
+.tip {
+  color: #468847;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+code {
+	color: black;
+	background-color: #f5f5f5;
+}     
+
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+}
+
   #sidebar.affix-top {
     position: static;
     margin-top:30px;
@@ -566,3 +588,9 @@ blockquote p {
     width:228px;
   }
         
+:target:before {
+  content:"";
+  display:block;
+  height:60px; /* fixed header height*/
+  margin:-60px 0 0; /* negative fixed header height */
+}

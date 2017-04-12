@@ -1,7 +1,7 @@
 {% for alltag in site.tags %}
     {% assign tag = alltag | first %}
     {% if tag != 'tutorial' and tag != 'manual' %}
-    <div class="well">
+    <div class="well well-sm">
         <h4>Recent {{tag}}s</h4>
         <div class="row">
             <div class="popular-posts">

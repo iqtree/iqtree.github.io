@@ -12,7 +12,7 @@ We would like to announce a new [MPI parallel version of IQ-TREE](https://github
 
 The MPI version of IQ-TREE provides better parallel efficiency than OpenMP and can also be used within a multi-core PC (only Linux and Mac OS X are supported). Note that the memory requirement of the MPI version is proportional to the number of processes. Thus, to avoid excessive memory consumption one can also combine OpenMP and MPI in IQ-TREE (this is called hybrid parallelization). 
 
-Information about how to compile and run the program can be found in [our documentation page](http://www.iqtree.org/doc/Compilation-Guide/#compiling-mpi-version). 
+Information about how to compile and run the program can be found in [our documentation page](http://www.iqtree.org/doc/Compilation-Guide#compiling-mpi-version). 
 
 
 <!--more-->

@@ -2,8 +2,7 @@
 layout: userdoc
 title: "Compilation Guide"
 author: Jana Trifinopoulos, Minh Bui
-date:   2017-04-01
-permalink: doc/Compilation-Guide/
+date:    2017-04-12
 docid: 20
 icon: book
 doctype: manual
@@ -33,23 +32,9 @@ Compilation guide
 For advanced users to compile IQ-TREE source code.
 <!--more-->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [General requirements](#general-requirements)
-- [Downloading source code](#downloading-source-code)
-- [Compiling under Linux](#compiling-under-linux)
-- [Compiling under Mac OS X](#compiling-under-mac-os-x)
-- [Compiling under Windows](#compiling-under-windows)
-- [Compiling 32-bit version](#compiling-32-bit-version)
-- [Compiling MPI version](#compiling-mpi-version)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
 General requirements
 --------------------
+<div class="hline"></div>
 
 * Make sure that a C++ compiler is installed. IQ-TREE was successfully built with GCC (version 4.8 at least), Clang, MS Visual Studio and Intel C++ compiler. 
 * Install [CMake](http://www.cmake.org) if not yet available in your system. 
@@ -58,6 +43,7 @@ General requirements
 
 Downloading source code
 -----------------------
+<div class="hline"></div>
 
 Choose the source code (`zip` or `tar.gz`) of the IQ-TREE release you want to use from:
 
@@ -71,6 +57,7 @@ Please find below separate compilation guide fors [Linux](#compiling-under-linux
 
 Compiling under Linux
 ---------------------
+<div class="hline"></div>
 
 1. Open a Terminal.
 2. Change to the source code folder:
@@ -102,10 +89,12 @@ Compiling under Linux
     
 This creates an executable `iqtree` or `iqtree-omp`. It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree`.
 
->**NOTICE**: The above guide typically compiles IQ-TREE with `gcc`. If you have Clang installed and want to compile with Clang, the compilation will be similar to Mac OS X like below.
+>**TIP**: The above guide typically compiles IQ-TREE with `gcc`. If you have Clang installed and want to compile with Clang, the compilation will be similar to Mac OS X like below.
+{: .tip}
 
 Compiling under Mac OS X
 ------------------------
+<div class="hline"></div>
 
 * Make sure that Clang compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
 * Find the path to the CMake executable, which is typically `/Applications/CMake.app/Contents/bin/cmake`. For later convenience, please create a symbolic link `cmake` to this cmake executable, so that cmake can be invoked from the Terminal by simply entering `cmake`.
@@ -125,11 +114,12 @@ To compile the multicore version, the default installed Clang unfortunately does
 
 Compiling under Windows
 -----------------------
+<div class="hline"></div>
 
 * Please first install TDM-GCC (a GCC version for Windows) from <http://tdm-gcc.tdragon.net>.
 * Then install Clang for Windows from <http://clang.llvm.org>.
 
->**NOTICE**: Although IQ-TREE can also be built with TDM-GCC, the executable does not run properly due to stack alignment issue and the `libgomp` library causes downgraded performance for the OpenMP version. Thus, it is recommended to compile IQ-TREE with Clang. 
+>**WARNING**: Although IQ-TREE can also be built with TDM-GCC, the executable does not run properly due to stack alignment issue and the `libgomp` library causes downgraded performance for the OpenMP version. Thus, it is recommended to compile IQ-TREE with Clang. 
 
 1. Open Command Prompt. 
 2. Change to the source code folder:
@@ -162,6 +152,7 @@ Compiling under Windows
 
 Compiling 32-bit version
 ------------------------
+<div class="hline"></div>
 
 >**NOTE**: Typically a 64-bit IQ-TREE version is built and recommended! The 32-bit version has several restriction like maximal RAM usage of 2GB and no AVX support, thus not suitable to analyze large data sets.
 
@@ -180,6 +171,7 @@ For Windows you need to change Clang target with:
 
 Compiling MPI version
 ---------------------
+<div class="hline"></div>
 
 **Requirements**:
 

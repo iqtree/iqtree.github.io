@@ -12,7 +12,7 @@ We have released an IQ-TREE variant which implements a heterotachy mixture model
 
 <http://www.iqtree.org/#variant> 
 
-A user guide is available at <http://www.iqtree.org/doc/Heterotachy-Models/>. 
+A user guide is available at <http://www.iqtree.org/doc/Complex-Models#heterotachy-models>. 
 
 Please note that this is still a pre-release version — so suggestions and feedback are welcome! 
 
