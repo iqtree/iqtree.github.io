@@ -315,6 +315,12 @@ The site-specific frequency model is used to substantially reduce the time and m
 | `-fs`   | Specify a site frequency file, e.g. the `.sitefreq` file obtained from `-ft` run. This will save memory used for the first phase of the analysis. | 
 | `-fmax` | Switch to posterior maximum mode for obtaining site-specific profiles. Default: posterior mean. |
 
+With `-fs` option you can input a file containing your own site frequency profiles. The format of this file is that each line contains the site ID (starting from 1) and the state frequencies (20 for amino-acid) separated by white space. So it has as many lines as the number of sites in the alignment. The order of amino-acids is:
+
+
+     A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V
+
+
 Tree search parameters
 ----------------------
 <div class="hline"></div>
@@ -323,13 +329,13 @@ The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters 
 
 | Option | Usage and meaning |
 |-----------|------------------------------------------------------------------------------|
-| `-ninit`  | Specify number of initial parsimony trees. *DEFAULT: 100* |
-| `-ntop`   | Specify number of top parsimony trees of initial ones for further search. *DEFAULT: 20* |
-| `-nbest`  | Specify number of top candidate trees to maintain during tree search. *DEFAULT: 5* |
+| `-ninit`  | Specify number of initial parsimony trees. *DEFAULT: 100*. Here [the PLL library](http://www.libpll.org) ([Flouri et al., 2015]) is used, which implements the randomized stepwise addition and parsimony subtree pruning and regafting (SPR). |
+| `-ntop`   | Specify number of top initial parsimony trees to optimize with ML nearest neighbor interchange (NNI) search to initialize the candidate set. *DEFAULT: 20* |
+| `-nbest`  | Specify number of trees in the candidate set to maintain during ML tree search. *DEFAULT: 5* |
 | `-nstop`  | Specify number of unsuccessful iterations to stop. *DEFAULT: 100* |
 | `-n`      | Specify number of iterations to stop. This option overrides `-nstop` criterion. |
-| `-sprrad` | Specify radius for subtree prunning and regrafting parsimony search. *DEFAULT: 6* |
-| `-pers`   | Specify perturbation strength (between 0 and 1) for randomized nearest neighbor interchange (NNI). *DEFAULT: 0.5* |
+| `-sprrad` | Specify SPR radius for the initial parsimony tree search. *DEFAULT: 6* |
+| `-pers`   | Specify perturbation strength (between 0 and 1) for randomized NNI. *DEFAULT: 0.5* |
 | `-allnni` | Turn on more thorough and slower NNI search. It means that IQ-TREE will consider all possible NNIs instead of only those in the vicinity of previously applied NNIs. *DEFAULT: OFF* |
 | `-djc`    | Avoid computing ML pairwise distances and BIONJ tree. |
 | `-g`      | Specify a topological constraint tree file in NEWICK format. The constraint tree can be a multifurcating tree and need not to include all taxa. |
@@ -361,6 +367,7 @@ The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]) has several
 | `-bcor`  | Specify minimum correlation coefficient for UFBoot convergence criterion. *DEFAULT: 0.99* |
 | `-nstep` | Specify iteration interval checking for UFBoot convergence. *DEFAULT: every 100 iterations* |
 | `-beps`  | Specify a small epsilon to break tie in RELL evaluation for bootstrap trees. *DEFAULT: 0.5* |
+| `-bspec` | Specify the resampling strategies for partitioned analysis. By default, IQ-TREE resamples alignment sites within partitions. With `-bspec GENE` IQ-TREE will resample partitions. With `-bspec GENESITE` IQ-TREE will resample partitions and then resample sites within resampled partitions ([Gadagkar et al., 2005]). |
 
 ### Example usages:
 
@@ -539,6 +546,8 @@ Miscellaneous options
 [Anisimova and Gascuel 2006]: http://dx.doi.org/10.1080/10635150600755453
 [Anisimova et al., 2011]: http://dx.doi.org/10.1093/sysbio/syr041
 [Felsenstein, 1985]: http://dx.doi.org/10.2307/2408678
+[Flouri et al., 2015]: https://doi.org/10.1093/sysbio/syu084
+[Gadagkar et al., 2005]: http://dx.doi.org/10.1002/jez.b.21026
 [Gu et al., 1995]: http://mbe.oxfordjournals.org/content/12/4/546.abstract
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
 [Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483

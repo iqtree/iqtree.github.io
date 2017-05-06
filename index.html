@@ -3,12 +3,9 @@ layout: default
 title: "IQ-TREE: Efficient phylogenomic software by maximum likelihood"
 permalink: /
 version: 1.5.4
-version_pomo: 1.4.3-pomo
-version_heterotachy: 1.4.3-heterotachy
-version_mpi: 1.4.4-mpi
 releasedate: April 3, 2017
-releasedate_pomo: July 22, 2016
-releasedata_mpi: August 22, 2016
+version_dev: 1.6.beta
+releasedate_dev: May 8, 2017
 ---
 <!-- ========================== HEADER ========================== -->
 <div id="headerwrap">
@@ -27,7 +24,6 @@ releasedata_mpi: August 22, 2016
             <a id="downloadall" href="#download" class="btn btn-success btn-lg" role="button">Download for other platforms</a>
             <p></p>
             <a href="doc/" class="btn btn-success btn-lg" role="button">Documentation</a>
-            <a href="#variant" class="btn btn-success btn-lg" role="button">Variants <span class="label label-danger"><em>New!</em></span></a>
             <br>
         </div>
     </div><!-- /row -->
@@ -181,7 +177,8 @@ releasedata_mpi: August 22, 2016
                     <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-Linux32.tar.gz">32-bit multicore Linux</a>
                 </div>
             </div>		 
-        </div>
+        </div> <!-- row -->
+
 
         <div class="row">
             <div class="col-sm-4">
@@ -212,28 +209,47 @@ releasedata_mpi: August 22, 2016
     <div id="variant" class="container">
         <div class="row centered">
             <div class="col-sm-12">
-                <h3>IQ-TREE variants <span class="label label-danger"><em>New!</em></span></h3>
+                <p>Beta version {{ page.version_dev }} ({{ page.releasedate_dev }}) <span class="label label-danger"><em>New!</em></span></p>
             </div>
-            <div class="col-sm-6">
-                <i class="fa fa-sort-amount-asc"></i>
-                <h4>Polymorphism-aware Models (PoMo)</h4>
-                PoMo models accounting for <em>incomplete lineage sorting</em> to infer species tree from genome-wide population data (<a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">Schrempf et al., 2016</a>).
-                <p>
-                    <a href="https://github.com/Cibiv/IQ-TREE/releases/tag/v{{page.version_pomo}}" class="btn btn-success" role="button">Download IQ-TREE PoMo</a>
-                    <a href="doc/Polymorphism-Aware-Models" class="btn btn-success" role="button">User Guide</a>
-                </p>
-            </div>
-            <div class="col-sm-6">
-                <i class="fa fa-h-square"></i>
-                <h4>Heterotachy Models</h4>
-                Mixture models accounting for heterotachous evolution - rate heterogeneity among sites and lineages (Crotty et al., in prep.).
-                <p>
-                    <a href="https://github.com/Cibiv/IQ-TREE/releases/tag/v{{page.version_heterotachy}}" class="btn btn-success" role="button">Download IQ-TREE Heterotachy</a>
-                    <a href="doc/Complex-Models#heterotachy-models" class="btn btn-success" role="button">User Guide</a>
-                </p>
+            <br><br>
+            <div class="col-sm-4">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-Windows.zip">64-bit multicore Windows</a>
+                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-Windows32.zip">32-bit multicore Windows</a>
+                </div>
+            </div>		 				
+
+            <div class="col-sm-4">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-MacOSX.zip">64-bit multicore macOS</a>
+                </div>
+            </div>		 				
+            <div class="col-sm-4">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-Linux.tar.gz">64-bit multicore Linux</a>
+                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-Linux32.tar.gz">32-bit multicore Linux</a>
+                </div>
+            </div>		 
+
+        </div> <!-- row -->
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+            <div class="list-group">
+                <div class="list-group-item">
+                    <h4 class="centered">What's new in {{page.version_dev}}? </h4>
+                    <ul>
+                        <li><a href="doc/Polymorphism-Aware-Models">Polymorphism-aware models</a> accounting for incomplete lineage sorting (<a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">Schrempf et al., 2016</a>).</li>
+                        <li><a href="doc/Complex-Models#heterotachy-models">Heterotachy models</a> accounting for rate variation among sites and lineages (Crotty et al., in prep.).</li>
+                        <li>Non-reversible and Lie Markov models (Woodhams et al., in prep.).</li>
+                        <li>Xeon Phi Kights Landing (AVX-512) support.</li>
+                        <li>'-fast' option to match the speed of FastTree program while still obtaining better trees.</li>
+                    </ul>
+                    <div class="centered"><em>During the beta-testing phase, feedback is much appreciated!</em></div>
+                </div>
             </div>
         </div>
-        <div class="row centered"><em><br>The variants are maintained separately and will be merged into the IQ-TREE standard version once stable enough.</em></div>
+    </div> <!-- row -->
     </div><!--/container -->
 </div><!-- /jumbotron -->
 

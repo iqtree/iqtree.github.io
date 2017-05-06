@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Complex Models"
 author: Jana Trifinopoulos, Minh Bui
-date:    2017-04-12
+date:    2017-05-06
 docid: 11
 icon: book
 doctype: manual
@@ -241,13 +241,7 @@ Finally, note that for long (phylogenomic) alignments you can utilize the multic
 
     iqtree-omp -nt 24 -s <alignment> -m LG+C20+F+G -fs <file.sitefreq>
 
-Here is the list of relevant command line options:
-
-| Option | Usage and meaning |
-|--------|---------------------------------------------------------------------|
-|  `-ft`   | Specify a guide tree tree to infer site frequency model |
-|  `-fs`   | Specify a site frequency model file |
-| `-fmax`  | Switch to posterior maximum instead of posterior mean approximation | 
+See also [the list of relevant command line options](Command-Reference#site-specific-frequency-model-options). 
 
 
 Heterotachy models
@@ -263,7 +257,7 @@ One can think of the heterotachy model as an *edge-unlinked mixture model*, whic
 
 IQ-TREE Heterotachy binaries are available for Windows, Mac OS X, and Linux:
 
-<https://github.com/Cibiv/IQ-TREE/releases/tag/v1.4.3-heterotachy>
+<https://github.com/Cibiv/IQ-TREE/releases/tag/v1.6.beta>
 
 Source code is also downloadable from the above link.
 
@@ -274,18 +268,17 @@ The STH model with `k` mixture classes is executed by adding `+Hk` to the model 
 
     iqtree -s data.fst -m GTR+H4
 
-By default the above command will infer one set of empirical base frequencies and apply those to all classes. If one wishes to infer separate base frequencies for each class then the `+FO` option is required:
+By default the above command will link GTR parameters across all classes. If you want to unlink GTR parameters, so that IQ-TREE estimates them separately for each class, replace `+H4` by `*H4`: 
 
-    iqtree -s data.fst -m GTR+FO+H4
+    iqtree -s data.fst -m GTR*H4
+
+Note that this infers one set of empirical base frequencies and apply those to all classes. If one wishes to infer separate base frequencies for each class then the `+FO` option is required:
+
+    iqtree -s data.fst -m GTR+FO*H4
 
 The `-wspm` option will generate a `.siteprob` output file. This contains the probability of each site belonging to each class:
 
-    iqtree -s data.fst -m GTR+FO+H4 -wspm
-
-The `-nni-eval` option controls the level to which IQ-TREE optimizes branch lengths when evaluating alternative topologies. A low value saves computation time but increases the probability of not finding the best topology. Higher values evaluate alternate tree topologies more thoroughly at the cost of extra computation time:
-
-    iqtree -s data.fst -m GTR+FO+H4 -wspm -nni-eval 20
-
+    iqtree -s data.fst -m GTR+FO*H4 -wspm
 
 
 

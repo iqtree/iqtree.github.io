@@ -24,8 +24,8 @@ include-before: |
   
 
 header-includes:
+- \lstset{language=bash}
 - \lstset{breaklines=true}
-- \lstset{language=[Motorola68k]Assembler}
 - \lstset{basicstyle=\small\ttfamily}
 - \lstset{extendedchars=true}
 - \lstset{tabsize=2}
@@ -34,11 +34,11 @@ header-includes:
 - \lstset{frame=trbl}
 - \lstset{framesep=5pt}
 - \lstset{xleftmargin=5pt,xrightmargin=5pt}
-- \lstset{framerule=0pt}
-- \lstset{postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}}
+- \lstset{framerule=0.3pt,rulecolor=\color{gray!50!white}}
+- \lstset{postbreak=\raisebox{0ex}[0ex][0ex]{}}
 - \lstset{backgroundcolor=\color{gray!15!white}}
 - \usepackage{tcolorbox}
-- \newtcolorbox{myquote}{colback=red!5!white,colframe=red!50!black}
+- \newtcolorbox{myquote}{colback=red!5!white,colframe=red!60!white}
 - \renewenvironment{quote}{\begin{myquote}}{\end{myquote}}
 
 - \providecommand{\subtitle}[1]{\usepackage{titling}\posttitle{\par\large#1\end{center}}}
