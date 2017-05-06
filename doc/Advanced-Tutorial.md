@@ -182,18 +182,18 @@ IQ-TREE can perform the ultrafast bootstrap with partition models by e.g.,
 
     iqtree -s example.phy -spp example.nex -bb 1000
 
-Here, IQ-TREE will resample the sites *within* subsets of the partitions (i.e., 
-the bootstrap replicates are generated per subset separately and then concatenated together).
+Here, IQ-TREE will resample the sites *within*  partitions (i.e., 
+the bootstrap replicates are generated per partition separately and then concatenated together).
 The same holds true if you do the standard nonparametric bootstrap. 
 
-IQ-TREE supports the gene-resampling strategy: 
+IQ-TREE supports the partition-resampling strategy as suggested by ([Nei et al., 2001]): 
 
 
     iqtree -s example.phy -spp example.nex -bb 1000 -bspec GENE
 
 
-to resample genes instead of sites. Moreover, IQ-TREE allows an even more complicated
-strategy: resampling genes and sites within resampled genes, which may reduce false positives of the standard bootstrap resampling ([Gadagkar et al., 2005]):
+to resample partitions instead of sites. Moreover, IQ-TREE allows an even more complicated
+strategy: resampling partitions and then sites within resampled partitions  ([Gadagkar et al., 2005]). This may help to reduce false positives (i.e. wrong branch receiving 100% support):
 
 
     iqtree -s example.phy -spp example.nex -bb 1000 -bspec GENESITE
@@ -253,6 +253,7 @@ The resulting part of the tree is then:
 
 which shows the desired effect.
 
+>**NOTE**: While this option helps to enforce the tree based on prior knowledge, it is advised to always perform tree topology tests to make sure that the resulting constrained tree is NOT significantly worse than an unconstrained tree! See [tree topology tests](#tree-topology-tests) and [testing constrained tree](#testing-constrained-tree) below for a guide how to check this.
 
 Tree topology tests
 -------------------
@@ -268,22 +269,22 @@ If you only want to evaluate the trees without reconstructing the ML tree, you c
 
     iqtree -s example.phy -z example.treels -n 0
 
-Here, IQ-TREE performs a very quick tree reconstruction using only 1 iteration  and uses that tree to estimate the model parameters, which are normally accurate enough for our purpose.
+Here, the number of search iterations is set to 0 (`-n 0`), such that model parameters are quickly estimated from an initial parsimony tree, which is normally accurate enough for our purpose. If you, however, prefer to estimate model parameters based on a tree (e.g. reconstructed previously), use `-te <treefile>` option.  
 
 IQ-TREE also supports several tree topology tests using the RELL approximation ([Kishino et al., 1990]). This includes bootstrap proportion (BP), Kishino-Hasegawa test ([Kishino and Hasegawa, 1989]), Shimodaira-Hasegawa test ([Shimodaira and Hasegawa, 1999]), expected likelihood weights ([Strimmer and Rambaut, 2002]):
 
-    iqtree -s example.phy -z example.treels -n 1 -zb 1000
+    iqtree -s example.phy -z example.treels -n 0 -zb 1000
 
 
 Here, `-zb` specifies the number of RELL replicates, where 1000 is the recommended minimum number. The `USER TREES` section of `example.phy.iqtree` will list the results of BP, KH, SH, and ELW methods. 
 
 If you also want to perform the weighted KH and weighted SH tests, simply add `-zw` option:
 
-    iqtree -s example.phy -z example.treels -n 1 -zb 1000 -zw
+    iqtree -s example.phy -z example.treels -n 0 -zb 1000 -zw
 
 Starting with version 1.4.0 IQ-TREE supports approximately unbiased (AU) test ([Shimodaira, 2002]) via `-au` option:
 
-    iqtree -s example.phy -z example.treels -n 1 -zb 1000 -zw -au
+    iqtree -s example.phy -z example.treels -n 0 -zb 1000 -zw -au
 
 This will perform all above tests plus the AU test.
 
@@ -499,6 +500,7 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 [Lanfear et al., 2012]: http://dx.doi.org/10.1093/molbev/mss020
 [Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
+[Nei et al., 2001]: http://dx.doi.org/10.1073/pnas.051611498
 [Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
 [Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
 [Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
