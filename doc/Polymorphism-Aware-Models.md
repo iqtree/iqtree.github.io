@@ -8,7 +8,7 @@ icon: book
 doctype: manual
 tags:
 - manual
-description: <strong>Po</strong>lymorphism-aware phylogenetic <strong>Mo</strong>dels (PoMo) related documentation.
+description: Improve inferences using population data.
 sections:
 - name: Counts files
   url: counts-files
@@ -29,27 +29,21 @@ sections:
 Polymorphism-aware models
 =========================
 
-**Po**lymorphism-aware phylogenetic **Mo**dels (PoMo) related documentation.
+Improve inferences using population data.
 <!--more-->
 
-The **Po**lymorphism-aware phylogenetic **Mo**del (PoMo) tries to use
-population data (site frequency data) to improve phylogenetic
-inference.  Thereby it builds on top of DNA substitution models and
-naturally accounts for incomplete lineage sorting.  In order to run
-PoMo, you need more sequences per species (ideally about ten
+**Po**lymorphism-aware phylogenetic **Mo**dels (PoMo) improve
+phylogenetic inference using population data (site frequency data).
+Thereby they builds on top of DNA substitution models and naturally
+account for incomplete lineage sorting.  In order to run PoMo, you
+need more sequences per species/population (ideally ten or more
 chromosomes) so that information about the site frequency spectrum is
 available.
 
-The binary of IQ-TREE with PoMo can be
-[downloaded](https://github.com/Cibiv/IQ-TREE/releases/tag/v1.4.3-pomo)
-or
-[built from source](https://github.com/Cibiv/IQ-TREE/tree/v1.4.3-pomo).
-Please confirm that your version of IQ-TREE supports PoMo.
-
-    iqtree
-    
-    >> IQ-TREE PoMo version 1.4.3-pomo for Linux 64-bit built Jul  6 2016
-    >> ...
+The latest
+[releases of IQ-TREE](https://github.com/Cibiv/IQ-TREE/releases)
+include PoMo, e.g.,
+[v1.6.beta](https://github.com/Cibiv/IQ-TREE/tree/v1.6.beta)
 
 >**TIP**: For a quick overview of all PoMo related options in IQ-TREE,
 >run the command `iqtree -h` and scroll to the heading `POLYMORPHISM AWARE MODELS (PoMo)`.
@@ -67,10 +61,9 @@ Counts files
 ------------
 <div class="hline"></div>
 
-The input of PoMo is allele frequency data.  Especially, when
-populations have many individuals it is preferable to count the
-number of bases at each position.  This decreases file size and speeds
-up the parser.
+The input of PoMo is allele frequency data.  Especially, when populations
+have many individuals it is preferable to count the number of bases at
+each position.  This decreases file size and speeds up the parser.
 
 Counts files contain:
 
@@ -124,14 +117,19 @@ First running example
 <div class="hline"></div>
 
 You can now start to reconstruct a maximum-likelihood tree from this
-alignment by entering (assuming that you are now in the same folder
-with `example.cf`):
+alignment by entering (assuming that `example.cf` is in the same
+folder):
 
-    iqtree -s example.cf
+    iqtree -s example.cf -m HKY+P
 
-`-s` is the option to specify the name of the alignment file.  At the
-end of the run IQ-TREE writes the same output files as in the standard
-version (see [tutorial](Tutorial)).
+or, e.g.,
+
+    iqtree -nt 4 -s example.cf -m HKY+P
+
+if you use the multicore version.  `-s` allows specification of the
+alignment file; `-m` specifies the model (HKY substitution model with
+PoMo).  At the end of the run IQ-TREE writes the same output files as
+in the standard version (see [tutorial](Tutorial)).
 
 * `example.cf.iqtree`: the main report file that is self-readable.
 You should look at this file to see the computational results.  It
@@ -155,24 +153,10 @@ Substitution models
 -------------------
 <div class="hline"></div>
 
-By default, PoMo runs with the HKY model.  Different DNA substitution
-models can be selected with the `-m` option.  E.g., to select the GTR
-model, run IQ-TREE with:
+Different DNA substitution models can be selected with the `-m`
+option.  E.g., to select the GTR model, run IQ-TREE with:
 
-    iqtree -s example.cf -m GTR
-
-If a counts file is given as input file, the PoMo model will be
-automatically chosen.  You can also explicitly specify to run the
-(reversible) PoMo model with:
-
-    iqtree -s example.cf -m GTR+rP
-
-
-The frequency type can also be selected With `-m`.  The default is to
-empirically estimate allele frequencies.  To estimate the allele
-frequencies together with the rate parameters, use:
-
-    iqtree -s example.cf -m GTR+rP+FO
+    iqtree -s example.cf -m GTR+P
 
 >**TIP**: For a quick overview of all available models in IQ-TREE, run
 >the command `iqtree -h` and scroll to the heading `POLYMORPHISM AWARE MODELS (PoMo)`.
@@ -182,27 +166,55 @@ Virtual population size
 -----------------------
 <div class="hline"></div>
 
-PoMo models the evolution of populations by means of a virtual
-population of constant size N, which defaults to nine (for details,
-see [Schrempf et al., 2016]).  The optimal choice of N depends on the
-data.  If only very few chromosomes have been sequenced per population
-(e.g., two to four), N should be lowered to five.  If enough data is
-available and calculations are not too time consuming, we advise to
-increase N up to a maximum of 19.  This can be done with the sequence
-type option `-st`.  You can choose odd values from three to 19 as well
-as two and ten.  E.g., to set N to 19:
+PoMo describes the evolution of populations along a phylogeny by means
+of a virtual population of constant size N, which defaults to 9 (for
+details, see [Schrempf et al., 2016]).  This is a good and stable
+default value.  If only very few chromosomes have been sequenced per
+population (e.g., two to four), N should be lowered to the average
+number of chromosomes per population.  If enough data is available and
+calculations are not too time consuming, we advise to increase N up to
+a maximum of 19.  You can choose odd values from three to 19 as well
+as 2 and 10.  E.g., to set N to 19:
 
-    iqtree -s example.cf -st CF19
+    iqtree -s example.cf -m HKY+P+N19
 
-Odd values of N allows the usage of the fast AVX instruction set.
-This results in a considerable decrease of runtime.
+Odd values of N allow the usage of the fast AVX instruction set.  This
+results in a considerable decrease of runtime.
+
+Level of polymorphism
+-----------------------
+<div class="hline"></div>
+
+As of version `1.6`, IQ-TREE with PoMo also allows fixation of the
+level of polymorphism which is usually referred to as /theta/,
+/Watterson's theta/ or /4Nu/.  When analyzing population data, the
+amount of polymorphism is inferred during maximization of the
+likelihood.  However, in some situations it may be useful to set the
+level of polymorphism to the observed value in the data (empirical
+value):
+
+    iqtree -s example.cf -m HKY+P{EMP}
+
+or to set the level of polymorphism by hand, e.g.,:
+
+    iqtree -s example.cf -m HKY+P{0.0025}
+    
+Together with the ability to set model parameters, the model can be
+fully specified, e.g.:
+
+    iqtree -s example.cf -m HKY{6.0}+P{0.0025}
+    
+This sets the transition to transversion ratio to a value of `6.0` and
+the level of polymorphism to a value of `0.0025`.  In this case,
+IQ-TREE only performs a tree search because the model is fully
+specified.
 
 Sampling method
 ---------------
 <div class="hline"></div>
 
 For advanced users.  PoMo offers two different methods to read in the
-data ([Schrempf et al., 2016]). Briefly, each species and site are
+data ([Schrempf et al., 2016]).  Briefly, each population and site are
 treated as follows
 
 1. *Weighted* (default): assign the likelihood of each PoMo state to
@@ -210,23 +222,52 @@ its probability of leading to the observed data, assuming it is
 binomially sampled.
 
 2. *Sampled*: randomly draw N samples with replacement from the given
-data and set the PoMo state to the chosen one;
+data.  The N picked samples constitute a PoMo state which will be
+assigned a likelihood of 1.  All other PoMo states have likelihood 0.
 
-Again, the sequence type option `-st` can be used to change the input
-method.
+- To use the *weighted* input method (default behavior):
 
-- To use the *sampled* input method (`R` for random):
+        iqtree -s example.cf -m HKY+P+W
 
-        iqtree -s example.cf -st CR
-        
-- To use the *weighted* input method (default behavior; `CF` for
-  counts file):
+- To use the *sampled* input method:
 
-        iqtree -s example.cf -st CF
-        
+        iqtree -s example.cf -m HKY+P+S
+
+State frequency type
+--------------------
+<div class="hline"></div>
+
+Similar to standard models, the state frequency type can be selected
+with `+F` model string modifiers.  The default is to set the state
+frequencies (i.e., the frequencies of the nucleotides A, C, G and T)
+to the observed values in the data (empirical value).  To estimate the
+allele frequencies together with the rate parameters during
+maximization of the likelihood, use:
+
+    iqtree -s example.cf -m GTR+P+FO
+
+Rate heterogeneity
+------------------
+<div class="hline"></div>
+
+Recently, PoMo allows inference with different rate categories.  As of
+version `1.6`, only discrete Gamma rate heterogeneity is supported.
+Please be aware, that for mathematical reasons, the runtime scales
+linearly with the number of rate categories.  In the future, we plan
+to decrease runtimes as well as implement more rate heterogeneity
+types.  To use a discrete Gamma model with 4 rate categories, use:
+
+    iqtree -s example.cf -m HKY+P+G4
+
 Bootstrap branch support
 ------------------------
 <div class="hline"></div>
+
+Bootstrapping works as expected with PoMo.  The standard
+non-parametric bootstrap is invoked by the `-b` option, e.g., for 100
+replicates:
+
+    iqtree -s example.cf -m HKY+P -b 100
 
 To overcome the computational burden required by the non-parametric
 bootstrap, IQ-TREE introduces an ultra fast bootstrap approximation
@@ -234,12 +275,7 @@ bootstrap, IQ-TREE introduces an ultra fast bootstrap approximation
 procedure and provides relatively unbiased branch support values. To
 run UFBoot, use the option `-bb`, e.g., for 1000 replicates:
 
-    iqtree -s example.cf -bb 1000
-
-The standard non-parametric bootstrap is invoked by the `-b` option,
-e.g., for 100 replicates:
-
-    iqtree -s example.cf -b 100
+    iqtree -s example.cf -m HKY+P -bb 1000
 
 For a detailed description, please refer to the [bootstrap tutorial](Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation).
 
@@ -249,13 +285,13 @@ Interpretation of branch lengths
 
 PoMo estimates the branch length in number of mutations and frequency
 shifts (drift) per site.  The number of drift events compared to the
-number of mutations becomes higher if the
-[virtual population size](#virtual-population-size) is increased.  To
-get the branch length measured in number of substitutions per site which
-enables a comparison to the branch length estimated by standard DNA
-substitution models, it has to be divided by N^2.  PoMo also outputs
-the total tree length measured in number of substitution per site in
-`example.cf.iqtree`.  An example of the relevant section:
+number of mutations becomes higher if
+the [virtual population size](#virtual-population-size) is increased.
+To get the branch length measured in number of substitutions per site
+which enables a comparison to the branch length estimated by standard
+DNA substitution models, it has to be divided by `N^2`.  PoMo also
+outputs the total tree length measured in number of substitutions per
+site in `example.cf.iqtree`.  An example of the relevant section:
 
     NOTE: The branch lengths of PoMo measure mutations and frequency shifts.
     To compare PoMo branch lengths to DNA substitution models use the tree length
@@ -269,5 +305,4 @@ the total tree length measured in number of substitution per site in
     - measured in substitutions per site: 0.01767814 (2.48285810% of tree length)
 
 [Schrempf et al., 2016]: http://dx.doi.org/10.1016/j.jtbi.2016.07.042
-
 
