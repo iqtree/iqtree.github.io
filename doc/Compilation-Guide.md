@@ -62,6 +62,9 @@ Compiling under Linux
 ---------------------
 <div class="hline"></div>
 
+>**TIP**: Ready made IQ-TREE packages are provided for [Debian](https://packages.debian.org/unstable/science/iqtree) and [Arch Linux (AUR)](https://aur.archlinux.org/packages/iqtree-latest/).
+{: .tip}
+
 1. Open a Terminal.
 2. Change to the source code folder:
 
