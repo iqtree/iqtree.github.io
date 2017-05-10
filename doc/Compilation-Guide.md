@@ -111,6 +111,8 @@ Compiling under Mac OS X
 ------------------------
 <div class="hline"></div>
 
+>**TIP**: A ready made IQ-TREE package is provided by * [Homebrew](http://braumeister.org/repos/Homebrew/homebrew-science/formula/iqtree).
+{: .tip}
 
 * Make sure that Clang compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
 
