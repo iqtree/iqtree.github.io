@@ -38,12 +38,16 @@ General requirements
 --------------------
 <div class="hline"></div>
 
-* A C++ compiler such as GCC (version 4.8 at least), Clang, MS Visual Studio and Intel C++ compiler. 
-* [CMake](http://www.cmake.org). 
-* *(Optional)* If you want to compile the multicore version, make sure that the OpenMP library was installed. This should typically be the case with `gcc` under Linux.
-* *(Optional)* Install [git](https://git-scm.com) if you want to clone source code from [IQ-TREE GitHub repository](https://github.com/Cibiv/IQ-TREE).
-* _For IQ-TREE version 1.6 or later_: [Eigen3 library](https://eigen.tuxfamily.org). IQ-TREE will then automatically detect Eigen3 library installed. If not found, you can alternatively specify `-DEIGEN3_INCLUDE_DIR=<installed_eigen3_dir>` to the `cmake` command (see below).
- 
+* A C++ compiler such as GCC (version >= 4.8), Clang, MS Visual Studio and Intel C++ compiler. 
+
+* [CMake](http://www.cmake.org) version >= 2.8.10.
+
+* [Eigen3 library](https://eigen.tuxfamily.org) (for IQ-TREE version >= 1.6). By default IQ-TREE will  detect the path to the installed Eigen3 library. If this failed, you have to manually specify `-DEIGEN3_INCLUDE_DIR=<installed_eigen3_dir>` to the `cmake` command (see below).
+
+* (_Optional_) If you want to compile the multicore version, make sure that the OpenMP library was installed. This should typically be the case with `gcc` under Linux.
+
+* (_Optional_) Install [git](https://git-scm.com) if you want to clone source code from [IQ-TREE GitHub repository](https://github.com/Cibiv/IQ-TREE).
+
 Downloading source code
 -----------------------
 <div class="hline"></div>
@@ -82,6 +86,11 @@ Compiling under Linux
     To build the multicore version please add `-DIQTREE_FLAGS=omp` to the cmake command:
 
         cmake -DIQTREE_FLAGS=omp ..
+        
+    If `cmake` failed with message about `Eigen3 not found`, then install Eigen3 library and run `cmake` again. If this still failed, you have to manually specify the downloaded directory of Eigen3 with:
+    
+        cmake -DEIGEN3_INCLUDE_DIR=<eigen3_dir> ..
+        
 
 5. Compile source code with `make`:
 
@@ -102,7 +111,9 @@ Compiling under Mac OS X
 ------------------------
 <div class="hline"></div>
 
+
 * Make sure that Clang compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
+
 * Find the path to the CMake executable, which is typically `/Applications/CMake.app/Contents/bin/cmake`. For later convenience, please create a symbolic link `cmake` to this cmake executable, so that cmake can be invoked from the Terminal by simply entering `cmake`.
 
 The steps to compile IQ-TREE are similar to Linux (see above), except that you need to specify `clang` as compiler when configuring source code with CMake (step 4):
@@ -122,7 +133,9 @@ Compiling under Windows
 -----------------------
 <div class="hline"></div>
 
+
 * Please first install TDM-GCC (a GCC version for Windows) from <http://tdm-gcc.tdragon.net>.
+
 * Then install Clang for Windows from <http://clang.llvm.org>.
 
 >**WARNING**: Although IQ-TREE can also be built with TDM-GCC, the executable does not run properly due to stack alignment issue and the `libgomp` library causes downgraded performance for the OpenMP version. Thus, it is recommended to compile IQ-TREE with Clang. 
