@@ -96,6 +96,60 @@ For example, `GTR+FO` optimizes base frequencies by ML whereas `GTR+F` (default)
 Finally, users can fix base frequencies with e.g. `GTR+F{0.1,0.2,0.3,0.4}` to fix the corresponding frequencies of A, C, G and T (must sum up to 1.0).
 
 
+### Lie Markov models
+
+Starting with version 1.6, IQ-TREE supports a series of Lie Markov models ([Woodhams et al., 2015]), many of which are non-reversible models. Lie Markov models have a consistent property, which is lacking in other common models such as GTR. The following table shows the list of all Lie Markov models (the number before `.` in the name shows the number of parameters of the model):
+
+| Model  | Rev? | Freq | Note |
+|--------|------|------|--------------------------------------|
+| 1.1    | Yes  | 0    | equiv. to JC  |
+| 2.2b   | Yes  | 0    | equiv. to K2P |
+| 3.3a   | Yes  | 0    | equiv. to K3P |
+| 3.3b   | No   | 0    |  |
+| 3.3c   | Yes  | 0    | equiv. to TNe |
+| 3.4    | Yes  | 1    |  |
+| 4.4a   | Yes  | 3    | equiv. to F81 |
+| 4.4b   | Yes  | 1    |  |
+| 4.5a   | No   | 1    |  |
+| 4.5b   | No   | 1    |  |
+| 5.6a   | No   | 0    |  | 
+| 5.6b   | No   | 3    |  |
+| 5.7a   | No   | 2    |  |
+| 5.7b   | No   | 0    |  |
+| 5.7c   | No   | 0    |  |
+| 5.11a  | No   | 2    |  |
+| 5.11b  | No   | 0    |  |
+| 5.11c  | No   | 0    |  |
+| 5.16   | No   | 1    |  |
+| 6.6    | No   | 1    | equiv. to STRSYM (strand symmetric model) |
+| 6.7a   | No   | 3    | F81+K3P |
+| 6.7b   | No   | 3    |  |
+| 6.8a   | No   | 3    |  |
+| 6.8b   | No   | 1    |  |
+| 6.17a  | No   | 1    |  |
+| 6.17b  | No   | 1    |  |
+| 8.8    | No   | 3    |  |
+| 8.10a  | No   | 3    |  |
+| 8.10b  | No   | 1    |  |
+| 8.16   | No   | 3    |  |
+| 8.17   | No   | 3    |  |
+| 8.18   | No   | 3    |  |
+| 9.20a  | No   | 2    |  |
+| 9.20b  | No   | 0    | Doubly stochastic |
+| 10.12  | No   | 3    |  |
+| 10.34  | No   | 3    |  |
+| 12.12  | No   | 3    | equiv. to UNREST (unrestricted model) |
+
+Column __Rev?__ shows whether the model is reversible or not. Column __Freq__ shows the number of free base frequencies. 0 means equal base frequency; 1 means f(A)=f(G) and f(C)=f(T); 2 means f(A)+f(G)=0.5=f(C)+f(T); 3 means unconstrained frequencies.
+
+All Lie Markov models can have one of the following prefices:
+
+| Prefix | Meaning |
+|--------|-------------------------------------|
+| RY     | purine-pyrimidine pairing (default) |
+| WS     | weak-strong pairing |
+| MK     | aMino-Keto pairing |
+
 
 Protein models
 --------------
@@ -368,6 +422,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Veerassamy et al., 2004]: http://dx.doi.org/10.1089/106652703322756195
 [Wang et al., 2008]: http://dx.doi.org/10.1186/1471-2148-8-331
 [Whelan and Goldman, 2001]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a003851
+[Woodhams et al., 2015]: http://dx.doi.org/10.1093/sysbio/syv021
 [Yang, 1994]: http://dx.doi.org/10.1007/BF00160154
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 [Yang et al., 1998]: http://mbe.oxfordjournals.org/content/15/12/1600.abstract

@@ -2,10 +2,10 @@
 layout: default
 title: "IQ-TREE: Efficient phylogenomic software by maximum likelihood"
 permalink: /
-version: 1.5.4
-releasedate: April 3, 2017
-version_dev: 1.6.beta
-releasedate_dev: May 8, 2017
+version: 1.5.5
+releasedate: June 2, 2017
+version_dev: 1.6.beta3
+releasedate_dev: June 2, 2017
 ---
 <!-- ========================== HEADER ========================== -->
 <div id="headerwrap">
@@ -21,7 +21,7 @@ releasedate_dev: May 8, 2017
             <a id="downloadwin" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-Windows.zip" class="btn btn-success btn-lg" role="button">Download for Windows</a>
             <a id="downloadmac" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-MacOSX.zip" class="btn btn-success btn-lg" role="button">Download for macOS</a>
             <a id="downloadlinux" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-Linux.tar.gz" class="btn btn-success btn-lg" role="button">Download for Linux</a>
-            <a id="downloadall" href="#download" class="btn btn-success btn-lg" role="button">Download for other platforms</a>
+            <a id="downloadall" href="#download" class="btn btn-success btn-lg" role="button">All Downloads</a>
             <p></p>
             <a href="doc/" class="btn btn-success btn-lg" role="button">Documentation</a>
             <br>
@@ -46,21 +46,21 @@ releasedate_dev: May 8, 2017
         </div>
         <div class="col-sm-6">
             <i class="fa fa-usb fa-rotate-270"></i>
-            <h4>Efficient Search Algorithm</h4>
-            <p>Fast and effective stochastic algorithm to reconstruct phylogenetic trees by maximum likelihood. <em>IQ-TREE compares favorably to RAxML and PhyML</em> in terms of likelihood while requiring similar amount of computing time (<a href="http://dx.doi.org/10.1093/molbev/msu300">Nguyen et al., 2015</a>).</p>
+            <h4>IQ-TREE - Efficient Tree Reconstruction</h4>
+            <p>A fast and effective stochastic algorithm to infer phylogenetic trees by maximum likelihood. <em>IQ-TREE compares favorably to RAxML and PhyML</em> in terms of likelihoods with similar computing time (<a href="http://dx.doi.org/10.1093/molbev/msu300">Nguyen et al., 2015</a>).</p>
         </div>
         <div class="col-sm-6">
-            <i class="fa fa-fighter-jet"></i>
-            <h4>Ultrafast Bootstrap</h4>
-            <p>An ultrafast bootstrap approximation (UFBoot) to assess branch supports. UFBoot is 10 to 40 times faster than RAxML rapid bootstrap and obtains less biased support values (<a href="http://dx.doi.org/10.1093/molbev/mst024">Minh et al., 2013</a>).</p>
-        </div>
+            <i class="fa fa-user-md"></i>
+            <h4>ModelFinder - Fast and Accurate Model Selection</h4>
+            <p>ModelFinder (<a href="http://dx.doi.org/10.1038/nmeth.4285">Kalyaanamoorthy et al., 2017</a>) enables a free rate variation model and is <em>10 to 100 times faster than jModelTest and ProtTest</em>. It also finds best-fit partitioning scheme like <a href="http://www.robertlanfear.com/partitionfinder/">PartitionFinder</a>.</p>
+        </div>		 				
     </div>
     <div class="row centered">
         <div class="col-sm-6">
-            <i class="fa fa-user-md"></i>
-            <h4>Ultrafast Model Selection</h4>
-            <p>An ultrafast and automatic model selection (ModelFinder) which is <em>10 to 100 times faster than jModelTest and ProtTest</em>. ModelFinder also finds best-fit partitioning scheme like PartitionFinder.</p>
-        </div>		 				
+            <i class="fa fa-fighter-jet"></i>
+            <h4>UFBoot - Ultrafast Bootstrap Approximation</h4>
+            <p>UFBoot provides approximately unbiased branch support values and runs 100X faster than nonparametric bootstrap and 10 to 40 times faster than RAxML rapid bootstrap (<a href="http://dx.doi.org/10.1093/molbev/mst024">Minh et al., 2013</a>).</p>
+        </div>
         <div class="col-sm-6">
             <i class="fa fa-tasks"></i>
             <h4>Big Data Analysis</h4>
@@ -228,6 +228,7 @@ releasedate_dev: May 8, 2017
                 <div class="list-group">
                     <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-Linux.tar.gz">64-bit multicore Linux</a>
                     <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-Linux32.tar.gz">32-bit multicore Linux</a>
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-LinuxKNL.tar.gz">Xeon Phi Knights Landing Linux</a>
                 </div>
             </div>		 
 
@@ -241,8 +242,8 @@ releasedate_dev: May 8, 2017
                     <ul>
                         <li><a href="doc/Polymorphism-Aware-Models">Polymorphism-aware models</a> accounting for incomplete lineage sorting (<a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">Schrempf et al., 2016</a>).</li>
                         <li><a href="doc/Complex-Models#heterotachy-models">Heterotachy models</a> accounting for rate variation among sites and lineages (Crotty et al., in prep.).</li>
-                        <li>Non-reversible and Lie Markov models (Woodhams et al., in prep.).</li>
-                        <li>Xeon Phi Kights Landing (AVX-512) support.</li>
+                        <li><a href="doc/Substitution-Models#lie-markov-models">Lie Markov models</a> (<a href="http://dx.doi.org/10.1093/sysbio/syv021">Woodhams et al., 2015</a>) and non-reversible models.</li>
+                        <li><a href="doc/Compilation-Guide#compiling-xeon-phi-knights-landing-version">Xeon Phi Kights Landing</a> (AVX-512) support.</li>
                         <li>'-fast' option to match the speed of FastTree program while still obtaining better trees.</li>
                     </ul>
                     <div class="centered"><em>During the beta-testing phase, feedback is much appreciated!</em></div>
@@ -265,7 +266,7 @@ releasedate_dev: May 8, 2017
                 <h4>To maintain IQ-TREE, support users and secure fundings, it is important for us that you cite the following papers, whenever the corresponding features were applied for your analysis.</h4>
                 Example 1: "...We obtained branch supports with the ultrafast bootstrap (Minh et al. 2013) implemented in the IQ-TREE software (Nguyen et al. 2015)..."
                 <br><br>
-                Example 2: "...We inferred the maximum-likelihood tree using the edge-linked partition model in IQ-TREE (Chernomor et al. 2016; Nguyen et al. 2015)..."
+                Example 2: "...We inferred the maximum-likelihood tree using the edge-linked partition model (Chernomor et al. 2016)..."
                 </div>
             </div>
         </div>
@@ -273,43 +274,52 @@ releasedate_dev: May 8, 2017
     <div class="row">
         <div class="col-sm-6">
             <div class="well well-sm">
-                <h4>If you performed tree reconstruction or other features please cite:</h4>
-                L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. <em>Mol. Biol. Evol.</em>, 32:268-274.
-                <br><a href="http://dx.doi.org/10.1093/molbev/msu300">DOI: 10.1093/molbev/msu300</a>
+                <h4>When using model selection please cite: <span class="label label-danger"><em>New!</em></span></h4>
+                S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, and L.S. Jermiin (in press) ModelFinder: Fast Model Selection for Accurate Phylogenetic Estimates. <em>Nat. Methods</em>, 14:587–589.
+                <br>DOI: <a href="http://dx.doi.org/10.1038/nmeth.4285">10.1038/nmeth.4285</a>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="well well-sm">
-                <h4>If you used partition models e.g., for phylogenomic analysis please cite:</h4>
+                <h4>When using partition models e.g., for phylogenomic analysis please cite:</h4>
                 O. Chernomor, A. von Haeseler, and B.Q. Minh (2016)
                 Terrace aware data structure for phylogenomic inference from supermatrices.
                 <em>Syst. Biol.</em>, 65:997-1008.
-                <br><A HREF="http://dx.doi.org/10.1093/sysbio/syw037">DOI: 10.1093/sysbio/syw037</A>
+                <br>DOI: <A HREF="http://dx.doi.org/10.1093/sysbio/syw037">10.1093/sysbio/syw037</A>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6">
             <div class="well well-sm">
-                <h4>If you performed the ultrafast bootstrap (UFBoot) please cite:</h4>
-                B.Q. Minh, M.A.T. Nguyen, and A. von Haeseler (2013) Ultrafast approximation for phylogenetic bootstrap. <em>Mol. Biol. Evol.</em>, 30:1188-1195.
-                <br><a href="http://dx.doi.org/10.1093/molbev/mst024">DOI: 10.1093/molbev/mst024</a>
+                <h4>When performing tree reconstruction, please cite:</h4>
+                L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. <em>Mol. Biol. Evol.</em>, 32:268-274.
+                <br>DOI: <a href="http://dx.doi.org/10.1093/molbev/msu300">10.1093/molbev/msu300</a>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="well well-sm">
-                <h4>If you used the polymorphism-aware models please cite:</h4>
+                <h4>When using polymorphism-aware models please cite:</h4>
                 D. Schrempf, B.Q. Minh, N. De Maio, A. von Haeseler,
                 and C. Kosiol (2016) Reversible polymorphism-aware phylogenetic
                 models and their application to tree inference. <em>J. Theor. Biol.</em>, 407:362–370.                 
-                <br><a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">DOI: 10.1016/j.jtbi.2016.07.042</a>
+                <br>DOI: <a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">10.1016/j.jtbi.2016.07.042</a>
             </div>
         </div>
-        <div class="col-sm-6 col-sm-offset-3">            
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
             <div class="well well-sm">
-                <h4>If you used the <a href="http://iqtree.cibiv.univie.ac.at">IQ-TREE web server</a> please cite:</h4>
+                <h4>When performing ultrafast bootstrap (UFBoot) please cite:</h4>
+                B.Q. Minh, M.A.T. Nguyen, and A. von Haeseler (2013) Ultrafast approximation for phylogenetic bootstrap. <em>Mol. Biol. Evol.</em>, 30:1188-1195.
+                <br>DOI: <a href="http://dx.doi.org/10.1093/molbev/mst024">10.1093/molbev/mst024</a>
+            </div>
+        </div>
+        <div class="col-sm-6">            
+            <div class="well well-sm">
+                <h4>When using <a href="http://iqtree.cibiv.univie.ac.at">IQ-TREE web server</a> please cite:</h4>
                 J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, and B.Q. Minh (2016) W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis. <em>Nucleic Acids Res.</em>, 44 (W1):W232-W235.
-                <br><a href="http://dx.doi.org/10.1093/nar/gkw256">DOI: 10.1093/nar/gkw256</a>
+                <br>DOI: <a href="http://dx.doi.org/10.1093/nar/gkw256">10.1093/nar/gkw256</a>
             </div>
         </div>
     </div><!--row-->

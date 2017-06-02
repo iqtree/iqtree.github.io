@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Complex Models"
 author: Jana Trifinopoulos, Minh Bui
-date:    2017-05-06
+date:    2017-06-02
 docid: 11
 icon: book
 doctype: manual
@@ -255,11 +255,9 @@ One can think of the heterotachy model as an *edge-unlinked mixture model*, whic
 
 ### Download
 
-IQ-TREE Heterotachy binaries are available for Windows, Mac OS X, and Linux:
+Currently this model is only available in the beta version 1.6. Please download it from here:
 
-<https://github.com/Cibiv/IQ-TREE/releases/tag/v1.6.beta>
-
-Source code is also downloadable from the above link.
+<http://www.iqtree.org/#variant>
 
 
 ### Quick usages

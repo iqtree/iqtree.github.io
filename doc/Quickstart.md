@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Getting Started"
-author: Minh Bui
-date:    2017-04-12
+author: Dominik Schrempf, Minh Bui
+date:    2017-05-10
 docid: 1
 icon: info-circle
 doctype: tutorial
@@ -41,13 +41,25 @@ Installation
 ------------
 <div class="hline"></div>
 
-To achieve high performance IQ-TREE is a command-line program: you need to run IQ-TREE from a Terminal/Console (this is called Command Prompt under Windows). After you [downloaded IQ-TREE](http://www.iqtree.org/#download), please:
+For reasons of performance, IQ-TREE is a command-line program, i.e., IQ-TREE needs to be run from a terminal/console (command prompt under Windows).
+
+### Packages and bundles
+
+Ready made IQ-TREE packages are available for the following distributions/repositories:
+
+* [Debian Linux](https://packages.debian.org/unstable/science/iqtree)
+* [Arch Linux (AUR)](https://aur.archlinux.org/packages/iqtree-latest/)
+* [Anaconda](https://anaconda.org/bioconda/iqtree)
+* [Homebrew](http://braumeister.org/repos/Homebrew/homebrew-science/formula/iqtree)
+
+### Manual download
+
+IQ-TREE for Windows, MacOSX and Linux can be [downloaded here](http://www.iqtree.org/#download).
 
 * Extract the `.zip` (Windows, MacOSX) or `.tar.gz` (Linux) file to create a directory `iqtree-X.Y.Z-OS` or `iqtree-omp-X.Y.Z-OS`, where `X.Y.Z` is the version number and `OS` is the operating system (Windows, MacOSX or Linux).
 * You will find the executable in the `bin` sub-folder. Copy all files in `bin` folder to your system search path such that you can run IQ-TREE by entering `iqtree` or `iqtree-omp` from the Terminal.
 
 Now you need to open a Terminal (or Console) to run IQ-TREE. See below the guide for [Windows users](#for-windows-users) and [Mac OS X users](#for-mac-os-x-users).
-
 
 For Windows users
 -----------------
