@@ -306,6 +306,18 @@ but in NEXUS format, which can be viewed with the program [SplitsTree](http://ww
 >**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
 
+Assessing branch supports with ultrafast bootstrap approximation in the presence of model violations
+----------------------------------------------------------------
+<div class="hline"></div>
+
+Since UFBoot2 (the next version of UFBoot introduced in IQ-TREE version 1.6), we provide option `-bbn` to reduce the risk of overestimating branch supports due to severe model violations.<br>
+Thus, if model violations are present in the data set at hand, users are advised to append `-bbn` to regular UFBoot command:
+
+    iqtree -s example.phy -m TIM2+I+G -bb 1000 -bbn
+
+ The output files by running this option are of the same format as those by regular ultrafast bootstrap approximation command.
+
+
 Assessing branch supports with  standard nonparametric bootstrap
 ----------------------------------------------------------------
 <div class="hline"></div>
