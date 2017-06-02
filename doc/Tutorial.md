@@ -301,7 +301,7 @@ is the minimum number recommended. The section  `MAXIMUM LIKELIHOOD TREE` in  `e
 *  `example.phy.splits`: support values in percentage for all splits (bipartitions),
 computed as the occurence frequencies in the bootstrap trees. This file is in "star-dot" format.
 *  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
-but in NEXUS format, which can be viewed with the program SplitsTree. 
+but in NEXUS format, which can be viewed with the program [SplitsTree](http://www.splitstree.org) to explore the conflicting signals in the data. So it is more informative than consensus tree, e.g. you can see how highly supported the second best conflicting split is, which had no chance to enter the consensus tree. 
 
 >**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
