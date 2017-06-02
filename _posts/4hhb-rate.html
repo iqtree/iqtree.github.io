@@ -1,0 +1,11 @@
+<script src="/assets/js/ngl.js"></script>
+<script>
+    document.addEventListener( "DOMContentLoaded", function() {
+        var stage = new NGL.Stage( "viewport");
+        stage.loadFile( "/assets/4hhb-rate.pdb.gz").then( function( component ) {
+            component.addRepresentation("cartoon", {colorScheme: "bfactor", colorScale: "YlOrRd" } );
+        } );
+        stage.setSpin( [ 0, 1, 0 ], 0.002 );
+    } );
+</script>
+<div id="viewport" style="width:100%; height:400px;"></div>
