@@ -42,7 +42,7 @@ available.
 
 Currently this model is only available in the beta version 1.6. Please download it from here:
 
-<http://www.iqtree.org/download/#variant>
+<http://www.iqtree.org/#variant>
 
 >**TIP**: For a quick overview of all PoMo related options in IQ-TREE,
 >run the command `iqtree -h` and scroll to the heading `POLYMORPHISM AWARE MODELS (PoMo)`.

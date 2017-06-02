@@ -257,7 +257,7 @@ One can think of the heterotachy model as an *edge-unlinked mixture model*, whic
 
 Currently this model is only available in the beta version 1.6. Please download it from here:
 
-<http://www.iqtree.org/download/#variant>
+<http://www.iqtree.org/#variant>
 
 
 ### Quick usages
