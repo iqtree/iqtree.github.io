@@ -40,10 +40,9 @@ need more sequences per species/population (ideally ten or more
 chromosomes) so that information about the site frequency spectrum is
 available.
 
-The latest
-[releases of IQ-TREE](https://github.com/Cibiv/IQ-TREE/releases)
-include PoMo, e.g.,
-[v1.6.beta](https://github.com/Cibiv/IQ-TREE/tree/v1.6.beta)
+Currently this model is only available in the beta version 1.6. Please download it from here:
+
+<http://www.iqtree.org/download/#variant>
 
 >**TIP**: For a quick overview of all PoMo related options in IQ-TREE,
 >run the command `iqtree -h` and scroll to the heading `POLYMORPHISM AWARE MODELS (PoMo)`.
