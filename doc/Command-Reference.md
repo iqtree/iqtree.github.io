@@ -368,6 +368,7 @@ The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]) has several
 | `-nstep` | Specify iteration interval checking for UFBoot convergence. *DEFAULT: every 100 iterations* |
 | `-beps`  | Specify a small epsilon to break tie in RELL evaluation for bootstrap trees. *DEFAULT: 0.5* |
 | `-bspec` | Specify the resampling strategies for partitioned analysis. By default, IQ-TREE resamples alignment sites within partitions. With `-bspec GENE` IQ-TREE will resample partitions. With `-bspec GENESITE` IQ-TREE will resample partitions and then resample sites within resampled partitions ([Gadagkar et al., 2005]). |
+| `-bbn` | Turn on the correction step to reduce the risk of overestimating branch supports due to severe model violations. Introduced in IQ-TREE 1.6.|
 
 ### Example usages:
 
