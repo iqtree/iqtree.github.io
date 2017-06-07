@@ -22,6 +22,8 @@ sections:
   url: binary-morphological-and-snp-data
 - name: Ultrafast bootstrap
   url: assessing-branch-supports-with-ultrafast-bootstrap-approximation
+- name: Reducing impact of severe model violations with UFBoot
+  url: reducing-impact-of-severe-model-violations-with-ufboot
 - name: Nonparametric bootstrap
   url: assessing-branch-supports-with--standard-nonparametric-bootstrap
 - name: Single branch tests
@@ -306,17 +308,15 @@ but in NEXUS format, which can be viewed with the program [SplitsTree](http://ww
 >**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
 
-Assessing branch supports with ultrafast bootstrap approximation in the presence of model violations
-----------------------------------------------------------------
+Reducing impact of severe model violations with UFBoot
+------------------------------------------------------
 <div class="hline"></div>
 
-Since UFBoot2 (the next version of UFBoot introduced in IQ-TREE version 1.6), we provide option `-bbn` to reduce the risk of overestimating branch supports due to severe model violations.<br>
-Thus, if model violations are present in the data set at hand, users are advised to append `-bbn` to regular UFBoot command:
+Starting with IQ-TREE version 1.6 we provide a new option `-bnni` to reduce the risk of overestimating branch supports with UFBoot due to severe model violations. With this option UFBoot will further optimize each bootstrap tree using a hill-climbing nearest neighbor interchange (NNI) search based directly on the corresponding bootstrap alignment.
 
-    iqtree -s example.phy -m TIM2+I+G -bb 1000 -bbn
+Thus, if severe model violations are present in the data set at hand, users are advised to append `-bnni` to the regular UFBoot command:
 
- The output files by running this option are of the same format as those by regular ultrafast bootstrap approximation command.
-
+    iqtree -s example.phy -m TIM2+I+G -bb 1000 -bnni
 
 Assessing branch supports with  standard nonparametric bootstrap
 ----------------------------------------------------------------
