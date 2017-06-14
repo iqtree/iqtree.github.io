@@ -166,8 +166,8 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | Dayhoff  | General matrix ([Dayhoff et al., 1978]). |
 | DCMut    | Revised `Dayhoff` matrix ([Kosiol and Goldman, 2005]). |
 | FLU      | Influenza virus ([Dang et al., 2010]). |
-| HIVb     | HIV matrix ([Dang et al., 2010]). |
-| HIVw     | HIV matrix ([Dang et al., 2010]). |
+| HIVb     | HIV matrix ([Nickle et al., 2007]). |
+| HIVw     | HIV matrix ([Nickle et al., 2007]). |
 | JTT      | General matrix ([Jones et al., 1992]). |
 | JTTDCMut | Revised `JTT` matrix ([Kosiol and Goldman, 2005]). |
 | LG       | General matrix ([Le and Gascuel, 2008]). |
@@ -414,6 +414,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Lewis, 2001]: http://dx.doi.org/10.1080/106351501753462876
 [Mueller and Vingron, 2000]: http://dx.doi.org/10.1089/10665270050514918
 [Muse and Gaut, 1994]: http://mbe.oxfordjournals.org/content/11/5/715.abstract
+[Nickle et al., 2007]: https://dx.doi.org/10.1371/journal.pone.0000503
 [Rota-Stabelli et al., 2009]: http://dx.doi.org/10.1016/j.ympev.2009.01.011
 [Schneider et al., 2005]: http://dx.doi.org/10.1186/1471-2105-6-134
 [Soubrier et al., 2012]: http://dx.doi.org/10.1093/molbev/mss140
