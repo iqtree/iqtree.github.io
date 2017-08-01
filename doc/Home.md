@@ -56,6 +56,7 @@ Key features
 ------------
 <div class="hline"></div>
 
+
 * __Efficient search algorithm__: Fast and effective stochastic algorithm to reconstruct phylogenetic trees by maximum likelihood. IQ-TREE compares favorably to RAxML and PhyML in terms of likelihood while requiring similar amount of computing time ([Nguyen et al., 2015]).
 * __Ultrafast bootstrap__: An ultrafast bootstrap approximation (UFBoot) to assess branch supports. UFBoot is 10 to 40 times faster than RAxML rapid bootstrap and obtains less biased support values ([Minh et al., 2013]).
 * __Ultrafast model selection__: An ultrafast and automatic model selection (ModelFinder) which is 10 to 100 times faster than jModelTest and ProtTest. ModelFinder also finds best-fit partitioning scheme like PartitionFinder.
@@ -97,23 +98,14 @@ Documentation
 IQ-TREE has an extensive documentation with several tutorials and manual:
 
 * [Getting started guide](Quickstart): recommended for users who just downloaded IQ-TREE.
-
 * [Web Server Tutorial](Web-Server-Tutorial): A quick starting guide for the IQ-TREE Web Server.
-
 * [Beginner's tutorial](Tutorial): recommended for users starting to use IQ-TREE.
-
 * [Advanced tutorial](Advanced-Tutorial): recommended for more experienced users who want to explore more features of IQ-TREE.
-
 * [Command Reference](Command-Reference): Comprehensive documentation of command-line options available in IQ-TREE.
-
 * [Substitution Models](Substitution-Models): All common substitution models and usages.
-
 * [Complex Models](Complex-Models): Complex models such as partition and mixture models.
-
 * [Polymorphism Aware Models](Polymorphism-Aware-Models): Polymorphism-aware phylogenetic Models (PoMo) related documentation.
-
 * [Compilation guide](Compilation-Guide): for advanced users who wants to compile IQ-TREE from source code.
-
 * [Frequently asked questions (FAQ)](Frequently-Asked-Questions): recommended to have a look before you post a question in the [IQ-TREE group](https://groups.google.com/d/forum/iqtree).
 
 
