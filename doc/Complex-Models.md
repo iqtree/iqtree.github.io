@@ -201,7 +201,7 @@ Starting with version 1.5.0, IQ-TREE provides a new posterior mean site frequenc
 
 If you use this model in a publication please cite:
 
-> __Wang, H.C., Susko, S, Minh B.Q and Roger A.J.__ (2016) Modeling Site Heterogeneity with Posterior Mean Site Frequency Profiles Accelerates Accurate Phylogenomic Estimation. _Submitted_.
+> __Wang, H.C., Minh B.Q., Susko, S. and Roger A.J.__ (2017) Modeling Site Heterogeneity with Posterior Mean Site Frequency Profiles Accelerates Accurate Phylogenomic Estimation. _Syst. Biol._, in press.
 
 Here is an example of computation time and RAM usage for an Obazoa data set (68 sequences, 43615 amino-acid sites) from [Brown et al. (2013)] using 16 CPU cores: 
 
@@ -251,6 +251,11 @@ Heterotachy models
 Heterotachy (or Single Topology Heterotachy - STH) model is a mixture model composing of several site-classes, each having a separate set of branch lengths and model parameters. Thus, it is a complex model naturally accounting for heterotachous evolution ([Lopez, Casane, and Philippe, 2002](http://mbe.oxfordjournals.org/content/19/1/1.full)), which was shown to mislead conventional maximum likelihood and Bayesian inference ([Kolaczkowski and Thornton, 2004](http://dx.doi.org/10.1038/nature02917)). Our extensive simulations showed that an implementation of heterotachy models in IQ-TREE obtained almost 100% accuracy for heterotachously evolved sequences.
 
 One can think of the heterotachy model as an *edge-unlinked mixture model*, which will infer the probabilities of each alignment site belonging to each mixture class. This is in contrast to an [edge-unlinked partition model](#partition-models), which requires the appropriate partitioning of the data in advance, an ambitious assumption and a potential source of error for biological datasets in practice. 
+
+If you use this model in a publication please cite:
+
+> __S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin, and A. von Haeseler__ (2017) GHOST: Recovering historical signal from heterotachously-evolved sequence alignments. _Submitted_, 
+    <https://doi.org/10.1101/174789>
 
 
 ### Download
