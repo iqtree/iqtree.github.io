@@ -44,6 +44,10 @@ Partitioned analysis for multi-gene alignments
 ----------------------------------------------
 <div class="hline"></div>
 
+If you used partition model in a publication please cite:
+
+> __O. Chernomor, A. von Haeseler, and B.Q. Minh__ (2016) Terrace aware data structure for phylogenomic inference from supermatrices. _Syst. Biol._, 65:997-1008. 
+    <https://doi.org/10.1093/sysbio/syw037>
 
 In the partition model, you can specify a substitution model for each gene/character set. 
 IQ-TREE will then estimate the model parameters separately for every partition. Moreover, IQ-TREE provides edge-linked or edge-unlinked branch lengths between partitions:

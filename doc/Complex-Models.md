@@ -201,7 +201,7 @@ Starting with version 1.5.0, IQ-TREE provides a new posterior mean site frequenc
 
 If you use this model in a publication please cite:
 
-> __Wang, H.C., Minh B.Q., Susko, S. and Roger A.J.__ (2017) Modeling Site Heterogeneity with Posterior Mean Site Frequency Profiles Accelerates Accurate Phylogenomic Estimation. _Syst. Biol._, in press.
+> __H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger__ (2017) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. _Syst. Biol._, in press. <https://doi.org/10.1093/sysbio/syx068>
 
 Here is an example of computation time and RAM usage for an Obazoa data set (68 sequences, 43615 amino-acid sites) from [Brown et al. (2013)] using 16 CPU cores: 
 
@@ -254,7 +254,7 @@ One can think of the heterotachy model as an *edge-unlinked mixture model*, whic
 
 If you use this model in a publication please cite:
 
-> __S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin, and A. von Haeseler__ (2017) GHOST: Recovering historical signal from heterotachously-evolved sequence alignments. _Submitted_, 
+> __S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin and A. von Haeseler__ (2017) GHOST: Recovering historical signal from heterotachously-evolved sequence alignments.  
     <https://doi.org/10.1101/174789>
 
 
