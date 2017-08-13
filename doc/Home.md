@@ -121,30 +121,34 @@ How to cite IQ-TREE?
 > * Example 2: *We inferred the maximum-likelihood tree using the edge-linked partition model in IQ-TREE (Chernomor et al., 2016; Nguyen et al., 2015).*
 
 
+If you used posterior mean site frequency model please cite:
+
+* __H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger__ (2017) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. _Syst. Biol._, in press. [DOI: 10.1093/sysbio/syx068](https://doi.org/10.1093/sysbio/syx068)
+
 If you used ModelFinder please cite:
 
-* S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, and L.S. Jermiin (2017) ModelFinder: Fast Model Selection for Accurate Phylogenetic Estimates, *Nature Methods*, 14:587–589.
+* __S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, and L.S. Jermiin__ (2017) ModelFinder: Fast Model Selection for Accurate Phylogenetic Estimates, *Nature Methods*, 14:587–589. [DOI: 10.1038/nmeth.4285](https://doi.org/10.1038/nmeth.4285)
 
 If you performed tree reconstruction please cite:
 
-* L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. *Mol. Biol. Evol.*, 32:268-274. [DOI: 10.1093/molbev/msu300](http://dx.doi.org/10.1093/molbev/msu300)
+* __L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh__ (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. *Mol. Biol. Evol.*, 32:268-274. [DOI: 10.1093/molbev/msu300](http://dx.doi.org/10.1093/molbev/msu300)
 
 If you used partition models e.g., for phylogenomic analysis please cite:
 
-* O. Chernomor, A. von Haeseler, and B.Q. Minh (2016) Terrace aware data structure for phylogenomic inference from supermatrices. *Syst. Biol.*, 65:997-1008. [DOI: 10.1093/sysbio/syw037](http://dx.doi.org/10.1093/sysbio/syw037)
+* __O. Chernomor, A. von Haeseler, and B.Q. Minh__ (2016) Terrace aware data structure for phylogenomic inference from supermatrices. *Syst. Biol.*, 65:997-1008. [DOI: 10.1093/sysbio/syw037](http://dx.doi.org/10.1093/sysbio/syw037)
 
 If you performed the ultrafast bootstrap (UFBoot) please cite:
 
-* B.Q. Minh, M.A.T. Nguyen, and A. von Haeseler (2013) Ultrafast approximation for phylogenetic bootstrap. *Mol. Biol. Evol.*, 30:1188-1195. [DOI: 10.1093/molbev/mst024](http://dx.doi.org/10.1093/molbev/mst024)
+* __B.Q. Minh, M.A.T. Nguyen, and A. von Haeseler__ (2013) Ultrafast approximation for phylogenetic bootstrap. *Mol. Biol. Evol.*, 30:1188-1195. [DOI: 10.1093/molbev/mst024](http://dx.doi.org/10.1093/molbev/mst024)
 
 If you used the polymorphism-aware models please cite:
 
-* D. Schrempf, B.Q. Minh, N. De Maio, A. von Haeseler, and C. Kosiol (2016) Reversible polymorphism-aware phylogenetic models and their application to tree inference. *J. Theor. Biol.*, 407:362–370. [DOI: 10.1016/j.jtbi.2016.07.042](http://dx.doi.org/10.1016/j.jtbi.2016.07.042)
+* __D. Schrempf, B.Q. Minh, N. De Maio, A. von Haeseler, and C. Kosiol__ (2016) Reversible polymorphism-aware phylogenetic models and their application to tree inference. *J. Theor. Biol.*, 407:362–370. [DOI: 10.1016/j.jtbi.2016.07.042](http://dx.doi.org/10.1016/j.jtbi.2016.07.042)
 
 
 If you used the [IQ-TREE web server](http://iqtree.cibiv.univie.ac.at/) please cite:
 
-* J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, and B.Q. Minh (2016) W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis. *Nucleic Acids Res.*, 44 (W1):W232-W235. [DOI: 10.1093/nar/gkw256](http://dx.doi.org/10.1093/nar/gkw256)
+* __J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, and B.Q. Minh__ (2016) W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis. *Nucleic Acids Res.*, 44 (W1):W232-W235. [DOI: 10.1093/nar/gkw256](http://dx.doi.org/10.1093/nar/gkw256)
 
 
 Development team
