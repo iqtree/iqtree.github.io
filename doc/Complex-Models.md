@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Complex Models"
 author: Jana Trifinopoulos, Minh Bui
-date:    2017-06-02
+date:    2017-08-13
 docid: 11
 icon: book
 doctype: manual
@@ -201,7 +201,7 @@ Starting with version 1.5.0, IQ-TREE provides a new posterior mean site frequenc
 
 If you use this model in a publication please cite:
 
-> __Wang, H.C., Susko, S, Minh B.Q and Roger A.J.__ (2016) Modeling Site Heterogeneity with Posterior Mean Site Frequency Profiles Accelerates Accurate Phylogenomic Estimation. _Submitted_.
+> __H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger__ (2017) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. _Syst. Biol._, in press. <https://doi.org/10.1093/sysbio/syx068>
 
 Here is an example of computation time and RAM usage for an Obazoa data set (68 sequences, 43615 amino-acid sites) from [Brown et al. (2013)] using 16 CPU cores: 
 
@@ -248,9 +248,15 @@ Heterotachy models
 ------------------
 <div class="hline"></div>
 
-Heterotachy (or Single Topology Heterotachy - STH) model is a mixture model composing of several site-classes, each having a separate set of branch lengths and model parameters. Thus, it is a complex model naturally accounting for heterotachous evolution ([Lopez, Casane, and Philippe, 2002](http://mbe.oxfordjournals.org/content/19/1/1.full)), which was shown to mislead conventional maximum likelihood and Bayesian inference ([Kolaczkowski and Thornton, 2004](http://dx.doi.org/10.1038/nature02917)). Our extensive simulations showed that an implementation of heterotachy models in IQ-TREE obtained almost 100% accuracy for heterotachously evolved sequences.
+Sequence data that have evolved under *heterotachy*, i.e., rate variation across sites and lineages ([Lopez, Casane, and Philippe, 2002](http://mbe.oxfordjournals.org/content/19/1/1.full)), are known to mislead phylogenetic inference ([Kolaczkowski and Thornton, 2004](http://dx.doi.org/10.1038/nature02917)). To address this issue we introduce the General Heterogeneous evolution On a Single Topology (GHOST) model. More specifically, GHOST is an *edge-unlinked mixture model* consisting of several site classes, each having a separate set of model parameters and edge lengths on the same tree topology. Thus, GHOST naturally accounts for heterotachous evolution. In contrast to an [edge-unlinked partition model](#partition-models), the GHOST model does not require the *a priori* data partitioning, a possible source of model misspecification. 
 
-One can think of the heterotachy model as an *edge-unlinked mixture model*, which will infer the probabilities of each alignment site belonging to each mixture class. This is in contrast to an [edge-unlinked partition model](#partition-models), which requires the appropriate partitioning of the data in advance, an ambitious assumption and a potential source of error for biological datasets in practice. 
+Extensive simulations show that the GHOST model can accurately recover the tree topology, branch lengths, substitution rate and base frequency parameters from heterotachously-evolved sequences. Moreover, we compare the GHOST model to the partition model and show that, owing to the minimization of model constraints, the GHOST model is able to offer unique biological insights when applied to empirical data.
+
+
+If you use this model in a publication please cite:
+
+> __S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin and A. von Haeseler__ (2017) GHOST: Recovering historical signal from heterotachously-evolved sequence alignments.  
+    <https://doi.org/10.1101/174789>
 
 
 ### Download
@@ -262,7 +268,7 @@ Currently this model is only available in the beta version 1.6. Please download 
 
 ### Quick usages
 
-The STH model with `k` mixture classes is executed by adding `+Hk` to the model option (`-m`). For example if one wants to fit a STH4 model in conjunction with the `GTR` model of DNA evolution to sequences contained in `data.fst`, one would use the following command:
+The GHOST model with `k` mixture classes is executed by adding `+Hk` to the model option (`-m`). For example if one wants to fit a GHOST model with 4 classes in conjunction with the `GTR` model of DNA evolution to sequences contained in `data.fst`, one would use the following command:
 
     iqtree -s data.fst -m GTR+H4
 

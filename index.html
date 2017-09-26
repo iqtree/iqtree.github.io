@@ -4,8 +4,8 @@ title: "IQ-TREE: Efficient phylogenomic software by maximum likelihood"
 permalink: /
 version: 1.5.5
 releasedate: June 2, 2017
-version_dev: 1.6.beta3
-releasedate_dev: June 2, 2017
+version_dev: 1.6.beta4
+releasedate_dev: June 21, 2017
 ---
 <!-- ========================== HEADER ========================== -->
 <div id="headerwrap">
@@ -117,12 +117,11 @@ releasedate_dev: June 2, 2017
             <h3>IQ-TREE is user-friendly and well-documented</h3>
         </div>
         <div class="col-sm-4">
-            <a href="http://iqtree.cibiv.univie.ac.at" target="_blank">
             <i class="fa fa-globe"></i>
-            <h4>Online Web Service</h4>
-            </a>
-            IQ-TREE web server for online computations. It is very easy to use with as few as just 3 clicks!
-            <p><a href="http://iqtree.cibiv.univie.ac.at" target="_blank">http://iqtree.cibiv.univie.ac.at</a></p>
+            <h4>W-IQ-TREE Web Service</h4>
+            Easy to use web servers provided by:<br>
+            <a href="http://iqtree.cibiv.univie.ac.at" target="_blank">Center for Integrative Bioinformatics Vienna, Austria</a><br>
+            <a href="https://www.hiv.lanl.gov/content/sequence/IQTREE/iqtree.html" target="_blank">Los Alamos National Laboratory, USA</a> <span class="label label-danger"><em>New!</em></span>
         </div>		 
         <div class="col-sm-4">
             <i class="fa fa-question-circle"></i>
@@ -238,13 +237,15 @@ releasedate_dev: June 2, 2017
         <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
             <div class="list-group">
                 <div class="list-group-item">
-                    <h4 class="centered">What's new in {{page.version_dev}}? </h4>
+                    <h4 class="centered">What's new in version 1.6? </h4>
                     <ul>
                         <li><a href="doc/Polymorphism-Aware-Models">Polymorphism-aware models</a> accounting for incomplete lineage sorting (<a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">Schrempf et al., 2016</a>).</li>
-                        <li><a href="doc/Complex-Models#heterotachy-models">Heterotachy models</a> accounting for rate variation among sites and lineages (Crotty et al., in prep.).</li>
+                        <li><a href="doc/Complex-Models#heterotachy-models">Heterotachy models</a> accounting for rate variation among sites and lineages (<a href="https://doi.org/10.1101/174789">Crotty et al., submitted</a>).</li>
                         <li><a href="doc/Substitution-Models#lie-markov-models">Lie Markov models</a> (<a href="http://dx.doi.org/10.1093/sysbio/syv021">Woodhams et al., 2015</a>) and non-reversible models.</li>
                         <li><a href="doc/Compilation-Guide#compiling-xeon-phi-knights-landing-version">Xeon Phi Kights Landing</a> (AVX-512) support.</li>
-                        <li>'-fast' option to match the speed of FastTree program while still obtaining better trees.</li>
+                        <li>`-fast` option to match the speed of FastTree program while still obtaining better trees.</li>
+                        <li><a href="http://www.iqtree.org/doc/Tutorial#reducing-impact-of-severe-model-violations-with-ufboot">`-bnni` option to reduce the impact of model violation</a> for UFBoot (<a href="https://doi.org/10.1101/153916">Hoang et al., submitted</a>)</li>
+                        <li>Ancestral sequence reconstruction by empirical Bayesian method via `-asr` option.</li>
                     </ul>
                     <div class="centered"><em>During the beta-testing phase, feedback is much appreciated!</em></div>
                 </div>
@@ -257,16 +258,15 @@ releasedate_dev: June 2, 2017
 
     
 <!-- ========================== How to cite IQ-TREE? ========================== -->
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+
 <div class="service container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
             <br><h2 class="centered">How to cite IQ-TREE?</h2>
             <div class="list-group">
                 <div class="list-group-item list-group-item-danger">
-                <h4>To maintain IQ-TREE, support users and secure fundings, it is important for us that you cite the following papers, whenever the corresponding features were applied for your analysis.</h4>
-                Example 1: "...We obtained branch supports with the ultrafast bootstrap (Minh et al. 2013) implemented in the IQ-TREE software (Nguyen et al. 2015)..."
-                <br><br>
-                Example 2: "...We inferred the maximum-likelihood tree using the edge-linked partition model (Chernomor et al. 2016)..."
+                To maintain IQ-TREE, support users and secure fundings, it is important for us that you cite the following papers, whenever the corresponding features were applied for your analysis. Note that the paper of Nguyen et al. (2015) only described the tree search algorithm. Thus, it is not enough to only cite this paper if you, for example, use partition models, where <A HREF="http://dx.doi.org/10.1093/sysbio/syw037">Chernomor et al. (2016)</A> should be cited.
                 </div>
             </div>
         </div>
@@ -274,52 +274,126 @@ releasedate_dev: June 2, 2017
     <div class="row">
         <div class="col-sm-6">
             <div class="well well-sm">
-                <h4>When using model selection please cite: <span class="label label-danger"><em>New!</em></span></h4>
-                S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, and L.S. Jermiin (in press) ModelFinder: Fast Model Selection for Accurate Phylogenetic Estimates. <em>Nat. Methods</em>, 14:587–589.
-                <br>DOI: <a href="http://dx.doi.org/10.1038/nmeth.4285">10.1038/nmeth.4285</a>
+                <h4>When using <a href="doc/Complex-Models#site-specific-frequency-models">posterior mean site frequency model (PMSF)</a> please cite: <span class="label label-danger"><em>New!</em></span></h4>
+                <div class="row">
+                    <div class="col-xs-10 col-sm-9 col-md-10">
+                        H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger (2017) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. <em>Syst. Biol.</em>, in press.
+                        <br>DOI: <a href="https://doi.org/10.1093/sysbio/syx068">10.1093/sysbio/syx068</a>
+                    </div>
+                    <div class="col-xs-2 col-sm-3 col-md-2">
+                        <div data-badge-popover="left" data-badge-type="donut" data-doi="10.1093/sysbio/syx068" class="altmetric-embed"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="well well-sm">
-                <h4>When using partition models e.g., for phylogenomic analysis please cite:</h4>
-                O. Chernomor, A. von Haeseler, and B.Q. Minh (2016)
-                Terrace aware data structure for phylogenomic inference from supermatrices.
-                <em>Syst. Biol.</em>, 65:997-1008.
-                <br>DOI: <A HREF="http://dx.doi.org/10.1093/sysbio/syw037">10.1093/sysbio/syw037</A>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="well well-sm">
-                <h4>When performing tree reconstruction, please cite:</h4>
-                L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. <em>Mol. Biol. Evol.</em>, 32:268-274.
-                <br>DOI: <a href="http://dx.doi.org/10.1093/molbev/msu300">10.1093/molbev/msu300</a>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="well well-sm">
-                <h4>When using polymorphism-aware models please cite:</h4>
-                D. Schrempf, B.Q. Minh, N. De Maio, A. von Haeseler,
-                and C. Kosiol (2016) Reversible polymorphism-aware phylogenetic
-                models and their application to tree inference. <em>J. Theor. Biol.</em>, 407:362–370.                 
-                <br>DOI: <a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">10.1016/j.jtbi.2016.07.042</a>
+                <h4>When using <a href="doc/Tutorial#choosing-the-right-substitution-model">model selection (ModelFinder)</a> please cite: <span class="label label-danger"><em>New!</em></span></h4>
+                <div class="row">
+                    <div class="col-xs-10 col-sm-9 col-md-10">
+                        S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, and L.S. Jermiin (2017) ModelFinder: fast model selection for accurate phylogenetic estimates. <em>Nat. Methods</em>, 14:587–589.
+                        <br>DOI: <a href="http://dx.doi.org/10.1038/nmeth.4285">10.1038/nmeth.4285</a>
+                    </div>
+                    <div class="col-xs-2 col-sm-3 col-md-2">
+                        <div data-badge-popover="left" data-badge-type="donut" data-doi="10.1038/nmeth.4285" class="altmetric-embed"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6">
             <div class="well well-sm">
-                <h4>When performing ultrafast bootstrap (UFBoot) please cite:</h4>
-                B.Q. Minh, M.A.T. Nguyen, and A. von Haeseler (2013) Ultrafast approximation for phylogenetic bootstrap. <em>Mol. Biol. Evol.</em>, 30:1188-1195.
-                <br>DOI: <a href="http://dx.doi.org/10.1093/molbev/mst024">10.1093/molbev/mst024</a>
+                <h4>When using <a href="doc/Complex-Models#heterotachy-models">heterotachy models</a> please cite:  <span class="label label-danger"><em>New!</em></span></h4>
+                <div class="row">
+                    <div class="col-xs-10 col-sm-9 col-md-10">
+                        S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin and A. von Haeseler (2017)
+                        GHOST: Recovering historical signal from heterotachously-evolved sequence alignments.
+                        <em>bioRxiv</em>.
+                        <br>DOI: <A HREF="https://doi.org/10.1101/174789">10.1101/174789</A>
+                    </div>
+                    <div class="col-xs-2 col-sm-3 col-md-2">
+                        <div data-badge-popover="left" data-badge-type="donut" data-doi="10.1101/174789" class="altmetric-embed"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="well well-sm">
+                <h4>When using <a href="doc/Polymorphism-Aware-Models">polymorphism-aware models</a> please cite:</h4>
+                <div class="row">
+                    <div class="col-xs-10 col-sm-9 col-md-10">
+                        D. Schrempf, B.Q. Minh, N. De Maio, A. von Haeseler,
+                        and C. Kosiol (2016) Reversible polymorphism-aware phylogenetic
+                        models and their application to tree inference. <em>J. Theor. Biol.</em>, 407:362–370.                 
+                        <br>DOI: <a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">10.1016/j.jtbi.2016.07.042</a>
+                    </div>
+                    <div class="col-xs-2 col-sm-3 col-md-2">
+                        <div data-badge-popover="left" data-badge-type="donut" data-doi="10.1016/j.jtbi.2016.07.042" class="altmetric-embed"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="well well-sm">
+                <h4>When using <a href="doc/Advanced-Tutorial">partition models</a> please cite:</h4>
+                <div class="row">
+                    <div class="col-xs-10 col-sm-9 col-md-10">
+                        O. Chernomor, A. von Haeseler, and B.Q. Minh (2016)
+                        Terrace aware data structure for phylogenomic inference from supermatrices.
+                        <em>Syst. Biol.</em>, 65:997-1008.
+                        <br>DOI: <A HREF="http://dx.doi.org/10.1093/sysbio/syw037">10.1093/sysbio/syw037</A>
+                    </div>
+                    <div class="col-xs-2 col-sm-3 col-md-2">
+                        <div data-badge-popover="left" data-badge-type="donut" data-doi="10.1093/sysbio/syw037" class="altmetric-embed"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-6">            
             <div class="well well-sm">
                 <h4>When using <a href="http://iqtree.cibiv.univie.ac.at">IQ-TREE web server</a> please cite:</h4>
-                J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, and B.Q. Minh (2016) W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis. <em>Nucleic Acids Res.</em>, 44 (W1):W232-W235.
-                <br>DOI: <a href="http://dx.doi.org/10.1093/nar/gkw256">10.1093/nar/gkw256</a>
+                <div class="row">
+                    <div class="col-xs-10 col-sm-9 col-md-10">
+                        J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, and B.Q. Minh (2016) W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis. <em>Nucleic Acids Res.</em>, 44 (W1):W232-W235.
+                        <br>DOI: <a href="http://dx.doi.org/10.1093/nar/gkw256">10.1093/nar/gkw256</a>
+                    </div>
+                    <div class="col-xs-2 col-sm-3 col-md-2">
+                        <div data-badge-popover="left" data-badge-type="donut" data-doi="10.1093/nar/gkw256" class="altmetric-embed"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--row-->
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="well well-sm">
+                <h4>When performing <a href="doc/Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation">ultrafast bootstrap (UFBoot)</a> please cite:</h4>
+                <div class="row">
+                    <div class="col-xs-10 col-sm-9 col-md-10">
+                        B.Q. Minh, M.A.T. Nguyen, and A. von Haeseler (2013) Ultrafast approximation for phylogenetic bootstrap. <em>Mol. Biol. Evol.</em>, 30:1188-1195.
+                        <br>DOI: <a href="http://dx.doi.org/10.1093/molbev/mst024">10.1093/molbev/mst024</a>
+                    </div>
+                    <div class="col-xs-2 col-sm-3 col-md-2">
+                        <div data-badge-popover="left" data-badge-type="donut" data-doi="10.1093/molbev/mst024" class="altmetric-embed"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="well well-sm">
+                <h4>When performing tree reconstruction please cite:</h4>
+                <div class="row">
+                    <div class="col-xs-10 col-sm-9 col-md-10">
+                        L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. <em>Mol. Biol. Evol.</em>, 32:268-274.
+                        <br>DOI: <a href="http://dx.doi.org/10.1093/molbev/msu300">10.1093/molbev/msu300</a>
+                    </div>
+                    <div class="col-xs-2 col-sm-3 col-md-2">
+                        <div data-badge-popover="left" data-badge-type="donut" data-doi="10.1093/molbev/msu300" class="altmetric-embed"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div><!--row-->

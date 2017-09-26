@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Beginner's Tutorial"
-author: Jana, Minh Bui
-date:    2017-04-12
+author: Diep Thi Hoang, Jana, Minh Bui
+date:    2017-06-07
 docid: 3
 icon: info-circle
 doctype: tutorial
@@ -22,6 +22,8 @@ sections:
   url: binary-morphological-and-snp-data
 - name: Ultrafast bootstrap
   url: assessing-branch-supports-with-ultrafast-bootstrap-approximation
+- name: Reducing impact of severe model violations with UFBoot
+  url: reducing-impact-of-severe-model-violations-with-ufboot
 - name: Nonparametric bootstrap
   url: assessing-branch-supports-with--standard-nonparametric-bootstrap
 - name: Single branch tests
@@ -165,6 +167,11 @@ Choosing the right substitution model
 -------------------------------------
 <div class="hline"></div>
 
+NOTE: If you use model selection please cite the following paper:
+
+> __S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, and L.S. Jermiin__ (2017) ModelFinder: fast model selection for accurate phylogenetic estimates. _Nat. Methods_, 14:587–589. 
+    DOI: [10.1038/nmeth.4285](https://doi.org/10.1038/nmeth.4285)
+
 IQ-TREE supports a wide range of [substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological alignments. If you do not know which model is appropriate for your data, you can use ModelFinder to determine the best-fit model:
 
     #for IQ-TREE version >= 1.5.4:
@@ -290,7 +297,13 @@ Assessing branch supports with ultrafast bootstrap approximation
 ----------------------------------------------------------------
 <div class="hline"></div>
 
-To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. To run UFBoot, use the option  `-bb`:
+To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. Citation for UFBoot:
+
+> __B.Q. Minh, M.A.T. Nguyen, and A. von Haeseler__ (2013) Ultrafast approximation for phylogenetic bootstrap. _Mol. Biol. Evol._, 30:1188-1195. 
+    <https://doi.org/10.1093/molbev/mst024>
+
+
+To run UFBoot, use the option  `-bb`:
 
     iqtree -s example.phy -m TIM2+I+G -bb 1000
 
@@ -301,9 +314,25 @@ is the minimum number recommended. The section  `MAXIMUM LIKELIHOOD TREE` in  `e
 *  `example.phy.splits`: support values in percentage for all splits (bipartitions),
 computed as the occurence frequencies in the bootstrap trees. This file is in "star-dot" format.
 *  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
-but in NEXUS format, which can be viewed with the program SplitsTree. 
+but in NEXUS format, which can be viewed with the program [SplitsTree](http://www.splitstree.org) to explore the conflicting signals in the data. So it is more informative than consensus tree, e.g. you can see how highly supported the second best conflicting split is, which had no chance to enter the consensus tree. 
 
 >**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
+
+
+Reducing impact of severe model violations with UFBoot
+------------------------------------------------------
+<div class="hline"></div>
+
+Starting with IQ-TREE version 1.6 we provide a new option `-bnni` to reduce the risk of overestimating branch supports with UFBoot due to severe model violations. With this option UFBoot will further optimize each bootstrap tree using a hill-climbing nearest neighbor interchange (NNI) search based directly on the corresponding bootstrap alignment.
+
+Thus, if severe model violations are present in the data set at hand, users are advised to append `-bnni` to the regular UFBoot command:
+
+    iqtree -s example.phy -m TIM2+I+G -bb 1000 -bnni
+
+For more details see:
+
+> __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, L.S. Vinh__ (2017) UFBoot2: Improving the ultrafast bootstrap approximation.
+    <https://doi.org/10.1101/153916>
 
 
 Assessing branch supports with  standard nonparametric bootstrap
