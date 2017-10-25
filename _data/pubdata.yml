@@ -1,0 +1,194 @@
+---
+references:
+
+  - author:
+    - given: D.T.
+      family: Hoang
+      co-first: yes
+    - given: O.
+      family: Chernomor
+      co-first: yes
+    - given: A.
+      family: von Haeseler
+    - given: B.Q.
+      family: Minh
+      co-last: yes
+    - given: L.S.
+      family: Vinh
+      co-last: yes
+    issued:
+      year: in press
+      month:
+    title: UFBoot2&#58; Improving the ultrafast bootstrap approximation
+    container-title: Mol. Biol. Evol.
+    publisher: Oxford University Press
+    issue:
+    page:
+    DOI: 10.1093/molbev/msx281
+    type: article-journal
+    message: When performing <a href="doc/Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation">ultrafast bootstrap (UFBoot)</a> please cite&#58;
+    new: yes
+
+  - author:
+    - given: H.C.
+      family: Wang
+      co-first: yes
+    - given: B.Q.
+      family: Minh
+      co-first: yes
+    - given: S.
+      family: Susko
+    - given: A.J.
+      family: Roger
+    issued:
+      year: in press
+      month:
+    title: Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation
+    container-title: Syst. Biol.
+    publisher: Oxford University Press
+    issue:
+    page:
+    DOI: 10.1093/sysbio/syx068
+    PMID: 28950365
+    message: When using <a href="doc/Complex-Models#site-specific-frequency-models">posterior mean site frequency model (PMSF)</a> please cite&#58;
+    new: yes
+
+  - author:
+    - given: S.
+      family: Kalyaanamoorthy
+      co-first: yes
+    - given: B.Q.
+      family: Minh
+      co-first: yes
+    - given: T.K.F.
+      family: Wong
+      co-first: yes
+    - given: A.
+      family: von Haeseler
+    - given: L.S.
+      family: Jermiin
+    issued:
+      year: 2017
+    title: "ModelFinder: Fast model selection for accurate phylogenetic estimates"
+    container-title: Nat. Methods
+    DOI: 10.1038/nmeth.4285
+    PMID: 28481363
+    PMCID: PMC5453245
+    issue: 14
+    page: 587-589
+    software: http://www.iqtree.org/
+    message: When using <a href="doc/Tutorial#choosing-the-right-substitution-model">model selection (ModelFinder)</a> please cite&#58;
+    new: yes
+
+  - author:
+    - given: S.M.
+      family: Crotty
+      co-first: yes
+    - given: B.Q.
+      family: Minh
+      co-first: yes
+    - given: N.G.
+      family: Bean
+    - given: B.R.
+      family: Holland
+    - given: J.
+      family: Tuke
+    - given: L.S.
+      family: Jermiin
+    - given: A.
+      family: von Haeseler
+    issued:
+      year: submitted
+      month:
+    title: "GHOST: Recovering historical signal from heterotachously-evolved sequence alignments"
+    container-title: bioRxiv.
+    issue:
+    page:
+    DOI: 10.1101/174789
+    message: When using <a href="doc/Complex-Models#heterotachy-models">heterotachy models</a> please cite&#58;
+    new: yes
+
+  - author:
+    - given: D.
+      family: Schrempf
+    - given: B.Q.
+      family: Minh
+    - given: N.
+      family: De Maio
+    - given: A.
+      family: von Haeseler
+    - given: C.
+      family: Kosiol
+    issued:
+      year: 2016
+      month:
+    title: Reversible polymorphism-aware phylogenetic models and their application to tree inference
+    container-title: J. Theor. Biol.
+    issue: 407
+    page: 362-370
+    DOI: 10.1016/j.jtbi.2016.07.042
+    PMID: 27480613
+    software: http://www.iqtree.org/
+    message: When using <a href="doc/Polymorphism-Aware-Models">polymorphism-aware models</a> please cite&#58;
+
+  - author:
+    - given: O.
+      family: Chernomor
+    - given: A.
+      family: von Haeseler
+    - given: B.Q.
+      family: Minh
+    issued:
+      year: 2016
+    title: Terrace aware data structure for phylogenomic inference from supermatrices
+    container-title: Syst. Biol.
+    issue: 65
+    page: 997-1008
+    DOI: 10.1093/sysbio/syw037
+    PMID: 27121966
+    software: http://www.iqtree.org/
+    message: When using <a href="doc/Advanced-Tutorial">partition models</a> please cite&#58;
+
+  - author:
+    - given: J.
+      family: Trifinopoulos
+    - given: L.-T.
+      family: Nguyen
+    - given: A.
+      family: von Haeseler
+    - given: B.Q.
+      family: Minh
+    issued:
+      year: 2016
+    title: W-IQ-TREE&#58; a fast online phylogenetic tool for maximum likelihood analysis.
+    container-title: Nucleic Acids Res.
+    issue: 44
+    page: W232-W235
+    DOI: 10.1093/nar/gkw256
+    PMID: 27084950
+    software: http://iqtree.cibiv.univie.ac.at/
+    message: When using <a href="http://iqtree.cibiv.univie.ac.at">IQ-TREE web server</a> please cite&#58;
+
+  - author:
+    - given: L.-T.
+      family: Nguyen
+    - given: H.A.
+      family: Schmidt
+    - given: A.
+      family: von Haeseler
+    - given: B.Q.
+      family: Minh
+    issued:
+      year: 2015
+    title: IQ-TREE&#58; A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.
+    container-title: Mol. Biol. Evol.
+    issue: 32
+    page: 268-274
+    DOI: 10.1093/molbev/msu300
+    PMID: 25371430
+    PMCID: PMC4271533
+    software: http://www.iqtree.org/
+    message: When performing tree reconstruction please cite&#58;
+
+---
+
