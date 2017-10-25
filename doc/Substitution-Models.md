@@ -67,7 +67,7 @@ IQ-TREE includes all common DNA models (ordered by complexity):
 | TIM3e        | 3 | Like `TIM3` but equal base freq. | 120130 |
 | TVM          | 7 | Transversion model, AG=CT and unequal base freq. | 412310 |
 | TVMe         | 4 | Like `TVM` but equal base freq. | 412310 |
-| SYM          | 5 | Symmetric model with unequal rates but equal base freq. ([Zharkihk, 1994]). | 123450 |
+| SYM          | 5 | Symmetric model with unequal rates but equal base freq. ([Zharkikh, 1994]). | 123450 |
 | GTR          | 8 | General time reversible model with unequal rates and unequal base freq. ([Tavare, 1986]). | 123450 |
 
 The last column `Code` is a 6-digit code definining the equality constraints for 6 *relative* substitution rates: A-C, A-G, A-T, C-G, C-T and G-T. `010010` means that A-G rate is equal to C-T rate (corresponding to `1` in the code) and the remaining four substitution rates are equal (corresponding to `0` in the code). Thus, `010010` is equivalent to K80 or HKY model (depending on whether base frequencies are equal or not). `123450` is equivalent to GTR or SYM model as there is no restriction defined by such 6-digit code.
