@@ -29,16 +29,15 @@ sections:
 Polymorphism-aware models
 =========================
 
-Improve inferences using population data.
+Use population data to improve inferences.
 <!--more-->
 
-**Po**lymorphism-aware phylogenetic **Mo**dels (PoMo) improve
-phylogenetic inference using population data (site frequency data).
-Thereby they builds on top of DNA substitution models and naturally
-account for incomplete lineage sorting.  In order to run PoMo, you
-need more sequences per species/population (ideally ten or more
-chromosomes) so that information about the site frequency spectrum is
-available.
+**Po**lymorphism-aware phylogenetic **Mo**dels (PoMo) improve phylogenetic
+inference using population data (site frequency data). Thereby they builds on
+top of DNA substitution models and naturally account for incomplete lineage
+sorting. In order to run PoMo, you need more sequences per species/population
+(ideally five or more chromosomes per species/population) so that information
+about the site frequency spectrum is available.
 
 Currently this model is only available in the beta version 1.6. Please download it from here:
 
@@ -60,17 +59,18 @@ Counts files
 ------------
 <div class="hline"></div>
 
-The input of PoMo is allele frequency data.  Especially, when populations
-have many individuals it is preferable to count the number of bases at
-each position.  This decreases file size and speeds up the parser.
+The input of PoMo is allele frequency data. Especially, when populations have
+many individuals it is preferable to count the number of bases at each position
+compared to providing data for each chromosome in a FASTA file. Thereby file
+size is decreased and parsed faster.
 
 Counts files contain:
 
-- One headerline that specifies the file as counts file and states the
-  number of populations as well as the number of sites (separated by
+- One headerline that specifies the file as counts file and states the number of
+  populations (leaves on the tree) as well as the number of sites (separated by
   white space).
 
-- A second headerline with white space separated headers: CRHOM
+- A second headerline with white space separated headings: CRHOM
   (chromosome), POS (position) and sequence names.
    
 - Many lines with counts of A, C, G and T bases and their respective
@@ -78,10 +78,9 @@ Counts files contain:
 
 Comments:
 
-- Lines starting with # before the first headerline are treated as
-  comments.
+- Lines before the first headerline starting with # are treated as comments.
 
-A toy example:
+Example:
 
     COUNTSFILE  NPOP 5   NSITES N
     CHROM  POS  Sheep    BlackSheep  RedSheep  Wolf     RedWolf
@@ -106,10 +105,10 @@ chromosomes).
 
 ### Conversion scripts
 
-If you do not want to create counts files with your own scripts, you
-can use one of the scripts that we provide.  For detailed
-instructions, please refer to the
-[GitHub repository of the counts file library `cflib`](https://github.com/pomo-dev/cflib).
+If you do not want to create counts files with your own scripts, you can use the
+python script that we provide. For detailed instructions, please refer to the
+[GitHub repository of the counts file library
+`cflib`](https://github.com/pomo-dev/cflib).
 
 First running example
 ---------------------
@@ -125,28 +124,27 @@ or, e.g.,
 
     iqtree -nt 4 -s example.cf -m HKY+P
 
-if you use the multicore version.  `-s` allows specification of the
-alignment file; `-m` specifies the model (HKY substitution model with
-PoMo).  At the end of the run IQ-TREE writes the same output files as
-in the standard version (see [tutorial](Tutorial)).
+if you use the multicore (OMP) version. `-s` specifies of the alignment file and
+`-m` the model (HKY substitution model with polymorphisms; PoMo), similar to the
+standard IQ-TREE usage. At the end of the run IQ-TREE writes the same output
+files as in the standard version (see [tutorial](Tutorial)).
 
-* `example.cf.iqtree`: the main report file that is self-readable.
-You should look at this file to see the computational results.  It
-also contains a textual representation of the final tree.
-* `example.cf.treefile`: the ML tree in NEWICK format, which can be
-visualized by any supported tree viewer programs like FigTree or iTOL.
-* `example.cf.log`: log file of the entire run (also printed on the
-screen).  To report bugs, please send this log file and the original
-alignment file to the authors.
+* `example.cf.iqtree`: the main report file that is self-readable. You should
+look at this file to see the computational results. It also contains a textual
+representation of the final tree.
+* `example.cf.treefile`: the ML tree in NEWICK format, which can be visualized
+by any supported tree viewer programs like FigTree or iTOL.
+* `example.cf.log`: log file of the entire run (also printed on the screen). To
+report bugs, please send this log file and the original alignment file to the
+authors.
 
-The default prefix of all output files is the alignment file
-name.  However, you can always change the prefix using the `-pre`
-option, e.g.:
+The default prefix of all output files is the alignment file name. However, you
+can always change the prefix using the `-pre` option, e.g.:
 
     iqtree -s example.cf -pre myprefix
 
-This prevents output files to be overwritten when you perform multiple
-analyses on the same alignment within the same folder.
+This prevents output files to be overwritten when you perform multiple analyses
+on the same alignment within the same folder.
 
 Substitution models
 -------------------
@@ -165,32 +163,26 @@ Virtual population size
 -----------------------
 <div class="hline"></div>
 
-PoMo describes the evolution of populations along a phylogeny by means
-of a virtual population of constant size N, which defaults to 9 (for
-details, see [Schrempf et al., 2016]).  This is a good and stable
-default value.  If only very few chromosomes have been sequenced per
-population (e.g., two to four), N should be lowered to the average
-number of chromosomes per population.  If enough data is available and
-calculations are not too time consuming, we advise to increase N up to
-a maximum of 19.  You can choose odd values from three to 19 as well
-as 2 and 10.  E.g., to set N to 19:
+PoMo describes the evolution of populations along a phylogeny by means of a
+virtual population of constant size `N`, which defaults to nine (for details,
+see [Schrempf et al., 2016]). This is a good and stable default value. If only
+very few chromosomes have been sequenced per population (e.g., two to four), `N`
+should be lowered to the average number of chromosomes per population. If enough
+data is available and calculations are not too time consuming, we advise to
+increase N up to a maximum of 19. You can choose odd values from three to 19 as
+well as 2 and 10. E.g., to set N to 19:
 
     iqtree -s example.cf -m HKY+P+N19
-
-Odd values of N allow the usage of the fast AVX instruction set.  This
-results in a considerable decrease of runtime.
 
 Level of polymorphism
 -----------------------
 <div class="hline"></div>
 
-As of version `1.6`, IQ-TREE with PoMo also allows fixation of the
-level of polymorphism which is usually referred to as /theta/,
-/Watterson's theta/ or /4Nu/.  When analyzing population data, the
-amount of polymorphism is inferred during maximization of the
-likelihood.  However, in some situations it may be useful to set the
-level of polymorphism to the observed value in the data (empirical
-value):
+As of version `1.6`, IQ-TREE with PoMo also allows fixation of the level of
+heterozygosity, which is also called Watterson's theta or `4Nu`. When analyzing
+population data, the amount of polymorphism is inferred during maximization of
+the likelihood. However, in some situations it may be useful to set the level of
+polymorphism to the observed value in the data (empirical value):
 
     iqtree -s example.cf -m HKY+P{EMP}
 
@@ -198,39 +190,49 @@ or to set the level of polymorphism by hand, e.g.,:
 
     iqtree -s example.cf -m HKY+P{0.0025}
     
-Together with the ability to set model parameters, the model can be
-fully specified, e.g.:
+Together with the ability to set model parameters, the model can be fully
+specified, e.g.:
 
     iqtree -s example.cf -m HKY{6.0}+P{0.0025}
     
-This sets the transition to transversion ratio to a value of `6.0` and
-the level of polymorphism to a value of `0.0025`.  In this case,
-IQ-TREE only performs a tree search because the model is fully
-specified.
+This sets the transition to transversion ratio to a value of `6.0` and the level
+of polymorphism to a value of `0.0025`. In this case, IQ-TREE only performs a
+tree search because the model is fully specified.
 
 Sampling method
 ---------------
 <div class="hline"></div>
 
-For advanced users.  PoMo offers two different methods to read in the
-data ([Schrempf et al., 2016]).  Briefly, each population and site are
-treated as follows
+For advanced users. PoMo offers different methods to read in the data ([Schrempf
+et al., 2016]). Briefly, each population and site are treated as follows
 
-1. *Weighted* (default): assign the likelihood of each PoMo state to
-its probability of leading to the observed data, assuming it is
-binomially sampled.
+1. *Weighted binomial* (default, `+WB`): assign the likelihood of each PoMo
+state to its probability of leading to the observed data, assuming it is
+**binomially** sampled. Example:
 
-2. *Sampled*: randomly draw N samples with replacement from the given
-data.  The N picked samples constitute a PoMo state which will be
-assigned a likelihood of 1.  All other PoMo states have likelihood 0.
+        iqtree -s example.cf -m HKY+P+WB
 
-- To use the *weighted* input method (default behavior):
+2. *Weighted hypergeometric* (`+WH`): assign the likelihood of each PoMo state
+to its probability of leading to the observed data, assuming it is
+**hypergeometrically** sampled. Example:
 
-        iqtree -s example.cf -m HKY+P+W
-
-- To use the *sampled* input method:
+        iqtree -s example.cf -m HKY+P+WH
+        
+3. *Sampled*: randomly draw N samples with replacement from the given data. The
+N picked samples constitute a PoMo state which will be assigned a likelihood
+of 1. All other PoMo states have likelihood 0. Example:
 
         iqtree -s example.cf -m HKY+P+S
+
+We expect a slight overestimation of the heterozygosity for *weighted binomial*
+sampling. This is because monomorphic (fixed) states can be reached from
+polymorphic states during the sampling step, while polymorphic states cannot be
+reached from monomorphic states (sampling does not involve mutation). I.e., only
+when the level of heterozygosity at the leaves is overestimated, the sampling
+step leads to the correct amount of heterozygosity observed in the data.
+
+If you wish to avoid this effect, use *weighted hypergeometric* sampling.
+However, we have observed that *weighted binomial* sampling is more stable.
 
 State frequency type
 --------------------
@@ -249,12 +251,13 @@ Rate heterogeneity
 ------------------
 <div class="hline"></div>
 
-Recently, PoMo allows inference with different rate categories.  As of
-version `1.6`, only discrete Gamma rate heterogeneity is supported.
-Please be aware, that for mathematical reasons, the runtime scales
-linearly with the number of rate categories.  In the future, we plan
-to decrease runtimes as well as implement more rate heterogeneity
-types.  To use a discrete Gamma model with 4 rate categories, use:
+Recently, PoMo allows inference with different rate categories. As of version
+`1.6`, only discrete Gamma rate heterogeneity is supported. Please be aware,
+that for biological and mathematical reasons (we cannot simply scale the full
+transition matrix but have to separate the mutational component from genetic
+drift), the run time scales linearly with the number of rate categories. In the
+future, we plan to work on decreasing run time as well as implement more rate
+heterogeneity types. To use a discrete Gamma model with 4 rate categories, use:
 
     iqtree -s example.cf -m HKY+P+G4
 
@@ -304,4 +307,3 @@ site in `example.cf.iqtree`.  An example of the relevant section:
     - measured in substitutions per site: 0.01767814 (2.48285810% of tree length)
 
 [Schrempf et al., 2016]: http://dx.doi.org/10.1016/j.jtbi.2016.07.042
-
