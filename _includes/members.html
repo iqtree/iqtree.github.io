@@ -1,6 +1,6 @@
 <div class="container mtb">
     <h3 class="mb centered">IQ-TREE DEVELOPMENT TEAM</h3>
-    {% for member in site.members %}
+    {% for member in site.data.members.members %}
         {% assign loopindex = forloop.index | modulo: 3 %}
         {% if loopindex == 1 %}
         <div class="row centered">

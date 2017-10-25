@@ -1,0 +1,83 @@
+---
+
+    
+# Members information. Shown on About page.
+members:
+  - name: Lam Tung Nguyen
+    position:
+    text: Tree search algorithm and parallelization.
+    img: tung.jpg
+    gscholar: https://scholar.google.com/citations?user=TQx3GV8AAAAJ
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~tung
+  - name: Olga Chernomor
+    position:
+    text: Partition models and phylogenomic search.
+    img: olga.jpg
+    gscholar: https://scholar.google.com/citations?user=28f0gdQAAAAJ
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~olga
+  - name: Heiko A. Schmidt
+    position:
+    text: Integration of <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a> features.
+    img: hschmidt.png
+    gscholar: https://scholar.google.com/citations?user=8lFCw7IAAAAJ
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~hschmidt
+  - name: Jana Trifinopoulos
+    position:
+    text: W-IQ-TREE web service.
+    img: jana.jpg
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~jana
+  - name: Bui Quang Minh
+    position:
+    text: Team leader, software core, ultrafast bootstrap, model selection.
+    img: minh.jpg
+    gscholar: https://scholar.google.com/citations?user=UI0xN_QAAAAJ
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~minh
+      - title: university
+        url: https://scholar.google.com/citations?user=UI0xN_QAAAAJ
+  - name: Dominik Schrempf
+    position:
+    text: Polymorphism-aware models (PoMo).
+    img: dominiks.jpg
+    gscholar: https://scholar.google.com/citations?user=3pvnGAcAAAAJ
+    social:
+      - title: home #use for email address
+        #url: http://i122server.vu-wien.ac.at/pop/lab_members/Dominik_Schrempf.html
+        url: https://dschrempf.github.io
+  - name: Michael Woodhams
+    position:
+    text: Lie Markov models.
+    img: woodhams.jpg
+    gscholar: https://scholar.google.com/citations?user=brh1wEkAAAAJ
+    social:
+      - title: home #use for email address
+        url: http://www.utas.edu.au/profiles/staff/maths-physics/michael-woodhams
+  - name: Arndt von Haeseler
+    position:
+    text: Advice, ideas and financial support.
+    img: arndt.jpg
+    gscholar: https://scholar.google.com/citations?user=XqglmcgAAAAJ
+    social:
+      - title: envelope #use for email address
+        url: http://www.cibiv.at/~haeseler
+
+  - name: Diep Thi Hoang
+    position:
+    text: Improving ultrafast bootstrap.
+    img: diep.jpg
+    gscholar:
+    social:
+      - title: envelope #use for email address
+        url: http://www.cibiv.at/~diep_
+
+
+---
