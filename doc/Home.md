@@ -116,7 +116,7 @@ How to cite IQ-TREE?
 
 > **To maintain IQ-TREE, support users and secure fundings, it is important for us that you cite the following papers, whenever the corresponding features were applied for your analysis.**
 >
-> * Example 1: *We obtained branch supports with the ultrafast bootstrap (Minh et al., 2013) implemented in the IQ-TREE software (Nguyen et al., 2015).* 
+> * Example 1: *We obtained branch supports with the ultrafast bootstrap (Hoang et al., in press) implemented in the IQ-TREE software (Nguyen et al., 2015).* 
 >
 > * Example 2: *We inferred the maximum-likelihood tree using the edge-linked partition model in IQ-TREE (Chernomor et al., 2016; Nguyen et al., 2015).*
 
