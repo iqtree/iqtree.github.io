@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Introduction"
 author: Jana Trifinopoulos, Minh Bui, Nltung
-date:    2017-08-01
+date:    2017-10-25
 docid: 0
 icon: info-circle
 doctype: tutorial
@@ -121,6 +121,10 @@ How to cite IQ-TREE?
 > * Example 2: *We inferred the maximum-likelihood tree using the edge-linked partition model in IQ-TREE (Chernomor et al., 2016; Nguyen et al., 2015).*
 
 
+If you performed the ultrafast bootstrap (UFBoot) please cite:
+
+* __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2017) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, in press. [DOI: 10.1093/molbev/msx281](http://dx.doi.org/10.1093/molbev/msx281)
+
 If you used posterior mean site frequency model please cite:
 
 * __H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger__ (2017) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. _Syst. Biol._, in press. [DOI: 10.1093/sysbio/syx068](https://doi.org/10.1093/sysbio/syx068)
@@ -136,10 +140,6 @@ If you performed tree reconstruction please cite:
 If you used partition models e.g., for phylogenomic analysis please cite:
 
 * __O. Chernomor, A. von Haeseler, and B.Q. Minh__ (2016) Terrace aware data structure for phylogenomic inference from supermatrices. *Syst. Biol.*, 65:997-1008. [DOI: 10.1093/sysbio/syw037](http://dx.doi.org/10.1093/sysbio/syw037)
-
-If you performed the ultrafast bootstrap (UFBoot) please cite:
-
-* __B.Q. Minh, M.A.T. Nguyen, and A. von Haeseler__ (2013) Ultrafast approximation for phylogenetic bootstrap. *Mol. Biol. Evol.*, 30:1188-1195. [DOI: 10.1093/molbev/mst024](http://dx.doi.org/10.1093/molbev/mst024)
 
 If you used the polymorphism-aware models please cite:
 
