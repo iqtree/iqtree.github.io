@@ -58,7 +58,7 @@ Key features
 
 
 * __Efficient search algorithm__: Fast and effective stochastic algorithm to reconstruct phylogenetic trees by maximum likelihood. IQ-TREE compares favorably to RAxML and PhyML in terms of likelihood while requiring similar amount of computing time ([Nguyen et al., 2015]).
-* __Ultrafast bootstrap__: An ultrafast bootstrap approximation (UFBoot) to assess branch supports. UFBoot is 10 to 40 times faster than RAxML rapid bootstrap and obtains less biased support values ([Minh et al., 2013]).
+* __Ultrafast bootstrap__: An ultrafast bootstrap approximation (UFBoot) to assess branch supports. UFBoot is 10 to 40 times faster than RAxML rapid bootstrap and obtains less biased support values ([Minh et al., 2013]; [Hoang et al., in press]).
 * __Ultrafast model selection__: An ultrafast and automatic model selection (ModelFinder) which is 10 to 100 times faster than jModelTest and ProtTest. ModelFinder also finds best-fit partitioning scheme like PartitionFinder.
 * __Big Data Analysis__: Supporting huge datasets with thousands of sequences or millions of alignment sites via [checkpointing](Command-Reference#checkpointing-to-resume-stopped-run), safe numerical and low memory mode. [Multicore CPUs](Tutorial#utilizing-multi-core-cpus) and [parallel MPI system](Compilation-Guide#compiling-mpi-version) are utilized to speedup analysis.
 * __Phylogenetic testing__: Several fast branch tests like SH-aLRT and aBayes test ([Anisimova et al., 2011]) and tree topology tests like the approximately unbiased (AU) test ([Shimodaira, 2002]).
@@ -169,6 +169,10 @@ IQ-TREE is actively developed by:
 
 **Dominik Schrempf**, _Developer_, Implements polymorphism-aware models (PoMo).
 
+**Michael Woodhams**, _Developer_, Implements Lie Markov models.
+
+**Diep Thi Hoang**, _Developer_, Improves the ultrafast bootstrap implementation.
+
 **Arndt von Haeseler**, _Advisor_, Provides advice, inspiring ideas and financial support.
 
 
@@ -186,6 +190,7 @@ IQ-TREE was partially funded by the [Austrian Science Fund - FWF](http://www.fwf
 
 [Anisimova et al., 2011]: http://dx.doi.org/10.1093/sysbio/syr041
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
+[Hoang et al., in press]: https://doi.org/10.1093/molbev/msx281
 [Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
 [Schrempf et al., 2016]: http://dx.doi.org/10.1016/j.jtbi.2016.07.042

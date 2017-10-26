@@ -297,10 +297,10 @@ Assessing branch supports with ultrafast bootstrap approximation
 ----------------------------------------------------------------
 <div class="hline"></div>
 
-To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. Citation for UFBoot:
+To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]; [Hoang et al., in press]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. Citation for UFBoot:
 
-> __B.Q. Minh, M.A.T. Nguyen, and A. von Haeseler__ (2013) Ultrafast approximation for phylogenetic bootstrap. _Mol. Biol. Evol._, 30:1188-1195. 
-    <https://doi.org/10.1093/molbev/mst024>
+> __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2017) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, in press. 
+    <http://dx.doi.org/10.1093/molbev/msx281>
 
 
 To run UFBoot, use the option  `-bb`:
@@ -328,11 +328,6 @@ Starting with IQ-TREE version 1.6 we provide a new option `-bnni` to reduce the 
 Thus, if severe model violations are present in the data set at hand, users are advised to append `-bnni` to the regular UFBoot command:
 
     iqtree -s example.phy -m TIM2+I+G -bb 1000 -bnni
-
-For more details see:
-
-> __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, L.S. Vinh__ (2017) UFBoot2: Improving the ultrafast bootstrap approximation.
-    <https://doi.org/10.1101/153916>
 
 
 Assessing branch supports with  standard nonparametric bootstrap
@@ -446,6 +441,7 @@ Once confident enough you can go on with a **[more advanced tutorial](Advanced-T
 [Anisimova et al., 2011]: http://dx.doi.org/10.1093/sysbio/syr041
 [Gadagkar et al., 2005]: http://dx.doi.org/10.1002/jez.b.21026
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
+[Hoang et al., in press]: https://doi.org/10.1093/molbev/msx281
 [Lanfear et al., 2012]: http://dx.doi.org/10.1093/molbev/mss020
 [Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82
 [Lewis, 2001]: http://dx.doi.org/10.1080/106351501753462876

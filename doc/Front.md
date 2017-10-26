@@ -6,7 +6,7 @@ title: |
     
 subtitle: "<http://www.iqtree.org>"
 author: Bui Quang Minh, Jana Trifinopoulos, Dominik Schrempf, Heiko A. Schmidt
-date: June 7, 2017
+date: October 25, 2017
 keywords: [phylogenomic inference, maximum likelihood]
 toc: true
 papersize: A4

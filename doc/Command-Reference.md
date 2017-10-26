@@ -356,7 +356,7 @@ Ultrafast bootstrap parameters
 ------------------------------
 <div class="hline"></div>
 
-The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]) has several parameters that can be changed with:
+The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]; [Hoang et al., in press]) has several parameters that can be changed with:
 
 | Option | Usage and meaning |
 |----------|------------------------------------------------------------------------------|
@@ -551,6 +551,7 @@ Miscellaneous options
 [Gadagkar et al., 2005]: http://dx.doi.org/10.1002/jez.b.21026
 [Gu et al., 1995]: http://mbe.oxfordjournals.org/content/12/4/546.abstract
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
+[Hoang et al., in press]: https://doi.org/10.1093/molbev/msx281
 [Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: http://dx.doi.org/10.1007/BF02100115
 [Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82
