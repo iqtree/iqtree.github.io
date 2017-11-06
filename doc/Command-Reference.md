@@ -173,6 +173,8 @@ allows to automatically determine the best-fit model via a series of `-m TEST...
 | `-m TESTNEWMERGEONLY` or `-m MF+MERGE` | Like `-m TESTMERGEONLY` but additionally includes FreeRate model. |
 | `-m TESTNEWMERGE` or `-m MFP+MERGE` | Like `-m MF+MERGE` but immediately followed by tree reconstruction using the best partitioning scheme found. |
 
+> **WARNING**: All commands with `-m ...MERGE...` will always perform an edge-unlinked partition scheme finding even if `-spp` option is used. Only in the next phase of tree reconstruction, then an edge-linked partition model is used. We plan to implement the edge-linked partition finding in version 1.6.
+
 >**TIP**: During model section run, IQ-TREE will write a file with suffix `.model` that stores information of all models tested so far. Thus, if IQ-TREE is interrupted for whatever reason, restarting the run will load this file to reuse the computation. Thus, this file acts like a checkpoint to resume the model selection.
 {: .tip}
 

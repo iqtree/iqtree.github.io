@@ -186,6 +186,7 @@ A few typically analyses are listed in the following. Note that it is assumed th
 
         iqtree -h
         
+> **WARNING**: All these commands with `-m ...MERGE...` will always perform an edge-unlinked partition scheme finding even if `-spp` option is used. Only in the next phase of tree reconstruction, then an edge-linked partition model is used. We plan to implement the edge-linked partition finding in version 1.6.
 
 Where to go from here?
 ----------------------------

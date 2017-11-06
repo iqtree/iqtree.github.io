@@ -152,6 +152,7 @@ Note that this command considers the FreeRate heterogeneity model (see [model se
 
     iqtree -s example.phy -spp example.nex -m TESTMERGE
 
+> **WARNING**: All these commands with `-m ...MERGE...` will always perform an edge-unlinked partition scheme finding even if `-spp` option is used. Only in the next phase of tree reconstruction, then an edge-linked partition model is used. We plan to implement the edge-linked partition finding in version 1.6.
 
 After ModelFinder found the best partition, IQ-TREE will immediately start the tree reconstruction under the best-fit partition model.
 Sometimes you only want to find the best-fit partition model without doing tree reconstruction, then run:
