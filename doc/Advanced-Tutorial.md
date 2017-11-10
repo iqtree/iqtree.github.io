@@ -295,7 +295,10 @@ This will perform all above tests plus the AU test.
 
 Finally, note that IQ-TREE will automatically detect duplicated tree topologies and omit them during the evaluation.
 
->**NOTE**:
+>**NOTE**: There is a discrepancy between IQ-TREE and CONSEL for the AU test: IQ-TREE implements the least-square estimate for p-values whereas CONSEL provides the maximum-likelihood estimate (MLE) for p-values. Hence, the AU p-values might be slightly different. We plan to implement MLE for AU p-values in IQ-TREE version 1.6.
+
+
+>**HINTS**:
 >
 > - The KH, SH and AU tests return p-values, thus a tree is rejected if its p-value < 0.05 (marked with a `-` sign).
 >
@@ -304,6 +307,7 @@ Finally, note that IQ-TREE will automatically detect duplicated tree topologies 
 > - The KH test ([Kishino and Hasegawa, 1989]) was designed to test 2 trees and thus has no correction for multiple testing. The SH test ([Shimodaira and Hasegawa, 1999]) fixes this problem.
 >
 > - However, the SH test becomes too conservative (i.e., rejecting fewer trees than expected) when testing many trees. The AU test ([Shimodaira, 2002]) fixes this problem and is thus recommended as replacement for both KH and SH tests.
+{: .tip}
 
 
 
