@@ -45,13 +45,13 @@ For reasons of performance, IQ-TREE is a command-line program, i.e., IQ-TREE nee
 
 ### Packages and bundles
 
-Ready made IQ-TREE packages are available for the following distributions/repositories:
+Ready made IQ-TREE packages are available for the following distributions/repositories (command to install iqtree):
 
-* [Debian Linux](https://packages.debian.org/unstable/science/iqtree)
+* [Debian Linux](https://packages.debian.org/unstable/science/iqtree): `sudo apt-get install iqtree`
 * [Arch Linux (AUR)](https://aur.archlinux.org/packages/iqtree-latest/)
-* [Anaconda](https://anaconda.org/bioconda/iqtree)
-* [Homebrew](http://braumeister.org/repos/Homebrew/homebrew-science/formula/iqtree)
-* [FreeBSD](https://www.freshports.org/biology/iqtree/)
+* [Anaconda](https://anaconda.org/bioconda/iqtree): `conda install -c bioconda iqtree`
+* [Homebrew](http://braumeister.org/repos/Homebrew/homebrew-science/formula/iqtree): `brew install homebrew/science/iqtree`
+* [FreeBSD](https://www.freshports.org/biology/iqtree/): `pkg install iqtree`
 
 ### Manual download
 
