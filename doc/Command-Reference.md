@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Command Reference"
 author: Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, Minh Bui
-date:    2017-06-07
+date:    2017-12-02
 docid: 7
 icon: book
 doctype: tutorial
@@ -173,6 +173,8 @@ allows to automatically determine the best-fit model via a series of `-m TEST...
 | `-m TESTNEWMERGEONLY` or `-m MF+MERGE` | Like `-m TESTMERGEONLY` but additionally includes FreeRate model. |
 | `-m TESTNEWMERGE` or `-m MFP+MERGE` | Like `-m MF+MERGE` but immediately followed by tree reconstruction using the best partitioning scheme found. |
 
+> **WARNING**: All commands with `-m ...MERGE...` will always perform an edge-unlinked partition scheme finding even if `-spp` option is used. Only in the next phase of tree reconstruction, then an edge-linked partition model is used. We plan to implement the edge-linked partition finding in version 1.6.
+
 >**TIP**: During model section run, IQ-TREE will write a file with suffix `.model` that stores information of all models tested so far. Thus, if IQ-TREE is interrupted for whatever reason, restarting the run will load this file to reuse the computation. Thus, this file acts like a checkpoint to resume the model selection.
 {: .tip}
 
@@ -184,7 +186,7 @@ Several parameters can be set to e.g. reduce computations:
 | `-mset`     | Specify the name of a program (`raxml`, `phyml` or `mrbayes`) to restrict to only those models supported by the specified program. Alternatively, one can specify a comma-separated list of base models. For example, `-mset WAG,LG,JTT` will restrict model selection to WAG, LG, and JTT instead of all 18 AA models to save computations. |
 | `-msub`     | Specify either `nuclear`, `mitochondrial`, `chloroplast` or `viral` to restrict to those AA models designed for specified source. |
 | `-mfreq`    | Specify a comma-separated list of frequency types for model selection. *DEFAULT: `-mfreq FU,F` for protein models (FU = AA frequencies given by the protein matrix, F = empirical AA frequencies from the data), `-mfreq ,F1x4,F3x4,F` for codon models* |
-| `-mrate`    | Specify a comma-separated list of rate heterogeneity types for model selection. *DEFAULT: `-mrate E,I,G,I+G` for standard procedure, `-mrate E,I,G,I+G,R` for new selection procedure* |
+| `-mrate`    | Specify a comma-separated list of rate heterogeneity types for model selection. *DEFAULT: `-mrate E,I,G,I+G` for standard procedure, `-mrate E,I,G,I+G,R` for new selection procedure*. (E means Equal/homogeneous rate model). |
 | `-cmin`     | Specify minimum number of categories for FreeRate model. *DEFAULT: 2* |
 | `-cmax`     | Specify maximum number of categories for FreeRate model. It is recommended to increase if alignment is long enough. *DEFAULT: 10* |
 | `-merit` | Specify either `AIC`, `AICc` or `BIC` for the optimality criterion to apply for new procedure. *DEFAULT: all three criteria are considered* |
@@ -356,7 +358,7 @@ Ultrafast bootstrap parameters
 ------------------------------
 <div class="hline"></div>
 
-The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]) has several parameters that can be changed with:
+The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]; [Hoang et al., in press]) has several parameters that can be changed with:
 
 | Option | Usage and meaning |
 |----------|------------------------------------------------------------------------------|
@@ -431,7 +433,9 @@ IQ-TREE provides a number of tests for significant topological differences betwe
 | `-n 0` | Only estimate model parameters on an initial parsimony tree and ignore a full tree search to save time. |
 | `-te` | Specify a fixed user tree to estimate model parameters. Thus it behaves like `-n 0` but uses a user-defined tree instead of parsimony tree. |
 
->**NOTE**: The AU test implementation in IQ-TREE is much more efficient than the original CONSEL by supporting SSE, AVX and multicore parallelization. Moreover, it is more appropriate than CONSEL for partition analysis by bootstrap resampling sites *within* partitions, whereas CONSEL is not partition-aware.
+>**NOTE1**: There is a discrepancy between IQ-TREE and CONSEL for the AU test: IQ-TREE implements the least-square estimate for p-values whereas CONSEL provides the maximum-likelihood estimate (MLE) for p-values. Hence, the AU p-values might be slightly different. We plan to implement MLE for AU p-values in IQ-TREE version 1.6.
+
+>**NOTE2**: The AU test implementation in IQ-TREE is much more efficient than the original CONSEL by supporting SSE, AVX and multicore parallelization. Moreover, it is more appropriate than CONSEL for partition analysis by bootstrap resampling sites *within* partitions, whereas CONSEL is not partition-aware.
 
 ### Example usages:
 
@@ -459,6 +463,8 @@ IQ-TREE provides a fast implementation of consensus tree construction for post a
 | `-bi`     | Specify a burn-in, which is the number of beginning trees passed via `-t` to discard before consensus construction. This is useful e.g. when summarizing trees from MrBayes analysis. |
 | `-sup`    | Specify an input "target" tree file. That means, support values are first extracted from the trees passed via `-t`, and then mapped onto the target tree. Resulting tree with assigned support values is written to `.suptree` file. This option is useful to map and compare support values from different approaches onto a single tree. |
 | `-suptag` | Specify name of a node in `-sup` target tree. The corresponding node of `.suptree` will then be assigned with IDs of trees where this node appears. Special option `-suptag ALL` will assign such IDs for all nodes of the target tree. |
+| `-scale` | Set the scaling factor of support values for -sup option (default: 100, i.e. percentages) |
+| `-prec` | Set the precision of support values for -sup option (default: 0) |
 
 
 Computing Robinson-Foulds distance
@@ -551,6 +557,7 @@ Miscellaneous options
 [Gadagkar et al., 2005]: http://dx.doi.org/10.1002/jez.b.21026
 [Gu et al., 1995]: http://mbe.oxfordjournals.org/content/12/4/546.abstract
 [Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
+[Hoang et al., in press]: https://doi.org/10.1093/molbev/msx281
 [Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: http://dx.doi.org/10.1007/BF02100115
 [Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82

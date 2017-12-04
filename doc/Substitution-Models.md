@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Substitution Models"
 author: Jana Trifinopoulos, Minh Bui
-date:    2017-10-25
+date:    2017-12-02
 docid: 10
 icon: book
 doctype: manual
@@ -314,7 +314,7 @@ Moreover, IQ-TREE supports combined empirical-mechanistic codon models using an 
 
 Thus, there can be many such combinations.
 
-If the model name does not match any of the above listed models, IQ-TREE assumes that it is a file containing codon exchange rates and frequencies in PAML format. It contains the lower diagonal part of the matrix and codon frequencies. For an example, see <http://www.ebi.ac.uk/goldman/ECM/>.
+**Starting with version 1.5.6:** If the model name does not match any of the above listed models, IQ-TREE assumes that it is a file containing lower diagonal part of non-stop codon exchange rate matrix, non-stop codon frequencies and a list of non-stop codons. The rest of the file will be ignored. Example files (ECMrest.dat and ECMunrest.dat) can be downloaded from the supplementary material ([Kosiol et al., 2007]).
 
 
 >**NOTE**: Branch lengths under codon models are interpreted as number of nucleotide substitutions per codon site. Thus, they are typically 3 times longer than under DNA models.

@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Getting Started"
 author: Dominik Schrempf, Minh Bui
-date:    2017-05-10
+date:    2017-12-04
 docid: 1
 icon: info-circle
 doctype: tutorial
@@ -45,12 +45,13 @@ For reasons of performance, IQ-TREE is a command-line program, i.e., IQ-TREE nee
 
 ### Packages and bundles
 
-Ready made IQ-TREE packages are available for the following distributions/repositories:
+Ready made IQ-TREE packages are available for the following distributions/repositories (command to install iqtree):
 
-* [Debian Linux](https://packages.debian.org/unstable/science/iqtree)
+* [Debian Linux](https://packages.debian.org/unstable/science/iqtree): `sudo apt-get install iqtree`
 * [Arch Linux (AUR)](https://aur.archlinux.org/packages/iqtree-latest/)
-* [Anaconda](https://anaconda.org/bioconda/iqtree)
-* [Homebrew](http://braumeister.org/repos/Homebrew/homebrew-science/formula/iqtree)
+* [Anaconda](https://anaconda.org/bioconda/iqtree): `conda install -c bioconda iqtree`
+* [Homebrew](http://braumeister.org/repos/Homebrew/homebrew-science/formula/iqtree): `brew install homebrew/science/iqtree`
+* [FreeBSD](https://www.freshports.org/biology/iqtree/): `pkg install iqtree`
 
 ### Manual download
 
@@ -186,6 +187,7 @@ A few typically analyses are listed in the following. Note that it is assumed th
 
         iqtree -h
         
+> **WARNING**: All these commands with `-m ...MERGE...` will always perform an edge-unlinked partition scheme finding even if `-spp` option is used. Only in the next phase of tree reconstruction, then an edge-linked partition model is used. We plan to implement the edge-linked partition finding in version 1.6.
 
 Where to go from here?
 ----------------------------

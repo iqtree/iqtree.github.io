@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Web Server Tutorial"
 author: Jana Trifinopoulos, Minh Bui
-date:    2017-04-12
+date:    2017-10-26
 docid: 2
 icon: info-circle
 doctype: tutorial
@@ -34,7 +34,7 @@ Tree Inference
 ------------
 <div class="hline"></div>
 
-Tree Inference provides the most frequently used features of IQ-TREE and allows users to carry out phylogenetic analysis on a multiple sequence alignment (MSA). In the most basic case, no more than an MSA file is required to submit the job. Without further input, IQ-TREE will run with the default parameters and auto-detect the sequence type as well as the best-fitting substitution model. Additionally, Ultrafast Bootstrap (<a href="http://mbe.oxfordjournals.org/content/30/5/1188" target="_blank">Minh et al., 2013</a>) and the SH-aLRT branch test (<a href="http://sysbio.oxfordjournals.org/content/59/3/307" target="_blank">Guindon et al., 2010</a>) will be performed. 
+Tree Inference provides the most frequently used features of IQ-TREE and allows users to carry out phylogenetic analysis on a multiple sequence alignment (MSA). In the most basic case, no more than an MSA file is required to submit the job. Without further input, IQ-TREE will run with the default parameters and auto-detect the sequence type as well as the best-fitting substitution model. Additionally, Ultrafast Bootstrap (<a href="https://doi.org/10.1093/molbev/msx281" target="_blank">Hoang et al., in press</a>) and the SH-aLRT branch test (<a href="https://doi.org/10.1093/sysbio/syq010" target="_blank">Guindon et al., 2010</a>) will be performed. 
 
 You can either try out the web server with an example alignment by ticking the corresponding box or upload your own alignment file. By clicking on 'Browse' a dialog will open where you can select your MSA; the file formats Phylip, Fasta, Nexus, Clustal and MSF are supported. 
 
@@ -78,5 +78,5 @@ Once a job is finished, you can select it by checking the corresponding box and 
 | `.contree`  | Consensus tree with assigned branch supports where branch lengths are optimized on the original alignment; printed if Ultrafast Bootstrap is selected |
 | `.ckp.gz`   | Checkpoint file; included if a job was stopped because of RAM/CPU limits |
 
->**NOTE**: Jobs which require more than 24 hours or 1GB RAM will be stopped. In such a case, you can download the stopped job and resume the run from the last checkpoint on your local PC as described <a target="_blank" href="http://www.iqtree.org/doc/Command-Reference#checkpointing-to-resume-stopped-run"> <b>here</b></a>. 
+>**NOTE**: Jobs which require more than 24 hours or 1GB RAM will be stopped. In such a case, you can download the stopped job and resume the run from the last checkpoint on your local PC as [described here](Command-Reference#checkpointing-to-resume-stopped-run). 
 

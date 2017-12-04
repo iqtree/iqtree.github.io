@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Advanced Tutorial"
 author: Jana, Minh Bui
-date:    2017-08-13
+date:    2017-11-06
 docid: 4
 icon: info-circle
 doctype: tutorial
@@ -152,6 +152,7 @@ Note that this command considers the FreeRate heterogeneity model (see [model se
 
     iqtree -s example.phy -spp example.nex -m TESTMERGE
 
+> **WARNING**: All these commands with `-m ...MERGE...` will always perform an edge-unlinked partition scheme finding even if `-spp` option is used. Only in the next phase of tree reconstruction, then an edge-linked partition model is used. We plan to implement the edge-linked partition finding in version 1.6.
 
 After ModelFinder found the best partition, IQ-TREE will immediately start the tree reconstruction under the best-fit partition model.
 Sometimes you only want to find the best-fit partition model without doing tree reconstruction, then run:
@@ -294,7 +295,10 @@ This will perform all above tests plus the AU test.
 
 Finally, note that IQ-TREE will automatically detect duplicated tree topologies and omit them during the evaluation.
 
->**NOTE**:
+>**NOTE**: There is a discrepancy between IQ-TREE and CONSEL for the AU test: IQ-TREE implements the least-square estimate for p-values whereas CONSEL provides the maximum-likelihood estimate (MLE) for p-values. Hence, the AU p-values might be slightly different. We plan to implement MLE for AU p-values in IQ-TREE version 1.6.
+
+
+>**HINTS**:
 >
 > - The KH, SH and AU tests return p-values, thus a tree is rejected if its p-value < 0.05 (marked with a `-` sign).
 >
@@ -303,6 +307,7 @@ Finally, note that IQ-TREE will automatically detect duplicated tree topologies 
 > - The KH test ([Kishino and Hasegawa, 1989]) was designed to test 2 trees and thus has no correction for multiple testing. The SH test ([Shimodaira and Hasegawa, 1999]) fixes this problem.
 >
 > - However, the SH test becomes too conservative (i.e., rejecting fewer trees than expected) when testing many trees. The AU test ([Shimodaira, 2002]) fixes this problem and is thus recommended as replacement for both KH and SH tests.
+{: .tip}
 
 
 
