@@ -175,6 +175,9 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | mtMAM    | Mitochondrial Mammalia ([Yang et al., 1998]). |
 | mtREV    | Mitochondrial Verterbrate ([Adachi and Hasegawa, 1996]). |
 | mtZOA    | Mitochondrial Metazoa (Animals) ([Rota-Stabelli et al., 2009]). |
+| mtMet    | Mitochondrial Metazoa ([Vinh et al., 2017]). |
+| mtVer    | Mitochondrial Verterbrate ([Vinh et al., 2017]). |
+| mtInv    | Mitochondrial Inverterbrate ([Vinh et al., 2017]). |
 | Poisson  | Equal amino-acid exchange rates and frequencies. |
 | PMB      | Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]). |
 | rtREV    | Retrovirus ([Dimmic et al., 2002]). |
@@ -421,6 +424,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Tamura and Nei, 1993]: http://mbe.oxfordjournals.org/cgi/content/abstract/10/3/512
 [Tavare, 1986]: http://www.damtp.cam.ac.uk/user/st321/CV_&_Publications_files/STpapers-pdf/T86.pdf
 [Veerassamy et al., 2004]: http://dx.doi.org/10.1089/106652703322756195
+[Vinh et al., 2017]: https://doi.org/10.1186/s12862-017-0987-y
 [Wang et al., 2008]: http://dx.doi.org/10.1186/1471-2148-8-331
 [Whelan and Goldman, 2001]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a003851
 [Woodhams et al., 2015]: http://dx.doi.org/10.1093/sysbio/syv021

@@ -34,6 +34,8 @@ sections:
     url: nonparametric-bootstrap
   - name: Single branch tests
     url: single-branch-tests
+  - name: Ancestral sequence reconstruction
+    url: ancestral-sequence-reconstruction
   - name: Tree topology tests
     url: tree-topology-tests
   - name: Constructing consensus tree
@@ -125,8 +127,8 @@ Compared with the original implementation in TREE-PUZZLE, IQ-TREE is much faster
 |------------|------------------------------------------------------------------------------|
 | `-lmap`    | Specify the number of quartets to be randomly drawn. If you specify `-lmap ALL`, all unique quartets will be drawn, instead.|
 | `-lmclust` | Specify a NEXUS file containing taxon clusters (see below for example) for quartet mapping analysis. |
-| `-wql`     | Write quartet log-likelihoods into `.lmap.quartetlh` file (typically not needed). |
 | `-n 0`     | Skip subsequent tree search, useful when you only want to assess the phylogenetic information of the alignment. |
+| `-wql`     | Write quartet log-likelihoods into `.lmap.quartetlh` file (typically not needed). |
 
 >**TIP**: The number of quartets specified via `-lmap` is recommended to be at least 25 times the number of sequences in the alignment, such that each sequence is covered ~100 times in the set of quartets drawn.
 {: .tip}
@@ -164,25 +166,32 @@ allows to automatically determine the best-fit model via a series of `-m TEST...
 
 |Option| Usage and meaning |
 |----------------------|------------------------------------------------------------------------------|
-| `-m TESTONLY`          | Perform standard model selection like jModelTest (for DNA) and ProtTest (for protein). Moreover, IQ-TREE also works for codon, binary and morphogical data. |
+| `-m TESTONLY`          | Perform standard model selection like jModelTest (for DNA) and ProtTest (for protein). Moreover, IQ-TREE also works for codon, binary and morphogical data. If a partition file is specified, IQ-TREE will find the best-fit model for each partition. |
 | `-m TEST`              | Like `-m TESTONLY` but immediately followed by tree reconstruction using the best-fit model found. So this performs both model selection and tree inference within a single run. |
 | `-m TESTNEWONLY` or `-m MF` | Perform an extended model selection that additionally includes FreeRate model compared with `-m TESTONLY`. *Recommended as replacement for `-m TESTONLY`*. Note that `LG4X` is a FreeRate model, but by default is not included because it is also a protein mixture model. To include it, use `-madd` option (see table below).  |
 | `-m TESTNEW` or `-m MFP` | Like `-m MF` but immediately followed by tree reconstruction using the best-fit model found. |
-| `-m TESTMERGEONLY`     | Select best-fit partitioning scheme like PartitionFinder. |
+
+>**TIP**: During model section, IQ-TREE will write a model checkpoint file (suffix `.model` in version <= 1.5.X or `.model.gz` in version >= 1.6.X) that stores information of all models tested so far. Thus, if IQ-TREE is interrupted for whatever reason, restarting the run will load this file to reuse the computation.
+{: .tip}
+
+When [a partition file is specified](#partition-model-options) then you can append `MERGE` keyword into `-m` option to find the best-fit partitioning scheme like PartitionFinder ([Lanfear et al., 2012]). More specifically, 
+
+|Option| Usage and meaning |
+|----------------------|------------------------------------------------------------------------------|
+| `-m TESTMERGEONLY`     | Select best-fit partitioning scheme by possibly merging partitions to reduce over-parameterization and increase model fit. It implements the greedy algorithm of PartitionFinder. |
 | `-m TESTMERGE`         | Like `-m TESTMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found.     |
 | `-m TESTNEWMERGEONLY` or `-m MF+MERGE` | Like `-m TESTMERGEONLY` but additionally includes FreeRate model. |
 | `-m TESTNEWMERGE` or `-m MFP+MERGE` | Like `-m MF+MERGE` but immediately followed by tree reconstruction using the best partitioning scheme found. |
+| `-rcluster` | Specify the percentage for the relaxed clustering algorithm ([Lanfear et al., 2014]) to speed up the computation instead of the default slow greedy algorithm. This is similar to `--rcluster-percent` option of PartitionFinder. For example, with `-rcluster 10` only the top 10% partition schemes are considered to save computations. |
+| `-rclusterf` | Similar to `-rcluster` but using the **fast** relaxed clustering algorithm ([Lanfear et al., 2017]) of PartitionFinder2. Introduced in version 1.6. |
+| `-rcluster-max` | Specify the absolute maximum number of partition pairs in the paritition merging phase. Default: the larger of 1000 and 10 times the number of partitions. This option is similar to `--rcluster-max` option of PartitionFinder2. |
 
-> **WARNING**: All commands with `-m ...MERGE...` will always perform an edge-unlinked partition scheme finding even if `-spp` option is used. Only in the next phase of tree reconstruction, then an edge-linked partition model is used. We plan to implement the edge-linked partition finding in version 1.6.
-
->**TIP**: During model section run, IQ-TREE will write a file with suffix `.model` that stores information of all models tested so far. Thus, if IQ-TREE is interrupted for whatever reason, restarting the run will load this file to reuse the computation. Thus, this file acts like a checkpoint to resume the model selection.
-{: .tip}
+> **WARNING**: For versions <= 1.5.X, all commands with `-m ...MERGE...` will always perform an edge-unlinked partition scheme finding even if `-spp` option is used. Only in the next phase of tree reconstruction, then an edge-linked partition model is used. However, for versions 1.6.X onwards, the edge-linked partition finding is performed by `-spp` option.
 
 Several parameters can be set to e.g. reduce computations:
 
 |Option| Usage and meaning |
 |-------------|------------------------------------------------------------------------------|
-| `-rcluster` | Specify the percentage for the relaxed clustering algorithm ([Lanfear et al., 2014]). This is similar to `--rcluster-percent` option of PartitionFinder. For example, with `-rcluster 10` only the top 10% partition schemes are considered to save computations. |
 | `-mset`     | Specify the name of a program (`raxml`, `phyml` or `mrbayes`) to restrict to only those models supported by the specified program. Alternatively, one can specify a comma-separated list of base models. For example, `-mset WAG,LG,JTT` will restrict model selection to WAG, LG, and JTT instead of all 18 AA models to save computations. |
 | `-msub`     | Specify either `nuclear`, `mitochondrial`, `chloroplast` or `viral` to restrict to those AA models designed for specified source. |
 | `-mfreq`    | Specify a comma-separated list of frequency types for model selection. *DEFAULT: `-mfreq FU,F` for protein models (FU = AA frequencies given by the protein matrix, F = empirical AA frequencies from the data), `-mfreq ,F1x4,F3x4,F` for codon models* |
@@ -191,7 +200,7 @@ Several parameters can be set to e.g. reduce computations:
 | `-cmax`     | Specify maximum number of categories for FreeRate model. It is recommended to increase if alignment is long enough. *DEFAULT: 10* |
 | `-merit` | Specify either `AIC`, `AICc` or `BIC` for the optimality criterion to apply for new procedure. *DEFAULT: all three criteria are considered* |
 | `-mtree`    | Turn on full tree search for each model considered, to obtain more accurate result. Only recommended if enough computational resources are available. *DEFAULT: fixed starting tree* |
-| `-mredo`    | Ignore `.model` file computed earlier. *DEFAULT: `.model` file (if exists) is loaded to reuse previous computations* |
+| `-mredo`    | Ignore model checkpoint file computed earlier. *DEFAULT: model checkpoint file (if exists) is loaded to reuse previous computations* |
 | `-madd`     | Specify a comma-separated list of mixture models to additionally consider for model selection. For example, `-madd LG4M,LG4X` to additionally include these two [protein mixture models](Substitution-Models#protein-models). |
 | `-mdef`     | Specify a [NEXUS model file](Complex-Models#nexus-model-file) to define new models. |
 
@@ -227,7 +236,7 @@ The following `MODEL`s are available:
 | DataType | Model names |
 |------------|------------------------------------------------------------------------------|
 | DNA        | JC/JC69, F81, K2P/K80, HKY/HKY85, TN/TrN/TN93, TNe, K3P/K81, K81u, TPM2, TPM2u, TPM3, TPM3u, TIM, TIMe, TIM2, TIM2e, TIM3, TIM3e, TVM, TVMe, SYM, GTR and 6-digit specification. See [DNA models](Substitution-Models#dna-models) for more details. |
-| Protein    | BLOSUM62, cpREV, Dayhoff, DCMut, FLU, HIVb, HIVw, JTT, JTTDCMut, LG, mtART, mtMAM, mtREV, mtZOA, Poisson, PMB, rtREV, VT, WAG. |
+| Protein    | BLOSUM62, cpREV, Dayhoff, DCMut, FLU, HIVb, HIVw, JTT, JTTDCMut, LG, mtART, mtMAM, mtREV, mtZOA, mtMet, mtVer, mtInv, Poisson, PMB, rtREV, VT, WAG. |
 | Protein    | Mixture models: C10, ..., C60 (CAT model) ([Lartillot and Philippe, 2004]), EX2, EX3, EHO, UL2, UL3, EX_EHO, LG4M, LG4X, CF4. See [Protein models](Substitution-Models#protein-models) for more details. |
 | Codon      | MG, MGK, MG1KTS, MG1KTV, MG2K, GY, GY1KTS, GY1KTV, GY2K, ECMK07/KOSI07, ECMrest, ECMS05/SCHN05 and combined empirical-mechanistic models. See [Codon models](Substitution-Models#codon-models) for more details. |
 | Binary     | JC2, GTR2. See [Binary and morphological models](Substitution-Models#binary-and-morphological-models) for more details. |
@@ -331,16 +340,17 @@ The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters 
 
 | Option | Usage and meaning |
 |-----------|------------------------------------------------------------------------------|
+| `-allnni` | Turn on more thorough and slower NNI search. It means that IQ-TREE will consider all possible NNIs instead of only those in the vicinity of previously applied NNIs. *DEFAULT: OFF* |
+| `-djc`    | Avoid computing ML pairwise distances and BIONJ tree. |
+| `-fast`   | Turn on the fast tree search mode, where IQ-TREE will just construct two starting trees: maximum parsimony and BIONJ, which are then optimized by nearest neighbor interchange (NNI). Introduced in version 1.6. |
+| `-g`      | Specify a topological constraint tree file in NEWICK format. The constraint tree can be a multifurcating tree and need not to include all taxa. |
 | `-ninit`  | Specify number of initial parsimony trees. *DEFAULT: 100*. Here [the PLL library](http://www.libpll.org) ([Flouri et al., 2015]) is used, which implements the randomized stepwise addition and parsimony subtree pruning and regafting (SPR). |
+| `-n`      | Specify number of iterations to stop. This option overrides `-nstop` criterion. |
 | `-ntop`   | Specify number of top initial parsimony trees to optimize with ML nearest neighbor interchange (NNI) search to initialize the candidate set. *DEFAULT: 20* |
 | `-nbest`  | Specify number of trees in the candidate set to maintain during ML tree search. *DEFAULT: 5* |
 | `-nstop`  | Specify number of unsuccessful iterations to stop. *DEFAULT: 100* |
-| `-n`      | Specify number of iterations to stop. This option overrides `-nstop` criterion. |
-| `-sprrad` | Specify SPR radius for the initial parsimony tree search. *DEFAULT: 6* |
 | `-pers`   | Specify perturbation strength (between 0 and 1) for randomized NNI. *DEFAULT: 0.5* |
-| `-allnni` | Turn on more thorough and slower NNI search. It means that IQ-TREE will consider all possible NNIs instead of only those in the vicinity of previously applied NNIs. *DEFAULT: OFF* |
-| `-djc`    | Avoid computing ML pairwise distances and BIONJ tree. |
-| `-g`      | Specify a topological constraint tree file in NEWICK format. The constraint tree can be a multifurcating tree and need not to include all taxa. |
+| `-sprrad` | Specify SPR radius for the initial parsimony tree search. *DEFAULT: 6* |
 
 >**NOTE**: While the default parameters were empirically determined to work well under our extensive benchmark ([Nguyen et al., 2015]), it might not hold true for all data sets. If in doubt that tree search is still stuck in local optima, one should repeat analysis with at least 10 IQ-TREE runs. Moreover, our experience showed that `-pers` and `-nstop` are the most relevant options to change in such case. For example, data sets with many short sequences should be analyzed with smaller perturbation strength (e.g. `-pers 0.2`) and larger number of stop iterations (e.g. `-nstop 500`).
 
@@ -363,14 +373,14 @@ The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]; [Hoang et a
 | Option | Usage and meaning |
 |----------|------------------------------------------------------------------------------|
 | `-bb`    | Specify number of bootstrap replicates (>=1000). |
+| `-bcor`  | Specify minimum correlation coefficient for UFBoot convergence criterion. *DEFAULT: 0.99* |
+| `-beps`  | Specify a small epsilon to break tie in RELL evaluation for bootstrap trees. *DEFAULT: 0.5* |
+| `-bnni` | Perform an additional step to further optimize UFBoot trees by nearest neighbor interchange (NNI) based directly on bootstrap alignments. This option is recommended in the presence of **severe model violations**. It increases computing time by 2-fold but reduces the risk of overestimating branch supports due to severe model violations. Introduced in IQ-TREE 1.6. |
+| `-bsam` | Specify the resampling strategies for partitioned analysis. By default, IQ-TREE resamples alignment sites within partitions. With `-bsam GENE` IQ-TREE will resample partitions. With `-bsam GENESITE` IQ-TREE will resample partitions and then resample sites within resampled partitions ([Gadagkar et al., 2005]). |
+| `-nm`    | Specify maximum number of iterations to stop. *DEFAULT: 1000* |
+| `-nstep` | Specify iteration interval checking for UFBoot convergence. *DEFAULT: every 100 iterations* |
 | `-wbt`   | Turn on writing bootstrap trees to `.ufboot` file. *DEFAULT: OFF* |
 | `-wbtl`  | Like `-wbt` but bootstrap trees written with branch lengths. *DEFAULT: OFF* |
-| `-nm`    | Specify maximum number of iterations to stop. *DEFAULT: 1000* |
-| `-bcor`  | Specify minimum correlation coefficient for UFBoot convergence criterion. *DEFAULT: 0.99* |
-| `-nstep` | Specify iteration interval checking for UFBoot convergence. *DEFAULT: every 100 iterations* |
-| `-beps`  | Specify a small epsilon to break tie in RELL evaluation for bootstrap trees. *DEFAULT: 0.5* |
-| `-bspec` | Specify the resampling strategies for partitioned analysis. By default, IQ-TREE resamples alignment sites within partitions. With `-bspec GENE` IQ-TREE will resample partitions. With `-bspec GENESITE` IQ-TREE will resample partitions and then resample sites within resampled partitions ([Gadagkar et al., 2005]). |
-| `-bnni` | Perform an additional step to further optimize UFBoot trees by nearest neighbor interchange (NNI) based directly on bootstrap alignments. This option is recommended in the presence of **severe model violations**. It increases computing time by 2-fold but reduces the risk of overestimating branch supports due to severe model violations. Introduced in IQ-TREE 1.6. |
 
 ### Example usages:
 
@@ -418,6 +428,40 @@ The following single branch tests are faster than all bootstrap analysis and rec
         iqtree -s data.phy -m TEST -alrt 1000 -bb 1000
 
 
+Ancestral sequence reconstruction
+---------------------------------
+<div class="hline"></div>
+
+This feature is newly introduced in version 1.6. You can combine this feature with `-te` option to determine ancestral sequences along a user-defined tree (Otherwise, IQ-TREE computes ancestral sequences of the ML tree).
+
+| Option | Usage and meaning |
+|----------|------------------------------------------------------------------------------|
+| `-asr`     | Write ancestral sequences (by empirical Bayesian method) for all nodes of the tree to `.state` file. |
+| `-asr-min` | Specify the minimum threshold of posterior probability to determine the best ancestral state. Default: observed state frequency from the alignment. | 
+| `-te`      | Specify a user-defined tree to determine ancestral sequences along this tree. You can assign each node of this tree with a node name, and IQ-TREE will report the ancestral sequences of the corresponding nodes. If nodes do not have names, IQ-TREE will automatically assign node namdes as Node1, Node2, etc. |
+
+### Example usages:
+
+    iqtree -s example.phy -m JC+G -asr
+
+The first few lines of the output file `example.phy.state` may look like this:
+
+    # Ancestral state reconstruction for all nodes in example.phy.treefile
+    # This file can be read in MS Excel or in R with command:
+    #   tab=read.table('example.phy.state',header=TRUE)
+    # Columns are tab-separated with following meaning:
+    #   Node:  Node name in the tree
+    #   Site:  Alignment site ID
+    #   State: Most likely state assignment
+    #   p_X:   Posterior probability for state X (empirical Bayesian method)
+    Node    Site    State   p_A     p_C     p_G     p_T
+    Node2   1       C       0.00004 0.99992 0.00002 0.00002
+    Node2   2       A       0.92378 0.00578 0.00577 0.06468
+    Node2   3       A       0.95469 0.02634 0.00675 0.01222
+    Node2   4       C       0.00002 0.99992 0.00002 0.00004
+    ...
+
+
 Tree topology tests
 -------------------
 <div class="hline"></div>
@@ -463,8 +507,8 @@ IQ-TREE provides a fast implementation of consensus tree construction for post a
 | `-bi`     | Specify a burn-in, which is the number of beginning trees passed via `-t` to discard before consensus construction. This is useful e.g. when summarizing trees from MrBayes analysis. |
 | `-sup`    | Specify an input "target" tree file. That means, support values are first extracted from the trees passed via `-t`, and then mapped onto the target tree. Resulting tree with assigned support values is written to `.suptree` file. This option is useful to map and compare support values from different approaches onto a single tree. |
 | `-suptag` | Specify name of a node in `-sup` target tree. The corresponding node of `.suptree` will then be assigned with IDs of trees where this node appears. Special option `-suptag ALL` will assign such IDs for all nodes of the target tree. |
-| `-scale` | Set the scaling factor of support values for -sup option (default: 100, i.e. percentages) |
-| `-prec` | Set the precision of support values for -sup option (default: 0) |
+| `-scale` | Set the scaling factor of support values for `-sup` option (default: 100, i.e. percentages) |
+| `-prec` | Set the precision of support values for `-sup` option (default: 0) |
 
 
 Computing Robinson-Foulds distance
@@ -541,34 +585,67 @@ Miscellaneous options
 
 | Option | Usage and meaning |
 |-----------|------------------------------------------------------------------------------|
-| `-wt`     | Turn on writing all locally optimal trees into `.treels` file. *DEFAULT: OFF* |
-| `-fixbr`  | Turn on fixing branch lengths of tree passed via `-t` or `-te`. This is useful to evaluate the log-likelihood of an input tree with fixed tolopogy and branch lengths. *DEFAULT: OFF* |
-| `-wsl`    | Turn on writing site log-likelihoods to `.sitelh` file in [TREE-PUZZLE](http://www.tree-puzzle.de) format. Such file can then be passed on to [CONSEL](http://www.sigmath.es.osaka-u.ac.jp/shimo-lab/prog/consel/) for further tree tests. *DEFAULT: OFF* |
-| `-wslg`   | Turn on writing site log-likelihoods per rate category. *DEFAULT: OFF* |
+| `-alninfo` | Print alignment site statistics to `.alninfo` file. |
+| `-blfix`   | Fix branch lengths of tree passed via `-t` or `-te`. This is useful to evaluate the log-likelihood of an input tree with fixed tolopogy and branch lengths. *DEFAULT: OFF* |
+| `-blmin`  | Specify minimum branch length. Default: the smaller of 0.000001 and alignment length divided by 10. |
+| `-blmax`  | Specify the maximum branch length. Default: 10 |
+| `-czb`    | Collapse near zero branches, so that the final tree may be multifurcating. This is useful for bootstrapping in the presence of polytomy to reduce bootstrap supports of short branches. |
+| `-me`      | Specify the log-likelihood epsilon for final model parameter estimation (Default: 0.01). With `-fast` option, the epsilon is raised to 0.05. | 
+| `-wpl`    | Write partition log-likelihoods to `.partlh` file. Only effective with partition model. |
+| `-wspr`   | Write site posterior probabilities per rate category to `.siteprob` file. |
+| `-wspm`   | Write site posterior probabilities per mixture class to `.siteprob` file. |
+| `-wspmr`   | Write site posterior probabilities per mixture class and rate category to `.siteprob` file. |
+| `-wsl`    | Write site log-likelihoods to `.sitelh` file in [TREE-PUZZLE](http://www.tree-puzzle.de) format. Such file can then be passed on to [CONSEL](http://www.sigmath.es.osaka-u.ac.jp/shimo-lab/prog/consel/) for further tree tests. |
+| `-wslr`   | Write site log-likelihoods per rate category to `.sitelh` file. |
+| `-wslm`   | Write site log-likelihoods per mixture class to `.sitelh` file. |
+| `-wslmr`   | Write site log-likelihoods per mixture class and rate category to `.sitelh` file. |
+| `-wt`     | Turn on writing all locally optimal trees into `.treels` file. |
 | `-fconst` | Specify a list of comma-separated integer numbers. The number of entries should be equal to the number of states in the model (e.g. 4 for DNA and 20 for protein). IQ-TREE will then add a number of constant sites accordingly. For example, `-fconst 10,20,15,40` will add 10 constant sites of all A, 20 constant sites of all C, 15 constant sites of all G and 40 constant sites of all T into the alignment. |
 
 
+### Example usages:
+
+    iqtree -s example.phy -m JC -n 0 -alninfo
+    
+The first few lines of the output file `example.phy.alninfo` may look like this:
+
+    # Alignment site statistics
+    # This file can be read in MS Excel or in R with command:
+    #   tab=read.table('example.phy.alninfo',header=TRUE)
+    # Columns are tab-separated with following meaning:
+    #   Site:   Site ID
+    #   Stat:   Statistic, I=informative, C=constant, c=constant+ambiguous,
+    #           U=Uninformative but not constant, -=all-gaps
+    Site    Stat
+    1       U
+    2       I
+    3       I
+    4       U
+    5       U
+
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
-[Anisimova and Gascuel 2006]: http://dx.doi.org/10.1080/10635150600755453
-[Anisimova et al., 2011]: http://dx.doi.org/10.1093/sysbio/syr041
-[Felsenstein, 1985]: http://dx.doi.org/10.2307/2408678
+[Anisimova and Gascuel 2006]: https://doi.org/10.1080/10635150600755453
+[Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
+[Felsenstein, 1985]: https://doi.org/10.2307/2408678
 [Flouri et al., 2015]: https://doi.org/10.1093/sysbio/syu084
-[Gadagkar et al., 2005]: http://dx.doi.org/10.1002/jez.b.21026
+[Gadagkar et al., 2005]: https://doi.org/10.1002/jez.b.21026
 [Gu et al., 1995]: http://mbe.oxfordjournals.org/content/12/4/546.abstract
-[Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
+[Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
 [Hoang et al., in press]: https://doi.org/10.1093/molbev/msx281
-[Kishino et al., 1990]: http://dx.doi.org/10.1007/BF02109483
-[Kishino and Hasegawa, 1989]: http://dx.doi.org/10.1007/BF02100115
-[Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82
-[Lartillot and Philippe, 2004]: http://dx.doi.org/10.1093/molbev/msh112
-[Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
-[Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
-[Shimodaira and Hasegawa, 1999]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a026201
-[Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
-[Soubrier et al., 2012]: http://dx.doi.org/10.1093/molbev/mss140
-[Strimmer and Rambaut, 2002]: http://dx.doi.org/10.1098/rspb.2001.1862
+[Kishino et al., 1990]: https://doi.org/10.1007/BF02109483
+[Kishino and Hasegawa, 1989]: https://doi.org/10.1007/BF02100115
+[Lanfear et al., 2012]: https://doi.org/10.1093/molbev/mss020
+[Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
+[Lanfear et al., 2017]: https://doi.org/10.1093/molbev/msw260
+[Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112
+[Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
+[Nguyen et al., 2015]: https://doi.org/10.1093/molbev/msu300
+[Shimodaira and Hasegawa, 1999]: https://doi.org/10.1093/oxfordjournals.molbev.a026201
+[Shimodaira, 2002]: https://doi.org/10.1080/10635150290069913
+[Soubrier et al., 2012]: https://doi.org/10.1093/molbev/mss140
+[Strimmer and Rambaut, 2002]: https://doi.org/10.1098/rspb.2001.1862
 [Strimmer and von Haeseler, 1997]: http://www.pnas.org/content/94/13/6815.long
-[Yang, 1994]: http://dx.doi.org/10.1007/BF00160154
+[Yang, 1994]: https://doi.org/10.1007/BF00160154
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 
