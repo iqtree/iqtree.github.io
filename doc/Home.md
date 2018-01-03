@@ -123,7 +123,7 @@ How to cite IQ-TREE?
 
 If you performed the ultrafast bootstrap (UFBoot) please cite:
 
-* __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2017) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, in press. [DOI: 10.1093/molbev/msx281](http://dx.doi.org/10.1093/molbev/msx281)
+* __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2017) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, in press. [DOI: 10.1093/molbev/msx281](https://doi.org/10.1093/molbev/msx281)
 
 If you used posterior mean site frequency model please cite:
 
@@ -135,20 +135,20 @@ If you used ModelFinder please cite:
 
 If you performed tree reconstruction please cite:
 
-* __L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh__ (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. *Mol. Biol. Evol.*, 32:268-274. [DOI: 10.1093/molbev/msu300](http://dx.doi.org/10.1093/molbev/msu300)
+* __L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh__ (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. *Mol. Biol. Evol.*, 32:268-274. [DOI: 10.1093/molbev/msu300](https://doi.org/10.1093/molbev/msu300)
 
 If you used partition models e.g., for phylogenomic analysis please cite:
 
-* __O. Chernomor, A. von Haeseler, and B.Q. Minh__ (2016) Terrace aware data structure for phylogenomic inference from supermatrices. *Syst. Biol.*, 65:997-1008. [DOI: 10.1093/sysbio/syw037](http://dx.doi.org/10.1093/sysbio/syw037)
+* __O. Chernomor, A. von Haeseler, and B.Q. Minh__ (2016) Terrace aware data structure for phylogenomic inference from supermatrices. *Syst. Biol.*, 65:997-1008. [DOI: 10.1093/sysbio/syw037](https://doi.org/10.1093/sysbio/syw037)
 
 If you used the polymorphism-aware models please cite:
 
-* __D. Schrempf, B.Q. Minh, N. De Maio, A. von Haeseler, and C. Kosiol__ (2016) Reversible polymorphism-aware phylogenetic models and their application to tree inference. *J. Theor. Biol.*, 407:362–370. [DOI: 10.1016/j.jtbi.2016.07.042](http://dx.doi.org/10.1016/j.jtbi.2016.07.042)
+* __D. Schrempf, B.Q. Minh, N. De Maio, A. von Haeseler, and C. Kosiol__ (2016) Reversible polymorphism-aware phylogenetic models and their application to tree inference. *J. Theor. Biol.*, 407:362–370. [DOI: 10.1016/j.jtbi.2016.07.042](https://doi.org/10.1016/j.jtbi.2016.07.042)
 
 
 If you used the [IQ-TREE web server](http://iqtree.cibiv.univie.ac.at/) please cite:
 
-* __J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, and B.Q. Minh__ (2016) W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis. *Nucleic Acids Res.*, 44 (W1):W232-W235. [DOI: 10.1093/nar/gkw256](http://dx.doi.org/10.1093/nar/gkw256)
+* __J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, and B.Q. Minh__ (2016) W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis. *Nucleic Acids Res.*, 44 (W1):W232-W235. [DOI: 10.1093/nar/gkw256](https://doi.org/10.1093/nar/gkw256)
 
 
 Development team
@@ -183,19 +183,19 @@ Credits and acknowledgements
 <div class="hline"></div>
 
 Some parts of the code were taken from the following packages/libraries: [Phylogenetic likelihood library](http://www.libpll.org), [TREE-PUZZLE](http://www.tree-puzzle.de), 
-[BIONJ](http://dx.doi.org/10.1093/oxfordjournals.molbev.a025808), [Nexus Class Libary](http://dx.doi.org/10.1093/bioinformatics/btg319), [Eigen library](http://eigen.tuxfamily.org/),
+[BIONJ](https://doi.org/10.1093/oxfordjournals.molbev.a025808), [Nexus Class Libary](https://doi.org/10.1093/bioinformatics/btg319), [Eigen library](http://eigen.tuxfamily.org/),
 [SPRNG library](http://www.sprng.org), [Zlib library](http://www.zlib.net), gzstream library, [vectorclass library](http://www.agner.org/optimize/), [GNU scientific library](https://www.gnu.org/software/gsl/).
 
 
 IQ-TREE was partially funded by the [Austrian Science Fund - FWF](http://www.fwf.ac.at/) (grant no. I760-B17 from 2012-2015 and and I 2508-B29 from 2016-2019) and the [University of Vienna](https://www.univie.ac.at/) (Initiativkolleg I059-N).
 
 
-[Anisimova et al., 2011]: http://dx.doi.org/10.1093/sysbio/syr041
-[Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
+[Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
+[Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
 [Hoang et al., in press]: https://doi.org/10.1093/molbev/msx281
-[Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
-[Nguyen et al., 2015]: http://dx.doi.org/10.1093/molbev/msu300
-[Schrempf et al., 2016]: http://dx.doi.org/10.1016/j.jtbi.2016.07.042
-[Shimodaira, 2002]: http://dx.doi.org/10.1080/10635150290069913
+[Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
+[Nguyen et al., 2015]: https://doi.org/10.1093/molbev/msu300
+[Schrempf et al., 2016]: https://doi.org/10.1016/j.jtbi.2016.07.042
+[Shimodaira, 2002]: https://doi.org/10.1080/10635150290069913
 
 

@@ -26,6 +26,8 @@ sections:
   url: compiling-mpi-version
 - name: Compiling Xeon Phi Knights Landing version
   url: compiling-xeon-phi-knights-landing-version
+- name: About precompiled binaries
+  url: about-precompiled-binaries
 ---
 
 Compilation guide

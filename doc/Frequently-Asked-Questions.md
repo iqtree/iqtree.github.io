@@ -232,6 +232,6 @@ All these sites must be removed from the alignment before a +ASC model can be ap
 {: .tip}
 
 
-[Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
-[Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
+[Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
+[Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
 

@@ -248,7 +248,7 @@ Heterotachy models
 ------------------
 <div class="hline"></div>
 
-Sequence data that have evolved under *heterotachy*, i.e., rate variation across sites and lineages ([Lopez, Casane, and Philippe, 2002](http://mbe.oxfordjournals.org/content/19/1/1.full)), are known to mislead phylogenetic inference ([Kolaczkowski and Thornton, 2004](http://dx.doi.org/10.1038/nature02917)). To address this issue we introduce the General Heterogeneous evolution On a Single Topology (GHOST) model. More specifically, GHOST is an *edge-unlinked mixture model* consisting of several site classes, each having a separate set of model parameters and edge lengths on the same tree topology. Thus, GHOST naturally accounts for heterotachous evolution. In contrast to an [edge-unlinked partition model](#partition-models), the GHOST model does not require the *a priori* data partitioning, a possible source of model misspecification. 
+Sequence data that have evolved under *heterotachy*, i.e., rate variation across sites and lineages ([Lopez, Casane, and Philippe, 2002](http://mbe.oxfordjournals.org/content/19/1/1.full)), are known to mislead phylogenetic inference ([Kolaczkowski and Thornton, 2004](https://doi.org/10.1038/nature02917)). To address this issue we introduce the General Heterogeneous evolution On a Single Topology (GHOST) model. More specifically, GHOST is an *edge-unlinked mixture model* consisting of several site classes, each having a separate set of model parameters and edge lengths on the same tree topology. Thus, GHOST naturally accounts for heterotachous evolution. In contrast to an [edge-unlinked partition model](#partition-models), the GHOST model does not require the *a priori* data partitioning, a possible source of model misspecification. 
 
 Extensive simulations show that the GHOST model can accurately recover the tree topology, branch lengths, substitution rate and base frequency parameters from heterotachously-evolved sequences. Moreover, we compare the GHOST model to the partition model and show that, owing to the minimization of model constraints, the GHOST model is able to offer unique biological insights when applied to empirical data.
 
@@ -259,16 +259,10 @@ If you use this model in a publication please cite:
     <https://doi.org/10.1101/174789>
 
 
-### Download
-
-Currently this model is only available in the beta version 1.6. Please download it from here:
-
-<http://www.iqtree.org/#variant>
-
 
 ### Quick usages
 
-The GHOST model with `k` mixture classes is executed by adding `+Hk` to the model option (`-m`). For example if one wants to fit a GHOST model with 4 classes in conjunction with the `GTR` model of DNA evolution to sequences contained in `data.fst`, one would use the following command:
+Make sure that you have IQ-TREE version 1.6.0 or later. The GHOST model with `k` mixture classes is executed by adding `+Hk` to the model option (`-m`). For example if one wants to fit a GHOST model with 4 classes in conjunction with the `GTR` model of DNA evolution to sequences contained in `data.fst`, one would use the following command:
 
     iqtree -s data.fst -m GTR+H4
 
@@ -287,11 +281,11 @@ The `-wspm` option will generate a `.siteprob` output file. This contains the pr
 
 
 
-[Brown et al. (2013)]: http://dx.doi.org/10.1098/rspb.2013.1755
-[Lartillot and Philippe, 2004]: http://dx.doi.org/10.1093/molbev/msh112
-[Le et al., 2008a]: http://dx.doi.org/10.1093/bioinformatics/btn445
-[Le et al., 2012]: http://dx.doi.org/10.1093/molbev/mss112
+[Brown et al. (2013)]: https://doi.org/10.1098/rspb.2013.1755
+[Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112
+[Le et al., 2008a]: https://doi.org/10.1093/bioinformatics/btn445
+[Le et al., 2012]: https://doi.org/10.1093/molbev/mss112
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
-[Wang et al., 2008]: http://dx.doi.org/10.1186/1471-2148-8-331
+[Wang et al., 2008]: https://doi.org/10.1186/1471-2148-8-331
 
 
