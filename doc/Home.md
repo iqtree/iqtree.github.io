@@ -157,23 +157,25 @@ Development team
 
 IQ-TREE is actively developed by:
 
-**Bui Quang Minh**, _Team leader_, Designs IQ-TREE software core, ultrafast bootstrap, model selection.
+**Bui Quang Minh**, _Team leader_, Designs and implements software core, ultrafast bootstrap, model selection.
 
-**Lam Tung Nguyen**, _Developer_, Designs and parallelizes IQ-TREE search algorithm.
+**Olga Chernomor**, _Developer_, Implements partition models.
 
-**Olga Chernomor**, _Developer_, Designs partition models and phylogenomic tree search.
-
-**Heiko A. Schmidt**, _Developer_, Integrates TREE-PUZZLE features into IQ-TREE.
-
-**Jana Trifinopoulos**, _Developer_, Designs and maintains IQ-TREE web service.
+**Heiko A. Schmidt**, _Developer_, Integrates TREE-PUZZLE features.
 
 **Dominik Schrempf**, _Developer_, Implements polymorphism-aware models (PoMo).
 
 **Michael Woodhams**, _Developer_, Implements Lie Markov models.
 
-**Diep Thi Hoang**, _Developer_, Improves the ultrafast bootstrap implementation.
+**Diep Thi Hoang**, _Developer_, Improves ultrafast bootstrap.
 
-**Arndt von Haeseler**, _Advisor_, Provides advice, inspiring ideas and financial support.
+**Arndt von Haeseler**, _Advisor_, Provides advice and financial support.
+
+Past members:
+
+**Lam Tung Nguyen**, _Developer_, Implemented tree search algorithm.
+
+**Jana Trifinopoulos**, _Developer_, Implemented web service.
 
 
 Credits and acknowledgements

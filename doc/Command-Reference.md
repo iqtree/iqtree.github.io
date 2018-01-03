@@ -87,17 +87,25 @@ General options are mainly intended for specifying input and output files:
 
 ### Example usages:
 
-* Reconstruct a maximum-likelihood tree given a sequence alignment file `data.phy`:
+* Reconstruct a maximum-likelihood tree given a sequence alignment file `example.phy`:
 
-        iqtree -s data.phy 
+        iqtree -s example.phy
 
-* Reconstruct a maximum-likelihood tree using 4 CPU cores and at most 8 GB RAM:
+* Reconstruct a maximum-likelihood tree using at most 8 GB RAM and automatically detect the number of cores to use:
 
-        iqtree-omp -s data.phy -nt 4 -mem 8G
+        # For version <= 1.5.X
+        iqtree-omp -s example.phy -nt AUTO -mem 8G
+        
+        # For version >= 1.6.0, change iqtree-omp to just iqtree
+        iqtree -s example.phy -nt AUTO -mem 8G
 
-* Like above and also write all output to `myrun.*` files:
+* Like above but write all output to `myrun.*` files:
 
-        iqtree-omp -s data.phy -nt 4 -mem 8G -pre myrun
+        # For version <= 1.5.X
+        iqtree-omp -s example.phy -nt AUTO -mem 8G -pre myrun
+
+        # For version <= 1.6.0
+        iqtree -s example.phy -nt AUTO -mem 8G -pre myrun
 
 
 Checkpointing to resume stopped run
@@ -153,9 +161,41 @@ The names given to the clusters in the cluster file will be used to label the co
 
 ### Example usages:
 
-* Perform solely likelihood mapping analysis (ignoring tree search) with 2000 quartets for an alignment `data.phy` with model being automatically selected:
+* Perform solely likelihood mapping analysis (ignoring tree search) with 2000 quartets for an alignment `example.phy` with model being automatically selected:
 
-        iqtree -s data.phy -lmap 2000 -n 0 -m TEST
+        iqtree -s example.phy -lmap 2000 -n 0 -m TEST
+
+You can now view the likelihood mapping plot file `example.phy.lmap.svg`, which looks like this:
+
+![Likelihood mapping plot.](images/example.phy.lmap.pdf) 
+
+It shows phylogenetic information of the alignment `example.phy`. On the top: distribution of quartets depicted by dots on the likelihood mapping plot. On the left: the three areas show support for one of the different groupings like (a,b)-(c,d). On the right: quartets falling into the three corners are informative. Those in three rectangles are partly informative and those in the center are uninformative. A good data set should have high number of informative quartets and low number of uninformative quartets. The meanings can also be found in the `LIKELIHOOD MAPPING STATISTICS` section of the report file `example.phy.iqtree`:
+
+    LIKELIHOOD MAPPING STATISTICS
+    -----------------------------
+
+               (a,b)-(c,d)                              (a,b)-(c,d)      
+                    /\                                      /\           
+                   /  \                                    /  \          
+                  /    \                                  /  1 \         
+                 /  a1  \                                / \  / \        
+                /\      /\                              /   \/   \       
+               /  \    /  \                            /    /\    \      
+              /    \  /    \                          / 6  /  \  4 \     
+             /      \/      \                        /\   /  7 \   /\    
+            /        |       \                      /  \ /______\ /  \   
+           /   a3    |    a2  \                    / 3  |    5   |  2 \  
+          /__________|_________\                  /_____|________|_____\ 
+    (a,d)-(b,c)            (a,c)-(b,d)      (a,d)-(b,c)            (a,c)-(b,d) 
+
+    Division of the likelihood mapping plots into 3 or 7 areas.
+    On the left the areas show support for one of the different groupings
+    like (a,b|c,d).
+    On the right the right quartets falling into the areas 1, 2 and 3 are
+    informative. Those in the rectangles 4, 5 and 6 are partly informative
+    and those in the center (7) are not informative.
+    .....
+
 
 Automatic model selection
 -------------------------
@@ -466,7 +506,9 @@ Tree topology tests
 -------------------
 <div class="hline"></div>
 
-IQ-TREE provides a number of tests for significant topological differences between trees:
+IQ-TREE provides a number of tests for significant topological differences between trees. The AU test implementation in IQ-TREE is much more efficient than the original CONSEL by supporting SSE, AVX and multicore parallelization. Moreover, it is more appropriate than CONSEL for partition analysis by bootstrap resampling sites *within* partitions, whereas CONSEL is not partition-aware.
+
+>**NOTE**: There is a discrepancy between IQ-TREE and CONSEL for the AU test: IQ-TREE implements the least-square estimate for p-values whereas CONSEL provides the maximum-likelihood estimate (MLE) for p-values. Hence, the AU p-values might be slightly different. We plan to implement MLE for AU p-values in IQ-TREE soon.
 
 | Option | Usage and meaning |
 |-------|------------------------------------------------------------------------------|
@@ -477,9 +519,7 @@ IQ-TREE provides a number of tests for significant topological differences betwe
 | `-n 0` | Only estimate model parameters on an initial parsimony tree and ignore a full tree search to save time. |
 | `-te` | Specify a fixed user tree to estimate model parameters. Thus it behaves like `-n 0` but uses a user-defined tree instead of parsimony tree. |
 
->**NOTE1**: There is a discrepancy between IQ-TREE and CONSEL for the AU test: IQ-TREE implements the least-square estimate for p-values whereas CONSEL provides the maximum-likelihood estimate (MLE) for p-values. Hence, the AU p-values might be slightly different. We plan to implement MLE for AU p-values in IQ-TREE version 1.6.
 
->**NOTE2**: The AU test implementation in IQ-TREE is much more efficient than the original CONSEL by supporting SSE, AVX and multicore parallelization. Moreover, it is more appropriate than CONSEL for partition analysis by bootstrap resampling sites *within* partitions, whereas CONSEL is not partition-aware.
 
 ### Example usages:
 
@@ -605,7 +645,9 @@ Miscellaneous options
 
 ### Example usages:
 
-    iqtree -s example.phy -m JC -n 0 -alninfo
+* Print alignment information about parsimony informative sites:
+
+        iqtree -s example.phy -m JC -n 0 -alninfo
     
 The first few lines of the output file `example.phy.alninfo` may look like this:
 
@@ -622,6 +664,39 @@ The first few lines of the output file `example.phy.alninfo` may look like this:
     3       I
     4       U
     5       U
+
+* Print site log-likelihood and posterior probability for each Gamma rate category:
+
+        iqtree -s example.phy -m JC+G -wspr -wslr  -n 0
+
+The first few lines of the output file example.phy.siteprob (printed by `-wspr` option) may look like this:
+
+    Site    p1      p2      p3      p4
+    1       0.180497        0.534405        0.281   0.00409816
+    2       4.73239e-05     0.0373409       0.557705        0.404907
+    3       1.23186e-08     0.000426294     0.0672021       0.932372
+    4       0.180497        0.534405        0.281   0.00409816
+    5       0.180497        0.534405        0.281   0.00409816
+
+where `pX` is the probability of the site falling into rate category `X`.
+
+The first few lines of the output file example.phy.sitelh (printed by `-wslr` option) may look like this:
+
+    # Site likelihood per rate/mixture category
+    # This file can be read in MS Excel or in R with command:
+    #   tab=read.table('example.phy.sitelh',header=TRUE,fill=TRUE)
+    # Columns are tab-separated with following meaning:
+    #   Site:   Alignment site ID
+    #   LnL:    Logarithm of site likelihood
+    #           Thus, sum of LnL is equal to tree log-likelihood
+    #   LnLW_k: Logarithm of (category-k site likelihood times category-k weight)
+    #           Thus, sum of exp(LnLW_k) is equal to exp(LnL)
+    Site    LnL     LnLW_1  LnLW_2  LnLW_3  LnLW_4
+    1       -7.0432 -8.7552 -7.6698 -8.3126 -12.5404
+    2       -17.5900        -27.5485        -20.8776        -18.1739        -18.4941
+    3       -20.3313        -38.5435        -28.0917        -23.0314        -20.4014
+    4       -7.0432 -8.7552 -7.6698 -8.3126 -12.5404
+    5       -7.0432 -8.7552 -7.6698 -8.3126 -12.5404
 
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
