@@ -57,8 +57,8 @@ Ready made IQ-TREE packages are available for the following distributions/reposi
 
 IQ-TREE for Windows, MacOSX and Linux can be [downloaded here](http://www.iqtree.org/#download).
 
-* Extract the `.zip` (Windows, MacOSX) or `.tar.gz` (Linux) file to create a directory `iqtree-X.Y.Z-OS` or `iqtree-omp-X.Y.Z-OS`, where `X.Y.Z` is the version number and `OS` is the operating system (Windows, MacOSX or Linux).
-* You will find the executable in the `bin` sub-folder. Copy all files in `bin` folder to your system search path such that you can run IQ-TREE by entering `iqtree` or `iqtree-omp` from the Terminal.
+* Extract the `.zip` (Windows, MacOSX) or `.tar.gz` (Linux) file to create a directory `iqtree-X.Y.Z-OS`, where `X.Y.Z` is the version number and `OS` is the operating system (Windows, MacOSX or Linux).
+* You will find the executable in the `bin` sub-folder. Copy all files in `bin` folder to your system search path such that you can run IQ-TREE by entering `iqtree` from the Terminal.
 
 Now you need to open a Terminal (or Console) to run IQ-TREE. See below the guide for [Windows users](#for-windows-users) and [Mac OS X users](#for-mac-os-x-users).
 
@@ -177,11 +177,13 @@ A few typically analyses are listed in the following. Note that it is assumed th
 
 * Use 4 CPU cores to speed up computation:
 
-        iqtree-omp -s example.phy -nt 4
+        # For old IQ-TREE versions <= 1.5.X, change iqtree to iqtree-omp
+        iqtree -s example.phy -nt 4
 
 * Determine the best number of cores to use under `GTR+R4` model:
 
-        iqtree-omp -s example.phy -m GTR+R4 -nt AUTO
+        # For old IQ-TREE versions <= 1.5.X, change iqtree to iqtree-omp
+        iqtree -s example.phy -m GTR+R4 -nt AUTO
 
 * Show all available options: 
 

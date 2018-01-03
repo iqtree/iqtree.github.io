@@ -239,7 +239,11 @@ This will omit the first phase and thus need much less RAM.
 
 Finally, note that for long (phylogenomic) alignments you can utilize the multicore IQ-TREE version to further save the computing times with, say, 24 cores by:
 
+    # For IQ-TREE version <= 1.5.X
     iqtree-omp -nt 24 -s <alignment> -m LG+C20+F+G -fs <file.sitefreq>
+
+    # For IQ-TREE version >= 1.6.0
+    iqtree -nt 24 -s <alignment> -m LG+C20+F+G -fs <file.sitefreq>
 
 See also [the list of relevant command line options](Command-Reference#site-specific-frequency-model-options). 
 

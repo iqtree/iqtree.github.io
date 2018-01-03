@@ -426,18 +426,16 @@ Utilizing multi-core CPUs
 -------------------------
 <div class="hline"></div>
 
-A specialized version of IQ-TREE (`iqtree-omp`) can utilize multiple CPU cores to speed up the analysis.
-To obtain this version please refer to the [quick starting guide](Quickstart).  A complement option `-nt` allows specifying the number of CPU cores to use. For example:
+IQ-TREE can utilize multiple CPU cores to speed up the analysis. A complement option `-nt` allows specifying the number of CPU cores to use. Note that for old IQ-TREE versions <= 1.5.X, please change the executable from `iqtree` to `iqtree-omp` for all commands below. For example:
 
-
-    iqtree-omp -s example.phy -m TIM2+I+G -nt 2
+    iqtree -s example.phy -m TIM2+I+G -nt 2
 
 
 Here, IQ-TREE will use 2 CPU cores to perform the analysis. 
 
 Note that the parallel efficiency is only good for long alignments. A good practice is to use `-nt AUTO` to determine the best number of cores:
 
-    iqtree-omp -s example.phy -m TIM2+I+G -nt AUTO
+    iqtree -s example.phy -m TIM2+I+G -nt AUTO
 
 Then while running IQ-TREE may print something like this on to the screen:
 

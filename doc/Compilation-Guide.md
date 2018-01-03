@@ -104,7 +104,7 @@ Compiling under Linux
 
     to use 4 cores instead of the default 1 core.
     
-This creates an executable `iqtree` or `iqtree-omp`. It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree`.
+This creates an executable `iqtree` (`iqtree-omp` for older multicore versions <= 1.5.X). It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree`.
 
 >**TIP**: The above guide typically compiles IQ-TREE with `gcc`. If you have Clang installed and want to compile with Clang, the compilation will be similar to Mac OS X like below.
 {: .tip}
@@ -222,13 +222,17 @@ If you want to compile the hybrid MPI/OpenMP version, simply run:
     cmake -DIQTREE_FLAGS=omp-mpi ..
     make -j4
 
-The resulting executable is then named `iqtree-omp-mpi`. This can be used to start an MPI run with e.g. 4 processes and 2 cores each (i.e., a total of 8 cores will be used):
+The resulting executable is then named `iqtree-mpi` (`iqtree-omp-mpi` for IQ-TREE versions <= 1.5.X). This can be used to start an MPI run with e.g. 4 processes and 2 cores each (i.e., a total of 8 cores will be used):
 
+    # For IQ-TREE version <= 1.5.X
     mpirun -np 4 iqtree-omp-mpi -nt 2 -s alignment ...
 
+    # For IQ-TREE version >= 1.6.0
+    mpirun -np 4 iqtree-mpi -nt 2 -s alignment ...
 
 
->**NOTE**: Please be aware that [OpenMP](http://openmp.org/) and [OpenMPI](http://open-mpi.org/) are different! OpenMP is the standard to implement shared-memory multithreading program, that we use to provide the multicore IQ-TREE version `iqtree-omp`. Whereas OpenMPI is a message passing interface (MPI) library for distributed memory parallel system, that is used to compile `iqtree-mpi`. Thus, **one cannot run `iqtree-omp` with `mpirun`!**
+
+>**NOTE**: Please be aware that [OpenMP](http://openmp.org/) and [OpenMPI](http://open-mpi.org/) are different! OpenMP is the standard to implement shared-memory multithreading program, that we use to provide the multicore IQ-TREE version. Whereas OpenMPI is a message passing interface (MPI) library for distributed memory parallel system, that is used to compile `iqtree-mpi`. Thus, **one cannot run `iqtree` with `mpirun`!**
 
 
 Compiling Xeon Phi Knights Landing version
