@@ -214,6 +214,18 @@ allows to automatically determine the best-fit model via a series of `-m TEST...
 >**TIP**: During model section, IQ-TREE will write a model checkpoint file (suffix `.model` in version <= 1.5.X or `.model.gz` in version >= 1.6.X) that stores information of all models tested so far. Thus, if IQ-TREE is interrupted for whatever reason, restarting the run will load this file to reuse the computation.
 {: .tip}
 
+IQ-TREE version 1.6 or later allows to additionally test [Lie Markov DNA models](Substitution-Models#lie-markov-models) by adding the following keyword to `-m` option:
+
+|Option| Usage and meaning |
+|--------|------------------------------------------------------------------------------|
+| `+LM`    | Additionally consider all Lie Markov models |
+| `+LMRY`  | Additionally consider all Lie Markov models with RY symmetry |
+| `+LMWS`  | Additionally consider all Lie Markov models with WS symmetry |
+| `+LMMK`  | Additionally consider all Lie Markov models with MK symmetry |
+| `+LMSS`  | Additionally consider all strand-symmetric Lie Markov models |
+
+
+
 When [a partition file is specified](#partition-model-options) then you can append `MERGE` keyword into `-m` option to find the best-fit partitioning scheme like PartitionFinder ([Lanfear et al., 2012]). More specifically, 
 
 |Option| Usage and meaning |
