@@ -50,7 +50,7 @@ Ready made IQ-TREE packages are available for the following distributions/reposi
 * [Debian Linux](https://packages.debian.org/unstable/science/iqtree): `sudo apt-get install iqtree`
 * [Arch Linux (AUR)](https://aur.archlinux.org/packages/iqtree-latest/)
 * [Anaconda](https://anaconda.org/bioconda/iqtree): `conda install -c bioconda iqtree`
-* [Homebrew](http://braumeister.org/repos/Homebrew/homebrew-science/formula/iqtree): `brew install homebrew/science/iqtree`
+* [Homebrew](https://github.com/brewsci/homebrew-science/blob/master/Formula/iqtree.rb): `brew install brewsci/science/iqtree`
 * [FreeBSD](https://www.freshports.org/biology/iqtree/): `pkg install iqtree`
 
 ### Manual download
