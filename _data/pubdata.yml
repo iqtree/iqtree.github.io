@@ -17,13 +17,13 @@ references:
       family: Vinh
       co-last: yes
     issued:
-      year: in press
+      year: 2018
       month:
     title: UFBoot2&#58; Improving the ultrafast bootstrap approximation
     container-title: Mol. Biol. Evol.
     publisher: Oxford University Press
-    issue:
-    page:
+    issue: 35
+    page: 518–522
     DOI: 10.1093/molbev/msx281
     type: article-journal
     message: When performing <a href="doc/Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation">ultrafast bootstrap (UFBoot)</a> please cite&#58;
@@ -41,13 +41,13 @@ references:
     - given: A.J.
       family: Roger
     issued:
-      year: in press
+      year: 2018
       month:
     title: Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation
     container-title: Syst. Biol.
     publisher: Oxford University Press
-    issue:
-    page:
+    issue: 67
+    page: 216–235
     DOI: 10.1093/sysbio/syx068
     PMID: 28950365
     message: When using <a href="doc/Complex-Models#site-specific-frequency-models">posterior mean site frequency model (PMSF)</a> please cite&#58;

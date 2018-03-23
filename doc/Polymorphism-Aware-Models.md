@@ -306,4 +306,6 @@ site in `example.cf.iqtree`.  An example of the relevant section:
     - measured in mutations and frequency shifts per site: 0.01767814 (2.48285810% of tree length)
     - measured in substitutions per site: 0.01767814 (2.48285810% of tree length)
 
+
 [Schrempf et al., 2016]: http://dx.doi.org/10.1016/j.jtbi.2016.07.042
+

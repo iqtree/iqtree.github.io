@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Frequently Asked Questions"
 author: Jana Trifinopoulos, Minh Bui
-date:    2017-04-12
+date:    2018-01-03
 docid: 9
 icon: question-circle
 doctype: manual
@@ -63,7 +63,7 @@ For bug report, please send the following information to the [IQ-TREE Google gro
 2. The first 10 lines and last 10 lines of the `.log` file.
 3. (If possible) the assertion message printed on the screen, which may look like this:
 
-        iqtree-omp: ....cpp:140: ...: Assertion '...' failed.
+        iqtree: ....cpp:140: ...: Assertion '...' failed.
  
 The development team will get back to you and may ask for the full `.log` file and input data files for debugging purpose, if necessary. In such case please **only send your data files directly to the developers for confidential reason**! Keep in mind that everyone can see all emails sent to the group!
 
@@ -180,11 +180,12 @@ The standard bootstrap is rather slow and may take weeks/months for large data s
 
 1. Perform 5 independent bootstrap runs (each with 20 replicates) on the 5 machines with 5 prefix outputs (such that output files are not overwritten). For example: 
 
-        iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot1
-        iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot2
-        iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot3
-        iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot4
-        iqtree-omp -nt 4 -s input_alignment -bo 20 ... -pre boot5
+        # For old IQ-TREE versions <= 1.5.X, change iqtree to iqtree-omp
+        iqtree -nt 4 -s input_alignment -bo 20 ... -pre boot1
+        iqtree -nt 4 -s input_alignment -bo 20 ... -pre boot2
+        iqtree -nt 4 -s input_alignment -bo 20 ... -pre boot3
+        iqtree -nt 4 -s input_alignment -bo 20 ... -pre boot4
+        iqtree -nt 4 -s input_alignment -bo 20 ... -pre boot5
 
     Note that if you have access to a computing cluster, you may want to submit these jobs onto the cluster queue in parallel and with even more fined grained parallelization (e.g. one replicate per job).
         
@@ -200,7 +201,8 @@ The standard bootstrap is rather slow and may take weeks/months for large data s
      
 4. You can also perform the analysis on the original alignment:
 
-        iqtree-omp -nt 4 -s input_alignment ...
+        # For old IQ-TREE versions <= 1.5.X, change iqtree to iqtree-omp
+        iqtree -nt 4 -s input_alignment ...
 
     and map the support values onto the obtained ML tree:
 
@@ -232,6 +234,6 @@ All these sites must be removed from the alignment before a +ASC model can be ap
 {: .tip}
 
 
-[Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
-[Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
+[Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
+[Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
 

@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Substitution Models"
 author: Jana Trifinopoulos, Minh Bui
-date:    2017-12-02
+date:    2018-01-03
 docid: 10
 icon: book
 doctype: manual
@@ -175,6 +175,9 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | mtMAM    | Mitochondrial Mammalia ([Yang et al., 1998]). |
 | mtREV    | Mitochondrial Verterbrate ([Adachi and Hasegawa, 1996]). |
 | mtZOA    | Mitochondrial Metazoa (Animals) ([Rota-Stabelli et al., 2009]). |
+| mtMet    | Mitochondrial Metazoa ([Vinh et al., 2017]). |
+| mtVer    | Mitochondrial Verterbrate ([Vinh et al., 2017]). |
+| mtInv    | Mitochondrial Inverterbrate ([Vinh et al., 2017]). |
 | Poisson  | Equal amino-acid exchange rates and frequencies. |
 | PMB      | Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]). |
 | rtREV    | Retrovirus ([Dimmic et al., 2002]). |
@@ -388,45 +391,46 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 
 
 
-[Abascal et al., 2007]: http://dx.doi.org/10.1093/molbev/msl136
-[Adachi and Hasegawa, 1996]: http://dx.doi.org/10.1007/BF02498640
-[Adachi et al., 2000]: http://dx.doi.org/10.1007/s002399910038
-[Dang et al., 2010]: http://dx.doi.org/10.1186/1471-2148-10-99
+[Abascal et al., 2007]: https://doi.org/10.1093/molbev/msl136
+[Adachi and Hasegawa, 1996]: https://doi.org/10.1007/BF02498640
+[Adachi et al., 2000]: https://doi.org/10.1007/s002399910038
+[Dang et al., 2010]: https://doi.org/10.1186/1471-2148-10-99
 [Dayhoff et al., 1978]: http://compbio.berkeley.edu/class/c246/Reading/dayhoff-1978-apss.pdf
-[Dimmic et al., 2002]: http://dx.doi.org/10.1007/s00239-001-2304-y
-[Felsenstein, 1981]: http://dx.doi.org/10.1007%2FBF01734359
+[Dimmic et al., 2002]: https://doi.org/10.1007/s00239-001-2304-y
+[Felsenstein, 1981]: https://doi.org/10.1007%2FBF01734359
 [Goldman and Yang, 1994]: http://mbe.oxfordjournals.org/content/11/5/725.abstract
 [Gu et al., 1995]: http://mbe.oxfordjournals.org/content/12/4/546.abstract
 [Hasegawa, Kishino and Yano, 1985]: https://dx.doi.org/10.1007%2FBF02101694
 [Henikoff and Henikoff, 1992]: https://dx.doi.org/10.1073%2Fpnas.89.22.10915
 [Jones et al., 1992]: https://dx.doi.org/10.1093%2Fbioinformatics%2F8.3.275
 [Jukes and Cantor, 1969]: http://doi.org/10.1016/B978-1-4832-3211-9.50009-7
-[Kimura, 1980]: http://dx.doi.org/10.1007%2FBF01731581
-[Kimura, 1981]: http://dx.doi.org/10.1073/pnas.78.1.454
-[Kosiol and Goldman, 2005]: http://dx.doi.org/10.1093/molbev/msi005
-[Kosiol et al., 2007]: http://dx.doi.org/10.1093/molbev/msm064
-[Lartillot and Philippe, 2004]: http://dx.doi.org/10.1093/molbev/msh112
-[Le and Gascuel, 2008]: http://dx.doi.org/10.1093/molbev/msn067
-[Le et al., 2008a]: http://dx.doi.org/10.1093/bioinformatics/btn445
-[Le et al., 2008b]: http://dx.doi.org/10.1098/rstb.2008.0180
-[Le and Gascuel, 2010]: http://dx.doi.org/10.1093/sysbio/syq002
-[Le et al., 2012]: http://dx.doi.org/10.1093/molbev/mss112
-[Lewis, 2001]: http://dx.doi.org/10.1080/106351501753462876
-[Mueller and Vingron, 2000]: http://dx.doi.org/10.1089/10665270050514918
+[Kimura, 1980]: https://doi.org/10.1007%2FBF01731581
+[Kimura, 1981]: https://doi.org/10.1073/pnas.78.1.454
+[Kosiol and Goldman, 2005]: https://doi.org/10.1093/molbev/msi005
+[Kosiol et al., 2007]: https://doi.org/10.1093/molbev/msm064
+[Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112
+[Le and Gascuel, 2008]: https://doi.org/10.1093/molbev/msn067
+[Le et al., 2008a]: https://doi.org/10.1093/bioinformatics/btn445
+[Le et al., 2008b]: https://doi.org/10.1098/rstb.2008.0180
+[Le and Gascuel, 2010]: https://doi.org/10.1093/sysbio/syq002
+[Le et al., 2012]: https://doi.org/10.1093/molbev/mss112
+[Lewis, 2001]: https://doi.org/10.1080/106351501753462876
+[Mueller and Vingron, 2000]: https://doi.org/10.1089/10665270050514918
 [Muse and Gaut, 1994]: http://mbe.oxfordjournals.org/content/11/5/715.abstract
 [Nickle et al., 2007]: https://dx.doi.org/10.1371/journal.pone.0000503
-[Rota-Stabelli et al., 2009]: http://dx.doi.org/10.1016/j.ympev.2009.01.011
-[Schneider et al., 2005]: http://dx.doi.org/10.1186/1471-2105-6-134
-[Soubrier et al., 2012]: http://dx.doi.org/10.1093/molbev/mss140
+[Rota-Stabelli et al., 2009]: https://doi.org/10.1016/j.ympev.2009.01.011
+[Schneider et al., 2005]: https://doi.org/10.1186/1471-2105-6-134
+[Soubrier et al., 2012]: https://doi.org/10.1093/molbev/mss140
 [Tamura and Nei, 1993]: http://mbe.oxfordjournals.org/cgi/content/abstract/10/3/512
 [Tavare, 1986]: http://www.damtp.cam.ac.uk/user/st321/CV_&_Publications_files/STpapers-pdf/T86.pdf
-[Veerassamy et al., 2004]: http://dx.doi.org/10.1089/106652703322756195
-[Wang et al., 2008]: http://dx.doi.org/10.1186/1471-2148-8-331
-[Whelan and Goldman, 2001]: http://dx.doi.org/10.1093/oxfordjournals.molbev.a003851
-[Woodhams et al., 2015]: http://dx.doi.org/10.1093/sysbio/syv021
-[Yang, 1994]: http://dx.doi.org/10.1007/BF00160154
+[Veerassamy et al., 2004]: https://doi.org/10.1089/106652703322756195
+[Vinh et al., 2017]: https://doi.org/10.1186/s12862-017-0987-y
+[Wang et al., 2008]: https://doi.org/10.1186/1471-2148-8-331
+[Whelan and Goldman, 2001]: https://doi.org/10.1093/oxfordjournals.molbev.a003851
+[Woodhams et al., 2015]: https://doi.org/10.1093/sysbio/syv021
+[Yang, 1994]: https://doi.org/10.1007/BF00160154
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 [Yang et al., 1998]: http://mbe.oxfordjournals.org/content/15/12/1600.abstract
-[Zharkihk, 1994]: http://dx.doi.org/10.1007/BF00160155
+[Zharkihk, 1994]: https://doi.org/10.1007/BF00160155
 
 

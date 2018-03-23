@@ -2,10 +2,10 @@
 layout: default
 title: "IQ-TREE: Efficient phylogenomic software by maximum likelihood"
 permalink: /
-version: 1.5.6
-releasedate: December 4, 2017
-version_dev: 1.6.beta4
-releasedate_dev: June 21, 2017
+version: 1.6.3
+releasedate: March 22, 2018
+version_old: 1.5.6
+releasedate_old: December 4, 2017
 ---
 <!-- ========================== HEADER ========================== -->
 <div id="headerwrap">
@@ -13,28 +13,61 @@ releasedate_dev: June 21, 2017
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
             <h1>IQ-TREE</h1>
-            <h3>Efficient phylogenomic software by maximum likelihood</h3>
-            <h3>Latest stable version {{page.version}} released on {{page.releasedate}}</h3>
-        </div>
-        <div class="col-lg-8 col-lg-offset-2 himg">
-            <br>
-            <a id="downloadwin" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-Windows.zip" class="btn btn-success btn-lg" role="button">Download for Windows</a>
-            <a id="downloadmac" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-MacOSX.zip" class="btn btn-success btn-lg" role="button">Download for macOS</a>
-            <a id="downloadlinux" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-Linux.tar.gz" class="btn btn-success btn-lg" role="button">Download for Linux</a>
+            <h3>Efficient software for phylogenomic inference</h3>
+            <h3>Latest version {{page.version}} ({{page.releasedate}})</h3>
+            <p>
+            <a id="downloadwin" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Windows.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version}} for Windows</a>
+            <a id="downloadmac" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-MacOSX.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version}} for macOS</a>
+            <a id="downloadlinux" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Linux.tar.gz" class="btn btn-danger btn-lg" role="button">Download v{{page.version}} for Linux</a>
+            </p>
+            <h3>Old compatible version {{page.version_old}} ({{page.releasedate_old}})</h3>
+            <p>
+            <a id="downloadwin_old" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_old}}/iqtree-omp-{{page.version_old}}-Windows.zip" class="btn btn-warning btn-lg" role="button">Download v{{page.version_old}} for Windows</a>
+            <a id="downloadmac_old" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_old}}/iqtree-omp-{{page.version_old}}-MacOSX.zip" class="btn btn-warning btn-lg" role="button">Download v{{page.version_old}} for macOS</a>
+            <a id="downloadlinux_old" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_old}}/iqtree-omp-{{page.version_old}}-Linux.tar.gz" class="btn btn-warning btn-lg" role="button">Download v{{page.version_old}} for Linux</a>
+            </p>
+            <p>
             <a id="downloadall" href="#download" class="btn btn-success btn-lg" role="button">All Downloads</a>
-            <p></p>
             <a href="doc/" class="btn btn-success btn-lg" role="button">Documentation</a>
-            <br>
+            </p>
         </div>
     </div><!-- /row -->
 </div> <!-- /container -->
 </div> <!-- /headerwrap -->
 
 <script type="text/javascript">
-    if (navigator.appVersion.indexOf("Win")!=-1) document.getElementById("downloadwin").style.display = "inline";
-    else if (navigator.appVersion.indexOf("Mac")!=-1) document.getElementById("downloadmac").style.display = "inline";
-    else if (navigator.appVersion.indexOf("Linux")!=-1) document.getElementById("downloadlinux").style.display = "inline";
-    else  document.getElementById("downloadall").innerHTML="Download";
+    function getOS() {
+      var userAgent = window.navigator.userAgent,
+          platform = window.navigator.platform,
+          macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+          windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+          iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+          os = null;
+      if (macosPlatforms.indexOf(platform) !== -1) {
+        os = 'macOS';
+      } else if (iosPlatforms.indexOf(platform) !== -1) {
+        os = 'iOS';
+      } else if (windowsPlatforms.indexOf(platform) !== -1) {
+        os = 'Windows';
+      } else if (/Android/.test(userAgent)) {
+        os = 'Android';
+      } else if (!os && /Linux/.test(platform)) {
+        os = 'Linux';
+      }
+      return os;
+    }
+    var os = getOS();
+
+    if (os == "Windows") {
+        document.getElementById("downloadwin").style.display = "inline";
+        document.getElementById("downloadwin_old").style.display = "inline";
+    } else if (os == "macOS") {
+        document.getElementById("downloadmac").style.display = "inline";
+        document.getElementById("downloadmac_old").style.display = "inline";
+    } else if (os == "Linux") {
+        document.getElementById("downloadlinux").style.display = "inline";
+        document.getElementById("downloadlinux_old").style.display = "inline";
+    } else  document.getElementById("downloadall").innerHTML="Download";
 
 </script>
 
@@ -72,13 +105,19 @@ releasedate_dev: June 21, 2017
         <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
             <div class="list-group">
                 <div class="list-group-item list-group-item-warning">
-                    <h4 class="centered">New features in 1.5.x (<a href="news/">see all news</a>)</h4>
+                    <h4 class="centered">What's new in version 1.6? </h4>
                     <ul>
-                        <li><a href="doc/Complex-Models#site-specific-frequency-models">Posterior mean site frequency (PMSF) model as fast and accurate approximation for CAT model C10 to C60</a></li>
-                        <li><a href="doc/Advanced-Tutorial#constrained-tree-search">User-defined topological constraint for tree search [-g option]</a></li>
-                        <li><a href="doc/Compilation-Guide#compiling-mpi-version">MPI parallel version for distributing computations across cluster nodes</a></li>
-                        <li><a href="doc/Command-Reference#general-options">Low memory [-mem] and safe numerical mode [-safe] for large data sets or complex mixture models</a></li>
-                        <li><a href="doc/Tutorial#utilizing-multi-core-cpus">Automatic detection for the best number of threads to use [-nt AUTO]</a></li>
+                        <li><strong>IMPORTANT</strong>: The checkpoint file is no more compatible with previous versions. An error message will be printed if you recover the run from 1.5.X or older versions. Sequential and multicore versions are merged, thus iqtree-omp executable becomes iqtree. ModelFinder now uses checkpoint file .model.gz (instead of .model) to save space.
+                        <li><a href="doc/Polymorphism-Aware-Models">Polymorphism-aware models</a> accounting for incomplete lineage sorting (<a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">Schrempf et al., 2016</a>).</li>
+                        <li><a href="doc/Complex-Models#heterotachy-models">Heterotachy models</a> accounting for rate variation among sites and lineages (<a href="https://doi.org/10.1101/174789">Crotty et al., submitted</a>).</li>
+                        <li><a href="doc/Substitution-Models#lie-markov-models">Lie Markov models</a> (<a href="http://dx.doi.org/10.1093/sysbio/syv021">Woodhams et al., 2015</a>) and non-reversible models.</li>
+                        <li>Three new mitochondrial protein matrices mtMet, mtVer, mtInv (<a href="https://doi.org/10.1186/s12862-017-0987-y">Vinh et al., 2017</a>).</li>
+                        <li>Improved ModelFinder allowing to test all above models. For partitioned analysis ModelFinder supports edge-linked partition model selection and fast relaxed clustering algorithm (-rclusterf option) like PartitionFinder2. </li>
+                        <li>A fast tree search to match the speed of FastTree program while still obtaining better trees (-fast option).</li>
+                        <li><a href="http://www.iqtree.org/doc/Tutorial#reducing-impact-of-severe-model-violations-with-ufboot">-bnni option to reduce the impact of model violation</a> for the ultrafast bootstrap (<a href="https://doi.org/10.1093/molbev/msx281">Hoang et al., 2017</a>)</li>
+                        <li><a href="doc/Command-Reference#ancestral-sequence-reconstruction">Ancestral sequence reconstruction</a> by empirical Bayesian method (-asr option).</li>
+                        <li><a href="doc/Compilation-Guide#compiling-xeon-phi-knights-landing-version">Xeon Phi Kights Landing</a> (AVX-512 instruction set) support.</li>
+                        <li>Allowing gzip-compressed alignments to save space.</li>
                     </ul>
                 </div>
             </div>
@@ -145,16 +184,14 @@ releasedate_dev: June 21, 2017
         <div class="row centered">
             <div class="col-sm-12">
                 <h2>Download</h2>
-                <p>The latest IQ-TREE stable version {{page.version}} ({{page.releasedate}})</p>
+                <p>The latest IQ-TREE version {{page.version}} ({{page.releasedate}})</p>
             </div>
             <div class="col-sm-4">
                 <i class="fa fa-windows"></i>
                 <h4>Windows</h4>
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Windows.zip">64-bit sequential Windows</a>
-                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-Windows.zip">64-bit multicore Windows</a>
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Windows32.zip">32-bit sequential Windows</a>
-                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-Windows32.zip">32-bit multicore Windows</a>
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Windows.zip">64-bit multicore Windows</a>
+                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Windows32.zip">32-bit multicore Windows</a>
                 </div>
             </div>		 				
 
@@ -162,18 +199,16 @@ releasedate_dev: June 21, 2017
                 <i class="fa fa-apple"></i>
                 <h4>macOS</h4>
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-MacOSX.zip">64-bit sequential macOS</a>
-                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-MacOSX.zip">64-bit multicore macOS</a>
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-MacOSX.zip">64-bit multicore macOS</a>
                 </div>
             </div>		 				
             <div class="col-sm-4">
                 <i class="fa fa-linux"></i>
                 <h4>Linux</h4>
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Linux.tar.gz">64-bit sequential Linux</a>
-                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-Linux.tar.gz">64-bit multicore Linux</a>
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Linux32.tar.gz">32-bit sequential Linux</a>
-                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-omp-{{page.version}}-Linux32.tar.gz">32-bit multicore Linux</a>
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Linux.tar.gz">64-bit multicore Linux</a>
+                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Linux32.tar.gz">32-bit multicore Linux</a>
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-LinuxKNL.tar.gz">Xeon Phi Knights Landing Linux</a>
                 </div>
             </div>		 
         </div> <!-- row -->
@@ -203,56 +238,6 @@ releasedate_dev: June 21, 2017
             </div>
         </div><!-- /row -->
     </div> <!-- /container -->
-    <br><div class="hline"></div><br>
-<!-- ========================== IQ-TREE variants ========================== -->
-    <div id="variant" class="container">
-        <div class="row centered">
-            <div class="col-sm-12">
-                <p>Beta version {{ page.version_dev }} ({{ page.releasedate_dev }}) <span class="label label-danger"><em>New!</em></span></p>
-            </div>
-            <br><br>
-            <div class="col-sm-4">
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-Windows.zip">64-bit multicore Windows</a>
-                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-Windows32.zip">32-bit multicore Windows</a>
-                </div>
-            </div>		 				
-
-            <div class="col-sm-4">
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-MacOSX.zip">64-bit multicore macOS</a>
-                </div>
-            </div>		 				
-            <div class="col-sm-4">
-                <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-Linux.tar.gz">64-bit multicore Linux</a>
-                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-Linux32.tar.gz">32-bit multicore Linux</a>
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_dev}}/iqtree-{{page.version_dev}}-LinuxKNL.tar.gz">Xeon Phi Knights Landing Linux</a>
-                </div>
-            </div>		 
-
-        </div> <!-- row -->
-
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-            <div class="list-group">
-                <div class="list-group-item">
-                    <h4 class="centered">What's new in version 1.6? </h4>
-                    <ul>
-                        <li><a href="doc/Polymorphism-Aware-Models">Polymorphism-aware models</a> accounting for incomplete lineage sorting (<a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">Schrempf et al., 2016</a>).</li>
-                        <li><a href="doc/Complex-Models#heterotachy-models">Heterotachy models</a> accounting for rate variation among sites and lineages (<a href="https://doi.org/10.1101/174789">Crotty et al., submitted</a>).</li>
-                        <li><a href="doc/Substitution-Models#lie-markov-models">Lie Markov models</a> (<a href="http://dx.doi.org/10.1093/sysbio/syv021">Woodhams et al., 2015</a>) and non-reversible models.</li>
-                        <li><a href="doc/Compilation-Guide#compiling-xeon-phi-knights-landing-version">Xeon Phi Kights Landing</a> (AVX-512) support.</li>
-                        <li>`-fast` option to match the speed of FastTree program while still obtaining better trees.</li>
-                        <li><a href="http://www.iqtree.org/doc/Tutorial#reducing-impact-of-severe-model-violations-with-ufboot">`-bnni` option to reduce the impact of model violation</a> for UFBoot (<a href="https://doi.org/10.1101/153916">Hoang et al., submitted</a>)</li>
-                        <li>Ancestral sequence reconstruction by empirical Bayesian method via `-asr` option.</li>
-                    </ul>
-                    <div class="centered"><em>During the beta-testing phase, feedback is much appreciated!</em></div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- row -->
-    </div><!--/container -->
 </div><!-- /jumbotron -->
 
 

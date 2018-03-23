@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Beginner's Tutorial"
 author: Diep Thi Hoang, Jana, Minh Bui
-date:    2017-11-27
+date:    2018-01-03
 docid: 3
 icon: info-circle
 doctype: tutorial
@@ -320,7 +320,7 @@ Assessing branch supports with ultrafast bootstrap approximation
 To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]; [Hoang et al., in press]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. Citation for UFBoot:
 
 > __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2017) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, in press. 
-    <http://dx.doi.org/10.1093/molbev/msx281>
+    <https://doi.org/10.1093/molbev/msx281>
 
 
 To run UFBoot, use the option  `-bb`:
@@ -426,18 +426,16 @@ Utilizing multi-core CPUs
 -------------------------
 <div class="hline"></div>
 
-A specialized version of IQ-TREE (`iqtree-omp`) can utilize multiple CPU cores to speed up the analysis.
-To obtain this version please refer to the [quick starting guide](Quickstart).  A complement option `-nt` allows specifying the number of CPU cores to use. For example:
+IQ-TREE can utilize multiple CPU cores to speed up the analysis. A complement option `-nt` allows specifying the number of CPU cores to use. Note that for old IQ-TREE versions <= 1.5.X, please change the executable from `iqtree` to `iqtree-omp` for all commands below. For example:
 
-
-    iqtree-omp -s example.phy -m TIM2+I+G -nt 2
+    iqtree -s example.phy -m TIM2+I+G -nt 2
 
 
 Here, IQ-TREE will use 2 CPU cores to perform the analysis. 
 
 Note that the parallel efficiency is only good for long alignments. A good practice is to use `-nt AUTO` to determine the best number of cores:
 
-    iqtree-omp -s example.phy -m TIM2+I+G -nt AUTO
+    iqtree -s example.phy -m TIM2+I+G -nt AUTO
 
 Then while running IQ-TREE may print something like this on to the screen:
 
@@ -458,15 +456,15 @@ Once confident enough you can go on with a **[more advanced tutorial](Advanced-T
 
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
-[Anisimova et al., 2011]: http://dx.doi.org/10.1093/sysbio/syr041
-[Gadagkar et al., 2005]: http://dx.doi.org/10.1002/jez.b.21026
-[Guindon et al., 2010]: http://dx.doi.org/10.1093/sysbio/syq010
+[Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
+[Gadagkar et al., 2005]: https://doi.org/10.1002/jez.b.21026
+[Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
 [Hoang et al., in press]: https://doi.org/10.1093/molbev/msx281
-[Lanfear et al., 2012]: http://dx.doi.org/10.1093/molbev/mss020
-[Lanfear et al., 2014]: http://dx.doi.org/10.1186/1471-2148-14-82
-[Lewis, 2001]: http://dx.doi.org/10.1080/106351501753462876
+[Lanfear et al., 2012]: https://doi.org/10.1093/molbev/mss020
+[Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
+[Lewis, 2001]: https://doi.org/10.1080/106351501753462876
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
-[Minh et al., 2013]: http://dx.doi.org/10.1093/molbev/mst024
-[Yang, 1994]: http://dx.doi.org/10.1007/BF00160154
+[Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
+[Yang, 1994]: https://doi.org/10.1007/BF00160154
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 
