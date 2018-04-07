@@ -160,7 +160,7 @@ Sometimes one only wants to model the changes in nucleotide or amino-acid freque
         frequency CF4model = FMIX{empirical,Fclass1,Fclass2,Fclass3,Fclass4};
     end;
 
->**NOTE**: The amino-acid order in this file is: A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V, see [User-defined empirical protein models](Substitution-Models#User-defined empirical protein models).
+>**NOTE**: The amino-acid order in this file is: A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V.
 
 Here, the NEXUS file contains a `models` block to define new models. More explicitly, we define four AA profiles `Fclass1` to `Fclass4`, each containing 20 AA frequencies. Then, the frequency mixture is defined with
 
