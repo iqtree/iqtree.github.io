@@ -54,33 +54,6 @@ references:
     new: yes
 
   - author:
-    - given: S.
-      family: Kalyaanamoorthy
-      co-first: yes
-    - given: B.Q.
-      family: Minh
-      co-first: yes
-    - given: T.K.F.
-      family: Wong
-      co-first: yes
-    - given: A.
-      family: von Haeseler
-    - given: L.S.
-      family: Jermiin
-    issued:
-      year: 2017
-    title: "ModelFinder: Fast model selection for accurate phylogenetic estimates"
-    container-title: Nat. Methods
-    DOI: 10.1038/nmeth.4285
-    PMID: 28481363
-    PMCID: PMC5453245
-    issue: 14
-    page: 587-589
-    software: http://www.iqtree.org/
-    message: When using <a href="doc/Tutorial#choosing-the-right-substitution-model">model selection (ModelFinder)</a> please cite&#58;
-    new: yes
-
-  - author:
     - given: S.M.
       family: Crotty
       co-first: yes
@@ -107,6 +80,32 @@ references:
     DOI: 10.1101/174789
     message: When using <a href="doc/Complex-Models#heterotachy-models">heterotachy models</a> please cite&#58;
     new: yes
+
+  - author:
+    - given: S.
+      family: Kalyaanamoorthy
+      co-first: yes
+    - given: B.Q.
+      family: Minh
+      co-first: yes
+    - given: T.K.F.
+      family: Wong
+      co-first: yes
+    - given: A.
+      family: von Haeseler
+    - given: L.S.
+      family: Jermiin
+    issued:
+      year: 2017
+    title: "ModelFinder: Fast model selection for accurate phylogenetic estimates"
+    container-title: Nat. Methods
+    DOI: 10.1038/nmeth.4285
+    PMID: 28481363
+    PMCID: PMC5453245
+    issue: 14
+    page: 587-589
+    software: http://www.iqtree.org/
+    message: When using <a href="doc/Tutorial#choosing-the-right-substitution-model">model selection (ModelFinder)</a> please cite&#58;
 
   - author:
     - given: D.
