@@ -81,7 +81,7 @@ First running example
 ---------------------
 <div class="hline"></div>
 
-From the download there is an example alignment called `example.phy`
+Download an [example alignment called `example.phy`](data/example.phy)
  in PHYLIP format. This example contains parts of the mitochondrial DNA sequences of several animals (Source: [Phylogenetic Handbook](http://www.kuleuven.be/aidslab/phylogenybook/home.html)).
  
 You can now start to reconstruct a maximum-likelihood tree
@@ -171,60 +171,18 @@ NOTE: If you use model selection please cite the following paper:
 > __S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, and L.S. Jermiin__ (2017) ModelFinder: fast model selection for accurate phylogenetic estimates. _Nat. Methods_, 14:587–589. 
     DOI: [10.1038/nmeth.4285](https://doi.org/10.1038/nmeth.4285)
 
-IQ-TREE supports a wide range of [substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological alignments. If you do not know which model is appropriate for your data, you can use ModelFinder to determine the best-fit model:
+IQ-TREE supports a wide range of [substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological alignments. The previous run already determined the best-fit model that minimizes the Bayesian Information Criterion (BIC) score.
 
-    #for IQ-TREE version >= 1.5.4:
-    iqtree -s example.phy -m MFP
-    
-    #for IQ-TREE version <= 1.5.3:
-    iqtree -s example.phy -m TESTNEW
-    
+Question:
 
-`-m` is the option to specify the model name to use during the analysis. The special `MFP` key word stands for _ModelFinder Plus_, which tells IQ-TREE to perform ModelFinder and the remaining analysis using the selected model. ModelFinder computes the log-likelihoods
-of an initial parsimony tree for many different models and the *Akaike information criterion* (AIC), *corrected Akaike information criterion* (AICc), and the *Bayesian information criterion* (BIC).
-Then ModelFinder chooses the model that minimizes the BIC score (you can also change to AIC or AICc by 
-adding the option `-AIC` or `-AICc`, respectively).
+* What is the name of the best-fit model? 
+* What do `+I` and `+G` mean?
+* What is the best model according to Akaike Information Criterion (AIC) and AICc?
 
->**TIP**: Starting with version 1.5.4, `-m MFP` is the default behavior. Thus, this run is equivalent to `iqtree -s example.phy`.
-> If you want to resembles jModelTest/ProtTest, then use option `-m TEST` or `-m TESTONLY` instead.
-{: .tip}
+Some hints:
 
-
-Here, IQ-TREE will write an additional file:
-
-* `example.phy.model`: log-likelihoods for all models tested. It serves as a checkpoint file to recover an interrupted model selection.
-
-If you now look at `example.phy.iqtree` you will see that IQ-TREE selected `TIM2+I+G4` as the best-fit model for this example data. Thus, for additional analyses you do not have to perform the model test again and can use the selected model:
-
-    iqtree -s example.phy -m TIM2+I+G
-
-Sometimes you only want to find the best-fit model without doing tree reconstruction, then run:
-
-    #for IQ-TREE version >= 1.5.4:
-    iqtree -s example.phy -m MF
-    
-    #for IQ-TREE version <= 1.5.3:
-    iqtree -s example.phy -m TESTNEWONLY
-
-By default, the maximum number of categories is limitted to 10 due to computational reasons. If your sequence alignment is long enough, then you can increase this upper limit with the `cmax` option:
-
-    #for IQ-TREE version >= 1.5.4:
-    iqtree -s example.phy -m MF -cmax 15
-    
-    #for IQ-TREE version <= 1.5.3:
-    iqtree -s example.phy -m TESTNEWONLY -cmax 15
-
-will test `+R2` to `+R15` instead of at most `+R10`.
-
-To reduce computational burden, one can use the option `-mset` to restrict the testing procedure to a subset of base models instead of testing the entire set of all available models. For example, `-mset WAG,LG` will test only models like `WAG+...` or `LG+...`. Another useful option in this respect is `-msub` for AA data sets. With `-msub nuclear` only general AA models are included, whereas with `-msub viral` only AA models for viruses are included.
-
-If you have enough computational resource, you can perform a thorough and more accurate analysis that invokes a full tree search for each model considered via the `-mtree` option:
-
-    #for IQ-TREE version >= 1.5.4:
-    iqtree -s example.phy -m MF -mtree
-
-    #for IQ-TREE version <= 1.5.3:
-    iqtree -s example.phy -m TESTNEWONLY -mtree
+* Sometimes you only want to find the best-fit model without doing tree reconstruction, then use option `-m MF`.
+* To reduce computational burden, one can use the option `-mset` to restrict the testing procedure to a subset of base models instead of testing the entire set of all available models. For example, `-mset GTR` to only test `GTR+...` models for DNA data, or `-mset WAG,LG` will test only models like `WAG+...` or `LG+...` for protein data.
 
 
 Assessing branch supports with ultrafast bootstrap approximation
@@ -370,12 +328,7 @@ IQ-TREE will then estimate the model parameters separately for every partition. 
 
 >**NOTE**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
 
-IQ-TREE supports RAxML-style and NEXUS partition input file. The RAxML-style partition file may look like:
-
-    DNA, part1 = 1-100
-    DNA, part2 = 101-384
-
-An example NEXUS partition file:
+IQ-TREE supports RAxML-style and NEXUS partition input file. An example NEXUS partition file:
 
     #nexus
     begin sets;
@@ -387,18 +340,18 @@ An example NEXUS partition file:
 This file contains a  `SETS` block with
  `CharSet` and  `CharPartition` commands to specify individual genes and the partition, respectively.
 
-Please now download a [DNA alignment](data/turtle_nt.phy) originally analysed to study the phylogenetic position of Turtle within Reptiles ([Chiari et al., 2012]). This question was highly debatable some 5 years ago.
+Please now download a [DNA alignment](data/turtle_nt.phy) originally analysed to study the phylogenetic position of Turtle within Reptiles ([Chiari et al., 2012]). This question was highly debatable some 6 years ago.
 
-First, we will perform an analysis with single model (no partitions) where branch supports are assessed with ultrafast bootstrap and choose `protopterus` as outgroup taxon:
+First, we will perform an analysis with single model (no partitions) where branch supports are assessed with SH-aLRT and UFBoot:
 
-    iqtree -s turtle_nt.phy -o protopterus -bb 1000
+    iqtree -s turtle_nt.phy -alrt 1000 -bb 1000 -nt AUTO
 
 * Note down the best-fit model and its AIC/BIC scores. 
 * Use a tree viewer program (e.g. FigTree) to visualize the resulting tree. Where is Turtle position in the tree? Does it agree with the analysis on `example.phy` done above?
 
 Now download a [partition NEXUS file](data/turtle_nt.nex) containing 248 genes for this Turtle data set. Perform an edge-linked partitioned analysis:
 
-    iqtree -s turtle_nt.phy -o protopterus -bb 1000 -spp turtle_nt.nex
+    iqtree -s turtle_nt.phy -alrt 1000 -bb 1000 -spp turtle_nt.nex -nt AUTO
 
 Questions:
 
@@ -411,363 +364,68 @@ Choosing the right partitioning scheme
 --------------------------------------
 <div class="hline"></div>
 
-Som
+When there are "short" partitions, it is a good practice to perform PartitionFinder ([Lanfear et al., 2012]), which tries to merge partitions to reduce the number of parameters and improve model fit. When you have many partitions, you can reduce the computational burden with the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]) using `-rcluster` option.
 
-ModelFinder implements a greedy strategy ([Lanfear et al., 2012]) that starts with the full partition model and subsequentially
-merges two genes until the model fit does not increase any further:
+All these techniques are already implemented in ModelFinder. However, we won't however perform this analysis here due to excessive computations. Nevertheless here are a few options for such analysis:
 
-    # for IQ-TREE version >= 1.5.4:
-    iqtree -s example.phy -spp example.nex -m MFP+MERGE
+* `-m MFP+MERGE` is to perform PartitionFinder algorithm followed by tree reconstruction.
+* `-rcluster 5` is to only examine the top 5% partitioning schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
+* `-mset GTR` to restrict the set of testing models to just GTR. This also helps to save computations.
 
+Questions:
 
-
-Note that this command considers the FreeRate heterogeneity model (see [model selection tutorial](Tutorial#choosing-the-right-substitution-model)). If you want to resemble PartitionFinder by just considering the invariable site and Gamma rate heterogeneity (thus saving computation times), then run:
-
-    iqtree -s example.phy -spp example.nex -m TESTMERGE
-
-> **WARNING**: All these commands with `-m ...MERGE...` will always perform an edge-unlinked partition scheme finding even if `-spp` option is used. Only in the next phase of tree reconstruction, then an edge-linked partition model is used. We plan to implement the edge-linked partition finding in version 1.6.
-
-After ModelFinder found the best partition, IQ-TREE will immediately start the tree reconstruction under the best-fit partition model.
-Sometimes you only want to find the best-fit partition model without doing tree reconstruction, then run:
-
-    # for IQ-TREE version >= 1.5.4:
-    iqtree -s example.phy -spp example.nex -m MF+MERGE
-
-    # for IQ-TREE version <= 1.5.3:
-    iqtree -s example.phy -spp example.nex -m TESTNEWMERGEONLY
-
-    # to resemble PartitionFinder and save time:
-    iqtree -s example.phy -spp example.nex -m TESTMERGEONLY
-
-
-To reduce the computational burden IQ-TREE implements the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]), which is invoked via `-rcluster` option:
-
-    # for IQ-TREE version >= 1.5.4:
-    iqtree -s example.phy -spp example.nex -m MF+MERGE -rcluster 10
-
-    # for IQ-TREE version <= 1.5.3:
-    iqtree -s example.phy -spp example.nex -m TESTNEWMERGEONLY -rcluster 10
-
-to only examine the top 10% partition merging schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
-
-
+* How many partitions does not best partitioning scheme have now?
+* What are the AIC/BIC scores?
+* Is there any change in the tree topology?
 
 Ultrafast bootstrapping with partition model
 --------------------------------------------
 <div class="hline"></div>
 
-IQ-TREE can perform the ultrafast bootstrap with partition models by e.g.,
+For partitioned analysis, IQ-TREE will by default resample the sites *within* partitions (i.e., 
+the bootstrap replicates are generated per partition separately and then concatenated together). However, it is recommended to resample  partitions ([Nei et al., 2001]). This can be done with `-bsam GENE` option. Moreover, IQ-TREE allows an even more complicated
+strategy: resampling partitions and then sites within resampled partitions  ([Gadagkar et al., 2005]). This may help to reduce false positives (i.e. wrong branch receiving 100% support). This can be done with `-bsam GENESITE`.
 
-    iqtree -s example.phy -spp example.nex -bb 1000
+Please now perform ultrafast bootstrap with partition resamplings. Questions:
 
-Here, IQ-TREE will resample the sites *within*  partitions (i.e., 
-the bootstrap replicates are generated per partition separately and then concatenated together).
-The same holds true if you do the standard nonparametric bootstrap. 
-
-IQ-TREE supports the partition-resampling strategy as suggested by ([Nei et al., 2001]): 
-
-
-    iqtree -s example.phy -spp example.nex -bb 1000 -bspec GENE
-
-
-to resample partitions instead of sites. Moreover, IQ-TREE allows an even more complicated
-strategy: resampling partitions and then sites within resampled partitions  ([Gadagkar et al., 2005]). This may help to reduce false positives (i.e. wrong branch receiving 100% support):
-
-
-    iqtree -s example.phy -spp example.nex -bb 1000 -bspec GENESITE
-
-
-
-Constrained tree search
------------------------
-<div class="hline"></div>
-
-Starting with version 1.5.0, IQ-TREE supports constrained tree search via `-g` option, so that the resulting tree must obey a constraint tree topology. The constraint tree can be multifurcating and need not to contain all species. To illustrate, let's return to the [first running example](Tutorial#first-running-example), where we want to force Human grouping with Seal whereas Cow with Whale. If you use the following constraint tree (NEWICK format):
-
-    ((Human,Seal),(Cow,Whale));
-
-Save this to a file `example.constr0` and run:
-
-    iqtree -s example.phy -m TIM2+I+G -g example.constr0 -pre example.constr0
-    
-(We use a prefix in order not to overwrite output files of the previous run). The resulting part of the tree extracted from `example.constr0.iqtree` looks exactly like a normal unconstrained tree search:
-
-
-            +--------------Human
-         +--|
-         |  |  +------Seal
-         |  +--|
-         |     |  +-----Cow
-         |     +--|
-         |        +-------Whale
-    +----|
-    |    |         +---Mouse
-    |    +---------|
-    |              +------Rat
-
-
-This is the correct behavior: although Human and Seal are not monophyletic, this tree indeed satisfies the constraint, because the induced subtree separates (Human,Seal) from (Cow,Whale). This comes from the fact that the tree is _unrooted_. If you want them to be sister groups, then you need to include _outgroup_ taxa into the constraint tree. For example:
-
-    ((Human,Seal),(Cow,Whale),Mouse);
-
-Save this to `example.constr1` and run:
-
-    iqtree -s example.phy -m TIM2+I+G -g example.constr1 -pre example.constr1
-
-The resulting part of the tree is then:
-
-               +---------------Human
-            +--|
-            |  +------Seal
-         +--|
-         |  |  +-----Cow
-         |  +--|
-         |     +-------Whale
-    +----|
-    |    |         +---Mouse
-    |    +---------|
-    |              +------Rat
-
-
-which shows the desired effect.
-
->**NOTE**: While this option helps to enforce the tree based on prior knowledge, it is advised to always perform tree topology tests to make sure that the resulting constrained tree is NOT significantly worse than an unconstrained tree! See [tree topology tests](#tree-topology-tests) and [testing constrained tree](#testing-constrained-tree) below for a guide how to check this.
+* Is there any change in tree topology?
+* Do the bootstrap support values change?
 
 Tree topology tests
 -------------------
 <div class="hline"></div>
 
-IQ-TREE can compute log-likelihoods of a set of trees passed via the `-z` option:
+We now want to know whether the trees inferred for the Turtle data set have significantly different log-likelihoods or not. This can be conducted with Shimodaira-Hasegawa test ([Shimodaira and Hasegawa, 1999]), or expected likelihood weights ([Strimmer and Rambaut, 2002]).
 
-    iqtree -s example.phy -z example.treels -m GTR+G
+First, concatenate the trees constructed by single and partition models into one file:
 
-assuming that `example.treels` is an existing file containing a set of trees in NEWICK format. IQ-TREE  first reconstructs an ML tree. Then, it will compute the log-likelihood of the  trees in `example.treels` based on the estimated parameters done for the ML tree. `example.phy.iqtree` will have a section called `USER TREES` that lists the tree IDs and the corresponding log-likelihoods.
-The trees with optimized branch lengths can be found in `example.phy.treels.trees`
-If you only want to evaluate the trees without reconstructing the ML tree, you can run:
+	cat turtle_nt.phy.treefile turtle_nt.nex.treefile >turtle_nt.trees
+	
+Now pass this file into IQ-TREE via `-z` option:
 
-    iqtree -s example.phy -z example.treels -n 0
+	iqtree -s turtle_nt.phy -z turtle_nt.trees -pre turtle_nt.treetest -n 0 -zb 1000 
 
-Here, the number of search iterations is set to 0 (`-n 0`), such that model parameters are quickly estimated from an initial parsimony tree, which is normally accurate enough for our purpose. If you, however, prefer to estimate model parameters based on a tree (e.g. reconstructed previously), use `-te <treefile>` option.  
+Options explained:
 
-IQ-TREE also supports several tree topology tests using the RELL approximation ([Kishino et al., 1990]). This includes bootstrap proportion (BP), Kishino-Hasegawa test ([Kishino and Hasegawa, 1989]), Shimodaira-Hasegawa test ([Shimodaira and Hasegawa, 1999]), expected likelihood weights ([Strimmer and Rambaut, 2002]):
+* `-pre` is to specify a prefix for output files, so that they do not overwrite previous analysis.
+* `-zb` is to specify the number of boostrap replicates for the resampling estimated log-likelihood method (RELL) ([Kishino et al., 1990]).
+* `-n 0` is to avoid tree search and estimate model parameters based on an initial parsimony tree.
 
-    iqtree -s example.phy -z example.treels -n 0 -zb 1000
+Now have a look at `turtle_nt.treetest.iqtree`. The results of the tests will be printed to a section called `USER TREES`.
 
+Questions:
 
-Here, `-zb` specifies the number of RELL replicates, where 1000 is the recommended minimum number. The `USER TREES` section of `example.phy.iqtree` will list the results of BP, KH, SH, and ELW methods. 
-
-If you also want to perform the weighted KH and weighted SH tests, simply add `-zw` option:
-
-    iqtree -s example.phy -z example.treels -n 0 -zb 1000 -zw
-
-Starting with version 1.4.0 IQ-TREE supports approximately unbiased (AU) test ([Shimodaira, 2002]) via `-au` option:
-
-    iqtree -s example.phy -z example.treels -n 0 -zb 1000 -zw -au
-
-This will perform all above tests plus the AU test.
-
-Finally, note that IQ-TREE will automatically detect duplicated tree topologies and omit them during the evaluation.
-
->**NOTE**: There is a discrepancy between IQ-TREE and CONSEL for the AU test: IQ-TREE implements the least-square estimate for p-values whereas CONSEL provides the maximum-likelihood estimate (MLE) for p-values. Hence, the AU p-values might be slightly different. We plan to implement MLE for AU p-values in IQ-TREE version 1.6.
-
+* Do the two trees have significantly different log-likelihoods?
 
 >**HINTS**:
 >
-> - The KH, SH and AU tests return p-values, thus a tree is rejected if its p-value < 0.05 (marked with a `-` sign).
+> - The KH and SH tests return p-values, thus a tree is rejected if its p-value < 0.05 (marked with a `-` sign).
 >
 > - bp-RELL and c-ELW return posterior weights which *are not p-value*. The weights sum up to 1 across the trees tested.
 >
 > - The KH test ([Kishino and Hasegawa, 1989]) was designed to test 2 trees and thus has no correction for multiple testing. The SH test ([Shimodaira and Hasegawa, 1999]) fixes this problem.
->
-> - However, the SH test becomes too conservative (i.e., rejecting fewer trees than expected) when testing many trees. The AU test ([Shimodaira, 2002]) fixes this problem and is thus recommended as replacement for both KH and SH tests.
 {: .tip}
 
-
-
-Testing constrained tree
-------------------------
-<div class="hline"></div>
-
-We now illustrate an example to use the AU test (see above) to test trees from unconstrained versus constrained search, which is helpful to know if a constrained search is sensible or not. Thus:
-
-1. Perform an unconstrained search:
-        
-        iqtree -s example.phy -m TIM2+I+G -pre example.unconstr
-        
-2. Perform a constrained search, where `example.constr1` file contains: `((Human,Seal),(Cow,Whale),Mouse);`:
-    
-        iqtree -s example.phy -m TIM2+I+G -g example.constr1 -pre example.constr1
-        
-3. Perform another constrained search, where `example.constr2` file contains `((Human,Cow,Whale),Seal,Mouse);`: 
-
-        iqtree -s example.phy -m TIM2+I+G -g example.constr2 -pre example.constr2
-
-4. Perform the last constrained search, where `example.constr3` file contains `((Human,Mouse),(Cow,Rat),Opossum);`: 
-
-        iqtree -s example.phy -m TIM2+I+G -g example.constr3 -pre example.constr3
-
-5. Concatenate all trees into a file:
-    
-        # for Linux or macOS
-        cat example.unconstr.treefile example.constr1.treefile example.constr2.treefile example.constr3.treefile > example.treels
-        
-        # for Windows
-        type example.unconstr.treefile example.constr1.treefile example.constr2.treefile example.constr3.treefile > example.treels
-        
-    
-6. Test the set of trees:
-    
-        iqtree -s example.phy -m TIM2+I+G -z example.treels -n 0 -zb 1000 -au
-
-
-Now look at the resulting `.iqtree` file:
-
-    USER TREES
-    ----------
-
-    See example.phy.trees for trees with branch lengths.
-
-    Tree      logL    deltaL  bp-RELL    p-KH     p-SH    c-ELW     p-AU
-    -------------------------------------------------------------------------
-      1   -21152.617   0.000  0.7110 + 0.7400 + 1.0000 + 0.6954 + 0.7939 + 
-      2   -21156.802   4.185  0.2220 + 0.2600 + 0.5910 + 0.2288 + 0.3079 + 
-      3   -21158.579   5.962  0.0670 + 0.1330 + 0.5130 + 0.0758 + 0.1452 + 
-      4   -21339.596 186.980  0.0000 - 0.0000 - 0.0000 - 0.0000 - 0.0000 - 
-
-    deltaL  : logL difference from the maximal logl in the set.
-    bp-RELL : bootstrap proportion using RELL method (Kishino et al. 1990).
-    p-KH    : p-value of one sided Kishino-Hasegawa test (1989).
-    p-SH    : p-value of Shimodaira-Hasegawa test (2000).
-    c-ELW   : Expected Likelihood Weight (Strimmer & Rambaut 2002).
-    p-AU    : p-value of approximately unbiased (AU) test (Shimodaira, 2002).
-
-    Plus signs denote the 95% confidence sets.
-    Minus signs denote significant exclusion.
-    All tests performed 1000 resamplings using the RELL method.
-
-One sees that the AU test does not reject the first 3 trees (denoted by `+` sign below the `p-AU` column), whereas the last tree is significantly excluded (`-` sign). All other tests also agree with this. Therefore, groupings of `(Human,Mouse)` and `(Cow,Rat)` do not make sense. Whereas the phylogenetic position of `Seal` based on 3 first trees is still undecidable. This is in agreement with the SH-aLRT and ultrafast bootstrap supports [done in the Tutorial](Tutorial#assessing-branch-supports-with-single-branch-tests). 
-
-
-Consensus construction and bootstrap value assignment
------------------------------------------------------
-<div class="hline"></div>
-
-IQ-TREE can construct an extended majority-rule consensus tree from a set of trees written in NEWICK or NEXUS format (e.g., produced
-by MrBayes):
-
-
-    iqtree -con mytrees
-
-
-To build a majority-rule consensus tree, simply set the minimum support threshold to 0.5:
-
-
-    iqtree -con mytrees -minsup 0.5
-
-
-If you want to specify a burn-in (the number of beginning trees to ignore from the trees file), use `-bi` option:
-
-
-    iqtree -con mytrees -minsup 0.5 -bi 100
-
-
-to skip the first 100 trees in the file.
-
-IQ-TREE can also compute a consensus network and print it into a NEXUS file by:
-
-
-    iqtree -net mytrees
-
-
-Finally, a useful feature is to read in an input tree and a set of trees, then IQ-TREE can assign the
-support value onto the input tree (number of times each branch in the input tree occurs in the set of trees). This option is useful if you want to compute the support values for an ML tree based on alternative topologies. 
-
-
-    iqtree -sup input_tree set_of_trees
-
-
-User-defined substitution models
---------------------------------
-<div class="hline"></div>
-
-Users can specify any DNA model using a 6-letter code that defines which rates should be equal. 
-For example, `010010` corresponds to the HKY model and `012345` to the GTR model.
-In fact, IQ-TREE  uses this specification internally to simplify the coding. The 6-letter code is specified via the `-m` option, e.g.:
-
-
-    iqtree -s example.phy -m 010010+G
-
-
-Moreover, with the `-m` option one can input a file which contains the 6 rates (A-C, A-G, A-T, C-G, C-T, G-T) and 4 base frequencies (A, C, G, T).  For example:
-
-    iqtree -s example.phy -m mymodel+G
-
-
-where `mymodel` is a file containing the 10 entries described above, in the correct order. The entries can be seperated by either empty space(s) or newline character. One can even specify the rates within `-m` option by e.g.:
-
-
-    iqtree -s example.phy -m 'TN{2.0,3.0}+G8{0.5}+I{0.15}'
-
-
-That means, we use Tamura-Nei model with fixed transition-transversion rate ratio of 2.0 and purine/pyrimidine rate ratio of 3.0. Moreover, we
-use 8-category Gamma-distributed site rates with the shape parameter (alpha) equal to 0.5 and a proportion of invariable sites p-inv=0.15.
-
-By default IQ-TREE computes empirical state frequencies from the alignment by counting, but one can also estimate the frequencies by maximum-likelihood
-with `+Fo` in the model name:
-
-
-    iqtree -s example.phy -m GTR+G+Fo
-
-
-For amino-acid alignments, IQ-TREE use the empirical frequencies specified in the model. If you want frequencies as counted from the alignment, use `+F`, for example:
-
-
-    iqtree -s myprotein_alignment -m WAG+G+F
-
-
-Note that all model specifications above can be used in the partition model NEXUS file.
-
-
-
-Inferring site-specific rates
-------------------------------
-<div class="hline"></div>
-
-IQ-TREE allows to infer site-specific evolutionary rates if a [site-rate heterogeneity model such as Gamma or FreeRate](Substitution-Models#rate-heterogeneity-across-sites) is specified. Here, IQ-TREE will estimate model parameters and then apply an empirical Bayesian approach to assign site-rates as the mean over rate categories, weighted by the posterior probability of the site falling into each category. This approach is provided in IQ-TREE because such empirical Bayesian approach was shown to be most accurate ([Mayrose et al., 2004]). An example run:
-
-    iqtree -s example.phy -m GTR+G -wsr -n 0
-    
-`-wsr` option stands for writing site rates and the number of search iterations is set to 0, such that model parameters are quickly estimated from an initial parsimony tree. IQ-TREE will write an output file `example.phy.rate` that looks like:
-
-    Site    Rate    Category        Categorized_rate
-    1       0.26625 2       0.24393
-    2       0.99345 3       0.81124
-    3       2.69275 4       2.91367
-    4       0.25822 2       0.24393
-    5       0.25822 2       0.24393
-    6       0.42589 2       0.24393
-    7       0.30194 2       0.24393
-    8       0.72790 3       0.81124
-    9       0.25822 2       0.24393
-    10      0.09177 1       0.03116
-
-The 1st column is site index of the alignment (starting from 1), the 2nd column `Rate` shows the mean site-specific rate as explained above, and the 3rd and 4th columns show the category index and rate of the Gamma rate category with the highest probability for this site (1 for slow and 4 for fast rate).
-
-For better site-rate estimates it is recommended to use more than the default 4 rate categories ([Mayrose et al., 2004]). Moreover, one should use a more reasonable tree rather than the parsimony tree. For example:
-
-    iqtree -s example.phy -m GTR+G16 -te ml.treefile -wsr 
-
-where `-te` is the option to input a fixed tree topology and `ml.treefile` is the ML tree reconstructed previously. 
-
-Moreover, we recommend to apply the FreeRate model whenever it fits the data better than the Gamma rate model. This is because the Gamma model constrains the rates to come from a Gamma distribution and thus the highest rate may not be _high enough_ to accomodate the most fast-evolving sites in the alignment. On the contrary, the FreeRate model allows the rates to freely vary. Moreover, FreeRate allows to automatically determine the best number of rate categories, a feature missing in the Gamma model. The following command: 
-
-    # for IQ-TREE version >= 1.5.4:
-    iqtree -s example.phy -te ml.treefile -wsr 
-
-    # for IQ-TREE version <= 1.5.3:
-    iqtree -s example.phy -m TESTNEW -te ml.treefile -wsr 
-
-will apply ModelFinder to find the best fit model and then infer the site-specific rates based on a given tree file within a single run! If you omit `-te` option, then IQ-TREE will reconstruct an ML tree and use it to infer site-specific rates.
 
 
 Where to go from here?
