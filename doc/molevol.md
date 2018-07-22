@@ -191,17 +191,11 @@ but in NEXUS format, which can be viewed with the program [SplitsTree](http://ww
 >**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
 
-Assessing branch supports with  standard nonparametric bootstrap
-----------------------------------------------------------------
-<div class="hline"></div>
-
-The standard nonparametric bootstrap very slow and we won't perform it here. Just for you to know, it is invoked by  the `-b` option:
+Finally, the standard nonparametric bootstrap is invoked by  the `-b` option:
 
     iqtree -s example.phy -m TIM2+I+G -b 100
 
- `-b` specifies the number of bootstrap replicates where 100
-is the minimum recommended number. The output files are similar to those produced by the UFBoot procedure. 
-
+But we won't do it here due to excessive computations.
 
 
 Assessing branch supports with single branch tests
@@ -436,7 +430,7 @@ The partition-wise log-likelihoods will be printed to `turtle_nt.nex.treetest.pa
 
 > **QUESTIONS:**
 >
-> * What are the two genes that most favor the tree inferred by single model? *HINT*: Use some R script for this to process this `.partlh` file.
+> * What are the two genes that most favor the tree inferred by single model? *HINT*: Use Excel or some R script to process `.partlh` file.
 > * Have a look at the paper by ([Brown and Thomson, 2016]). Compare the two genes you found with those from this paper. What is special about these two genes?
 {: .tip}
 
