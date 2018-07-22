@@ -216,7 +216,7 @@ Assessing branch supports with  standard nonparametric bootstrap
 ----------------------------------------------------------------
 <div class="hline"></div>
 
-The standard nonparametric bootstrap is invoked by  the  `-b` option:
+The standard nonparametric bootstrap very slow and we won't perform it here. Just for you to know, it is invoked by  the `-b` option:
 
     iqtree -s example.phy -m TIM2+I+G -b 100
 
@@ -452,6 +452,35 @@ QUESTIONS:
 * What are the two genes that most favor the tree inferred by single model? *HINT*: Use some R script for this to process this `.partlh` file.
 * Have a look at the paper by ([Brown and Thomson, 2016]). Compare the two genes you found with those from this paper. What is special about these two genes?
 
+Protein mixture model analysis
+----------------
+
+Previous sections only dealt with DNA sequences. We now switch to an interesting protein data set used to study the position of Microsporidia, a Fungus. Please download the [alignment file here](data/microspo.fa), which is a subset (10 genes) of the full data set ([Brinkmann et al., 2005]). This data set contains some Archaea as outgroup to the remaining Eukaryotes.
+
+First perform a standard model:
+
+	iqtree -s microspo.fa -mset LG -nt AUTO -bb 1000
+	
+(`-mset LG` to save computations by only testing models `LG+...`).
+
+QUESTIONS:
+
+* Where is the position of Microsporidia, the taxon named `Encephalit_10G`?
+* Does this make sense?
+
+We will now use the CAT-like protein mixture model called `C10` to `C60` ([Le et al., 2008a]) to analyze the same data set. Moreover, to speed up the analysis we will use the PMSF approximation ([Wang et al., 2018]):
+
+	iqtree -s microspo.fa -nt AUTO -m LG+C10+F+G -bb 1000 -ft microspo.fa.treefile -pre microspo.C10
+	
+Options explained:
+
+* `-m LG+C10+F+G` is to specify C10+F mixture models (with 11 classes).
+* `-ft` is to specify the guide tree for PMSF approximation. Here we just used the tree constructed from single model as it is a reasonable enough tree. Without `-ft`, IQ-TREE will use a full mixture model, which may take a lot of time to finish.
+
+QUESTIONS:
+
+* Where is the position of `Encephalit_10G` now? Does it make sense?
+
 
 Where to go from here?
 ----------------------
@@ -462,6 +491,7 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
+[Brinkmann et al., 2005]: https://doi.org/10.1080/10635150500234609
 [Brown and Thomson, 2016]: https://doi.org/10.1093/sysbio/syw101
 [Chiari et al., 2012]: https://doi.org/10.1186/1741-7007-10-65
 [Gadagkar et al., 2005]: https://doi.org/10.1002/jez.b.21026
@@ -471,6 +501,7 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 [Kishino and Hasegawa, 1989]: https://doi.org/10.1007/BF02100115
 [Lanfear et al., 2012]: https://doi.org/10.1093/molbev/mss020
 [Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
+[Le et al., 2008a]: https://doi.org/10.1093/bioinformatics/btn445
 [Lewis, 2001]: https://doi.org/10.1080/106351501753462876
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Mayrose et al., 2004]: https://doi.org/10.1093/molbev/msh194
@@ -479,6 +510,7 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 [Shimodaira and Hasegawa, 1999]: https://doi.org/10.1093/oxfordjournals.molbev.a026201
 [Shimodaira, 2002]: https://doi.org/10.1080/10635150290069913
 [Strimmer and Rambaut, 2002]: https://doi.org/10.1098/rspb.2001.1862
+[Wang et al., 2018]: https://doi.org/10.1093/sysbio/syx068
 [Yang, 1994]: https://doi.org/10.1007/BF00160154
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 
