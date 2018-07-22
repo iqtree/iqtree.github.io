@@ -431,7 +431,7 @@ Questions:
 > - The KH test ([Kishino and Hasegawa, 1989]) was designed to test 2 trees and thus has no correction for multiple testing. The SH test ([Shimodaira and Hasegawa, 1999]) fixes this problem.
 {: .tip}
 
-Identifying influential genes
+Identifying most influential genes
 -----------------------------
 
 > **NOTE**: This section is optional if you still have time.
