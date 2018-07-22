@@ -173,11 +173,11 @@ NOTE: If you use model selection please cite the following paper:
 
 IQ-TREE supports a wide range of [substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological alignments. The previous run already determined the best-fit model that minimizes the Bayesian Information Criterion (BIC) score.
 
-Question:
+QUESTIONS:
 
 * What is the name of the best-fit model? 
 * What do `+I` and `+G` mean?
-* What is the best model according to Akaike Information Criterion (AIC) and AICc?
+* What is the best model according to Akaike Information Criterion (AIC) and the corrected AIC (AICc)?
 
 Some hints:
 
@@ -353,7 +353,7 @@ Now download a [partition NEXUS file](data/turtle_nt.nex) containing 248 genes f
 
     iqtree -s turtle_nt.phy -alrt 1000 -bb 1000 -spp turtle_nt.nex -nt AUTO
 
-Questions:
+QUESTIONS:
 
 * Is the partition model better than the single model in terms of AIC/BIC scores?
 * Visualize the tree. What is the difference in tree topology compared with the previous tree?
@@ -372,7 +372,7 @@ All these techniques are already implemented in ModelFinder. However, we won't h
 * `-rcluster 5` is to only examine the top 5% partitioning schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
 * `-mset GTR` to restrict the set of testing models to just GTR. This also helps to save computations.
 
-Questions:
+QUESTIONS (if you performed this analysis):
 
 * How many partitions does not best partitioning scheme have now?
 * What are the AIC/BIC scores?
@@ -386,10 +386,12 @@ For partitioned analysis, IQ-TREE will by default resample the sites *within* pa
 the bootstrap replicates are generated per partition separately and then concatenated together). However, it is recommended to resample  partitions ([Nei et al., 2001]). This can be done with `-bsam GENE` option. Moreover, IQ-TREE allows an even more complicated
 strategy: resampling partitions and then sites within resampled partitions  ([Gadagkar et al., 2005]). This may help to reduce false positives (i.e. wrong branch receiving 100% support). This can be done with `-bsam GENESITE`.
 
-Please now perform ultrafast bootstrap with partition resamplings. Questions:
+Please now perform ultrafast bootstrap with partition resamplings. 
+
+QUESTIONS:
 
 * Is there any change in tree topology?
-* Do the bootstrap support values change?
+* Do the bootstrap support values get smaller or larger? Why?
 
 Tree topology tests
 -------------------
@@ -403,10 +405,11 @@ First, concatenate the trees constructed by single and partition models into one
 	
 Now pass this file into IQ-TREE via `-z` option:
 
-	iqtree -s turtle_nt.phy -z turtle_nt.trees -pre turtle_nt.treetest -n 0 -zb 1000 
+	iqtree -s turtle_nt.phy -m MODEL_NAME -z turtle_nt.trees -pre turtle_nt.treetest -n 0 -zb 1000 
 
 Options explained:
 
+* Change `MODEL_NAME` to the best-fit model found in the single model run.
 * `-pre` is to specify a prefix for output files, so that they do not overwrite previous analysis.
 * `-zb` is to specify the number of boostrap replicates for the resampling estimated log-likelihood method (RELL) ([Kishino et al., 1990]).
 * `-n 0` is to avoid tree search and estimate model parameters based on an initial parsimony tree.
