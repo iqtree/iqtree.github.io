@@ -393,8 +393,8 @@ QUESTIONS:
 * Is there any change in tree topology?
 * Do the bootstrap support values get smaller or larger? Why?
 
-Tree topology tests
--------------------
+Tree tests
+----------
 <div class="hline"></div>
 
 We now want to know whether the trees inferred for the Turtle data set have significantly different log-likelihoods or not. This can be conducted with Shimodaira-Hasegawa test ([Shimodaira and Hasegawa, 1999]), or expected likelihood weights ([Strimmer and Rambaut, 2002]).
@@ -405,7 +405,7 @@ First, concatenate the trees constructed by single and partition models into one
 	
 Now pass this file into IQ-TREE via `-z` option:
 
-	iqtree -s turtle_nt.phy -m MODEL_NAME -z turtle_nt.trees -pre turtle_nt.treetest -n 0 -zb 1000 
+	iqtree -s turtle_nt.phy -m MODEL_NAME -z turtle_nt.trees -pre turtle_nt.phy.treetest -n 0 -zb 1000 
 
 Options explained:
 
@@ -414,11 +414,13 @@ Options explained:
 * `-zb` is to specify the number of boostrap replicates for the resampling estimated log-likelihood method (RELL) ([Kishino et al., 1990]).
 * `-n 0` is to avoid tree search and estimate model parameters based on an initial parsimony tree.
 
-Now have a look at `turtle_nt.treetest.iqtree`. The results of the tests will be printed to a section called `USER TREES`.
+Now have a look at `turtle_nt.phy.treetest.iqtree`. The results of the tests will be printed to a section called `USER TREES`.
 
 Questions:
 
 * Do the two trees have significantly different log-likelihoods?
+* How do you do tree tests with partition model? How do the results look like?
+
 
 >**HINTS**:
 >
@@ -429,6 +431,26 @@ Questions:
 > - The KH test ([Kishino and Hasegawa, 1989]) was designed to test 2 trees and thus has no correction for multiple testing. The SH test ([Shimodaira and Hasegawa, 1999]) fixes this problem.
 {: .tip}
 
+Identifying influential genes
+-----------------------------
+
+> **NOTE**: This section is optional if you still have time.
+
+Now we want to investigate the cause for such topological difference between trees inferred by single and partition model. One way is to identify genes contributing most phylogenetic signal towards one tree but not the other. 
+
+How can one do this? Well, we can look at the gene-wise log-likelihood differences between the two trees, called T1 and T2. Those genes having the largest lnL(T1)-lnL(T2) will be in favor of T1. Whereas genes showing the largest lnL(T2)-lnL(T1) are favoring T2.
+
+For this purpose, we will do tree tests with partition model and utilize `-wpl` option for writing partition log-likelihoods:
+
+
+	iqtree -s turtle_nt.phy -spp turtle.nex.best_scheme.nex -z turtle_nt.trees -pre turtle_nt.nex.treetest -n 0 -zb 1000 -wpl
+
+The partition-wise log-likelihoods will be printed to `turtle_nt.nex.treetest.partlh`. 
+
+QUESTIONS:
+
+* What are the two genes that most favor the tree inferred by single model? *HINT*: Use some R script for this to process this `.partlh` file.
+* Have a look at the paper by ([Brown and Thomson, 2016]). Compare the two genes you found with those from this paper. What is special about these two genes?
 
 
 Where to go from here?
@@ -440,6 +462,7 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
+[Brown and Thomson, 2016]: https://doi.org/10.1093/sysbio/syw101
 [Chiari et al., 2012]: https://doi.org/10.1186/1741-7007-10-65
 [Gadagkar et al., 2005]: https://doi.org/10.1002/jez.b.21026
 [Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
