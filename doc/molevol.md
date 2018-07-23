@@ -71,6 +71,7 @@ should look at this file to see the computational results. It also contains a te
 by any supported tree viewer programs like FigTree or  iTOL. 
 * `example.phy.log`: log file of the entire run (also printed on the screen). To report
 bugs, please send this log file and the original alignment file to the authors.
+* A few other files...
 
 For this example data the resulting maximum-likelihood tree may look like this (extracted from `.iqtree` file):
 
@@ -164,57 +165,33 @@ Some hints:
     DOI: [10.1038/nmeth.4285](https://doi.org/10.1038/nmeth.4285)
 
 
-Assessing branch supports with ultrafast bootstrap approximation
+Assessing branch supports with ultrafast bootstrap approximation and single branch test
 ----------------------------------------------------------------
 <div class="hline"></div>
 
-To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]; [Hoang et al., in press]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. 
+To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]; [Hoang et al., in press]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. IQ-TREE also provides an implementation of the SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). We can do both UFBoot and SH-aLRT by a single command line:
 
-> For more details see
-> __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2018) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, 35:518–522. 
-    <https://doi.org/10.1093/molbev/msx281>
+    iqtree -s example.phy -m TIM2+I+G -bb 1000 -alrt 1000 -pre example.ex2
 
+Options explained:
 
-To run UFBoot, use the option  `-bb`:
+* `-m` specifies the model to avoid ModelFinder, as it was already found to be the best-fit model.
+* `-bb`  specifies the number of bootstrap replicates where 1000
+is the minimum number recommended. 
+* `-alrt` specifies the number of bootstrap replicates for SH-aLRT where 1000 is the minimum number recommended. 
+* `-pre` to specify output file prefix so that they do not overwrite the previous analysis.
 
-    iqtree -s example.phy -m TIM2+I+G -bb 1000
+The section  `MAXIMUM LIKELIHOOD TREE` in  `example.ex2.iqtree` shows a textual representation of the maximum likelihood tree with branch support values in percentage. The NEWICK format of the tree is printed to the file  `example.ex2.treefile`. In addition, IQ-TREE writes the following files:
 
- `-bb`  specifies the number of bootstrap replicates where 1000
-is the minimum number recommended. The section  `MAXIMUM LIKELIHOOD TREE` in  `example.phy.iqtree` shows a textual representation of the maximum likelihood tree with branch support values in percentage. The NEWICK format of the tree is printed to the file  `example.phy.treefile`. In addition, IQ-TREE writes the following files:
-
-* `example.phy.contree`: the consensus tree with assigned branch supports where branch lengths are optimized  on the original alignment.
-*  `example.phy.splits`: support values in percentage for all splits (bipartitions),
-computed as the occurence frequencies in the bootstrap trees. This file is in "star-dot" format.
-*  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
-but in NEXUS format, which can be viewed with the program [SplitsTree](http://www.splitstree.org) to explore the conflicting signals in the data. So it is more informative than consensus tree, e.g. you can see how highly supported the second best conflicting split is, which had no chance to enter the consensus tree. 
+* `example.ex2.contree`: the consensus tree with assigned branch supports where branch lengths are optimized  on the original alignment.
+*  `example.ex2.splits.nex`: support values in percentage for all splits (bipartitions),
+computed as the occurence frequencies in the bootstrap trees. 
+This file is in NEXUS format, which can be viewed with the program [SplitsTree](http://www.splitstree.org) to explore the conflicting signals in the data. So it is more informative than consensus tree, e.g. you can see how highly supported the second best conflicting split is, which had no chance to enter the consensus tree. 
 
 >**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
 
-Finally, the standard nonparametric bootstrap is invoked by  the `-b` option:
-
-    iqtree -s example.phy -m TIM2+I+G -b 100
-
-But we won't do it here due to excessive computations.
-
-
-Assessing branch supports with single branch tests
---------------------------------------------------
-<div class="hline"></div>
-
-IQ-TREE provides an implementation of the SH-like approximate likelihood ratio test ([Guindon et al., 2010]). To perform this test,  run:
-
-    iqtree -s example.phy -m TIM2+I+G -alrt 1000
-
- `-alrt` specifies the number of bootstrap replicates for SH-aLRT where 1000 is the minimum number recommended. 
-
-IQ-TREE also supports other tests such as the aBayes test ([Anisimova et al., 2011]) and the local bootstrap test ([Adachi and Hasegawa, 1996]). See [single branch tests](Command-Reference#single-branch-tests) for more details.
-
-You can also perform both SH-aLRT and the ultrafast bootstrap within one single run:
-
-    iqtree -s example.phy -m TIM2+I+G -alrt 1000 -bb 1000
-
-The branches of the resulting `.treefile` will be assigned with both SH-aLRT and UFBoot support values, which are readable by any tree viewer program like FigTree, Dendroscope or ETE. You can also look at the textual tree figure in `.iqtree` file:
+You can now look at the textual tree figure in `.iqtree` file:
 
     NOTE: Tree is UNROOTED although outgroup taxon 'LngfishAu' is drawn at root
     Numbers in parentheses are SH-aLRT support (%) / ultrafast bootstrap support (%)
@@ -260,11 +237,19 @@ The branches of the resulting `.treefile` will be assigned with both SH-aLRT and
 {: .tip}
 
 
+We won't do the standard nonparametric bootstrap because it'll be too slow. For your information, it is invoked by `-b 100` option to perform 100 bootstrap replicates.
+
+> For more details see
+> __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2018) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, 35:518–522. 
+    <https://doi.org/10.1093/molbev/msx281>
+
+
+
 Utilizing multi-core CPUs
 -------------------------
 <div class="hline"></div>
 
-IQ-TREE can utilize multiple CPU cores to speed up the analysis. A complement option `-nt` allows specifying the number of CPU cores to use. Note that for old IQ-TREE versions <= 1.5.X, please change the executable from `iqtree` to `iqtree-omp` for all commands below. For example:
+IQ-TREE can utilize multiple CPU cores to speed up the analysis. A complement option `-nt` allows specifying the number of CPU cores to use. For example:
 
     iqtree -s example.phy -m TIM2+I+G -nt 2
 
@@ -290,12 +275,7 @@ Partitioned analysis for multi-gene alignments
 ----------------------------------------------
 <div class="hline"></div>
 
-If you used partition model in a publication please cite:
-
-> __O. Chernomor, A. von Haeseler, and B.Q. Minh__ (2016) Terrace aware data structure for phylogenomic inference from supermatrices. _Syst. Biol._, 65:997-1008. 
-    <https://doi.org/10.1093/sysbio/syw037>
-
-In the partition model, you can specify a substitution model for each gene/character set. 
+In the partition model, you can specify a substitution model for each gene/character set. IQ-TREE accepts partition file in RAxML-style and NEXUS format. 
 IQ-TREE will then estimate the model parameters separately for every partition. Moreover, IQ-TREE provides edge-linked or edge-unlinked branch lengths between partitions:
 
 * `-q partition_file`: all partitions share the same set of branch lengths (like `-q` option of RAxML).
@@ -304,30 +284,38 @@ IQ-TREE will then estimate the model parameters separately for every partition. 
 
 >**NOTE**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
 
-IQ-TREE supports RAxML-style and NEXUS partition input file. An example NEXUS partition file:
-
-    #nexus
-    begin sets;
-        charset part1 = 1-100;
-        charset part2 = 101-384;
-        charpartition mine = HKY+G:part1, GTR+I+G:part2;
-    end;
-
-This file contains a  `SETS` block with
- `CharSet` and  `CharPartition` commands to specify individual genes and the partition, respectively.
-
 Please now download a [DNA alignment](data/turtle_nt.phy) originally analysed to study the phylogenetic position of Turtle within Reptiles ([Chiari et al., 2012]). This question was highly debatable some 6 years ago.
 
 First, we will perform an analysis with single model (no partitions) where branch supports are assessed with SH-aLRT and UFBoot:
 
-    iqtree -s turtle_nt.phy -alrt 1000 -bb 1000 -nt AUTO
+    iqtree -s turtle_nt.phy -alrt 1000 -bb 1000 -mset GTR
 
-* Note down the best-fit model and its AIC/BIC scores. 
-* Use a tree viewer program (e.g. FigTree) to visualize the resulting tree. Where is Turtle position in the tree? Does it agree with the analysis on `example.phy` done above?
+Here we use `-mset GTR` because GTR is almost always the best-fit model for such long alignment. It also helps to speedup the analysis. Hint: The above command will only use 1 thread, so that users on the cluster at the same time do not interfere with each other. If you however run this on your own laptop, then you might want to add `-nt AUTO` to further speedup the analysis.
 
-Now download a [partition NEXUS file](data/turtle_nt.nex) containing 248 genes for this Turtle data set. Perform an edge-linked partitioned analysis:
+> **QUESTIONS:**
+> 
+> * What is the best-fit model and its AIC/BIC scores?
+> * Use a tree viewer program (e.g. FigTree) to visualize the resulting tree. Where is Turtle position in the tree? Does it agree with the analysis on `example.phy` done above?
+{: .tip}
 
-    iqtree -s turtle_nt.phy -alrt 1000 -bb 1000 -spp turtle_nt.nex -nt AUTO
+Now download a [partition NEXUS file](data/turtle_nt.nex) containing 248 genes for this Turtle data set, which looks like this:
+
+	#nexus
+	begin sets;
+	    charset ENSGALG00000000041.macse_DNA_gb = 1-498;
+	    charset ENSGALG00000000169.macse_DNA_gb = 499-1047;
+	...
+	    charset ENSGALG00000020605.macse_DNA_gb = 186499-187026;
+	end;
+
+
+This NEXUS file contains a  `SETS` block with
+ `CharSet` commands to specify individual partitions.
+
+
+Perform an edge-linked partitioned analysis:
+
+    iqtree -s turtle_nt.phy -alrt 1000 -bb 1000 -spp turtle_nt.nex
 
 > **QUESTIONS:**
 >
@@ -337,13 +325,20 @@ Now download a [partition NEXUS file](data/turtle_nt.nex) containing 248 genes f
 {: .tip}
 
 
+
+> Further reading on our approach to speedup partitioned analysis: 
+>
+> __O. Chernomor, A. von Haeseler, and B.Q. Minh__ (2016) Terrace aware data structure for phylogenomic inference from supermatrices. _Syst. Biol._, 65:997-1008. 
+    <https://doi.org/10.1093/sysbio/syw037>
+
+
 Choosing the right partitioning scheme
 --------------------------------------
 <div class="hline"></div>
 
 When there are "short" partitions, it is a good practice to perform PartitionFinder ([Lanfear et al., 2012]), which tries to merge partitions to reduce the number of parameters and improve model fit. When you have many partitions, you can reduce the computational burden with the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]) using `-rcluster` option.
 
-All these techniques are already implemented in ModelFinder. However, we won't however perform this analysis here due to excessive computations. Nevertheless here are a few options for such analysis:
+All these techniques are already implemented in ModelFinder. However, we won't however perform this analysis here due to excessive computations. Nevertheless here are a few useful options for such analysis:
 
 * `-m MFP+MERGE` is to perform PartitionFinder algorithm followed by tree reconstruction.
 * `-rcluster 5` is to only examine the top 5% partitioning schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
@@ -357,8 +352,8 @@ All these techniques are already implemented in ModelFinder. However, we won't h
 {: .tip}
 
 
-Ultrafast bootstrapping with partition model
---------------------------------------------
+Bootstrap resampling partitions instead of sites
+------------------------------------------------
 <div class="hline"></div>
 
 For partitioned analysis, IQ-TREE will by default resample the sites *within* partitions (i.e., 
@@ -397,7 +392,7 @@ Options explained:
 
 Now have a look at `turtle_nt.phy.treetest.iqtree`. The results of the tests will be printed to a section called `USER TREES`.
 
-> **Questions:**
+> **QUESTIONS:**
 > 
 > * Do the two trees have significantly different log-likelihoods?
 > * How do you do tree tests with partition model? How do the results look like?
