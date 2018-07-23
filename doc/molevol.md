@@ -165,8 +165,8 @@ Some hints:
     DOI: [10.1038/nmeth.4285](https://doi.org/10.1038/nmeth.4285)
 
 
-Assessing branch supports with ultrafast bootstrap approximation and single branch test
-----------------------------------------------------------------
+Assessing branch supports
+-------------------------
 <div class="hline"></div>
 
 To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]; [Hoang et al., in press]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. IQ-TREE also provides an implementation of the SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). We can do both UFBoot and SH-aLRT by a single command line:
@@ -284,7 +284,7 @@ IQ-TREE will then estimate the model parameters separately for every partition. 
 
 >**NOTE**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
 
-Please now download a [DNA alignment](data/turtle_nt.phy) originally analysed to study the phylogenetic position of Turtle within Reptiles ([Chiari et al., 2012]). This question was highly debatable some 6 years ago.
+Please now download a [DNA alignment](data/turtle_nt.phy) originally analysed to study the phylogenetic position of Turtles (taxa: `caretta`, `chelonoidis_nigra`, `emys_orbicularis`, `phrynops`) with Crocodiles (taxa: `alligator` & `caiman`) and Birds (taxa: `Gallus` & `Taeniopygia`) ([Chiari et al., 2012]). This question was highly debatable some 6 years ago.
 
 First, we will perform an analysis with single model (no partitions) where branch supports are assessed with SH-aLRT and UFBoot:
 
@@ -435,7 +435,7 @@ Protein mixture model analysis
 
 Previous sections only dealt with DNA sequences. We now switch to an interesting protein data set used to examine the position of Microsporidia, a Fungus. Please download the [alignment file here](data/microspo.fa), which is a subset (10 genes) of the full data set ([Brinkmann et al., 2005]). This data set contains some Archaea as outgroup to the remaining Eukaryotes.
 
-First perform a standard model:
+First perform a single model analysis:
 
 	iqtree -s microspo.fa -mset LG -nt AUTO -bb 1000
 	
@@ -447,7 +447,7 @@ First perform a standard model:
 > * Does this make sense?
 {: .tip}
 
-We will now use the CAT-like protein mixture model called `C10` to `C60` ([Le et al., 2008a]) to analyze the same data set. Moreover, to speed up the analysis we will use the PMSF approximation ([Wang et al., 2018]):
+We will now use the CAT-like protein mixture model called `C10` ([Le et al., 2008a]) to analyze the same data set. Moreover, to speed up the analysis we will use the PMSF approximation ([Wang et al., 2018]):
 
 	iqtree -s microspo.fa -nt AUTO -m LG+C10+F+G -bb 1000 -ft microspo.fa.treefile -pre microspo.C10
 	
@@ -461,6 +461,7 @@ Options explained:
 > * Where is the position of `Encephalit_10G` now? Does it make sense?
 {: .tip}
 
+If you still have time, you can also perform tree tests for this protein data set.
 
 Where to go from here?
 ----------------------
