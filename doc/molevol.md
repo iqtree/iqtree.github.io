@@ -12,28 +12,51 @@ description: Tutorial for Workshop on Molecular Evolution.
 sections:
 - name: Input data
   url: input-data
-- name: First example
+- name: First running example
   url: first-running-example
-- name: Model selection
+- name: Choosing the right substitution model
   url: choosing-the-right-substitution-model
-- name: Using codon models
-  url: using-codon-models
-- name: Binary, Morphological, SNPs
-  url: binary-morphological-and-snp-data
-- name: Ultrafast bootstrap
-  url: assessing-branch-supports-with-ultrafast-bootstrap-approximation
-- name: Reducing impact of severe model violations with UFBoot
-  url: reducing-impact-of-severe-model-violations-with-ufboot
-- name: Nonparametric bootstrap
-  url: assessing-branch-supports-with--standard-nonparametric-bootstrap
-- name: Single branch tests
-  url: assessing-branch-supports-with-single-branch-tests
+- name: Assessing branch supports
+  url: assessing-branch-supports
 - name: Utilizing multi-core CPUs
   url: utilizing-multi-core-cpus
+- name: Partitioned analysis for multi-gene alignments
+  url: partitioned-analysis-for-multi-gene-alignments
+- name: Choosing the right partitioning scheme
+  url: choosing-the-right-partitioning-scheme
+- name: Bootstrap resampling partitions instead of sites
+  url: bootstrap-resampling-partitions-instead-of-sites
+- name: Tree tests
+  url: tree-tests
+- name: Identifying most influential genes
+  url: identifying-most-influential-genes
+- name: Protein mixture model analysis
+  url: protein-mixture-model-analysis
+- name: Where to go from here?
+  url: where-to-go-from-here
 ---
 
 Tutorial for Workshop on Molecular Evolution
 ===================
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+  - [Input data](#input-data)
+  - [First running example](#first-running-example)
+  - [Choosing the right substitution model](#choosing-the-right-substitution-model)
+  - [Assessing branch supports](#assessing-branch-supports)
+  - [Utilizing multi-core CPUs](#utilizing-multi-core-cpus)
+  - [Partitioned analysis for multi-gene alignments](#partitioned-analysis-for-multi-gene-alignments)
+  - [Choosing the right partitioning scheme](#choosing-the-right-partitioning-scheme)
+  - [Bootstrap resampling partitions instead of sites](#bootstrap-resampling-partitions-instead-of-sites)
+  - [Tree tests](#tree-tests)
+  - [Identifying most influential genes](#identifying-most-influential-genes)
+  - [Protein mixture model analysis](#protein-mixture-model-analysis)
+  - [Where to go from here?](#where-to-go-from-here)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 <!--more-->
 
@@ -169,9 +192,9 @@ Assessing branch supports
 -------------------------
 <div class="hline"></div>
 
-To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]; [Hoang et al., in press]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. IQ-TREE also provides an implementation of the SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). We can do both UFBoot and SH-aLRT by a single command line:
+To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]; [Hoang et al., 2018]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. IQ-TREE also provides an implementation of the SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). We can do both UFBoot and SH-aLRT by a single command line:
 
-    iqtree -s example.phy -m TIM2+I+G -bb 1000 -alrt 1000 -pre example.ex2
+    iqtree -s example.phy -m TIM2+I+G -bb 1000 -alrt 1000 -pre example.boot
 
 Options explained:
 
@@ -181,10 +204,10 @@ is the minimum number recommended.
 * `-alrt` specifies the number of bootstrap replicates for SH-aLRT where 1000 is the minimum number recommended. 
 * `-pre` to specify output file prefix so that they do not overwrite the previous analysis.
 
-The section  `MAXIMUM LIKELIHOOD TREE` in  `example.ex2.iqtree` shows a textual representation of the maximum likelihood tree with branch support values in percentage. The NEWICK format of the tree is printed to the file  `example.ex2.treefile`. In addition, IQ-TREE writes the following files:
+The section  `MAXIMUM LIKELIHOOD TREE` in  `example.boot.iqtree` shows a textual representation of the maximum likelihood tree with branch support values in percentage. The NEWICK format of the tree is printed to the file  `example.boot.treefile`. In addition, IQ-TREE writes the following files:
 
-* `example.ex2.contree`: the consensus tree with assigned branch supports where branch lengths are optimized  on the original alignment.
-*  `example.ex2.splits.nex`: support values in percentage for all splits (bipartitions),
+* `example.boot.contree`: the consensus tree with assigned branch supports where branch lengths are optimized  on the original alignment.
+*  `example.boot.splits.nex`: support values in percentage for all splits (bipartitions),
 computed as the occurence frequencies in the bootstrap trees. 
 This file is in NEXUS format, which can be viewed with the program [SplitsTree](http://www.splitstree.org) to explore the conflicting signals in the data. So it is more informative than consensus tree, e.g. you can see how highly supported the second best conflicting split is, which had no chance to enter the consensus tree. 
 
@@ -284,7 +307,7 @@ IQ-TREE will then estimate the model parameters separately for every partition. 
 
 >**NOTE**: `-spp` is recommended for typical analysis. `-q` is unrealistic and `-sp` is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
 
-Please now download a [DNA alignment](data/turtle_nt.phy) originally analysed to study the phylogenetic position of Turtles (taxa: `caretta`, `chelonoidis_nigra`, `emys_orbicularis`, `phrynops`) with Crocodiles (taxa: `alligator` & `caiman`) and Birds (taxa: `Gallus` & `Taeniopygia`) ([Chiari et al., 2012]). This question was highly debatable some 6 years ago.
+Please now download a [DNA alignment](data/turtle_nt.phy) originally analysed to study the phylogenetic position of Turtles (`caretta`, `chelonoidis_nigra`, `emys_orbicularis`, `phrynops`) with Crocodiles (`alligator` & `caiman`) and Birds (`Gallus` & `Taeniopygia`) ([Chiari et al., 2012]). This question was highly debatable some 6 years ago.
 
 First, we will perform an analysis with single model (no partitions) where branch supports are assessed with SH-aLRT and UFBoot:
 
@@ -295,7 +318,7 @@ Here we use `-mset GTR` because GTR is almost always the best-fit model for such
 > **QUESTIONS:**
 > 
 > * What is the best-fit model and its AIC/BIC scores?
-> * Use a tree viewer program (e.g. FigTree) to visualize the resulting tree. Where is Turtle position in the tree? Does it agree with the analysis on `example.phy` done above?
+> * Use a tree viewer program (e.g. FigTree) to visualize the resulting tree and root it at the outgroup taxon `protopterus`. Where is Turtle position in the tree? Does it agree with the analysis on `example.phy` done above?
 {: .tip}
 
 Now download a [partition NEXUS file](data/turtle_nt.nex) containing 248 genes for this Turtle data set, which looks like this:
@@ -316,6 +339,8 @@ This NEXUS file contains a  `SETS` block with
 Perform an edge-linked partitioned analysis:
 
     iqtree -s turtle_nt.phy -alrt 1000 -bb 1000 -spp turtle_nt.nex
+
+The output files will have now the prefix `turtle_nt.nex.*`.
 
 > **QUESTIONS:**
 >
@@ -433,18 +458,20 @@ The partition-wise log-likelihoods will be printed to `turtle_nt.nex.treetest.pa
 Protein mixture model analysis
 ----------------
 
-Previous sections only dealt with DNA sequences. We now switch to an interesting protein data set used to examine the position of Microsporidia, a Fungus. Please download the [alignment file here](data/microspo.fa), which is a subset (10 genes) of the full data set ([Brinkmann et al., 2005]). This data set contains some Archaea as outgroup to the remaining Eukaryotes.
+Previous sections only dealt with DNA sequences. We now switch to an interesting protein data set used to examine the position of Microsporidia, a Fungus. Please download the [alignment file here](data/microspo.fa), which is a subset (10 genes) of the full data set ([Brinkmann et al., 2005]). This data set contains some Archaea as outgroup to the remaining Eukaryotes:
+
+* Archaea: Aeropyrum0_10G, Sulfolobus_10G, Pyrobaculu_10G, Pyrococcus_10G, Methanococ_10G, Archaeoglo_10G.
+* Fungi: Chytridiom_10G, Glomus_int_10G, Cryptococc_10G, Ustilago_m_10G, Schizosacc_10G, Candida_al_10G, Saccharomy_10G, Neurospora_10G.
 
 First perform a single model analysis:
 
-	iqtree -s microspo.fa -mset LG -nt AUTO -bb 1000
-	
-(`-mset LG` to save computations by only testing models `LG+...`).
+	iqtree -s microspo.fa -m LG+F+G -nt AUTO -bb 1000
 
 > **QUESTIONS:**
 >
+> * On which branch do you think to root the tree?
 > * Where is the position of Microsporidia, the taxon named `Encephalit_10G`?
-> * Does this make sense?
+> * Does this make sense to you?
 {: .tip}
 
 We will now use the CAT-like protein mixture model called `C10` ([Le et al., 2008a]) to analyze the same data set. Moreover, to speed up the analysis we will use the PMSF approximation ([Wang et al., 2018]):
@@ -458,7 +485,8 @@ Options explained:
 
 > **QUESTIONS:**
 >
-> * Where is the position of `Encephalit_10G` now? Does it make sense?
+> * Where is the position of `Encephalit_10G` now? 
+> * Does it make sense?
 {: .tip}
 
 If you still have time, you can also perform tree tests for this protein data set.
@@ -477,7 +505,7 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 [Chiari et al., 2012]: https://doi.org/10.1186/1741-7007-10-65
 [Gadagkar et al., 2005]: https://doi.org/10.1002/jez.b.21026
 [Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
-[Hoang et al., in press]: https://doi.org/10.1093/molbev/msx281
+[Hoang et al., 2018]: https://doi.org/10.1093/molbev/msx281
 [Kishino et al., 1990]: https://doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: https://doi.org/10.1007/BF02100115
 [Lanfear et al., 2012]: https://doi.org/10.1093/molbev/mss020
