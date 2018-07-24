@@ -123,9 +123,9 @@ Mixture models
 
 ### What is the difference between partition and mixture models?
 
-Mixture models,  like partition models, allow more than one substitution model along the sequences. However, while a partition model assigns each alignment site a given specific model, mixture models do not need this information: it will compute for each site its probability of belonging to each of the mixture classes (also called categories or components). Since the site-to-class assignment is not known, the site likelihood under mixture models is the weighted sum of site likelihoods per mixture class.
+Mixture models,  like partition models, allow more than one substitution model along the sequences. However, while a partition model assigns each alignment site a given specific model, mixture models do not need this information. A mixture model will compute for each site its probability (or weight) of belonging to each of the mixture classes (also called categories or components). Since the site-to-class assignment is unknown, the site likelihood under mixture models is the weighted sum of site likelihoods per mixture class.
 
-For example, the [discrete Gamma rate heterogeneity](Substitution-Models#rate-heterogeneity-across-sites) is a simple type of mixture model, which have several rate categories with equal probability. IQ-TREE also supports a number of [predefined protein mixture models](Substitution-Models#protein-mixture-models) such as the profile mixture models `C10` to `C60` (The ML variants of Bayesian `CAT` models).
+For example, the [discrete Gamma rate heterogeneity](Substitution-Models#rate-heterogeneity-across-sites) is a simple mixture model type. It has several rate categories with equal weight. IQ-TREE also supports a number of [predefined protein mixture models](Substitution-Models#protein-mixture-models) such as the profile mixture models `C10` to `C60` (The ML variants of Bayesian `CAT` models).
 
 Here, we discuss several possibilities to define new mixture models in IQ-TREE.
 
@@ -135,15 +135,15 @@ To start with, the following command:
 
     iqtree -s example.phy -m "MIX{JC,HKY}"
 
-is a valid analysis. Here, we specify a mixture model (via `MIX` keyword in the model string) with two components (`JC` and `HKY` model) given in curly bracket and comma separator. IQ-TREE will then estimate the parameters of both mixture components as well as their weights: the proportion of sites belonging to each component. 
+specifies a mixture model (via the `MIX` keyword in the model string) with two components. The components (1) `JC` model, and (2) `HKY` model, are given in curly brackets and separated with a comma.  IQ-TREE will then estimate the parameters of both mixture components as well as their weights: the proportion of sites belonging to each component. 
 
->**NOTE**: Do not forget the double-quotes around model string! Otherwise, the Terminal/Console might not recognize the model string properly.
+>**NOTE**: Do not forget the double-quotes around model string! They prevent interpretation of the curly brackets by the command line shell, i.e., `MIX{JC,HKY}` would otherwise be interpreted as `MIXJC MIXHKY`.
 
 Mixture models can be combined with rate heterogeneity, e.g.:
 
     iqtree -s example.phy -m "MIX{JC,HKY}+G4"
 
-Here, we specify two models and four Gamma rate categories. Effectively it means that there are 8 mixture components! Each site has a probability belonging to either `JC` or `HKY` and to one of the four rate categories.
+Here, we specify two mixture components and four Gamma rate categories. Effectively, this means that there are eight mixture components. Each site has a probability belonging to either `JC` or `HKY` and to one of the four rate categories.
 
 
 ### Profile mixture models
@@ -160,11 +160,13 @@ Sometimes one only wants to model the changes in nucleotide or amino-acid freque
         frequency CF4model = FMIX{empirical,Fclass1,Fclass2,Fclass3,Fclass4};
     end;
 
-Here, the NEXUS file contains a `models` block to define new models. More explicitly, we define four AA profiles `Fclass1` to `Fclass4` (each containing 20 AA frequencies). Then, the frequency mixture is defined with
+>**NOTE**: The amino-acid order in this file is: A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V.
+
+Here, the NEXUS file contains a `models` block to define new models. More explicitly, we define four AA profiles `Fclass1` to `Fclass4`, each containing 20 AA frequencies. Then, the frequency mixture is defined with
 
     FMIX{empirical,Fclass1,Fclass2,Fclass3,Fclass4}
 
-That means, we have five components: the first corresponds to empirical AA frequencies to be inferred from the  data and the remaining four components are specified in this NEXUS file. Please save this to a file, say, `mymodels.nex`. One can now start the analysis with:
+This means, we have five components: the first corresponds to empirical AA frequencies to be inferred from the  data and the remaining four components are specified in this NEXUS file. Please save this to a file, say, `mymodels.nex`. One can now start the analysis with:
 
     iqtree -s some_protein.aln -mdef mymodels.nex -m JTT+CF4model+G
 
