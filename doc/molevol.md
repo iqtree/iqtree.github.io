@@ -446,7 +446,7 @@ How can one do this? Well, we can look at the gene-wise log-likelihood differenc
 For this purpose, we will do tree tests with partition model and utilize `-wpl` option for writing partition log-likelihoods:
 
 
-	iqtree -s turtle_nt.phy -spp turtle.nex.best_scheme.nex -z turtle_nt.trees -pre turtle_nt.nex.treetest -n 0 -zb 1000 -wpl
+	iqtree -s turtle_nt.phy -spp turtle_nt.nex.best_scheme.nex -z turtle_nt.trees -pre turtle_nt.nex.treetest -n 0 -zb 1000 -wpl
 
 The partition-wise log-likelihoods will be printed to `turtle_nt.nex.treetest.partlh`. 
 
