@@ -361,6 +361,8 @@ Choosing the right partitioning scheme
 --------------------------------------
 <div class="hline"></div>
 
+> **NOTE**: This section is optional.
+
 When there are "short" partitions, it is a good practice to perform PartitionFinder ([Lanfear et al., 2012]), which tries to merge partitions to reduce the number of parameters and improve model fit. When you have many partitions, you can reduce the computational burden with the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]) using `-rcluster` option.
 
 All these techniques are already implemented in ModelFinder. However, we won't however perform this analysis here due to excessive computations. Nevertheless here are a few useful options for such analysis:
