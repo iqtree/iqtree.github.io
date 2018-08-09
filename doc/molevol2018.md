@@ -311,9 +311,11 @@ Please now download a [DNA alignment](data/turtle_nt.phy) originally analysed to
 
 First, we will perform an analysis with single model (no partitions) where branch supports are assessed with SH-aLRT and UFBoot:
 
-    iqtree -s turtle_nt.phy -alrt 1000 -bb 1000 -mset GTR
+    iqtree -s turtle_nt.phy -alrt 1000 -bb 1000 -m GTR+R5
 
-Here we use `-mset GTR` because GTR is almost always the best-fit model for such long alignment. It also helps to speedup the analysis. Hint: The above command will only use 1 thread, so that users on the cluster at the same time do not interfere with each other. If you however run this on your own laptop, then you might want to add `-nt AUTO` to further speedup the analysis.
+Here we use `-m GTR+R5` to set the `GTR+R5` model and skip ModelFinder because it might take too long.
+
+Hint: The above command will only use 1 thread, so that users on the cluster at the same time do not interfere with each other. If you however run this on your own laptop, then you might want to add `-nt AUTO` to further speedup the analysis.
 
 > **QUESTIONS:**
 > 
@@ -447,6 +449,8 @@ For this purpose, we will do tree tests with partition model and utilize `-wpl` 
 
 
 	iqtree -s turtle_nt.phy -spp turtle_nt.nex.best_scheme.nex -z turtle_nt.trees -pre turtle_nt.nex.treetest -n 0 -zb 1000 -wpl
+
+Here we input the best partitioning scheme (`turtle_nt.nex.best_scheme.nex`) found previously to avoid model selection again.
 
 The partition-wise log-likelihoods will be printed to `turtle_nt.nex.treetest.partlh`. 
 
