@@ -1,14 +1,12 @@
 ---
-layout: userdoc
-title: "Tutorial for Workshop on Molecular Evolution"
+layout: workshop
+title: "Tutorial for Workshop on Molecular Evolution 2018"
 author: _AUTHOR_
 date: _DATE_
 docid: 100
-icon: info-circle
-doctype: tutorial
 tags:
-- tutorial
-description: Tutorial for Workshop on Molecular Evolution.
+- workshop
+description: Tutorial for Workshop on Molecular Evolution 2018.
 sections:
 - name: Input data
   url: input-data
@@ -36,7 +34,7 @@ sections:
   url: where-to-go-from-here
 ---
 
-Tutorial for Workshop on Molecular Evolution
+Tutorial for Workshop on Molecular Evolution 2018
 ===================
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
