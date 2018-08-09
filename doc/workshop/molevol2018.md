@@ -58,7 +58,7 @@ Tutorial for Workshop on Molecular Evolution 2018
 
 <!--more-->
 
-The `iqtree` executable should already be installed on the MBL cluster. If you, however, want to install IQ-TREE to your computer, please first [download](http://www.iqtree.org/#download) and [install](Quickstart) the binary
+The `iqtree` executable should already be installed on the MBL cluster. If you, however, want to install IQ-TREE to your computer, please first [download](http://www.iqtree.org/#download) and [install](../Quickstart) the binary
 for your platform. For the next steps, the folder containing your  `iqtree` executable should be added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree` at the command-line. Alternatively, you can also copy `iqtree` binary into your system search.
 
 >**TIP**: For quick overview of all supported options in IQ-TREE, run the command  `iqtree -h`. 
@@ -165,7 +165,7 @@ Choosing the right substitution model
 -------------------------------------
 <div class="hline"></div>
 
-IQ-TREE supports a wide range of [substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological alignments. The previous run already determined the best-fit model that minimizes the Bayesian Information Criterion (BIC) score.
+IQ-TREE supports a wide range of [substitution models](../Substitution-Models) for DNA, protein, codon, binary and morphological alignments. The previous run already determined the best-fit model that minimizes the Bayesian Information Criterion (BIC) score.
 
 > **QUESTIONS:**
 >
@@ -209,7 +209,7 @@ The section  `MAXIMUM LIKELIHOOD TREE` in  `example.boot.iqtree` shows a textual
 computed as the occurence frequencies in the bootstrap trees. 
 This file is in NEXUS format, which can be viewed with the program [SplitsTree](http://www.splitstree.org) to explore the conflicting signals in the data. So it is more informative than consensus tree, e.g. you can see how highly supported the second best conflicting split is, which had no chance to enter the consensus tree. 
 
->**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
+>**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](../Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
 
 You can now look at the textual tree figure in `.iqtree` file:
@@ -499,7 +499,7 @@ Where to go from here?
 ----------------------
 <div class="hline"></div>
 
-See [Command Reference](Command-Reference) for a complete list of all options available in IQ-TREE.
+See [Command Reference](../Command-Reference) for a complete list of all options available in IQ-TREE.
 
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf

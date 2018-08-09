@@ -1,7 +1,6 @@
 ---
 layout: workshop
 title: "Workshop"
-author: _AUTHOR_
 date: _DATE_
 ---
 
