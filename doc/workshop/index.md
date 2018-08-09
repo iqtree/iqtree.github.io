@@ -4,15 +4,22 @@ title: "Workshop"
 date: _DATE_
 ---
 
+Throughout the year, members of IQ-TREE development team teach workshops on molecular evolution, phylogenetics, phylogenomics, and maximum likelihood using IQ-TREE.
+
 ### Upcoming Workshops
 
 
 | Date |  Course Title | Location | Instructor |
 |------|---------------|----------------------------|-------------|
-| Jan 24, 2019 | IQ-TREE intro and tutorial | [Workshop on Phylogenomics](http://evomics.org/workshops/2019-workshop-on-phylogenomics-cesky-krumlov/), Cesky Krumlov, Czech Republic | Stephen Crotty |
+| Aug 26, 2018 | ML Phylogenetics and IQ-TREE | [Workshop on Virus Evolution and Molecular Epidemiology](https://rega.kuleuven.be/cev/veme-workshop/2018), Robert Koch-Institut, Berlin, Germany | Heiko Schmidt |
+| Jan 24, 2019 | IQ-TREE intro and lab | [Workshop on Phylogenomics](http://evomics.org/workshops/2019-workshop-on-phylogenomics-cesky-krumlov/), Cesky Krumlov, Czech Republic | Stephen Crotty |
 
 ### Past Workshops
 
+IQ-TREE was taught as part of the following workshops:
+
 | Date |  Course Title | Location | Instructor |
 |------|---------------|----------------------------|-------------|
-| Jul 24, 2018 | [IQ-TREE](molevol2018) | [Workshop on Molecular Evolution](https://molevol.mbl.edu), Woods Hole, USA | Bui Quang Minh |
+| Jul 24, 2018 | [IQ-TREE intro and lab](molevol2018) | [Workshop on Molecular Evolution](https://molevol.mbl.edu), Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
+| Aug 27, 2017 | ML Phylogenetics and IQ-TREE | [Workshop on Virus Evolution and Molecular Epidemiology](https://rega.kuleuven.be/cev/veme-workshop/2017), Universidade Nova de Lisboa, Lisboa, Portugal | Heiko Schmidt |
+

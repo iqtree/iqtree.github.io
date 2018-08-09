@@ -6,36 +6,12 @@ date: _DATE_
 docid: 100
 tags:
 - workshop
-description: Tutorial for Workshop on Molecular Evolution 2018.
-sections:
-- name: Input data
-  url: input-data
-- name: First running example
-  url: first-running-example
-- name: Choosing the right substitution model
-  url: choosing-the-right-substitution-model
-- name: Assessing branch supports
-  url: assessing-branch-supports
-- name: Utilizing multi-core CPUs
-  url: utilizing-multi-core-cpus
-- name: Partitioned analysis for multi-gene alignments
-  url: partitioned-analysis-for-multi-gene-alignments
-- name: Choosing the right partitioning scheme
-  url: choosing-the-right-partitioning-scheme
-- name: Bootstrap resampling partitions instead of sites
-  url: bootstrap-resampling-partitions-instead-of-sites
-- name: Tree tests
-  url: tree-tests
-- name: Identifying most influential genes
-  url: identifying-most-influential-genes
-- name: Protein mixture model analysis
-  url: protein-mixture-model-analysis
-- name: Where to go from here?
-  url: where-to-go-from-here
 ---
 
 Tutorial for Workshop on Molecular Evolution 2018
 ===================
+
+[Introduction to IQ-TREE Slides](data/Minh-2018-07-MolEvol-static.pdf)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
