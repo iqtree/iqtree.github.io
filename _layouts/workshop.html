@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+{% include wrap.html %}
+
+<div class="container mtb">
+    <div class="row">
+        <!-- SINGLE DOC -->
+        <div class="col-md-12">
+          <p><em>Last update: {{ page.date | date: "%b %-d, %Y" }}{% if page.author %}, Contributors: {{ page.author }}{% endif %}</em></p>
+
+            {{ content }}
+
+            <div class="spacing"></div>
+            <!-- <h6>SHARE:</h6>
+            <p class="share">
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-tumblr"></i></a>
+                <a href="#"><i class="fa fa-google-plus"></i></a>		 		
+            </p> -->
+        </div><!--/col-md-9 -->
+    </div><!--/row -->
+</div><!--/container -->

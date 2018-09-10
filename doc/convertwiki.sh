@@ -12,13 +12,17 @@ cd $source_dir
 
 file_changed=0
 
-files="Front.md Home.md Quickstart.md Web-Server-Tutorial.md Tutorial.md Advanced-Tutorial.md Command-Reference.md Substitution-Models.md Complex-Models.md Polymorphism-Aware-Models.md Compilation-Guide.md Frequently-Asked-Questions.md molevol.md"
+files="Front.md Home.md Quickstart.md Web-Server-Tutorial.md Tutorial.md Advanced-Tutorial.md Command-Reference.md Substitution-Models.md Complex-Models.md Polymorphism-Aware-Models.md Compilation-Guide.md Frequently-Asked-Questions.md"
 
-for f in *.md; do
+for f in *.md workshop/*.md; do
     if [ "$f" == "_Footer.md" -o "$f" == "_Sidebar.md" ]; then
         continue
     fi
-    destf=$dest_dir/$f
+    if [ ${f:0:8} == "workshop" ]; then
+        destf=$dest_dir/../$f
+    else
+        destf=$dest_dir/$f
+    fi
 
     # ignore file that is not changed
     if [ "$3" != "-redo" -a $f -ot $destf ]; then
@@ -30,7 +34,7 @@ for f in *.md; do
     AUTHOR=`git log $f | grep Author: | sed 's/.* <//' | sed 's/@.*//' | sed 's/\./ /g' | sort | uniq | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g' | awk '{for(i=1;i<=NF;i++){ $i=toupper(substr($i,1,1)) substr($i,2) }}1'`
     DATE=`git log --date=short $f | grep Date: | head -n 1 | sed 's/Date://'`
 
-    sed "s/_AUTHOR_/$AUTHOR/" $f | sed "s/_DATE_/$DATE/" > $destf
+    sed "s/_AUTHOR_/$AUTHOR/" $f | sed "s/_DATE_/$DATE/" | sed 's/\.\.\//\.\.\/doc\//g'  > $destf
 
     echo "$source_dir/$f ---> $destf"
     #exit 0
