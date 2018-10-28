@@ -331,10 +331,9 @@ To run UFBoot, use the option  `-bb`:
 is the minimum number recommended. The section  `MAXIMUM LIKELIHOOD TREE` in  `example.phy.iqtree` shows a textual representation of the maximum likelihood tree with branch support values in percentage. The NEWICK format of the tree is printed to the file  `example.phy.treefile`. In addition, IQ-TREE writes the following files:
 
 * `example.phy.contree`: the consensus tree with assigned branch supports where branch lengths are optimized  on the original alignment.
-*  `example.phy.splits`: support values in percentage for all splits (bipartitions),
-computed as the occurence frequencies in the bootstrap trees. This file is in "star-dot" format.
-*  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
-but in NEXUS format, which can be viewed with the program [SplitsTree](http://www.splitstree.org) to explore the conflicting signals in the data. So it is more informative than consensus tree, e.g. you can see how highly supported the second best conflicting split is, which had no chance to enter the consensus tree. 
+*  `example.phy.splits.nex`: support values in percentage for all splits (bipartitions),
+computed as the occurence frequencies in the bootstrap trees.  This file can be viewed with the program [SplitsTree](http://www.splitstree.org) to explore the conflicting signals in the data. So it is more informative than consensus tree, e.g. you can see how highly supported the second best conflicting split is, which had no chance to enter the consensus tree. 
+*  `example.phy.splits` (if using `-wsplits` option): This file contains the same information as `example.phy.splits.nex` but in star-dot format.
 
 >**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
