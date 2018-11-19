@@ -10,6 +10,12 @@ tags:
 - tutorial
 description: "Gene and site concordance factor computation."
 sections:
+  - name: Inferring gene trees and concatenation tree
+    url: inferring-gene-trees-and-concatenation-tree
+  - name: Gene concordance factor (gCF)
+    url: gene-concordance-factor-gcf
+  - name: Site concordance factor (sCF)
+    url: site-concordance-factor-scf
 ---
 
 Concordance Factor
@@ -17,6 +23,8 @@ Concordance Factor
 
 We provide two measures for quantifying genealogical concordance in phylogenomic datasets: the gene concordance factor (gCF) and the site concordance factor (sCF). For every branch of a reference tree, gCF is defined as the percentage of “decisive” gene trees containing that branch. gCF is already in wide usage, but here we allow to calculate gCF while correctly accounting for variable taxon coverage among the gene trees. sCF is defined as the percentage of decisive alignment sites supporting a branch in the reference tree. sCF is a novel measure that is particularly useful when individual gene alignments are relatively uninformative, such that gene trees are uncertain. gCF and sCF complement classical measures of branch support (e.g. bootstrap) in phylogenetics by providing a full description of underlying disagreement among loci and sites.
 
+
+> Please first download the beta version 1.7-beta6 (URL to be provided soon).
 
 Inferring gene trees and concatenation tree
 -------------------------------------------
