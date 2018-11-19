@@ -161,7 +161,7 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 
 | Model | Explanation |
 |----------|------------------------------------------------------------------------|
-| BLOSUM62 | BLOcks SUbstitution Matrix ([Henikoff and Henikoff, 1992]). Note that `BLOSUM62` is not recommended as it was designed mainly for sequence alignments. |
+| BLOSUM62 | BLOcks SUbstitution Matrix ([Henikoff and Henikoff, 1992]). Note that `BLOSUM62` is not recommended for phylogenetic analysis as it was designed mainly for sequence alignments. |
 | cpREV    | chloroplast matrix ([Adachi et al., 2000]). |
 | Dayhoff  | General matrix ([Dayhoff et al., 1978]). |
 | DCMut    | Revised `Dayhoff` matrix ([Kosiol and Goldman, 2005]). |
@@ -173,17 +173,17 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | LG       | General matrix ([Le and Gascuel, 2008]). |
 | mtART    | Mitochondrial Arthropoda ([Abascal et al., 2007]). |
 | mtMAM    | Mitochondrial Mammalia ([Yang et al., 1998]). |
-| mtREV    | Mitochondrial Verterbrate ([Adachi and Hasegawa, 1996]). |
+| mtREV    | Mitochondrial Vertebrate ([Adachi and Hasegawa, 1996]). |
 | mtZOA    | Mitochondrial Metazoa (Animals) ([Rota-Stabelli et al., 2009]). |
 | mtMet    | Mitochondrial Metazoa ([Vinh et al., 2017]). |
-| mtVer    | Mitochondrial Verterbrate ([Vinh et al., 2017]). |
+| mtVer    | Mitochondrial Vertebrate ([Vinh et al., 2017]). |
 | mtInv    | Mitochondrial Inverterbrate ([Vinh et al., 2017]). |
 | Poisson  | Equal amino-acid exchange rates and frequencies. |
 | PMB      | Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]). |
 | rtREV    | Retrovirus ([Dimmic et al., 2002]). |
-| VT       | General matrix ([Mueller and Vingron, 2000]). |
+| VT       | General 'Variable Time' matrix ([Mueller and Vingron, 2000]). |
 | WAG      | General matrix ([Whelan and Goldman, 2001]). |
-| GTR20    | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments). * |
+| GTR20    | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments).* |
 
 ### Protein mixture models
 
