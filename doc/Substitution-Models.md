@@ -431,6 +431,6 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Yang, 1994]: https://doi.org/10.1007/BF00160154
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 [Yang et al., 1998]: http://mbe.oxfordjournals.org/content/15/12/1600.abstract
-[Zharkihk, 1994]: https://doi.org/10.1007/BF00160155
+[Zharkikh, 1994]: https://doi.org/10.1007/BF00160155
 
 
