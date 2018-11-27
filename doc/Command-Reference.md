@@ -78,8 +78,9 @@ General options are mainly intended for specifying input and output files:
 | `-o`   | Specify an outgroup taxon name to root the tree. The output tree in `.treefile` will be rooted accordingly. *DEFAULT: first taxon in alignment* |
 | `-pre` | Specify a prefix for all output files. *DEFAULT: either alignment file name (`-s`) or partition file name (`-q`, `-spp` or `-sp`)* |
 | `-nt` | Specify the number of CPU cores for the multicore version. A special option `-nt AUTO` will tell IQ-TREE to automatically determine the best number of cores given the current data and computer. |
+| `-ntmax` | Specify the maximal number of CPU cores `-nt AUTO` is allowed to allocate *DEFAULT: #CPU cores on the current machine* |
 | `-seed` | Specify a random number seed to reproduce a previous run. This is normally used for debugging purposes. *DEFAULT: based on current machine clock* |
-| `-v`   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purposes. *DFAULT: OFF* |
+| `-v`   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purposes. *DEFAULT: OFF* |
 | `-quiet` |  Silent mode, suppress printing to the screen. Note that `.log` file is still written. |
 |  `-keep-ident` | Keep identical sequences in the alignment. Bu default: IQ-TREE will remove them during the analysis and add them in the end. |
 |  `-safe`  | Turn on safe numerical mode to avoid numerical underflow for large data sets with many sequences (typically in the order of thousands). This mode is automatically turned on when having more than 2000 sequences. |
