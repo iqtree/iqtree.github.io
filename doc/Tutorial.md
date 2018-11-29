@@ -372,7 +372,7 @@ IQ-TREE provides an implementation of the SH-like approximate likelihood ratio t
 
  `-alrt` specifies the number of bootstrap replicates for SH-aLRT where 1000 is the minimum number recommended. 
 
-IQ-TREE also supports other tests such as the aBayes test ([Anisimova et al., 2011]) and the local bootstrap test ([Adachi and Hasegawa, 1996]). See [single branch tests](Command-Reference#single-branch-tests) for more details.
+IQ-TREE also supports other tests such as the aBayes test ([Anisimova et al., 2011]) and the local bootstrap test ([Adachi and Hasegawa, 1996b]). See [single branch tests](Command-Reference#single-branch-tests) for more details.
 
 You can also perform both SH-aLRT and the ultrafast bootstrap within one single run:
 
@@ -454,7 +454,7 @@ Where to go from here?
 Once confident enough you can go on with a **[more advanced tutorial](Advanced-Tutorial)**, which covers topics like phylogenomic (multi-gene) analyses using partition models or mixture models.
 
 
-[Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
+[Adachi and Hasegawa, 1996b]: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.476.8552
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
 [Gadagkar et al., 2005]: https://doi.org/10.1002/jez.b.21026
 [Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010

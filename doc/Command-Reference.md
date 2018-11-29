@@ -468,7 +468,7 @@ The following single branch tests are faster than all bootstrap analysis and rec
 |-----------|------------------------------------------------------------------------------|
 | `-alrt`   | Specify number of replicates (>=1000) to perform SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). If number of replicates is set to 0 (`-alrt 0`), then the parametric aLRT test ([Anisimova and Gascuel 2006]) is performed, instead of SH-aLRT. |
 | `-abayes` | Perform approximate Bayes test ([Anisimova et al., 2011]). |
-| `-lbp`    | Specify number of replicates (>=1000) to perform fast local bootstrap probability method ([Adachi and Hasegawa, 1996]). |
+| `-lbp`    | Specify number of replicates (>=1000) to perform fast local bootstrap probability method ([Adachi and Hasegawa, 1996b]). |
 
 >**TIP**: One can combine all these tests (also including UFBoot `-bb` option) within a single IQ-TREE run. Each branch in the resulting tree will be assigned several support values separated by slash (`/`), where the order of support values is stated in the `.iqtree` report file.
 {: .tip}
@@ -711,7 +711,7 @@ The first few lines of the output file example.phy.sitelh (printed by `-wslr` op
     5       -7.0432 -8.7552 -7.6698 -8.3126 -12.5404
 
 
-[Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
+[Adachi and Hasegawa, 1996b]: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.476.8552
 [Anisimova and Gascuel 2006]: https://doi.org/10.1080/10635150600755453
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
 [Felsenstein, 1985]: https://doi.org/10.2307/2408678
