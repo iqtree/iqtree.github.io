@@ -1,7 +1,7 @@
 ---
 layout: userdoc
 title: |
-    IQ-TREE version 1.6.0: Tutorials and Manual
+    IQ-TREE version 1.6.8: Tutorials and Manual
     Phylogenomic software by maximum likelihood
     
 subtitle: "<http://www.iqtree.org>"
