@@ -447,6 +447,13 @@ Then while running IQ-TREE may print something like this on to the screen:
 
 Therefore, I would only use 3 cores for this example data. For later analysis with your same data set, you can stick to the determined number.
 
+Depending on the compute system it might be required to set an upper limit of CPU cores that can automatically be assigned. Use the `-ntmax` option to do so. For instance
+
+    iqtree -s example.phy -m TIM2+I+G -nt AUTO -ntmax 8
+
+does the same as above, but only allows to use up to 8 CPU cores. By default all cores of the current machine would be used as maximum.
+
+
 Where to go from here?
 ----------------------------
 <div class="hline"></div>
