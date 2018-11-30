@@ -10,12 +10,17 @@ tags:
 - tutorial
 description: "Gene and site concordance factor computation."
 sections:
-  - name: Inferring gene trees and concatenation tree
-    url: inferring-gene-trees-and-concatenation-tree
+  - name: Inferring species tree
+    url: inferring-species-tree
+  - name: Inferring gene trees
+    url: inferring-gene-trees
   - name: Gene concordance factor (gCF)
     url: gene-concordance-factor-gcf
   - name: Site concordance factor (sCF)
     url: site-concordance-factor-scf
+  - name: Putting it all together
+    url: putting-it-all-together
+
 ---
 
 Concordance Factor
@@ -26,64 +31,87 @@ We provide two measures for quantifying genealogical concordance in phylogenomic
 
 > Please first download the beta version 1.7-beta6: <https://github.com/Cibiv/IQ-TREE/releases/tag/v1.7-beta6>.
 
-Inferring gene trees and concatenation tree
--------------------------------------------
+Inferring species tree
+----------------------
 
-For gCF one needs a set of (gene) trees. One can manually do a for-loop, but IQ-Tree provides a new convenient option `-S` to compute individual gene trees given a partition file or a directory:
+First, you need to infer a reference tree (e.g. a species tree), on which the concordance factors will be annotated. The species tree can be reconstructed by a concatenation/supermatrix approach or a coalescent/reconciliation/supertree approach. Here, we will use the concatenation approach in IQ-TREE. 
 
-	iqtree -S ALN_DIR 
+As an example, you can apply an [edge-linked proportional partition model](Complex-Models) with ultrafast bootstrap (1000 replicates; for comparison with concordance factors):
 
-In this case, IQ-Tree automatically detects that `ALN_DIR` is a directory and will load all alignment files within the directory. It can also be a partition file in a normal [partitioned analysis](Advanced-Tutorial):
+	iqtree -s ALN_FILE -p PARTITION_FILE --prefix concat -bb 1000 -nt AUTO
 
-	iqtree -s ALN_FILE -S PARTITION_FILE
+where `ALN_FILE` and `PARTITION_FILE` are your input files. Here we use a prefix `concat`, so that all output files (`concat.*`) do not interfere with analyses below. If `--prefix` is omitted, all output files will be `PARTITION_FILE.*`.
 
-IQ-Tree will then perform separate ModelFinder and tree inference for each partition/alignment. The output files are similar to those from a partitioned analysis, except that `ALN_DIR.treefile` or `PARTITION_FILE.treefile` now contains a set of trees, which can be used as source trees for gCF computation (next section). Note that you can (and should) use `-nt` option to specify the number of CPU cores to speedup the computation.
+Moreover, IQ-TREE v1.7 provides a new convenient feature: if you have a directory with many (locus) alignments, you can specify this directory directly with `-p` option:
 
-Next, you can compute a concatenation tree using an edge-linked proportional partition model, which can be used as reference tree for gCF and sCF computation (next sections):
-
-	iqtree -p ALN_DIR --prefix concat -bb 1000
-	# or
-	iqtree -s ALN_FILE -p PARTITION_FILE --prefix concat -bb 1000
+	iqtree -p ALN_DIR --prefix concat -bb 1000 -nt AUTO
 	
+IQ-TREE detects if `-p` argument is a directory and automatically load all alignment files and concatenate them into a supermatrix for the partition analysis.
 
-Here we use a prefix `concat`, so that all output files (`concat.*`) do not interfere with `-S` analaysis above. Moreover, we perform an ultrafast bootstrap with 1000 replicates for comparison with gCF and sCF.
 
+Inferring gene trees
+--------------------
+
+We now construct a set of gene/locus trees. One can manually do a for-loop, but IQ-Tree provides a new convenient option `-S` to compute individual locus trees given a partition file or a directory:
+
+	iqtree -s ALN_FILE -S PARTITION_FILE --prefix loci
+	# or
+	iqtree -S ALN_DIR --prefix loci
+
+In the second case, IQ-Tree automatically detects that `ALN_DIR` is a directory and will load all alignment files within the directory. So `-S` takes the same argument as `-p` except that it performs model selection (ModelFinder) and tree inference separately for each partition/alignment. The output files are similar to those from a partitioned analysis, except that `loci.treefile` now contains a set of trees.
+
+Note that you should use `-nt` option to specify the number of CPU cores to speedup the computation. (`-nt AUTO` does not work yet).
 
 Gene concordance factor (gCF)
 -----------------------------
 
-gCF assigns the fraction of source trees concordant with each branch of a reference tree:
+Given the species tree `concat.treefile` and the set of locus trees `loci.treefile` computed above, you can calculate gCF for each branch of the species tree as the fraction of decisive gene trees concordant with this branch:
 
-	iqtree -t REFERENE_TREE --gcf SOURCE_TREES
+	iqtree -t concat.treefile --gcf loci.treefile --prefix concord
  	
-The reference tree can be a concatenation tree (e.g., `concat.treefile` inferred above) or a species tree (e.g., inferred by coalescence/reconciliation approach) or any other tree. The set of source trees can be gene/locus trees (e.g., `ALN_DIR.treefile` or `PARTITION_FILE.treefile` inferred above), bootstrap trees, or any other trees, which may contain a subset of taxa from the reference tree. IQ-Tree will write three files:
+Note that `-t` accepts any reference tree (e.g., by coalescent/reconciliation approach) and `--gcf` accepts any set of trees (e.g. locus trees and bootstrap trees), which may contain a subset of taxa from the reference tree. IQ-Tree will write three files:
 
-* `REFERENCE_TREE.cf.tree`: Newick tree with gCF assigned for each internal branch. If `REFERENCE_TREE` already has some branch label (such as bootstrap supports), gCF will be appended to the existing label separated by a `/`.
-* `REFERENCE_TREE.cf.branch`: Newick tree with internal branch IDs.
-* `REFERENCE_TREE.cf.stat`: A tab-separated table with gCF and gDF (gene discordance factor) for every internal branch (rows of the table). The ID column can be linked with `REFERENCE_TREE.cf.branch` file. This file can be read in R to do some plot (see below).
+* `concord.cf.tree`: Newick tree with gCF assigned for each internal branch of the reference tree. If the reference tree already has some branch label (such as bootstrap support in this case), gCF will be appended to the existing label separated by a `/`.
+* `concord.cf.branch`: Newick tree with internal branch IDs.
+* `concord.cf.stat`: A tab-separated table with gCF and gDF (gene discordance factor) for every internal branch (rows of the table). The ID column can be linked with `concord.cf.branch` file. This file can be read in R to do some plot (see below).
 
-As seen above, the prefix for output files is `REFERENCE_TREE`. If you want to change this, use `--prefix` option:
-
-	iqtree -t REFERENE_TREE --gcf SOURCE_TREES --prefix OUT_PREFIX
+If you omit `--prefix`, all output files will be written to `concat.treefile.*`.
 
 
 Site concordance factor (sCF)
 -----------------------------
 
-sCF assign the fraction of decisive alignment sites supporting a branch in the reference tree:
+Given the species tree `concat.treefile` and the alignment, you can calculate sCF for each branch of the species tree as the fraction of decisive alignment sites supporting that branch:
 
-	iqtree -t REFERENCE_TREE -s ALN_FILE --scf 100
+	iqtree -t concat.treefile -s ALN_FILE --scf 100 --prefix concord
 	
 `--scf` specifies the number of quartets (randomly sampled around each internal branch) for computing sCF. We recommend at least 100 quartets for stable sCF values. Note that running this command several times may lead to slightly different sCF due to randomness. To make it reproducible, you need to use `-seed` option to provide a random number generator seed.
 
-Instead of `-s`, you can alternatively provide a directory or a partition file. IQ-Tree then computes sCF over the concatenated alignment:
+Instead of `-s`, you can alternatively provide a directory or a partition file. IQ-Tree then computes sCF for the concatenated alignment:
 
-	iqtree -t REFERENCE_TREE -p ALN_DIR --scf 100
+	iqtree -t concat.treefile -p ALN_DIR --scf 100 --prefix concord
 
-Finally, one can compute gCF and sCF within a single run:
+Finally, you can combine gCF and sCF within a single run:
 
-	iqtree -t REFERENE_TREE --gcf SOURCE_TREES -p ALN_DIR --scf 100
+	iqtree -t concat.treefile --gcf loci.treefile -p ALN_DIR --scf 100 --prefix concord
 	
-And each branch will be assigned with `gCF/sCF` values.
+Here, each branch of `concord.cf.tree` will be assigned (or appended) with `gCF/sCF` values and `concord.cf.stat` will be written with both gCF and sCF values.
 
 
+Putting it all together
+-----------------------
+
+
+If you have separate alignments for each locus in a folder, then perform the following commands:
+
+	iqtree -p ALN_DIR --prefix concat -bb 1000 -nt AUTO
+	iqtree -S ALN_DIR --prefix loci -nt 10
+	iqtree -t concat.treefile --gcf loci.treefile -p ALN_DIR --scf 100 --prefix concord
+
+If you have a single concatenated alignment with a partition file that defines loci:
+
+	iqtree -s ALN_FILE -p PARTITION_FILE --prefix concat -bb 1000 -nt AUTO
+	iqtree -s ALN_FILE -S PARTITION_FILE --prefix loci -nt 10
+	iqtree -t concat.treefile --gcf loci.treefile -s ALN_FILE --scf 100 --prefix concord
+
+Note that you can change `-nt 10` to higher value if you have more CPU cores.
