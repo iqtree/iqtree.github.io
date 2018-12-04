@@ -12,8 +12,8 @@ description: "Gene and site concordance factor computation."
 sections:
   - name: Inferring species tree
     url: inferring-species-tree
-  - name: Inferring gene trees
-    url: inferring-gene-trees
+  - name: Inferring gene/locus trees
+    url: inferring-genelocus-trees
   - name: Gene concordance factor (gCF)
     url: gene-concordance-factor-gcf
   - name: Site concordance factor (sCF)
@@ -49,7 +49,7 @@ Moreover, IQ-TREE v1.7 provides a new convenient feature: if you have a director
 IQ-TREE detects if `-p` argument is a directory and automatically load all alignment files and concatenate them into a supermatrix for the partition analysis.
 
 
-Inferring gene trees
+Inferring gene/locus trees
 --------------------
 
 We now construct a set of gene/locus trees. One can manually do a for-loop, but IQ-Tree provides a new convenient option `-S` to compute individual locus trees given a partition file or a directory:
@@ -115,3 +115,4 @@ If you have a single concatenated alignment with a partition file that defines l
 	iqtree -t concat.treefile --gcf loci.treefile -s ALN_FILE --scf 100 --prefix concord
 
 Note that you can change `-nt 10` to higher value if you have more CPU cores.
+
