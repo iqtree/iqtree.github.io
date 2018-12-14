@@ -31,6 +31,15 @@ We provide two measures for quantifying genealogical concordance in phylogenomic
 
 > Please first download the beta version 1.7-beta6: <https://github.com/Cibiv/IQ-TREE/releases/tag/v1.7-beta6>.
 
+
+* If you use this feature please cite:
+
+__Minh B.Q., Hahn M., Lanfear R.__ (2018) New methods to calculate concordance factors for phylogenomic datasets. <https://doi.org/10.1101/487801>
+
+
+> Rob Lanfear wrote a very nice [blog post on how to use and interpret concordance factors](http://www.robertlanfear.com/blog/files/concordance_factors.html).
+{: .tip}
+
 Inferring species tree
 ----------------------
 
