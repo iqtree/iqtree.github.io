@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Beginner's Tutorial"
-author: Diep Thi Hoang, Jana, Minh Bui
-date:    2018-01-03
+author: Diep Thi Hoang, Heiko Schmidt, Jana, M Bui, Minh Bui
+date:    2018-11-29
 docid: 3
 icon: info-circle
 doctype: tutorial
@@ -331,10 +331,9 @@ To run UFBoot, use the option  `-bb`:
 is the minimum number recommended. The section  `MAXIMUM LIKELIHOOD TREE` in  `example.phy.iqtree` shows a textual representation of the maximum likelihood tree with branch support values in percentage. The NEWICK format of the tree is printed to the file  `example.phy.treefile`. In addition, IQ-TREE writes the following files:
 
 * `example.phy.contree`: the consensus tree with assigned branch supports where branch lengths are optimized  on the original alignment.
-*  `example.phy.splits`: support values in percentage for all splits (bipartitions),
-computed as the occurence frequencies in the bootstrap trees. This file is in "star-dot" format.
-*  `example.phy.splits.nex`: has the same information as  `example.phy.splits`
-but in NEXUS format, which can be viewed with the program [SplitsTree](http://www.splitstree.org) to explore the conflicting signals in the data. So it is more informative than consensus tree, e.g. you can see how highly supported the second best conflicting split is, which had no chance to enter the consensus tree. 
+*  `example.phy.splits.nex`: support values in percentage for all splits (bipartitions),
+computed as the occurence frequencies in the bootstrap trees.  This file can be viewed with the program [SplitsTree](http://www.splitstree.org) to explore the conflicting signals in the data. So it is more informative than consensus tree, e.g. you can see how highly supported the second best conflicting split is, which had no chance to enter the consensus tree. 
+*  `example.phy.splits` (if using `-wsplits` option): This file contains the same information as `example.phy.splits.nex` but in star-dot format.
 
 >**NOTE**: UFBoot support values have a different interpretation to the standard bootstrap. Refer to [FAQ: UFBoot support values interpretation](Frequently-Asked-Questions#how-do-i-interpret-ultrafast-bootstrap-ufboot-support-values) for more information.
 
@@ -373,7 +372,7 @@ IQ-TREE provides an implementation of the SH-like approximate likelihood ratio t
 
  `-alrt` specifies the number of bootstrap replicates for SH-aLRT where 1000 is the minimum number recommended. 
 
-IQ-TREE also supports other tests such as the aBayes test ([Anisimova et al., 2011]) and the local bootstrap test ([Adachi and Hasegawa, 1996]). See [single branch tests](Command-Reference#single-branch-tests) for more details.
+IQ-TREE also supports other tests such as the aBayes test ([Anisimova et al., 2011]) and the local bootstrap test ([Adachi and Hasegawa, 1996b]). See [single branch tests](Command-Reference#single-branch-tests) for more details.
 
 You can also perform both SH-aLRT and the ultrafast bootstrap within one single run:
 
@@ -448,6 +447,13 @@ Then while running IQ-TREE may print something like this on to the screen:
 
 Therefore, I would only use 3 cores for this example data. For later analysis with your same data set, you can stick to the determined number.
 
+Depending on the compute system it might be required to set an upper limit of CPU cores that can automatically be assigned. Use the `-ntmax` option to do so. For instance
+
+    iqtree -s example.phy -m TIM2+I+G -nt AUTO -ntmax 8
+
+does the same as above, but only allows to use up to 8 CPU cores. By default all cores of the current machine would be used as maximum.
+
+
 Where to go from here?
 ----------------------------
 <div class="hline"></div>
@@ -455,7 +461,7 @@ Where to go from here?
 Once confident enough you can go on with a **[more advanced tutorial](Advanced-Tutorial)**, which covers topics like phylogenomic (multi-gene) analyses using partition models or mixture models.
 
 
-[Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
+[Adachi and Hasegawa, 1996b]: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.476.8552
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
 [Gadagkar et al., 2005]: https://doi.org/10.1002/jez.b.21026
 [Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010

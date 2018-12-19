@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Command Reference"
-author: Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, Minh Bui
-date:    2018-02-14
+author: Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, M Bui, Minh Bui
+date:    2018-11-29
 docid: 7
 icon: book
 doctype: tutorial
@@ -78,8 +78,9 @@ General options are mainly intended for specifying input and output files:
 | `-o`   | Specify an outgroup taxon name to root the tree. The output tree in `.treefile` will be rooted accordingly. *DEFAULT: first taxon in alignment* |
 | `-pre` | Specify a prefix for all output files. *DEFAULT: either alignment file name (`-s`) or partition file name (`-q`, `-spp` or `-sp`)* |
 | `-nt` | Specify the number of CPU cores for the multicore version. A special option `-nt AUTO` will tell IQ-TREE to automatically determine the best number of cores given the current data and computer. |
+| `-ntmax` | Specify the maximal number of CPU cores `-nt AUTO` is allowed to allocate *DEFAULT: #CPU cores on the current machine* |
 | `-seed` | Specify a random number seed to reproduce a previous run. This is normally used for debugging purposes. *DEFAULT: based on current machine clock* |
-| `-v`   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purposes. *DFAULT: OFF* |
+| `-v`   | Turn on verbose mode for printing more messages to screen. This is normally used for debugging purposes. *DEFAULT: OFF* |
 | `-quiet` |  Silent mode, suppress printing to the screen. Note that `.log` file is still written. |
 |  `-keep-ident` | Keep identical sequences in the alignment. Bu default: IQ-TREE will remove them during the analysis and add them in the end. |
 |  `-safe`  | Turn on safe numerical mode to avoid numerical underflow for large data sets with many sequences (typically in the order of thousands). This mode is automatically turned on when having more than 2000 sequences. |
@@ -468,7 +469,7 @@ The following single branch tests are faster than all bootstrap analysis and rec
 |-----------|------------------------------------------------------------------------------|
 | `-alrt`   | Specify number of replicates (>=1000) to perform SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). If number of replicates is set to 0 (`-alrt 0`), then the parametric aLRT test ([Anisimova and Gascuel 2006]) is performed, instead of SH-aLRT. |
 | `-abayes` | Perform approximate Bayes test ([Anisimova et al., 2011]). |
-| `-lbp`    | Specify number of replicates (>=1000) to perform fast local bootstrap probability method ([Adachi and Hasegawa, 1996]). |
+| `-lbp`    | Specify number of replicates (>=1000) to perform fast local bootstrap probability method ([Adachi and Hasegawa, 1996b]). |
 
 >**TIP**: One can combine all these tests (also including UFBoot `-bb` option) within a single IQ-TREE run. Each branch in the resulting tree will be assigned several support values separated by slash (`/`), where the order of support values is stated in the `.iqtree` report file.
 {: .tip}
@@ -711,7 +712,7 @@ The first few lines of the output file example.phy.sitelh (printed by `-wslr` op
     5       -7.0432 -8.7552 -7.6698 -8.3126 -12.5404
 
 
-[Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
+[Adachi and Hasegawa, 1996b]: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.476.8552
 [Anisimova and Gascuel 2006]: https://doi.org/10.1080/10635150600755453
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
 [Felsenstein, 1985]: https://doi.org/10.2307/2408678

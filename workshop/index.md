@@ -11,7 +11,7 @@ Throughout the year, members of IQ-TREE development team teach workshops on mole
 
 | Date |  Course Title | Location | Instructor |
 |------|---------------|----------------------------|-------------|
-| Dec 7, 2018 | Phylogenomics using IQ-TREE | [Phylogenomics Workshop using IQ-TREE](http://cba.anu.edu.au/news-events/phylogenomics-workshop-using-iq-tree), Australian National University, Canberra, Australia | Rob Lanfear, Minh Bui |
+| Dec 7, 2018 | [Phylogenomics using IQ-TREE](anu2018) | [Phylogenomics Workshop using IQ-TREE](http://cba.anu.edu.au/news-events/phylogenomics-workshop-using-iq-tree), Australian National University, Canberra, Australia | Rob Lanfear, Minh Bui |
 | Jan 24, 2019 | IQ-TREE intro and lab | [Workshop on Phylogenomics](http://evomics.org/workshops/2019-workshop-on-phylogenomics-cesky-krumlov/), Cesky Krumlov, Czech Republic | Stephen Crotty |
 
 ### Past Workshops

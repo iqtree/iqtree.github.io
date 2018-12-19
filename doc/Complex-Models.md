@@ -203,7 +203,7 @@ Starting with version 1.5.0, IQ-TREE provides a new posterior mean site frequenc
 
 If you use this model in a publication please cite:
 
-> __H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger__ (2017) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. _Syst. Biol._, in press. <https://doi.org/10.1093/sysbio/syx068>
+> __H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger__ (2018) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. _Syst. Biol._, 67:216-235. <https://doi.org/10.1093/sysbio/syx068>
 
 Here is an example of computation time and RAM usage for an Obazoa data set (68 sequences, 43615 amino-acid sites) from [Brown et al. (2013)] using 16 CPU cores: 
 

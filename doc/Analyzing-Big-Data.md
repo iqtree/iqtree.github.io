@@ -3,9 +3,9 @@ layout: userdoc
 title: "Analyzing Big Data"
 author: Minh Bui
 date:    2017-04-12
-docid: 6
+docid: 31
 icon: info-circle
-doctype: tutorial
+doctype: manual
 tags:
 - tutorial
 description: "Hints and strategies to analyze big alignments with >= 1000 sequences or >= 10,000 sites."

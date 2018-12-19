@@ -34,7 +34,7 @@ Tree Inference
 ------------
 <div class="hline"></div>
 
-Tree Inference provides the most frequently used features of IQ-TREE and allows users to carry out phylogenetic analysis on a multiple sequence alignment (MSA). In the most basic case, no more than an MSA file is required to submit the job. Without further input, IQ-TREE will run with the default parameters and auto-detect the sequence type as well as the best-fitting substitution model. Additionally, Ultrafast Bootstrap (<a href="https://doi.org/10.1093/molbev/msx281" target="_blank">Hoang et al., in press</a>) and the SH-aLRT branch test (<a href="https://doi.org/10.1093/sysbio/syq010" target="_blank">Guindon et al., 2010</a>) will be performed. 
+Tree Inference provides the most frequently used features of IQ-TREE and allows users to carry out phylogenetic analysis on a multiple sequence alignment (MSA). In the most basic case, no more than an MSA file is required to submit the job. Without further input, IQ-TREE will run with the default parameters and auto-detect the sequence type as well as the best-fitting substitution model. Additionally, Ultrafast Bootstrap ([Hoang et al., 2018]) and the SH-aLRT branch test ([Guindon et al., 2010]) will be performed. 
 
 You can either try out the web server with an example alignment by ticking the corresponding box or upload your own alignment file. By clicking on 'Browse' a dialog will open where you can select your MSA; the file formats Phylip, Fasta, Nexus, Clustal and MSF are supported. 
 
@@ -79,4 +79,7 @@ Once a job is finished, you can select it by checking the corresponding box and 
 | `.ckp.gz`   | Checkpoint file; included if a job was stopped because of RAM/CPU limits |
 
 >**NOTE**: Jobs which require more than 24 hours or 1GB RAM will be stopped. In such a case, you can download the stopped job and resume the run from the last checkpoint on your local PC as [described here](Command-Reference#checkpointing-to-resume-stopped-run). 
+
+[Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
+[Hoang et al., 2018]: https://doi.org/10.1093/molbev/msx281
 

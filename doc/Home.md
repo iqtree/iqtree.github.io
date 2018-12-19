@@ -58,7 +58,7 @@ Key features
 
 
 * __Efficient search algorithm__: Fast and effective stochastic algorithm to reconstruct phylogenetic trees by maximum likelihood. IQ-TREE compares favorably to RAxML and PhyML in terms of likelihood while requiring similar amount of computing time ([Nguyen et al., 2015]).
-* __Ultrafast bootstrap__: An ultrafast bootstrap approximation (UFBoot) to assess branch supports. UFBoot is 10 to 40 times faster than RAxML rapid bootstrap and obtains less biased support values ([Minh et al., 2013]; [Hoang et al., in press]).
+* __Ultrafast bootstrap__: An ultrafast bootstrap approximation (UFBoot) to assess branch supports. UFBoot is 10 to 40 times faster than RAxML rapid bootstrap and obtains less biased support values ([Minh et al., 2013]; [Hoang et al., 2018]).
 * __Ultrafast model selection__: An ultrafast and automatic model selection (ModelFinder) which is 10 to 100 times faster than jModelTest and ProtTest. ModelFinder also finds best-fit partitioning scheme like PartitionFinder.
 * __Big Data Analysis__: Supporting huge datasets with thousands of sequences or millions of alignment sites via [checkpointing](Command-Reference#checkpointing-to-resume-stopped-run), safe numerical and low memory mode. [Multicore CPUs](Tutorial#utilizing-multi-core-cpus) and [parallel MPI system](Compilation-Guide#compiling-mpi-version) are utilized to speedup analysis.
 * __Phylogenetic testing__: Several fast branch tests like SH-aLRT and aBayes test ([Anisimova et al., 2011]) and tree topology tests like the approximately unbiased (AU) test ([Shimodaira, 2002]).
@@ -116,18 +116,18 @@ How to cite IQ-TREE?
 
 > **To maintain IQ-TREE, support users and secure fundings, it is important for us that you cite the following papers, whenever the corresponding features were applied for your analysis.**
 >
-> * Example 1: *We obtained branch supports with the ultrafast bootstrap (Hoang et al., in press) implemented in the IQ-TREE software (Nguyen et al., 2015).* 
+> * Example 1: *We obtained branch supports with the ultrafast bootstrap (Hoang et al., 2018) implemented in the IQ-TREE software (Nguyen et al., 2015).* 
 >
 > * Example 2: *We inferred the maximum-likelihood tree using the edge-linked partition model in IQ-TREE (Chernomor et al., 2016; Nguyen et al., 2015).*
 
 
 If you performed the ultrafast bootstrap (UFBoot) please cite:
 
-* __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2017) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, in press. [DOI: 10.1093/molbev/msx281](https://doi.org/10.1093/molbev/msx281)
+* __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2018) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, 35:518–522. [DOI: 10.1093/molbev/msx281](https://doi.org/10.1093/molbev/msx281)
 
 If you used posterior mean site frequency model please cite:
 
-* __H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger__ (2017) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. _Syst. Biol._, in press. [DOI: 10.1093/sysbio/syx068](https://doi.org/10.1093/sysbio/syx068)
+* __H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger__ (2018) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. _Syst. Biol._, 67:216-235. [DOI: 10.1093/sysbio/syx068](https://doi.org/10.1093/sysbio/syx068)
 
 If you used ModelFinder please cite:
 
@@ -192,7 +192,7 @@ IQ-TREE was partially funded by the [Austrian Science Fund - FWF](http://www.fwf
 
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
 [Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
-[Hoang et al., in press]: https://doi.org/10.1093/molbev/msx281
+[Hoang et al., 2018]: https://doi.org/10.1093/molbev/msx281
 [Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: https://doi.org/10.1093/molbev/msu300
 [Schrempf et al., 2016]: https://doi.org/10.1016/j.jtbi.2016.07.042
