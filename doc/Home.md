@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Introduction"
-author: Jana Trifinopoulos, Minh Bui, Nltung
-date:    2018-01-03
+author: Jana Trifinopoulos, M Bui, Minh Bui, Nltung
+date:    2018-11-30
 docid: 0
 icon: info-circle
 doctype: tutorial

@@ -23,4 +23,24 @@
     </div><!--/row -->
     {% endif %}
 
+    <h3 class="mb centered">PAST MEMBERS</h3>
+    {% for member in site.data.members.past_members %}
+        {% assign loopindex = forloop.index | modulo: 3 %}
+        {% if loopindex == 1 %}
+        <div class="row centered">
+        {% endif %}
+            <div class="col-sm-4">
+                <h4><a href="{{ member.social.first.url }}">{{ member.name }}</a></h4>
+                <em>{{ member.position }}</em>
+                <p>Contribution: {{ member.text }}</p>
+            </div><!--/col-lg-3 -->
+        {% if loopindex == 0 %}
+        </div><!--/row -->
+        {% endif %}
+    {% endfor %}
+
+    {% if loopindex != 0 %}
+    </div><!--/row -->
+    {% endif %}
+
 </div><!--/container -->

@@ -3,14 +3,6 @@
     
 # Members information. Shown on About page.
 members:
-  - name: Lam Tung Nguyen
-    position:
-    text: Tree search algorithm and parallelization.
-    img: tung.jpg
-    gscholar: https://scholar.google.com/citations?user=TQx3GV8AAAAJ
-    social:
-      - title: home #use for email address
-        url: http://www.cibiv.at/~tung
   - name: Olga Chernomor
     position:
     text: Partition models and phylogenomic search.
@@ -19,21 +11,7 @@ members:
     social:
       - title: home #use for email address
         url: http://www.cibiv.at/~olga
-  - name: Heiko A. Schmidt
-    position:
-    text: Integration of <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a> features.
-    img: hschmidt.png
-    gscholar: https://scholar.google.com/citations?user=8lFCw7IAAAAJ
-    social:
-      - title: home #use for email address
-        url: http://www.cibiv.at/~hschmidt
-  - name: Jana Trifinopoulos
-    position:
-    text: W-IQ-TREE web service.
-    img: jana.jpg
-    social:
-      - title: home #use for email address
-        url: http://www.cibiv.at/~jana
+
   - name: Bui Quang Minh
     position:
     text: Team leader, software core, ultrafast bootstrap, model selection.
@@ -44,6 +22,16 @@ members:
         url: http://www.cibiv.at/~minh
       - title: university
         url: https://scholar.google.com/citations?user=UI0xN_QAAAAJ
+
+  - name: Heiko A. Schmidt
+    position:
+    text: Integration of <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a> features.
+    img: hschmidt.png
+    gscholar: https://scholar.google.com/citations?user=8lFCw7IAAAAJ
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~hschmidt
+
   - name: Dominik Schrempf
     position:
     text: Polymorphism-aware models (PoMo).
@@ -53,6 +41,7 @@ members:
       - title: home #use for email address
         #url: http://i122server.vu-wien.ac.at/pop/lab_members/Dominik_Schrempf.html
         url: https://dschrempf.github.io
+
   - name: Michael Woodhams
     position:
     text: Lie Markov models.
@@ -61,6 +50,7 @@ members:
     social:
       - title: home #use for email address
         url: http://www.utas.edu.au/profiles/staff/maths-physics/michael-woodhams
+
   - name: Arndt von Haeseler
     position:
     text: Advice, ideas and financial support.
@@ -78,6 +68,26 @@ members:
     social:
       - title: envelope #use for email address
         url: http://www.cibiv.at/~diep_
+
+##### Past members ####
+past_members:
+  - name: Lam Tung Nguyen
+    position:
+    text: Tree search algorithm.
+    img: tung.jpg
+    gscholar: https://scholar.google.com/citations?user=TQx3GV8AAAAJ
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~tung
+
+  - name: Jana Trifinopoulos
+    position:
+    text: W-IQ-TREE web service.
+    img: jana.jpg
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/~jana
+    left: true
 
 
 ---
