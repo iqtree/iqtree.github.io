@@ -11,7 +11,7 @@ Throughout the year, members of IQ-TREE development team teach workshops on mole
 
 | Date |  Course Title | Location | Instructor |
 |------|---------------|----------------------------|-------------|
-| Aug 1-11, 2019 | IQ-TREE | [Workshop on Molecular Evolution](https://molevol.mbl.edu), Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
+| Aug 1-11, 2019 | [IQ-TREE Workshop Tutorial](molevol2019) | [Workshop on Molecular Evolution](https://molevol.mbl.edu), Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
 | Aug 4-9, 2019 | Several sessions | [Workshop on Virus Evolution and Molecular Epidemiology](https://rega.kuleuven.be/cev/veme-workshop/2019), The University of Hong Kong, Hong Kong | Heiko Schmidt |
 
 
