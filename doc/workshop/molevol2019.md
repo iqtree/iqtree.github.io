@@ -21,8 +21,9 @@ IQ-TREE Workshop Tutorial (Woods Hole 2019)
 - [4) Choosing the best partitioning scheme](#4-choosing-the-best-partitioning-scheme)
 - [5) Tree topology tests](#5-tree-topology-tests)
 - [6) Concordance factors](#6-concordance-factors)
-- [7) Resampling partitions and sites (optional)](#7-resampling-partitions-and-sites-optional)
-- [8) Identifying most influential genes (optional)](#8-identifying-most-influential-genes-optional)
+- [7) Resampling partitions and sites](#7-resampling-partitions-and-sites)
+- [8) Identifying most influential genes](#8-identifying-most-influential-genes)
+- [9) Wrapping up](#9-wrapping-up)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -251,12 +252,8 @@ Similarly, you can compute gCF and sCF for the tree under unpartitioned model:
 {: .tip}
 
 
-> **FINAL QUESTION:**
-> * In your opinion, which tree do you think is the true tree, given all analyses done in this Tutorial?
-{: .tip}
-
-7) Resampling partitions and sites (optional)
-------------------------------------------
+7) Resampling partitions and sites
+----------------------------------
 <div class="hline"></div>
 
 Instead of bootstrap resampling sites, it is recommended to resample partitions and then sites within resampled partitions ([Hoang et al., 2018]). This may help to reduce over-confident branch supports. 
@@ -276,8 +273,8 @@ Options explained:
 
 
 
-8) Identifying most influential genes (optional)
------------------------------
+8) Identifying most influential genes
+-------------------------------------
 <div class="hline"></div>
 
 
@@ -294,6 +291,14 @@ With the `-wpl` option done above, IQ-TREE will write partition-wise log-likelih
 > 
 > * Have a look at the paper by ([Brown and Thomson, 2016]). Compare the two genes you found with those from this paper. What is special about these two genes?
 {: .tip}
+
+9) Wrapping up
+--------------
+
+> **FINAL QUESTION:**
+> * Given all analyses done in this tutorial, which tree do you think is the true tree?
+> 
+
 
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
