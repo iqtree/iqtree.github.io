@@ -2,6 +2,35 @@
 references:
 
   - author:
+    - given: S.M.
+      family: Crotty
+      co-first: yes
+    - given: B.Q.
+      family: Minh
+      co-first: yes
+    - given: N.G.
+      family: Bean
+    - given: B.R.
+      family: Holland
+    - given: J.
+      family: Tuke
+    - given: L.S.
+      family: Jermiin
+    - given: A.
+      family: von Haeseler
+    issued:
+      year: 2019
+      month:
+    title: "GHOST: Recovering historical signal from heterotachously-evolved sequence alignments"
+    container-title: Syst. Biol.
+    publisher: Oxford University Press
+    issue: in press
+    page:
+    DOI: 10.1093/sysbio/syz051
+    message: When using <a href="doc/Complex-Models#heterotachy-models">heterotachy models</a> please cite&#58;
+    new: yes
+
+  - author:
     - given: D.T.
       family: Hoang
       co-first: yes
@@ -27,7 +56,6 @@ references:
     DOI: 10.1093/molbev/msx281
     type: article-journal
     message: When performing <a href="doc/Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation">ultrafast bootstrap (UFBoot)</a> please cite&#58;
-    new: yes
 
   - author:
     - given: H.C.
@@ -51,35 +79,6 @@ references:
     DOI: 10.1093/sysbio/syx068
     PMID: 28950365
     message: When using <a href="doc/Complex-Models#site-specific-frequency-models">posterior mean site frequency model (PMSF)</a> please cite&#58;
-    new: yes
-
-  - author:
-    - given: S.M.
-      family: Crotty
-      co-first: yes
-    - given: B.Q.
-      family: Minh
-      co-first: yes
-    - given: N.G.
-      family: Bean
-    - given: B.R.
-      family: Holland
-    - given: J.
-      family: Tuke
-    - given: L.S.
-      family: Jermiin
-    - given: A.
-      family: von Haeseler
-    issued:
-      year: submitted
-      month:
-    title: "GHOST: Recovering historical signal from heterotachously-evolved sequence alignments"
-    container-title: bioRxiv.
-    issue:
-    page:
-    DOI: 10.1101/174789
-    message: When using <a href="doc/Complex-Models#heterotachy-models">heterotachy models</a> please cite&#58;
-    new: yes
 
   - author:
     - given: S.
