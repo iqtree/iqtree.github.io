@@ -261,8 +261,7 @@ Extensive simulations show that the GHOST model can accurately recover the tree 
 
 If you use this model in a publication please cite:
 
-> __S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin and A. von Haeseler__ (2017) GHOST: Recovering historical signal from heterotachously-evolved sequence alignments.  
-    <https://doi.org/10.1101/174789>
+> __S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin and A. von Haeseler__ (2019) GHOST: Recovering historical signal from heterotachously-evolved sequence alignments. *Syst. Biol.*, in press. <https://doi.org/10.1093/sysbio/syz051>
 
 
 

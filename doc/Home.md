@@ -120,6 +120,9 @@ How to cite IQ-TREE?
 >
 > * Example 2: *We inferred the maximum-likelihood tree using the edge-linked partition model in IQ-TREE (Chernomor et al., 2016; Nguyen et al., 2015).*
 
+If you used the heterotachy model (GHOST) please cite:
+
+* __S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin, A. von Haeseler__ (2019) GHOST: Recovering historical signal from heterotachously-evolved sequence alignments. *Syst. Biol.*, in press. [DOI: 10.1093/sysbio/syz051](https://doi.org/10.1093/sysbio/syz051)
 
 If you performed the ultrafast bootstrap (UFBoot) please cite:
 
