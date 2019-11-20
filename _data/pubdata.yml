@@ -31,6 +31,27 @@ references:
     new: yes
 
   - author:
+    - given: D.
+      family: Schrempf
+    - given: B.Q.
+      family: Minh
+    - given: A.
+      family: von Haeseler
+    - given: C.
+      family: Kosiol
+    issued:
+      year: 2019
+      month:
+    title: Polymorphism-aware species trees with advanced mutation models, bootstrap, and rate heterogeneity
+    container-title: Mol. Biol. Evol.
+    issue: 36
+    page: 1294–1301
+    DOI: 10.1093/molbev/msz043
+    software: http://www.iqtree.org/
+    message: When using <a href="doc/Polymorphism-Aware-Models">polymorphism-aware models</a> please cite&#58;
+    new: yes
+
+  - author:
     - given: D.T.
       family: Hoang
       co-first: yes
@@ -105,29 +126,6 @@ references:
     page: 587-589
     software: http://www.iqtree.org/
     message: When using <a href="doc/Tutorial#choosing-the-right-substitution-model">model selection (ModelFinder)</a> please cite&#58;
-
-  - author:
-    - given: D.
-      family: Schrempf
-    - given: B.Q.
-      family: Minh
-    - given: N.
-      family: De Maio
-    - given: A.
-      family: von Haeseler
-    - given: C.
-      family: Kosiol
-    issued:
-      year: 2016
-      month:
-    title: Reversible polymorphism-aware phylogenetic models and their application to tree inference
-    container-title: J. Theor. Biol.
-    issue: 407
-    page: 362-370
-    DOI: 10.1016/j.jtbi.2016.07.042
-    PMID: 27480613
-    software: http://www.iqtree.org/
-    message: When using <a href="doc/Polymorphism-Aware-Models">polymorphism-aware models</a> please cite&#58;
 
   - author:
     - given: O.

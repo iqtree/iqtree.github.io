@@ -2,7 +2,7 @@
 layout: workshop
 title: "IQ-TREE Workshop Tutorial"
 author: M Bui
-date:    2019-08-01
+date:    2019-08-08
 docid: 100
 tags:
 - workshop
