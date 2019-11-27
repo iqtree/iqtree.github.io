@@ -10,7 +10,7 @@ members:
     gscholar: https://scholar.google.com/citations?user=28f0gdQAAAAJ
     social:
       - title: home #use for email address
-        url: http://www.cibiv.at/~olga
+        url: http://www.cibiv.at/people/olga/
 
   - name: Bui Quang Minh
     position:
@@ -19,9 +19,7 @@ members:
     gscholar: https://scholar.google.com/citations?user=UI0xN_QAAAAJ
     social:
       - title: home #use for email address
-        url: http://www.cibiv.at/~minh
-      - title: university
-        url: https://scholar.google.com/citations?user=UI0xN_QAAAAJ
+        url: https://researchers.anu.edu.au/researchers/bui-m
 
   - name: Heiko A. Schmidt
     position:
@@ -30,7 +28,7 @@ members:
     gscholar: https://scholar.google.com/citations?user=8lFCw7IAAAAJ
     social:
       - title: home #use for email address
-        url: http://www.cibiv.at/~hschmidt
+        url: http://www.cibiv.at/people/hschmidt/
 
   - name: Dominik Schrempf
     position:
@@ -42,6 +40,15 @@ members:
         #url: http://i122server.vu-wien.ac.at/pop/lab_members/Dominik_Schrempf.html
         url: https://dschrempf.github.io
 
+  - name: Arndt von Haeseler
+    position:
+    text: Inspiring ideas and advice.
+    img: arndt.jpg
+    gscholar: https://scholar.google.com/citations?user=XqglmcgAAAAJ
+    social:
+      - title: envelope #use for email address
+        url: http://www.cibiv.at/people/haeseler/
+
   - name: Michael Woodhams
     position:
     text: Lie Markov models.
@@ -51,15 +58,6 @@ members:
       - title: home #use for email address
         url: http://www.utas.edu.au/profiles/staff/maths-physics/michael-woodhams
 
-  - name: Arndt von Haeseler
-    position:
-    text: Advice, ideas and financial support.
-    img: arndt.jpg
-    gscholar: https://scholar.google.com/citations?user=XqglmcgAAAAJ
-    social:
-      - title: envelope #use for email address
-        url: http://www.cibiv.at/~haeseler
-
   - name: Diep Thi Hoang
     position:
     text: Improving ultrafast bootstrap.
@@ -67,7 +65,17 @@ members:
     gscholar:
     social:
       - title: envelope #use for email address
-        url: http://www.cibiv.at/~diep_
+        url: https://www.researchgate.net/profile/Diep_Hoang6
+
+  - name: Robert Lanfear
+    position:
+    text: Inspiring ideas and advice.
+    img: rob.jpg
+    gscholar: https://scholar.google.com/citations?user=Se6txrMAAAAJ
+    social:
+      - title: home #use for email address
+        url: https://www.robertlanfear.com
+
 
 ##### Past members ####
 past_members:

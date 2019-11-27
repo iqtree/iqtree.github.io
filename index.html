@@ -3,9 +3,9 @@ layout: default
 title: "IQ-TREE: Efficient phylogenomic software by maximum likelihood"
 permalink: /
 version: 1.6.12
-version_new: 2.0-rc
+version_new: 2.0-rc1
 releasedate: August 15, 2019
-releasedate_new: November 20, 2019
+releasedate_new: November 21, 2019
 ---
 <!-- ========================== HEADER ========================== -->
 <div id="headerwrap">
@@ -79,8 +79,7 @@ releasedate_new: November 20, 2019
             <div class="list-group">
                 <div class="list-group-item list-group-item-success">
                     <h4 class="centered">LATEST NEWS</h4>
-                    We are teaching IQ-TREE in <a href="workshop">various Workshops detailed here</a><br>
-                    <a href="http://www.mesquiteproject.org">Mesquite software 3.5</a> allows to run IQ-TREE with a package installed via Zephyr<br>
+                    One PhD position and one software engineer available. Please contact m.bui (-a-) anu.edu.au<br>
                 </div>
             </div>
         </div>
@@ -115,19 +114,17 @@ releasedate_new: November 20, 2019
         <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
             <div class="list-group">
                 <div class="list-group-item list-group-item-warning">
-                    <h4 class="centered">What's new in version 1.6? </h4>
+                    <h4 class="centered">Version 2.0 Highlights </h4>
                     <ul>
-                        <li><strong>IMPORTANT</strong>: The checkpoint file is no more compatible with previous versions. An error message will be printed if you recover the run from 1.5.X or older versions. Sequential and multicore versions are merged, thus iqtree-omp executable becomes iqtree. ModelFinder now uses checkpoint file .model.gz (instead of .model) to save space.
-                        <li><a href="doc/Polymorphism-Aware-Models">Polymorphism-aware models</a> accounting for incomplete lineage sorting (<a href="http://dx.doi.org/10.1016/j.jtbi.2016.07.042">Schrempf et al., 2016</a>).</li>
-                        <li><a href="doc/Complex-Models#heterotachy-models">Heterotachy models</a> accounting for rate variation among sites and lineages (<a href="https://doi.org/10.1101/174789">Crotty et al., submitted</a>).</li>
-                        <li><a href="doc/Substitution-Models#lie-markov-models">Lie Markov models</a> (<a href="http://dx.doi.org/10.1093/sysbio/syv021">Woodhams et al., 2015</a>) and non-reversible models.</li>
-                        <li>Three new mitochondrial protein matrices mtMet, mtVer, mtInv (<a href="https://doi.org/10.1186/s12862-017-0987-y">Vinh et al., 2017</a>).</li>
-                        <li>Improved ModelFinder allowing to test all above models. For partitioned analysis ModelFinder supports edge-linked partition model selection and fast relaxed clustering algorithm (-rclusterf option) like PartitionFinder2. </li>
-                        <li>A fast tree search to match the speed of FastTree program while still obtaining better trees (-fast option).</li>
-                        <li><a href="http://www.iqtree.org/doc/Tutorial#reducing-impact-of-severe-model-violations-with-ufboot">-bnni option to reduce the impact of model violation</a> for the ultrafast bootstrap (<a href="https://doi.org/10.1093/molbev/msx281">Hoang et al., 2017</a>)</li>
-                        <li><a href="doc/Command-Reference#ancestral-sequence-reconstruction">Ancestral sequence reconstruction</a> by empirical Bayesian method (-asr option).</li>
-                        <li><a href="doc/Compilation-Guide#compiling-xeon-phi-knights-landing-version">Xeon Phi Kights Landing</a> (AVX-512 instruction set) support.</li>
-                        <li>Allowing gzip-compressed alignments to save space.</li>
+                    <li>Input alignment (-s option) or partition (-p) can be a directory of alignment files</li>
+                    <li>Inference of rooted trees using non-reversible models</li>
+                    <li>Faster tree search under topological constraint (-g option)</li>
+                    <li>Gene/locus trees inference (-S option) and concordance factor analysis (--gcf)</li>
+                    <li>Test whether to use DNA, protein or codon models (--modelomatic option)</li>
+                    <li>Tests of sequence stationarity, reversibility and homogeneity (--symtest option)</li>
+                    <li>Transfer boostrap expectation (--tbe option)</li>
+                    <li>Site rate estimation by maximum likelihood (--mlrate option)</li>
+                    <li>Terrace analysis for partitioned models</li>
                     </ul>
                 </div>
             </div>
@@ -194,7 +191,7 @@ releasedate_new: November 20, 2019
         <div class="row centered">
             <div class="col-sm-12">
                 <h2>Download</h2>
-                <p>The latest IQ-TREE version {{page.version}} ({{page.releasedate}})</p>
+                <p>The stable IQ-TREE version {{page.version}} ({{page.releasedate}})</p>
             </div>
             <div class="col-sm-4">
                 <i class="fa fa-windows"></i>
@@ -212,6 +209,7 @@ releasedate_new: November 20, 2019
                     <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-MacOSX.zip">64-bit multicore macOS</a>
                 </div>
             </div>		 				
+
             <div class="col-sm-4">
                 <i class="fa fa-linux"></i>
                 <h4>Linux</h4>
@@ -221,6 +219,31 @@ releasedate_new: November 20, 2019
                     <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-LinuxKNL.tar.gz">Xeon Phi Knights Landing Linux</a>
                 </div>
             </div>		 
+
+            <div class="col-sm-12">
+                <p>The release candidate {{page.version_new}} ({{page.releasedate_new}})</p>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows.zip">64-bit multicore Windows</a>
+                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows32.zip">32-bit multicore Windows</a>
+                </div>
+            </div>		 				
+
+            <div class="col-sm-4">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-MacOSX.zip">64-bit multicore macOS</a>
+                </div>
+            </div>		 				
+
+            <div class="col-sm-4">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux.tar.gz">64-bit multicore Linux</a>
+                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux32.tar.gz">32-bit multicore Linux</a>
+                </div>
+            </div>		 
+
         </div> <!-- row -->
 
 
