@@ -50,7 +50,7 @@ Ready made IQ-TREE packages are available for the following distributions/reposi
 * [Debian Linux](https://packages.debian.org/unstable/science/iqtree): `sudo apt-get install iqtree`
 * [Arch Linux (AUR)](https://aur.archlinux.org/packages/iqtree-latest/)
 * [Anaconda](https://anaconda.org/bioconda/iqtree): `conda install -c bioconda iqtree`
-* [Homebrew](https://github.com/brewsci/homebrew-science/blob/master/Formula/iqtree.rb): `brew install brewsci/science/iqtree`
+* [Homebrew](https://github.com/brewsci/homebrew-bio/blob/master/Formula/iqtree.rb): `brew install brewsci/bio/iqtree`
 * [FreeBSD](https://www.freshports.org/biology/iqtree/): `pkg install iqtree`
 
 ### Manual download
@@ -119,13 +119,7 @@ A few typically analyses are listed in the following. Note that it is assumed th
 * Infer maximum-likelihood tree from a sequence alignment (`example.phy`)
    with the best-fit model automatically selected by ModelFinder:
 
-        # for version >= 1.5.4
         iqtree -s example.phy
-
-        # for version <= 1.5.3
-        iqtree -s example.phy -m TESTNEW
-
-        (use '-m TEST' to resemble jModelTest/ProtTest)
 
 * Infer maximum-likelihood tree using `GTR+I+G` model:
 
@@ -133,63 +127,43 @@ A few typically analyses are listed in the following. Note that it is assumed th
 
 * Perform ModelFinder without subsequent tree inference:
         
-        # for version >= 1.5.4
         iqtree -s example.phy -m MF
 
-        # for version <= 1.5.3
-        iqtree -s example.phy -m TESTNEWONLY
-
-        (use '-m TESTONLY' to resemble jModelTest/ProtTest)
 
 * Combine ModelFinder, tree search, SH-aLRT test and ultrafast bootstrap with 1000 replicates:
 
-        # for version >= 1.5.4
-        iqtree -s example.phy -alrt 1000 -bb 1000
+        iqtree -s example.phy -B 1000 -alrt 1000
+        # for version 1.x, change -B to -bb
 
-        # for version <= 1.5.3
-        iqtree -s example.phy -m TESTNEW -alrt 1000 -bb 1000
 
 * Perform edge-linked proportional partition model (`example.nex`):
 
-        iqtree -s example.phy -spp example.nex
-
-        (replace '-spp' by '-sp' for edge-unlinked model)
+        iqtree -s example.phy -p example.nex
+        # for version 1.x change -p to -spp
 
 * Find best partition scheme by possibly merging partitions:
 
-        # for version >= 1.5.4
-        iqtree -s example.phy -sp example.nex -m MF+MERGE
-
-        # for version <= 1.5.3
-        iqtree -s example.phy -sp example.nex -m TESTNEWMERGEONLY
-        
-        (use '-m TESTMERGEONLY' to resemble PartitionFinder)
+        iqtree -s example.phy -p example.nex -m MF+MERGE
 
 * Find best partition scheme followed by tree inference and ultrafast bootstrap:
 
-        # for version >= 1.5.4
-        iqtree -s example.phy -spp example.nex -m MFP+MERGE -bb 1000
-
-        # for version <= 1.5.3
-        iqtree -s example.phy -spp example.nex -m TESTNEWMERGE -bb 1000
-
-        (use '-m TESTMERGE' to resemble PartitionFinder)
+        iqtree -s example.phy -p example.nex -m MFP+MERGE -B 1000
+        # for version 1.x change -B to -bb
 
 * Use 4 CPU cores to speed up computation:
 
-        # For old IQ-TREE versions <= 1.5.X, change iqtree to iqtree-omp
-        iqtree -s example.phy -nt 4
+        iqtree -s example.phy -T 4
+        # for version 1.x change -T to -nt
 
 * Determine the best number of cores to use under `GTR+R4` model:
 
-        # For old IQ-TREE versions <= 1.5.X, change iqtree to iqtree-omp
-        iqtree -s example.phy -m GTR+R4 -nt AUTO
+        iqtree -s example.phy -m GTR+R4 -T AUTO
+        # for version 1.x change -T to -nt
 
 * Show all available options: 
 
         iqtree -h
         
-> **WARNING**: All these commands with `-m ...MERGE...` will always perform an edge-unlinked partition scheme finding even if `-spp` option is used. Only in the next phase of tree reconstruction, then an edge-linked partition model is used. We plan to implement the edge-linked partition finding in version 1.6.
 
 Where to go from here?
 ----------------------------

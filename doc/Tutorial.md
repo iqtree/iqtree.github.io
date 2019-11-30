@@ -48,7 +48,9 @@ Input data
 ----------
 <div class="hline"></div>
 
-IQ-TREE takes as input a *multiple sequence alignment* and will reconstruct an evolutionary tree that is best explained by the input data. The input alignment can be in various common formats. For example the [PHYLIP format](http://evolution.genetics.washington.edu/phylip/doc/sequence.html) which may look like:
+IQ-TREE takes as input a *multiple sequence alignment* and will reconstruct an evolutionary tree that is best explained by the input data. If you have raw (unaligned) sequences, you need to first run an alignment program like [MAFFT](http://mafft.cbrc.jp/alignment/software/) or [ClustalW](http://www.clustal.org) to align the sequences, before feeding them into IQ-TREE.
+
+The input alignment can be in various common formats. For example the [PHYLIP format](http://evolution.genetics.washington.edu/phylip/doc/sequence.html) which may look like:
 
     7 28
     Frog       AAATTTGGTCCTGTGATTCAGCAGTGAT
@@ -76,7 +78,8 @@ This tiny alignment contains 7 DNA sequences from several animals with the seque
     >Mouse      
     CTACCACACCCCAGGACTCAGCAGTGAT
 
->**NOTE**: If you have raw sequences, you need to first apply alignment programs like [MAFFT](http://mafft.cbrc.jp/alignment/software/) or [ClustalW](http://www.clustal.org) to align the sequences, before feeding them into IQ-TREE.
+>**TIP**: From version 2 you can input a directory of alignment files. IQ-TREE 2 will load and concatenate all alignments within the directory, eliminating the need for users to manually perform this step.
+{: .tip}
 
 First running example
 ---------------------
@@ -99,8 +102,6 @@ should look at this file to see the computational results. It also contains a te
 by any supported tree viewer programs like FigTree or  iTOL. 
 * `example.phy.log`: log file of the entire run (also printed on the screen). To report
 bugs, please send this log file and the original alignment file to the authors.
-
->**NOTE**: Starting with version 1.5.4, with this simple command IQ-TREE will by default perform ModelFinder (see [choosing the right substitution model](#choosing-the-right-substitution-model) below) to find the best-fit substitution model and then infer a phylogenetic tree using the selected model.
 
 For this example data the resulting maximum-likelihood tree may look like this (extracted from `.iqtree` file):
 
@@ -156,9 +157,10 @@ This prevents lost of data if you accidentally re-run IQ-TREE. However, if you r
 
 
 Finally, the default prefix of all output files is the alignment file name. You can  
-change the prefix using the `-pre` option:
+change the prefix with:
 
-    iqtree -s example.phy -pre myprefix
+    iqtree -s example.phy --prefix myprefix
+    # for version 1.x change --prefix to -pre
 
 This prevents output files being overwritten when you perform multiple analyses on the same alignment within the same folder.
 
@@ -174,12 +176,9 @@ NOTE: If you use model selection please cite the following paper:
 
 IQ-TREE supports a wide range of [substitution models](Substitution-Models) for DNA, protein, codon, binary and morphological alignments. If you do not know which model is appropriate for your data, you can use ModelFinder to determine the best-fit model:
 
-    #for IQ-TREE version >= 1.5.4:
     iqtree -s example.phy -m MFP
-    
-    #for IQ-TREE version <= 1.5.3:
-    iqtree -s example.phy -m TESTNEW
-    
+    # change -m MFP to -m TEST to resemble jModelTest/ProtTest
+        
 
 `-m` is the option to specify the model name to use during the analysis. The special `MFP` key word stands for _ModelFinder Plus_, which tells IQ-TREE to perform ModelFinder and the remaining analysis using the selected model. ModelFinder computes the log-likelihoods
 of an initial parsimony tree for many different models and the *Akaike information criterion* (AIC), *corrected Akaike information criterion* (AICc), and the *Bayesian information criterion* (BIC).
@@ -199,34 +198,13 @@ If you now look at `example.phy.iqtree` you will see that IQ-TREE selected `TIM2
 
 Sometimes you only want to find the best-fit model without doing tree reconstruction, then run:
 
-    #for IQ-TREE version >= 1.5.4:
     iqtree -s example.phy -m MF
+    # change -m MF to -m TESTONLY to resemble jModelTest/ProtTest
     
-    #for IQ-TREE version <= 1.5.3:
-    iqtree -s example.phy -m TESTNEWONLY
-
-> **Why ModelFinder?**
-> 
-> - ModelFinder is up to 100 times faster than jModelTest/ProtTest.
->
-> - jModelTest/ProtTest provides the invariable (`+I`) and Gamma rate (`+G`) heterogeneity across sites, but there is no reason to believe that evolution follows a Gamma distribution. ModelFinder additionally considers the [FreeRate heterogeneity model (`+R`)](Substitution-Models#rate-heterogeneity-across-sites), which relaxes the assumption of Gamma distribution, where the site rates and proportions are _free-to-vary_ and inferred independently from the data. Moreover, `+R` allows to automatically determine the number of rate categories, which is impossible with `+G`. This can be important especially for phylogenomic data, where the default 4 rate categories may "underfit" the data.
->
-> - ModelFinder works transparently with tree inference in IQ-TREE, thus combining both steps in just one single run! This eliminates the need for a separate software for DNA (jModelTest) and another for protein sequences (ProtTest).
->
-> - Apart from DNA and protein sequences, ModelFinder also works with codon, binary and morphological sequences.
->
-> - ModelFinder can also find best partitioning scheme just like PartitionFinder ([Lanfear et al., 2012]). See [advanced tutorial for more details](Advanced-Tutorial).
->
-> If you still want to resembles jModelTest/ProtTest, then use option `-m TEST` or `-m TESTONLY` instead.
-{: .tip}
-
 By default, the maximum number of categories is limitted to 10 due to computational reasons. If your sequence alignment is long enough, then you can increase this upper limit with the `cmax` option:
 
-    #for IQ-TREE version >= 1.5.4:
     iqtree -s example.phy -m MF -cmax 15
     
-    #for IQ-TREE version <= 1.5.3:
-    iqtree -s example.phy -m TESTNEWONLY -cmax 15
 
 will test `+R2` to `+R15` instead of at most `+R10`.
 
@@ -234,11 +212,8 @@ To reduce computational burden, one can use the option `-mset` to restrict the t
 
 If you have enough computational resource, you can perform a thorough and more accurate analysis that invokes a full tree search for each model considered via the `-mtree` option:
 
-    #for IQ-TREE version >= 1.5.4:
     iqtree -s example.phy -m MF -mtree
 
-    #for IQ-TREE version <= 1.5.3:
-    iqtree -s example.phy -m TESTNEWONLY -mtree
 
 
 Using codon models
@@ -254,8 +229,6 @@ If your alignment length is not divisible by 3, IQ-TREE will stop with an error 
 Note that the above command assumes the standard genetic code. If your sequences follow 'The Invertebrate Mitochondrial Code' (see [the full list of supported genetic code here](Substitution-Models#codon-models)), then run:
 
     iqtree -s coding_gene.phy -st CODON5 
-
-Note that ModelFinder works for codon alignments. IQ-TREE version >= 1.5.4 will automatically invokes ModelFinder to find the best-fit codon model. For version <= 1.5.3, use option `-m TESTNEW` (ModelFinder and tree inference) or `-m TESTNEWONLY` (ModelFinder only).
 
 
 Binary, morphological and SNP data
@@ -293,11 +266,8 @@ In such cases, you should apply [ascertainment bias correction](Substitution-Mod
 
 You can again select the best-fit binary/morphological model:
 
-    #for IQ-TREE version >= 1.5.4:
     iqtree -s morphology.phy -st MORPH
 
-    #for IQ-TREE version <= 1.5.3:
-    iqtree -s morphology.phy -st MORPH -m TESTNEW
 
 For SNP data (DNA) that typically do not contain constant sites, you can explicitly tell the model to include
 ascertainment bias correction:
@@ -306,28 +276,26 @@ ascertainment bias correction:
 
 You can explicitly tell model testing to only include  `+ASC` model with:
 
-    #for IQ-TREE version >= 1.5.4:
     iqtree -s SNP_data.phy -m MFP+ASC
 
-    #for IQ-TREE version <= 1.5.3:
-    iqtree -s SNP_data.phy -m TESTNEW+ASC
 
 
 Assessing branch supports with ultrafast bootstrap approximation
 ----------------------------------------------------------------
 <div class="hline"></div>
 
-To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]; [Hoang et al., in press]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. Citation for UFBoot:
+To overcome the computational burden required by the nonparametric bootstrap, IQ-TREE introduces an ultrafast bootstrap approximation (UFBoot) ([Minh et al., 2013]; [Hoang et al., 2018]) that is  orders of magnitude faster than the standard procedure and provides relatively unbiased branch support values. Citation for UFBoot:
 
-> __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2017) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, in press. 
+> __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2018) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, 35:518–522. 
     <https://doi.org/10.1093/molbev/msx281>
 
 
-To run UFBoot, use the option  `-bb`:
+To run UFBoot:
 
-    iqtree -s example.phy -m TIM2+I+G -bb 1000
+    iqtree -s example.phy -m TIM2+I+G -B 1000
+    # for version 1.x change -B to -bb
 
- `-bb`  specifies the number of bootstrap replicates where 1000
+ `-B`  specifies the number of bootstrap replicates where 1000
 is the minimum number recommended. The section  `MAXIMUM LIKELIHOOD TREE` in  `example.phy.iqtree` shows a textual representation of the maximum likelihood tree with branch support values in percentage. The NEWICK format of the tree is printed to the file  `example.phy.treefile`. In addition, IQ-TREE writes the following files:
 
 * `example.phy.contree`: the consensus tree with assigned branch supports where branch lengths are optimized  on the original alignment.
@@ -346,7 +314,9 @@ Starting with IQ-TREE version 1.6 we provide a new option `-bnni` to reduce the 
 
 Thus, if severe model violations are present in the data set at hand, users are advised to append `-bnni` to the regular UFBoot command:
 
-    iqtree -s example.phy -m TIM2+I+G -bb 1000 -bnni
+    iqtree -s example.phy -m TIM2+I+G -B 1000 -bnni
+    # for version 1.x change -B to -bb
+    
 
 
 Assessing branch supports with  standard nonparametric bootstrap
@@ -376,7 +346,8 @@ IQ-TREE also supports other tests such as the aBayes test ([Anisimova et al., 20
 
 You can also perform both SH-aLRT and the ultrafast bootstrap within one single run:
 
-    iqtree -s example.phy -m TIM2+I+G -alrt 1000 -bb 1000
+    iqtree -s example.phy -m TIM2+I+G -alrt 1000 -B 1000
+    # for version 1.x change -B to -bb
 
 The branches of the resulting `.treefile` will be assigned with both SH-aLRT and UFBoot support values, which are readable by any tree viewer program like FigTree, Dendroscope or ETE. You can also look at the textual tree figure in `.iqtree` file:
 
@@ -425,16 +396,18 @@ Utilizing multi-core CPUs
 -------------------------
 <div class="hline"></div>
 
-IQ-TREE can utilize multiple CPU cores to speed up the analysis. A complement option `-nt` allows specifying the number of CPU cores to use. Note that for old IQ-TREE versions <= 1.5.X, please change the executable from `iqtree` to `iqtree-omp` for all commands below. For example:
+IQ-TREE can utilize multiple CPU cores to speed up the analysis. A complement option `-T` (or `-nt` for version 1.x) allows specifying the number of CPU cores to use. For example:
 
-    iqtree -s example.phy -m TIM2+I+G -nt 2
-
+    iqtree -s example.phy -m TIM2+I+G -T 2
+    # for version 1.x change -T to -nt
+    
 
 Here, IQ-TREE will use 2 CPU cores to perform the analysis. 
 
-Note that the parallel efficiency is only good for long alignments. A good practice is to use `-nt AUTO` to determine the best number of cores:
+Note that the parallel efficiency is only good for long alignments. A good practice is to use `-T AUTO` to determine the best number of cores:
 
-    iqtree -s example.phy -m TIM2+I+G -nt AUTO
+    iqtree -s example.phy -m TIM2+I+G -T AUTO
+    # for version 1.x change -T to -nt
 
 Then while running IQ-TREE may print something like this on to the screen:
 
@@ -449,7 +422,8 @@ Therefore, I would only use 3 cores for this example data. For later analysis wi
 
 Depending on the compute system it might be required to set an upper limit of CPU cores that can automatically be assigned. Use the `-ntmax` option to do so. For instance
 
-    iqtree -s example.phy -m TIM2+I+G -nt AUTO -ntmax 8
+    iqtree -s example.phy -m TIM2+I+G -T AUTO -ntmax 8
+    # for version 1.x change -T to -nt
 
 does the same as above, but only allows to use up to 8 CPU cores. By default all cores of the current machine would be used as maximum.
 
@@ -465,7 +439,7 @@ Once confident enough you can go on with a **[more advanced tutorial](Advanced-T
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
 [Gadagkar et al., 2005]: https://doi.org/10.1002/jez.b.21026
 [Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
-[Hoang et al., in press]: https://doi.org/10.1093/molbev/msx281
+[Hoang et al., 2018]: https://doi.org/10.1093/molbev/msx281
 [Lanfear et al., 2012]: https://doi.org/10.1093/molbev/mss020
 [Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
 [Lewis, 2001]: https://doi.org/10.1080/106351501753462876
