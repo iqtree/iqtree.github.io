@@ -1,12 +1,12 @@
 ---
 layout: userdoc
 title: |
-    IQ-TREE version 1.6.8: Tutorials and Manual
+    IQ-TREE version 2.0: Tutorials and Manual
     Phylogenomic software by maximum likelihood
     
 subtitle: "<http://www.iqtree.org>"
 author: Bui Quang Minh, Jana Trifinopoulos, Dominik Schrempf, Heiko A. Schmidt
-date: November 30, 2018
+date: December 1, 2019
 keywords: [phylogenomic inference, maximum likelihood]
 toc: true
 papersize: A4
@@ -17,7 +17,7 @@ fontsize: 12pt
 linkcolor: blue
 urlcolor: blue
 toccolor: black
-institute: Center for Integrative Bioinformatics Vienna, <http://www.cibiv.at>
+institute: Australian National University, <https://www.anu.edu.au>
 include-before: |
   **Preface**
   

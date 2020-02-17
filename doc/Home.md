@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Introduction"
 author: Jana Trifinopoulos, M Bui, Minh Bui, Nltung
-date:    2019-08-08
+date:    2019-12-01
 docid: 0
 icon: info-circle
 doctype: tutorial
@@ -120,38 +120,41 @@ How to cite IQ-TREE?
 >
 > * Example 2: *We inferred the maximum-likelihood tree using the edge-linked partition model in IQ-TREE (Chernomor et al., 2016; Nguyen et al., 2015).*
 
-If you used the heterotachy model (GHOST) please cite:
+If you performed the tests of symmetry, please cite:
 
-* __S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin, A. von Haeseler__ (2019) GHOST: Recovering historical signal from heterotachously-evolved sequence alignments. *Syst. Biol.*, in press. [DOI: 10.1093/sysbio/syz051](https://doi.org/10.1093/sysbio/syz051)
-
-If you performed the ultrafast bootstrap (UFBoot) please cite:
-
-* __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2018) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, 35:518–522. [DOI: 10.1093/molbev/msx281](https://doi.org/10.1093/molbev/msx281)
-
-If you used posterior mean site frequency model please cite:
-
-* __H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger__ (2018) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. _Syst. Biol._, 67:216-235. [DOI: 10.1093/sysbio/syx068](https://doi.org/10.1093/sysbio/syx068)
-
-If you used ModelFinder please cite:
-
-* __S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, and L.S. Jermiin__ (2017) ModelFinder: Fast Model Selection for Accurate Phylogenetic Estimates, *Nature Methods*, 14:587–589. [DOI: 10.1038/nmeth.4285](https://doi.org/10.1038/nmeth.4285)
-
-If you performed tree reconstruction please cite:
-
-* __L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh__ (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. *Mol. Biol. Evol.*, 32:268-274. [DOI: 10.1093/molbev/msu300](https://doi.org/10.1093/molbev/msu300)
-
-If you used partition models e.g., for phylogenomic analysis please cite:
-
-* __O. Chernomor, A. von Haeseler, and B.Q. Minh__ (2016) Terrace aware data structure for phylogenomic inference from supermatrices. *Syst. Biol.*, 65:997-1008. [DOI: 10.1093/sysbio/syw037](https://doi.org/10.1093/sysbio/syw037)
+* __S. Naser-Khdour, B.Q. Minh, W. Zhang, E.A. Stone, R. Lanfear__ (2019) The prevalence and pmpact of model violations in phylogenetic analysis, _Genome Biol. Evol._, in press. <https://doi.org/10.1093/gbe/evz193>
 
 If you used the polymorphism-aware models please cite:
 
-* __D. Schrempf, B.Q. Minh, N. De Maio, A. von Haeseler, and C. Kosiol__ (2016) Reversible polymorphism-aware phylogenetic models and their application to tree inference. *J. Theor. Biol.*, 407:362–370. [DOI: 10.1016/j.jtbi.2016.07.042](https://doi.org/10.1016/j.jtbi.2016.07.042)
+* __D. Schrempf, B.Q. Minh, A. von Haeseler, and C. Kosiol__ (2019) Polymorphism-aware species trees with advanced mutation models, bootstrap, and rate heterogeneity. *Mol. Biol. Evol.*, 36:1294-1301. <https://doi.org/10.1093/molbev/msz043>
 
+If you used the heterotachy model (GHOST) please cite:
+
+* __S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin, A. von Haeseler__ (2019) GHOST: Recovering historical signal from heterotachously-evolved sequence alignments. *Syst. Biol.*, in press. <https://doi.org/10.1093/sysbio/syz051>
+
+If you performed the ultrafast bootstrap (UFBoot) please cite:
+
+* __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2018) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, 35:518–522. <https://doi.org/10.1093/molbev/msx281>
+
+If you used posterior mean site frequency model please cite:
+
+* __H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger__ (2018) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. _Syst. Biol._, 67:216-235. <https://doi.org/10.1093/sysbio/syx068>
+
+If you used ModelFinder please cite:
+
+* __S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, and L.S. Jermiin__ (2017) ModelFinder: Fast Model Selection for Accurate Phylogenetic Estimates, *Nature Methods*, 14:587–589. <https://doi.org/10.1038/nmeth.4285>
+
+If you performed tree reconstruction please cite:
+
+* __L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh__ (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. *Mol. Biol. Evol.*, 32:268-274. <https://doi.org/10.1093/molbev/msu300>
+
+If you used partition models e.g., for phylogenomic analysis please cite:
+
+* __O. Chernomor, A. von Haeseler, and B.Q. Minh__ (2016) Terrace aware data structure for phylogenomic inference from supermatrices. *Syst. Biol.*, 65:997-1008. <https://doi.org/10.1093/sysbio/syw037>
 
 If you used the [IQ-TREE web server](http://iqtree.cibiv.univie.ac.at/) please cite:
 
-* __J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, and B.Q. Minh__ (2016) W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis. *Nucleic Acids Res.*, 44 (W1):W232-W235. [DOI: 10.1093/nar/gkw256](https://doi.org/10.1093/nar/gkw256)
+* __J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, and B.Q. Minh__ (2016) W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis. *Nucleic Acids Res.*, 44 (W1):W232-W235. <https://doi.org/10.1093/nar/gkw256>
 
 
 Development team
@@ -160,7 +163,9 @@ Development team
 
 IQ-TREE is actively developed by:
 
-**Bui Quang Minh**, _Team leader_, Designs and implements software core, ultrafast bootstrap, model selection.
+**Bui Quang Minh**, _Team leader_, Designs and implements software core, tree search, ultrafast bootstrap, model selection.
+
+**Robert Lanfear**, _Co-leader_, Model selection.
 
 **Olga Chernomor**, _Developer_, Implements partition models.
 
@@ -172,7 +177,7 @@ IQ-TREE is actively developed by:
 
 **Diep Thi Hoang**, _Developer_, Improves ultrafast bootstrap.
 
-**Arndt von Haeseler**, _Advisor_, Provides advice and financial support.
+**Arndt von Haeseler**, _Advisor_.
 
 Past members:
 
@@ -190,7 +195,7 @@ Some parts of the code were taken from the following packages/libraries: [Phylog
 [SPRNG library](http://www.sprng.org), [Zlib library](http://www.zlib.net), gzstream library, [vectorclass library](http://www.agner.org/optimize/), [GNU scientific library](https://www.gnu.org/software/gsl/).
 
 
-IQ-TREE was partially funded by the [Austrian Science Fund - FWF](http://www.fwf.ac.at/) (grant no. I760-B17 from 2012-2015 and and I 2508-B29 from 2016-2019) and the [University of Vienna](https://www.univie.ac.at/) (Initiativkolleg I059-N).
+IQ-TREE was funded by the [Austrian Science Fund](http://www.fwf.ac.at/) (grant no. I760-B17 from 2012-2015 and I 2508-B29 from 2016-2017), the [University of Vienna](https://www.univie.ac.at/) (Initiativkolleg I059-N from 2012-2015), the [Australian National University](https://www.anu.edu.au) (2018-onwards), [Chan-Zuckerberg Initiative](https://chanzuckerberg.com) (2020).
 
 
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041

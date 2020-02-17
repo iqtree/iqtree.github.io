@@ -19,7 +19,7 @@ doctypes:
     <div class="row">
         {% for dt in page.doctypes %}
         <div class="col-sm-6">
-            {% assign sorted_posts = (site.pages | where: 'doctype', dt | sort: 'docid') %}
+            {% assign sorted_posts = site.pages | where: 'doctype', dt | sort: 'docid' %}
             {% for post in sorted_posts %}
             <!-- Document -->
             <div class="well">

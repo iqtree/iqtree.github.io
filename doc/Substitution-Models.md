@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Substitution Models"
-author: Heiko Schmidt, Jana Trifinopoulos, Minh Bui
-date:    2018-11-19
+author: Heiko Schmidt, Jana Trifinopoulos, M Bui, Minh Bui
+date:    2019-12-01
 docid: 10
 icon: book
 doctype: manual
@@ -159,31 +159,31 @@ Protein models
 
 IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabetical order):
 
-| Model | Explanation |
-|----------|------------------------------------------------------------------------|
-| BLOSUM62 | BLOcks SUbstitution Matrix ([Henikoff and Henikoff, 1992]). Note that `BLOSUM62` is not recommended for phylogenetic analysis as it was designed mainly for sequence alignments. |
-| cpREV    | chloroplast matrix ([Adachi et al., 2000]). |
-| Dayhoff  | General matrix ([Dayhoff et al., 1978]). |
-| DCMut    | Revised `Dayhoff` matrix ([Kosiol and Goldman, 2005]). |
-| FLU      | Influenza virus ([Dang et al., 2010]). |
-| HIVb     | HIV between-patient matrix HIV-B<sub>m</sub> ([Nickle et al., 2007]). |
-| HIVw     | HIV within-patient matrix HIV-W<sub>m</sub> ([Nickle et al., 2007]). |
-| JTT      | General matrix ([Jones et al., 1992]). |
-| JTTDCMut | Revised `JTT` matrix ([Kosiol and Goldman, 2005]). |
-| LG       | General matrix ([Le and Gascuel, 2008]). |
-| mtART    | Mitochondrial Arthropoda ([Abascal et al., 2007]). |
-| mtMAM    | Mitochondrial Mammalia ([Yang et al., 1998]). |
-| mtREV    | Mitochondrial Vertebrate ([Adachi and Hasegawa, 1996]). |
-| mtZOA    | Mitochondrial Metazoa (Animals) ([Rota-Stabelli et al., 2009]). |
-| mtMet    | Mitochondrial Metazoa ([Vinh et al., 2017]). |
-| mtVer    | Mitochondrial Vertebrate ([Vinh et al., 2017]). |
-| mtInv    | Mitochondrial Inverterbrate ([Vinh et al., 2017]). |
-| Poisson  | Equal amino-acid exchange rates and frequencies. |
-| PMB      | Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]). |
-| rtREV    | Retrovirus ([Dimmic et al., 2002]). |
-| VT       | General 'Variable Time' matrix ([Mueller and Vingron, 2000]). |
-| WAG      | General matrix ([Whelan and Goldman, 2001]). |
-| GTR20    | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments).* |
+| Model | Region | Explanation |
+|-------|--------|---------------------------------------------------------------|
+| Blosum62 | nuclear | BLOcks SUbstitution Matrix ([Henikoff and Henikoff, 1992]). Note that `BLOSUM62` is not recommended for phylogenetic analysis as it was designed mainly for sequence alignments. |
+| cpREV    | chloroplast |chloroplast matrix ([Adachi et al., 2000]). |
+| Dayhoff  | nuclear | General matrix ([Dayhoff et al., 1978]). |
+| DCMut    | nuclear | Revised `Dayhoff` matrix ([Kosiol and Goldman, 2005]). |
+| FLU      | viral | Influenza virus ([Dang et al., 2010]). |
+| HIVb     | viral | HIV between-patient matrix HIV-B<sub>m</sub> ([Nickle et al., 2007]). |
+| HIVw     | viral | HIV within-patient matrix HIV-W<sub>m</sub> ([Nickle et al., 2007]). |
+| JTT      | nuclear | General matrix ([Jones et al., 1992]). |
+| JTTDCMut | nuclear | Revised `JTT` matrix ([Kosiol and Goldman, 2005]). |
+| LG       | nuclear | General matrix ([Le and Gascuel, 2008]). |
+| mtART    | mitochondrial | Mitochondrial Arthropoda ([Abascal et al., 2007]). |
+| mtMAM    | mitochondrial | Mitochondrial Mammalia ([Yang et al., 1998]). |
+| mtREV    | mitochondrial | Mitochondrial Vertebrate ([Adachi and Hasegawa, 1996]). |
+| mtZOA    | mitochondrial | Mitochondrial Metazoa (Animals) ([Rota-Stabelli et al., 2009]). |
+| mtMet    | mitochondrial | Mitochondrial Metazoa ([Vinh et al., 2017]). |
+| mtVer    | mitochondrial | Mitochondrial Vertebrate ([Vinh et al., 2017]). |
+| mtInv    | mitochondrial | Mitochondrial Inverterbrate ([Vinh et al., 2017]). |
+| Poisson  | none | Equal amino-acid exchange rates and frequencies. |
+| PMB      | nuclear | Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]). |
+| rtREV    | viral | Retrovirus ([Dimmic et al., 2002]). |
+| VT       | nuclear | General 'Variable Time' matrix ([Mueller and Vingron, 2000]). |
+| WAG      | nuclear | General matrix ([Whelan and Goldman, 2001]). |
+| GTR20    | general | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments).* |
 
 ### Protein mixture models
 
