@@ -3,7 +3,7 @@ layout: userdoc
 title: "Concordance Factor"
 author: _AUTHOR_
 date: _DATE_
-docid: 6
+docid: 5
 icon: info-circle
 doctype: tutorial
 tags:
