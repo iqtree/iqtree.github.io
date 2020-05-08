@@ -3,9 +3,9 @@ layout: default
 title: "IQ-TREE: Efficient phylogenomic software by maximum likelihood"
 permalink: /
 version: 1.6.12
-version_new: 2.0-rc2
+version_new: 2.0.4
 releasedate: August 15, 2019
-releasedate_new: March 28, 2020
+releasedate_new: April 27, 2020
 ---
 <!-- ========================== HEADER ========================== -->
 <div id="headerwrap">
@@ -79,6 +79,7 @@ releasedate_new: March 28, 2020
             <div class="list-group">
                 <div class="list-group-item list-group-item-success">
                     <h4 class="centered">LATEST NEWS</h4>
+                    April 24, 2020: <a href="doc/Dating">Phylogenetic dating</a> is now available in v2.0.3.<br>
                     One <a href="news/phd-position">PhD position</a> and one software engineer available. Please contact m.bui (-a-) anu.edu.au<br>
                 </div>
             </div>
@@ -306,7 +307,7 @@ releasedate_new: March 28, 2020
 		        	{% endfor %}
 		        </strong> 
 		        ({{pub.issued.year}}) {{pub.title}}.
-		        <EM>{{pub.container-title}}</EM>{% if pub.issue %}, {{pub.issue}}:{{pub.page}}. {% endif %}
+		        <EM>{{pub.container-title}}</EM>{% if pub.volume %}, {{pub.volume}}:{{pub.page}}. {% endif %}
 		        <A href="https://doi.org/{{pub.DOI}}">https://doi.org/{{pub.DOI}}</A>
 		    </div><!--col-->
 	        <div class="col-xs-2  col-md-1">

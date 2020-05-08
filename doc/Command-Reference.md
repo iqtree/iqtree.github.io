@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Command Reference"
 author: Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, M Bui, Minh Bui
-date:    2018-11-29
+date:    2020-04-24
 docid: 7
 icon: book
 doctype: tutorial
@@ -640,7 +640,7 @@ Miscellaneous options
 |-----------|------------------------------------------------------------------------------|
 | `-alninfo` | Print alignment site statistics to `.alninfo` file. |
 | `-blfix`   | Fix branch lengths of tree passed via `-t` or `-te`. This is useful to evaluate the log-likelihood of an input tree with fixed tolopogy and branch lengths. *DEFAULT: OFF* |
-| `-blmin`  | Specify minimum branch length. Default: the smaller of 0.000001 and alignment length divided by 10. |
+| `-blmin`  | Specify minimum branch length. Default: the smaller of 0.000001 and 0.1/alignment_length. |
 | `-blmax`  | Specify the maximum branch length. Default: 10 |
 | `-czb`    | Collapse near zero branches, so that the final tree may be multifurcating. This is useful for bootstrapping in the presence of polytomy to reduce bootstrap supports of short branches. |
 | `-me`      | Specify the log-likelihood epsilon for final model parameter estimation (Default: 0.01). With `-fast` option, the epsilon is raised to 0.05. | 
