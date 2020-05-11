@@ -16,12 +16,16 @@ sections:
     url: calibrating-tree-using-ancestral-dates
   - name: Dating an existing tree
     url: dating-an-existing-tree
+  - name: Obtaining confidence intervals
+    url: obtaining-confidence-intervals
+  - name: Full list of LSD2 options
+    url: full-list-of-lsd2-options
 ---
 
 Phylogenetic Dating
 ===================
 
-Since IQ-TREE 2.0.3, we integrate the least square dating (LSD) method to build a time tree when you have date information for tips or ancestral nodes. So if you use this feature please cite: 
+Since IQ-TREE 2.0.3, we integrate the least square dating (LSD2) method to build a time tree when you have date information for tips or ancestral nodes. So if you use this feature please cite: 
 
 __Thu-Hien To, Matthieu Jung, Samantha Lycett, Olivier Gascuel__ (2016)
 Fast dating using least-squares criteria and algorithms. _Syst. Biol._ 65:82-97.
@@ -35,9 +39,7 @@ TIME TREE RECONSTRUCTION:
   --date TAXNAME       Extract dates from taxon names after last '|'
   --date-tip STRING    Tip dates as a real number or YYYY-MM-DD
   --date-root STRING   Root date as a real number or YYYY-MM-DD
-  --dating STRING      Dating method: LSD for least square dating (default)
-  --date-options "..." Any other options you would like to pass to LSD2 (full list of options is reproduced below)
-
+  --date-options "..." Any other options you would like to pass to LSD2
 ```
 
 >**DISCLAIMER**: This is a new feature and might still have bugs. So any suggestions and bug reports are much welcome.
@@ -143,12 +145,25 @@ Dating an existing tree
 
 If you already have a tree, you can use option `-te TREE_FILE` to ask IQ-TREE to load and fix this tree topology. This will work with the scenarios above, i.e., IQ-TREE will date the user-defined tree instead of the ML tree. To further speed up the process: If you know the model already, you set can it via `-m` option; or in a partitioned analysis, you can provide a partition file with specified models.
 
+Obtaining confidence intervals
+------------------------------
+
+To infer the confidence interval of the estimated dates, use:
+
+	iqtree -s ALN_FILE --date DATE_FILE --date-options "-f 100"
+
+which will resample branch lengths 100 times to infer the confidence intervals. Note that this is not bootstrap and the method is much faster but unpublished. But here are some information from Thu-Hien To: 
+
+> Assuming that each branch length (in term of number of substitutions)  follows a Poisson distribution with mean is the true branch length (~the estimated branch length * seq_len), we sample each branch length 100 times using its distribution – to generate 100 trees.
+We apply furthermore a relax clock on branch lengths to fit with various relaxed level of input trees that using sequence length alone is not enough. Relaxed trees have branch lengths fluctuate more than strict tree, so we need to multiply the branch lengths of simulated trees with a lognormal distribution. 
+
+
 Full list of LSD2 options
 -------------------------
 
 The main options in IQ-TREE provide easy access to the key LSD2 functions. If you would like more control of what LSD2 is doing, you can use the `--date-options "..."` command to pass any valid options to LSD2. For example, to control the way that LSD2 treats outliers, you can do this:
 
-	iqtree -s ALN_FILE --date DATE_FILE --date-options "-z 2"
+	iqtree -s ALN_FILE --date DATE_FILE --date-options "-e 2"
 
 A full list of the options for LSD2 can be obtained by downloading LSD2 and running `lsd2 -h`, the output of that command is reproduced here for convenience:
 
