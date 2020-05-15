@@ -18,6 +18,8 @@ sections:
     url: dating-an-existing-tree
   - name: Obtaining confidence intervals
     url: obtaining-confidence-intervals
+  - name: Excluding outlier taxa/nodes
+    url: excluding-outlier-taxanodes
   - name: Full list of LSD2 options
     url: full-list-of-lsd2-options
 ---
@@ -39,10 +41,16 @@ TIME TREE RECONSTRUCTION:
   --date TAXNAME       Extract dates from taxon names after last '|'
   --date-tip STRING    Tip dates as a real number or YYYY-MM-DD
   --date-root STRING   Root date as a real number or YYYY-MM-DD
-  --date-options "..." Any other options you would like to pass to LSD2
+  --date-ci NUM        Number of replicates to compute confidence interval
+  --clock-sd NUM       Std-dev for lognormal relaxed clock (default: 0.2)
+  --date-outgroup      Include outgroup in time tree (default: no)
+  --date-outlier NUM   Z-score cutoff to exclude outlier nodes (e.g. 3)
+  --date-options ".."  Extra options passing directly to LSD2
 ```
 
->**DISCLAIMER**: This is a new feature and might still have bugs. So any suggestions and bug reports are much welcome.
+>**DISCLAIMER**: Please download version 2.0.5 with new options like `--date-ci`. 
+>
+>This feature is new and might still have bugs. So suggestions and bug reports are much welcome.
 
 Inferring time tree with tip dates
 ----------------------------------
@@ -143,20 +151,30 @@ root  -200
 Dating an existing tree
 -----------------------
 
-If you already have a tree, you can use option `-te TREE_FILE` to ask IQ-TREE to load and fix this tree topology. This will work with the scenarios above, i.e., IQ-TREE will date the user-defined tree instead of the ML tree. To further speed up the process: If you know the model already, you set can it via `-m` option; or in a partitioned analysis, you can provide a partition file with specified models.
+If you already have a tree, you can use option `-te TREE_FILE` to ask IQ-TREE to load and fix this tree topology:
+
+	iqtree -s ALN_FILE --date DATE_FILE -te TREE_FILE
+
+This will work with the scenarios above, i.e., IQ-TREE will date the user-defined tree instead of the ML tree. To further speed up the process: If you know the model already, you set can it via `-m` option; or in a partitioned analysis, you can provide a partition file with specified models.
 
 Obtaining confidence intervals
 ------------------------------
 
 To infer the confidence interval of the estimated dates, use:
 
-	iqtree -s ALN_FILE --date DATE_FILE --date-options "-f 100"
+	iqtree -s ALN_FILE --date DATE_FILE --date-ci 100
 
-which will resample branch lengths 100 times to infer the confidence intervals. Note that this is not bootstrap and the method is much faster but unpublished. But here are some information from Thu-Hien To: 
+which will resample branch lengths 100 times to infer the confidence intervals. Note that this is not bootstrap and the method is much faster but unpublished. Roughly speaking, it is based on a mixture of Poisson and lognormal distributions for a relaxed clock model. You can control the standard deviation of the lognormal distribution via `--clock-sd` option. The default is 0.2. If you set a higher value, the confidence interval will become wider.
 
-> Assuming that each branch length (in term of number of substitutions)  follows a Poisson distribution with mean is the true branch length (~the estimated branch length * seq_len), we sample each branch length 100 times using its distribution – to generate 100 trees.
-We apply furthermore a relax clock on branch lengths to fit with various relaxed level of input trees that using sequence length alone is not enough. Relaxed trees have branch lengths fluctuate more than strict tree, so we need to multiply the branch lengths of simulated trees with a lognormal distribution. 
 
+Excluding outlier taxa/nodes
+----------------------------
+
+Long branches may cause biased date estimates. To detect and exclude outlier taxa or nodes prior to dating, use `--date-outlier` option:
+
+	iqtree -s ALN_FILE --date DATE_FILE --date-outlier 3
+
+that specifies a z-score threshold to detect outliers. The higher this value is, the more outliers will be removed from the resulting time tree.
 
 Full list of LSD2 options
 -------------------------
