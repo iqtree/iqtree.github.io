@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Frequently Asked Questions"
-author: Heiko Schmidt, Jana Trifinopoulos, Minh Bui
-date:    2018-11-27
+author: Heiko Schmidt, Jana Trifinopoulos, M Bui, Minh Bui
+date:    2020-05-31
 docid: 9
 icon: question-circle
 doctype: manual
@@ -200,8 +200,12 @@ The standard bootstrap is rather slow and may take weeks/months for large data s
         iqtree -con -t alltrees
         
     The consensus tree is then written to `.contree` file.
+    
+4. Estimate branch lengths of the consensus tree using the original alignment:
+
+		iqtree -s input_alignment -te alltrees.contree -pre alltrees.contree
      
-4. You can also perform the analysis on the original alignment:
+5. You can also perform the analysis on the original alignment:
 
         # For old IQ-TREE versions <= 1.5.X, change iqtree to iqtree-omp
         iqtree -nt 4 -s input_alignment ...
