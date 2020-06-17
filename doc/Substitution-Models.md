@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Substitution Models"
 author: Heiko Schmidt, Jana Trifinopoulos, M Bui, Minh Bui
-date:    2019-12-01
+date:    2020-06-03
 docid: 10
 icon: book
 doctype: manual
@@ -78,7 +78,7 @@ Moreover, IQ-TREE supports arbitrarily restricted DNA model via a 6-digit code, 
 
 If users want to fix model parameters, append the model name with a curly bracket `{`, followed by the comma-separated rate parameters, and a closing curly bracket `}`. For example, `GTR{1.0,2.0,1.5,3.7,2.8}` specifies 6 substitution rates A-C=1.0, A-G=2.0, A-T=1.5, C-G=3.7, C-T=2.8 and G-T=1.0. 
 
-Another example is for model `TIM2` that has the 6-digit code `010232`. Thus, `TIM2{4.39,5.30,12.1}` means that A-C=A-T=4.39 (coded `1`), A-G=5.30 (coded `2`), C-T=12.1 (coded `3`) and C-G=G-T=1.0 (coded `0`). This is, in turn, equivalent to specifying `GTR{4.39,5.30,4.39,1.0,12.1}`.
+Another example is for model `TIM2` that has the 6-digit code `010232`. Thus, `TIM2{4.39,5.30,12.1}` means that A-C=A-T=4.39 (coded `0`), A-G=5.30 (coded `1`), C-T=12.1 (coded `3`) and C-G=G-T=1.0 (coded `2`). This is, in turn, equivalent to specifying `GTR{4.39,5.30,4.39,1.0,12.1}`.
 
 
 ### Base frequencies

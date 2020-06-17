@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Phylogenetic Dating"
 author: M Bui, Rob Lanfear
-date:    2020-05-31
+date:    2020-06-03
 docid: 6
 icon: info-circle
 doctype: tutorial
@@ -140,7 +140,9 @@ taxon3,taxon4,taxon5  -100
 taxon6                -10
 ```
 
-which, for example, mean that the most recent common ancestor (MRCA) of `taxon1` and `taxon2` was 50 mya (million year ago) and the MRCA of `taxon3`, `taxon4`, `taxon5` was 100 mya. Now run IQ-TREE:
+which, for example, mean that the most recent common ancestor (MRCA) of `taxon1` and `taxon2` was 50 mya (million year ago) and the MRCA of `taxon3`, `taxon4`, `taxon5` was 100 mya. Note that **no empty space** should be added to the comma-separated list of taxa, as empty space is used as a separator between taxon list and dates.
+
+Now run IQ-TREE:
 
     iqtree -s ALN_FILE --date DATE_FILE --date-tip 0
     
