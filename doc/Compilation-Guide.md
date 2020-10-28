@@ -113,7 +113,7 @@ Compiling under Mac OS X
 ------------------------
 <div class="hline"></div>
 
->**TIP**: A ready made IQ-TREE package is provided by * [Homebrew](https://github.com/brewsci/homebrew-science/blob/master/Formula/iqtree.rb) by simply running `brew install homebrew/science/iqtree`.
+>**TIP**: A ready made IQ-TREE package is provided by * [Homebrew](https://github.com/brewsci/homebrew-science/blob/master/Formula/iqtree.rb) by simply running `brew install homebrew/science/iqtree2`.
 {: .tip}
 
 * Make sure that Clang compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
