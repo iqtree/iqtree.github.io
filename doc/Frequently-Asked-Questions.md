@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Frequently Asked Questions"
 author: Heiko Schmidt, Jana Trifinopoulos, M Bui, Minh Bui
-date:    2020-05-31
+date:    2020-10-28
 docid: 9
 icon: question-circle
 doctype: manual
@@ -30,6 +30,8 @@ sections:
   url: how-do-i-save-time-for-standard-bootstrap
 - name: Why does IQ-TREE complain about the use of +ASC model?
   url: why-does-iq-tree-complain-about-the-use-of-asc-model
+- name: How does IQ-TREE treat identical sequences?
+  url: how-does-iq-tree-treat-identical-sequences
 ---
 
 Frequently asked questions
@@ -239,6 +241,12 @@ All these sites must be removed from the alignment before a +ASC model can be ap
 >**TIP**: Starting with IQ-TREE version 1.5.0, an output alignment file with suffix `.varsites` is written in such cases, which contain only variable sites from the input alignment. The `.varsites` alignment can then be used with the +ASC model.
 {: .tip}
 
+How does IQ-TREE treat identical sequences?
+-------------------------------------------
+
+Among a group of identical sequences, IQ-TREE will keep the first two and ignore the rest. If the sequence is the 2nd one, it will be “kept for subsequent analysis”. If it is the 3rd or more, it will be “ignored but added at the end”. The rationale for this is to still be able to calculate the bootstrap support for this group of identical sequences: it is not always 100%. Because by bootstrap resampling, on average only two third of the sites will be present in a bootstrap alignment (due to sampling with replacement), and suddenly another sequence not in this group may actually become identical to this group of sequences. In that case, the bootstrap value will be < 100%.
+
+Therefore, the `.uniqueseq.phy` printed by IQ-TREE may still contain the identical sequences, but no more than two of each identical group.
 
 [Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
 [Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024

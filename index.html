@@ -3,9 +3,11 @@ layout: default
 title: "IQ-TREE: Efficient phylogenomic software by maximum likelihood"
 permalink: /
 version: 1.6.12
-version_new: 2.0.6
+version_new: 2.1.2
 releasedate: August 15, 2019
-releasedate_new: June 12, 2020
+releasedate_new: October 22, 2020
+v1_url: https://github.com/Cibiv/IQ-TREE/releases/download
+v2_url: https://github.com/iqtree/iqtree2/releases/download
 ---
 <!-- ========================== HEADER ========================== -->
 <div id="headerwrap">
@@ -16,15 +18,15 @@ releasedate_new: June 12, 2020
             <h3>Efficient software for phylogenomic inference</h3>
             <h3>Stable release {{page.version}} ({{page.releasedate}})</h3>
             <p>
-            <a id="downloadwin" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Windows.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version}} for Windows</a>
-            <a id="downloadmac" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-MacOSX.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version}} for macOS</a>
-            <a id="downloadlinux" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Linux.tar.gz" class="btn btn-danger btn-lg" role="button">Download v{{page.version}} for Linux</a>
+            <a id="downloadwin" style="display: none;" href="{{page.v1_url}}/v{{page.version}}/iqtree-{{page.version}}-Windows.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version}} for Windows</a>
+            <a id="downloadmac" style="display: none;" href="{{page.v1_url}}/v{{page.version}}/iqtree-{{page.version}}-MacOSX.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version}} for macOS</a>
+            <a id="downloadlinux" style="display: none;" href="{{page.v1_url}}/v{{page.version}}/iqtree-{{page.version}}-Linux.tar.gz" class="btn btn-danger btn-lg" role="button">Download v{{page.version}} for Linux</a>
             </p>
-            <h3>Release candidate {{page.version_new}} ({{page.releasedate_new}})</h3>
+            <h3>COVID-19 release {{page.version_new}} ({{page.releasedate_new}})</h3>
             <p>
-            <a id="downloadwin_new" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for Windows</a>
-            <a id="downloadmac_new" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-MacOSX.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for macOS</a>
-            <a id="downloadlinux_new" style="display: none;" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux.tar.gz" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for Linux</a>
+            <a id="downloadwin_new" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for Windows</a>
+            <a id="downloadmac_new" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-MacOSX.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for macOS</a>
+            <a id="downloadlinux_new" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux.tar.gz" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for Linux</a>
             </p>
             <p>
             <a id="downloadall" href="#download" class="btn btn-success btn-lg" role="button">All Downloads</a>
@@ -199,8 +201,8 @@ releasedate_new: June 12, 2020
                 <i class="fa fa-windows"></i>
                 <h4>Windows</h4>
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Windows.zip">64-bit multicore Windows</a>
-                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Windows32.zip">32-bit multicore Windows</a>
+                    <a class="list-group-item list-group-item-info" href="{{page.v1_url}}/v{{page.version}}/iqtree-{{page.version}}-Windows.zip">64-bit multicore Windows</a>
+                    <a class="list-group-item list-group-item-success" href="{{page.v1_url}}/v{{page.version}}/iqtree-{{page.version}}-Windows32.zip">32-bit multicore Windows</a>
                 </div>
             </div>		 				
 
@@ -208,7 +210,7 @@ releasedate_new: June 12, 2020
                 <i class="fa fa-apple"></i>
                 <h4>macOS</h4>
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-MacOSX.zip">64-bit multicore macOS</a>
+                    <a class="list-group-item list-group-item-info" href="{{page.v1_url}}/v{{page.version}}/iqtree-{{page.version}}-MacOSX.zip">64-bit multicore macOS</a>
                 </div>
             </div>		 				
 
@@ -216,33 +218,33 @@ releasedate_new: June 12, 2020
                 <i class="fa fa-linux"></i>
                 <h4>Linux</h4>
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Linux.tar.gz">64-bit multicore Linux</a>
-                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-Linux32.tar.gz">32-bit multicore Linux</a>
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version}}/iqtree-{{page.version}}-LinuxKNL.tar.gz">Xeon Phi Knights Landing Linux</a>
+                    <a class="list-group-item list-group-item-info" href="{{page.v1_url}}/v{{page.version}}/iqtree-{{page.version}}-Linux.tar.gz">64-bit multicore Linux</a>
+                    <a class="list-group-item list-group-item-success" href="{{page.v1_url}}/v{{page.version}}/iqtree-{{page.version}}-Linux32.tar.gz">32-bit multicore Linux</a>
+                    <!--<a class="list-group-item list-group-item-info" href="{{page.v1_url}}/v{{page.version}}/iqtree-{{page.version}}-LinuxKNL.tar.gz">Xeon Phi Knights Landing Linux</a>-->
                 </div>
             </div>		 
 
             <div class="col-sm-12">
-                <p>The release candidate {{page.version_new}} ({{page.releasedate_new}})</p>
+                <p>COVID-19 release {{page.version_new}} ({{page.releasedate_new}})</p>
             </div>
 
             <div class="col-sm-4">
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows.zip">64-bit multicore Windows</a>
-                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows32.zip">32-bit multicore Windows</a>
+                    <a class="list-group-item list-group-item-info" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows.zip">64-bit multicore Windows</a>
+                    <!--<a class="list-group-item list-group-item-success" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows32.zip">32-bit multicore Windows</a>-->
                 </div>
             </div>		 				
 
             <div class="col-sm-4">
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-MacOSX.zip">64-bit multicore macOS</a>
+                    <a class="list-group-item list-group-item-info" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-MacOSX.zip">64-bit multicore macOS</a>
                 </div>
             </div>		 				
 
             <div class="col-sm-4">
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-info" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux.tar.gz">64-bit multicore Linux</a>
-                    <a class="list-group-item list-group-item-success" href="https://github.com/Cibiv/IQ-TREE/releases/download/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux32.tar.gz">32-bit multicore Linux</a>
+                    <a class="list-group-item list-group-item-info" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux.tar.gz">64-bit multicore Linux</a>
+                    <!--<a class="list-group-item list-group-item-success" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux32.tar.gz">32-bit multicore Linux</a>-->
                 </div>
             </div>		 
 
