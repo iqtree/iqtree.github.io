@@ -3,7 +3,7 @@ layout: userdoc
 title: "Command Reference"
 author: Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, M Bui, Minh Bui
 date:    2020-04-24
-docid: 7
+docid: 8
 icon: book
 doctype: tutorial
 tags:

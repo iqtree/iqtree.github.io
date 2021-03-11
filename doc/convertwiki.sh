@@ -12,7 +12,7 @@ cd $source_dir
 
 file_changed=0
 
-files="Front.md Home.md Quickstart.md Web-Server-Tutorial.md Tutorial.md Advanced-Tutorial.md Concordance-Factor.md Dating.md Command-Reference.md Substitution-Models.md Complex-Models.md Polymorphism-Aware-Models.md Compilation-Guide.md Frequently-Asked-Questions.md"
+files="Front.md Home.md Quickstart.md Web-Server-Tutorial.md Tutorial.md Advanced-Tutorial.md Assessing-Phylogenetic-Assumptions.md Concordance-Factor.md Dating.md Command-Reference.md Substitution-Models.md Complex-Models.md Polymorphism-Aware-Models.md Compilation-Guide.md Frequently-Asked-Questions.md"
 
 for f in *.md workshop/*.md; do
     if [ "$f" == "_Footer.md" -o "$f" == "_Sidebar.md" ]; then

@@ -3,14 +3,42 @@
     
 # Members information. Shown on About page.
 members:
-  - name: Olga Chernomor
+
+  - name: James Barbetti
     position:
-    text: Partition models and phylogenomic search.
-    img: olga.jpg
-    gscholar: https://scholar.google.com/citations?user=28f0gdQAAAAJ
+    text: Software engineering for COVID-19 data
+    img: james.jpg
+    gscholar: 
     social:
       - title: home #use for email address
-        url: http://www.cibiv.at/people/olga/
+        url: http://bqminh.github.io
+
+  - name: Thomas Wong
+    position:
+    text: ModelFinder 2
+    img: thomas.jpg
+    gscholar: 
+    social:
+      - title: home #use for email address
+        url: https://bqminh.github.io/people/wong/
+
+  - name: Michael Woodhams
+    position:
+    text: Lie Markov models.
+    img: woodhams.jpg
+    gscholar: https://scholar.google.com/citations?user=brh1wEkAAAAJ
+    social:
+      - title: home #use for email address
+        url: http://www.utas.edu.au/profiles/staff/maths-physics/michael-woodhams
+
+  - name: Robert Lanfear
+    position:
+    text: Inspiring ideas and advice.
+    img: rob.jpg
+    gscholar: https://scholar.google.com/citations?user=Se6txrMAAAAJ
+    social:
+      - title: home #use for email address
+        url: https://www.robertlanfear.com
 
   - name: Bui Quang Minh
     position:
@@ -20,6 +48,15 @@ members:
     social:
       - title: home #use for email address
         url: https://bqminh.github.io
+
+  - name: Olga Chernomor
+    position:
+    text: Partition models and phylogenomic search.
+    img: olga.jpg
+    gscholar: https://scholar.google.com/citations?user=28f0gdQAAAAJ
+    social:
+      - title: home #use for email address
+        url: http://www.cibiv.at/people/olga/
 
   - name: Heiko A. Schmidt
     position:
@@ -49,15 +86,6 @@ members:
       - title: envelope #use for email address
         url: http://www.cibiv.at/people/haeseler/
 
-  - name: Michael Woodhams
-    position:
-    text: Lie Markov models.
-    img: woodhams.jpg
-    gscholar: https://scholar.google.com/citations?user=brh1wEkAAAAJ
-    social:
-      - title: home #use for email address
-        url: http://www.utas.edu.au/profiles/staff/maths-physics/michael-woodhams
-
   - name: Diep Thi Hoang
     position:
     text: Improving ultrafast bootstrap.
@@ -66,15 +94,6 @@ members:
     social:
       - title: envelope #use for email address
         url: https://www.researchgate.net/profile/Diep_Hoang6
-
-  - name: Robert Lanfear
-    position:
-    text: Inspiring ideas and advice.
-    img: rob.jpg
-    gscholar: https://scholar.google.com/citations?user=Se6txrMAAAAJ
-    social:
-      - title: home #use for email address
-        url: https://www.robertlanfear.com
 
 
 ##### Past members ####
