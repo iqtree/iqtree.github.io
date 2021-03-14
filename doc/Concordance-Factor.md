@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Concordance Factor"
 author: M Bui
-date:    2020-05-08
+date:    2021-03-11
 docid: 6
 icon: info-circle
 doctype: tutorial

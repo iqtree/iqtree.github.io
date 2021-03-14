@@ -2,10 +2,10 @@
 layout: userdoc
 title: "Command Reference"
 author: Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, M Bui, Minh Bui
-date:    2020-04-24
-docid: 8
+date:    2021-03-11
+docid: 19
 icon: book
-doctype: tutorial
+doctype: manual
 tags:
 - manual
 description: Commprehensive documentation of command-line options.
