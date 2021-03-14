@@ -3,9 +3,9 @@ layout: userdoc
 title: "Command Reference"
 author: _AUTHOR_
 date: _DATE_
-docid: 8
+docid: 19
 icon: book
-doctype: tutorial
+doctype: manual
 tags:
 - manual
 description: Commprehensive documentation of command-line options.
