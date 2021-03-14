@@ -9,7 +9,17 @@ doctype: tutorial
 tags:
 - tutorial
 description: This guide is about evaluating the suitability of the data for phylogenetic analysis.
+sections:
+- name: Likelihood mapping
+  url: likelihood-mapping
+- name: Tests of symmetry
+  url: tests-of-symmetry
+
 ---
+
+
+Assessing phylogenetic assumptions
+==================================
 
 It is important to know that phylogenetic models rely on various simplifying assumptions to
 ease computations. If your data severely violate these assumptions, it might
@@ -22,8 +32,8 @@ likely in both directions), and _homogeneity_ (substitution rates remain constan
 This document shows several ways to check some of these assumptions that you
 should perform before doing phylogenetic analysis.
 
-Likelihood mapping analysis
----------------------------
+Likelihood mapping
+------------------
 <div class="hline"></div>
 
 Likelihood mapping ([Strimmer and von Haeseler, 1997]) is a visualisation method
@@ -93,7 +103,7 @@ Tests of symmetry
 -----------------
 
 IQ-TREE provides three matched-pairs tests of symmetry ([Naser-Khdour et al., 2019]) to 
-test the three assumptions of stationarity, reversibility and homogeneity (SRH). 
+test the two assumptions of stationarity and homogeneity (SRH). 
 A simple analysis:
 
 	iqtree2 -s example.phy -p example.nex --symtest-only
@@ -142,7 +152,7 @@ Now you may want to perform the phylogenetic analysis excluding all "bad" partit
 
 	iqtree2 -s example.phy -p example.nex --symtest-remove-bad
 
-that will remove all "bad" partitions with SymPval < 0.05 and continue the analysis with the
+that will remove all "bad" partitions where SymPval < 0.05 and continue the analysis with the
 remaining "good" partitions. You may then compare the trees from "all" partitions
 and from "good" only partitions to see if there is significant difference between them 
 with [tree topology tests](Advanced-Tutorial#tree-topology-tests).
