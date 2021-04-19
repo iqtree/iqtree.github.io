@@ -44,9 +44,11 @@ General requirements
 
 * [CMake](http://www.cmake.org) version >= 2.8.10.
 
-* [Eigen3 library](https://eigen.tuxfamily.org) (for IQ-TREE version >= 1.6). By default IQ-TREE will  detect the path to the installed Eigen3 library. If this failed, you have to manually specify `-DEIGEN3_INCLUDE_DIR=<installed_eigen3_dir>` to the `cmake` command (see below).
+* [Boost library](https://www.boost.org) for IQ-TREE version 2. Boost library is typically available under Linux. Under MacOS you use [Homebrew](https://brew.sh) and run `brew install boost` to install the Boost library. By default IQ-TREE will detect the path to the installed Boost library. 
 
-* (_Optional_) If you want to compile the multicore version, make sure that the OpenMP library was installed. This should typically be the case with `gcc` under Linux.
+* [Eigen3 library](https://eigen.tuxfamily.org) (for IQ-TREE version >= 1.6). Under MacOS you use [Homebrew](https://brew.sh) and run `brew install eigen` to install the Boost library. By default IQ-TREE will  detect the path to the installed Eigen3 library. If this failed, you have to manually specify `-DEIGEN3_INCLUDE_DIR=<installed_eigen3_dir>` to the `cmake` command (see below).
+
+* OpenMP library, which is used to compile the multicore version. This should typically be the case with `gcc` under Linux. Under MacOS you use [Homebrew](https://brew.sh) and run `brew install libomp` to install the OpenMP library.
 
 * (_Optional_) Install [git](https://git-scm.com) if you want to clone source code from [IQ-TREE GitHub repository](https://github.com/Cibiv/IQ-TREE).
 
@@ -56,9 +58,17 @@ Downloading source code
 
 Choose the source code (`zip` or `tar.gz`) of the IQ-TREE release you want to use from:
 
+<https://github.com/iqtree/iqtree2/releases>
+
+For IQ-TREE version 1 please use:
+
 <https://github.com/Cibiv/IQ-TREE/releases/>
 
 Alternatively, if you have `git` installed, you can also clone the source code from GitHub with:
+
+    git clone https://github.com/iqtree/iqtree2.git
+
+For IQ-TREE version 1 please clone:
 
     git clone https://github.com/Cibiv/IQ-TREE.git
 
@@ -85,10 +95,6 @@ Compiling under Linux
 
         cmake ..
 
-    To build the multicore version please add `-DIQTREE_FLAGS=omp` to the cmake command:
-
-        cmake -DIQTREE_FLAGS=omp ..
-        
     If `cmake` failed with message about `Eigen3 not found`, then install Eigen3 library and run `cmake` again. If this still failed, you have to manually specify the downloaded directory of Eigen3 with:
     
         cmake -DEIGEN3_INCLUDE_DIR=<eigen3_dir> ..
@@ -96,15 +102,11 @@ Compiling under Linux
 
 5. Compile source code with `make`:
 
-        make
-        
-    You can speed up the compilation by specifying the number of CPU cores to use with `make` by e.g.:
-
-        make -j4
-
-    to use 4 cores instead of the default 1 core.
+        make -j
     
-This creates an executable `iqtree` (`iqtree-omp` for older multicore versions <= 1.5.X). It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree`.
+    `j` option tells it to use all CPU cores to speed up the compilation. Without this option, `make` uses only one core, which might be slow.
+    
+This creates an executable `iqtree2` (`iqtree` for version 1). It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree2`.
 
 >**TIP**: The above guide typically compiles IQ-TREE with `gcc`. If you have Clang installed and want to compile with Clang, the compilation will be similar to Mac OS X like below.
 {: .tip}
@@ -117,6 +119,8 @@ Compiling under Mac OS X
 {: .tip}
 
 * Make sure that Clang compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
+
+* If you installed cmake with Homebrew 
 
 * Find the path to the CMake executable, which is typically `/Applications/CMake.app/Contents/bin/cmake`. For later convenience, please create a symbolic link `cmake` to this cmake executable, so that cmake can be invoked from the Terminal by simply entering `cmake`.
 
@@ -280,3 +284,15 @@ Windows binaries were statically compiled under Windows 7 using Clang 3.9.0 in c
     cmake -G "MinGW Makefiles" -DIQTREE_FLAGS=static -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_FLAGS=--target=i686-pc-windows-gnu -DCMAKE_CXX_FLAGS=--target=i686-pc-windows-gnu -DCMAKE_MAKE_PROGRAM=mingw32-make ..
 
 
+
+Setup an Xcode project in MacOS
+-------------------------------
+<div class="hline"></div>
+
+Many developers in MacOS use Xcode to develop the code. To generate an XCode project for IQ-TREE, you need to run:
+
+    mkdir build-xcode
+    cd build-xcode
+    cmake -G Xcode <IQTREE_SOURCE_DIR>
+
+This will generate a a subfolder `build-xcode/iqtree.xcodeproj`, which you can open in Xcode now.
