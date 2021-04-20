@@ -38,8 +38,8 @@ We first demonstrate the outgroup approach to root the Bovidae family of five sa
 (Yak, Cow, Goat, Sheep and Tibetan antelope) using two outgroup species (Pig and Whale).
 Please download:
 
-* An [input DNA alignment file](bovidae_outgroup.phy) for these 7 species.
-* An [input partition file](bovidae.nex) that defines 52 genes in this alignment. 
+* An [input DNA alignment file](data/bovidae_outgroup.phy) for these 7 species.
+* An [input partition file](data/bovidae.nex) that defines 52 genes in this alignment. 
 This is a subset of the mammal dataset ([Wu et al., 2018]).
 
 To infer an unrooted tree, run:
@@ -71,31 +71,23 @@ The resulting tree may now look like (extracted from `rev_aa_outg.iqtree`):
 	|   +---| (100)
 	|   |   +---Tibetan_antelope
 	+---| (100)
-		|                      +-------------------------------Wild_pig
-		+----------------------| (100)
-							   +-------------------Minke_whale
+	    |                      +-------------------------------Wild_pig
+	    +----------------------| (100)
+	                           +-------------------Minke_whale
 
 
 You can open `rev_aa.treefile` in a tree viewer software (e.g. FigTree) and re-root
 the tree on the branch separating the outgroup (`Wild_pig` and `Minke_whale`)
 from the remaining ingroup to obtain an outgroup-rooted tree.
 
-Finally, you can also perform a non-partition analysis by removing the option `-p`.
-
-
-* Model comparisons?
-
-* Tests (AU) for rooting of different branches of the ML tree.
-  - DNA
-  - protein
-  
+Finally, if you want you can also perform a non-partition analysis by removing the option `-p`.
 
 Inferring rooted trees without outgroup
 ---------------------------------------
 
 We will now infer a rooted tree using non-reversible models. Please download:
 
-* An [input DNA alignment file](bovidae.phy) for 5 ingroup species 
+* An [input DNA alignment file](data/bovidae.phy) for 5 ingroup species 
 (Yak, Cow, Goat, Sheep and Tibetan antelope). This is a sub-alignment of the alignment above.
 We can re-use the same partition file.
 
@@ -120,7 +112,7 @@ The resulting tree extracted from .iqtree file might look like this:
 	NOTE: Tree is ROOTED at virtual root '__root__'
 	Numbers in parentheses are  ultrafast bootstrap support (%)
 
-		   +---Yak
+           +---Yak
 	+------| (72)
 	|      |                                       +----------Goat
 	|      |                                   +---| (100)
@@ -147,7 +139,7 @@ branch separating Cow and Yak from the rest has a rootstrap support of 17.9%. So
 the root position is, but at least provides some candidates.
 
 
-> To compute rootstrap supports, we conduct a bootstrap analysis
+> **Rootstrap**: To compute rootstrap supports, we conduct a bootstrap analysis
 to obtain a number of rooted bootstrap trees using non-reversible models.
 We define the rootstrap support for each branch in the maximum likelihood (ML) tree, as the proportion of 
 rooted bootstrap trees that have the root on that branch. The rootstrap support values are computed for all 
