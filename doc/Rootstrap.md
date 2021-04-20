@@ -10,7 +10,12 @@ tags:
 - tutorial
 description: Inferring rooted trees using non-reversible models.
 sections:
-
+- name: Inferring unrooted tree with outgroup
+  url: inferring-unrooted-tree-with-outgroup
+- name: Inferring rooted trees without outgroup
+  url: inferring-rooted-trees-without-outgroup
+- name: Testing root positions
+  url: testing-root-positions
 ---
 
 
@@ -232,3 +237,4 @@ in the previous section to calculate the rootstrap support values and the rootin
 
 [Naser-Khdour et al., 2021]: https://doi.org/10.1101/2020.07.31.230144
 [Wu et al., 2018]: https://doi.org/10.1016/j.dib.2018.04.094
+
