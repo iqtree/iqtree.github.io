@@ -29,8 +29,8 @@ In order to compensate for the inability of these models to root the tree, many 
 use external information such as using outgroup taxa or additional assumptions such as 
 molecular-clocks. 
 
-This guide provides another rooting approach using _non-reversible_ models ([Naser-Khdour et al., 2021]). Please make sure 
-that you use IQ-TREE __version 2.1.3__ or later for full features below and please cite this manuscript:
+This guide provides the outgroup approach and another rooting approach using _non-reversible_ models ([Naser-Khdour et al., 2021]), which will be useful when an outgroup is lacking. Please make sure 
+that you use IQ-TREE __version 2.1.3__ or later for full features below and cite this manuscript:
 
 > S. Naser-Khdour, B.Q. Minh, R. Lanfear (2021) Assessing Confidence in Root Placement on Phylogenies: An Empirical Study Using Non-Reversible Models. <https://doi.org/10.1101/2020.07.31.230144>
 
@@ -46,6 +46,10 @@ Please download:
 * An [input DNA alignment file](data/bovidae_outgroup.phy) for these 7 species.
 * An [input partition file](data/bovidae.nex) that defines 52 genes in this alignment. 
 This is a subset of the mammal dataset ([Wu et al., 2018]).
+
+> Choosing a "good" outgroup is an entire topic on its own. In generally, 
+> the outgroup must contain taxa that do not belong to the ingroup but 
+> are evolutionarily close enough to the ingroup taxa. 
 
 To infer an unrooted tree, run:
 
@@ -81,7 +85,7 @@ The resulting tree may now look like (extracted from `rev_aa_outg.iqtree`):
 	                           +-------------------Minke_whale
 
 
-You can open `rev_aa.treefile` in a tree viewer software (e.g. FigTree) and re-root
+You can open `rev_aa_outg.treefile` in a tree viewer software (e.g. FigTree) and re-root
 the tree on the branch separating the outgroup (`Wild_pig` and `Minke_whale`)
 from the remaining ingroup to obtain an outgroup-rooted tree.
 
@@ -228,10 +232,13 @@ write a file `nonrev_aa_test.roottest.csv` which might look like:
 
 The branches are sorted by log-likelihoods in descending order. The last column (p-AU)
 shows the p-values of the AU test. The branch ID 1 has an AU p-value of 0.9975595105,
-whereas all other branches has p-values < 0.01. So we can reject all other rooting
-positions. To associate branch ID you can return to the FigTree window for `nonrev_aa.rootstrap.nex` file and select "Display" to "id" in the "Branch Labels" tab.
+whereas all other branches has p-values < 0.01. To associate branch ID you can return to the FigTree window for `nonrev_aa.rootstrap.nex` file and select "Display" to "id" in the "Branch Labels" tab. 
 
-NOTE: These options `--root-test -zb 1000 -au` can be combined with the rootstrap run 
+The conclusion from this analysis: we can reject all rooting positions on branches
+other than branch ID 1, which agrees with the rootstrap measure.
+
+
+TIP: These options `--root-test -zb 1000 -au` can be combined with the rootstrap run 
 in the previous section to calculate the rootstrap support values and the rooting test p-values in one single analysis.
 
 
