@@ -1,7 +1,7 @@
 ---
 layout: userdoc
 title: "Concordance Factor"
-author: M Bui
+author: Minh Bui
 date:    2021-03-11
 docid: 6
 icon: info-circle

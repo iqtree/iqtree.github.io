@@ -1,7 +1,7 @@
 ---
 layout: userdoc
 title: "Complex Models"
-author: Dominik Schrempf, Jana Trifinopoulos, M Bui, Minh Bui
+author: Dominik Schrempf, Jana Trifinopoulos, Minh Bui
 date:    2019-08-08
 docid: 11
 icon: book

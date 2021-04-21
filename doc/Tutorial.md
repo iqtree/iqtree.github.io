@@ -1,7 +1,7 @@
 ---
 layout: userdoc
 title: "Beginner's Tutorial"
-author: Diep Thi Hoang, Heiko Schmidt, Jana, M Bui, Minh Bui
+author: Diep Thi Hoang, Heiko Schmidt, Jana, Minh Bui
 date:    2019-12-01
 docid: 3
 icon: info-circle

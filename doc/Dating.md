@@ -1,7 +1,7 @@
 ---
 layout: userdoc
 title: "Phylogenetic Dating"
-author: M Bui, Rob Lanfear
+author: Minh Bui, Rob Lanfear
 date:    2021-03-11
 docid: 7
 icon: info-circle

@@ -1,7 +1,7 @@
 ---
 layout: workshop
 title: "Tutorial for Workshop on Molecular Evolution 2018"
-author: M Bui
+author: Minh Bui
 date:    2018-08-09
 docid: 100
 tags:

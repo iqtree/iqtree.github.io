@@ -1,7 +1,7 @@
 ---
 layout: userdoc
 title: "Substitution Models"
-author: Heiko Schmidt, Jana Trifinopoulos, M Bui, Minh Bui
+author: Heiko Schmidt, Jana Trifinopoulos, Minh Bui
 date:    2020-06-03
 docid: 10
 icon: book

@@ -1,7 +1,7 @@
 ---
 layout: userdoc
 title: "Getting Started"
-author: Dominik Schrempf, M Bui, Meaningseeking, Minh Bui
+author: Dominik Schrempf, Meaningseeking, Minh Bui
 date:    2020-07-22
 docid: 1
 icon: info-circle

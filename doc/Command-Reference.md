@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Command Reference"
-author: Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, M Bui, Minh Bui
-date:    2021-03-11
+author: Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, Minh Bui
+date:    2021-03-15
 docid: 19
 icon: book
 doctype: manual

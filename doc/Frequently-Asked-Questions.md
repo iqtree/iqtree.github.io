@@ -1,7 +1,7 @@
 ---
 layout: userdoc
 title: "Frequently Asked Questions"
-author: Heiko Schmidt, Jana Trifinopoulos, M Bui, Minh Bui
+author: Heiko Schmidt, Jana Trifinopoulos, Minh Bui
 date:    2020-10-28
 docid: 9
 icon: question-circle

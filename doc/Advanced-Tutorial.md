@@ -1,7 +1,7 @@
 ---
 layout: userdoc
 title: "Advanced Tutorial"
-author: Jana, M Bui, Minh Bui
+author: Jana, Minh Bui
 date:    2019-12-01
 docid: 4
 icon: info-circle

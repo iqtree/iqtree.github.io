@@ -36,7 +36,7 @@ Tests of symmetry
 -----------------
 
 IQ-TREE provides three matched-pairs tests of symmetry ([Naser-Khdour et al., 2019]) to 
-test the two assumptions of stationarity and homogeneity (SRH). 
+test the two assumptions of _stationarity_ and _homogeneity_. 
 A simple analysis:
 
 	iqtree2 -s example.phy -p example.nex --symtest-only
@@ -138,7 +138,8 @@ It shows phylogenetic information of the alignment `example.phy`.
   (unresolved quartets). A good data set should have high number of fully resolved quartets 
   and low number of unresolved quartets. 
 
-The meanings can also be found in the `LIKELIHOOD MAPPING STATISTICS` section of the report file `example.phy.iqtree`:
+The meanings can also be found in the `LIKELIHOOD MAPPING STATISTICS` section of the 
+report file `example.phy.iqtree`:
 
 
     LIKELIHOOD MAPPING STATISTICS

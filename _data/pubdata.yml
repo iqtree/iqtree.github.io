@@ -142,7 +142,7 @@ references:
   URL: https://academic.oup.com/gbe/article/11/12/3341/5571717
   DOI: 10.1093/gbe/evz193
   ISSN: '1759-6653'
-  message: When using the tests of symmetry (--symtest) please cite&#58;
+  message: When using the <a href="doc/Assessing-Phylogenetic-Assumptions">tests of symmetry</a> please cite&#58;
   new: yes
 
 - author:
