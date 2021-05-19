@@ -31,7 +31,7 @@ for f in *.md workshop/*.md; do
 
     let file_changed++
 
-    AUTHOR=`git log $f | grep Author: | sed 's/m.bui@anu/minh.bui@anu/' | sed 's/.* <//' | sed 's/@.*//' | sed 's/\./ /g' | sort | uniq | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g' | awk '{for(i=1;i<=NF;i++){ $i=toupper(substr($i,1,1)) substr($i,2) }}1'`
+    AUTHOR=`git log $f | grep Author: | sed 's/m.bui@anu/minh.bui@anu/' | sed 's/152suha/suha.naser/' | sed 's/.* <//' | sed 's/@.*//' | sed 's/\./ /g' | sort | uniq | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g' | awk '{for(i=1;i<=NF;i++){ $i=toupper(substr($i,1,1)) substr($i,2) }}1'`
     DATE=`git log --date=short $f | grep Date: | head -n 1 | sed 's/Date://'`
 
     sed "s/_AUTHOR_/$AUTHOR/" $f | sed "s/_DATE_/$DATE/" | sed 's/\.\.\//\.\.\/doc\//g'  > $destf

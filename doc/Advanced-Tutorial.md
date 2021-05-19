@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Advanced Tutorial"
 author: Jana, Minh Bui
-date:    2019-12-01
+date:    2021-05-19
 docid: 4
 icon: info-circle
 doctype: tutorial
@@ -196,7 +196,7 @@ IQ-TREE supports the partition-resampling strategy as suggested by ([Nei et al.,
 
 
 to resample partitions instead of sites. Moreover, IQ-TREE allows an even more complicated
-strategy: resampling partitions and then sites within resampled partitions  ([Gadagkar et al., 2005]). This may help to reduce false positives (i.e. wrong branch receiving 100% support):
+strategy: resampling partitions and then sites within resampled partitions  ([Gadagkar et al., 2005]; [Seo et al., 2005]). This may help to reduce false positives (i.e. wrong branch receiving 100% support):
 
 
     iqtree -s example.phy -p example.nex -B 1000 --sampling GENESITE
@@ -533,6 +533,7 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 [Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Nei et al., 2001]: https://doi.org/10.1073/pnas.051611498
+[Seo et al., 2005]: https://doi.org/10.1073/pnas.0408313102
 [Shimodaira and Hasegawa, 1999]: https://doi.org/10.1093/oxfordjournals.molbev.a026201
 [Shimodaira, 2002]: https://doi.org/10.1080/10635150290069913
 [Strimmer and Rambaut, 2002]: https://doi.org/10.1098/rspb.2001.1862

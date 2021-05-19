@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Rooting phylogenies"
-author: 152suha, Minh Bui
-date:    2021-04-21
+author: Minh Bui, Suha Naser
+date:    2021-05-18
 docid: 8
 icon: info-circle
 doctype: tutorial
@@ -108,7 +108,7 @@ as the run above to infer an unrooted tree using reversible models:
 This run will also write the best partitioning scheme to `rev_dna.best_scheme.nex` file.
 In the second step, we will re-use this best scheme but replace the substitution model 
 with the most general non-reversible DNA model, 12.12 or UNREST 
-(see [this doc]((Substitution-Models#lie-markov-models))) to obtain a rooted tree:
+(see [this doc](Substitution-Models#lie-markov-models)) to obtain a rooted tree:
 
     iqtree2 -s bovidae.phy -p rev_dna.best_scheme.nex --model-joint 12.12 -B 1000 -T AUTO --prefix nonrev_dna
 
