@@ -429,7 +429,7 @@ The ultrafast bootstrap (UFBoot) approximation ([Minh et al., 2013]; [Hoang et a
 | `-bcor`  | Specify minimum correlation coefficient for UFBoot convergence criterion. *DEFAULT: 0.99* |
 | `-beps`  | Specify a small epsilon to break tie in RELL evaluation for bootstrap trees. *DEFAULT: 0.5* |
 | `-bnni` | Perform an additional step to further optimize UFBoot trees by nearest neighbor interchange (NNI) based directly on bootstrap alignments. This option is recommended in the presence of **severe model violations**. It increases computing time by 2-fold but reduces the risk of overestimating branch supports due to severe model violations. Introduced in IQ-TREE 1.6. |
-| `-bsam` | Specify the resampling strategies for partitioned analysis. By default, IQ-TREE resamples alignment sites within partitions. With `-bsam GENE` IQ-TREE will resample partitions. With `-bsam GENESITE` IQ-TREE will resample partitions and then resample sites within resampled partitions ([Gadagkar et al., 2005]). |
+| `-bsam` | Specify the resampling strategies for partitioned analysis. By default, IQ-TREE resamples alignment sites within partitions. With `-bsam GENE` IQ-TREE will resample partitions. With `-bsam GENESITE` IQ-TREE will resample partitions and then resample sites within resampled partitions ([Gadagkar et al., 2005]; [Seo et al., 2005]). |
 | `-nm`    | Specify maximum number of iterations to stop. *DEFAULT: 1000* |
 | `-nstep` | Specify iteration interval checking for UFBoot convergence. *DEFAULT: every 100 iterations* |
 | `-wbt`   | Turn on writing bootstrap trees to `.ufboot` file. *DEFAULT: OFF* |
@@ -729,6 +729,7 @@ The first few lines of the output file example.phy.sitelh (printed by `-wslr` op
 [Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112
 [Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: https://doi.org/10.1093/molbev/msu300
+[Seo et al., 2005]: https://doi.org/10.1073/pnas.0408313102
 [Shimodaira and Hasegawa, 1999]: https://doi.org/10.1093/oxfordjournals.molbev.a026201
 [Shimodaira, 2002]: https://doi.org/10.1080/10635150290069913
 [Soubrier et al., 2012]: https://doi.org/10.1093/molbev/mss140
