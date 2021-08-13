@@ -1,4 +1,4 @@
----
+﻿---
 layout: userdoc
 title: "Substitution Models"
 author: _AUTHOR_
@@ -87,7 +87,7 @@ Users can specify three different kinds of base frequencies:
 
 | FreqType | Explanation |
 |----------|------------------------------------------------------------------------|
-| +F  | Empirical base frequencies. This is the default if the model has unequal base freq. |
+| +F  | Empirical base frequencies. This is the default if the model has unequal base freq. In AliSim, if base frequencies are not specified or possible to be estimated from the user-provided MSA, they will be automatically generated from empirical distributions. |
 | +FQ | Equal base frequencies.|
 | +FO |  Optimized base frequencies by maximum-likelihood.|
 
@@ -141,6 +141,8 @@ Starting with version 1.6, IQ-TREE supports a series of Lie Markov models ([Wood
 | 12.12  | No   | 3    | equiv. to UNREST (unrestricted model) |
 
 Column __Rev?__ shows whether the model is reversible or not. Column __Freq__ shows the number of free base frequencies. 0 means equal base frequency; 1 means f(A)=f(G) and f(C)=f(T); 2 means f(A)+f(G)=0.5=f(C)+f(T); 3 means unconstrained frequencies.
+
+In AliSim, excepting models with equal base frequency, users could specify base frequencies with `+F{...}`. Otherwise, the state frequencies will be randomly generated based on the empirical distributions. To specify base frequencies, users must supply 1 frequency for the models with the number of free base frequencies (__Freq__) is 1. For models with the number of free base frequencies (__Freq__) is 2 or 3, users must provide 2, and 4 frequencies, respectively.
 
 All Lie Markov models can have one of the following prefices:
 
@@ -250,7 +252,7 @@ By default, AA frequencies are given by the model. Users can change this with:
 
 | FreqType | Explanation |
 |----------|-------------|
-| +F       | empirical AA frequencies from the data.|
+| +F       | empirical AA frequencies from the data. In AliSim, if base frequencies are not specified or possible to be estimated from the user-provided MSA, they will be generated randomly based on a Uniform distribution.|
 | +FO      | ML optimized AA frequencies from the data.|
 | +FQ      | Equal AA frequencies.|
 
@@ -309,6 +311,8 @@ IQ-TREE supports several codon models:
 | ECMrest          | Restricted version of `ECMK07` that allows only one nucleotide exchange.
 | ECMS05 or SCHN05 | Empirical codon model ([Schneider et al., 2005]).
 
+Users could specify the model parameters (e.g., Nonsynonymous/synonymous (dn/ds) rate ratio, and/or transition/transversion (ts/tv) rate ratio, and/or transition rate, and/or a transversion rate) by `<Model_Name>{<omega>,[<kappa>],[<kappa2>]}`. For example, `MG2K{1.0,0.3,0.5}` specifies the nonsynonymous/synonymous (dn/ds) rate ratio, the transition rate, and the transversion rate are 1.0, 0.3, 0.5, respectively. The number of input parameters depends on the definition of each model.
+
 The last three models (`ECMK07`, `ECMrest` or `ECMS05`) are called *empirical* codon models, whereas the others are called *mechanistic* codon models.
 
 Moreover, IQ-TREE supports combined empirical-mechanistic codon models using an underscore separator (`_`). For example:
@@ -329,10 +333,10 @@ IQ-TREE supports the following codon frequencies:
 
 | FreqType | Explanation |
 |----------|------------------------------------------------------------------------|
-| +F       | Empirical codon frequencies counted from the data.|
+| +F       | Empirical codon frequencies counted from the data. In AliSim, if base frequencies are not specified or possible to be estimated from the user-provided MSA, they will be automatically generated from empirical distributions.|
 | +FQ      | Equal codon frequencies.|
-| +F1X4    | Unequal nucleotide frequencies but equal nt frequencies over three codon positions.|
-| +F3X4    | Unequal nucleotide frequencies and unequal nt frequencies over three codon positions.|
+| +F1X4    | Unequal nucleotide frequencies but equal nt frequencies over three codon positions. The nucleotide frequencies could be estimated from the data (in Inference Mode). In cases without Inference Mode, the base frequencies are randomly generated based on empirical distributions or users could specify the frequencies via `+F1X4{<freq_0>,...,<freq_4>}`.|
+| +F3X4    | Unequal nucleotide frequencies and unequal nt frequencies over three codon positions. The nucleotide frequencies could be estimated from the data (in Inference Mode). In cases without Inference Mode, the base frequencies are randomly generated based on a empirical distributions or users could specify the frequencies via  `+F3X4{<freq_0>,...,<freq_11>}`|
 
 If not specified, the default codon frequency will be `+F3X4` for `MG`-type models, `+F` for `GY`-type models and given by the model for empirical codon models. 
 
@@ -352,6 +356,11 @@ The binary alignments should contain state `0` and `1`, whereas for morphologica
 
 Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies.
 
+In AliSim, to simulate morphological alignments, you should specify the number of states by `-st MORPH{<NUM_STATES>}` as the following example. By default, the number of states for morphological data is 32.
+
+    iqtree2 --alisim MK_1000 -t example.phy.treefile -m "MK" -st MORPH{20}
+
+
 >**TIP**: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model (`+ASC`)](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
 {: .tip}
 
@@ -366,6 +375,8 @@ An ascertainment bias correction (`+ASC`) model ([Lewis, 2001]) should be applie
 * `GTR+ASC`: For SNPs data.
 
 `+ASC` will correct the likelihood conditioned on variable sites. Without `+ASC`, the branch lengths might be overestimated.
+
+In AliSim, adding `+ASC` to a model name will ask AliSim to simulate sequences without constant sites.
 
 
 Rate heterogeneity across sites
