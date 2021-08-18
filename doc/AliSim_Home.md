@@ -206,7 +206,7 @@ All the options available in AliSim are shown below:
 |  `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`  | Specify the minimum, the mean, and the maximum length of branches when generating a random tree. |
 | `-s <SEQUENCE_ALIGNMENT>` | Specify an input MSA. AliSim will simulate MSAs that mimic that user-provided MSA **(Inference mode)**.<br>Firstly, IQTree infers a phylogenetic tree and a model with its parameters from the input data. Then, AliSim simulates MSA from that tree and the model. |
 | `--write-all` | Enable writing internal sequences. |
-| `--nt <NUM>` | Set the number of threads to run the simulation. |
+| `-nt <NUM>` | Set the number of threads to run the simulation. |
 | `-seed <NUMBER>` | Specify the seed number. <br>*Default: the clock of the PC*. <br>Be careful! To make the AliSim reproducible, users should specify the seed number. |
 | `-gz` | Enable output compression, but it could take a longer running time.<br>*By default, output compression is disabled*. |
 | `-af phy|fasta` | Set the format for the output file(s). <br>*Default: phy (PHYLIP format)* |
