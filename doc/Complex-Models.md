@@ -19,7 +19,7 @@ sections:
 - name: Heterotachy models
   url: heterotachy-models
 - name: Branch-specific models (in AliSim only)
-  url: branch-specific-models
+  url: branch-specific-models-in-alisim-only
 ---
 
 Complex models
