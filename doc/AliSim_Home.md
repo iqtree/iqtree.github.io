@@ -9,7 +9,7 @@ AliSim is a fast, efficient, versatile, and realistic sequence simulator for sim
 
 * __Fast__: AliSim is much faster than existing simulation tools. It takes only a few minutes to generate millions of sequences or sites while other existing simulators, namely [Seq-Gen](https://academic.oup.com/bioinformatics/article/13/3/235/423110), [Dawg](https://pubmed.ncbi.nlm.nih.gov/16306390/), and [Indelible](https://academic.oup.com/mbe/article/26/8/1879/980884), and [PhastSim](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7987011/) are unable or require several hours, even a few days.
 * __Efficient__:  AliSim consumes far less memory than other simulators. It consumes approximately 1 GB RAM to generate one million sequences with 30 thousand sites while other simulators require tens to hundreds GB of RAM. 
-* __Versatile__: AliSim integrates a wide range of evolutionary models available in the IQ-TREE software, including standard, mixture, and partition models. Also, it offers flexible and convenient options for users to perform complex simulations by supporting versatile use cases. 
+* __Versatile__: AliSim integrates a wide range of evolutionary models available in the IQ-TREE software, including standard, mixture, partition models, and many other complex models. Also, it offers flexible and convenient options for users to perform complex simulations by supporting versatile use cases. 
 * __Realistic__: AliSim can simulate realistic MSAs from biologically inspired parameters: it could randomly generate model parameters  from  either empirical distributions (extracted from a large collection of biological datasets) or user-defined lists of numbers; it also allows users to simulate an alignment that mimics the evolutional process of a real biological alignment, a task not supported in other tools.
 
 Key features
@@ -17,13 +17,13 @@ Key features
 <div class="hline"></div>
 
 
-* __AliSim supports a wide range of evolutionary models__: It supports a vast majority of evolutionary models not available in other existing simulators. AliSim allows users to simulate different data types, including DNA, amino-acid, codon, binary, and multi-state morphological data using more than 200 time-reversible substitution models, around 100 non-reversible models. AliSim also supports complex partition and mixture models. 
+* __AliSim supports a wide range of evolutionary models__: It supports a vast majority of evolutionary models not available in other existing simulators. AliSim allows users to simulate different data types, including DNA, amino-acid, codon, binary, and multi-state morphological data using more than 200 time-reversible substitution models, around 100 non-reversible models, and other complex models, such as [branch-specific models](https://github.com/iqtree/iqtree2/wiki/Complex-Models#branch-specific-models-in-alisim-only), and [Fundi models](https://doi.org/10.1093/bioinformatics/btr470). AliSim also supports complex partition and mixture models. 
   * __Common models__: All [common substitution models](https://github.com/iqtree/iqtree2/wiki/Substitution-Models) with [rate heterogeneity across sites](https://github.com/iqtree/iqtree2/wiki/Substitution-Models#rate-heterogeneity-across-sites) and [ascertainment bias correction](https://github.com/iqtree/iqtree2/wiki/Substitution-Models#ascertainment-bias-correction), e.g., SNP data.
   * __Heterotachy models__: Allowing each branch in the phylogenetic tree may have multiple lengths corresponding to different classes of the [GHOST model](https://doi.org/10.1093/sysbio/syz051). Besides, we offer various options to link, unlink models’ parameters across all classes, or use separate base frequencies for each class. 
   * __Partition models__: Allowing individual models for different genomic loci (e.g., genes or codon positions), mixed data types, mixed rate heterogeneity types, [linked, unlinked, and proportional branch lengths between partitions](https://github.com/iqtree/iqtree2/wiki/Complex-Models#partition-models). Furthermore, AliSim also supports tree mixture models, in which each partition could have a different tree topology.
-  * __Mixture models__: [fully customizable site mixture models](https://github.com/iqtree/iqtree2/wiki/Complex-Models#mixture-models), [empirical protein mixture models](https://github.com/iqtree/iqtree2/wiki/Substitution-Models#protein-mixture-models), and [branch-specific models](https://github.com/iqtree/iqtree2/wiki/Substitution-Models#branch-specific-models), which assign different models of sequence evolution to individual branches of a tree.
+  * __Mixture models__: [fully customizable site mixture models](https://github.com/iqtree/iqtree2/wiki/Complex-Models#mixture-models), [empirical protein mixture models](https://github.com/iqtree/iqtree2/wiki/Substitution-Models#protein-mixture-models), and [branch-specific models](https://github.com/iqtree/iqtree2/wiki/Complex-Models#branch-specific-models-in-alisim-only), which assign different models of sequence evolution to individual branches of a tree.
   
-* __AliSim  offers more realistic simulations__, It could simulate an MSA that mimics the evolutionary history of a given MSA. It also copies the gap patterns from the input MSA to the output MSA. Additionally, AliSim natively allows users to generate a random tree under biologically plausible models, such as the [Birth-Death model](https://www.jstor.org/stable/2236051) and the more restrictive [Yule](https://www.jstor.org/stable/92117)-[Harding](https://www.jstor.org/stable/1426329) (by default) or the [Uniform model](https://pubmed.ncbi.nlm.nih.gov/10704639/).
+* __AliSim  offers more realistic simulations__, It could simulate an MSA that mimics the evolutionary history of a given MSA. It also copies the gap patterns from the input MSA to the output MSA. Additionally, AliSim natively allows users to generate a random tree under biologically plausible models, such as the [Birth-Death model](https://www.jstor.org/stable/2236051) and the more restrictive [Yule](https://www.jstor.org/stable/92117)-[Harding](https://www.jstor.org/stable/1426329) (by default) or the [Uniform model](https://pubmed.ncbi.nlm.nih.gov/10704639/). Additionally, AliSim also supports [Indels](https://academic.oup.com/mbe/article/26/8/1879/980884) to simulate Insertion and Deletion events.
 * __AliSim achieves high-performance efficiency__: AliSim is superior to all existing simulation tools regarding  model flexibility, execution times, and memory usage in simulating huge phylogenetic datasets. More specifically, AliSim takes only a few minutes and about 1GB RAM to generate  alignments with millions of sequences or sites on a personal computer, while other software Seq-Gen, Dawg, Indelible, and PhastSim require several hours and/or tens to hundreds GB of RAM. Moreover, the memory usage of AliSim only increases sub-linearly with the number of sequences and remains more or less constant with increasing sequence length.
 
 How to cite AliSim?
@@ -155,16 +155,16 @@ In addition to five built-in distributions, namely *uniform, Generalized_logisti
 
 Firstly, generating a set of random numbers for each list, then defining the new lists in a file named `custom_distributions.txt` as the following example
 
-    F_A 10000 0.363799 0.313203 0.277533 0.242350 ...
-    F_B 10000 0.268955 0.278675 0.290531 0.237410 ...
-    F_C 10000 0.320556 0.440894 0.332368 0.227977 ...
-    F_D 10000 0.234732 0.309629 0.353117 0.414357 ...
-    R_A 5000 2.306336 4.359459 0.249315 0.388073 ...
-    R_B 5000 1.257679 0.417313 3.290922 2.301826 ...
-    R_C 5000 0.200087 1.336534 3.337547 2.325379 ...
-    R_D 5000 0.321134 0.299891 1.315519 0.269172 ...
+    F_A 0.363799 0.313203 0.277533 0.242350 ...
+    F_B 0.268955 0.278675 0.290531 0.237410 ...
+    F_C 0.320556 0.440894 0.332368 0.227977 ...
+    F_D 0.234732 0.309629 0.353117 0.414357 ...
+    R_A 2.306336 4.359459 0.249315 0.388073 ...
+    R_B 1.257679 0.417313 3.290922 2.301826 ...
+    R_C 0.200087 1.336534 3.337547 2.325379 ...
+    R_D 0.321134 0.299891 1.315519 0.269172 ...
 
-Each list should be defined in a single line, starting with the list name, followed by the number of random numbers, and ending up with random numbers. These numbers should be separated by space. The given file `custom_distributions.txt` defines 8 new lists. While the first 4 lists consist of 10,000 random numbers for each list, the other lists contain 5,000 random numbers.
+Each list should be defined in a single line, starting with the list name, followed by random numbers. These numbers should be separated by space. The given file `custom_distributions.txt` defines 8 new lists. Each list could have a different number of random elements.
 
 Secondly, loading these lists and generating MSA with random parameters with
 
@@ -192,8 +192,8 @@ All the options available in AliSim are shown below:
 | `-m <MODEL>`   | Specify the model name [and its parameters (optional)]. <br> See [Substitution Models](https://github.com/iqtree/iqtree2/wiki/Substitution-Models) and [Complex Models](https://github.com/iqtree/iqtree2/wiki/Complex-Models) for the list of supported models, how to use complex models (mixture, partition, rate heterogeneity across sites, heterotachy, Ascertainment Bias Correction, etc.), and syntax to specify model parameters (rates, base frequencies, omega, kappa, kappa2, etc.) or define new models.|
 | `-mdef <MODEL_FILE>`  | Define new models by their parameters. |
 | `--fundi <TAXON_1>,...,<TAXON_N>,<RHO>`   | Specifying parameters for the [FunDi model](https://doi.org/10.1093/bioinformatics/btr470), which allows a proportion number of sites (`<RHO>`) in the sequence of each taxon in the given list (`<TAXON_1>,...,<TAXON_N>`), could be permuted with each other. |
-| `--indel <INS>,<DEL>`  | Activate Indels (insertion/deletion events) and specify the ratio of the insertion rate `<INS>`, and the deletion rate `<DEL>`, respectively to the substitution rate. |
-| `--indel-distribution <INS_DIS>,<DEL_DIS>`  | Specify the distributions for generating the random numbers of sites to insert/delete. By default, a geometric distribution with p of 0.5 is used.|
+| `--indel <INS>,<DEL>`  | Activate Indels (insertion/deletion events) and specify the insertion/deletion rate relative to the substitution rate of 1. |
+| `--indel-size <INS_DIS>,<DEL_DIS>`  | Specify the indel-size distributions. Notes: <INS_DIS>,<DEL_DIS> could be names of user-defined distributions, or NB{<int_r>,<double_q>}, POW{<double_a>[,<int_max>]}, LAV{<double_a>,<int_max>}, GEO{<double_p>}, which specifies Negative Binomial, Zipfian, Lavalette, and Geometric distribution, respectively. By default, the Geometric distribution with p of 0.5 is used.|
 | `-q <PARTITION_FILE>` or <br>`-p <PARTITION_FILE>` or <br>`-Q <PARTITION_FILE>` | `-q <PARTITION_FILE>`: Edge-equal partition model with equal branch lengths: All partitions share the same set of branch lengths. <br>`-p <PARTITION_FILE>`: Edge-proportional partition model with proportional branch lengths: Like above, but each partition has its own partition specific rate, which rescales all its branch lengths. This model accommodates different evolutionary rates between partitions.<br>`-Q <PARTITION_FILE>`: Edge-unlinked partition model: Each partition has its own set of branch lengths. <br>`<PARTITION_FILE>` could be specified by a RAXML or NEXUS file as described in [https://github.com/iqtree/iqtree2/wiki/Complex-Models](https://github.com/iqtree/iqtree2/wiki/Complex-Models)<br>These options could work well with the **Inference Mode**.<br>In cases **without the Inference Mode**, users must supply a tree-file (with a single tree) when using `-q` or `-p`. While using `-Q`, AliSim requires a multiple-tree file that specifies a supertree (combining all taxa in all partitions) in the first line. Following that, each tree for each partition should be specified in a single line one by one in the input multiple-tree file. Noting that each partition could have a different tree topology. |
 | `--distribution FILE` | Supply the distribution definition file, which specifies multiple lists of numbers. These lists could be used to generate random parameters by specifying list names (instead of specific numbers) for model parameters. |
 | `--branch-distribution DISTRIBUTION_NAME` |                  Specify a distribution, from which branch lengths of phylogenetic trees will be randomly generated.|
@@ -206,6 +206,7 @@ All the options available in AliSim are shown below:
 |  `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`  | Specify the minimum, the mean, and the maximum length of branches when generating a random tree. |
 | `-s <SEQUENCE_ALIGNMENT>` | Specify an input MSA. AliSim will simulate MSAs that mimic that user-provided MSA **(Inference mode)**.<br>Firstly, IQTree infers a phylogenetic tree and a model with its parameters from the input data. Then, AliSim simulates MSA from that tree and the model. |
 | `--write-all` | Enable writing internal sequences. |
+| `-nt <NUM>` | Set the number of threads to run the simulation. |
 | `-seed <NUMBER>` | Specify the seed number. <br>*Default: the clock of the PC*. <br>Be careful! To make the AliSim reproducible, users should specify the seed number. |
 | `-gz` | Enable output compression, but it could take a longer running time.<br>*By default, output compression is disabled*. |
 | `-af phy|fasta` | Set the format for the output file(s). <br>*Default: phy (PHYLIP format)* |

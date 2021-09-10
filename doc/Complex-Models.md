@@ -18,6 +18,8 @@ sections:
   url: site-specific-frequency-models
 - name: Heterotachy models
   url: heterotachy-models
+- name: Branch-specific models (in AliSim only)
+  url: branch-specific-models-in-alisim-only
 ---
 
 Complex models
