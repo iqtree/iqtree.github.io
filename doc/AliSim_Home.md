@@ -1,156 +1,111 @@
-﻿Introduction
+Introduction
 ============
 
-What is AliSim?
-------------
-<div class="hline"></div>
-
-AliSim is a fast, efficient, versatile, and realistic sequence simulator for simulating huge genomic data sets. It is provided as an extension of the [IQ-TREE software](www.iqtree.org) version 2.2
-
-* __Fast__: AliSim is much faster than existing simulation tools. It takes only a few minutes to generate millions of sequences or sites while other existing simulators, namely [Seq-Gen](https://academic.oup.com/bioinformatics/article/13/3/235/423110), [Dawg](https://pubmed.ncbi.nlm.nih.gov/16306390/), and [Indelible](https://academic.oup.com/mbe/article/26/8/1879/980884), and [PhastSim](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7987011/) are unable or require several hours, even a few days.
-* __Efficient__:  AliSim consumes far less memory than other simulators. It consumes approximately 1 GB RAM to generate one million sequences with 30 thousand sites while other simulators require tens to hundreds GB of RAM. 
-* __Versatile__: AliSim integrates a wide range of evolutionary models available in the IQ-TREE software, including standard, mixture, partition models, and many other complex models. Also, it offers flexible and convenient options for users to perform complex simulations by supporting versatile use cases. 
-* __Realistic__: AliSim can simulate realistic MSAs from biologically inspired parameters: it could randomly generate model parameters  from  either empirical distributions (extracted from a large collection of biological datasets) or user-defined lists of numbers; it also allows users to simulate an alignment that mimics the evolutional process of a real biological alignment, a task not supported in other tools.
-
-Key features
-------------
-<div class="hline"></div>
+Sequence simulations play an important role in phylogenetics. However, existing tools are either based on simplistic models of evolution or too slow to generate large datasets, or both. Therefore, we introduce AliSim, a new tool that can efficiently simulate realistic biological alignments under [complex evolutionary models](Complex-Models). AliSim takes only an hour and approximately 1GB RAM to generate alignments with millions of sequences or sites, while popular software Seq-Gen, Dawg, and Indelible require many hours and tens to hundreds GB of RAM. We provide AliSim as an extension of the IQ-TREE software version 2.2, freely available at www.iqtree.org. 
 
 
-* __AliSim supports a wide range of evolutionary models__: It supports a vast majority of evolutionary models not available in other existing simulators. AliSim allows users to simulate different data types, including DNA, amino-acid, codon, binary, and multi-state morphological data using more than 200 time-reversible substitution models, around 100 non-reversible models, and other complex models, such as [branch-specific models](https://github.com/iqtree/iqtree2/wiki/Complex-Models#branch-specific-models-in-alisim-only), and [Fundi models](https://doi.org/10.1093/bioinformatics/btr470). AliSim also supports complex partition and mixture models. 
-  * __Common models__: All [common substitution models](https://github.com/iqtree/iqtree2/wiki/Substitution-Models) with [rate heterogeneity across sites](https://github.com/iqtree/iqtree2/wiki/Substitution-Models#rate-heterogeneity-across-sites) and [ascertainment bias correction](https://github.com/iqtree/iqtree2/wiki/Substitution-Models#ascertainment-bias-correction), e.g., SNP data.
-  * __Heterotachy models__: Allowing each branch in the phylogenetic tree may have multiple lengths corresponding to different classes of the [GHOST model](https://doi.org/10.1093/sysbio/syz051). Besides, we offer various options to link, unlink models’ parameters across all classes, or use separate base frequencies for each class. 
-  * __Partition models__: Allowing individual models for different genomic loci (e.g., genes or codon positions), mixed data types, mixed rate heterogeneity types, [linked, unlinked, and proportional branch lengths between partitions](https://github.com/iqtree/iqtree2/wiki/Complex-Models#partition-models). Furthermore, AliSim also supports tree mixture models, in which each partition could have a different tree topology.
-  * __Mixture models__: [fully customizable site mixture models](https://github.com/iqtree/iqtree2/wiki/Complex-Models#mixture-models), [empirical protein mixture models](https://github.com/iqtree/iqtree2/wiki/Substitution-Models#protein-mixture-models), and [branch-specific models](https://github.com/iqtree/iqtree2/wiki/Complex-Models#branch-specific-models-in-alisim-only), which assign different models of sequence evolution to individual branches of a tree.
-  
-* __AliSim  offers more realistic simulations__, It could simulate an MSA that mimics the evolutionary history of a given MSA. It also copies the gap patterns from the input MSA to the output MSA. Additionally, AliSim natively allows users to generate a random tree under biologically plausible models, such as the [Birth-Death model](https://www.jstor.org/stable/2236051) and the more restrictive [Yule](https://www.jstor.org/stable/92117)-[Harding](https://www.jstor.org/stable/1426329) (by default) or the [Uniform model](https://pubmed.ncbi.nlm.nih.gov/10704639/). Additionally, AliSim also supports [Indels](https://academic.oup.com/mbe/article/26/8/1879/980884) to simulate Insertion and Deletion events.
-* __AliSim achieves high-performance efficiency__: AliSim is superior to all existing simulation tools regarding  model flexibility, execution times, and memory usage in simulating huge phylogenetic datasets. More specifically, AliSim takes only a few minutes and about 1GB RAM to generate  alignments with millions of sequences or sites on a personal computer, while other software Seq-Gen, Dawg, Indelible, and PhastSim require several hours and/or tens to hundreds GB of RAM. Moreover, the memory usage of AliSim only increases sub-linearly with the number of sequences and remains more or less constant with increasing sequence length.
-
-How to cite AliSim?
---------------------
-<div class="hline"></div>
-
-> **To maintain AliSim, support users, it is important for us that you cite the following papers.**
+If you use AliSim in a publication please cite:
 
 * __L.T. Nhan, B.Q. Minh__ (2021) AliSim: Ultrafast Sequence Alignment  Simulator, ... <https://doi.org/...>
 
+In the following we provide a short tutorial how to use AliSim.
 
-Getting started
-===============
 
-Installation
-------------
-<div class="hline"></div>
+Simulating alignments from a tree and model
+-------------------------------------------
 
-Users could download and/or install AliSim from one of the following options:
-
-### Packages and bundles
-
-As an extension of the IQ-Tree software, AliSim could be obtained by installing the IQ-Tree package/bundle following this [Installation Guide](https://github.com/iqtree/iqtree2/wiki/Quickstart).
-
-### Manual download
-
-AliSim for Windows, MacOSX, and Linux can be [downloaded here](http://www.iqtree.org/#download).
-
-* Extract the `.zip` (Windows, MacOSX) or `.tar.gz` (Linux) file to create a directory `iqtree-X.Y.Z-OS`, where `X.Y.Z` is the version number and `OS` is the operating system (Windows, MacOSX, or Linux).
-* You will find the executable in the `bin` sub-folder. Copy all files in `bin` folder to your system search path such that you can run IQ-TREE by entering `iqtree2` from the Terminal.
-
-Now you need to open a Terminal (or Console) to run IQ-TREE/AliSim (see the guide for [Windows users](https://github.com/iqtree/iqtree2/wiki/Quickstart#for-windows-users) and [Mac OS X users](https://github.com/iqtree/iqtree2/wiki/Quickstart#for-mac-os-x-users)) then continue with the following Tutorial to see how to run simple and complex simulations with AliSim.
-
-Tutorial
-===================
-
-At this step, we assume that you have successfully downloaded and installed IQ-Tree/AliSim. For the next steps, the folder containing your  `iqtree2` executable should be added to your PATH environment variable so that IQ-TREE/AliSim can be invoked by simply entering `iqtree2` at the command-line. Alternatively, you can also copy `iqtree2` binary into your system search.
-
-AliSim is invoked from the command-line with, e.g.,
+Similar to other software, AliSim can simulate a multiple sequence alignment for a given tree with branch lengths and a model with:
 
     iqtree2 --alisim <OUTPUT_PREFIX> -m <MODEL> -t <TREEFILE>
 
-assuming that IQ-TREE can be run by simply entering `iqtree2`. 
+The `-m` option is to specify a model name and `-t` option specifies a tree file in the standard [newick format](https://evolution.genetics.washington.edu/phylip/doc/main.html#treefile). This will print the output alignment into `OUTPUT_PREFIX.phy` file in Phylip format.
 
->**TIP**: For a quick overview of all supported options in IQ-TREE/AliSim, run the command  `iqtree -h`. 
+For example, if you want to simulate a DNA alignment under the [Jukes-Cantor model](LINK) for the following tree `tree.nwk`:
 
-Input data
-----------
-<div class="hline"></div>
+    (A:0.3544240993,(B:0.1905941554,C:0.1328977434):0.0998619427,D:0.0898418080);
 
-AliSim takes as input a *phylogenetic tree* and an *evolutionary model*, then simulates an alignment of sequences at the tips of the tree that have evolved along the tree.
+You can run IQ-TREE with:
 
-The input tree should be in the [PHYLIP format](https://evolution.genetics.washington.edu/phylip/doc/main.html#treefile), which may look like:
+	program -i input -o output_file
 
-    (LngfishAu:0.3544240993,(Rat:0.1905941554,Platypus:0.1328977434):0.0998619427,Opossum:0.0898418080);
+    iqtree2 --alisim alignment -m JC -t tree.nwk
 
-This tiny tree contains 4 tips corresponding to 4 species. 
+will print the simulated alignment to `alignment_0.phy`. 
 
-First running example
----------------------
-<div class="hline"></div>
 
-From the downloaded folder, there is an example tree called `example.phy.treefile` in PHYLIP format in the folder `example`.
- 
-You can now start simulating a multiple sequence alignment (assuming that you are now in the same folder with `example.phy.treefile`):
+The output MSA should contain 4 sequences of 1000 sites, each, for example:
 
-    iqtree2 --alisim Dayhoff_1000 -m Dayhoff -t example.phy.treefile
+    4 1000
+    A       AAATTTGGTCCTGTGATTCAGCAGTGAT...
+    B       CTTCCACACCCCAGGACTCAGCAGTGAT...
+    C       CTACCACACCCCAGGACTCAGCAGTAAT...
+    D       CTACCACACCCCAGGAAACAGCAGTGAT...
 
-* `--alisim Dayhoff_1000` is the option to activate AliSim from the IQ-TREE software, and specify the prefix for the output file name as `Dayhoff_1000`.
-* `-m Dayhoff` is the option to specify the substitution model is `Dayhoff`. Since `Dayhoff` is a protein model, AliSim automatically detects the sequence type, then generates amino-acid data.
-* `-t example.phy.treefile` is the option to specify the input phylogenetic tree. 
 
-At the end of that run, AliSim writes out the simulated MSA into a file named `Dayhoff_1000_0.phy`. The output MSA should contain 17 sequences (corresponding to the number of tips in the input tree). Each sequence consists of 1000 sites. By default, the output file should be in PHYLIP format, as illustrated below. Users could use `-af fasta` to output the simulated MSA in FASTA format.
+Importantly, we note that AliSim will use a random number seed corresponding to the current CPU clock of the running computer. In case you run two AliSim commands at the same time, it may generate two identical alignments, which may not be the desired outcome. In that case, you can use -seed option to specify the random number seed:
 
-    17 1000
-    Frog       AAATTTGGTCCTGTGATTCAGCAGTGAT...
-    Turtle     CTTCCACACCCCAGGACTCAGCAGTGAT...
-    Bird       CTACCACACCCCAGGACTCAGCAGTAAT...
-    Human      CTACCACACCCCAGGAAACAGCAGTGAT...
-    Cow        CTACCACACCCCAGGAAACAGCAGTGAC...
-    Whale      CTACCACGCCCCAGGACACAGCAGTGAT...
-    Mouse      CTACCACACCCCAGGACTCAGCAGTGAT...
-    ...
+    iqtree2 --alisim alignment_123 -m JC -t tree.nwk -seed 123
+
+`-seed` option has another advantage of reproducing an exact same alignment when IQ-TREE running again.
+
+Customizing output alignments
+-----------------------------
+
+Users can use `--length` option to change the length of the output alignment, e.g.:
+
+    iqtree2 --alisim alignment_5000 -m JC -t tree.nwk --length 5000
+
+Users could also output the alignment in FASTA format with `-af` option:
+
+    iqtree2 --alisim alignment -m JC -t tree.nwk -af fasta
+    
+will print the alignment to `alignment_0.fa` file.
+
+Write abouit this option:    
+    --num-alignments 3
+    
+    * `--num-alignments 3` is the option to specify the number of output MSAs is 3. 
+
+
+Compressing -> gz option pls
+
+Simulating insertions and deletions
+-----------------------------------
+    
+Alisim can also simulate insertions and deletions, for example:
+
+    iqtree2 --alisim alignment_indel -m JC -t tree.nwk --indel 0.1,0.05
+    
+`--indel` option specifies the insertion and deletion rates (separated by a comma) relative to the substitution rates. Here, it means that on average we have 10 insertion and 5 deletion events per every 100 substitution events. By default AliSim assumes that the size of indels follow a gemeometric distribution with mean of XXX and variance of +-YYY. If you want to change this distribution you can use `--indel-size` option:
+
+    iqtree2 --alisim alignment_indel_size -m JC -t tree.nwk --indel 0.1,0.05 --indel-size GEO{5,3},GEO{4,2}
+
+It means that the insertion size follows a geometric distribution with mean 5 and variance 3, whereas deletion size also follows the geometric distribution but with mean 4 and variance 2. Apart from this distribution, AliSim also supports negative binomial distribution, blabla. Give example running usage for all these distributions.
+
       
-Simulating MSAs that mimic a user-provided MSA
--------------------------------------
-<div class="hline"></div>
 
-AliSim allows users to simulate MSAs that mimic the evolutionary history of a given MSA as the below example:
-        
-      iqtree2 --alisim output_10k -s example.phy --num-alignments 3 --length 10000
+Simulating with custom models
+-----------------------------
 
-* `--alisim output_10k` is the option to activate AliSim from the IQ-TREE software, and specify the prefix for the output file name as `output_10k`.
-* `-s example.phy` is the option to supply the input alignment of sequences. 
-* `--num-alignments 3` is the option to specify the number of output MSAs is 3. 
-* `--length 10000` is the option to specify the sequence length at 10,000 sites. 
+Apart from the simple Juke-Cantor models above AliSim also support all other more complex models available in IQ-TREE. For example:
 
-In this example, AliSim infers the phylogenetic tree and the substitution model with its parameters from the input MSA `example.phy`. After that, MSAs will be generated one by one based on the inferred tree and the substitution model. By default, AliSim will then copy the gap patterns from the input to the output MSAs. To disable this feature, users could add the option `--no-copy-gaps` to the execution command.
 
-At the end of the run, AliSim will output 3 MSAs in three separate files, namely, `output_10k_0.phy`, `output_10k_1.phy`, and `output_10k_2.phy`. Each MSA contains 17 sequences (equally to the number of sequences in the input MSA). Each sequence contains 10,000 sites.
+     iqtree2 --alisim alignment_HKY -t tree.nwk -m HKY{2.0}+F{0.2/0.3/0.1/0.4}
 
-Simulating MSAs from a random tree
-------------------
-<div class="hline"></div>
+simulate under [HKY model](...) with transition/transversion ratio of 2 and nucleotide frequences of 0.2, 0.3, 0.1, 0.4 for A, C, G, T, respectively.
 
-AliSim supports users to produce MSAs from a random tree generated by common models (such as Yule-Harding, Uniform, Caterpillar, Balanced, Birth-Death). Let's have a look at this example:
+AliSim also supports all [rate heterogeneity across sites](...) such as:
 
-     iqtree2 --alisim HKY_1000 -t RANDOM{yh,1000} -m HKY{2.0}+F{0.2,0.3,0.1,0.4} -gz
+     iqtree2 --alisim alignment_HKY_G -t tree.nwk -m HKY{2.0}+F{0.2/0.3/0.1/0.4}+G{0.5}
 
-* `--alisim HKY_1000` is the option to activate AliSim from the IQ-TREE software, and specify the prefix for the output file name as `HKY_1000`.
-* `-t RANDOM{yh,1000}` is the option to specify the number of tips of the random tree is 1,000, and the model Yule-Harding will be used  to draw the tree randomly.
-* `-m HKY+F{0.2,0.3,0.1,0.4}` is the option to specify the substitution model HKY with the evolutionary rates are 2.0 and 1.0, and the base frequencies corresponding to the base A, C, G, T are 0.2, 0.3, 0.1, and 0.4, respectively. 
-* `-gz` is the option to compress the output file. 
-
-By default, branch lengths of the random tree are randomly drawn from an exponential distribution with the mean of 0.1. Users could adjust the minimum, the maximum, and the mean of the exponential distribution via the option `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`.
-
-At the end of the run, AliSim will write out the simulated MSA into a compressed file named `HKY_1000_0.phy`. The output MSA should contain 1,000 sequences (corresponding to the given number of tips). Each sequence consists of 1,000 sites.
-
-Simulating MSAs from random parameters generated from empirical distributions or user-defined lists of numbers
-------------------
-<div class="hline"></div>
 By default, if nucleotide frequencies are neither specified nor possible to be inferred from a user-provided MSA, AliSim will randomly generate these frequencies from empirical distributions as the following example. 
 
      iqtree2 --alisim JC_1000 -t example.phy.treefile -m JC
 
+    
 In this case, AliSim would simulate an MSA based on the JC model. The frequencies of base A, C, G, and T, will be randomly generated from empirical distributions, namely, Generalized-logistic, Exponential-normal, Power-log-normal, Exponential-Weibull. In fact, these distributions and their parameters were estimated from a large collection of empirical datasets [REF](http://google.com). 
-
+    
+    
 In addition to five built-in distributions, namely *uniform, Generalized_logistic, Exponential_normal, Power_log_normal, and Exponential_Weibull*, users could define their own lists of numbers, then generate other model parameters from these lists by following these steps. Note that user-defined lists of numbers could be generated from different distributions.
 
 Firstly, generating a set of random numbers for each list, then defining the new lists in a file named `custom_distributions.txt` as the following example
@@ -174,14 +129,48 @@ In this example, 3 evolutionary rates of GTR models are randomly drawn from the 
 
 This feature is not limited to DNA models, users could also use user-defined lists to randomly generate parameters (e.g., evolutionary rates, state frequencies, nonsynonymous/synonymous rate ratio, transition rate, transversion rate, category weight/proportion) for other kinds of models/data (e.g., Protein, Codon, Binary, Morph, Lie Markov, Heterotachy, and Mixture). 
 
+    
+Simulating alignments that mimic a real alignment
+-------------------------------------
+<div class="hline"></div>
+
+AliSim allows users to simulate MSAs that mimic the evolutionary history of a given MSA as the below example:
+        
+      iqtree2 --alisim my_example -s example.phy 
+
+* `-s example.phy` is the option to supply the input alignment. 
+
+In this example, AliSim will first run IQ-TREE to a phylogenetic tree and the best-fit substitution model (using ModelFinder) with its parameters from the input alignment `example.phy`. After that, AliSim will generate an alignment based on the inferred tree and the best substitution model. Moreover, AliSim will copy the gap patterns from the input alignment `example.phy` to the output alignment `my_example_0.phy`. To disable this feature, users could add the option `--no-copy-gaps` to the command line.
+
+Simulating alignments from a random tree
+------------------
+<div class="hline"></div>
+
+AliSim supports users to produce alignments from a random tree generated by common models (such as Yule-Harding, Uniform, Birth-Death process). As an example:
+
+     iqtree2 --alisim alignment_yh -t RANDOM{yh/1000}
+
+* `-t RANDOM{yh,1000}` tells AliSim to generate a random tree with 1000 taxa under Yule-Harding model, with brach lengths following a exponential distribution with mean of 0.1.
+
+Here AliSim generates `alignment_yh_0.phy` under Jukes-Cantor model. If you want to change the model, use -m option as [described above](SECTION)
+
+For the distribution of branch lengths users could adjust the minimum, the maximum, and the mean of the exponential distribution via the option `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`.
+
+Moreover, AliSim also supports user-defined distributions of branch lengths by specifying a file with a list of numbers in the following format:
+
+--branch-distribution ...
+
+
+
 Furthermore, users can also randomly generate branch lengths of the phylogenetic tree from a user-defined list with the option `--branch-distribution DISTRIBUTION_NAME` as below
 
-    iqtree2 --alisim JC_1000 -t RANDOM{bd{0.8,0.2},1000} -m JC --branch-distribution F_A --distribution custom_distributions.txt
+    iqtree2 --alisim JC_1000 -t RANDOM{bd{0.8/0.2}/1000} -m JC --branch-distribution F_A --distribution custom_distributions.txt
 
 In this example, AliSim simulates an MSA from the `JC` model and a random tree generated from the Birth-Death model with the birth rate, and death rate are 0.8, and 0.2, respectively. The branch lengths of the random tree are randomly drawn from the user-defined list `F_A`. In this example, if the user supplies a tree file (instead of a random tree), the branch lengths of the user-provided tree will be overridden by the random lengths from the list `F_A`.
 
 Command reference
 =================
+
 All the options available in AliSim are shown below:
 
 | Option | Usage and meaning |
@@ -212,50 +201,5 @@ All the options available in AliSim are shown below:
 | `-af phy|fasta` | Set the format for the output file(s). <br>*Default: phy (PHYLIP format)* |
 
 
-Compilation guide
-=================
 
-For advanced users to compile AliSim source code. 
-
-Downloading source code
------------------------
-<div class="hline"></div>
-
-Users could download the AliSim source code from:
-
-<https://github.com/iqtree/iqtree2/tree/alisim>
-
-Alternatively, if you have `git` installed, you can also clone the source code from GitHub with:
-
-    git clone --branch alisim --single-branch https://github.com/iqtree/iqtree2.git
-    
-
-Compiling AliSim
----------------------
-<div class="hline"></div>
-
-As AliSim was developed as an extension of the IQ-Tree software, users can easily compile AliSim by following this [Compilation Guide](https://github.com/iqtree/iqtree2/wiki/Compilation-Guide). 
-
-Development team
-----------------
-<div class="hline"></div>
-
-AliSim is actively developed by:
-
-**Nhan Trong Ly**, _Developer_.
-
-**Bui Quang Minh**, _Advisor_.
-
-
-Credits and acknowledgments
-----------------------------
-<div class="hline"></div>
-
-AliSim was developed from the source code of the [IQ-Tree software](https://github.com/iqtree/iqtree2).
-
-This project was supported by [ANU University Research Scholarship](https://www.anu.edu.au/study/scholarships/find-a-scholarship/anu-university-research-scholarships) (International) (738/2018); ANU HDR Fee Remission Merit Scholarship (271/2014); [Vingroup Science and Technology Scholarship Program for Overseas Study for Master’s and Doctoral Degrees](https://scholarships.vinuni.edu.vn/) [Scholar ID: VGRS20042M]; and The Chan-Zuckerberg Initiative grant for open source software for science. We thank [The Center for Integrative Bioinformatics Vienna (CIBIV)](http://www.cibiv.at/) for kindly providing us the computational resource to do this research.
-
-
-*Thanks for reading our tutorials and using AliSim! We do hope that you will find our simulator useful for your work/research and have great experiences with it. 
-If you have any questions or found potential bugs, please feel free to contact us. Thank you very much!*
 
