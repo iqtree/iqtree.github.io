@@ -142,7 +142,7 @@ Assuming that the above partition file is named `example_mix.nex` and one would 
 
     iqtree2 --alisim partition_mix -q example_mix.nex -t tree.nwk
 
-At the end of the run, AliSim writes out the simulated alignments into four output files. The first file named `partition_mix_0_part1_part2_part7.phy` stores the merged 400-site DNA alignment from `part1`, `part2`, and `part7`. Although `part3`, `part5`, and `part6` contain morphological data, `part3` simulates a morphological alignment with 32 states while `part5` and `part6` have 30 states. Thus, AliSim outputs the alignment of `part3` into `partition_mix_0_part3.phy` whereas `partition_mix_0_part5_part6.phy`stores the merged alignment of `part5` and `part6`. Lastly, `partition_mix_0_part4.phy` stores the simulated amino-acid alignment of `part4`.
+At the end of the run, AliSim writes out the simulated alignments into four output files. The first file named `partition_mix_0_part1_part2_part7.phy` stores the merged 400-site DNA alignment from `part1`, `part2`, and `part7`. Although `part3`, `part5`, and `part6` contain morphological data, `part3` simulates a morphological alignment with 32 states while `part5` and `part6` have 30 states. Thus, AliSim outputs the alignment of `part3` into `partition_mix_0_part3.phy`, whereas `partition_mix_0_part5_part6.phy` stores the  alignment merging `part5` and `part6`. Lastly, `partition_mix_0_part4.phy` stores the simulated amino-acid alignment of `part4`.
 
 **Example 2**: Simulating mixed data with an ***Edge-proportional* partition model**
 
@@ -187,7 +187,7 @@ Now, one could simulate alignments using the following command:
 	
 	iqtree2 --alisim partition_mix_unlinked  -Q example_mix.nex -t example_mix_unlinked_partitions.parttrees
 
-At the end of the run, AliSim writes out the simulated alignments into four output files, as seen in the previous example with the ***Edge-equal*** partition model. However, when you check the merged alignment in `partition_mix_unlinked_0_part1_part2_part7.phy`, you should see several gaps `-` in the sequences of taxon 3 (T3), and taxon 9 (T9) as these taxa are missing in the input trees of `part1` and `part2`.
+At the end of the run, AliSim writes out the simulated alignments into four output files, as seen in the previous example with the ***Edge-equal*** partition model. However, when you check the merged alignment in `partition_mix_unlinked_0_part1_part2_part7.phy`, you should see several gaps `-` in the sequences of taxon 3 (T3) and taxon 9 (T9) as these taxa are missing in the input trees of `part1` and `part2`.
 
 	10 400
 	T0         TACGCTTCAATTGCTGCTCTATTTCTATGTAGCCAGTTTTAGTCCTATCGTGG...
@@ -201,6 +201,27 @@ At the end of the run, AliSim writes out the simulated alignments into four outp
 	T1         TACTCCTGATTTGCTGCTCTAGTACCAGGTAGCTAGTTTTAGTCCTATCGTTG...
 	T2         TACTGTTCCTTTGCTGCCCTACTTCCCCATAGCCAGTTTTAGTCCTGTTGTGT...
 
+**Example 4**: Simulating multi-gene alignments
+ 
+To simulate an alignment consisting of multiple genes, where each gene evolves under a different substitution model, one should first define those genes (each gene as a partition) and specify the corresponding model for each gene. Assuming we have multi_genes.nex file as following
+ 
+    #nexus
+	begin sets;
+	    charset gene_1 = DNA, 1-846;
+	    charset gene_2 = DNA, 847-1368;
+	    charset gene_3 = DNA, 1369-2040;
+	    charset gene_4 = DNA, 2041-2772;
+	    charset gene_5 = DNA, 2773-3738;
+	    charpartition mine = HKY{2}+F{0.2/0.3/0.1/0.4}:gene_1, GTR{1.2/0.8/0.5/1.7/1.5}+F{0.1/0.2/0.3/0.4}+G{0.5}:gene_2, JC:gene_3, HKY{1.5}+I{0.2}:gene_4, K80{2.5}:gene_5;
+	end;
+
+The above file defines five genes, each of them has a different length, which sums to 3738 sites. These genes evolved independently under HKY, GTR (with discrete Gamma rate variance), JC, HKY (with a proportion of invariant sites), and K80 model, respectively.
+
+Then, you can simulate an alignment consisting of these five genes by
+
+	iqtree2 --alisim partition_multi_genes  -q multi_genes.nex -t tree.nwk
+
+That simulation outputs the new alignment into a single file named `partition_multi_genes_0_full.phy`.
 
 Mixture models
 --------------
@@ -279,7 +300,7 @@ Here, we first define the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in
 
 Note that both `frequency` and `model` commands can be embedded into a single model file.
 
-In AliSim, users could easily simulate aligments with mixture models as described above by the following commands.
+In AliSim, users could easily simulate alignments with mixture models as described above by the following commands.
 
     iqtree2 --alisim MIX_JC_HKY_G -m "MIX{JC,HKY}+G4" -t tree.nwk
     iqtree2 --alisim JTT_CF4_G -mdef mymodels.nex -m "JTT+CF4model+G" -t tree.nwk
@@ -376,11 +397,11 @@ The `-wspm` option will generate a `.siteprob` output file. This contains the pr
 
 ### Quick usages (for phylogenetic Simulation with AliSim)
 
-If one wants to simulate sequences based on a GHOST model with 4 classes in conjunction with the `GTR` model of DNA evolution, one would use the following command:
+If one wants to simulate sequences based on a GHOST model with 4 classes in conjunction with the `GTR` model of DNA evolution, one should use the following command:
 
     iqtree2 --alisim GTR_plus_H4 -m GTR+H4 -t tree.nwk
 
-Assuming that we have an input alignment `example.phy` evolving under the GHOST model with 4 classes in conjunction with the `GTR` model. If one want to simulate an alignment that mimic that input alignment, one would use the following command:
+Assuming that we have an input alignment `example.phy` evolving under the GHOST model with 4 classes in conjunction with the `GTR` model. If one wants to simulate an alignment that mimics that input alignment, one should use the following command:
 
     iqtree2 --alisim GTR_plus_H4_inference -m GTR+H4 -s example.phy
 

@@ -142,7 +142,7 @@ Starting with version 1.6, IQ-TREE supports a series of Lie Markov models ([Wood
 
 Column __Rev?__ shows whether the model is reversible or not. Column __Freq__ shows the number of free base frequencies. 0 means equal base frequency; 1 means f(A)=f(G) and f(C)=f(T); 2 means f(A)+f(G)=0.5=f(C)+f(T); 3 means unconstrained frequencies.
 
-In AliSim, excepting models with equal base frequency, users could specify base frequencies with `+F{...}`. Otherwise, the AliSim randomly generates the state frequencies from empirical distributions. To specify state frequencies, users must supply 1 frequency for the models with the number of free base frequencies (__Freq__) is 1. For models with the number of free base frequencies (__Freq__) is 2 or 3, users must provide 2, and 4 frequencies, respectively.
+In AliSim, excepting models with equal base frequency, users could specify base frequencies with `+F{...}`. Otherwise, the AliSim randomly generates the state frequencies from empirical distributions. To specify state frequencies, users must supply 1 frequency for the models with the number of free base frequencies (__Freq__) is 1. For models with the number of free base frequencies (__Freq__) is 2 or 3, users must provide 2 and 4 frequencies, respectively.
 
 All Lie Markov models can have one of the following prefices:
 
@@ -252,7 +252,7 @@ By default, AA frequencies are given by the model. Users can change this with:
 
 | FreqType | Explanation |
 |----------|-------------|
-| +F       | empirical AA frequencies from the data. In AliSim, if users neither specify the base frequencies nor supply an input alignment, AliSim will randomly generate the base frequencies from a Uniform distribution.|
+| +F       | empirical AA frequencies from the data. In AliSim, if users neither specify the base frequencies nor supply an input alignment, AliSim will randomly generate the base frequencies from Uniform distribution.|
 | +FO      | ML optimized AA frequencies from the data.|
 | +FQ      | Equal AA frequencies.|
 
@@ -335,8 +335,8 @@ IQ-TREE supports the following codon frequencies:
 |----------|------------------------------------------------------------------------|
 | +F       | Empirical codon frequencies counted from the data. In AliSim, if users neither specify base frequencies nor supply an input alignment, AliSim will generate base frequencies from empirical distributions.|
 | +FQ      | Equal codon frequencies.|
-| +F1X4    | Unequal nucleotide frequencies but equal nt frequencies over three codon positions. In AliSim, if users don't supply an input alignment, the base frequencies are randomly generated based on empirical distributions or users could specify the frequencies via `+F1X4{<freq_0>,...,<freq_4>}`.|
-| +F3X4    | Unequal nucleotide frequencies and unequal nt frequencies over three codon positions. In AliSim, if users don't supply an input alignment, the base frequencies are randomly generated based on a empirical distributions or users could specify the frequencies via  `+F3X4{<freq_0>,...,<freq_11>}`|
+| +F1X4    | Unequal nucleotide frequencies but equal nt frequencies over three codon positions. In AliSim, if users don't supply an input alignment, the base frequencies are randomly generated based on empirical distributions, or users could specify the frequencies via `+F1X4{<freq_0>,...,<freq_4>}`.|
+| +F3X4    | Unequal nucleotide frequencies and unequal nt frequencies over three codon positions. In AliSim, if users don't supply an input alignment, the base frequencies are randomly generated based on empirical distributions, or users could specify the frequencies via  `+F3X4{<freq_0>,...,<freq_11>}`|
 
 If not specified, the default codon frequency will be `+F3X4` for `MG`-type models, `+F` for `GY`-type models and given by the model for empirical codon models. 
 
