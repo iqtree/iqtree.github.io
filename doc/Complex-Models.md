@@ -122,7 +122,7 @@ Having prepared a partition file, one is ready to start a partitioned analysis w
 
 **Example 1**: Simulating mixed data with an ***Edge-equal* partition model**
 
-AliSim allows users to simulate mixed data  (e.g., DNA, Protein, and MORPH) in a single simulation, in which each kind of data will be exported into a different alignment file. Here is an example for mixing DNA, protein, and morphological data:
+AliSim allows users to simulate mixed data  (e.g., DNA, Protein, and MORPH) in a single simulation, in which each kind of data is exported into a different alignment file. Here is an example for mixing DNA, protein, and morphological data:
 
     #nexus
 	begin sets;
@@ -138,15 +138,15 @@ AliSim allows users to simulate mixed data  (e.g., DNA, Protein, and MORPH) in a
 
 Here,  `part1`,  `part2`, and `part7` contain three DNA sub-alignments, whereas `part3`,  `part5`, and `part6` contain sub-alignments for morphological data. Besides, `part4` contains an amino-acid alignment with 200 sites. Note that users could specify the parameters for each model of each partition (see [Substitution Models](Substitution-Models)). In this example, for simplicity, we ignore that feature, thus, using randomly generated parameters.
 
-Assuming that the above partition file is named `example_mix.nex` and one would like to simulate an MSA from a single tree in `example.phy.treefile`, one could start the simulation with the following command:
+Assuming that the above partition file is named `example_mix.nex` and one would like to simulate alignments from a single tree in `tree.nwk`, one could start the simulation with the following command:
 
-    iqtree2 --alisim partition_mix -q example_mix.nex -t example.phy.treefile
+    iqtree2 --alisim partition_mix -q example_mix.nex -t tree.nwk
 
-At the end of the run, AliSim will write out the simulated MSA into four output files. The first file named `partition_mix_0_part1_part2_part7.phy` stores the merged 400-site DNA alignment from `part1`, `part2`, and `part7`. Although `part3`, `part5`, and `part6` contain morphological data, `part3` simulates morphological alignments with 32 states while `part5` and `part6` have 30 states. Thus, the simulated alignment of `part3` will be saved to `partition_mix_0_part3.phy` whereas `partition_mix_0_part5_part6.phy`stores the merged alignment of `part5` and `part6`. Lastly, the simulated amino-acid alignment of `part4` should be stored in `partition_mix_0_part4.phy`.
+At the end of the run, AliSim writes out the simulated alignments into four output files. The first file named `partition_mix_0_part1_part2_part7.phy` stores the merged 400-site DNA alignment from `part1`, `part2`, and `part7`. Although `part3`, `part5`, and `part6` contain morphological data, `part3` simulates a morphological alignment with 32 states while `part5` and `part6` have 30 states. Thus, AliSim outputs the alignment of `part3` into `partition_mix_0_part3.phy` whereas `partition_mix_0_part5_part6.phy`stores the merged alignment of `part5` and `part6`. Lastly, `partition_mix_0_part4.phy` stores the simulated amino-acid alignment of `part4`.
 
 **Example 2**: Simulating mixed data with an ***Edge-proportional* partition model**
 
-Unlike ***Edge-equal***, the ***Edge-proportional*** partition model requires each partition to have its own partition specific rate, which rescales all its branch lengths. One could specify the partition-specific rates by specifying the tree length for each partition in the NEXUS file via `partX{<tree_length>}` as the following example. Note that `<tree_length>` of a partition is equal to the length of the common tree times the `partition_rate` of that partition. For example, assuming the length of the common tree is 2.61045, the partition-specific rate of partition 1 is 0.3, then the `<tree_length>` of `part1` should be 0.783135 (=2.61045 * 0.3):
+Unlike ***Edge-equal***, the ***Edge-proportional*** partition requires each partition to have its own partition specific rate, which rescales all its branch lengths. One could specify the partition-specific rates by specifying the tree length for each partition in the NEXUS file via `partX{<tree_length>}` as in the following example. Note that `<tree_length>` of a partition is equal to the length of the common tree times the `partition_rate` of that partition. For example, assuming the length of the common tree is 2.61045, the partition-specific rate of partition 1 is 0.3, then the `<tree_length>` of `part1` should be 0.783135 (=2.61045 * 0.3):
 
     #nexus
 	begin sets;
@@ -162,32 +162,32 @@ Unlike ***Edge-equal***, the ***Edge-proportional*** partition model requires ea
 
 After preparing the `example_mix_edge_proportion.nex` file, one could start the simulation by:
 
-    iqtree2 --alisim partition_mix_edge_proportition -p example_mix_edge_proportion.nex -t example.phy.treefile
+    iqtree2 --alisim partition_mix_edge_proportition -p example_mix_edge_proportion.nex -t tree.nwk
     
 **Example 3**: Simulating mixed data with ***Edge-unlinked* partition model**
 
-AliSim supports tree-mixture models, which allow each partition has its own phylogenetic tree topology with even different sets of taxa as long as the supertree contains all of the taxa in all partitions. 
+AliSim supports tree-mixture models, which allow each partition has its own tree topology with even different sets of taxa as long as the supertree contains all of the taxa in all partitions. 
 
 In this example, we re-use the `example_mix.nex` file to define seven partitions with DNA, amino-acid, and morphological data.
 
-Then, we need to prepare a multiple-tree file. In the ***Edge-unlinked*** partition model, AliSim requires a multiple-tree input file that specifies a supertree (combining all taxa in all partitions) in the first line. Following that, each tree for each partition should be specified in a single line one by one in the input multiple-tree file. Let's have a look at the following multiple tree file named `example_mix_unlinked_partitions.parttrees`:
+Then, we need to prepare a multiple-tree file. In an ***Edge-unlinked*** partition, AliSim requires a multiple-tree file that specifies a supertree (combining all taxa in all partitions) in the first line. Following that, each tree for each partition should be specified in a single line one by one in the input multiple-tree file as the following `example_mix_unlinked_partitions.parttrees` file:
 
-	(T0:0.0181521877,(((T5:0.1771956842,(T6:0.0614336000,T7:0.2002480501)23:0.1532476871)18:0.0332679438,(T8:0.0677273831,T9:0.0305167387)19:0.1180907531)16:0.0365283318,(T3:0.0681218610,T4:0.0527632742)17:0.1350927217)8:0.0393042588,(T1:0.1523260216,T2:0.0214431611)9:0.0733969175)2;
-	(((T4:0.0843970070,T5:0.0286349627)4:0.1220779923,T2:0.0146182510)1:0.2353878387,(T1:0.0238257189,((T6:0.0106472245,T7:0.2282782466)12:0.0946749939,(T8:0.1456716825,T9:0.2407945609)13:0.3296837366)9:0.0160168752)2:0.0450985623,T0:0.0596020470)0;
-	(T0:0.0671385689,T1:0.5298317367,((T4:0.0064005330,(T5:0.2918771232,T6:0.0059750004)11:0.1537117251)4:0.1158362293,(T2:0.0349557476,(T3:0.1152013065,(T7:0.2847312268,T8:0.0349557476)9:0.0062939800)7:0.0725670372)5:0.0689155159)3:0.0318828801)0;
-	(((T1:0.1313043899,T2:0.0011060947)4:0.2128631786,((T6:0.1987774353,T7:0.1127011763)8:0.0673344553,T3:0.0980829253)5:0.0470003629)1:0.1532476871,((T4:0.0994252273,T5:0.1532476871)10:0.2162823151,(T8:0.0139262067,T9:0.1241328591)11:0.0110931561)2:0.0362405619,T0:0.0297059234)0;
-	(T0:0.0277071893,((T2:0.1845160246,T3:0.1448169765)12:0.0055512710,((T8:0.0401971219,T9:0.0016129382)14:0.0176737179,(T6:0.1461017907,T7:0.0972861083)15:0.1624551550)13:0.0079043207)4:0.0484508315,(T1:0.0908818717,(T4:0.0382725621,T5:0.0047091608)11:0.1870802677)5:0.1645065090)3;
-	(T0:0.0574475651,T1:0.0081210055,(((T4:0.0832409248,((T8:0.1614450454,T9:0.3540459449)22:0.0964955904,T5:0.0291690094)21:0.0949330586)16:0.0034591445,(T6:0.0339677368,T7:0.0038740828)17:0.0388607991)14:0.0303811454,(T3:0.0703197516,T2:0.0345311185)11:0.1061316504)3:0.0872273846)0;
-	(T0:0.0205794913,(((T2:0.1093624747,((T8:0.2017406151,T9:0.0650087691)14:0.0695149183,T7:0.4135166557)9:0.2234926445)6:0.1924148657,T1:0.0614336000)4:0.0287682072,(T5:0.1010601411,T6:0.3194183212)5:0.0385662481)2:0.1671313316,(T3:0.1546463113,T4:0.1139434283)3:0.0321583624)0;
-	((((T8:0.0306525160,T9:0.0125563223)16:0.1546463113,T7:0.0102032726)1:0.2501036032,(T1:0.0616186139,(T2:0.1565421027,(T5:0.0018470000,T6:0.0594207233)11:0.0505838082)9:0.0027371197)6:0.1443923474)0:0.4710530702,(T3:0.0372514008,T4:0.0322963887)4:0.0491022996,T0:0.0669430654)2; 
+	(T0:0.0181521877,(((T5:0.1771956842,(T6:0.0614336000,T7:0.2002480501)23:0.1532476871)18:0.0332679438,(T8:0.0677273831,T9:0.0305167387)19:0.1180907531)16:0.0365283318,(T3:0.0681218610,T4:0.0527632742)17:0.1350927217)8:0.0393042588,(T1:0.1523260216,T2:0.0214431611)9:0.0733969175);
+	(((T4:0.0843970070,T5:0.0286349627)4:0.1220779923,T2:0.0146182510)1:0.2353878387,(T1:0.0238257189,((T6:0.0106472245,T7:0.2282782466)12:0.0946749939,(T8:0.1456716825,T9:0.2407945609)13:0.3296837366)9:0.0160168752)2:0.0450985623,T0:0.0596020470);
+	(T0:0.0671385689,T1:0.5298317367,((T4:0.0064005330,(T5:0.2918771232,T6:0.0059750004)11:0.1537117251)4:0.1158362293,(T2:0.0349557476,(T3:0.1152013065,(T7:0.2847312268,T8:0.0349557476)9:0.0062939800)7:0.0725670372)5:0.0689155159)3:0.0318828801);
+	(((T1:0.1313043899,T2:0.0011060947)4:0.2128631786,((T6:0.1987774353,T7:0.1127011763)8:0.0673344553,T3:0.0980829253)5:0.0470003629)1:0.1532476871,((T4:0.0994252273,T5:0.1532476871)10:0.2162823151,(T8:0.0139262067,T9:0.1241328591)11:0.0110931561)2:0.0362405619,T0:0.0297059234);
+	(T0:0.0277071893,((T2:0.1845160246,T3:0.1448169765)12:0.0055512710,((T8:0.0401971219,T9:0.0016129382)14:0.0176737179,(T6:0.1461017907,T7:0.0972861083)15:0.1624551550)13:0.0079043207)4:0.0484508315,(T1:0.0908818717,(T4:0.0382725621,T5:0.0047091608)11:0.1870802677)5:0.1645065090);
+	(T0:0.0574475651,T1:0.0081210055,(((T4:0.0832409248,((T8:0.1614450454,T9:0.3540459449)22:0.0964955904,T5:0.0291690094)21:0.0949330586)16:0.0034591445,(T6:0.0339677368,T7:0.0038740828)17:0.0388607991)14:0.0303811454,(T3:0.0703197516,T2:0.0345311185)11:0.1061316504)3:0.0872273846);
+	(T0:0.0205794913,(((T2:0.1093624747,((T8:0.2017406151,T9:0.0650087691)14:0.0695149183,T7:0.4135166557)9:0.2234926445)6:0.1924148657,T1:0.0614336000)4:0.0287682072,(T5:0.1010601411,T6:0.3194183212)5:0.0385662481)2:0.1671313316,(T3:0.1546463113,T4:0.1139434283)3:0.0321583624);
+	((((T8:0.0306525160,T9:0.0125563223)16:0.1546463113,T7:0.0102032726)1:0.2501036032,(T1:0.0616186139,(T2:0.1565421027,(T5:0.0018470000,T6:0.0594207233)11:0.0505838082)9:0.0027371197)6:0.1443923474)0:0.4710530702,(T3:0.0372514008,T4:0.0322963887)4:0.0491022996,T0:0.0669430654); 
 
 The above tree file contains 8 lines, in which the first line specifies the supertree (consisting of 10 taxa of all partitions), and the 7 remaining lines are the trees corresponding to 7 partitions. Note that taxon 3 (T3) is missing in the tree of `part1`, taxon 9 (T9) is missing in the tree of `part2`.
 
-Now, one could simulate MSAs using the following command:
+Now, one could simulate alignments using the following command:
 	
-	iqtree2 --alisim partition_mix_unlinked_partition  -Q example_mix.nex -t example_mix_unlinked_partitions.parttrees
+	iqtree2 --alisim partition_mix_unlinked  -Q example_mix.nex -t example_mix_unlinked_partitions.parttrees
 
-At the end of the run, AliSim will write out the simulated MSAs into four output files, as seen in the previous example with the ***Edge-equal*** partition model. However, when you check the merged alignment in the file `partition_mix_unlinked_partition_0_part1_part2_part7.phy`, you should see several gaps `-` in the sequences of taxon 3 (T3), and taxon 9 (T9) as these taxa are missing in the input trees of `part1` and `part2`.
+At the end of the run, AliSim writes out the simulated alignments into four output files, as seen in the previous example with the ***Edge-equal*** partition model. However, when you check the merged alignment in `partition_mix_unlinked_0_part1_part2_part7.phy`, you should see several gaps `-` in the sequences of taxon 3 (T3), and taxon 9 (T9) as these taxa are missing in the input trees of `part1` and `part2`.
 
 	10 400
 	T0         TACGCTTCAATTGCTGCTCTATTTCTATGTAGCCAGTTTTAGTCCTATCGTGG...
@@ -279,10 +279,10 @@ Here, we first define the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in
 
 Note that both `frequency` and `model` commands can be embedded into a single model file.
 
-In AliSim, users could easily simulate MSAs with mixture models as described above by the following commands.
+In AliSim, users could easily simulate aligments with mixture models as described above by the following commands.
 
-    iqtree2 --alisim MIX_JC_HKY_G_1000 -m "MIX{JC,HKY}+G4" -t example.phy.treefile
-    iqtree2 --alisim JTT_CF4_G_1000 -mdef mymodels.nex -m "JTT+CF4model+G" -t example.phy.treefile
+    iqtree2 --alisim MIX_JC_HKY_G -m "MIX{JC,HKY}+G4" -t tree.nwk
+    iqtree2 --alisim JTT_CF4_G -mdef mymodels.nex -m "JTT+CF4model+G" -t tree.nwk
 
 
 Site-specific frequency models
@@ -378,64 +378,19 @@ The `-wspm` option will generate a `.siteprob` output file. This contains the pr
 
 If one wants to simulate sequences based on a GHOST model with 4 classes in conjunction with the `GTR` model of DNA evolution, one would use the following command:
 
-    iqtree2 --alisim GTR_plus_H4_1000 -m GTR+H4 -t example.phy.treefile
+    iqtree2 --alisim GTR_plus_H4 -m GTR+H4 -t tree.nwk
 
-If one has an MSA `example.phy` and would like to simulate three MSAs that mimic that input MSA. In this example, we assume that the input MSA has evolved based on the GHOST model with 4 classes in conjunction with the `GTR` model. Therefore, AliSim firstly infers the phylogenetic tree and estimates the parameters for the GHOST model before simulating sequences. To do that, one would use the following command:
+Assuming that we have an input alignment `example.phy` evolving under the GHOST model with 4 classes in conjunction with the `GTR` model. If one want to simulate an alignment that mimic that input alignment, one would use the following command:
 
-    iqtree2 --alisim GTR_plus_H4_inference_1000 -m GTR+H4 -s example.phy
+    iqtree2 --alisim GTR_plus_H4_inference -m GTR+H4 -s example.phy
 
 If you want to unlink GTR parameters so that AliSim could use them separately for each class, replace `+H4` by `*H4`: 
 
-    iqtree2 --alisim GTR_time_H4_1000 -m GTR*H4 -t example.phy.treefile
-
-Similar to the previous example, one could use inference mode with this model by:
-
-    iqtree2 --alisim GTR_time_H4_inference_1000 -m GTR*H4 -s example.phy
+    iqtree2 --alisim GTR_time_H4_inference -m GTR*H4 -s example.phy
 
 If one wishes to use separate base frequencies for each class, then the `+FO` option is required:
 
-    iqtree2 --alisim GTR_FO_time_H4_inference_1000 -m GTR+FO*H4 -s example.phy
-
-Branch-specific models (in AliSim only)
-----------------------------
-
-AliSim supports branch-specific models, which assign different models of sequence evolution to individual branches of a tree.
-
-To use branch-specific models, users should specify the models for individual branches with the syntax `[&model=<model>]` in the input tree file. The model parameters should be separated by a forward slash `/` if the user wants to specify them. 
-
-**Example 1**: assuming the input tree file `input_tree.treefile` is described as following 
-
-	(A:0.1,(B:0.1,C:0.2[&model=HKY]),(D:0.3,E:0.1[&model=GTR{0.5/1.7/3.4/2.3/1.9}+F{0.2/0.3/0.4/0.1}+I{0.2}+G{0.5}]):0.2);
-
-Then, simulate an MSA by
-
-      iqtree2 --alisim output_1k -t input_tree.treefile -m JC
-    
-In this example, AliSim uses the `JC` model to simulate an MSA along the input tree. However, at the branch connecting taxon C to its ancestral, the `HKY` with random parameters should be used to simulate the sequence of taxon C. Similarly, the `GTR` model with the parameters specified above will be used to generate the sequence of taxon E.
-  
-To apply Heterotachy (GHOST) model for an individual branch, in addition to the model name, users must also supply a set of branch-lengths containing `n` lengths corresponding to `n` categories of the model via the syntax `lengths=<length_0>,...,<length_n>` as the following example. 
-
-**Example 2**: assuming the tree file `input_tree.treefile` is described as following
-
-	(A:0.1,(B:0.1,C:0.2[&model=HKY{2.0}*H4,lengths=0.1/0.2/0.15/0.3]),(D:0.3,E:0.1):0.2);
-
-Then, simulate an MSA by
-
-      iqtree2 --alisim output_1k -t input_tree.treefile -m JC
-    
-In this example, the JC model will be used to simulate an MSA along the input tree. However, at the branch connecting taxon C to its ancestral, the GHOST model with 4 categories will be used with 4 branch lengths 0.1, 0.2, 0.15, and 0.3, to generate the sequence of taxon C.
-
-Additionally, at a rooted tree, users may want to generate the root sequence with particular state frequencies and then simulate new sequences from that root sequence based on a specific model. To do so, the user should supply a rooted tree, then specify a model and state frequencies  (with the syntax `[&model=<model>,freqs=<freq_0,...,<freq_n>]`) as the following example.
-
-**Example 3**: assuming the tree file `input_tree.treefile` is described as following
-
-	(A:0.1,(B:0.1,C:0.2),(D:0.3,E:0.1):0.2):0.3[&model=GTR,freqs=0.2/0.3/0.1/0.4];
-
-Then, simulate an MSA by
-
-      iqtree2 --alisim output_1k -t input_tree.treefile -m JC
-    
-In this example, a random sequence is firstly generated for the root node based on the user-specified frequencies (`0.2/0.3/0.1/0.4`). Then, the `GTR` model with random parameters will be used to simulate the sequence for the children node of the root node. Finally, AliSim traverses the tree and using the JC model to simulate sequences for the other nodes of the tree.
+    iqtree2 --alisim GTR_FO_time_H4_inference -m GTR+FO*H4 -s example.phy
 
 [Brown et al. (2013)]: https://doi.org/10.1098/rspb.2013.1755
 [Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112

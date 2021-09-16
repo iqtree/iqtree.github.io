@@ -164,6 +164,57 @@ Furthermore, users can also randomly generate branch lengths of the phylogenetic
 
 In this example, the branch lengths of the random tree are randomly drawn from the user-defined list `F_A`. Besides, if the user supplies a tree file (instead of a random tree), the branch lengths of the user-provided tree will be overridden by the random lengths from the list `F_A`.
 
+Simulating alignments with functional divergence (FunDi ) model
+----------------------------
+
+AliSim supports [FunDi model](https://doi.org/10.1093/bioinformatics/btr470), which allows a proportion number of sites (`<RHO>`) in the sequence of each taxon in a given list (`<TAXON_1>,...,<TAXON_N>`), could be permuted with each other. To simulate new alignments under the FunDi model, one could use `--fundi` option:
+
+      iqtree2 --alisim alignment_fundi -t tree.nwk -m JC --fundi A,C,0.1
+
+This example simulates a new alignment under the Juke-Cantor model from the input tree `tree.nwk` with the default sequence length of 1000 sites. Since the user specifies FunDi model with `<RHO>` = 0.1, thus, in the sequences of Taxon A, and C, 100 random sites (sequence length * `<RHO>` = 1,000 * 0.1) are purmuted with each other.
+
+Simulating alignments with branch-specific models
+----------------------------
+
+AliSim supports branch-specific models, which assign different evolutionary models to individual branches of a tree.
+
+To use branch-specific models, users should specify the models for individual branches with the syntax `[&model=<model>]` in the input tree file. The model parameters should be separated by a forward slash `/` if the user wants to specify them. 
+
+**Example 1**: assuming the input tree file `input_tree.nwk` is described as following 
+
+	(A:0.1,(B:0.1,C:0.2[&model=HKY]),(D:0.3,E:0.1[&model=GTR{0.5/1.7/3.4/2.3/1.9}+F{0.2/0.3/0.4/0.1}+I{0.2}+G{0.5}]):0.2);
+
+Then, simulate an alignment by
+
+      iqtree2 --alisim alignment_example_1 -t input_tree.nwk -m JC
+    
+In this example, AliSim uses the Juke-Cantor model to simulate an alignment along the input tree. However, at the branch connecting taxon C to its ancestral, the `HKY` with random parameters is used to simulate the sequence of taxon C. Similarly, the `GTR` model with the parameters specified above is used to generate the sequence of taxon E.
+  
+To apply [Heterotachy (GHOST) model](Heterotachy-models) for an individual branch, in addition to the model name, users must also supply a set of branch-lengths containing `n` lengths corresponding to `n` categories of the model via `lengths=<length_0>,...,<length_n>` as the example 2. 
+
+**Example 2**: assuming the tree file `input_tree.nwk` is described as following
+
+	(A:0.1,(B:0.1,C:0.2[&model=HKY{2.0}*H4,lengths=0.1/0.2/0.15/0.3]),(D:0.3,E:0.1):0.2);
+
+Then, simulate an alignment by
+
+      iqtree2 --alisim alignment_example_2 -t input_tree.nwk -m JC
+    
+In this example, AliSim simulates a new alignment using the Juke-Cantor model. However, at the branch connecting taxon C to its ancestral, the GHOST model with 4 categories is used with 4 branch lengths 0.1, 0.2, 0.15, and 0.3, to generate the sequence of taxon C.
+
+Additionally, in a rooted tree, users may want to generate the root sequence with particular state frequencies and then simulate new sequences from that root sequence based on a specific model. To do so, one should supply a rooted tree, then specify a model and state frequencies  (with `[&model=<model>,freqs=<freq_0,...,<freq_n>]`) as the example 3.
+
+**Example 3**: assuming the tree file `input_tree.nwk` is described as following
+
+	(A:0.1,(B:0.1,C:0.2),(D:0.3,E:0.1):0.2):0.3[&model=GTR,freqs=0.2/0.3/0.1/0.4];
+
+Then, simulate an alignment by
+
+      iqtree2 --alisim alignment_example_3 -t input_tree.nwk -m JC
+    
+In this example, AliSim first generate a random sequence at the root based on the user-specified frequencies (`0.2/0.3/0.1/0.4`). Then, it uses the `GTR` model with random parameters to simulate a sequence for the child node of the root. Finally, AliSim traverses the tree and uses the Juke-Cantor model to simulate sequences for the other nodes of the tree.
+
+
 Command reference
 =================
 
