@@ -80,15 +80,15 @@ AliSim can also simulate insertions and deletions, for example:
     
 `--indel` option specifies the insertion and deletion rates (separated by a comma) relative to the substitution rates. Here, it means that, on average, we have 10 insertion and 5 deletion events per every 100 substitution events. By default, AliSim assumes that the size of indels follows a geometric distribution with a mean of 2 and a variance of ±2. If wanting to change this distribution, one can use `--indel-size` option:
 
-    iqtree2 --alisim alignment_indel_size -m JC -t tree.nwk --indel 0.1,0.05 --indel-size GEO{5/3},GEO{4/2}
+    iqtree2 --alisim alignment_indel_size -m JC -t tree.nwk --indel 0.1,0.05 --indel-size GEO{5},GEO{4}
 
-It means that the insertion size follows a Geometric distribution with mean 5 and variance 3, whereas deletion size also follows the Geometric distribution but with mean 4 and variance 2. Apart from this distribution, AliSim also supports [Negative Binomial distribution, Zipfian distribution, and Lavalette distribution](https://doi.org/10.1093/molbev/msp098) as following examples:
+It means that the insertion size follows a Geometric distribution with mean of 5 and variance of 20, whereas deletion size also follows the Geometric distribution but with mean of 4 and variance of 12. *Note that the variance is computed from mean*. Apart from this distribution, AliSim also supports [Negative Binomial distribution, Zipfian distribution, and Lavalette distribution](https://doi.org/10.1093/molbev/msp098) as following examples:
 
-    iqtree2 --alisim alignment_indel_size -m JC -t tree.nwk --indel 0.1,0.05 --indel-size NB{5/3},POW{4/2}
+    iqtree2 --alisim alignment_indel_size -m JC -t tree.nwk --indel 0.1,0.05 --indel-size NB{5/20},POW{1.5}
 
-To specify a Negative Binomial distribution (with mean of 5 and variance of 3) and a Zipfian distribution (with mean of 4 and variance of 2) for the insertion size, and deletion size, respectively. Or to specify Lavalette distribution (with mean of 5 and variance of 3) for both insertion and deletion size, users could use:
+To specify a Negative Binomial distribution (with mean of 5 and variance of 20) and a Zipfian distribution (with parameter `a` of 1.5) for the insertion size, and deletion size, respectively. Or to specify Lavalette distribution (with parameter `a` of 1.5 and `max` of 10) for both insertion and deletion size, users could use:
 
-    iqtree2 --alisim alignment_indel_size -m JC -t tree.nwk --indel 0.1,0.05 --indel-size LAV{5/3},LAV{5/3}
+    iqtree2 --alisim alignment_indel_size -m JC -t tree.nwk --indel 0.1,0.05 --indel-size LAV{1.5/10},LAV{1.5/10}
 
 Simulating alignments with custom models
 -----------------------------
@@ -229,7 +229,7 @@ All the options available in AliSim are shown below:
 | `-mdef <MODEL_FILE>`  | Define new models by their parameters. |
 | `--fundi <TAXON_1>,...,<TAXON_N>,<RHO>`   | Specifying parameters for the [FunDi model](https://doi.org/10.1093/bioinformatics/btr470), which allows a proportion number of sites (`<RHO>`) in the sequence of each taxon in the given list (`<TAXON_1>,...,<TAXON_N>`), could be permuted with each other. |
 | `--indel <INS>,<DEL>`  | Activate Indels (insertion/deletion events) and specify the insertion/deletion rate relative to the substitution rate of 1. |
-| `--indel-size <INS_DIS>,<DEL_DIS>`  | Specify the indel-size distributions. Notes: <INS_DIS>,<DEL_DIS> could be names of user-defined distributions, or NB{<double_mean>,<double_variance>}, POW{<double_mean>,<double_variance>}, LAV{<double_mean>,<double_variance>}, GEO{<double_mean>}, which specifies Negative Binomial, Zipfian, Lavalette, and Geometric distribution, respectively. By default, the Geometric distribution with mean of 2 and variance of ±2 is used.|
+| `--indel-size <INS_DIS>,<DEL_DIS>`  | Specify the indel-size distributions. Notes: `<INS_DIS>,<DEL_DIS>` could be names of user-defined distributions, or GEO{<double_mean>}, NB{<double_mean>[/<double_variance>]}, POW{<double_a>[/<int_max>]}, LAV{<double_a>/<int_max>}, which specifies Geometric, Negative Binomial, Zipfian, and Lavalette distribution, respectively. By default, the Geometric distribution with mean of 2 and variance of ±2 is used.|
 | `-q <PARTITION_FILE>` or <br>`-p <PARTITION_FILE>` or <br>`-Q <PARTITION_FILE>` | `-q <PARTITION_FILE>`: Edge-equal partition model with equal branch lengths: All partitions share the same set of branch lengths. <br>`-p <PARTITION_FILE>`: Edge-proportional partition model with proportional branch lengths: Like above, but each partition has its own partition specific rate, which rescales all its branch lengths. This model accommodates different evolutionary rates between partitions.<br>`-Q <PARTITION_FILE>`: Edge-unlinked partition model: Each partition has its own set of branch lengths. <br>`<PARTITION_FILE>` could be specified by a RAXML or NEXUS file as described in [Complex Models](https://github.com/iqtree/iqtree2/wiki/Complex-Models)<br>These options work well with [an input alignment](#simulating-alignments-that-mimic-a-real-alignment).<br>In normal cases without an input alignment, users must supply a tree-file (with a single tree) when using `-q` or `-p`. While using `-Q`, AliSim requires a multiple-tree file that specifies a supertree (combining all taxa in all partitions) in the first line. Following that, each tree for each partition should be specified in a single line one by one in the input multiple-tree file. Noting that each partition could have a different tree topology. |
 | `--distribution FILE` | Supply the distribution definition file, which specifies multiple lists of numbers. These lists could be used to generate random parameters by specifying list names (instead of specific numbers) for model parameters. |
 | `--branch-distribution DISTRIBUTION_NAME` |                  Specify a distribution, from which branch lengths of the phylogenetic trees are randomly generated.|
