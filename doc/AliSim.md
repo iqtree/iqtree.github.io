@@ -6,7 +6,7 @@ Sequence simulations play an important role in phylogenetics. However, existing 
 
 If you use AliSim in a publication, please cite:
 
-* __L.T. Nhan, B.Q. Minh__ (2021) AliSim: Ultrafast Sequence Alignment  Simulator, ... <https://doi.org/...>
+* __L.T. Nhan, B.Q. Minh__ (2021) AliSim: Ultrafast and Realistic Phylogenetic Sequence Simulator in the Genomic Era, ... <https://doi.org/...>
 
 In the following, we provide a short tutorial on how to use AliSim.
 
