@@ -6,7 +6,7 @@ Sequence simulations play an important role in phylogenetics. However, existing 
 
 If you use AliSim in a publication, please cite:
 
-* __L.T. Nhan, B.Q. Minh__ (2021) AliSim: Ultrafast Sequence Alignment  Simulator, ... <https://doi.org/...>
+* __L.T. Nhan, B.Q. Minh__ (2021) AliSim: Ultrafast and Realistic Phylogenetic Sequence Simulator in the Genomic Era, ... <https://doi.org/...>
 
 In the following, we provide a short tutorial on how to use AliSim.
 
@@ -18,7 +18,7 @@ Similar to other software, AliSim can simulate a multiple sequence alignment fro
 
     iqtree2 --alisim <OUTPUT_PREFIX> -m <MODEL> -t <TREEFILE>
 
-The `-m` option specifies a model name, and `-t` option specifies a tree file in the standard [Newick format](https://evolution.genetics.washington.edu/phylip/doc/main.html#treefile). This will print the output alignment into `OUTPUT_PREFIX_0.phy` file in Phylip format.
+The `-m` option specifies a model name, and `-t` option specifies a tree file in the standard [Newick format](https://evolution.genetics.washington.edu/phylip/doc/main.html#treefile). This will print the output alignment into `OUTPUT_PREFIX.phy` file in Phylip format.
 
 For example, if you want to simulate a DNA alignment under the [Jukes-Cantor model](http://doi.org/10.1016/B978-1-4832-3211-9.50009-7) for the following tree `tree.nwk`:
 
@@ -28,7 +28,7 @@ You can run IQ-TREE with:
 
     iqtree2 --alisim alignment -m JC -t tree.nwk
 
-will print the simulated alignment to `alignment_0.phy`. 
+will print the simulated alignment to `alignment.phy`. 
 
 
 The output MSA should contain 4 sequences of 1000 sites, each, for example:
@@ -57,7 +57,7 @@ Users could also output the alignment in FASTA format with `-af` option:
 
     iqtree2 --alisim alignment -m JC -t tree.nwk -af fasta
     
-will print the alignment to `alignment_0.fa` file.
+will print the alignment to `alignment.fa` file.
 
 To generate multiple alignments, users could use `--num-alignments` option:    
 
@@ -78,7 +78,7 @@ AliSim can also simulate insertions and deletions, for example:
 
     iqtree2 --alisim alignment_indel -m JC -t tree.nwk --indel 0.1,0.05
     
-`--indel` option specifies the insertion and deletion rates (separated by a comma) relative to the substitution rates. Here, it means that, on average, we have 10 insertion and 5 deletion events per every 100 substitution events. Apart from the normal output file `alignment_indel_0.phy`, AliSim also exports an additional file `alignment_indel_0_withoutgaps.fa` containing sequences without gaps. If not needing the additional output file, one could disable that feature by `--no-export-sequence-wo-gaps`. By default, AliSim assumes that the size of indels follows a geometric distribution with a mean of 2 and a variance of ±2. If wanting to change this distribution, one can use `--indel-size` option:
+`--indel` option specifies the insertion and deletion rates (separated by a comma) relative to the substitution rates. Here, it means that, on average, we have 10 insertion and 5 deletion events per every 100 substitution events. Apart from the normal output file `alignment_indel.phy`, AliSim also exports an additional file `alignment_indel_withoutgaps.fa` containing sequences without gaps. If not needing the additional output file, one could disable that feature by `--no-export-sequence-wo-gaps`. By default, AliSim assumes that the size of indels follows a geometric distribution with a mean of 2 and a variance of ±2. If wanting to change this distribution, one can use `--indel-size` option:
 
     iqtree2 --alisim alignment_indel_size -m JC -t tree.nwk --indel 0.1,0.05 --indel-size GEO{5},GEO{4}
 
@@ -142,7 +142,7 @@ AliSim allows users to simulate alignments that mimic the evolutionary history o
 
 * `-s example.phy` is the option to supply the input alignment. 
 
-In this example, AliSim first runs IQ-TREE to a phylogenetic tree and the best-fit substitution model (using ModelFinder) with its parameters from the input alignment `example.phy`. After that, AliSim generates an alignment based on the inferred tree and the best-fit substitution model. Moreover, AliSim also copies the gap patterns from the input alignment `example.phy` to the output alignment `alignment_mimic_0.phy`. To disable this feature, users could add the option `--no-copy-gaps` to the command line.
+In this example, AliSim first runs IQ-TREE to a phylogenetic tree and the best-fit substitution model (using ModelFinder) with its parameters from the input alignment `example.phy`. After that, AliSim generates an alignment based on the inferred tree and the best-fit substitution model. Moreover, AliSim also copies the gap patterns from the input alignment `example.phy` to the output alignment `alignment_mimic.phy`. To disable this feature, users could add the option `--no-copy-gaps` to the command line.
 
 Simulating alignments from a random tree
 ------------------
@@ -154,7 +154,7 @@ AliSim supports users in producing alignments from a random tree generated by bi
 
 * `-t RANDOM{yh/1000}` tells AliSim to generate a random tree with 1000 taxa under the Yule-Harding model, with branch lengths following a exponential distribution with a mean of 0.1.
 
-Here AliSim generates `alignment_yh_0.phy` under the Jukes-Cantor model. If you want to change the model, use -m option as [described above](#simulating-alignments-with-custom-models)
+Here AliSim generates `alignment_yh.phy` under the Jukes-Cantor model. If you want to change the model, use -m option as [described above](#simulating-alignments-with-custom-models)
 
 For the distribution of branch lengths, users could adjust the minimum, the maximum, and the mean of the exponential distribution via the option `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`.
 
@@ -214,6 +214,10 @@ Then, simulate an alignment by
     
 In this example, AliSim first generates a random sequence at the root based on the user-specified frequencies (`0.2/0.3/0.1/0.4`). Then, it uses the `GTR` model with random parameters to simulate a sequence for the child node of the root. Finally, AliSim traverses the tree and uses the Juke-Cantor model to simulate sequences for the other nodes of the tree.
 
+Simulating alignments with complex models, such as mixture, partition models
+----------------------------
+
+For simulations with complex models (such as mixture, partition models), please refer [Complex Models](Complex-Models).
 
 Command reference
 =================
@@ -229,7 +233,8 @@ All the options available in AliSim are shown below:
 | `-mdef <MODEL_FILE>`  | Define new models by their parameters. |
 | `--fundi <TAXON_1>,...,<TAXON_N>,<RHO>`   | Specifying parameters for the [FunDi model](https://doi.org/10.1093/bioinformatics/btr470), which allows a proportion number of sites (`<RHO>`) in the sequence of each taxon in the given list (`<TAXON_1>,...,<TAXON_N>`), could be permuted with each other. |
 | `--indel <INS>,<DEL>`  | Activate Indels (insertion/deletion events) and specify the insertion/deletion rate relative to the substitution rate of 1. |
-| `--indel-size <INS_DIS>,<DEL_DIS>`  | Specify the indel-size distributions. Notes: `<INS_DIS>,<DEL_DIS>` could be names of user-defined distributions, or GEO{<double_mean>}, NB{<double_mean>[/<double_variance>]}, POW{<double_a>[/<int_max>]}, LAV{<double_a>/<int_max>}, which specifies Geometric, Negative Binomial, Zipfian, and Lavalette distribution, respectively. By default, the Geometric distribution with mean of 2 and variance of ±2 is used.|
+| `--indel-size <INS_DIS>,<DEL_DIS>`  | Specify the indel-size distributions. Notes: `<INS_DIS>,<DEL_DIS>` could be names of user-defined distributions, or GEO{<double_mean>}, NB{<double_mean>[/<double_variance>]}, POW{<double_a>[/<int_max>]}, LAV{<double_a>/<int_max>}, which specifies Geometric, [Negative Binomial, Zipfian, and Lavalette distribution](https://doi.org/10.1093/molbev/msp098) , respectively. By default, AliSim uses a Zipfian distribution with an empirical parameter `<double_a>` of 1.7, and a maximum size `<int_max>` of 250 for Indels-size.|
+| `--sub-level-mixture`  | Enable the feature to simulate substitution-level mixture model, which allows AliSim to select a model component of the mixture according to the weight vector for each substitution/mutation occurs during the simulation.|
 | `--no-export-sequence-wo-gaps`  | Disable writing an additional output file of sequences without gaps (when using Indels).|
 | `-q <PARTITION_FILE>` or <br>`-p <PARTITION_FILE>` or <br>`-Q <PARTITION_FILE>` | `-q <PARTITION_FILE>`: Edge-equal partition model with equal branch lengths: All partitions share the same set of branch lengths. <br>`-p <PARTITION_FILE>`: Edge-proportional partition model with proportional branch lengths: Like above, but each partition has its own partition specific rate, which rescales all its branch lengths. This model accommodates different evolutionary rates between partitions.<br>`-Q <PARTITION_FILE>`: Edge-unlinked partition model: Each partition has its own set of branch lengths. <br>`<PARTITION_FILE>` could be specified by a RAXML or NEXUS file as described in [Complex Models](https://github.com/iqtree/iqtree2/wiki/Complex-Models)<br>These options work well with [an input alignment](#simulating-alignments-that-mimic-a-real-alignment).<br>In normal cases without an input alignment, users must supply a tree-file (with a single tree) when using `-q` or `-p`. While using `-Q`, AliSim requires a multiple-tree file that specifies a supertree (combining all taxa in all partitions) in the first line. Following that, each tree for each partition should be specified in a single line one by one in the input multiple-tree file. Noting that each partition could have a different tree topology. |
 | `--distribution FILE` | Supply the distribution definition file, which specifies multiple lists of numbers. These lists could be used to generate random parameters by specifying list names (instead of specific numbers) for model parameters. |

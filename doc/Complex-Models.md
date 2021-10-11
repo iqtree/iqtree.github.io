@@ -142,7 +142,7 @@ Assuming that the above partition file is named `example_mix.nex` and one would 
 
     iqtree2 --alisim partition_mix -q example_mix.nex -t tree.nwk
 
-At the end of the run, AliSim writes out the simulated alignments into four output files. The first file named `partition_mix_0_part1_part2_part7.phy` stores the merged 400-site DNA alignment from `part1`, `part2`, and `part7`. Although `part3`, `part5`, and `part6` contain morphological data, `part3` simulates a morphological alignment with 32 states while `part5` and `part6` have 30 states. Thus, AliSim outputs the alignment of `part3` into `partition_mix_0_part3.phy`, whereas `partition_mix_0_part5_part6.phy` stores the  alignment merging `part5` and `part6`. Lastly, `partition_mix_0_part4.phy` stores the simulated amino-acid alignment of `part4`.
+At the end of the run, AliSim writes out the simulated alignments into four output files. The first file named `partition_mix_part1_part2_part7.phy` stores the merged 400-site DNA alignment from `part1`, `part2`, and `part7`. Although `part3`, `part5`, and `part6` contain morphological data, `part3` simulates a morphological alignment with 32 states while `part5` and `part6` have 30 states. Thus, AliSim outputs the alignment of `part3` into `partition_mix_part3.phy`, whereas `partition_mix_part5_part6.phy` stores the  alignment merging `part5` and `part6`. Lastly, `partition_mix_part4.phy` stores the simulated amino-acid alignment of `part4`.
 
 **Example 2**: Simulating mixed data with an ***Edge-proportional* partition model**
 
@@ -187,7 +187,7 @@ Now, one could simulate alignments using the following command:
 	
 	iqtree2 --alisim partition_mix_unlinked  -Q example_mix.nex -t example_mix_unlinked_partitions.parttrees
 
-At the end of the run, AliSim writes out the simulated alignments into four output files, as seen in the previous example with the ***Edge-equal*** partition model. However, when you check the merged alignment in `partition_mix_unlinked_0_part1_part2_part7.phy`, you should see several gaps `-` in the sequences of taxon 3 (T3) and taxon 9 (T9) as these taxa are missing in the input trees of `part1` and `part2`.
+At the end of the run, AliSim writes out the simulated alignments into four output files, as seen in the previous example with the ***Edge-equal*** partition model. However, when you check the merged alignment in `partition_mix_unlinked_part1_part2_part7.phy`, you should see several gaps `-` in the sequences of taxon 3 (T3) and taxon 9 (T9) as these taxa are missing in the input trees of `part1` and `part2`.
 
 	10 400
 	T0         TACGCTTCAATTGCTGCTCTATTTCTATGTAGCCAGTTTTAGTCCTATCGTGG...
@@ -203,7 +203,7 @@ At the end of the run, AliSim writes out the simulated alignments into four outp
 
 **Example 4**: Simulating multi-gene alignments
  
-To simulate an alignment consisting of multiple genes, where each gene evolves under a different substitution model, one should first define those genes (each gene as a partition) and specify the corresponding model for each gene. Assuming we have multi_genes.nex file as following
+To simulate an alignment consisting of multiple genes, where each gene evolves under a different substitution model, one should first define those genes (each gene as a partition) and specify the corresponding model for each gene. Assuming we have `multi_genes.nex` file as following
  
     #nexus
 	begin sets;
@@ -221,7 +221,26 @@ Then, you can simulate an alignment consisting of these five genes by
 
 	iqtree2 --alisim partition_multi_genes  -q multi_genes.nex -t tree.nwk
 
-That simulation outputs the new alignment into a single file named `partition_multi_genes_0_full.phy`.
+That simulation outputs the new alignment into a single file named `partition_multi_genes.phy`.
+
+**Example 5**: Simulating multi-gene alignments from multiple gene trees
+ 
+Similar to example 4 but each gene can evolve from a different gene tree. Assuming we have `multi_genes.nex` file as in example 4, we then need to specify a multiple gene trees (in `multi_trees.nwk` as following.
+
+	(A:0.1,(B:0.2,C:0.15):0.1,D:0.05);
+	(A:0.1,(B:0.2,C:0.15):0.1,D:0.05);
+	(A:0.1,B:0.2,(C:0.15,D:0.05):0.1);
+	((A:0.1,B:0.2):0.1,C:0.15,D:0.05);
+	((A:0.1,C:0.15):0.1,B:0.2,D:0.05);
+	(A:0.1,C:0.15,(B:0.2,D:0.05):0.1);
+
+The first line specify the supertree, containing all taxa in all other tree. The remaining line specify the corresponding tree for 6 gene trees.
+
+Then, you can simulate an alignment consisting of these five genes from multiple gene trees by
+
+	iqtree2 --alisim partition_multi_genes_trees  -Q multi_genes.nex -t multi_trees.nwk
+
+That simulation outputs the new alignment into a single file named `partition_multi_genes_trees.phy`.
 
 Mixture models
 --------------
