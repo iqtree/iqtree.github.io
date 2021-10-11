@@ -1,4 +1,4 @@
-Quick Navigation
+﻿Quick Navigation
 -------
 
 [Home](Home)
@@ -76,3 +76,5 @@ Quick Navigation
 [**Compilation Guide**](Compilation-Guide)
 
 [**Web Server Tutorial**](Web-Server-Tutorial)
+
+[**AliSim - User Manual**](AliSim)
