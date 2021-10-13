@@ -99,6 +99,12 @@ Apart from the simple Juke-Cantor models above, AliSim also supports all other m
 
 This simulates a new alignment under the [HKY model](https://dx.doi.org/10.1007%2FBF02101694) with a transition/transversion ratio of 2 and nucleotide frequencies of 0.2, 0.3, 0.1, 0.4 for A, C, G, T, respectively.
 
+Besides, AliSim allows users to simulate alignnments with DNA error model by adding `+E{<Error_Probability>}` into the `<model>` when specifying the model with `-m <model>`. For example:
+
+     iqtree2 --alisim alignment_HKY_error -t tree.nwk -m HKY{2.0}+F{0.2/0.3/0.1/0.4}+E{0.01}
+   
+This simulates a new alignment under the HKY model as the above example, but with a sequencing error probability of 0.01. That means the nucleotide of 1% sites of the simulated sequences is randomly changed to another nucleotide. 
+
 AliSim also supports all [rate heterogeneity across sites](...) such as:
 
      iqtree2 --alisim alignment_HKY_G -t tree.nwk -m HKY{2.0}+F{0.2/0.3/0.1/0.4}+G{0.5}
@@ -214,10 +220,166 @@ Then, simulate an alignment by
     
 In this example, AliSim first generates a random sequence at the root based on the user-specified frequencies (`0.2/0.3/0.1/0.4`). Then, it uses the `GTR` model with random parameters to simulate a sequence for the child node of the root. Finally, AliSim traverses the tree and uses the Juke-Cantor model to simulate sequences for the other nodes of the tree.
 
-Simulating alignments with complex models, such as mixture, partition models
+Simulating alignments with [Partition models](Complex-Models#partition-models)
 ----------------------------
 
-For simulations with complex models (such as mixture, partition models), please refer [Complex Models](Complex-Models).
+**Example 1**: Simulating mixed data with an ***Edge-equal* partition model**
+
+AliSim allows users to simulate mixed data  (e.g., DNA, Protein, and MORPH) in a single simulation, in which each kind of data is exported into a different alignment file. Here is an example for mixing DNA, protein, and morphological data. Firstly, users need to specify partitions in an input partition file as following.
+
+    #nexus
+	begin sets;
+	    charset part1 = DNA, 1-200\2;
+	    charset part2 = DNA, 2-200\2;
+	    charset part3 = MORPH, 1-300;
+	    charset part4 = AA, 1-200;
+	    charset part5 = MORPH{30}, 1-200\2;
+	    charset part6 = MORPH{30}, 2-200\2;
+	    charset part7 = DNA, 201-400;
+	    charpartition mine = HKY:part1, GTR+G:part2, MK:part3, Dayhoff:part4, MK:part5, ORDERED:part6, GTR+G:part7;
+	end;
+
+Here,  `part1`,  `part2`, and `part7` contain three DNA sub-alignments, whereas `part3`,  `part5`, and `part6` contain sub-alignments for morphological data. Besides, `part4` contains an amino-acid alignment with 200 sites. Note that users could specify the parameters for each model of each partition (see [Substitution Models](Substitution-Models)). In this example, for simplicity, we ignore that feature, thus, using randomly generated parameters.
+
+Assuming that the above partition file is named `example_mix.nex` and one would like to simulate alignments from a single tree in `tree.nwk`, one could start the simulation with the following command:
+
+    iqtree2 --alisim partition_mix -q example_mix.nex -t tree.nwk
+
+At the end of the run, AliSim writes out the simulated alignments into four output files. The first file named `partition_mix_part1_part2_part7.phy` stores the merged 400-site DNA alignment from `part1`, `part2`, and `part7`. Although `part3`, `part5`, and `part6` contain morphological data, `part3` simulates a morphological alignment with 32 states while `part5` and `part6` have 30 states. Thus, AliSim outputs the alignment of `part3` into `partition_mix_part3.phy`, whereas `partition_mix_part5_part6.phy` stores the  alignment merging `part5` and `part6`. Lastly, `partition_mix_part4.phy` stores the simulated amino-acid alignment of `part4`.
+
+**Example 2**: Simulating mixed data with an ***Edge-proportional* partition model**
+
+Unlike ***Edge-equal***, the ***Edge-proportional*** partition requires each partition to have its own partition specific rate, which rescales all its branch lengths. One could specify the partition-specific rates by specifying the tree length for each partition in the NEXUS file via `partX{<tree_length>}` as in the following example. Note that `<tree_length>` of a partition is equal to the length of the common tree times the `partition_rate` of that partition. For example, assuming the length of the common tree is 2.61045, the partition-specific rate of partition 1 is 0.3, then the `<tree_length>` of `part1` should be 0.783135 (=2.61045 * 0.3):
+
+    #nexus
+	begin sets;
+	    charset part1 = DNA, 1-200\2;
+	    charset part2 = DNA, 2-200\2;
+	    charset part3 = MORPH, 1-300;
+	    charset part4 = AA, 1-200;
+	    charset part5 = MORPH{30}, 1-200\2;
+	    charset part6 = MORPH{30}, 2-200\2;
+	    charset part7 = DNA, 201-400;
+	    charpartition mine = HKY:part1{0.783135}, GTR+G:part2{1.51542}, MK:part3{1.03066}, Dayhoff:part4{0.489315}, MK:part5{0.680204}, ORDERED:part6{1.346}, GTR+G:part7{1.78177};
+	end;
+
+After preparing the `example_mix_edge_proportion.nex` file, one could start the simulation by:
+
+    iqtree2 --alisim partition_mix_edge_proportition -p example_mix_edge_proportion.nex -t tree.nwk
+    
+**Example 3**: Simulating mixed data with ***Edge-unlinked* partition model**
+
+AliSim supports tree-mixture models, which allow each partition has its own tree topology with even different sets of taxa as long as the supertree contains all of the taxa in all partitions. 
+
+In this example, we re-use the `example_mix.nex` file to define seven partitions with DNA, amino-acid, and morphological data.
+
+Then, we need to prepare a multiple-tree file. In an ***Edge-unlinked*** partition, AliSim requires a multiple-tree file that specifies a supertree (combining all taxa in all partitions) in the first line. Following that, each tree for each partition should be specified in a single line one by one in the input multiple-tree file as the following `example_mix_unlinked_partitions.parttrees` file:
+
+	(T0:0.0181521877,(((T5:0.1771956842,(T6:0.0614336000,T7:0.2002480501)23:0.1532476871)18:0.0332679438,(T8:0.0677273831,T9:0.0305167387)19:0.1180907531)16:0.0365283318,(T3:0.0681218610,T4:0.0527632742)17:0.1350927217)8:0.0393042588,(T1:0.1523260216,T2:0.0214431611)9:0.0733969175);
+	(((T4:0.0843970070,T5:0.0286349627)4:0.1220779923,T2:0.0146182510)1:0.2353878387,(T1:0.0238257189,((T6:0.0106472245,T7:0.2282782466)12:0.0946749939,(T8:0.1456716825,T9:0.2407945609)13:0.3296837366)9:0.0160168752)2:0.0450985623,T0:0.0596020470);
+	(T0:0.0671385689,T1:0.5298317367,((T4:0.0064005330,(T5:0.2918771232,T6:0.0059750004)11:0.1537117251)4:0.1158362293,(T2:0.0349557476,(T3:0.1152013065,(T7:0.2847312268,T8:0.0349557476)9:0.0062939800)7:0.0725670372)5:0.0689155159)3:0.0318828801);
+	(((T1:0.1313043899,T2:0.0011060947)4:0.2128631786,((T6:0.1987774353,T7:0.1127011763)8:0.0673344553,T3:0.0980829253)5:0.0470003629)1:0.1532476871,((T4:0.0994252273,T5:0.1532476871)10:0.2162823151,(T8:0.0139262067,T9:0.1241328591)11:0.0110931561)2:0.0362405619,T0:0.0297059234);
+	(T0:0.0277071893,((T2:0.1845160246,T3:0.1448169765)12:0.0055512710,((T8:0.0401971219,T9:0.0016129382)14:0.0176737179,(T6:0.1461017907,T7:0.0972861083)15:0.1624551550)13:0.0079043207)4:0.0484508315,(T1:0.0908818717,(T4:0.0382725621,T5:0.0047091608)11:0.1870802677)5:0.1645065090);
+	(T0:0.0574475651,T1:0.0081210055,(((T4:0.0832409248,((T8:0.1614450454,T9:0.3540459449)22:0.0964955904,T5:0.0291690094)21:0.0949330586)16:0.0034591445,(T6:0.0339677368,T7:0.0038740828)17:0.0388607991)14:0.0303811454,(T3:0.0703197516,T2:0.0345311185)11:0.1061316504)3:0.0872273846);
+	(T0:0.0205794913,(((T2:0.1093624747,((T8:0.2017406151,T9:0.0650087691)14:0.0695149183,T7:0.4135166557)9:0.2234926445)6:0.1924148657,T1:0.0614336000)4:0.0287682072,(T5:0.1010601411,T6:0.3194183212)5:0.0385662481)2:0.1671313316,(T3:0.1546463113,T4:0.1139434283)3:0.0321583624);
+	((((T8:0.0306525160,T9:0.0125563223)16:0.1546463113,T7:0.0102032726)1:0.2501036032,(T1:0.0616186139,(T2:0.1565421027,(T5:0.0018470000,T6:0.0594207233)11:0.0505838082)9:0.0027371197)6:0.1443923474)0:0.4710530702,(T3:0.0372514008,T4:0.0322963887)4:0.0491022996,T0:0.0669430654); 
+
+The above tree file contains 8 lines, in which the first line specifies the supertree (consisting of 10 taxa of all partitions), and the 7 remaining lines are the trees corresponding to 7 partitions. Note that taxon 3 (T3) is missing in the tree of `part1`, taxon 9 (T9) is missing in the tree of `part2`.
+
+Now, one could simulate alignments using the following command:
+	
+	iqtree2 --alisim partition_mix_unlinked  -Q example_mix.nex -t example_mix_unlinked_partitions.parttrees
+
+At the end of the run, AliSim writes out the simulated alignments into four output files, as seen in the previous example with the ***Edge-equal*** partition model. However, when you check the merged alignment in `partition_mix_unlinked_part1_part2_part7.phy`, you should see several gaps `-` in the sequences of taxon 3 (T3) and taxon 9 (T9) as these taxa are missing in the input trees of `part1` and `part2`.
+
+	10 400
+	T0         TACGCTTCAATTGCTGCTCTATTTCTATGTAGCCAGTTTTAGTCCTATCGTGG...
+	T5         TACAGTCTCTTCGAAGCACTATTGCGCTAAATCCTGTTTTAGTACTGTTATAT...
+	T6         TACTCTTGATTTGATGCCCTATTTCGATGTAGCCAGTTTTAGTCCTATCGTGG...
+	T7         TATTCTTCAGTTGATGCTCTATTTCAAGGTAGCCAGTTTTTGCGTTATCTCCG...
+	T8         GAATTTTCATTTAAGGACCTATATACATGTCGACCGTTATTGCCGTATCCTGG...
+	T9         G-C-C-T-C-T-C-C-C-T-A-A-T-A-G-C-C-G-T-A-T-T-G-A-G-T-G...
+	T3         -A-T-T-C-T-T-A-G-C-T-T-T-C-T-G-G-C-G-T-T-G-C-T-T-A-A-...
+	T4         TACTGTGCCTTTGAAGCCCTTTTTAGCTATAGCCTGTTTTAGTCCTGTTGTGT...
+	T1         TACTCCTGATTTGCTGCTCTAGTACCAGGTAGCTAGTTTTAGTCCTATCGTTG...
+	T2         TACTGTTCCTTTGCTGCCCTACTTCCCCATAGCCAGTTTTAGTCCTGTTGTGT...
+
+**Example 4**: Simulating multi-gene alignments
+ 
+To simulate an alignment consisting of multiple genes, where each gene evolves under a different substitution model, one should first define those genes (each gene as a partition) and specify the corresponding model for each gene. Assuming we have `multi_genes.nex` file as following
+ 
+    #nexus
+	begin sets;
+	    charset gene_1 = DNA, 1-846;
+	    charset gene_2 = DNA, 847-1368;
+	    charset gene_3 = DNA, 1369-2040;
+	    charset gene_4 = DNA, 2041-2772;
+	    charset gene_5 = DNA, 2773-3738;
+	    charpartition mine = HKY{2}+F{0.2/0.3/0.1/0.4}:gene_1, GTR{1.2/0.8/0.5/1.7/1.5}+F{0.1/0.2/0.3/0.4}+G{0.5}:gene_2, JC:gene_3, HKY{1.5}+I{0.2}:gene_4, K80{2.5}:gene_5;
+	end;
+
+The above file defines five genes, each of them has a different length, which sums to 3738 sites. These genes evolved independently under HKY, GTR (with discrete Gamma rate variance), JC, HKY (with a proportion of invariant sites), and K80 model, respectively.
+
+Then, you can simulate an alignment consisting of these five genes by
+
+	iqtree2 --alisim partition_multi_genes  -q multi_genes.nex -t tree.nwk
+
+That simulation outputs the new alignment into a single file named `partition_multi_genes.phy`.
+
+**Example 5**: Simulating multi-gene alignments from multiple gene trees
+ 
+Similar to example 4 but each gene can evolve from a different gene tree. Assuming we have `multi_genes.nex` file as in example 4, we then need to specify a multiple gene trees (in `multi_trees.nwk` as following.
+
+	(A:0.1,(B:0.2,C:0.15):0.1,D:0.05);
+	(A:0.1,(B:0.2,C:0.15):0.1,D:0.05);
+	(A:0.1,B:0.2,(C:0.15,D:0.05):0.1);
+	((A:0.1,B:0.2):0.1,C:0.15,D:0.05);
+	((A:0.1,C:0.15):0.1,B:0.2,D:0.05);
+	(A:0.1,C:0.15,(B:0.2,D:0.05):0.1);
+
+The first line specify the supertree, containing all taxa in all other tree. The remaining line specify the corresponding tree for 6 gene trees.
+
+Then, you can simulate an alignment consisting of these five genes from multiple gene trees by
+
+	iqtree2 --alisim partition_multi_genes_trees  -Q multi_genes.nex -t multi_trees.nwk
+
+That simulation outputs the new alignment into a single file named `partition_multi_genes_trees.phy`.
+
+
+Simulating alignments with [Mixture models](Complex-Models#mixture-models)
+----------------------------
+
+AliSim supports a series of [protein mixture models](Substitution-Models#protein-mixture-models). Users can easily simulate alignments from a protein mixture model as following.
+
+    iqtree2 --alisim alignment_mix_EX2 -m EX2 -t tree.nwk
+
+This simulates a new alignment under the EX2 model (Two-matrix model for exposed/buried AA sites [Le et al., 2008b](https://doi.org/10.1098/rstb.2008.0180)).
+
+Besides, users can simulate alignments from user-defined mixture model via `MIX{<model_1>,...,<model_n>}` as described in [Mixture models](Complex-Models#mixture-models). The following example simulates an alignment under a mixture model contains 2 model components (JC, and HKY) with rate heterogeneity across sites based on discrete Gamma distribution.
+
+    iqtree2 --alisim alignment_mix_JC_HKY_G -m "MIX{JC,HKY}+G4" -t tree.nwk
+
+To simulate alignments with more complex mixture models, users can define a new mixture via a model definition file and supply it to AliSim via `-mdef <model_file>`. For more detail about how to define a mixture model, please have a look at [Profile Mixture Models](Complex-Models#profile-mixture-models).
+
+
+Simulating alignments with Heterotachy [(GHOST model)](Complex-Models#heterotachy-models)
+----------------------------
+
+If one wants to simulate sequences based on a GHOST model with 4 classes in conjunction with the `GTR` model of DNA evolution, one should use the following command:
+
+    iqtree2 --alisim GTR_plus_H4 -m GTR+H4 -t tree.nwk
+
+Assuming that we have an input alignment `example.phy` evolving under the GHOST model with 4 classes in conjunction with the `GTR` model. If one wants to simulate an alignment that mimics that input alignment, one should use the following command:
+
+    iqtree2 --alisim GTR_plus_H4_inference -m GTR+H4 -s example.phy
+
+If you want to unlink GTR parameters so that AliSim could use them separately for each class, replace `+H4` by `*H4`: 
+
+    iqtree2 --alisim GTR_time_H4_inference -m GTR*H4 -s example.phy
+
+If one wishes to use separate base frequencies for each class, then the `+FO` option is required:
+
+    iqtree2 --alisim GTR_FO_time_H4_inference -m GTR+FO*H4 -s example.phy
 
 Command reference
 =================
@@ -233,7 +395,7 @@ All the options available in AliSim are shown below:
 | `-mdef <MODEL_FILE>`  | Define new models by their parameters. |
 | `--fundi <TAXON_1>,...,<TAXON_N>,<RHO>`   | Specifying parameters for the [FunDi model](https://doi.org/10.1093/bioinformatics/btr470), which allows a proportion number of sites (`<RHO>`) in the sequence of each taxon in the given list (`<TAXON_1>,...,<TAXON_N>`), could be permuted with each other. |
 | `--indel <INS>,<DEL>`  | Activate Indels (insertion/deletion events) and specify the insertion/deletion rate relative to the substitution rate of 1. |
-| `--indel-size <INS_DIS>,<DEL_DIS>`  | Specify the indel-size distributions. Notes: `<INS_DIS>,<DEL_DIS>` could be names of user-defined distributions, or GEO{<double_mean>}, NB{<double_mean>[/<double_variance>]}, POW{<double_a>[/<int_max>]}, LAV{<double_a>/<int_max>}, which specifies Geometric, [Negative Binomial, Zipfian, and Lavalette distribution](https://doi.org/10.1093/molbev/msp098) , respectively. By default, AliSim uses a Zipfian distribution with an empirical parameter `<double_a>` of 1.7, and a maximum size `<int_max>` of 250 for Indels-size.|
+| `--indel-size <INS_DIS>,<DEL_DIS>`  | Specify the indel-size distributions. Notes: `<INS_DIS>,<DEL_DIS>` could be names of user-defined distributions, or GEO{<double_mean>}, NB{<double_mean>[/<double_variance>]}, POW{<double_a>[/<int_max>]}, LAV{<double_a>/<int_max>}, which specifies Geometric, [Negative Binomial, Zipfian, and Lavalette distribution](https://doi.org/10.1093/molbev/msp098) , respectively. By default, AliSim uses a Zipfian distribution with an empirical parameter `<double_a>` of 1.7, and a maximum size `<int_max>` of 100 for Indels-size.|
 | `--sub-level-mixture`  | Enable the feature to simulate substitution-level mixture model, which allows AliSim to select a model component of the mixture according to the weight vector for each substitution/mutation occurs during the simulation.|
 | `--no-export-sequence-wo-gaps`  | Disable writing an additional output file of sequences without gaps (when using Indels).|
 | `-q <PARTITION_FILE>` or <br>`-p <PARTITION_FILE>` or <br>`-Q <PARTITION_FILE>` | `-q <PARTITION_FILE>`: Edge-equal partition model with equal branch lengths: All partitions share the same set of branch lengths. <br>`-p <PARTITION_FILE>`: Edge-proportional partition model with proportional branch lengths: Like above, but each partition has its own partition specific rate, which rescales all its branch lengths. This model accommodates different evolutionary rates between partitions.<br>`-Q <PARTITION_FILE>`: Edge-unlinked partition model: Each partition has its own set of branch lengths. <br>`<PARTITION_FILE>` could be specified by a RAXML or NEXUS file as described in [Complex Models](https://github.com/iqtree/iqtree2/wiki/Complex-Models)<br>These options work well with [an input alignment](#simulating-alignments-that-mimic-a-real-alignment).<br>In normal cases without an input alignment, users must supply a tree-file (with a single tree) when using `-q` or `-p`. While using `-Q`, AliSim requires a multiple-tree file that specifies a supertree (combining all taxa in all partitions) in the first line. Following that, each tree for each partition should be specified in a single line one by one in the input multiple-tree file. Noting that each partition could have a different tree topology. |
