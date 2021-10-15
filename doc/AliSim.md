@@ -22,7 +22,7 @@ The `-m` option specifies a model name, and `-t` option specifies a tree file in
 
 For example, if you want to simulate a DNA alignment under the [Jukes-Cantor model](http://doi.org/10.1016/B978-1-4832-3211-9.50009-7) for the following tree `tree.nwk`:
 
-    (A:0.3544240993,(B:0.1905941554,C:0.1328977434):0.0998619427,D:0.0898418080);
+    (A:0.3544,(B:0.1905,C:0.1328):0.0998,D:0.0898);
 
 You can run IQ-TREE with:
 
@@ -46,8 +46,19 @@ Importantly, we note that AliSim uses a random number seed corresponding to the 
 
 `-seed` option has another advantage of reproducing the same alignment when rerunning IQ-TREE.
 
+**NOTE**: AliSim fully supports multifurcating input trees, e.g., `(A:0.3544,(B:0.1905,C:0.1328,D:0.0898):0.05,E:0.1);`
+
 Simulating other datatypes
 --------------------------
+
+TODO
++ASC for bin/morph data
+
+
+Simulating alignments under non-reversible models
+--------------------------------------
+
+Apart from the standard reversible models, AliSim also supports non-reversible models like UNREST for DNA and NONREV for amino-acid.
 
 TODO
 
@@ -122,7 +133,10 @@ By default, if nucleotide frequencies are neither specified nor possible to be i
 
      iqtree2 --alisim alignment_HKY -t tree.nwk -m HKY{2.0}
 
-In this case, AliSim would simulate an alignment from the HKY model. The frequencies of base A, C, G, and T, will be randomly generated from empirical distributions, namely, Generalized-logistic, Exponential-normal, Power-log-normal, Exponential-Weibull. These distributions and their parameters were estimated from a large collection of empirical datasets [REF](http://google.com). 
+In this case, AliSim would simulate an alignment from the HKY model. The frequencies of base A, C, G, and T, will be randomly generated from empirical distributions, namely, Generalized-logistic, Exponential-normal, Power-log-normal, Exponential-Weibull. These distributions and their parameters were estimated from a large collection of empirical datasets [TODO](http://google.com). 
+
+
+### Using user-defined parameter distributions
     
 In addition to five built-in distributions, namely *uniform, Generalized_logistic, Exponential_normal, Power_log_normal, and Exponential_Weibull*, users could define their own lists of numbers, then generate other model parameters from these lists by following these steps. Note that user-defined lists of numbers could be generated from different distributions.
 
@@ -431,4 +445,4 @@ All the options available in AliSim are shown below:
 
 
 
-
+TODO: `--branch-scale` option
