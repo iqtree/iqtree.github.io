@@ -142,8 +142,6 @@ Starting with version 1.6, IQ-TREE supports a series of Lie Markov models ([Wood
 
 Column __Rev?__ shows whether the model is reversible or not. Column __Freq__ shows the number of free base frequencies. 0 means equal base frequency; 1 means f(A)=f(G) and f(C)=f(T); 2 means f(A)+f(G)=0.5=f(C)+f(T); 3 means unconstrained frequencies.
 
-In AliSim, excepting models with equal base frequency, users could specify base frequencies with `+F{...}`. Otherwise, the AliSim randomly generates the state frequencies from empirical distributions. To specify state frequencies, users must supply 1 frequency for the models with the number of free base frequencies (__Freq__) is 1. For models with the number of free base frequencies (__Freq__) is 2 or 3, users must provide 2 and 4 frequencies, respectively.
-
 All Lie Markov models can have one of the following prefices:
 
 | Prefix | Meaning |
@@ -356,10 +354,6 @@ The binary alignments should contain state `0` and `1`, whereas for morphologica
 
 Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies.
 
-In AliSim, to simulate morphological alignments, one should specify the number of states by `-st MORPH{<NUM_STATES>}` as the following example. By default, the number of states for morphological data is 32.
-
-    iqtree2 --alisim alignment_MK -t example.phy.treefile -m "MK" -st MORPH{20}
-
 
 >**TIP**: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model (`+ASC`)](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
 {: .tip}
@@ -375,8 +369,6 @@ An ascertainment bias correction (`+ASC`) model ([Lewis, 2001]) should be applie
 * `GTR+ASC`: For SNPs data.
 
 `+ASC` will correct the likelihood conditioned on variable sites. Without `+ASC`, the branch lengths might be overestimated.
-
-In AliSim, adding `+ASC` to a model name will ask AliSim to simulate sequences without constant sites.
 
 
 Rate heterogeneity across sites
