@@ -1,4 +1,4 @@
-﻿Introduction
+Introduction
 ============
 
 Sequence simulations play an important role in phylogenetics. However, existing tools are either based on simplistic models of evolution or too slow to generate large datasets or both. Therefore, we introduce AliSim, a new tool that can efficiently simulate realistic biological alignments under [complex evolutionary models](Complex-Models). AliSim takes only an hour and approximately 1GB RAM to generate alignments with millions of sequences or sites, while popular software Seq-Gen, Dawg, and Indelible require many hours and tens to hundreds GB of RAM. We provide AliSim as an extension of the IQ-TREE software version 2.2, freely available at www.iqtree.org. 
@@ -11,7 +11,7 @@ If you use AliSim in a publication, please cite:
 In the following, we provide a short tutorial on how to use AliSim.
 
 
-Simulating alignments from a tree and model
+Simulating an alignment from a tree and model
 -------------------------------------------
 
 Similar to other software, AliSim can simulate a multiple sequence alignment from a given tree with branch lengths and a model with:
@@ -50,48 +50,58 @@ Importantly, we note that AliSim uses a random number seed corresponding to the 
 
 Simulating other datatypes
 --------------------------
-AliSim also supports simulating other data types, such as amino-acid, codon, binary, and multi-state morphological data as the following examples:
 
-### Simulating amino-acid data
+Apart from the DNA data, AliSim can also simulate other types of data under amino-acid, codon, binary, and multi-state morphological models.
 
-AliSim supports all common [empirical amino-acid models](Substitution-Models#protein-models). The following example simulates an alignment under Dayhoff model.
+### Amino-acid models
 
-    iqtree2 --alisim alignment_aa -m Dayhoff -t tree.nwk
+AliSim supports all common [empirical amino-acid models](Substitution-Models#protein-models). For example, to simulate an alignment under the [LG model](REF):
 
-### Simulating codon data
+    iqtree2 --alisim alignment_aa -m LG -t tree.nwk
+
+### Codon models
 
 AliSim supports several [codon models](Substitution-Models#codon-substitution-rates). For example:
     
-    iqtree2 --alisim alignment_codon -m MG{2.0}+F1X4{0.2/0.3/0.4/0.1} -t tree.nwk --length 999
+    iqtree2 --alisim alignment_codon -m MG{2.0}+F1X4{0.2/0.3/0.4/0.1} -t tree.nwk
 
-This simulate an alignment under MG model with Nonsynonymous/synonymous (dn/ds) rate ratio of 2.0 and Unequal nucleotide frequencies (0.2,0.3,0.4,0.1 for nucleotide A, C, G, T, respectively) but equal nt frequencies over three codon positions. For more codon models and learn how to specify codon genetic code, and base frequencies, please see [codon models](Substitution-Models#codon-substitution-rates).
+This simulate an alignment under MG model with Nonsynonymous/synonymous (dn/ds) rate ratio of 2.0 and unequal nucleotide frequencies (0.2,0.3,0.4,0.1 for nucleotide A, C, G, T, respectively) but equal nucleotide frequencies over three codon positions.
 
-### Simulating binary and morphological data
-AliSim supports some [binary and morphological models](Substitution-Models#binary-and-morphological-models). The following example simulates a binary alignment under JC2 model.
+### Binary and morphological models
+
+AliSim supports some [binary and morphological models](Substitution-Models#binary-and-morphological-models). For example:
 
     iqtree2 --alisim alignment_bin -m JC2 -t tree.nwk
  
-To simulate morphological alignments, one should specify the number of states by  `-st MORPH{<NUM_STATES>}`  as the following example. 
+will simulate a binary alignment under Jukes-Cantor-type binary model.
+ 
+To simulate morphological alignments, users should specify the number of states with `-st MORPH{<NUM_STATES>}`  option: 
 
     iqtree2 --alisim alignment_morph -m MK -t tree.nwk -st MORPH{20}
 
 This simulates a morphological alignment (with 20 states) under MK model.
 
-AliSim also supports An ascertainment bias correction (`+ASC`) model ([Lewis, 2001](https://doi.org/10.1080/106351501753462876)) to simulate sequences without constant sites. To use ascertainment bias correction, one needs to add `+ASC` into the model name as follows.
+AliSim also supports An ascertainment bias correction (`+ASC`) model ([Lewis, 2001](https://doi.org/10.1080/106351501753462876)) to simulate sequences without constant sites, for example:
 
     iqtree2 --alisim alignment_morph_asc -m MK+ASC -t tree.nwk -st MORPH{20}
 
 
-Simulating alignments under non-reversible models
+Non-reversible models
 --------------------------------------
 
-Apart from the standard reversible models, AliSim also supports a series of [Lie Markov models](Substitution-Models#lie-markov-models), many of which are non-reversible models like UNREST for DNA and NONREV for amino-acid. 
+Apart from the standard reversible models, AliSim also supports non-reversible models such as [Lie Markov DNA models](Substitution-Models#lie-markov-models), for DNA and NONREV for amino-acid. 
 
-The following example simulates an alignment under 12.12 model (which is equivalent to to UNREST (unrestricted model)).
+As an example, to simulate an alignment under the 12.12 model (equivalent to UNREST (unrestricted model)):
 
     iqtree2 --alisim alignment_lie_markov -m 12.12{0.5/0.6/0.9/0.2/0.1/0.4/0.7/0.8/0.3/0.15/0.65}+F{0.1/0.2/0.4/0.3} -t tree.nwk
 
-**NOTE:** the number before `.` in the name shows the number of parameters of the model. Besides, excepting models with equal base frequency, users could specify base frequencies with `+F{...}`. Otherwise, AliSim randomly generates the state frequencies from empirical distributions. To specify state frequencies, users must supply 1 frequency for the models with the number of free base frequencies is 1. For models with the number of free base frequencies is 2 or 3, users must provide 2 and 4 frequencies, respectively. For more detail about Lie Markov models and the number of free base frequencies for each model, please see [Lie Markov models](Substitution-Models#lie-markov-models).
+**NOTE:** Users can specify base frequencies with `+F{...}`. Without this, AliSim randomly generates the state frequencies from empirical distributions (See [Specifying model parameters](#specifying-model-parameters)). 
+
+
+Rate heterogeneity across sites
+-------------------------------
+
+TODO Gamma, continuous, invariant sites, free rate
 
 Customizing output alignments
 -----------------------------
@@ -121,8 +131,8 @@ If users want to compress the output file, they could try `-gz` option:
 
 This will compress the output file, but it could take a longer running time.
 
-Simulating insertions and deletions (Indels)
---------------------------------------------
+Insertion and deletion models
+------------------------------
     
 AliSim can also simulate insertions and deletions, for example:
 
@@ -140,20 +150,14 @@ To specify a Negative Binomial distribution (with mean of 5 and variance of 20) 
 
     iqtree2 --alisim alignment_indel_size -m JC -t tree.nwk --indel 0.1,0.05 --indel-size LAV{1.5/10},LAV{1.5/10}
 
-Simulating alignments with custom models
-----------------------------------------
+Specifying model parameters
+---------------------------
 
-Apart from the simple Juke-Cantor models above, AliSim also supports all other more complex models available in IQ-TREE. For example:
+Apart from the simple Juke-Cantor models with no parameters, AliSim also supports all other more complex models available in IQ-TREE. For example:
 
      iqtree2 --alisim alignment_HKY -t tree.nwk -m HKY{2.0}+F{0.2/0.3/0.1/0.4}
 
 This simulates a new alignment under the [HKY model](https://dx.doi.org/10.1007%2FBF02101694) with a transition/transversion ratio of 2 and nucleotide frequencies of 0.2, 0.3, 0.1, 0.4 for A, C, G, T, respectively.
-
-Besides, AliSim allows users to simulate alignnments with DNA error model by adding `+E{<Error_Probability>}` into the `<model>` when specifying the model with `-m <model>`. For example:
-
-     iqtree2 --alisim alignment_HKY_error -t tree.nwk -m HKY{2.0}+F{0.2/0.3/0.1/0.4}+E{0.01}
-   
-This simulates a new alignment under the HKY model as the above example, but with a sequencing error probability of 0.01. That means the nucleotide of 1% sites of the simulated sequences is randomly changed to another nucleotide. 
 
 AliSim also supports all [rate heterogeneity across sites](...) such as:
 
@@ -164,6 +168,13 @@ By default, if nucleotide frequencies are neither specified nor possible to be i
      iqtree2 --alisim alignment_HKY -t tree.nwk -m HKY{2.0}
 
 In this case, AliSim would simulate an alignment from the HKY model. The frequencies of base A, C, G, and T, will be randomly generated from empirical distributions, namely, Generalized-logistic, Exponential-normal, Power-log-normal, Exponential-Weibull. These distributions and their parameters were estimated from a large collection of empirical datasets ([Suha et al](https://doi.org/10.1101/2021.09.22.461455)). 
+
+Besides, AliSim allows users to simulate alignnments with DNA error model by adding `+E{<Error_Probability>}` into the `<model>` when specifying the model with `-m <model>`. For example:
+
+     iqtree2 --alisim alignment_HKY_error -t tree.nwk -m HKY{2.0}+F{0.2/0.3/0.1/0.4}+E{0.01}
+   
+This simulates a new alignment under the HKY model as the above example, but with a sequencing error probability of 0.01. That means the nucleotide of 1% sites of the simulated sequences is randomly changed to another nucleotide. 
+
 
 
 ### Using user-defined parameter distributions
@@ -191,8 +202,8 @@ In this example, 3 substitution rates of GTR models are randomly drawn from the 
 
 Users could also use user-defined lists to randomly generate other parameters (e.g., substitution rates, state frequencies, nonsynonymous/synonymous rate ratio, transition rate, transversion rate, category weight/proportion) for other kinds of models/data (e.g., Protein, Codon, Binary, Morph, Lie Markov, Heterotachy, and Mixture). 
 
-Simulating alignments that mimic a real alignment
--------------------------------------------------
+Mimicking a real alignment
+--------------------------
 <div class="hline"></div>
 
 AliSim allows users to simulate alignments that mimic the evolutionary history of a given alignment as the below example:
@@ -201,13 +212,13 @@ AliSim allows users to simulate alignments that mimic the evolutionary history o
 
 * `-s example.phy` is the option to supply the input alignment. 
 
-In this example, AliSim first runs IQ-TREE to a phylogenetic tree and the best-fit substitution model (using ModelFinder) with its parameters from the input alignment `example.phy`. After that, AliSim generates an alignment based on the inferred tree and the best-fit substitution model. Moreover, AliSim also copies the gap patterns from the input alignment `example.phy` to the output alignment `alignment_mimic.phy`. To disable this feature, users could add the option `--no-copy-gaps` to the command line.
+In this example, AliSim internally runs IQ-TREE to infer a phylogenetic tree and the best-fit substitution model (using ModelFinder) with its parameters from the input alignment `example.phy`. After that, AliSim simulates a new alignment based on the inferred tree and model and copies the gaps from the input alignment `example.phy` to the output alignment `alignment_mimic.phy`. To disable this feature, use `--no-copy-gaps` option.
 
-Simulating alignments from a random tree
+Simulating along a random tree
 ------------------
 <div class="hline"></div>
 
-AliSim supports users in producing alignments from a random tree generated by biologically plausible models (such as Yule-Harding, Uniform, and Birth-Death processes). As an example:
+AliSim can simulate alignments along a random tree under biologically plausible processes such as Yule-Harding, Uniform, and Birth-Death. As an example:
 
     # simulate 1000-taxon alignment under Yule-Harding random tree model 
     iqtree2 --alisim alignment_yh -t RANDOM{yh/1000}
@@ -229,23 +240,13 @@ Furthermore, users can also randomly generate branch lengths of the phylogenetic
 
 In this example, the branch lengths of the random tree are randomly drawn from the user-defined list `F_A`. Besides, if the user supplies a tree file (instead of a random tree), the branch lengths of the user-provided tree will be overridden by the random lengths from the list `F_A`.
 
-Simulating alignments with functional divergence (FunDi ) model
-----------------------------
-
-AliSim supports the [FunDi model](https://doi.org/10.1093/bioinformatics/btr470), which allows a proportion number of sites (`<RHO>`) in the sequence of each taxon in a given list (`<TAXON_1>,...,<TAXON_N>`), could be permuted with each other. To simulate new alignments under the FunDi model, one could use `--fundi` option:
-
-      iqtree2 --alisim alignment_fundi -t tree.nwk -m JC --fundi A,C,0.1
-
-This example simulates a new alignment under the Juke-Cantor model from the input tree `tree.nwk` with the default sequence length of 1000 sites. Since the user specifies FunDi model with `<RHO>` = 0.1, thus, in the sequences of Taxon A, and C, 100 random sites (sequence length * `<RHO>` = 1,000 * 0.1) are permuted with each other.
-
-Simulating alignments with branch-specific models
+Branch-specific models
 ----------------------------
 
 AliSim supports branch-specific models, which assign different evolutionary models to individual branches of a tree.
 
-To use branch-specific models, users should specify the models for individual branches with the syntax `[&model=<model>]` in the input tree file. The model parameters should be separated by a forward slash `/` if the user wants to specify them. 
-
-**Example 1**: assuming the input tree file `input_tree.nwk` is described as following 
+To use branch-specific models, users should specify the models for individual branches with the syntax `[&model=<model>]` in the input tree file, 
+say for example, `input_tree.nwk`:
 
 	(A:0.1,(B:0.1,C:0.2[&model=HKY]),(D:0.3,E:0.1[&model=GTR{0.5/1.7/3.4/2.3/1.9}+F{0.2/0.3/0.4/0.1}+I{0.2}+G{0.5}]):0.2);
 
@@ -253,11 +254,9 @@ Then, simulate an alignment by
 
       iqtree2 --alisim alignment_example_1 -t input_tree.nwk -m JC
     
-In this example, AliSim uses the Juke-Cantor model to simulate an alignment along the input tree. However, at the branch connecting taxon C to its ancestral, the `HKY` with random parameters is used to simulate the sequence of taxon C. Similarly, the `GTR` model with the parameters specified above is used to generate the sequence of taxon E.
+Here, AliSim uses the Juke-Cantor model to simulate an alignment along the input tree. However, the `HKY` with random parameters is used to simulate the sequence of taxon C. Similarly, the `GTR` model with the specified parameters is used to generate the sequence of taxon E.
   
-To apply [Heterotachy (GHOST) model](Heterotachy-models) for an individual branch, in addition to the model name, users must also supply a set of branch-lengths containing `n` lengths corresponding to `n` categories of the model via `lengths=<length_0>,...,<length_n>` as the example 2. 
-
-**Example 2**: assuming the tree file `input_tree.nwk` is described as following
+To mimic heterotachy (rate heterogeneity across branches), users can supply a set of branch-lengths containing `n` lengths corresponding to the `n` categories of the model via `lengths=<length_1>,...,<length_n>`, for example:
 
 	(A:0.1,(B:0.1,C:0.2[&model=HKY{2.0}*H4,lengths=0.1/0.2/0.15/0.3]),(D:0.3,E:0.1):0.2);
 
@@ -265,11 +264,9 @@ Then, simulate an alignment by
 
       iqtree2 --alisim alignment_example_2 -t input_tree.nwk -m JC
     
-In this example, AliSim simulates a new alignment using the Juke-Cantor model. However, at the branch connecting taxon C to its ancestral, the GHOST model with 4 categories is used with 4 branch lengths 0.1, 0.2, 0.15, and 0.3 to generate the sequence of taxon C.
+Here, AliSim simulates a new alignment using the Juke-Cantor model. However, at the branch connecting taxon C to its ancestral node, the [GHOST model](REF) with 4 categories is used with 4 branch lengths 0.1, 0.2, 0.15, and 0.3 to generate the sequence of taxon C.
 
-Additionally, in a rooted tree, users may want to generate the root sequence with particular state frequencies and then simulate new sequences from that root sequence based on a specific model. To do so, one should supply a rooted tree, then specify a model and state frequencies  (with `[&model=<model>,freqs=<freq_0,...,<freq_n>]`) as example 3.
-
-**Example 3**: assuming the tree file `input_tree.nwk` is described as following
+Additionally, in a rooted tree, users may want to generate the root sequence with particular state frequencies and then simulate new sequences from that root sequence based on a specific model. To do so, one should supply a rooted tree, then specify a model and state frequencies  (with `[&model=<model>,freqs=<freq_0,...,<freq_n>]`) for example:
 
 	(A:0.1,(B:0.1,C:0.2),(D:0.3,E:0.1):0.2):0.3[&model=GTR,freqs=0.2/0.3/0.1/0.4];
 
@@ -277,13 +274,13 @@ Then, simulate an alignment by
 
       iqtree2 --alisim alignment_example_3 -t input_tree.nwk -m JC
     
-In this example, AliSim first generates a random sequence at the root based on the user-specified frequencies (`0.2/0.3/0.1/0.4`). Then, it uses the `GTR` model with random parameters to simulate a sequence for the child node of the root. Finally, AliSim traverses the tree and uses the Juke-Cantor model to simulate sequences for the other nodes of the tree.
+Here, AliSim first generates a random sequence at the root based on the user-specified frequencies (`0.2, 0.3, 0.1, 0.4` for A, C, G, T, respectively). Then, it uses the `GTR` model with random parameters to simulate a sequence for the child node of the root. For the remaining branches AliSim applies the Juke-Cantor model.
 
-Simulating alignments with [Partition models](Complex-Models#partition-models)
-----------------------------
+Partition models
+----------------
 
-AliSim allows users to simulate a multi-locus alignment using a partition file in NEXUS format as described in
-the [partition model tutorial](Complex-Models#partition-models). An example partition file:
+AliSim allows users to simulate a multi-locus alignment using a partition model specified in a NEXUS file as described in
+the [partition model tutorial](Complex-Models#partition-models). An example partition file may look like:
 
     #nexus
 	begin sets;
@@ -312,7 +309,7 @@ That simulation outputs the new alignment into a single file named `partition_mu
 
 In the following we will describe scenarios for more complex partition models.
 
-### Simulating alignments under *Edge-proportional* partition model
+### Edge-proportional partition model
 
 The above example simulates a concatenated alignment under edge-equal partition model, i.e.,
 all partitions share the same tree with the same branch lengths. This is not realistic as different genes
@@ -347,7 +344,7 @@ used `-q` option, the partition-specific rates will be ignored, i.e.,
 AliSim will use edge-equal partition model.
 
 
-### Simulating under topology-unlinked partition model
+### Topology-unlinked partition model
 
 AliSim supports topology-unlinked partition models, which allow each partition to have its own tree topology and branch lengths.
 The partition trees can have non-overlapping taxon sets. To do so, users need to prepare a tree file
@@ -372,7 +369,7 @@ AliSim will add a stretch of gaps corresponding to the missing taxon D in partit
 the behaviour will be completely different: AliSim will only load the first tree in `multi_trees.nwk`
 and simulate an alignment under this one tree.
 
-### Simulating mixed data
+### Mixing different datatypes
 
 AliSim allows users to simulate mixed data  (e.g., DNA, Protein, and MORPH) in a single simulation, in which each kind of data is exported into a different alignment file. Here is an example for mixing DNA, protein, and morphological data. Firstly, users need to specify partitions in an input partition file as following.
 
@@ -397,14 +394,14 @@ Assuming that the above partition file is named `example_mix.nex` and one would 
 At the end of the run, AliSim writes out the simulated alignments into four output files. The first file named `partition_mix_DNA.phy` stores the merged 400-site DNA alignment from `part1`, `part2`, and `part7`. Although `part3`, `part5`, and `part6` contain morphological data, `part3` simulates a morphological alignment with 6 states while `part5` and `part6` have 30 states. Thus, AliSim outputs the alignment of `part3` into `partition_mix_MORPH6.phy`, whereas `partition_mix_MORPH30.phy` stores the  alignment merging `part5` and `part6`. Lastly, `partition_mix_AA.phy` stores the simulated amino-acid alignment of `part4`.
 
 
-Simulating alignments with [Mixture models](Complex-Models#mixture-models)
-----------------------------
+Mixture models
+--------------
 
-AliSim supports a series of [protein mixture models](Substitution-Models#protein-mixture-models). Users can easily simulate alignments from a protein mixture model as following.
+AliSim supports [protein mixture models](Substitution-Models#protein-mixture-models) for example:
 
     iqtree2 --alisim alignment_mix_C10 -m C10 -t tree.nwk
 
-This simulates a new alignment under the [C10 mixture model](Complex-Models#mixture-models).
+to simulate a new alignment under the [C10 mixture model](Complex-Models#mixture-models).
 
 Besides, users can simulate alignments from user-defined mixture model via `MIX{<model_1>,...,<model_n>}` as described in [Mixture models](Complex-Models#mixture-models). The following example simulates an alignment under a mixture model contains 2 model components (JC, and HKY) with rate heterogeneity across sites based on discrete Gamma distribution.
 
@@ -413,7 +410,7 @@ Besides, users can simulate alignments from user-defined mixture model via `MIX{
 To simulate alignments with more complex mixture models, users can define a new mixture via a model definition file and supply it to AliSim via `-mdef <model_file>`. For more detail about how to define a mixture model, please have a look at [Profile Mixture Models](Complex-Models#profile-mixture-models).
 
 
-Simulating alignments with Heterotachy [(GHOST model)](Complex-Models#heterotachy-models)
+Heterotachy GHOST model
 ----------------------------
 
 If one wants to simulate sequences based on a GHOST model with 4 categories in conjunction with the `GTR` model of DNA evolution, one should first specify a multi-length tree as follows.
@@ -440,6 +437,16 @@ Besides, assuming that we have an input alignment `example.phy` evolving under t
 or using 	`GTR+FO*H4` instead of `GTR+H4`, if you want to unlink GTR parameters and frequencies.
 	
     iqtree2 --alisim alignment_ghost_unlink_mimick -m GTR+FO*H4 -s example.phy
+
+Functional divergence model
+----------------------------
+
+AliSim supports the [FunDi model](https://doi.org/10.1093/bioinformatics/btr470), which allows a proportion number of sites (`<RHO>`) in the sequence of each taxon in a given list (`<TAXON_1>,...,<TAXON_N>`), could be permuted with each other. To simulate new alignments under the FunDi model, one could use `--fundi` option:
+
+      iqtree2 --alisim alignment_fundi -t tree.nwk -m JC --fundi A,C,0.1
+
+This example simulates a new alignment under the Juke-Cantor model from the input tree `tree.nwk` with the default sequence length of 1000 sites. Since the user specifies FunDi model with `<RHO>` = 0.1, thus, in the sequences of Taxon A, and C, 100 random sites (sequence length * `<RHO>` = 1,000 * 0.1) are permuted with each other.
+
 
 Command reference
 =================
