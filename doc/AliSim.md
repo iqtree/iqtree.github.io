@@ -489,5 +489,5 @@ All the options available in AliSim are shown below:
 | `--write-all` | Enable writing internal sequences. |
 | `-seed <NUMBER>` | Specify the seed number. <br>*Default: the clock of the PC*. <br>Be careful! To make the AliSim reproducible, users should specify the seed number. |
 | `-gz` | Enable output compression. It may take a longer running time.<br>*By default, output compression is disabled*. |
-| `-af phy|fasta` | Set the format for the output file(s). <br>*Default: phy (PHYLIP format)* |
+| `-af <FORMAT>` | Set the format for the output file(s). <FORMAT> should be `fasta` (for FASTA format) or `phy` (for PHYLIP format).<br>*Default: phy* |
 
