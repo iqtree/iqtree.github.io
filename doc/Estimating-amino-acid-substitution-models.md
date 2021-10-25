@@ -8,7 +8,7 @@ icon: info-circle
 doctype: tutorial
 tags:
 - tutorial
-description: Estimating non-reversible substitution amino acid models.
+description: Estimating amino acid substitution models.
 sections:
 - name: Estimating non-reversible models from a bunch of separate MSAs
   url: Estimating non-reversible models from a bunch of separate MSAs
