@@ -1,7 +1,24 @@
-﻿Introduction
-============
+---
+layout: userdoc
+title: "Simulating sequence alignments"
+author: _AUTHOR_
+date: _DATE_
+docid: 9
+icon: info-circle
+doctype: tutorial
+tags:
+- tutorial
+description: Simulating sequence alignments
+sections:
+- name: 
+  url: 
+---
 
-Sequence simulations play an important role in phylogenetics. There are many existing sequence simulation programs, but those that are feature-rich tend to be rather slow, and those that are fast tend to be feature-poor. Therefore, we developed AliSim, a new tool that can efficiently simulate biologically realistic alignments under a large range of complex evolutionary models. AliSim takes only an hour and 1.3 GB RAM to simulate alignments with one million sequences or sites, while popular software Seq-Gen, Dawg, and INDELible require two to five hours and tens to hundreds GB of RAM. We provide AliSim as an extension of the IQ-TREE software version 2.2, freely available at [www.iqtree.org](http://www.iqtree.org/), and a user tutorial at [http://www.iqtree.org/doc/alisim](http://www.iqtree.org/doc/alisim).
+
+Simulating sequence alignments
+==============================
+
+Sequence simulations play an important role in phylogenetics. Simulated data has many applications such as evaluating the performance of different methods, hypothesis testing with parametric bootstrap, and, more recently, generating data for machine-learning approaches. There are many existing sequence simulation programs, but those that are feature-rich tend to be rather slow, and those that are fast tend to be feature-poor. Here, we introduce AliSim, a new tool that can efficiently simulate biologically realistic alignments under a large range of complex evolutionary models. To achieve high performance, AliSim implements a new adaptive approach that combines the commonly-used rate matrix and probability matrix approach. AliSim takes only an hour and 1.3 GB RAM to simulate alignments with one million sequences or sites, while popular software Seq-Gen, Dawg, and INDELible require two to five hours and 50 to 500 GB of RAM. 
 
 If you use AliSim in a publication, please cite:
 
