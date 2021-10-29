@@ -30,7 +30,7 @@
 - [Consensus construction and bootstrap value assignment](Advanced-Tutorial#consensus-construction-and-bootstrap-value-assignment)
 - [Computing Robinson-Foulds distance](Advanced-Tutorial#computing-robinson-foulds-distance-between-trees)
 - [Generating random trees](Advanced-Tutorial#generating-random-trees)
-- [Estimating non-reversible substitution amino acid models](nQmaker)
+- [Estimating amino acid substitution models](Estimating-amino-acid-substitution-models)
 
 [**Substitution Models**](Substitution-Models)
 
