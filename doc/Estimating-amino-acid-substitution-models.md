@@ -101,7 +101,7 @@ To estimate a non-reversible model, we use `--model-joint NONREV+FO` option inst
 	iqtree2 -seed 1 -T AUTO -s alignment.nex -p train_plant.best_model.nex -te train_plant.treefile --model-joint NONREV+FO --prefix plant_NONREV_FO
 	
 	# step 3: extract the resulting non-reversible matrix
-	grep -A 21 "can be used as input for IQ-TREE" plant_NONREV_FO.iqtree | tail -n21 > NQ.plant
+	grep -A 22 "can be used as input for IQ-TREE" plant_NONREV_FO.iqtree | tail -n21 > NQ.plant
 
 The resulting `NQ.plant` matrix may now look like:
 
@@ -153,7 +153,7 @@ Same as estimating a non-reversible model from a single concatenated alignment, 
 	iqtree2 -seed 1 -T AUTO -S train_plant.best_model.nex -te train_plant.treefile --model-joint NONREV+FO --init-model LG -pre train_plant.NONREV
 
 	# step 3: extract the resulting non-reversible matrix
-	grep -A 21 "can be used as input for IQ-TREE" train_plant.NONREV.iqtree | tail -n21 > NQ.plant
+	grep -A 22 "can be used as input for IQ-TREE" train_plant.NONREV.iqtree | tail -n21 > NQ.plant
 
 [Dang et al., 2021]: https://doi.org/10.1101/2021.10.18.464754
 [Minh et al., 2021]: https://doi.org/10.1093/sysbio/syab010
