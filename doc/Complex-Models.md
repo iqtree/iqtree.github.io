@@ -1,4 +1,4 @@
-﻿---
+---
 layout: userdoc
 title: "Complex Models"
 author: _AUTHOR_

@@ -6,10 +6,10 @@ title: |
     
 subtitle: "<http://www.iqtree.org>"
 author: |
-    Bui Quang Minh, Rob Lanfear,\
+    Bui Quang Minh, Rob Lanfear, Nhan-Trong Ly\
     Jana Trifinopoulos, Dominik Schrempf, Heiko A. Schmidt
 
-date: March 15, 2021
+date: November 1, 2021
 keywords: [phylogenomic inference, maximum likelihood]
 toc: true
 papersize: A4

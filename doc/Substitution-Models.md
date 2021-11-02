@@ -1,4 +1,4 @@
-﻿---
+---
 layout: userdoc
 title: "Substitution Models"
 author: _AUTHOR_
