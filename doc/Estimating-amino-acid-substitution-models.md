@@ -61,6 +61,7 @@ The resulting matrix (`Q.plant`) which is included in the file `plant_GTR20_FO.i
 
 	# step 3: extract the resulting reversible matrix
 	grep -A 21 "can be used as input for IQ-TREE" plant_GTR20_FO.iqtree | tail -n20 > Q.plant
+
 We can  open `Q.plant` in a text viewer as below, or use with IQ-TREE (e.g. `-m Q.plant` option). The `Q.plant` is in PAML format, it contains the lower diagonal part of the AA exchange rates matrix and 20 AA frequencies.
 
     0.120955
