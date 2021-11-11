@@ -253,6 +253,15 @@ AliSim allows users to simulate alignments that mimic the evolutionary history o
 
 In this example, AliSim internally runs IQ-TREE to infer a phylogenetic tree and the best-fit substitution model (using ModelFinder) with its parameters from the input alignment `example.phy`. After that, AliSim simulates a new alignment based on the inferred tree and model and copies the gaps from the input alignment `example.phy` to the output alignment `alignment_mimic.phy`. To disable this feature, use `--no-copy-gaps` option.
 
+Additionally, for simulations under a mixture models and/or discrete rate heterogeneity (under Gamma/Free-rate distributions), e.g.
+
+      iqtree2 --alisim alignment_mimic -s example.phy -m "MIX{GTR{2/3/4/5/6}+F{0.2/0.3/0.4/0.1},HKY{2}+F{0.3/0.2/0.1/0.4},JC}+G{0.5}"
+
+The above mixture consists of three model components. AliSim randomly assigns a model component of the mixture to each site according to the site posterior probability distribution of the mixture. For site-frequency mixture models, AliSim applies the posterior mean site frequencies ([Wang et al. 2018](https://doi.org/10.1093/sysbio/syx068)) (default). Or the user can use `--site-freqs POS_DIS` to sample site-frequencies from the posterior probability distribution of the mixture, or use `--site-freqs MODEL_SPECIFIED` to employ the frequencies specified for each model component.
+
+Similarly, for discrete rate heterogeneity (based on Gamma/Free-rate distributions), AliSim applies the posterior mean rates (by default). Or  the user can use `--rate-heterogeneity  POS_DIS` to sample site-specific rate from the posterior probability distribution of rate categories, or `--rate-heterogeneity  WEIGHTS` to sample site-specific rate from the weight (prior distribution) of rate categories.
+
+
 Simulating along a random tree
 ------------------
 <div class="hline"></div>
@@ -503,6 +512,8 @@ All the options available in AliSim are shown below:
 |  `-t RANDOM{<MODEL>/<NUM_TAXA>}` | Specify a `<MODEL>` (yh, u, cat, bal, or bd{`<birth_rate>`/`<death_rate>`} for Yule-Harding, Uniform, Caterpillar, Balanced, or Birth-Death model, respectively), and the number of taxa `<NUM_TAXA>` to generate a random tree. The number of taxa could be a fixed number, a list `{<NUM_1>/<NUM_2>/.../<NUM_N>}`, or a Uniform distribution `U{<LOWER_BOUND>/<UPPER_BOUND>}`. Note that `<NUM_TAXA>` is only required if users don't supply an input alignment. |
 |  `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`  | Specify the minimum, the mean, and the maximum length of branches when generating a random tree. |
 | `-s <SEQUENCE_ALIGNMENT>` | Specify an input alignment.<br>Firstly, IQTree infers a phylogenetic tree and a model with its parameters from the input data. Then, AliSim simulates alignments from that tree and the model. |
+| `--site-freqs  <OPTION>` | Specify an option to mimic the site-frequencies from the input alignment (only use with a mixture model) (see [Mimicking a real alignment](#mimicking-a-real-alignment)). `<OPTION>` should be `POS_MEAN` (default), or `POS_DIS`, or `MODEL_SPECIFIED`. |
+| `--rate-heterogeneity  <OPTION>` | Specify an option to mimic the discrete rate heterogeneity from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)). `<OPTION>` should be `POS_MEAN` (default), or `POS_DIS`, or `WEIGHTS`. |
 | `--write-all` | Enable writing internal sequences. |
 | `-seed <NUMBER>` | Specify the seed number. <br>*Default: the clock of the PC*. <br>Be careful! To make the AliSim reproducible, users should specify the seed number. |
 | `-gz` | Enable output compression. It may take a longer running time.<br>*By default, output compression is disabled*. |
