@@ -253,7 +253,7 @@ AliSim allows users to simulate alignments that mimic the evolutionary history o
 
 In this example, AliSim internally runs IQ-TREE to infer a phylogenetic tree and the best-fit substitution model (using ModelFinder) with its parameters from the input alignment `example.phy`. After that, AliSim simulates a new alignment based on the inferred tree and model and copies the gaps from the input alignment `example.phy` to the output alignment `alignment_mimic.phy`. To disable this feature, use `--no-copy-gaps` option.
 
-Additionally, for simulations under a mixture models and/or discrete rate heterogeneity (under Gamma/Free-rate distributions), e.g.
+Additionally, for simulations under a mixture models and/or discrete rate heterogeneity (under [Gamma](https://doi.org/10.1007/BF00160154)/[Free-rate](http://www.genetics.org/content/139/2/993.abstract) distributions), e.g.
 
       iqtree2 --alisim alignment_mimic -s example.phy -m "MIX{GTR{2/3/4/5/6}+F{0.2/0.3/0.4/0.1},HKY{2}+F{0.3/0.2/0.1/0.4},JC}+G{0.5}"
 
