@@ -20,11 +20,10 @@ Simulating sequence alignments
 
 Sequence simulations play an important role in phylogenetics. Simulated data has many applications such as evaluating the performance of different methods, hypothesis testing with parametric bootstrap, and, more recently, generating data for machine-learning approaches. There are many existing sequence simulation programs, but those that are feature-rich tend to be rather slow, and those that are fast tend to be feature-poor. Here, we introduce AliSim, a new tool that can efficiently simulate biologically realistic alignments under a large range of complex evolutionary models. To achieve high performance, AliSim implements a new adaptive approach that combines the commonly-used rate matrix and probability matrix approach. AliSim takes only an hour and 1.3 GB RAM to simulate alignments with one million sequences or sites, while popular software Seq-Gen, Dawg, and INDELible require two to five hours and 50 to 500 GB of RAM. 
 
-If you use AliSim in a publication, please cite:
 
-* __L.T. Nhan, B.Q. Minh__ (2021) AliSim: Fast and Versatile Phylogenetic Sequence Simulator in the Genomic Era, ... <https://doi.org/...>
+To use AliSim please download the IQ-TREE 2.2-beta version here: <https://github.com/iqtree/iqtree2/releases/tag/v2.2-beta>.
 
-In the following, we provide a tutorial on how to use AliSim.
+A manuscript about AliSim is currently under preparation. In the following, we provide a tutorial on how to use AliSim.
 
 
 Simulating an alignment from a tree and model
