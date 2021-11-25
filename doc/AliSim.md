@@ -411,13 +411,13 @@ AliSim allows users to simulate mixed data  (e.g., DNA, Protein, and MORPH) in a
 
     #nexus
 	begin sets;
-	    charset part1 = DNA, 1-200\2;
+	    charset part1 = DNA, 1-200\2 201-300;
 	    charset part2 = DNA, 2-200\2;
 	    charset part3 = MORPH{6}, 1-300;
 	    charset part4 = AA, 1-200;
 	    charset part5 = MORPH{30}, 1-200\2;
 	    charset part6 = MORPH{30}, 2-200\2;
-	    charset part7 = DNA, 201-400;
+	    charset part7 = DNA, 301-500;
 	    charpartition mine = HKY{2.0}:part1, JC+G{0.5}:part2, MK:part3, Dayhoff:part4, MK:part5, ORDERED:part6, F81+F{0.1/0.2/0.3/0.4}:part7;
 	end;
 
