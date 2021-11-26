@@ -456,21 +456,30 @@ In the above file, each branch should have 4 lengths (corresponding to 4 categor
 
 Assuming that the above tree file is named `ghost_tree.nwk`,  one can simulate an alignment under GHOST model with:
 
-    iqtree2 --alisim alignment_ghost -m "GTR+H4{0.15/0.2/0.35/0.3}" -t ghost_tree.nwk
+    iqtree2 --alisim alignment_ghost -m "GTR{2/3/4/5/6}+F{0.2/0.3/0.1/0.4}+H4{0.15/0.2/0.35/0.3}" -t ghost_tree.nwk
 
 Here, AliSim applies the GHOST model with the weights of 0.15, 0.2, 0.35, 0.3 for the four categories, respectively. If the weights are ignored, AliSim will assume uniform weight distribution.
 
-If you want to unlink GTR parameters so that AliSim could use a GTR model (with specific parameters and frequencies) for each category, you can use `MIX{...}*H4` and specify the model parameters for each categories inside `MIX{...}` as follow: 
+If you want to unlink GTR parameters so that AliSim could use a GTR model (with specific substitution rates) for each category, you can use `MIX{...}*H4` and specify the model parameters for each categories inside `MIX{...}` as follow: 
 
-    iqtree2 --alisim alignment_ghost_unlink -m "MIX{GTR{2/3/4/5/6}+F{0.2/0.3/0.4/0.1},GTR{3/4/5/6/7}+F{0.3/0.2/0.4/0.1},GTR{4/5/6/7/8}+F{0.4/0.2/0.3/0.1},GTR{5/6/7/8/9}+F{0.1/0.2/0.4/0.3}}*H4{0.15/0.2/0.35/0.3}" -t ghost_tree.nwk
+    iqtree2 --alisim alignment_ghost_unlink -m "MIX{GTR{2/3/4/5/6},GTR{3/4/5/6/7},GTR{4/5/6/7/8},GTR{5/6/7/8/9}}+F{0.2/0.3/0.1/0.4}*H4{0.15/0.2/0.35/0.3}" -t ghost_tree.nwk
+
+You can also specify a different set of state frequencies for each model component as follow:  
+
+    iqtree2 --alisim alignment_ghost_unlink_freqs -m "MIX{GTR{2/3/4/5/6}+F{0.2/0.3/0.4/0.1},GTR{3/4/5/6/7}+F{0.3/0.2/0.4/0.1},GTR{4/5/6/7/8}+F{0.4/0.2/0.3/0.1},GTR{5/6/7/8/9}+F{0.1/0.2/0.4/0.3}}*H4{0.15/0.2/0.35/0.3}" -t ghost_tree.nwk
 
 Besides, assuming that we have an input alignment `example.phy` evolving under the GHOST model with 4 categories in conjunction with the `GTR` model. If one wants to simulate an alignment that mimics that input alignment, one should use the following command:
 
     iqtree2 --alisim alignment_ghost_mimick -m GTR+H4 -s example.phy
 	
-or using 	`GTR+FO*H4` instead of `GTR+H4`, if you want to unlink GTR parameters and frequencies.
+or using 	`GTR*H4` instead of `GTR+H4`, if you want to unlink GTR parameters:
 	
-    iqtree2 --alisim alignment_ghost_unlink_mimick -m GTR+FO*H4 -s example.phy
+    iqtree2 --alisim alignment_ghost_unlink_mimick -m GTR*H4 -s example.phy
+
+or using 	`GTR+FO*H4` to unlink GTR parameters and state frequencies:
+	
+    iqtree2 --alisim alignment_ghost_unlink_freqs_mimick -m GTR+FO*H4 -s example.phy
+
 
 Functional divergence model
 ----------------------------
