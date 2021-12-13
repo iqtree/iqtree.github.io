@@ -183,6 +183,12 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | rtREV    | viral | Retrovirus ([Dimmic et al., 2002]). |
 | VT       | nuclear | General 'Variable Time' matrix ([Mueller and Vingron, 2000]). |
 | WAG      | nuclear | General matrix ([Whelan and Goldman, 2001]). |
+| Q.pfam   | nuclear | General matrix estimated from Pfam version 31 (2017) database ([Minh et al., 2021]). | 
+| Q.plant  | nuclear | Q matrix estimated for plants ([Minh et al., 2021]). | 
+| Q.bird   | nuclear | Q matrix estimated for birds ([Minh et al., 2021]). | 
+| Q.mammal | nuclear | Q matrix estimated for mammals ([Minh et al., 2021]). | 
+| Q.yeast  | nuclear | Q matrix estimated for insects ([Minh et al., 2021]). | 
+| Q.plant  | nuclear | Q matrix estimated for plants ([Minh et al., 2021]). | 
 | GTR20    | general | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments).* |
 
 ### Protein mixture models
@@ -419,6 +425,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Le and Gascuel, 2010]: https://doi.org/10.1093/sysbio/syq002
 [Le et al., 2012]: https://doi.org/10.1093/molbev/mss112
 [Lewis, 2001]: https://doi.org/10.1080/106351501753462876
+[Minh et al., 2021]: https://doi.org/10.1093/sysbio/syab010
 [Mueller and Vingron, 2000]: https://doi.org/10.1089/10665270050514918
 [Muse and Gaut, 1994]: http://mbe.oxfordjournals.org/content/11/5/715.abstract
 [Nickle et al., 2007]: https://dx.doi.org/10.1371/journal.pone.0000503
