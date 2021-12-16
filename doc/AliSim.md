@@ -10,8 +10,36 @@ tags:
 - tutorial
 description: Simulating sequence alignments
 sections:
-- name: 
-  url: 
+- name: Simulating an alignment from a tree and model
+  url: simulating-an-alignment-from-a-tree-and-model
+- name: Simulating other datatypes
+  url: simulating-other-datatypes
+- name: Non-reversible models
+  url: non-reversible-models
+- name: Rate heterogeneity across sites
+  url: rate-heterogeneity-across-sites
+- name: Customizing output alignments
+  url: customizing-output-alignments
+- name: Insertion and deletion models
+  url: insertion-and-deletion-models
+- name: Specifying model parameters
+  url: specifying-model-parameters
+- name: Mimicking a real alignment
+  url: mimicking-a-real-alignment
+- name: Simulating along a random tree
+  url: simulating-along-a-random-tree
+- name: Branch-specific models
+  url: branch-specific-models
+- name: Partition models
+  url: partition-models
+- name: Mixture models
+  url: mixture-models
+- name: Heterotachy GHOST model
+  url: heterotachy-ghost-model
+- name: Functional divergence model
+  url: functional-divergence-model
+- name: Command reference
+  url: command-reference  
 ---
 
 
@@ -492,7 +520,7 @@ This example simulates a new alignment under the Juke-Cantor model from the inpu
 
 
 Command reference
-=================
+-----------------
 
 All the options available in AliSim are shown below:
 
