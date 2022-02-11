@@ -188,7 +188,7 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | Q.bird   | nuclear | Q matrix estimated for birds ([Minh et al., 2021]). | 
 | Q.mammal | nuclear | Q matrix estimated for mammals ([Minh et al., 2021]). | 
 | Q.yeast  | nuclear | Q matrix estimated for insects ([Minh et al., 2021]). | 
-| Q.plant  | nuclear | Q matrix estimated for plants ([Minh et al., 2021]). | 
+| Q.insect | nuclear | Q matrix estimated for insects ([Minh et al., 2021]). | 
 | GTR20    | general | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments).* |
 
 ### Protein mixture models
