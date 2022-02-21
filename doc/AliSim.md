@@ -183,7 +183,7 @@ Customizing output alignments
 
 AliSim provides a number of options to customize the output such as setting the alignment format, length, compression, and simulating more than one alignment:
 
-Users can use `--length` option to change the length of the output alignment, e.g.:
+Users can use `--length` option to change the length of the root sequence (which equals to the output sequence length in simulations without Indels), e.g.:
 
     iqtree2 --alisim alignment_5000 -m JC -t tree.nwk --length 5000
 
@@ -545,7 +545,7 @@ All the options available in AliSim are shown below:
 | `--branch-distribution <DISTRIBUTION_NAME>` |                  Specify a distribution, from which branch lengths of the phylogenetic trees are randomly generated.|
 | `--branch-scale <SCALE>` |                  Specify a value to scale all branch lengths.|
 | `--only-unroot-tree` | Only unroot a rooted tree and terminate. |
-| `--length <SEQUENCE_LENGTH>` | Set the length of the simulated sequences.<br>If users supply an alignment and don't set this option, then AliSim sets the output sequence length equally to length of the input sequences.<br>*Default: 1,000* |
+| `--length <SEQUENCE_LENGTH>` | Set the length of the root sequence, which equals to the output sequence length in simulations without Indels.<br>If users supply an alignment and don't set this option, then AliSim sets the output sequence length equally to length of the input sequences.<br>In simulations with Indels, the output sequence length may be greater than the length of the root sequence.<br>*Default: 1,000* |
 | `--num-alignments <NUMBER_OF_DATASETS>` | Set the number of output datasets.<br>*Default: 1* |
 | `--root-seq <ALN_FILE>,<SEQ_NAME>`   | Supply a sequence as the ancestral sequence at the root.<br>AliSim automatically sets the output sequence length equally to the length of the ancestral sequence. |
 | `--no-copy-gaps` | Disable copying gaps from the input sequences.<br>*Default: FALSE* |
