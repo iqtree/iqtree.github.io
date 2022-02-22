@@ -85,6 +85,7 @@ General options are mainly intended for specifying input and output files:
 |  `-keep-ident` | Keep identical sequences in the alignment. Bu default: IQ-TREE will remove them during the analysis and add them in the end. |
 |  `-safe`  | Turn on safe numerical mode to avoid numerical underflow for large data sets with many sequences (typically in the order of thousands). This mode is automatically turned on when having more than 2000 sequences. |
 | `-mem` | Specify maximal RAM usage, for example, `-mem 64G` to use at most 64 GB of RAM. By default, IQ-TREE will try to not to exceed the computer RAM size. |
+| `--export-alisim-cmd` | Export a command line from the inferred tree and model parameters to simulate new MSAs with AliSim. |
 
 ### Example usages:
 
