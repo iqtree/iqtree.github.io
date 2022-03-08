@@ -292,7 +292,7 @@ The above mixture consists of three model components. AliSim randomly assigns a 
 
 Similarly, for discrete rate heterogeneity (based on Gamma/Free-rate distributions), AliSim assigns site rate as the mean rate of the posterior distribution (by default). Or  the user can use `--site-rate SAMPLING` to sample site-specific rate from the posterior probability distribution of rate categories, or `--site-rate MODEL` to sample site-specific rate from the weight (prior distribution) of rate categories.
 
-NOTE: When mimicking an alignment with an (insertion-deletion model)[#insertion-and-deletion-models], AliSim will ignore the gaps from the original alignment and generate gaps according to the indel model.
+NOTE: When mimicking an alignment with an [insertion-deletion model](#insertion-and-deletion-models), AliSim will ignore the gaps from the original alignment and generate gaps according to the indel model.
 
 
 Simulating along a random tree
