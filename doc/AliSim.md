@@ -551,7 +551,7 @@ All the options available in AliSim are shown below:
 | `--fundi <TAXON_1>,...,<TAXON_N>,<RHO>`   | Specify the FunDi model ([Gaston et al. 2011]). The last number `RHO` in this list is the proportion of sites, that will be randomly permuted in the sequences of the given taxa. The same permutation is applied to the sequences. |
 | `--indel <INS>,<DEL>`  | Set the insertion and deletion rate of the indel model, relative to the substitution rate. |
 | `--indel-size <INS_DIS>,<DEL_DIS>`  | Set the [insertion and deletion size distributions](#insertion-and-deletion-models). By default, AliSim uses `POW{1.7/100}` for a power-law (Zipfian) distribution with parameter `a` of 1.7 and maximum indel size of 100.|
-| `--no-unaligned-seq` | Do not output a file of unaligned sequences when using indel models. Default: a file `.xxx.fa` containing unaligned sequences is written. |
+| `--no-unaligned-seq` | Do not output a file of unaligned sequences when using indel models. Default: a file `_withoutgaps.fa` containing unaligned sequences is written. |
 | `-q <PARTITION>` or <br>`-p <PARTITION>` or <br>`-Q <PARTITION>` | Specify different types of [Partition models](#partition-models)|
 | `--distribution <FILE>` | Supply a definition file of distributions, which could be used to generate random model parameters (see [Using user-defined parameter distributions](#using-user-defined-parameter-distributions)). |
 | `--branch-distribution <DISTRIBUTION>` | Specify a distribution, from which branch lengths of the input trees are randomly generated and overridden.|
@@ -563,8 +563,8 @@ All the options available in AliSim are shown below:
 |  `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`  | Specify three numbers: minimum, mean and maximum branch lengths when generating a random tree with `-t RANDOM{<MODEL>/<NUM_TAXA>}`. <br>*Default: -rlen 0.001 0.1 0.999.* |
 | `-s <ALIGNMENT>` | Specify an input alignment file in PHYLIP, FASTA, NEXUS, CLUSTAL or MSF format.|
 | `--no-copy-gaps` | Disable copying gaps from the input alignment.|
-| `--site-freq <OPTION>` | Specify the option (`MEAN` (default), or `SAMPLING`, or `MODEL`) to mimic the site-frequencies for mixture models from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)). |
-| `--site-rate <OPTION>` | Specify the option (`MEAN` (default), or `SAMPLING`, or `MODEL`) to mimic the discrete rate heterogeneity from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)).|
+| `--site-freq <OPTION>` | Specify the option (`MEAN` *(default)*, or `SAMPLING`, or `MODEL`) to mimic the site-frequencies for mixture models from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)). |
+| `--site-rate <OPTION>` | Specify the option (`MEAN` *(default)*, or `SAMPLING`, or `MODEL`) to mimic the discrete rate heterogeneity from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)).|
 | `--write-all` | Enable outputting internal sequences. |
 | `-seed <NUMBER>` | Specify the seed number. <br>*Default: the clock of the PC*. <br>Be careful! To make the AliSim reproducible, users should specify the seed number. |
 | `-gz` | Enable output compression. It may take a longer running time.<br>*By default, output compression is disabled*. |
