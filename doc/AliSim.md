@@ -299,7 +299,7 @@ Simulating along a random tree
 ------------------
 <div class="hline"></div>
 
-AliSim can simulate alignments along a random tree under biologically plausible processes such as Yule-Harding, Uniform, and Birth-Death. As an example:
+AliSim can simulate alignments along a random tree under biologically plausible processes such as Yule-Harding, and Birth-Death with the option `-t RANDOM{<MODEL>/<NUM_TAXA>}` as the following example:
 
     # simulate 1000-taxon alignment under Yule-Harding random tree model 
     iqtree2 --alisim alignment_yh -t RANDOM{yh/1000}
@@ -311,7 +311,12 @@ AliSim can simulate alignments along a random tree under biologically plausible 
 * `-t RANDOM{yh/1000}` tells AliSim to generate a random tree with 1000 taxa under the Yule-Harding model, with branch lengths following a exponential distribution with a mean of 0.1.
 * `-t RANDOM{bd{0.1/0.05}/1000}`: tells AliSim to generate a random tree with 1000 taxa under the Birth-Death model (with birth rate of 0.1 and death rate of 0.05), with branch lengths following a exponential distribution with a mean of 0.1.
 
-Here AliSim generates `alignment_yh.phy` or `alignment_bd.phy` under the Jukes-Cantor DNA model. If you want to change the model, use -m option as [described above](#simulating-alignments-with-custom-models).
+For other model, uses can specify `u`, `cat`, or `bal` for Uniform, Caterpillar, or Balanced model, respectively).
+
+`<NUM_TAXA>` can be a fixed number, or a list `{<NUM_1>/<NUM_2>/.../<NUM_N>}`, or a Uniform distribution `U{<LOWER_BOUND>/<UPPER_BOUND>}` where the number of taxa is randomly generated from the given list or distribution.
+
+In the above examples, AliSim generates `alignment_yh.phy` or `alignment_bd.phy` under the Jukes-Cantor DNA model. If you want to change the model, use -m option as [described above](#simulating-alignments-with-custom-models).
+
 
 For the distribution of branch lengths, users could adjust the minimum, mean and maximum of the exponential distribution via the option `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`.
 
@@ -542,22 +547,21 @@ All the options available in AliSim are shown below:
 | `--indel-size <INS_DIS>,<DEL_DIS>`  | Specify the indel-size distributions. Notes: `<INS_DIS>,<DEL_DIS>` could be names of user-defined distributions, or GEO{\<double\_mean\>}, NB{\<double\_mean\>[/\<double\_variance\>]}, POW{\<double\_a\>[/\<int\_max\>]}, LAV{\<double\_a\>/\<int\_max\>}, which specifies Geometric, [Negative Binomial, Zipfian, and Lavalette distribution](https://doi.org/10.1093/molbev/msp098) , respectively. By default, AliSim uses a Zipfian distribution with an empirical parameter `<double_a>` of 1.7, and a maximum size `<int_max>` of 100 for Indels-size.|
 | `--sub-level-mixture`  | Enable the feature to simulate substitution-level mixture model, which allows AliSim to select a model component of the mixture according to the weight vector for each substitution/mutation occurs during the simulation.|
 | `--no-export-sequence-wo-gaps`  | Disable writing an additional output file of sequences without gaps (when using Indels).|
-| `-q <PARTITION_FILE>` or <br>`-p <PARTITION_FILE>` or <br>`-Q <PARTITION_FILE>` | `-q <PARTITION_FILE>`: Edge-equal partition model with equal branch lengths: All partitions share the same set of branch lengths. <br>`-p <PARTITION_FILE>`: Edge-proportional partition model with proportional branch lengths: Like above, but each partition has its own partition specific rate, which rescales all its branch lengths. This model accommodates different evolutionary rates between partitions.<br>`-Q <PARTITION_FILE>`: Edge-unlinked partition model: Each partition has its own tree topology and set of branch lengths. <br>`<PARTITION_FILE>` could be specified by a RAXML or NEXUS file as described in [Complex Models](https://github.com/iqtree/iqtree2/wiki/Complex-Models)<br>These options work well with [an input alignment](#simulating-alignments-that-mimic-a-real-alignment).<br>In normal cases without an input alignment, users must supply a tree-file (with a single tree) when using `-q` or `-p`. While using `-Q`, AliSim requires a multiple-tree file. Each tree for a partition should be specified in a single line one by one in the input multiple-tree file. Noting that each partition could have a different tree topology and/or different set of taxa. |
-| `--distribution <FILE>` | Supply the distribution definition file, which specifies multiple lists of numbers. These lists could be used to generate random parameters by specifying list names (instead of specific numbers) for model parameters. |
-| `--branch-distribution <DISTRIBUTION_NAME>` |                  Specify a distribution, from which branch lengths of the phylogenetic trees are randomly generated.|
-| `--branch-scale <SCALE>` |                  Specify a value to scale all branch lengths.|
-| `--only-unroot-tree` | Only unroot a rooted tree and terminate. |
-| `--length <SEQUENCE_LENGTH>` | Set the length of the root sequence, which equals to the output sequence length in simulations without Indels.<br>If users supply an alignment and don't set this option, then AliSim sets the output sequence length equally to length of the input sequences.<br>In simulations with Indels, the output sequence length may be greater than the length of the root sequence.<br>*Default: 1,000* |
-| `--num-alignments <NUMBER_OF_DATASETS>` | Set the number of output datasets.<br>*Default: 1* |
-| `--root-seq <ALN_FILE>,<SEQ_NAME>`   | Supply a sequence as the ancestral sequence at the root.<br>AliSim automatically sets the output sequence length equally to the length of the ancestral sequence. |
-| `--no-copy-gaps` | Disable copying gaps from the input sequences.<br>*Default: FALSE* |
-|  `-t RANDOM{<MODEL>/<NUM_TAXA>}` | Specify a `<MODEL>` (yh, u, cat, bal, or bd{`<birth_rate>`/`<death_rate>`} stands for Yule-Harding, Uniform, Caterpillar, Balanced, or Birth-Death model, respectively), and the number of taxa `<NUM_TAXA>` to generate a random tree. The number of taxa could be a fixed number, or a list `{<NUM_1>/<NUM_2>/.../<NUM_N>}`, or a Uniform distribution `U{<LOWER_BOUND>/<UPPER_BOUND>}`. Note that `<NUM_TAXA>` is only required if users don't supply an input alignment. |
-|  `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`  | Specify the minimum, the mean, and the maximum length of branches when generating a random tree. |
-| `-s <SEQUENCE_ALIGNMENT>` | Specify an input alignment.<br>Firstly, IQTree infers a phylogenetic tree and a model with its parameters from the input data. Then, AliSim simulates alignments from that tree and the model. |
-| `--site-freq <OPTION>` | Specify an option to mimic the site-frequencies from the input alignment (only use with a mixture model) (see [Mimicking a real alignment](#mimicking-a-real-alignment)). `<OPTION>` should be `MEAN` (default), or `SAMPLING`, or `MODEL`. |
-| `--site-rate <OPTION>` | Specify an option to mimic the discrete rate heterogeneity from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)). `<OPTION>` should be `MEAN` (default), or `SAMPLING`, or `MODEL`. |
-| `--write-all` | Enable writing internal sequences. |
+| `-q <PARTITION>` or <br>`-p <PARTITION>` or <br>`-Q <PARTITION>` | Specify different types of [Partition models](#partition-models)|
+| `--distribution <FILE>` | Supply a definition file of distributions, which could be used to generate random model parameters (see [Using user-defined parameter distributions](#using-user-defined-parameter-distributions)). |
+| `--branch-distribution <DISTRIBUTION>` | Specify a distribution, from which branch lengths of the input trees are randomly generated and overridden.|
+| `--branch-scale <SCALE>` | Specify a value to scale all branch lengths of the input tree.|
+| `--length <LENGTH>` | Set the root sequence length.<br>*Default: 1,000* |
+| `--num-alignments <NUMBER>` | Set the number of output datasets.<br>*Default: 1* |
+| `--root-seq <ALN_FILE>,<SEQ_NAME>`   | Specify the root sequence from an alignment.<br>AliSim automatically sets the output sequence length (`--length`) equally to the length of the root sequence. |
+|  `-t RANDOM{<MODEL>/<NUM_TAXA>}` | Specify the model and the number of taxa to generate a random tree (see [Simulating along a random tree](#simulating-along-a random-tree). |
+|  `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`  | Specify three numbers: minimum, mean and maximum branch lengths when generating a random tree with `-t RANDOM{<MODEL>/<NUM_TAXA>}`. <br>*Default: -rlen 0.001 0.1 0.999.* |
+| `-s <ALIGNMENT>` | Specify an input alignment file in PHYLIP, FASTA, NEXUS, CLUSTAL or MSF format.|
+| `--no-copy-gaps` | Disable copying gaps from the input alignment.|
+| `--site-freq <OPTION>` | Specify the option (`MEAN` (default), or `SAMPLING`, or `MODEL`) to mimic the site-frequencies for mixture models from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)). |
+| `--site-rate <OPTION>` | Specify the option (`MEAN` (default), or `SAMPLING`, or `MODEL`) to mimic the discrete rate heterogeneity from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)).|
+| `--write-all` | Enable outputting internal sequences. |
 | `-seed <NUMBER>` | Specify the seed number. <br>*Default: the clock of the PC*. <br>Be careful! To make the AliSim reproducible, users should specify the seed number. |
 | `-gz` | Enable output compression. It may take a longer running time.<br>*By default, output compression is disabled*. |
-| `-af <FORMAT>` | Set the format for the output file(s). <FORMAT> should be `fasta` (for FASTA format) or `phy` (for PHYLIP format).<br>*Default: phy* |
+| `-af <FORMAT>` | Set the output format (`fasta` or `phy` for FASTA or PHYLIP format, respectively).<br>*Default: phy* |
 
