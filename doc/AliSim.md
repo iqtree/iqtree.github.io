@@ -181,13 +181,13 @@ to simulate a new alignment with 20% sites are constant while the other sites ev
 Customizing output alignments
 -----------------------------
 
-AliSim provides a number of options to customize the output such as setting the alignment format, length, compression, and simulating more than one alignment:
+AliSim provides a number of options to customize the output such as setting the alignment format, length, compression, and simulating more than one alignment.
 
-Users can use `--length` option to change the length of the root sequence (which equals to the output sequence length in simulations without Indels), e.g.:
+Users can use `--length` option to change the length of the root sequence:
 
     iqtree2 --alisim alignment_5000 -m JC -t tree.nwk --length 5000
 
-Users could also output the alignment in FASTA format with `-af` option:
+will simulate an alignment with 5000 sites. Users could also output the alignment in FASTA format with `-af` option:
 
     iqtree2 --alisim alignment -m JC -t tree.nwk -af fasta
     
@@ -223,6 +223,9 @@ It means that the insertion size follows a Geometric distribution with mean of 5
 To specify a Negative Binomial distribution (with mean of 5 and variance of 20) and a Zipfian distribution (with exponent `a` of 1.5 and `max` of 10) for the insertion size, and deletion size, respectively. Or to specify Lavalette distribution (with parameter `a` of 1.5 and `max` of 10) for both insertion and deletion size, users could use:
 
     iqtree2 --alisim alignment_indel_size -m JC -t tree.nwk --indel 0.1,0.05 --indel-size LAV{1.5/10},LAV{1.5/10}
+
+NOTE: When using `--length` option with indel models, the output
+alignment can be longer due to gaps inserted into the root sequence.
 
 Specifying model parameters
 ---------------------------
@@ -282,7 +285,7 @@ AliSim allows users to simulate alignments that mimic the evolutionary history o
 
 * `-s example.phy` is the option to supply the input alignment. 
 
-In this example, AliSim internally runs IQ-TREE to infer a phylogenetic tree and the best-fit substitution model (using [ModelFinder](https://doi.org/10.1038/nmeth.4285)) with its parameters from the input alignment `example.phy`. After that, AliSim simulates a new alignment based on the inferred tree and model and copies the gaps from the input alignment `example.phy` to the output alignment `alignment_mimic.phy`. To disable this feature, use `--no-copy-gaps` option.
+In this example, AliSim internally runs IQ-TREE to infer a phylogenetic tree and the best-fit substitution model (using [ModelFinder](https://doi.org/10.1038/nmeth.4285)) with its parameters from the input alignment `example.phy`. After that, AliSim simulates a new alignment with the same length as the original alignment based on the inferred tree and model and copies the gaps from the input alignment `example.phy` to the output alignment `alignment_mimic.phy`. To disable this feature, use `--no-copy-gaps` option.
 
 Additionally, for simulations under a mixture models and/or discrete rate heterogeneity (under [Gamma](https://doi.org/10.1007/BF00160154)/[Free-rate](http://www.genetics.org/content/139/2/993.abstract) distributions), e.g.
 
@@ -292,8 +295,11 @@ The above mixture consists of three model components. AliSim randomly assigns a 
 
 Similarly, for discrete rate heterogeneity (based on Gamma/Free-rate distributions), AliSim assigns site rate as the mean rate of the posterior distribution (by default). Or  the user can use `--site-rate SAMPLING` to sample site-specific rate from the posterior probability distribution of rate categories, or `--site-rate MODEL` to sample site-specific rate from the weight (prior distribution) of rate categories.
 
-NOTE: When mimicking an alignment with an [insertion-deletion model](#insertion-and-deletion-models), AliSim will ignore the gaps from the original alignment and generate gaps according to the indel model.
+NOTE: 
 
+* When mimicking an alignment and specifying `--length` option without an [insertion-deletion model](#insertion-and-deletion-models), the output alignment might be shorter or longer than the original alignment. If shorter, AliSim will copy the gap patterns from the original alignment from site 1 to the last site index in the output alignment. If longer, AliSim can only copy gaps from site 1 to the last site of the original alignment. All remaining sites until the end of the output alignment won't contain any gaps.
+
+* When mimicking an alignment with an [insertion-deletion model](#insertion-and-deletion-models), AliSim will set the root sequence length to the original alignment length if `--length` is not specified (otherwise it is equal to `--length` option). Moreover, AliSim will ignore the gaps from the original alignment and generate gaps according to the indel model.
 
 Simulating along a random tree
 ------------------
@@ -532,17 +538,16 @@ All the options available in AliSim are shown below:
 
 | Option | Usage and meaning |
 |--------------|------------------------------------------------------------------------------|
-|`--alisim <OUTPUT_FILENAME>`| Activate AliSim and specify the output filename. |
-| `-t <TREE_FILEPATH>`   | Set the path to the input tree. |
-| `--seqtype <SEQUENCE_TYPE>`  | Specify the sequence type (BIN, DNA, AA, CODON, MORPH{`<NUMBER_STATES>`}) of the output *(optional)*. `<NUMBER_STATES>` is the number of states to simulate morphological data. <br>*By default, Alisim automatically detects the sequence type from the model name*. |
-| `-m <MODEL>`   | Specify the model name [and its parameters]. <br> See [Substitution Models](https://github.com/iqtree/iqtree2/wiki/Substitution-Models) and [Complex Models](https://github.com/iqtree/iqtree2/wiki/Complex-Models) for the list of supported models, how to use complex models (mixture, partition, rate heterogeneity across sites, heterotachy, Ascertainment Bias Correction, etc.), and syntax to specify model parameters (rates, base frequencies, omega, kappa, kappa2, etc.) or define new models.|
-| `-mdef <MODEL_FILE>`  | Define new models by their parameters. |
-| `--fundi <TAXON_1>,...,<TAXON_N>,<RHO>`   | Specifying parameters for the [FunDi model](https://doi.org/10.1093/bioinformatics/btr470), which allows a proportion number of sites (`<RHO>`) in the sequence of each taxon in the given list (`<TAXON_1>,...,<TAXON_N>`) be permuted with each other. |
-| `--indel <INS>,<DEL>`  | Activate Indels (insertion/deletion events) and specify the insertion/deletion rate relative to the substitution rate of 1. |
-| `--indel-size <INS_DIS>,<DEL_DIS>`  | Specify the indel-size distributions. Notes: `<INS_DIS>,<DEL_DIS>` could be names of user-defined distributions, or GEO{\<double\_mean\>}, NB{\<double\_mean\>[/\<double\_variance\>]}, POW{\<double\_a\>[/\<int\_max\>]}, LAV{\<double\_a\>/\<int\_max\>}, which specifies Geometric, [Negative Binomial, Zipfian, and Lavalette distribution](https://doi.org/10.1093/molbev/msp098) , respectively. By default, AliSim uses a Zipfian distribution with an empirical parameter `<double_a>` of 1.7, and a maximum size `<int_max>` of 100 for Indels-size.|
-| `--sub-level-mixture`  | Enable the feature to simulate substitution-level mixture model, which allows AliSim to select a model component of the mixture according to the weight vector for each substitution/mutation occurs during the simulation.|
-| `--no-export-sequence-wo-gaps`  | Disable writing an additional output file of sequences without gaps (when using Indels).|
-| `-q <PARTITION_FILE>` or <br>`-p <PARTITION_FILE>` or <br>`-Q <PARTITION_FILE>` | `-q <PARTITION_FILE>`: Edge-equal partition model with equal branch lengths: All partitions share the same set of branch lengths. <br>`-p <PARTITION_FILE>`: Edge-proportional partition model with proportional branch lengths: Like above, but each partition has its own partition specific rate, which rescales all its branch lengths. This model accommodates different evolutionary rates between partitions.<br>`-Q <PARTITION_FILE>`: Edge-unlinked partition model: Each partition has its own tree topology and set of branch lengths. <br>`<PARTITION_FILE>` could be specified by a RAXML or NEXUS file as described in [Complex Models](https://github.com/iqtree/iqtree2/wiki/Complex-Models)<br>These options work well with [an input alignment](#simulating-alignments-that-mimic-a-real-alignment).<br>In normal cases without an input alignment, users must supply a tree-file (with a single tree) when using `-q` or `-p`. While using `-Q`, AliSim requires a multiple-tree file. Each tree for a partition should be specified in a single line one by one in the input multiple-tree file. Noting that each partition could have a different tree topology and/or different set of taxa. |
+|`--alisim <OUTPUT_ALIGNMENT>`| Activate AliSim and specify the output alignment filename. |
+| `-t <TREE_FILE>`   | Set the input tree file name. |
+| `--seqtype <SEQUENCE_TYPE>`  | Specify the sequence type (BIN, DNA, AA, CODON, MORPH{`NUMBER_STATES`}, where `NUMBER_STATES` is the number of states for morphological model). <br>*By default, Alisim automatically detects the sequence type from the model name*. |
+| `-m <MODEL>`   | Specify the model name. See [Substitution Models](Substitution-Models) and [Complex Models](Complex-Models) for the list of supported models.|
+| `-mdef <MODEL_FILE>`  | Name of a NEXUS model file to [define new models](Complex-models#nexus-model-file), which can be used with `-m` option. |
+| `--fundi <TAXON_1>,...,<TAXON_N>,<RHO>`   | Specify the FunDi model ([Gaston et al. 2011]). The last number `RHO` in this list is the proportion of sites, that will be randomly permuted in the sequences of the given taxa. The same permutation is applied to the sequences. |
+| `--indel <INS>,<DEL>`  | Set the insertion and deletion rate of the indel model, relative to the substitution rate. |
+| `--indel-size <INS_DIS>,<DEL_DIS>`  | Set the [insertion and deletion size distributions](#insertion-and-deletion-models). By default, AliSim uses `POW{1.7/100}` for a power-law (Zipfian) distribution with parameter `a` of 1.7 and maximum indel size of 100.|
+| `--no-unaligned-seq` | Do not output a file of unaligned sequences when using indel models. Default: a file `.xxx.fa` containing unaligned sequences is written. |
+| `-q <PARTITION_FILE>` or <br>`-p <PARTITION_FILE>` or <br>`-Q <PARTITION_FILE>` | `-q <PARTITION_FILE>`: Edge-equal partition model with equal branch lengths: All partitions share the same set of branch lengths. <br>`-p <PARTITION_FILE>`: Edge-proportional partition model with proportional branch lengths: Like above, but each partition has its own partition specific rate, which rescales all its branch lengths. This model accommodates different evolutionary rates between partitions.<br>`-Q <PARTITION_FILE>`: Edge-unlinked partition model: Each partition has its own tree topology and set of branch lengths. <br>`<PARTITION_FILE>` could be specified by a RAXML or NEXUS file as described in [Complex Models](Complex-Models)<br>These options work well with [an input alignment](#simulating-alignments-that-mimic-a-real-alignment).<br>In normal cases without an input alignment, users must supply a tree-file (with a single tree) when using `-q` or `-p`. While using `-Q`, AliSim requires a multiple-tree file. Each tree for a partition should be specified in a single line one by one in the input multiple-tree file. Noting that each partition could have a different tree topology and/or different set of taxa. |
 | `--distribution <FILE>` | Supply the distribution definition file, which specifies multiple lists of numbers. These lists could be used to generate random parameters by specifying list names (instead of specific numbers) for model parameters. |
 | `--branch-distribution <DISTRIBUTION_NAME>` |                  Specify a distribution, from which branch lengths of the phylogenetic trees are randomly generated.|
 | `--branch-scale <SCALE>` |                  Specify a value to scale all branch lengths.|
@@ -561,3 +566,5 @@ All the options available in AliSim are shown below:
 | `-gz` | Enable output compression. It may take a longer running time.<br>*By default, output compression is disabled*. |
 | `-af <FORMAT>` | Set the format for the output file(s). <FORMAT> should be `fasta` (for FASTA format) or `phy` (for PHYLIP format).<br>*Default: phy* |
 
+
+[Gaston et al. 2011]: https://doi.org/10.1093/bioinformatics/btr470
