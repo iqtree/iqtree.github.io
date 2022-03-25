@@ -566,7 +566,7 @@ All the options available in AliSim are shown below:
 | `--fundi <TAXON_1>,...,<TAXON_N>,<RHO>`   | Specify the FunDi model ([Gaston et al. 2011]). The last number `RHO` in this list is the proportion of sites, that will be randomly permuted in the sequences of the given taxa. The same permutation is applied to the sequences. |
 | `--indel <INS>,<DEL>`  | Set the insertion and deletion rate of the indel model, relative to the substitution rate. |
 | `--indel-size <INS_DIS>,<DEL_DIS>`  | Set the [insertion and deletion size distributions](#insertion-and-deletion-models). By default, AliSim uses `POW{1.7/100}` for a power-law (Zipfian) distribution with parameter `a` of 1.7 and maximum indel size of 100.|
-| `--no-unaligned-seq` | Do not output a file of unaligned sequences when using indel models. Default: a file `_withoutgaps.fa` containing unaligned sequences is written. |
+| `--no-unaligned` | Do not output a file of unaligned sequences when using indel models. Default: a file `.unaligned.fa` containing unaligned sequences is written. |
 | `-q <PARTITION>` or <br>`-p <PARTITION>` or <br>`-Q <PARTITION>` | Specify different types of [Partition models](#partition-models)|
 | `--distribution <FILE>` | Supply a definition file of distributions, which could be used to generate random model parameters (see [Using user-defined parameter distributions](#using-user-defined-parameter-distributions)). |
 | `--branch-distribution <DISTRIBUTION>` | Specify a distribution, from which branch lengths of the input trees are randomly generated and overridden.|
