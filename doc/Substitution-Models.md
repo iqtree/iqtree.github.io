@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Substitution Models"
-author: Heiko Schmidt, Jana Trifinopoulos, Minh Bui
-date:    2020-06-03
+author: Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Trongnhan Uit
+date:    2022-02-11
 docid: 10
 icon: book
 doctype: manual
@@ -87,7 +87,7 @@ Users can specify three different kinds of base frequencies:
 
 | FreqType | Explanation |
 |----------|------------------------------------------------------------------------|
-| +F  | Empirical base frequencies. This is the default if the model has unequal base freq. |
+| +F  | Empirical base frequencies. This is the default if the model has unequal base freq. In AliSim, if users neither specify base frequencies nor supply an input alignment, AliSim will generate base frequencies from empirical distributions. |
 | +FQ | Equal base frequencies.|
 | +FO |  Optimized base frequencies by maximum-likelihood.|
 
@@ -165,7 +165,9 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | cpREV    | chloroplast |chloroplast matrix ([Adachi et al., 2000]). |
 | Dayhoff  | nuclear | General matrix ([Dayhoff et al., 1978]). |
 | DCMut    | nuclear | Revised `Dayhoff` matrix ([Kosiol and Goldman, 2005]). |
+| FLAVI    | viral | Flavivirus ([Le and Vinh, 2020]). | 
 | FLU      | viral | Influenza virus ([Dang et al., 2010]). |
+| GTR20    | general | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments).* |
 | HIVb     | viral | HIV between-patient matrix HIV-B<sub>m</sub> ([Nickle et al., 2007]). |
 | HIVw     | viral | HIV within-patient matrix HIV-W<sub>m</sub> ([Nickle et al., 2007]). |
 | JTT      | nuclear | General matrix ([Jones et al., 1992]). |
@@ -180,10 +182,15 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | mtInv    | mitochondrial | Mitochondrial Inverterbrate ([Vinh et al., 2017]). |
 | Poisson  | none | Equal amino-acid exchange rates and frequencies. |
 | PMB      | nuclear | Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]). |
+| Q.bird   | nuclear | Q matrix estimated for birds ([Minh et al., 2021]). | 
+| Q.insect | nuclear | Q matrix estimated for insects ([Minh et al., 2021]). | 
+| Q.mammal | nuclear | Q matrix estimated for mammals ([Minh et al., 2021]). | 
+| Q.pfam   | nuclear | General matrix estimated from Pfam version 31 (2017) database ([Minh et al., 2021]). | 
+| Q.plant  | nuclear | Q matrix estimated for plants ([Minh et al., 2021]). | 
+| Q.yeast  | nuclear | Q matrix estimated for insects ([Minh et al., 2021]). | 
 | rtREV    | viral | Retrovirus ([Dimmic et al., 2002]). |
 | VT       | nuclear | General 'Variable Time' matrix ([Mueller and Vingron, 2000]). |
 | WAG      | nuclear | General matrix ([Whelan and Goldman, 2001]). |
-| GTR20    | general | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments).* |
 
 ### Protein mixture models
 
@@ -250,7 +257,7 @@ By default, AA frequencies are given by the model. Users can change this with:
 
 | FreqType | Explanation |
 |----------|-------------|
-| +F       | empirical AA frequencies from the data.|
+| +F       | empirical AA frequencies from the data. In AliSim, if users neither specify the base frequencies nor supply an input alignment, AliSim will randomly generate the base frequencies from Uniform distribution.|
 | +FO      | ML optimized AA frequencies from the data.|
 | +FQ      | Equal AA frequencies.|
 
@@ -309,6 +316,8 @@ IQ-TREE supports several codon models:
 | ECMrest          | Restricted version of `ECMK07` that allows only one nucleotide exchange.
 | ECMS05 or SCHN05 | Empirical codon model ([Schneider et al., 2005]).
 
+Users could specify the model parameters (e.g., Nonsynonymous/synonymous (dn/ds) rate ratio, and/or transition/transversion (ts/tv) rate ratio, and/or transition rate, and/or a transversion rate) by `<Model_Name>{<omega>,[<kappa>],[<kappa2>]}`. For example, `MG2K{1.0,0.3,0.5}` specifies the nonsynonymous/synonymous (dn/ds) rate ratio, the transition rate, and the transversion rate are 1.0, 0.3, 0.5, respectively. The number of input parameters depends on the definition of each model.
+
 The last three models (`ECMK07`, `ECMrest` or `ECMS05`) are called *empirical* codon models, whereas the others are called *mechanistic* codon models.
 
 Moreover, IQ-TREE supports combined empirical-mechanistic codon models using an underscore separator (`_`). For example:
@@ -329,10 +338,10 @@ IQ-TREE supports the following codon frequencies:
 
 | FreqType | Explanation |
 |----------|------------------------------------------------------------------------|
-| +F       | Empirical codon frequencies counted from the data.|
+| +F       | Empirical codon frequencies counted from the data. In AliSim, if users neither specify base frequencies nor supply an input alignment, AliSim will generate base frequencies from empirical distributions.|
 | +FQ      | Equal codon frequencies.|
-| +F1X4    | Unequal nucleotide frequencies but equal nt frequencies over three codon positions.|
-| +F3X4    | Unequal nucleotide frequencies and unequal nt frequencies over three codon positions.|
+| +F1X4    | Unequal nucleotide frequencies but equal nt frequencies over three codon positions. In AliSim, if users don't supply an input alignment, the base frequencies are randomly generated based on empirical distributions, or users could specify the frequencies via `+F1X4{<freq_0>,...,<freq_4>}`.|
+| +F3X4    | Unequal nucleotide frequencies and unequal nt frequencies over three codon positions. In AliSim, if users don't supply an input alignment, the base frequencies are randomly generated based on empirical distributions, or users could specify the frequencies via  `+F3X4{<freq_0>,...,<freq_11>}`|
 
 If not specified, the default codon frequency will be `+F3X4` for `MG`-type models, `+F` for `GY`-type models and given by the model for empirical codon models. 
 
@@ -351,6 +360,7 @@ The binary alignments should contain state `0` and `1`, whereas for morphologica
 | ORDERED | Allowing exchange of neighboring states only.|
 
 Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies.
+
 
 >**TIP**: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model (`+ASC`)](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
 {: .tip}
@@ -378,6 +388,7 @@ IQ-TREE supports all common rate heterogeneity across sites models:
 |----------|------------------------------------------------------------------------|
 | +I       | allowing for a proportion of invariable sites. |
 | +G       | discrete Gamma model ([Yang, 1994]) with default 4 rate categories. The number of categories can be changed with e.g. `+G8`. |
+| +GC       | continuous Gamma model ([Yang, 1994]) (for AliSim only). |
 | +I+G     | invariable site plus discrete Gamma model ([Gu et al., 1995]). |
 | +R       | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes the `+G` model by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). The FreeRate model typically fits data better than the `+G` model and is recommended for analysis of large data sets. |
 | +I+R     | invariable site plus FreeRate model. |
@@ -410,11 +421,13 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Kosiol et al., 2007]: https://doi.org/10.1093/molbev/msm064
 [Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112
 [Le and Gascuel, 2008]: https://doi.org/10.1093/molbev/msn067
+[Le and Vinh, 2020]: https://doi.org/10.1007/s00239-020-09943-3
 [Le et al., 2008a]: https://doi.org/10.1093/bioinformatics/btn445
 [Le et al., 2008b]: https://doi.org/10.1098/rstb.2008.0180
 [Le and Gascuel, 2010]: https://doi.org/10.1093/sysbio/syq002
 [Le et al., 2012]: https://doi.org/10.1093/molbev/mss112
 [Lewis, 2001]: https://doi.org/10.1080/106351501753462876
+[Minh et al., 2021]: https://doi.org/10.1093/sysbio/syab010
 [Mueller and Vingron, 2000]: https://doi.org/10.1089/10665270050514918
 [Muse and Gaut, 1994]: http://mbe.oxfordjournals.org/content/11/5/715.abstract
 [Nickle et al., 2007]: https://dx.doi.org/10.1371/journal.pone.0000503

@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Complex Models"
-author: Dominik Schrempf, Jana Trifinopoulos, Minh Bui
-date:    2019-08-08
+author: Dominik Schrempf, Jana Trifinopoulos, Minh Bui, Trongnhan Uit
+date:    2021-11-02
 docid: 11
 icon: book
 doctype: manual
@@ -115,7 +115,6 @@ Note that this assumes `part1` has standard genetic code. If not, append `CODON`
 ### Partitioned analysis
 
 Having prepared a partition file, one is ready to start a partitioned analysis with `-q` (edge-equal), `-spp` (edge-proportional) or `-sp` (edge-unlinked) option. See [this tutorial](Advanced-Tutorial#partitioned-analysis-for-multi-gene-alignments) for more details.
-
 
 Mixture models
 --------------
@@ -282,9 +281,6 @@ Note that this infers one set of empirical base frequencies and apply those to a
 The `-wspm` option will generate a `.siteprob` output file. This contains the probability of each site belonging to each class:
 
     iqtree -s data.fst -m GTR+FO*H4 -wspm
-
-
-
 
 [Brown et al. (2013)]: https://doi.org/10.1098/rspb.2013.1755
 [Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112

@@ -49,6 +49,15 @@ members:
       - title: home #use for email address
         url: https://bqminh.github.io
 
+  - name: Nhan Trong Ly
+    position:
+    text: sequence simulations.
+    img: nhan.jpg
+    gscholar: 
+    social:
+      - title: home #use for email address
+        url: https://bqminh.github.io/people/ly/
+
   - name: Olga Chernomor
     position:
     text: Partition models and phylogenomic search.
@@ -58,14 +67,14 @@ members:
       - title: home #use for email address
         url: http://www.cibiv.at/people/olga/
 
-  - name: Heiko A. Schmidt
+  - name: Arndt von Haeseler
     position:
-    text: Integration of <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a> features.
-    img: hschmidt.png
-    gscholar: https://scholar.google.com/citations?user=8lFCw7IAAAAJ
+    text: Inspiring ideas and advice.
+    img: arndt.jpg
+    gscholar: https://scholar.google.com/citations?user=XqglmcgAAAAJ
     social:
-      - title: home #use for email address
-        url: http://www.cibiv.at/people/hschmidt/
+      - title: envelope #use for email address
+        url: http://www.cibiv.at/people/haeseler/
 
   - name: Dominik Schrempf
     position:
@@ -77,14 +86,14 @@ members:
         #url: http://i122server.vu-wien.ac.at/pop/lab_members/Dominik_Schrempf.html
         url: https://dschrempf.github.io
 
-  - name: Arndt von Haeseler
+  - name: Heiko A. Schmidt
     position:
-    text: Inspiring ideas and advice.
-    img: arndt.jpg
-    gscholar: https://scholar.google.com/citations?user=XqglmcgAAAAJ
+    text: Integration of <a href="http://www.tree-puzzle.de">TREE-PUZZLE</a> features.
+    img: hschmidt.png
+    gscholar: https://scholar.google.com/citations?user=8lFCw7IAAAAJ
     social:
-      - title: envelope #use for email address
-        url: http://www.cibiv.at/people/haeseler/
+      - title: home #use for email address
+        url: http://www.cibiv.at/people/hschmidt/
 
   - name: Diep Thi Hoang
     position:
