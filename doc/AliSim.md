@@ -580,6 +580,7 @@ All the options available in AliSim are shown below:
 | `--no-copy-gaps` | Disable copying gaps from the input alignment.|
 | `--site-freq <OPTION>` | Specify the option (`MEAN` *(default)*, or `SAMPLING`, or `MODEL`) to mimic the site-frequencies for mixture models from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)). |
 | `--site-rate <OPTION>` | Specify the option (`MEAN` *(default)*, or `SAMPLING`, or `MODEL`) to mimic the discrete rate heterogeneity from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)).|
+| `--single-output` | Output all alignments into a single file. |
 | `--write-all` | Enable outputting internal sequences. |
 | `-seed <NUMBER>` | Specify the seed number. <br>*Default: the clock of the PC*. <br>Be careful! To make the AliSim reproducible, users should specify the seed number. |
 | `-gz` | Enable output compression. It may take a longer running time.<br>*By default, output compression is disabled*. |
