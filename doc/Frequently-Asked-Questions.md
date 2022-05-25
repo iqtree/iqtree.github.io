@@ -53,9 +53,9 @@ If you have questions please follow the steps below:
 4. Finally, if no answer is found, post a question to the IQ-TREE group. The average response time is one to two working days.
 
 
-> For other feedback and feature request, please post a topic to the [IQ-TREE Google group](https://groups.google.com/d/forum/iqtree). We welcome all suggestions to further improve IQ-TREE! For feature request, please also explain why you think such a new feature would be useful or how can it help for your work.
+> For other feedback and feature requests, please post a topic to the [IQ-TREE Google group](https://groups.google.com/d/forum/iqtree). We welcome all suggestions to further improve IQ-TREE! For feature request, please also explain why you think such a new feature would be useful or how can it help for your work.
 
-How do I report bug?
+How do I report a bug?
 --------------------
 <div class="hline"></div>
 
