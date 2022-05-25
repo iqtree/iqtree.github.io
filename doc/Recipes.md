@@ -6,28 +6,31 @@ If you'd like to request a recipe, please head over to the issues page and use t
 
 ## Add sequences to an existing tree
 
+### The general problem
+
 This recipe shows you how to add new sequences to an existing tree, then to optionally perform a global re-optimisation of that tree.
 
 Sometimes you have an existing phylogeny, and you'd like to add new sequences it without altering the existing relationships. This is increasingly common in what's called 'online' phylogenetics, for example when building phylogenies to track outbreaks where new data arrive every day. To read more about online phylogenetics you could read [this preprint](https://www.biorxiv.org/content/10.1101/2021.12.02.471004v2), which compares lots of approaches.
 
 > If you have VERY large datasets, i.e. more than many tens of thousands of sequences, you should consider using [UShER & matOptimize](https://usher-wiki.readthedocs.io/en/latest/), or [MAPLE](https://github.com/NicolaDM/MAPLE) for your online phylogenetics analyses. 
 
+### A specific example
+
+For this example, I'll imagine you have an existing tree and alignment of 17 sequences (`T1` to `T17`). Since estimating your tree, you've added three new sequences to your alignment (`NEW_1`, `NEW_2`, and `NEW_3`). Now you want to _add_ those new sequences to your existing tree. 
 
 ### Input files
 
-* `sequences.fa`: An alignment of 20 sequences, 17 of which are in your existing tree (T1 to T17), and three of which are new (NEW_1, NEW_2, and NEW_3)
-* `existing_tree.nex`: An existing tree of 17 sequences from your alignment (T1 to T17)
+* `sequences.fa`: Your alignment of 20 sequences (`T1` to `T17`, and `NEW_1` to `NEW_3`)
+* `existing_tree.nex`: An existing tree of 17 sequences (T1 to T17)
 
-### Commandline
+### Command line
 
-This commandline is very simple:
+```
+iqtree -s sequences.fa -g existing_tree.nex 
+```
 
 * `-g` sets a constraint tree with our existing 17 sequences
 * `-s` passes the alignment of the existing 17 sequences and the 3 new sequences
-
-```
-iqtree -g existing_tree.nex -s sequences.fa
-```
 
 Your output tree will now look like this:
 
@@ -77,9 +80,13 @@ Your output tree will now look like this:
  substitutions/site                                                                                                                             
 ```
 
-Explanation. Our sequence alignment contains 20 sequences: T1 to T17, and NEW_1 to NEW_3. The sequences T1 to T17 all appear in our tree `existing_tree.nex`. The option `-g` uses `existing_tree.nex` as a constraint tree, which means that the topology of these T1 to T17 will be fixed for this analysis. The sequences `NEW_1`, `NEW_2`, and `NEW_3` are not in the constraint tree. So, IQ-TREE will initially place these sequences onto the constraint tree using Maximum Parsimony, and then it will do standard ML optimisation of the tree without altering the underlying constraint tree.
+### Explanation 
+Our sequence alignment contains 20 sequences: T1 to T17, and NEW_1 to NEW_3. The sequences T1 to T17 all appear in our tree `existing_tree.nex`. The option `-g` uses `existing_tree.nex` as a constraint tree, which means that the topology of T1 to T17 will be fixed for this analysis. The sequences `NEW_1`, `NEW_2`, and `NEW_3` are not in the constraint tree. So, IQ-TREE will initially place these sequences onto the constraint tree using Maximum Parsimony, and then it will do standard ML optimisation of the tree without altering the underlying constraint tree. In other words, it will use the standard IQ-TREE search algorithm to try moving `NEW_1`, `NEW_2`, and `NEW_3` around on the constraint tree, and will keep these changes if they improve the likelihood. This optimisation helps for two reasons. First, placing sequences with sequential parsimony placement doesn't always give you the best parsimony placement, and second, even the best parsimony placement can differ from the best placement under a full Likelihood model. 
 
-In some cases, e.g. if you've added a lot of new sequences to an existing tree, you might want to then re-optimise the tree _without_ the constraints. To do this, you would use the following options:
+
+### Adding global optimisation
+
+In some cases, e.g. if you've added a lot of new sequences to an existing tree, you might want to then re-optimise the tree _without_ the constraints. This is typically what we do for most online phylogenetics applications, for example. To do this, you would use the following options:
 
 * `-t` to set the starting tree
 * `-s` to pass the alignment
