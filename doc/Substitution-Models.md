@@ -180,6 +180,12 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | mtMet    | mitochondrial | Mitochondrial Metazoa ([Vinh et al., 2017]). |
 | mtVer    | mitochondrial | Mitochondrial Vertebrate ([Vinh et al., 2017]). |
 | mtInv    | mitochondrial | Mitochondrial Inverterbrate ([Vinh et al., 2017]). |
+| NQ.bird   | nuclear | Time non-reversible Q matrix estimated for birds ([Dang et al., 2022]). | 
+| NQ.insect | nuclear | Time non-reversible Q matrix estimated for insects ([Dang et al., 2022]). | 
+| NQ.mammal | nuclear | Time non-reversible Q matrix estimated for mammals ([Dang et al., 2022]). | 
+| NQ.pfam   | nuclear | General time non-reversible matrix estimated from Pfam version 31 (2017) database ([Dang et al., 2022]). | 
+| NQ.plant  | nuclear | Time non-reversible Q matrix estimated for plants ([Dang et al., 2022]). | 
+| NQ.yeast  | nuclear | Time non-reversible Q matrix estimated for insects ([Dang et al., 2022]). | 
 | Poisson  | none | Equal amino-acid exchange rates and frequencies. |
 | PMB      | nuclear | Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]). |
 | Q.bird   | nuclear | Q matrix estimated for birds ([Minh et al., 2021]). | 
@@ -406,6 +412,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Adachi and Hasegawa, 1996]: https://doi.org/10.1007/BF02498640
 [Adachi et al., 2000]: https://doi.org/10.1007/s002399910038
 [Dang et al., 2010]: https://doi.org/10.1186/1471-2148-10-99
+[Dang et al., 2022]: https://doi.org/10.1093/sysbio/syac007
 [Dayhoff et al., 1978]: http://compbio.berkeley.edu/class/c246/Reading/dayhoff-1978-apss.pdf
 [Dimmic et al., 2002]: https://doi.org/10.1007/s00239-001-2304-y
 [Felsenstein, 1981]: https://doi.org/10.1007%2FBF01734359
