@@ -121,7 +121,7 @@ Starting with version 1.6, IQ-TREE supports a series of Lie Markov models ([Wood
 | 5.11b  | No   | 0    |  |
 | 5.11c  | No   | 0    |  |
 | 5.16   | No   | 1    |  |
-| 6.6    | No   | 1    | equiv. to STRSYM (strand symmetric model) |
+| 6.6    | No   | 1    | equiv. to STRSYM for strand-symmetric model ([Bielawski and Gold, 2002]) |
 | 6.7a   | No   | 3    | F81+K3P |
 | 6.7b   | No   | 3    |  |
 | 6.8a   | No   | 3    |  |
@@ -411,6 +411,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Abascal et al., 2007]: https://doi.org/10.1093/molbev/msl136
 [Adachi and Hasegawa, 1996]: https://doi.org/10.1007/BF02498640
 [Adachi et al., 2000]: https://doi.org/10.1007/s002399910038
+[Bielawski and Gold, 2002]: https://doi.org/10.1093/genetics/161.4.1589
 [Dang et al., 2010]: https://doi.org/10.1186/1471-2148-10-99
 [Dang et al., 2022]: https://doi.org/10.1093/sysbio/syac007
 [Dayhoff et al., 1978]: http://compbio.berkeley.edu/class/c246/Reading/dayhoff-1978-apss.pdf
