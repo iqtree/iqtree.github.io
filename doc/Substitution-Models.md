@@ -183,17 +183,17 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | NQ.bird   | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated for birds ([Jarvis et al., 2015]). | 
 | NQ.insect | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated for insects ([Misof et al., 2014]). | 
 | NQ.mammal | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated for mammals ([Wu et al., 2018]). | 
-| NQ.pfam   | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated from Pfam version 31 database ([El-Gebali et al., 2018]). | 
+| NQ.pfam   | nuclear | General non-reversible Q matrix ([Dang et al., 2022]) estimated from Pfam version 31 database ([El-Gebali et al., 2018]). | 
 | NQ.plant  | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated for plants ([Ran et al., 2018]). | 
 | NQ.yeast  | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated for yeasts ([Shen et al., 2018]). | 
 | Poisson  | none | Equal amino-acid exchange rates and frequencies. |
 | PMB      | nuclear | Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]). |
-| Q.bird   | nuclear | Q matrix estimated for birds ([Minh et al., 2021]). | 
-| Q.insect | nuclear | Q matrix estimated for insects ([Minh et al., 2021]). | 
-| Q.mammal | nuclear | Q matrix estimated for mammals ([Minh et al., 2021]). | 
-| Q.pfam   | nuclear | General matrix estimated from Pfam version 31 (2017) database ([Minh et al., 2021]). | 
-| Q.plant  | nuclear | Q matrix estimated for plants ([Minh et al., 2021]). | 
-| Q.yeast  | nuclear | Q matrix estimated for insects ([Minh et al., 2021]). | 
+| Q.bird   | nuclear | Q matrix ([Minh et al., 2021]) estimated for birds ([Jarvis et al., 2015]). | 
+| Q.insect | nuclear | Q matrix ([Minh et al., 2021]) estimated for insects ([Misof et al., 2014]). | 
+| Q.mammal | nuclear | Q matrix ([Minh et al., 2021]) estimated for mammals ([Wu et al., 2018]). | 
+| Q.pfam   | nuclear | General Q matrix ([Minh et al., 2021]) estimated from Pfam version 31 database ([El-Gebali et al., 2018]). | 
+| Q.plant  | nuclear | Q matrix ([Minh et al., 2021]) estimated for plants ([Ran et al., 2018]). | 
+| Q.yeast  | nuclear | Q matrix ([Minh et al., 2021]) estimated for yeasts ([Shen et al., 2018]). | 
 | rtREV    | viral | Retrovirus ([Dimmic et al., 2002]). |
 | VT       | nuclear | General 'Variable Time' matrix ([Mueller and Vingron, 2000]). |
 | WAG      | nuclear | General matrix ([Whelan and Goldman, 2001]). |
