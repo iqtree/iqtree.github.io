@@ -11,9 +11,7 @@ Throughout the year, members of IQ-TREE development team teach workshops on mole
 
 | Date |  Course Title | Location | Instructor |
 |------|---------------|----------------------------|-------------|
-| Aug 1-11, 2019 | [IQ-TREE Workshop Tutorial](molevol2019) | [Workshop on Molecular Evolution](https://molevol.mbl.edu), Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
-| Aug 4-9, 2019 | Several sessions | [Workshop on Virus Evolution and Molecular Epidemiology](https://rega.kuleuven.be/cev/veme-workshop/2019), The University of Hong Kong, Hong Kong | Heiko Schmidt |
-
+| May 28, 2022 - Jun 7, 2022 | IQ-TREE Workshop | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
 
 ### Past Workshops
 
@@ -21,6 +19,10 @@ IQ-TREE was taught as part of the following workshops:
 
 | Date |  Course Title | Location | Instructor |
 |------|---------------|----------------------------|-------------|
+| July 29-30, 2021 | IQ-TREE | [12th Sydney Phylogenetics Workshop](https://meep.sydney.edu.au/workshops/), Online, [slides from Github](https://github.com/simon-ho/SydneyPhyloWorkshop) | Bui Quang Minh |
+| Jan 28-29, 2021 | IQ-TREE | [11th Sydney Phylogenetics Workshop](https://meep.sydney.edu.au/workshops/), Online | Bui Quang Minh |
+| Aug 1-11, 2019 | [IQ-TREE Workshop Tutorial](molevol2019) | [Workshop on Molecular Evolution](https://molevol.mbl.edu), Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
+| Aug 4-9, 2019 | Several sessions | [Workshop on Virus Evolution and Molecular Epidemiology](https://rega.kuleuven.be/cev/veme-workshop/2019), The University of Hong Kong, Hong Kong | Heiko Schmidt |
 | Jan 24, 2019 | [IQ-TREE intro and lab](ck2019) | [Workshop on Phylogenomics](http://evomics.org/workshops/2019-workshop-on-phylogenomics-cesky-krumlov/), Cesky Krumlov, Czech Republic | Stephen Crotty |
 | Dec 7, 2018 | [Phylogenomics using IQ-TREE](anu2018) | [Phylogenomics Workshop using IQ-TREE](http://cba.anu.edu.au/news-events/phylogenomics-workshop-using-iq-tree), Australian National University, Canberra, Australia | Rob Lanfear, Minh Bui |
 | Aug 26, 2018 | ML Phylogenetics and IQ-TREE | [Workshop on Virus Evolution and Molecular Epidemiology](https://rega.kuleuven.be/cev/veme-workshop/2018), Robert Koch-Institut, Berlin, Germany | Heiko Schmidt |
