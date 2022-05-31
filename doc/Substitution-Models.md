@@ -180,12 +180,12 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | mtMet    | mitochondrial | Mitochondrial Metazoa ([Vinh et al., 2017]). |
 | mtVer    | mitochondrial | Mitochondrial Vertebrate ([Vinh et al., 2017]). |
 | mtInv    | mitochondrial | Mitochondrial Inverterbrate ([Vinh et al., 2017]). |
-| NQ.bird   | nuclear | Time non-reversible Q matrix estimated for birds ([Dang et al., 2022]). | 
-| NQ.insect | nuclear | Time non-reversible Q matrix estimated for insects ([Dang et al., 2022]). | 
-| NQ.mammal | nuclear | Time non-reversible Q matrix estimated for mammals ([Dang et al., 2022]). | 
-| NQ.pfam   | nuclear | General time non-reversible matrix estimated from Pfam version 31 (2017) database ([Dang et al., 2022]). | 
-| NQ.plant  | nuclear | Time non-reversible Q matrix estimated for plants ([Dang et al., 2022]). | 
-| NQ.yeast  | nuclear | Time non-reversible Q matrix estimated for insects ([Dang et al., 2022]). | 
+| NQ.bird   | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated for birds ([Jarvis et al., 2015]). | 
+| NQ.insect | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated for insects ([Misof et al., 2014]). | 
+| NQ.mammal | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated for mammals ([Wu et al., 2018]). | 
+| NQ.pfam   | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated from Pfam version 31 database ([El-Gebali et al., 2018]). | 
+| NQ.plant  | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated for plants ([Ran et al., 2018]). | 
+| NQ.yeast  | nuclear | Non-reversible Q matrix ([Dang et al., 2022]) estimated for yeasts ([Shen et al., 2018]). | 
 | Poisson  | none | Equal amino-acid exchange rates and frequencies. |
 | PMB      | nuclear | Probability Matrix from Blocks, revised `BLOSUM` matrix ([Veerassamy et al., 2004]). |
 | Q.bird   | nuclear | Q matrix estimated for birds ([Minh et al., 2021]). | 
@@ -416,11 +416,13 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Dang et al., 2022]: https://doi.org/10.1093/sysbio/syac007
 [Dayhoff et al., 1978]: http://compbio.berkeley.edu/class/c246/Reading/dayhoff-1978-apss.pdf
 [Dimmic et al., 2002]: https://doi.org/10.1007/s00239-001-2304-y
+[El-Gebali et al., 2018]: https://doi.org/10.1093/nar/gky995
 [Felsenstein, 1981]: https://doi.org/10.1007%2FBF01734359
 [Goldman and Yang, 1994]: http://mbe.oxfordjournals.org/content/11/5/725.abstract
 [Gu et al., 1995]: http://mbe.oxfordjournals.org/content/12/4/546.abstract
 [Hasegawa, Kishino and Yano, 1985]: https://dx.doi.org/10.1007%2FBF02101694
 [Henikoff and Henikoff, 1992]: https://dx.doi.org/10.1073%2Fpnas.89.22.10915
+[Jarvis et al., 2015]: https://doi.org/10.1186/s13742-014-0038-1
 [Jones et al., 1992]: https://dx.doi.org/10.1093%2Fbioinformatics%2F8.3.275
 [Jukes and Cantor, 1969]: http://doi.org/10.1016/B978-1-4832-3211-9.50009-7
 [Kimura, 1980]: https://doi.org/10.1007%2FBF01731581
@@ -436,11 +438,14 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Le et al., 2012]: https://doi.org/10.1093/molbev/mss112
 [Lewis, 2001]: https://doi.org/10.1080/106351501753462876
 [Minh et al., 2021]: https://doi.org/10.1093/sysbio/syab010
+[Misof et al., 2014]: https://doi.org/10.1126/science.1257570
 [Mueller and Vingron, 2000]: https://doi.org/10.1089/10665270050514918
 [Muse and Gaut, 1994]: http://mbe.oxfordjournals.org/content/11/5/715.abstract
 [Nickle et al., 2007]: https://dx.doi.org/10.1371/journal.pone.0000503
+[Ran et al., 2018]: https://doi.org/10.1098/rspb.2018.1012
 [Rota-Stabelli et al., 2009]: https://doi.org/10.1016/j.ympev.2009.01.011
 [Schneider et al., 2005]: https://doi.org/10.1186/1471-2105-6-134
+[Shen et al., 2018]: https://doi.org/10.1016/j.cell.2018.10.023
 [Soubrier et al., 2012]: https://doi.org/10.1093/molbev/mss140
 [Tamura and Nei, 1993]: http://mbe.oxfordjournals.org/cgi/content/abstract/10/3/512
 [Tavare, 1986]: http://www.damtp.cam.ac.uk/user/st321/CV_&_Publications_files/STpapers-pdf/T86.pdf
@@ -449,6 +454,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Wang et al., 2008]: https://doi.org/10.1186/1471-2148-8-331
 [Whelan and Goldman, 2001]: https://doi.org/10.1093/oxfordjournals.molbev.a003851
 [Woodhams et al., 2015]: https://doi.org/10.1093/sysbio/syv021
+[Wu et al., 2018]: https://doi.org/10.1016%2Fj.dib.2018.04.094
 [Yang, 1994]: https://doi.org/10.1007/BF00160154
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 [Yang et al., 1998]: http://mbe.oxfordjournals.org/content/15/12/1600.abstract
