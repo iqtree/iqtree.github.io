@@ -42,13 +42,13 @@ For this recipe I'll use data from the Bovidae family with five taxa (Yak, Cow, 
 
 
 
-#### Input files
+### Input files
 
 * [bovidae_10K.phy](http://www.iqtree.org/doc/data/bovidae.phy), our input alignment of 5 taxa and 86187 sites.
 
-#### Command lines
+### Command lines
 
-##### 1. Analyse the original data and calculate delta
+#### 1. Analyse the original data and calculate delta
 
 First we analyse our dataset:
 
@@ -109,7 +109,7 @@ iqtree --alisim simulated_MSA -t bovidae_10K.phy.treefile -m "TPM2u{0.44449,3.77
 
 Your folder will now contain lots of simulated alignments like `simulated_MSA_1.phy`, `simulated_MSA_2.phy` etc.
 
-### 3. Calculate delta from all of those alignments
+#### 3. Calculate delta from all of those alignments
 
 Now we need to analyse those 999 alignments in the same way we did in step 1. As above, you can do this in your favourite language. For this tutorial recipe I'll stay in bash though. We could make it fancy and do things in parallel, but for now we'll keep it simple and do things one by one in a for loop:
 
@@ -127,7 +127,7 @@ for iqtree_file in simulated_MSA_*.phy.iqtree; do
 done
 ```  
 
-### 4. Figure out the position of our observed delta in a ranked list of our simulated deltas
+#### 4. Figure out the position of our observed delta in a ranked list of our simulated deltas
 
 This example is a stark one! If you look through your list of deltas in the `simulated_delta.txt` file, you'll see they're mostly below 100, and ALL well below the huge observed delta of 11935.3291. So, if we order the list of the 999 simulated deltas and our observed delta from largest to smallest, our observed delta would be in position 1 out of 1000 in the list. So we know our p-value here would be at most `1/1000`, i.e. `p<=0.001`. In other words, we can reject the hypothesis that the full model (tree, branch lengths, substitution model etc) is an adequate description of the data...
 
