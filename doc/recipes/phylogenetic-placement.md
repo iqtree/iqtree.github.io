@@ -1,18 +1,12 @@
-# Recipes
-
-This is a collection of one-off examples of analyses in IQ-TREE. One might call them 'infrequently asked questions'. The idea is a searchable and reproducible database of analyses to help the community do what they need to with IQ-TREE.
-
-If you'd like to request a recipe, please head over to the issues page and use the 'recipe wanted' label.
-
-## Add sequences to an existing tree
+# Phylogenetic placement
 
 ### The general problem
 
-This recipe shows you how to add new sequences to an existing tree, then to optionally perform a global re-optimisation of that tree.
+This recipe shows you how to add new sequences to an existing tree (phylogenetic placement), then to perform a global re-optimisation of that tree.
 
-Sometimes you have an existing phylogeny, and you'd like to add new sequences it without altering the existing relationships. This is increasingly common in what's called 'online' phylogenetics, for example when building phylogenies to track outbreaks where new data arrive every day. To read more about online phylogenetics you could read [this preprint](https://www.biorxiv.org/content/10.1101/2021.12.02.471004v2), which compares lots of approaches.
+Sometimes you have an existing phylogeny, and you'd like to add new sequences it without altering the existing relationships. This is increasingly common in what's called 'online phylogenetics'. For example, in an ongoing pathogen outbreak we might get a lot of new genomes arriving in our database every day. Rather than infer a new tree from scratch each day, it's better to start with yesterday's tree and just _add_ the new genomes to it. [This preprint](https://www.biorxiv.org/content/10.1101/2021.12.02.471004v2), shows some recent work on online phylogenetics, and compares a lot of different approaches. In this recipe I'll cover how to do this in a Maximum Likelihood framework using IQ-TREE.
 
-> If you have VERY large datasets, i.e. more than many tens of thousands of sequences, you should consider using [UShER & matOptimize](https://usher-wiki.readthedocs.io/en/latest/), or [MAPLE](https://github.com/NicolaDM/MAPLE) for your online phylogenetics analyses. 
+> If you have very large datasets, i.e. more than many tens of thousands of sequences, you should consider using [UShER & matOptimize](https://usher-wiki.readthedocs.io/en/latest/), or [MAPLE](https://github.com/NicolaDM/MAPLE) for your online phylogenetics analyses. These pieces of software can comfortably handle alignments of millions of sequences, with tens of thousands of new sequences being added every day. There are tradeoffs (e.g. matOptimize uses parsimony) but they are often perfectly acceptable (that's covered in the preprint linked to above).
 
 ### A specific example
 
