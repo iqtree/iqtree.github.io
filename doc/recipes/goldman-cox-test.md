@@ -144,7 +144,7 @@ In this case, you'd get the answer 0.001. Since we're at the very extreme of the
 
 And our histogram helps make this clear.
 
-![Histogram of delta values](../images/delta_plot.png)
+![Histogram of delta values](images/delta_plot.png)
 
 ### IQ-TREE version
 Last tested with IQ-TREE 2.2.0.3
