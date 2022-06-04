@@ -256,7 +256,7 @@ You will need to figure out a command line to run IQ-TREE yourself here.
 > * Document which command line did you use to run IQ-TREE?
 > * What tree topology do you get now? 
 > * How do the bootstrap support value for the relevant clade(s) look like?
-> 
+{: .tip}
 
 8) Concordance factors
 ----------------------
