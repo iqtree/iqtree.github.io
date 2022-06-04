@@ -20,9 +20,9 @@ IQ-TREE 2 Workshop Tutorial (Woods Hole 2022)
 - [3) Applying partition model](#3-applying-partition-model)
 - [4) Choosing the best partitioning scheme](#4-choosing-the-best-partitioning-scheme)
 - [5) Tree topology tests](#5-tree-topology-tests)
-- [6) Concordance factors](#6-concordance-factors)
-- [7) Identifying most influential genes](#7-identifying-most-influential-genes)
-- [8) What is the true relationship?](#8-what-is-the-true-relationship)
+- [6) Identifying most influential genes](#6-identifying-most-influential-genes)
+- [7) Removing influential genes](#7-removing-influential-genes)
+- [8) Concordance factors](#8-concordance-factors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -41,20 +41,26 @@ which should display something like this to the screen:
 
 If you instead want to run it on your computer, [download version 2.1.2](https://github.com/iqtree/iqtree2/releases/tag/v2.1.2) and [install](../Quickstart) the binary
 for your platform. Do not download version 2.2.0 from the main IQ-TREE website, it is not as stable as 2.1.2 (sorry).
-For the next steps, the folder containing your `iqtree2` executable should be added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree2` at the command-line. Alternatively, you can also copy `iqtree2` binary into your system search.
+For the next steps, the folder containing your `iqtree2` executable should be added to your PATH enviroment variable so that IQ-TREE can be invoked by simply entering `iqtree2` at the command-line. Alternatively, you can also copy `iqtree2` binary into your system search. Note that this does not apply if you are using the virtual machines.
 
 
 1) Input data
 -------------
 <div class="hline"></div>
 
-We will use a Turtle data set to demonstrate the use of IQ-TREE throughout this workshop tutorial. We try to resolve a once hotly debated phylogenetic position of Turtles, relative to Crocodiles and Birds. There are three possible relationships between them and we wanna know which one is the true one:
+We will use a Turtle data set to demonstrate the use of IQ-TREE throughout this workshop tutorial. We try to resolve a once hotly debated phylogenetic position of Turtles, relative to Crocodiles and Birds. There are three possible relationships between them and we want to know which one is the true one:
 
 ![Three possible trees of Turtles, Crocodiles and Birds](data/turtle.png)
 
 (Picture courtesy of Jeremy Brown)
 
-If you are logged into the virtual machine, you can copy the data from `moledata/iqtreelab/` folder. The two input files are (which can also be downloaded from the following link):
+If you are logged into the virtual machine, you can copy the data from `moledata/iqtreelab/` folder:
+
+	cd
+	cp -r moledata/iqtreelab .
+	cd iqtreelab
+
+This folder contains two input files (which can also be downloaded from the following link):
 
 * [turtle.fa](data/turtle.fa): The DNA alignment (in FASTA format), which is a subset of the original Turtle data set used to assess the phylogenetic position of Turtle relative to Crocodile and Bird ([Chiari et al., 2012]).
 * [turtle.nex](data/turtle.nex): The partition file (in NEXUS format) defining 29 genes, which are a subset of the published 248 genes ([Chiari et al., 2012]).
@@ -135,7 +141,7 @@ Options explained:
 > 
 > * Compare the AIC/AICc/BIC score of partition model versus un-partition model done above. Which model is better?
 > 
-> * Look at the tree in `turtle.next.iqtree` or visualize `turtle.nex.treefile` in Figtree and compare it with the tree from the un-partitioned model. Are they the same or different? If different, where is the difference? Which tree agrees with the published tree ([Chiari et al., 2012])?
+> * Look at the tree in `turtle.nex.iqtree` or visualize `turtle.nex.treefile` in Figtree and compare it with the tree from the un-partitioned model. Are they the same or different? If different, where is the difference? Which tree agrees with the published tree ([Chiari et al., 2012])?
 > 
 > * Look at the boostrap supports. Which branch(es) have a low support?
 {: .tip}
@@ -182,16 +188,15 @@ For Windows:
 	
 Now pass this file into IQ-TREE via `-z` option:
 
-	iqtree2 -s turtle.fa -p turtle.nex.best_scheme.nex -z turtle.trees -zb 10000 -au -n 0 -wpl --prefix turtle.test
+	iqtree2 -s turtle.fa -p turtle.merge.best_scheme.nex -z turtle.trees -zb 10000 -au -n 0 --prefix turtle.test
 
 Options explained:
 
-* `-p turtle.merge.best_scheme.nex` to provide the partition model found previously to avoid running ModelFinder again.
+* `-p turtle.merge.best_scheme.nex` to provide the best partitioning scheme found previously to avoid running ModelFinder again.
 * `-z turtle.trees` to input a set of trees.
 * `-zb 10000` to specify 10000 replicates for *approximate* boostrap for tree topology tests.
 * `-au` is to perform the Approximately Unbiased test. 
 * `-n 0` to avoid tree search and just perform tree topology tests.
-* `-wpl` to print partition-wise log likelihoods for both trees. This will be used later in the next section.
 * `--prefix turtle.test` to set the prefix for all output files as `turtle.test.*`. 
 
 
@@ -208,8 +213,53 @@ Options explained:
  - The KH and SH tests return p-values, thus a tree is rejected if its p-value < 0.05 (marked with a `-` sign).
  - bp-RELL and c-ELW return posterior weights which are **not** p-value. The weights sum up to 1 across the trees tested.
 
-6) Concordance factors
--------------------
+
+6) Identifying most influential genes
+-------------------------------------
+<div class="hline"></div>
+
+
+Now we want to investigate the cause for such topological difference between trees inferred by single and partition model. One way is to identify genes contributing most phylogenetic signal towards one tree but not the other. 
+
+How can one do this? We can look at the gene-wise log-likelihood (logL) differences between the two given trees T1 and T2. Those genes having the largest logL(T1)-logL(T2) will be in favor of T1. Whereas genes showing the largest logL(T2)-logL(T1) are favoring T2.
+
+To compute gen-wise log-likelihoods for the two trees, you can use the `-wpl` option (for writing partition log-likelihoods): 
+
+	iqtree2 -s turtle.fa -p turtle.nex.best_scheme.nex -z turtle.trees -n 0 -wpl --prefix turtle.wpl
+
+will write a file `turtle.wpl.partlh`, that contains log-likelihoods for all partitions in the original partition file. We use `-p turtle.nex.best_scheme.nex` here (instead of `-p turtle.nex`) to avoid
+doing model selection again.
+
+Import `turtle.wpl.partlh` into MS Excel, Libre Office Calc, or any other spreadsheet software. You will need to tell the software to treat spaces as delimiters, so that the values are imported into different columns for easy processing (e.g., doing log-likelikehood subtraction as pointed out above).
+
+> **QUESTIONS:**
+> 
+>
+> * Compute the gene-wise log-likelihood differences between two trees. 
+> 
+> * What are the two genes that most favor the tree inferred by single model?
+> 
+> * Have a look at the paper by ([Brown and Thomson, 2016]). Compare the two genes you found with those from this paper. What is special about these two genes?
+{: .tip}
+
+7) Removing influential genes
+-----------------------------
+
+We now try to construct a tree without these "influential" genes. 
+To do so, copy the partition file `turtle.nex` to a new file and 
+remove the lines defining the `charset` of these genes, and then
+repeat the IQ-TREE run with a parititon model (see section 4).
+You will need to figure out a command line to run IQ-TREE yourself here.
+
+> **QUESTION:**
+> 
+> * Document which command line did you use to run IQ-TREE?
+> * What tree topology do you get now? 
+> * How do the bootstrap support value for the relevant clade(s) look like?
+> 
+
+8) Concordance factors
+----------------------
 <div class="hline"></div>
 
 
@@ -257,50 +307,16 @@ Similarly, you can compute gCF and sCF for the tree under unpartitioned model:
 > 
 > * Visualise `turtle.nex.treefile.cf.tree.nex` in FigTree. 
 > 
-> * Explore various gene concordance/discordance factors (gCF, gDF1, gDF2, gDFP), and site concordance/discordance factors (sCF, sDF1, sDF2).
+> * Explore gene concordance factor (gCF), gene discordance factors (gDF1, gDF2, gDFP), site concordance factor (sCF) and site discordance factors (sDF1, sDF2).
 > 
 > * How do gCF and sCF values look compared with bootstrap supports?
 > 
 > * Visualise `turtle.fa.treefile.cf.tree`. How do these values look like now on the contradicting branch?
 {: .tip}
 
-
-7) Identifying most influential genes
--------------------------------------
-<div class="hline"></div>
-
-
-Now we want to investigate the cause for such topological difference between trees inferred by single and partition model. One way is to identify genes contributing most phylogenetic signal towards one tree but not the other. 
-
-How can one do this? We can look at the gene-wise log-likelihood (logL) differences between the two given trees T1 and T2. Those genes having the largest logL(T1)-logL(T2) will be in favor of T1. Whereas genes showing the largest logL(T2)-logL(T1) are favoring T2.
-
-With the `-wpl` option done above, IQ-TREE will write partition-wise log-likelihoods into `turtle.test.partlh` file.
-
-> **QUESTIONS:**
+> **FINAL QUESTIONS:**
 > 
-> * Import this file into MS Excel. Compute the partition wise log-likelihood differences between two trees. 
-> 
-> * What are the two genes that most favor the tree inferred by single model?
-> 
-> * Have a look at the paper by ([Brown and Thomson, 2016]). Compare the two genes you found with those from this paper. What is special about these two genes?
-{: .tip}
-
-8) What is the true relationship?
----------------------------------
-
-We now try to construct a tree without these "influential" genes. 
-To do so, copy the partition file `turtle.nex` to a new file and 
-remove the lines defining the `charset` of these genes, and then
-repeat the IQ-TREE run with a parititon model like above.
-
-> **FINAL QUESTION:**
-> 
-> * What tree topology do you get now? How do the bootstrap support value for the relevant clade(s) look like?
-> 
-> * Given all analyses done in this tutorial, what is the true relationship between turtles, crocodiles, and birds in your opinion?
-> 
-
-
+> Given all analyses you have done in this tutorial, which relationship between Turtle, Crocodile and Bird is true in your opinion?
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
