@@ -233,7 +233,6 @@ doing model selection again.
 Import `turtle.wpl.partlh` into MS Excel, Libre Office Calc, or any other spreadsheet software. You will need to tell the software to treat spaces as delimiters, so that the values are imported into different columns for easy processing (e.g., doing log-likelikehood subtraction as pointed out above).
 
 > **QUESTIONS:**
-> 
 >
 > * Compute the gene-wise log-likelihood differences between two trees. 
 > 
@@ -251,11 +250,14 @@ remove the lines defining the `charset` of these genes, and then
 repeat the IQ-TREE run with a parititon model (see section 4).
 You will need to figure out a command line to run IQ-TREE yourself here.
 
-> **QUESTION:**
+> **QUESTIONS:**
 > 
 > * Document which command line did you use to run IQ-TREE?
+> 
 > * What tree topology do you get now? 
+> 
 > * How do the bootstrap support value for the relevant clade(s) look like?
+> 
 {: .tip}
 
 8) Concordance factors
