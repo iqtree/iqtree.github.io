@@ -22,7 +22,7 @@ IQ-TREE 2 Workshop Tutorial (Woods Hole 2022)
 - [5) Tree topology tests](#5-tree-topology-tests)
 - [6) Concordance factors](#6-concordance-factors)
 - [7) Identifying most influential genes](#7-identifying-most-influential-genes)
-- [8) What is the true relationship?](#8-what-is-the-true-relationship-)
+- [8) What is the true relationship?](#8-what-is-the-true-relationship)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
