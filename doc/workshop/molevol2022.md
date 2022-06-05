@@ -71,9 +71,7 @@ This folder contains two input files (which can also be downloaded from the foll
 > 
 > * Can you identify the gene boundary from the viewer? Does it roughly match the partition file?
 > 
-> * Is there missing data? Which taxa seem to have most missing data?
-> 
-> * Do you think if missing data can be problematic?
+> * Is there missing data? Do you think if missing data can be problematic?
 {: .tip}
 
 
@@ -108,17 +106,18 @@ should look at this file to see the computational results. It also contains a te
 * And a few other files.
 
 > **QUESTIONS:**
+> 
 > * Look at the report file `turtle.fa.iqtree`. 
 > 
-> * What is the best-fit model? What do you know about this model?
+> * What is the best-fit model name? What do you know about this model? (see [substitution models](../doc/Substitution-Models) available in IQ-TREE)
 > 
-> * Look at the tree in `turtle.fa.iqtree` (You can also download the output files and visualise the tree `turtle.fa.treefile` in a tree viewer software like Figtree).
+> * What are the AIC/AICc/BIC scores of this model and tree?
 > 
-> * Compare the tree with the published tree ([Chiari et al., 2012]). Are they the same or different?
+> * Look at the tree in `turtle.fa.iqtree` or visualise the tree `turtle.fa.treefile` in a tree viewer software like FigTree. What relationship among [three trees](#1-input-data) does this tree support?
 > 
-> * If different, where are the difference(s)?
+> * What is the ultrafast bootstrap support (%) for the relevant clade?
 > 
-> * Look at the boostrap supports. Which branch(es) have a low support?
+> * Does this tree agree with the published tree ([Chiari et al., 2012])?
 {: .tip}
 
 
@@ -137,13 +136,13 @@ Options explained:
 
 > **QUESTIONS:**
 > 
-> * Look at the report file `turtle.nex.iqtree`. What are the lowest- and highest-evolving genes?
+> * Look at the report file `turtle.nex.iqtree`. What are the AIC/AICc/BIC scores of partition model? Is it better than the previous model?
 > 
-> * Compare the AIC/AICc/BIC score of partition model versus un-partition model done above. Which model is better?
+> * Look at the tree in `turtle.nex.iqtree` or visualize `turtle.nex.treefile` in FigTree. What relationship among [three trees](#1-input-data) does this tree support? 
 > 
-> * Look at the tree in `turtle.nex.iqtree` or visualize `turtle.nex.treefile` in Figtree and compare it with the tree from the un-partitioned model. Are they the same or different? If different, where is the difference? Which tree agrees with the published tree ([Chiari et al., 2012])?
+> * What is the ultrafast bootstrap support (%) for the relevant clade?
 > 
-> * Look at the boostrap supports. Which branch(es) have a low support?
+> * Does this tree agree with the published tree ([Chiari et al., 2012])?
 {: .tip}
 
 
@@ -165,9 +164,13 @@ Options explained:
 > 
 > * Look at the report file `turtle.merge.iqtree`. How many partitions do we have now?
 > 
-> * Look at the AIC/AICc/BIC scores. Is it better or worse than those of the un-partition and partition models done previously?
+> * Look at the AIC/AICc/BIC scores. Compared with two previous models, is this model better or worse?
 > 
-> * How does the tree look like now? How high/low are the bootstrap supports?
+> * Look at the tree in `turtle.merge.iqtree` or visualize `turtle.merge.treefile` in FigTree. What relationship among [three trees](#1-input-data) does this tree support? 
+> 
+> * What is the ultrafast bootstrap support (%) for the relevant clade?
+> 
+> * Does this tree agree with the published tree ([Chiari et al., 2012])?
 {: .tip}
 
 5) Tree topology tests
@@ -202,15 +205,18 @@ Options explained:
 
 > **QUESTIONS:**
 > 
-> * Look at the report file `turtle.test.iqtree`. There is a new section called `USER TREES`.
+> * Look at the `USER TREES` section in the report file `turtle.test.iqtree`. Which
+> tree has worse log-likelihood?
 > 
-> * Do the trees have significantly different log-likelihoods?
+> Can you reject this tree according to the Shimodaira Hasegawa test, assuming a p-value cutoff of 0.05?
+>  
+> Can you reject this tree according to the Approximately Unbiased test, assuming a p-value cutoff of 0.05?
 {: .tip}
 
 
 **HINTS**:
 
- - The KH and SH tests return p-values, thus a tree is rejected if its p-value < 0.05 (marked with a `-` sign).
+ - The KH, SH and AU tests return p-values, thus a tree is rejected if its p-value < 0.05 (marked with a `-` sign).
  - bp-RELL and c-ELW return posterior weights which are **not** p-value. The weights sum up to 1 across the trees tested.
 
 
@@ -236,9 +242,13 @@ Import `turtle.wpl.partlh` into MS Excel, Libre Office Calc, or any other spread
 >
 > * Compute the gene-wise log-likelihood differences between two trees. 
 > 
-> * What are the two genes that most favor the tree inferred by single model?
+> * What is the name of the gene showing the largest log-likelihood difference between two trees?
 > 
-> * Have a look at the paper by ([Brown and Thomson, 2016]). Compare the two genes you found with those from this paper. What is special about these two genes?
+> * What is the name of the gene showing the second largest log-likelihood difference between two trees?
+> 
+> * Were these two genes identified in ([Brown and Thomson, 2016])?
+> 
+> Briefly describe what is the problem of these two genes?
 {: .tip}
 
 7) Removing influential genes
@@ -256,8 +266,9 @@ You will need to figure out a command line to run IQ-TREE yourself here.
 > 
 > * What tree topology do you get now? 
 > 
-> * How do the bootstrap support value for the relevant clade(s) look like?
+> * What is the ultrafast bootstrap support (%) for the relevant clade?
 > 
+> * Does this tree agree with the published tree ([Chiari et al., 2012])?
 {: .tip}
 
 8) Concordance factors
