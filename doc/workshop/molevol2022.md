@@ -109,7 +109,7 @@ should look at this file to see the computational results. It also contains a te
 > 
 > * Look at the report file `turtle.fa.iqtree`. 
 > 
-> * What is the best-fit model name? What do you know about this model? (see [substitution models](../doc/Substitution-Models) available in IQ-TREE)
+> * What is the best-fit model name? What do you know about this model? (see [substitution models](../Substitution-Models) available in IQ-TREE)
 > 
 > * What are the AIC/AICc/BIC scores of this model and tree?
 > 
