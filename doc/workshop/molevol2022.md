@@ -208,9 +208,9 @@ Options explained:
 > * Look at the `USER TREES` section in the report file `turtle.test.iqtree`. Which
 > tree has worse log-likelihood?
 > 
-> Can you reject this tree according to the Shimodaira Hasegawa test, assuming a p-value cutoff of 0.05?
+> * Can you reject this tree according to the Shimodaira Hasegawa test, assuming a p-value cutoff of 0.05?
 >  
-> Can you reject this tree according to the Approximately Unbiased test, assuming a p-value cutoff of 0.05?
+> * Can you reject this tree according to the Approximately Unbiased test, assuming a p-value cutoff of 0.05?
 {: .tip}
 
 
@@ -248,7 +248,7 @@ Import `turtle.wpl.partlh` into MS Excel, Libre Office Calc, or any other spread
 > 
 > * Were these two genes identified in ([Brown and Thomson, 2016])?
 > 
-> Briefly describe what is the problem of these two genes?
+> * Briefly describe what is the problem of these two genes?
 {: .tip}
 
 7) Removing influential genes
@@ -329,7 +329,7 @@ Similarly, you can compute gCF and sCF for the tree under unpartitioned model:
 
 > **FINAL QUESTIONS:**
 > 
-> Given all analyses you have done in this tutorial, which relationship between Turtle, Crocodile and Bird is true in your opinion?
+> * Given all analyses you have done in this tutorial, which relationship between Turtle, Crocodile and Bird is true in your opinion?
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
