@@ -4,6 +4,6 @@ This is a collection of one-off examples of analyses in IQ-TREE. One might call 
 
 If you'd like to request a recipe, please head over to the issues page and use the 'recipe wanted' label.
 
-
+    
 
 
