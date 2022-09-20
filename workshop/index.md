@@ -1,7 +1,7 @@
 ---
 layout: workshop
 title: "Workshop"
-date:    2019-08-01
+date:    2022-07-28
 ---
 
 Throughout the year, members of IQ-TREE development team teach workshops on molecular evolution, phylogenetics, phylogenomics, and maximum likelihood using IQ-TREE.
@@ -11,7 +11,8 @@ Throughout the year, members of IQ-TREE development team teach workshops on mole
 
 | Date |  Course Title | Location | Instructor |
 |------|---------------|----------------------------|-------------|
-| May 28, 2022 - Jun 7, 2022 | IQ-TREE Workshop | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
+| July 27-29, 2022 | [IQ-TREE workshop tutorial](sydney2022) | [13th Sydney Phylogenetics Workshop](https://meep.sydney.edu.au/workshops/), Online | Bui Quang Minh |
+| Aug 21-26, 2022 | Several sessions | [26th Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology (VEME)](https://rega.kuleuven.be/cev/veme-workshop/2022), Panama | Heiko Schmidt |
 
 ### Past Workshops
 
@@ -19,7 +20,9 @@ IQ-TREE was taught as part of the following workshops:
 
 | Date |  Course Title | Location | Instructor |
 |------|---------------|----------------------------|-------------|
-| July 29-30, 2021 | IQ-TREE | [12th Sydney Phylogenetics Workshop](https://meep.sydney.edu.au/workshops/), Online, [slides from Github](https://github.com/simon-ho/SydneyPhyloWorkshop) | Bui Quang Minh |
+| May 28 - Jun 7, 2022 | [IQ-TREE Workshop](molevol2022) | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
+| Aug 30 - Sep 10, 2021 | Several sessions | [25th Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology (VEME)](https://rega.kuleuven.be/cev/veme-workshop/2021), Brazil | Heiko Schmidt |
+| Jul 29-30, 2021 | IQ-TREE | [12th Sydney Phylogenetics Workshop](https://meep.sydney.edu.au/workshops/), Online, [slides from Github](https://github.com/simon-ho/SydneyPhyloWorkshop) | Bui Quang Minh |
 | Jan 28-29, 2021 | IQ-TREE | [11th Sydney Phylogenetics Workshop](https://meep.sydney.edu.au/workshops/), Online | Bui Quang Minh |
 | Aug 1-11, 2019 | [IQ-TREE Workshop Tutorial](molevol2019) | [Workshop on Molecular Evolution](https://molevol.mbl.edu), Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
 | Aug 4-9, 2019 | Several sessions | [Workshop on Virus Evolution and Molecular Epidemiology](https://rega.kuleuven.be/cev/veme-workshop/2019), The University of Hong Kong, Hong Kong | Heiko Schmidt |

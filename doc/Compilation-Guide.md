@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Compilation Guide"
 author: Dominik Schrempf, Jana Trifinopoulos, Meaningseeking, Minh Bui
-date:    2021-04-19
+date:    2022-04-12
 docid: 20
 icon: book
 doctype: manual
@@ -256,6 +256,31 @@ The compiled `iqtree` binary will automatically choose the proper computational 
 
     IQ-TREE multicore Xeon Phi KNL version 1.6.beta for Linux 64-bit built May  7 2017
     
+
+Compling with deep learning kernel for ModelFinder 2
+--------------------------------------------------
+
+IQ-TREE version 2.2.x supports deep learning to speed up ModelFinder 2.
+To compile you will need to install the [onnxruntime library](https://onnxruntime.ai). On a MacOS, the fastest way is via homebrew package manager:
+
+	brew install onnxruntime
+	
+This will install the necessary header files in
+
+	/usr/local/Cellar/onnxruntime/1.11.0/include/onnxruntime/core/session/
+
+and the library file in:
+
+	/usr/local/Cellar//onnxruntime/1.11.0/lib/
+	
+where 1.11.0 is the version of onnxruntime at the time of writing this document. You may need the version number which can be found by:
+
+	brew info onnxruntime
+
+Now you will need to run cmake by additional options:
+
+	cmake -Donnxruntime_INCLUDE_DIRS=/usr/local/Cellar//onnxruntime/1.11.0/include/onnxruntime/core/session/ -Donnxruntime_LIBRARIES=/usr/local/Cellar//onnxruntime/1.11.0/lib/libonnxruntime.dylib ..
+
 
 About precompiled binaries
 --------------------------

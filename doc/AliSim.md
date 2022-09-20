@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Simulating sequence alignments"
 author: Minh Bui, Trongnhan Uit
-date:    2022-03-25
+date:    2022-04-08
 docid: 9
 icon: info-circle
 doctype: tutorial
@@ -256,14 +256,29 @@ In addition to five built-in distributions, namely *uniform, Generalized_logisti
 
 Firstly, generating a set of random numbers for each list, then defining the new lists in a new file (e.g.,`custom_distributions.txt`) as the following example.
 
-    F_A 0.363799 0.313203 0.277533 0.242350 ...
-    F_B 0.268955 0.278675 0.290531 0.237410 ...
-    F_C 0.320556 0.440894 0.332368 0.227977 ...
-    F_D 0.234732 0.309629 0.353117 0.414357 ...
-    R_A 2.306336 4.359459 0.249315 0.388073 ...
-    R_B 1.257679 0.417313 3.290922 2.301826 ...
-    R_C 0.200087 1.336534 3.337547 2.325379 ...
-    R_D 0.321134 0.299891 1.315519 0.269172 ...
+
+    
+    F_A 0.363799 0.313203 0.277533 0.24235 0.260252
+    F_B 0.321134 0.299891 0.315519 0.269172 0.258165 
+    F_C 0.287641 0.309442 0.264017 0.23103
+    F_D 0.200087 0.336534 0.337547 0.325379 0.335034 
+    F_E 0.306336 0.359459 0.249315 0.388073 
+    F_F 0.345694 0.338733 0.305404 0.294181 
+    I_A 0.257679 0.417313 0.290922 0.301826 0.292324 0.33887
+    I_B 0.179902 0.122071 0.348381 0.33887 0.228999
+    I_C 0.377297 0.296036 0.044523 0.262098 0.295087
+    R_A 10.363799 20.313203 10.277533 5.24235 3.26025
+    R_B 6.321134 0.299891 10.315519 0.269172 04.258165
+    R_C 10.287641 8.309442 20.264017 03.23103 04.178778
+    R_D 9.200087 10.336534 30.337547 03.325379 0.335034
+    R_E 2.306336 4.359459 0.249315 0.388073 04.296979
+    R_F 4.345694 06.338733 02.305404 02.294181 04.303477
+    R_G 3.257679 07.417313 03.290922 04.301826 03.292324
+    N_A -0.363799 -0.313203 -0.277533 0.24235 -0.260252
+    N_B 0.321134 -0.299891 -01.315519 -0.269172 -0.258165
+    N_C 0.287641 -0.309442 0.264017 -0.23103 0.178778
+
+
 
 Each list should be defined in a single line, starting with the list name, followed by random numbers. These numbers should be separated by space. The given file `custom_distributions.txt` defines 8 new lists. Each list could have a different number of random elements.
 
@@ -551,7 +566,7 @@ All the options available in AliSim are shown below:
 | `--fundi <TAXON_1>,...,<TAXON_N>,<RHO>`   | Specify the FunDi model ([Gaston et al. 2011]). The last number `RHO` in this list is the proportion of sites, that will be randomly permuted in the sequences of the given taxa. The same permutation is applied to the sequences. |
 | `--indel <INS>,<DEL>`  | Set the insertion and deletion rate of the indel model, relative to the substitution rate. |
 | `--indel-size <INS_DIS>,<DEL_DIS>`  | Set the [insertion and deletion size distributions](#insertion-and-deletion-models). By default, AliSim uses `POW{1.7/100}` for a power-law (Zipfian) distribution with parameter `a` of 1.7 and maximum indel size of 100.|
-| `--no-unaligned-seq` | Do not output a file of unaligned sequences when using indel models. Default: a file `_withoutgaps.fa` containing unaligned sequences is written. |
+| `--no-unaligned` | Do not output a file of unaligned sequences when using indel models. Default: a file `.unaligned.fa` containing unaligned sequences is written. |
 | `-q <PARTITION>` or <br>`-p <PARTITION>` or <br>`-Q <PARTITION>` | Specify different types of [Partition models](#partition-models)|
 | `--distribution <FILE>` | Supply a definition file of distributions, which could be used to generate random model parameters (see [Using user-defined parameter distributions](#using-user-defined-parameter-distributions)). |
 | `--branch-distribution <DISTRIBUTION>` | Specify a distribution, from which branch lengths of the input trees are randomly generated and overridden.|
@@ -565,6 +580,7 @@ All the options available in AliSim are shown below:
 | `--no-copy-gaps` | Disable copying gaps from the input alignment.|
 | `--site-freq <OPTION>` | Specify the option (`MEAN` *(default)*, or `SAMPLING`, or `MODEL`) to mimic the site-frequencies for mixture models from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)). |
 | `--site-rate <OPTION>` | Specify the option (`MEAN` *(default)*, or `SAMPLING`, or `MODEL`) to mimic the discrete rate heterogeneity from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)).|
+| `--single-output` | Output all alignments into a single file. |
 | `--write-all` | Enable outputting internal sequences. |
 | `-seed <NUMBER>` | Specify the seed number. <br>*Default: the clock of the PC*. <br>Be careful! To make the AliSim reproducible, users should specify the seed number. |
 | `-gz` | Enable output compression. It may take a longer running time.<br>*By default, output compression is disabled*. |

@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Concordance Factor"
 author: Minh Bui
-date:    2021-03-11
+date:    2022-09-20
 docid: 6
 icon: info-circle
 doctype: tutorial
@@ -30,7 +30,7 @@ Since IQ-TREE 2, we provide two measures for quantifying genealogical concordanc
 
 If you use this feature please cite: 
 
-__Minh B.Q., Hahn M.W., Lanfear R.__ (2020) New methods to calculate concordance factors for phylogenomic datasets. _Molecular Biology and Evolution_, in press. <https://doi.org/10.1093/molbev/msaa106>
+__Minh B.Q., Hahn M.W., Lanfear R.__ (2020) New methods to calculate concordance factors for phylogenomic datasets. _Molecular Biology and Evolution_, 37:2727–2733. <https://doi.org/10.1093/molbev/msaa106>
 
 >**NOTE**: For this feature please use IQ-TREE version 2!
 
@@ -44,13 +44,13 @@ First, you need to infer a reference tree (e.g. a species tree), on which the co
 
 As an example, you can apply an [edge-linked proportional partition model](Complex-Models) with ultrafast bootstrap (1000 replicates; for comparison with concordance factors):
 
-	iqtree -s ALN_FILE -p PARTITION_FILE --prefix concat -B 1000 -T AUTO
+	iqtree2 -s ALN_FILE -p PARTITION_FILE --prefix concat -B 1000 -T AUTO
 
 where `ALN_FILE` and `PARTITION_FILE` are your input files. `-T AUTO` is to detect the best number of CPU cores. Here we use a prefix `concat`, so that all output files (`concat.*`) do not interfere with analyses below. If `--prefix` is omitted, all output files will be `PARTITION_FILE.*`.
 
 Moreover, IQ-TREE 2 provides a new convenient feature: if you have a directory with many (locus) alignments, you can specify this directory directly with `-p` option:
 
-	iqtree -p ALN_DIR --prefix concat -B 1000 -T AUTO
+	iqtree2 -p ALN_DIR --prefix concat -B 1000 -T AUTO
 	
 IQ-TREE detects if `-p` argument is a directory and automatically load all alignment files and concatenate them into a supermatrix for the partition analysis.
 
@@ -60,9 +60,9 @@ Inferring gene/locus trees
 
 We now construct a set of gene/locus trees. One can manually do a for-loop, but IQ-TREE 2 provides a new convenient option `-S` to compute individual locus trees given a partition file or a directory:
 
-	iqtree -s ALN_FILE -S PARTITION_FILE --prefix loci -T AUTO
+	iqtree2 -s ALN_FILE -S PARTITION_FILE --prefix loci -T AUTO
 	# or
-	iqtree -S ALN_DIR --prefix loci -T AUTO
+	iqtree2 -S ALN_DIR --prefix loci -T AUTO
 
 In the second case, IQ-TREE automatically detects that `ALN_DIR` is a directory and will load all alignment files within the directory. So `-S` takes the same argument as `-p` except that it performs model selection (ModelFinder) and tree inference separately for each partition/alignment. The output files are similar to those from a partitioned analysis, except that `loci.treefile` now contains a set of trees.
 
@@ -71,7 +71,7 @@ Gene concordance factor (gCF)
 
 Given the species tree `concat.treefile` and the set of locus trees `loci.treefile` computed above, you can calculate gCF for each branch of the species tree as the fraction of decisive gene trees concordant with this branch:
 
-	iqtree -t concat.treefile --gcf loci.treefile --prefix concord
+	iqtree2 -t concat.treefile --gcf loci.treefile --prefix concord
  	
 Note that `-t` accepts any reference tree (e.g., by coalescent/reconciliation approach) and `--gcf` accepts any set of trees (e.g. locus trees and bootstrap trees), which may contain a subset of taxa from the reference tree. IQ-Tree will write three files:
 
@@ -85,19 +85,30 @@ If you omit `--prefix`, all output files will be written to `concat.treefile.*`.
 Site concordance factor (sCF)
 -----------------------------
 
+>**NOTE**: From version 2.2.2 IQ-TREE provides a new and more accurate sCF based on likelihood via `--scfl` option (whereas the original sCF is based on parsimony). It is described in the paper "Updated site concordance factors minimize effects of homoplasy and taxon sampling" by Yu et al. [preprint available soon]. You can download [this version from here](https://github.com/iqtree/iqtree2/releases/tag/v2.2.2).
+ 
 Given the species tree `concat.treefile` and the alignment, you can calculate sCF for each branch of the species tree as the fraction of decisive alignment sites supporting that branch:
 
-	iqtree -t concat.treefile -s ALN_FILE --scf 100 --prefix concord -T 10
+	# for version 2.2.2 or above
+	iqtree2 -te concat.treefile -s ALN_FILE --scfl 100 --prefix concord
+	# older versions
+	iqtree2 -t concat.treefile -s ALN_FILE --scf 100 --prefix concord -T 10
 	
 `--scf` specifies the number of quartets (randomly sampled around each internal branch) for computing sCF. We recommend at least 100 quartets for stable sCF values. Note that running this command several times may lead to slightly different sCF due to randomness. To make it reproducible, you need to use `-seed` option to provide a random number generator seed.
 
+Note that the `--scfl` option from IQ-TREE v2.2.1 will invoke model selection with ModelFinder and also tree search if you don't specify a tree with `-te` option. If you already have a best-fit model from a previous run, you can ignore ModelFinder (and thus speed up this run) by provide the model with `-m` option.
+
 Instead of `-s`, you can alternatively provide a directory or a partition file. IQ-Tree then computes sCF for the concatenated alignment:
 
-	iqtree -t concat.treefile -p ALN_DIR --scf 100 --prefix concord -T 10
+	# for version 2.2.2 or above
+	iqtree2 -te concat.treefile -p ALN_DIR --scfl 100 --prefix concord
+	# older versions
+	iqtree2 -t concat.treefile -p ALN_DIR --scf 100 --prefix concord -T 10
 
 Finally, you can combine gCF and sCF within a single run:
 
-	iqtree -t concat.treefile --gcf loci.treefile -p ALN_DIR --scf 100 --prefix concord -T 10
+	# only for the original sCF
+	iqtree2 -t concat.treefile --gcf loci.treefile -p ALN_DIR --scf 100 --prefix concord -T 10
 	
 Here, each branch of `concord.cf.tree` will be assigned (or appended) with `gCF/sCF` values and `concord.cf.stat` will be written with both gCF and sCF values.
 
@@ -109,24 +120,31 @@ Putting it all together
 If you have separate alignments for each locus in a folder, then perform the following commands:
 
 	# infer a concatenation-based species tree with 1000 ultrafast bootstrap and an edge-linked partition model
-	iqtree -p ALN_DIR --prefix concat -B 1000 -T AUTO
+	iqtree2 -p ALN_DIR --prefix concat -B 1000 -T AUTO
 	
 	# infer the locus trees
-	iqtree -S ALN_DIR --prefix loci -T AUTO
+	iqtree2 -S ALN_DIR --prefix loci -T AUTO
 	
-	# compute concordance factors
-	iqtree -t concat.treefile --gcf loci.treefile -p ALN_DIR --scf 100 --prefix concord -T 10
+	# compute gene concordance factors
+	iqtree2 -t concat.treefile --gcf loci.treefile --prefix concord
+	
+	# compute site concordance factor using likelihood with v2.2.2
+	iqtree2 -te concat.treefile -p ALN_DIR --scfl 100 --prefix concord2
 
 If you have a single concatenated alignment with a partition file that defines loci:
 
 	# infer a concatenation-based species tree with 1000 ultrafast bootstrap and an edge-linked partition model
-	iqtree -s ALN_FILE -p PARTITION_FILE --prefix concat -B 1000 -T AUTO
+	iqtree2 -s ALN_FILE -p PARTITION_FILE --prefix concat -B 1000 -T AUTO
 
 	# infer the locus trees
-	iqtree -s ALN_FILE -S PARTITION_FILE --prefix loci -T AUTO
+	iqtree2 -s ALN_FILE -S PARTITION_FILE --prefix loci -T AUTO
 
-	# compute concordance factors
-	iqtree -t concat.treefile --gcf loci.treefile -s ALN_FILE --scf 100 --prefix concord -T 10
+	# compute gene concordance factors
+	iqtree2 -t concat.treefile --gcf loci.treefile --prefix concord
+	
+	# compute site concordance factor using likelihood with v2.2.2
+	iqtree2 -te concat.treefile -s ALN_FILE --scfl 100 --prefix concord2
+	
 
 Note that you can adjust `-T 10` if you have fewer/larger CPU cores.
 
