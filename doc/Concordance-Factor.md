@@ -148,3 +148,52 @@ If you have a single concatenated alignment with a partition file that defines l
 
 Note that you can adjust `-T 10` if you have fewer/larger CPU cores.
 
+
+Calculating concordance factors on very large datasets
+-----------------------------------------------------
+
+If you have a dataset which takes a long time to analyse on your machine, there are a couple of adjustments you can make to the above process to keep things as fast as possible. 
+
+Specifically, because the new version of the site concordance factor uses likelihoods, we can make sure to re-use as much information as possible. 
+
+So, suppose that in the first step of the analysis you ran the command as above:
+
+	iqtree2 -s ALN_FILE -p PARTITION_FILE --prefix concat -B 1000 -T AUTO
+
+That command will have figured out for you the model of evolution, all the parameters of that model, and the branch lengths of the corresponding tree. We can re-use all of that useful information in the final step. It just takes a little bit of effort to find what you need.
+
+First we'll get the model parameters we need. If you take a look at the end of the `concat.log` file you will find a little section called `ALISIM COMMAND`. You can find it like this on mac/linux (or just open the `concat.log` file in a text editor and scroll to the end:
+
+	tail concat.log
+
+You should see something like this:
+
+	ALISIM COMMAND
+	--------------
+	--alisim simulated_MSA -t concat.treefile -m "Q.plant+I{0.177536}+R8{0.147295,0.0935335,0.114418,0.190578,0.108376,0.538389,0.113777,0.804005,0.0898871,1.30004,0.137297,1.95653,0.0958285,3.48597,0.0155849,6.09904}" --length 432014
+
+That bit after the `-m` (not including the `--length` stuff) is what you need to specify the Maximum Likelihood model parameters when you run the `--scfl` command. Note that it's vital that you use the model from YOUR analysis, not the example provided here. (That's why this bit is an a longer and more detailed section at the end of the tutorial.)
+
+We also want to re-use the branch lengths we calculated in step 1, and we can do that easily with the `-blfix` option.
+
+To put all of that together, we are going to change the final command of the tutorial above, where we calculate the site concordance factors from one of these two options (depending on if your alignments are per-locus, or all concatentated):
+
+
+	# simple command, with per-locus alignments
+	# compute site concordance factor using likelihood with v2.2.2
+	iqtree2 -te concat.treefile -p ALN_DIR --scfl 100 --prefix concord2
+
+	# simple command, with concatenated alignments
+	# compute site concordance factor using likelihood with v2.2.2
+	iqtree2 -te concat.treefile -s ALN_FILE --scfl 100 --prefix concord2
+
+To one of these, where we add the two extra commands via `-blfix` and `-m`, to fix all the parameters we already calculated. A reminder - do NOT use the exact commandlines above. You have to replace everything after the `-m` with what you found in your own `concat.log` file:
+
+	# faster analysis, using pre-computed model parameters, with per-locus alignments
+	# compute site concordance factor using likelihood with v2.2.2
+	iqtree2 -te concat.treefile -p ALN_DIR --scfl 100 --prefix concord2 -blfix -m "Q.plant+I{0.177536}+R8{0.147295,0.0935335,0.114418,0.190578,0.108376,0.538389,0.113777,0.804005,0.0898871,1.30004,0.137297,1.95653,0.0958285,3.48597,0.0155849,6.09904}"
+
+	# faster analysis, using pre-computed model parameters, with concatenated alignments
+	# compute site concordance factor using likelihood with v2.2.2
+	iqtree2 -te concat.treefile -s ALN_FILE --scfl 100 --prefix concord2 -blfix -m "Q.plant+I{0.177536}+R8{0.147295,0.0935335,0.114418,0.190578,0.108376,0.538389,0.113777,0.804005,0.0898871,1.30004,0.137297,1.95653,0.0958285,3.48597,0.0155849,6.09904}"
+
