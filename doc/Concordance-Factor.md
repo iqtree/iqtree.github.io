@@ -197,3 +197,4 @@ To one of these, where we add the two extra commands via `-blfix` and `-m`, to f
 	# compute site concordance factor using likelihood with v2.2.2
 	iqtree2 -te concat.treefile -s ALN_FILE --scfl 100 --prefix concord2 -blfix -m "Q.plant+I{0.177536}+R8{0.147295,0.0935335,0.114418,0.190578,0.108376,0.538389,0.113777,0.804005,0.0898871,1.30004,0.137297,1.95653,0.0958285,3.48597,0.0155849,6.09904}"
 
+All this does is tells IQ-TREE to use the model parameters and branch lengths you already calculated. On large datasets this can save a lot of analysis time.
