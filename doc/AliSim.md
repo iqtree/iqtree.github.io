@@ -563,6 +563,7 @@ This example simulates a new alignment under the Juke-Cantor model from the inpu
 
 - The performance of AliSim-OpenMP-IM is affected by a memory limit factor (=0.2 (by default) and can be set in the range (0 to 1]): a small factor will potentially increase the runtime; a large factor will increase the memory consumption. To specify this memory limit factor, one can use `--mem-limit <FACTOR>` option.
 - In AliSim-OpenMP-EM algorithm, the simulated sequences will be written in an arbitrary order to the alignment (which is not a matter in most phylogenetic software). However, if users want to maintain the sequence order (based on the preorder traversal of the tree), they can use `--keep-seq-order` option, but it will sacrifice a certain runtime.
+- If using AliSim-OpenMP-EM algorithm, one can use `--no-merge` to skip the concatenation step to save the runtime. Note that, when simulating an alignment of length L with K threads, AliSim will output the alignment as K sub-alignment files of L/K sites. 
 
 To simulate many alignments, one can use the MPI version of AliSim:
 
@@ -609,6 +610,7 @@ All the options available in AliSim are shown below:
 | `--openmp-alg <ALG>` | Specify the multithreading algorithm (`IM` or `EM` for AliSim-OpenMP-IM or AliSim-OpenMP-EM, respectively).<br>*Default: IM*|
 | `--mem-limit <FACTOR>` | Specify the memory limit factor for the AliSim-OpenMP-IM algorithm: 0 < `<FACTOR>` <=  1.<br>*Default: 0.2*|
 | `--keep-seq-order` | Output the sequences (simulated by the AliSim-OpenMP-EM algorithm) following the visiting order of tips (based on the preorder traversal).|
+| `--no-merge` | Skip the concatenation step in the AliSim-OpenMP-EM algorithm, output alignment in multiple sub-alignment files.|
 | `--single-output` | Output all alignments into a single file. |
 | `--write-all` | Enable outputting internal sequences. |
 | `-seed <NUMBER>` | Specify the seed number. <br>*Default: the clock of the PC*. <br>Be careful! To make the AliSim reproducible, users should specify the seed number. |
