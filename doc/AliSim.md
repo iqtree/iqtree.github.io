@@ -546,10 +546,35 @@ Functional divergence model
 
 AliSim supports the [FunDi model](https://doi.org/10.1093/bioinformatics/btr470), which allows a proportion number of sites (`<RHO>`) in the sequence of each taxon in a given list (`<TAXON_1>,...,<TAXON_N>`), could be permuted with each other. To simulate new alignments under the FunDi model, one could use `--fundi` option:
 
-      iqtree2 --alisim alignment_fundi -t tree.nwk -m JC --fundi A,C,0.1
+    iqtree2 --alisim alignment_fundi -t tree.nwk -m JC --fundi A,C,0.1
 
-This example simulates a new alignment under the Juke-Cantor model from the input tree `tree.nwk` with the default sequence length of 1000 sites. Since the user specifies FunDi model with `<RHO>` = 0.1, thus, in the sequences of Taxon A, and C, 100 random sites (sequence length * `<RHO>` = 1,000 * 0.1) are permuted with each other.
+This example simulates a new alignment under the Juke-Cantor model from the input tree `tree.nwk` with the default sequence length of 1,000 sites. Since the user specifies FunDi model with `<RHO>` = 0.1, thus, in the sequences of Taxon A, and C, 100 random sites (sequence length * `<RHO>` = 1,000 * 0.1) are permuted with each other.
 
+
+Parallel sequence simulations
+----------------------------
+AliSim supports simulating many large alignments in parallel with OpenMP and/or MPI. To simulate large alignment(s) with OpenMP, one can use `-nt` option to specify the number of threads:
+
+    iqtree2 --alisim large_alignment -t tree.nwk --length 1000000 -m JC -nt 4
+      
+This example simulates a new alignment under the Juke-Cantor model from the input tree `tree.nwk` with the sequence length of 1,000,0000 sites using 4 threads. For multithreading simulations, AliSim supports two algorithms AliSim-OpenMP-IM (default) and AliSim-OpenMP-EM (please see [AliSim-HPC](#)). Users can specify `--openmp-alg EM` if they want to employ the AliSim-OpenMP-EM algorithm.
+
+**NOTES**: 
+
+- The performance of AliSim-OpenMP-IM is affected by a memory limit factor (=0.2 (by default) and can be set in the range (0 to 1]): a small factor will potentially increase the runtime; a large factor will increase the memory consumption. To specify this memory limit factor, one can use `--mem-limit <FACTOR>` option.
+- If using AliSim-OpenMP-EM algorithm, the simulated sequences will be written in an arbitrary order to the alignment (which is not a matter in most phylogenetic software). However, if users want to maintain the sequence order (based on the preorder traversal of the tree), they can use `--keep-seq-order` option, but it will sacrifice a certain runtime.
+
+To simulate many alignments, one can use the MPI version of AliSim:
+
+    mpirun -np 10 iqtree2-mpi --alisim many_alignment -t tree.nwk -m JC --num-alignments 100
+    
+This example uses 10 MPI processes to simulate 100 alignments under the Juke-Cantor model from the input tree `tree.nwk` with the default sequence length of 1,000 sites. Note that AliSim-MPI version can run on a distributed-memory system with many nodes and multiple CPUs per node. To maximize the parallel efficiency, we recommend users specify the number of processes as a divisor of the number of alignments.
+
+To simulate many large alignments, users can employ both MPI and OpenMP on a high-performance computing system:
+
+    mpirun -np 10 --map-by node:PE=4 --rank-by core iqtree2-mpi --alisim many_large_alignment -t tree.nwk --length 1000000 -m JC --num-alignments 100 -nt 4
+   
+This example uses 10 MPI processes, each having 4 threads (i.e. a total of 40 threads will be run) to simulate 100 large alignments under the Juke-Cantor model from the input tree `tree.nwk` with the sequence length of 1,000,000 sites. 
 
 Command reference
 -----------------
@@ -580,6 +605,10 @@ All the options available in AliSim are shown below:
 | `--no-copy-gaps` | Disable copying gaps from the input alignment.|
 | `--site-freq <OPTION>` | Specify the option (`MEAN` *(default)*, or `SAMPLING`, or `MODEL`) to mimic the site-frequencies for mixture models from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)). |
 | `--site-rate <OPTION>` | Specify the option (`MEAN` *(default)*, or `SAMPLING`, or `MODEL`) to mimic the discrete rate heterogeneity from the input alignment (see [Mimicking a real alignment](#mimicking-a-real-alignment)).|
+| `-nt <NUM_THREADS>` | Specify the number of threads for simulating large alignment(s) with OpenMP.|
+| `--openmp-alg <ALG>` | Specify the multithreading algorithm (`IM` or `EM` for AliSim-OpenMP-IM or AliSim-OpenMP-EM, respectively).<br>*Default: IM*|
+| `--mem-limit <FACTOR>` | Specify the memory limit factor for the AliSim-OpenMP-IM algorithm: 0 < `<FACTOR>` <=  1.<br>*Default: 0.2*|
+| `--keep-seq-order` | Output the sequences (simulated by the AliSim-OpenMP-EM algorithm) following the visiting order of tips (based on the preorder traversal)|
 | `--single-output` | Output all alignments into a single file. |
 | `--write-all` | Enable outputting internal sequences. |
 | `-seed <NUMBER>` | Specify the seed number. <br>*Default: the clock of the PC*. <br>Be careful! To make the AliSim reproducible, users should specify the seed number. |
