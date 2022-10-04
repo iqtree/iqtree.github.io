@@ -59,7 +59,7 @@ With a few tricks from bash, we can easily generalise the above into a method of
 
 Here's the script, with comments to help decipher it. I'm not all that flash with bash, so there are likely simpler ways to do some of this. But it will get the job done.
 
-```
+```{bash}
 #!/bin/bash
 
 # set the lengths as a list
@@ -92,7 +92,16 @@ echo ${to_concat[*]}
 AMAS.py concat -i ${to_concat[*]} -f phylip -u phylip -t $N"_concat.phy" -d dna
 ```
 
-A few thoughts on that approach. First, it should work fine for reasonably sized sets of alignments (e.g. up to a thousand or so). But if you're looking to do millions then you'll probably want to do a few things much smarter, like parallelise the simulation steps, and maybe think about better ways to concatenate them (I have no idea how well AMAS scales to really huge jobs). Second, there's no guarantee that the trees will differ - these are random trees after all. So if you really care then it would be a good idea to double check that first, e.g. by simulating a set of trees that meet your requirments before running IQ-TREE at all (you can pass individual trees to AliSim no problem). Third, if AliSim fails to simulate an alignment for whatever reason, this script will fall over, because AMAS will be trying to concatenate an alignment that doesn't exist. So if you want to use this for research you should certainly add in some basic error checking, e.g. that the length of the final alignment matches the sum of the lengths of the inputs, that each file exists before you try to concatenate it, etc.
+A few thoughts on that approach. 
+
+First, it should work fine for reasonably sized sets of alignments (e.g. up to a thousand or so). But if you're looking to do millions then you'll probably want to do a few things much smarter, like parallelise the simulation steps, and maybe think about better ways to concatenate them (I have no idea how well AMAS scales to really huge jobs). 
+
+Second, there's no guarantee that the trees will differ - these are random trees after all. So if you really care then it would be a good idea to double check that first, e.g. by simulating a set of trees that meet your requirments before running IQ-TREE at all (you can pass individual trees to AliSim no problem). 
+
+Third, if AliSim fails to simulate an alignment for whatever reason, this script will fall over, because AMAS will be trying to concatenate an alignment that doesn't exist. So if you want to use this for research you should certainly add in some basic error checking, e.g. that the length of the final alignment matches the sum of the lengths of the inputs, that each file exists before you try to concatenate it, etc.
+
+Finally, it may be useful to make the script take some parameters as input - like the list of lengths, or the model, number of taxa, or whatever. All this is pretty simple, and you can find out how with google and Stack Overflow!
 
 Still, I hope this is helpful and gives you some ways of getting started.
+
 
