@@ -325,7 +325,7 @@ The above command specifies the `GTR+FO+G` model for the first topology (inside 
 
 There is a flexibility to set substitution model or RHAS model *linked* or *unlinked* separately. The followings show some examples of different situations, assuming there are 2 topologies in the newick file:
 
-| Model | Linked subst. rate? | Linked freqs? | Linked RHAS? | Description |
+| Model | Linked subst. rate? | Linked freqs? | Linked RHAS? | Model option | Description |
 | ----- | ------ | ----- | ---- | ------------ | ----------- |
 | 1     | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x: | `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | Each tree has its own GTR model, DNA freqs and gamma model |
 | 2     | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_check_mark: | `"TMIX{GTR+FO,GTR+FO}+G+T"` | Each tree has its own GTR model and DNA freqs but share the same gamma model |
@@ -340,7 +340,7 @@ There is a flexibility to set substitution model or RHAS model *linked* or *unli
 **Branch-length-restricted MAST model**
 
 One can use `+TR` instead of `+T` to represent the branch-length-Restricted MAST model.
-In this model, the length of branch `x` of a tree `{T<sub>i</sub>}` is constrained to be equal to the length of branch `y` of a tree `T<sub>j</sub>` if the branches `x` and `y` split the trees `T<sub>i</sub>` and `T<sub>j</sub>` into the same two sets of taxa. For example:
+In this model, the length of branch `x` of a tree <code>T<sub>i</sub>}</code> is constrained to be equal to the length of branch `y` of a tree `T<sub>j</sub>` if the branches `x` and `y` split the trees `T<sub>i</sub>` and `T<sub>j</sub>` into the same two sets of taxa. For example:
 
 	iqtree -s data.fst -m "GTR+FO+G+TR" -te trees.nwk
 
