@@ -321,45 +321,22 @@ If one would like to have *unlink* components across the trees (for example, eac
 
     iqtree -s data.fst -m "TMIX{GTR+FO+G,JC+FO+R3,HKY+FO+I}+T" -te trees.nwk
 
-The above command specifies the `GTR+FO+G` model for the first topology (inside the newick file), the `JC+FO+R3` model for the second topology, and the `HKY+FO+I` model for the third topology. These components are given in curly brackets and separated with a comma. Note that The number of components has to match with the number of topologies in the newick file.
+The above command specifies the `GTR+FO+G` model for the first topology (inside the newick file), the `JC+FO+R3` model for the second topology, and the `HKY+FO+I` model for the third topology. These components are given in curly brackets and separated with a comma. Note that the number of components has to match with the number of topologies in the newick file.
 
 There is a flexibility to set substitution model or RHAS model *linked* or *unlinked* separately. The followings show some examples of different situations, assuming there are 2 topologies in the newick file:
 
-**Unlinked substitution rate, unlinked DNA/AA frequencies, unlinked RHAS**
 
-	iqtree -s data.fst -m "TMIX{GTR+FO+G,GTR+FO+G}+T" -te trees.nwk	
-
-In the above command, each tree has its own GTR model, DNA frequencies and gamma model.
-
-**Unlinked substitution rate, unlinked DNA/AA frequencies, linked RHAS**
-
-	iqtree -s data.fst -m "TMIX{GTR+FO,GTR+FO}+G+T" -te trees.nwk
-
-In the above command, each tree has its own GTR model and DNA frequencies, but share the same gamma model.
-
-**Unlinked substitution rate, linked DNA/AA frequencies, unlinked RHAS**
-
-	iqtree -s data.fst -m "TMIX{GTR+F+G,GTR+F+G}+T" -te trees.nwk
-
-In the above command, each tree has its own GTR model and gamma model, but assign both DNA frequencies to the empirical frequencies (i.e frequencies of A's, C's, G's and T's inside the alignment).
-
-**Unlinked substitution rate, linked DNA/AA frequencies, linked RHAS**
-
-	iqtree -s data.fst -m "TMIX{GTR+F,GTR+F}+G+T" -te trees.nwk
-
-In the above command, each tree has its own GTR model, but share the same gamma model and assign both DNA frequencies to the empirical frequencies (i.e frequencies of A's, C's, G's and T's inside the alignment).
-
-**Linked substitution rate, linked DNA/AA frequencies, unlinked RHAS**
-
-	iqtree -s data.fst -m "GTR+FO+TMIX{G,G}+T" -te trees.nwk
-
-In the above command, each tree has its own gamma model, but both trees share the same GTR model and DNA frequencies.
-
-**Linked substitution rate, linked DNA/AA frequencies, linked RHAS**
-
-	iqtree -s data.fst -m "GTR+FO+G+T" -te trees.nwk
-
-In the above command, both trees share the same GTR model, DNA frequencies and gamma model.
+|       | Linked?               |              |             |
+|       | --------------------- |              |             |
+| Model | Subst. | Freq. | RHAS | Model option | Description |
+|       | rate   |       |      |              |             |
+| ----- | ------ | ----- | ---- | ------------ | ----------- |
+| 1     | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x: | `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | Each tree has its own GTR model, DNA freqs and gamma model |
+| 2     | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_check_mark: | `"TMIX{GTR+FO,GTR+FO}+G+T"` | Each tree has its own GTR model and DNA freqs but share the same gamma model |
+| 3     | :heavy_multiplication_x: | :heavy_check_mark: | :heavy_multiplication_x: | `"TMIX{GTR+F+G,GTR+F+G}+T"` | Each tree has its own GTR model and gamma model, but assign both DNA freqs to the freqs of A's, C's, G's and T's inside the alignment |
+| 4     | :heavy_multiplication_x: | :heavy_check_mark: | :heavy_check_mark: | `"TMIX{GTR+F,GTR+F}+G+T"` | Each tree has its own GTR model, but share the same gamma model and assign both DNA freqs to the freqs of A's, C's, G's and T's inside the alignment |
+| 5     | :heavy_check_mark: | :heavy_check_mark: | :heavy_multiplication_x: | `"GTR+FO+TMIX{G,G}+T"` | Each tree has its own gamma model, but both trees share the same GTR model and DNA freqs |
+| 6     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `"GTR+FO+G+T"` | Both trees share the same GTR model, DNA freqs and gamma model |
 
 
 ### More usages
@@ -367,7 +344,7 @@ In the above command, both trees share the same GTR model, DNA frequencies and g
 **Branch-length-restricted MAST model**
 
 One can use `+TR` instead of `+T` to represent the branch-length-Restricted MAST model.
-In this model, the length of branch `x` of a tree `$T_i$` is constrained to be equal to the length of branch `y` of a tree `$T_j$` if the branches `x` and `y` split the trees `$T_i$` and `$T_j$` into the same two sets of taxa. For example:
+In this model, the length of branch `x` of a tree `T<sub>i</sub>` is constrained to be equal to the length of branch `y` of a tree `T<sub>j</sub>` if the branches `x` and `y` split the trees `T<sub>i</sub>` and `T<sub>j</sub>` into the same two sets of taxa. For example:
 
 	iqtree -s data.fst -m "GTR+FO+G+TR" -te trees.nwk
 
@@ -375,7 +352,7 @@ In the above command, all trees share the same GTR model, DNA frequencies and ga
 
 **Weight-constrained MAST model**
 
-One can define a constraint array following `+T` to restrict the tree weights. The constraint array `C` can be defined as `[$c_1$,$c_2$,...,$c_n$]` where `$c_i$` can be any string. The weight of tree `$T_i$` and that of tree `$T_j$` are restricted the same value if `$c_i=c_j$`. For example, assuming there are 3 topologies in the newick file:
+One can define a constraint array following `+T` to restrict the tree weights. The constraint array `C` can be defined as `[c<sub>1</sub>,c<sub>2</sub>,...,c<sub>n</sub>]` where `c<sub>i</sub>` can be any string. The weight of tree `T<sub>i</sub>` and that of tree `T<sub>j</sub>` are restricted the same value if `c<sub>i</sub>=c<sub>j</sub>`. For example, assuming there are 3 topologies in the newick file:
 
 	iqtree -s data.fst -m "GTR+FO+G+T[x,x,y]" -te trees.nwk
 
