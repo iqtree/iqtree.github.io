@@ -18,6 +18,8 @@ sections:
   url: site-specific-frequency-models
 - name: Heterotachy models
   url: heterotachy-models
+- name: Multitree models
+  url: multitree-models
 ---
 
 Complex models
@@ -283,7 +285,7 @@ The `-wspm` option will generate a `.siteprob` output file. This contains the pr
     iqtree -s data.fst -m GTR+FO*H4 -wspm
 
     
-Multitrees models
+Multitree models
 ------------------
 <div class="hline"></div>
 
