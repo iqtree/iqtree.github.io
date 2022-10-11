@@ -45,6 +45,7 @@ Quick Navigation
 
 - [Partition models](Complex-Models#partition-models)
 - [Mixture models](Complex-Models#mixture-models)
+- [Multitree models](Complex-Models#multitree-models)
 
 [**Polymorphism-aware Models**](Polymorphism-Aware-Models)
 
