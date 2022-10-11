@@ -335,7 +335,7 @@ There is a flexibility to set substitution model, frequencies or RHAS model *lin
 | 5 | `"GTR+FO+TMIX{G,G}+T"` | :heavy_check_mark:&nbsp;subst<br>:heavy_check_mark:&nbsp;freq<br>:heavy_multiplication_x:&nbsp;RHAS | Each tree has its own gamma model, but all share the same GTR model and DNA frequencies |
 | 6 | `"GTR+FO+G+T"` | :heavy_check_mark:&nbsp;subst<br>:heavy_check_mark:&nbsp;freq<br>:heavy_check_mark:&nbsp;RHAS | All trees share the same GTR model, DNA frequencies and gamma model |
 
-Note: subst - substitution model; freq - DNA/AA frequency array; RHAS - rate-heterogeneity-across-site model
+Note: subst - substitution model; freq - DNA/AA frequency array; RHAS - rate heterogeneity across site model
 
 ### More usages
 
