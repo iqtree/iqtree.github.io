@@ -350,7 +350,7 @@ In the above command, all trees share the same GTR model, DNA frequencies and ga
 
 **Weight-constrained MAST model**
 
-One can define a constraint array following `+T` to restrict the tree weights. The constraint array `C` can be defined as <code>[c<sub>1</sub>,c<sub>2</sub>,...,c<sub>n</sub>]</code> where <code>c<sub>i</sub></code> can be any string. The weight of tree <code>T<sub>i</sub></code> and that of tree <code>T<sub>j</sub></code> are restricted the same value if <code>c<sub>i</sub>=c<sub>j</sub></code>. For example, assuming there are 3 topologies in the newick file:
+One can define a constraint array following `+T` to restrict the tree weights. The constraint array can be defined as <code>[s<sub>1</sub>,s<sub>2</sub>,...,s<sub>n</sub>]</code> where <code>s<sub>i</sub></code> can be any string. The weight of tree <code>T<sub>i</sub></code> and that of tree <code>T<sub>j</sub></code> are restricted the same value if <code>s<sub>i</sub> = s<sub>j</sub></code>. For example, assuming there are 3 topologies in the newick file:
 
 	iqtree -s data.fst -m "GTR+FO+G+T[x,x,y]" -te trees.nwk
 
