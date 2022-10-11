@@ -335,14 +335,14 @@ There is a flexibility to set substitution model or RHAS model *linked* or *unli
 | `"GTR+FO+G+T"` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | Both trees share the same GTR model, DNA freqs and gamma model |
 
 
-| Model option | Are parameters linked? | Description |
+| Model option | Linked parameters | Description |
 | ------ | ------------ | ----------- |
-| `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | <ul><li>[ ] subst. rate</li><li>[ ] freqs</li><li>[ ] RHAS</li></ul> | Each tree has its own GTR model, DNA freqs and gamma model |
-| `"TMIX{GTR+FO,GTR+FO}+G+T"` | <ul><li>[ ] subst. rate</li><li>[ ] freqs</li><li>[x] RHAS</li></ul> | Each tree has its own GTR model and DNA freqs but share the same gamma model |
-| `"TMIX{GTR+F+G,GTR+F+G}+T"` | <ul><li>[ ] subst. rate</li><li>&#9745; freqs</li><li>[ ] RHAS</li></ul> | Each tree has its own GTR model and gamma model, but assign both DNA freqs to the freqs of A's, C's, G's and T's inside the alignment |
-| `"TMIX{GTR+F,GTR+F}+G+T"` | <ul><li>[ ] subst. rate</li><li>[x] freqs</li><li>[x] RHAS</li></ul> | Each tree has its own GTR model, but share the same gamma model and assign both DNA freqs to the freqs of A's, C's, G's and T's inside the alignment |
-| `"GTR+FO+TMIX{G,G}+T"` | <ul><li>[x] subst. rate</li><li>[x] freqs</li><li>[ ] RHAS</li></ul> | Each tree has its own gamma model, but both trees share the same GTR model and DNA freqs |
-| `"GTR+FO+G+T"` | <ul><li>[x] subst. rate</li><li>[x] freqs</li><li>[x] RHAS</li></ul> | Both trees share the same GTR model, DNA freqs and gamma model |
+| `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | <ul><li>:heavy_multiplication_x: subst rate</li><li>:heavy_multiplication_x: freqs</li><li>:heavy_multiplication_x: RHAS</li></ul> | Each tree has its own GTR model, DNA freqs and gamma model |
+| `"TMIX{GTR+FO,GTR+FO}+G+T"` | <ul><li>:heavy_multiplication_x: subst rate</li><li>:heavy_multiplication_x: freqs</li><li>:heavy_check_mark: RHAS</li></ul> | Each tree has its own GTR model and DNA freqs but share the same gamma model |
+| `"TMIX{GTR+F+G,GTR+F+G}+T"` | <ul><li>:heavy_multiplication_x: subst rate</li><li>:heavy_check_mark: freqs</li><li>:heavy_multiplication_x: RHAS</li></ul> | Each tree has its own GTR model and gamma model, but assign both DNA freqs to the freqs of A's, C's, G's and T's inside the alignment |
+| `"TMIX{GTR+F,GTR+F}+G+T"` | <ul><li>:heavy_multiplication_x: subst rate</li><li>:heavy_check_mark: freqs</li><li:heavy_check_mark: RHAS</li></ul> | Each tree has its own GTR model, but share the same gamma model and assign both DNA freqs to the freqs of A's, C's, G's and T's inside the alignment |
+| `"GTR+FO+TMIX{G,G}+T"` | <ul><li>:heavy_check_mark: subst rate</li><li>:heavy_check_mark: freqs</li><li>:heavy_multiplication_x: RHAS</li></ul> | Each tree has its own gamma model, but both trees share the same GTR model and DNA freqs |
+| `"GTR+FO+G+T"` | <ul><li>:heavy_check_mark: subst rate</l0i><li>:heavy_check_mark: freqs</li><li>:heavy_check_mark: RHAS</li></ul> | Both trees share the same GTR model, DNA freqs and gamma model |
 
 
 ### More usages
