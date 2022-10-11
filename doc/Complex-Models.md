@@ -328,7 +328,7 @@ There is a flexibility to set substitution model, frequencies or RHAS model *lin
 
 | | Model option | Linked parameters | Description |
 | -- | ------ | ------------ | ----------- |
-| 1 | `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | :heavy_multiplication_x: substitution<br>:heavy_multiplication_x: frequencies<br>:heavy_multiplication_x: RHAS | Each tree has its own GTR model, DNA frequencies and gamma model |
+| 1 | `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | substitution:heavy_multiplication_x:<br>frequencies:heavy_multiplication_x:<br>RHAS:heavy_multiplication_x: | Each tree has its own GTR model, DNA frequencies and gamma model |
 | 2 | `"TMIX{GTR+FO,GTR+FO}+G+T"` | :heavy_multiplication_x: substitution<br>:heavy_multiplication_x: frequencies<br>:heavy_check_mark: RHAS | Each tree has its own GTR model and DNA frequencies but all share the same gamma model |
 | 3 | `"TMIX{GTR+F+G,GTR+F+G}+T"` | :heavy_multiplication_x: substitution<br>:heavy_check_mark: frequencies<br>:heavy_multiplication_x: RHAS | Each tree has its own GTR model and gamma model, but all DNA frequencies are set to the frequencies of A,C,G,T in the alignment |
 | 4 | `"TMIX{GTR+F,GTR+F}+G+T"` | :heavy_multiplication_x: substitution<br>:heavy_check_mark: frequencies<br>:heavy_check_mark: RHAS | Each tree has its own GTR model, but all share the same gamma model and all DNA frequencies are set to the frequencies of A,C,G,T in the alignment |
