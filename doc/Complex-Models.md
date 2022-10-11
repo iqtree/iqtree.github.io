@@ -325,14 +325,14 @@ The above command specifies the `GTR+FO+G` model for the first topology (inside 
 
 There is a flexibility to set substitution model or RHAS model *linked* or *unlinked* separately. The followings show some examples of different situations, assuming there are 2 topologies in the newick file:
 
-| Model | Linked subst. rate? | Linked freqs? | Linked RHAS? | Model option | Description |
-| ----- | ------ | ----- | ---- | ------------ | ----------- |
-| 1     | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x: | `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | Each tree has its own GTR model, DNA freqs and gamma model |
-| 2     | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_check_mark: | `"TMIX{GTR+FO,GTR+FO}+G+T"` | Each tree has its own GTR model and DNA freqs but share the same gamma model |
-| 3     | :heavy_multiplication_x: | :heavy_check_mark: | :heavy_multiplication_x: | `"TMIX{GTR+F+G,GTR+F+G}+T"` | Each tree has its own GTR model and gamma model, but assign both DNA freqs to the freqs of A's, C's, G's and T's inside the alignment |
-| 4     | :heavy_multiplication_x: | :heavy_check_mark: | :heavy_check_mark: | `"TMIX{GTR+F,GTR+F}+G+T"` | Each tree has its own GTR model, but share the same gamma model and assign both DNA freqs to the freqs of A's, C's, G's and T's inside the alignment |
-| 5     | :heavy_check_mark: | :heavy_check_mark: | :heavy_multiplication_x: | `"GTR+FO+TMIX{G,G}+T"` | Each tree has its own gamma model, but both trees share the same GTR model and DNA freqs |
-| 6     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `"GTR+FO+G+T"` | Both trees share the same GTR model, DNA freqs and gamma model |
+| Model option | Linked subst. rate? | Linked freqs? | Linked RHAS? | Description |
+| ------ | ----- | ---- | ------------ | ----------- |
+| `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x: | Each tree has its own GTR model, DNA freqs and gamma model |
+| `"TMIX{GTR+FO,GTR+FO}+G+T"` | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_check_mark: | Each tree has its own GTR model and DNA freqs but share the same gamma model |
+| `"TMIX{GTR+F+G,GTR+F+G}+T"` | :heavy_multiplication_x: | :heavy_check_mark: | :heavy_multiplication_x: | Each tree has its own GTR model and gamma model, but assign both DNA freqs to the freqs of A's, C's, G's and T's inside the alignment |
+| `"TMIX{GTR+F,GTR+F}+G+T"` | :heavy_multiplication_x: | :heavy_check_mark: | :heavy_check_mark: | Each tree has its own GTR model, but share the same gamma model and assign both DNA freqs to the freqs of A's, C's, G's and T's inside the alignment |
+| `"GTR+FO+TMIX{G,G}+T"` | :heavy_check_mark: | :heavy_check_mark: | :heavy_multiplication_x: | Each tree has its own gamma model, but both trees share the same GTR model and DNA freqs |
+| `"GTR+FO+G+T"` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | Both trees share the same GTR model, DNA freqs and gamma model |
 
 
 ### More usages
@@ -340,7 +340,7 @@ There is a flexibility to set substitution model or RHAS model *linked* or *unli
 **Branch-length-restricted MAST model**
 
 One can use `+TR` instead of `+T` to represent the branch-length-Restricted MAST model.
-In this model, the length of branch `x` of a tree <code>T<sub>i</sub>}</code> is constrained to be equal to the length of branch `y` of a tree `T<sub>j</sub>` if the branches `x` and `y` split the trees `T<sub>i</sub>` and `T<sub>j</sub>` into the same two sets of taxa. For example:
+In this model, the length of branch `x` of a tree <code>T<sub>i</sub></code> is constrained to be equal to the length of branch `y` of a tree <code>T<sub>j</sub></code> if the branches `x` and `y` split the trees <code>T<sub>i</sub></code> and <code>T<sub>j</sub></code> into the same two sets of taxa. For example:
 
 	iqtree -s data.fst -m "GTR+FO+G+TR" -te trees.nwk
 
@@ -348,7 +348,7 @@ In the above command, all trees share the same GTR model, DNA frequencies and ga
 
 **Weight-constrained MAST model**
 
-One can define a constraint array following `+T` to restrict the tree weights. The constraint array `C` can be defined as `[c<sub>1</sub>,c<sub>2</sub>,...,c<sub>n</sub>]` where `c<sub>i</sub>` can be any string. The weight of tree `T<sub>i</sub>` and that of tree `T<sub>j</sub>` are restricted the same value if `c<sub>i</sub>=c<sub>j</sub>`. For example, assuming there are 3 topologies in the newick file:
+One can define a constraint array following `+T` to restrict the tree weights. The constraint array `C` can be defined as <code>[c<sub>1</sub>,c<sub>2</sub>,...,c<sub>n</sub>]</code> where <code>c<sub>i</sub></code> can be any string. The weight of tree <code>T<sub>i</sub></code> and that of tree <code>T<sub>j</sub></code> are restricted the same value if <code>c<sub>i</sub>=c<sub>j</sub></code>. For example, assuming there are 3 topologies in the newick file:
 
 	iqtree -s data.fst -m "GTR+FO+G+T[x,x,y]" -te trees.nwk
 
