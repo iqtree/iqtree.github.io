@@ -1,1 +1,1 @@
-Copyright (c) 2010-2016 [IQ-TREE development team](http://www.iqtree.org).
+Copyright (c) 2010-2022 [IQ-TREE development team](http://www.iqtree.org).
