@@ -311,7 +311,7 @@ An example of the newick file with 3 topologies:
 
 	((A,B),(C,D));
 	((A,C),(B,D));
-	((A,D),(B,C));
+	((A,D),(B,C));&#x2718;
 
 You can also link the GTR parameters, frequency array, and the rate-heterogeneity-across-site (RHAS) model across all the trees by including the frequency and the RHAS model in the model option (`-m`). For example:
 
@@ -328,12 +328,12 @@ There is a flexibility to set substitution model, frequencies or RHAS model *lin
 
 | | Model option | Linked parameters | Description |
 | -- | ------ | ------------ | ----------- |
-| 1 | `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | :heavy_multiplication_x:&nbsp;subst<br>:heavy_multiplication_x:&nbsp;freq<br>:heavy_multiplication_x:&nbsp;RHAS | Each tree has its own GTR model, DNA frequencies and gamma model |
-| 2 | `"TMIX{GTR+FO,GTR+FO}+G+T"` | :heavy_multiplication_x:&nbsp;subst<br>:heavy_multiplication_x:&nbsp;freq<br>:heavy_check_mark:&nbsp;RHAS | Each tree has its own GTR model and DNA frequencies but all share the same gamma model |
-| 3 | `"TMIX{GTR+F+G,GTR+F+G}+T"` | :heavy_multiplication_x:&nbsp;subst<br>:heavy_check_mark:&nbsp;freq<br>:heavy_multiplication_x:&nbsp;RHAS | Each tree has its own GTR model and gamma model, but all DNA frequencies are set to the frequencies of A,C,G,T in the alignment |
-| 4 | `"TMIX{GTR+F,GTR+F}+G+T"` | :heavy_multiplication_x:&nbsp;subst<br>:heavy_check_mark:&nbsp;freq<br>:heavy_check_mark:&nbsp;RHAS | Each tree has its own GTR model, but all share the same gamma model and all DNA frequencies are set to the frequencies of A,C,G,T in the alignment |
-| 5 | `"GTR+FO+TMIX{G,G}+T"` | :heavy_check_mark:&nbsp;subst<br>:heavy_check_mark:&nbsp;freq<br>:heavy_multiplication_x:&nbsp;RHAS | Each tree has its own gamma model, but all share the same GTR model and DNA frequencies |
-| 6 | `"GTR+FO+G+T"` | :heavy_check_mark:&nbsp;subst<br>:heavy_check_mark:&nbsp;freq<br>:heavy_check_mark:&nbsp;RHAS | All trees share the same GTR model, DNA frequencies and gamma model |
+| 1 | `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | &#x2718;&nbsp;subst<br>&#x2718;&nbsp;freq<br>&#x2718;&nbsp;RHAS | Each tree has its own GTR model, DNA frequencies and gamma model |
+| 2 | `"TMIX{GTR+FO,GTR+FO}+G+T"` | &#x2718;&nbsp;subst<br>&#x2718;&nbsp;freq<br>&#x2714;&nbsp;RHAS | Each tree has its own GTR model and DNA frequencies but all share the same gamma model |
+| 3 | `"TMIX{GTR+F+G,GTR+F+G}+T"` | &#x2718;&nbsp;subst<br>&#x2714;&nbsp;freq<br>&#x2718;&nbsp;RHAS | Each tree has its own GTR model and gamma model, but all DNA frequencies are set to the frequencies of A,C,G,T in the alignment |
+| 4 | `"TMIX{GTR+F,GTR+F}+G+T"` | &#x2718;&nbsp;subst<br>&#x2714;&nbsp;freq<br>&#x2714;&nbsp;RHAS | Each tree has its own GTR model, but all share the same gamma model and all DNA frequencies are set to the frequencies of A,C,G,T in the alignment |
+| 5 | `"GTR+FO+TMIX{G,G}+T"` | &#x2714;&nbsp;subst<br>&#x2714;&nbsp;freq<br>&#x2718;&nbsp;RHAS | Each tree has its own gamma model, but all share the same GTR model and DNA frequencies |
+| 6 | `"GTR+FO+G+T"` | &#x2714;&nbsp;subst<br>&#x2714;&nbsp;freq<br>&#x2714;&nbsp;RHAS | All trees share the same GTR model, DNA frequencies and gamma model |
 
 Note: subst - substitution model; freq - DNA/AA frequency array; RHAS - rate heterogeneity across site model
 
@@ -356,6 +356,14 @@ One can define a constraint array following `+T` to restrict the tree weights. T
 
 In the above command, all trees share the same GTR model, DNA frequencies and gamma model, and the weight of the first tree is constrained as the same as the weight of the second tree.
 
+### More explanations on the results
+
+| File | Description |
+| ---- | ----------- |
+| `.treefile` | By using the MAST model, IQ-TREE will report multiple trees inside this file. Their topologies should match the input topologies in the newick file. |
+| `.iqtree` | All the estimated model parameters for each tree and the tree weights (i.e. proportions of the sites belonging to the tree and the model) are shown in this file. The order of the tree weights follows the order of the input topologies in the newick file. |
+
+Please note that, in any MAST model with more than one substitution model (i.e. models 1 - 5 in the above table), the weights can only be interpreted as the linked weight of the model and the tree. So the weights are not unique to the tree. In other words, IQ-TREE will report the weights pertaining only to the trees for the model #6 in the above table.
 
 [Brown et al. (2013)]: https://doi.org/10.1098/rspb.2013.1755
 [Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112
