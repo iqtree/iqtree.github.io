@@ -311,7 +311,7 @@ An example of the newick file with 3 topologies:
 
 	((A,B),(C,D));
 	((A,C),(B,D));
-	((A,D),(B,C));&#x2718;
+	((A,D),(B,C));
 
 You can also link the GTR parameters, frequency array, and the rate-heterogeneity-across-site (RHAS) model across all the trees by including the frequency and the RHAS model in the model option (`-m`). For example:
 
