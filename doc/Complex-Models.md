@@ -303,7 +303,7 @@ Meanwhile the manuscript is under review. If you use this model in a publication
 
 Make sure that you have IQ-TREE [version 2.2.0.7.mix](https://github.com/iqtree/iqtree2/releases/tag/v2.2.0.7.mx). The MAST model is executed by adding `+T` to the model option (`-m`) and providing a newick file with multiple trees by the option (`-te`). For example if one wants to fit a MAST model with 3 topologies contained in `trees.nwk` in conjunction with the `GTR` model to sequences in `data.fst`, one would use the following command:
 
-    iqtree -s data.fst -m "GTR+T" -te trees.nwk
+    iqtree2 -s data.fst -m "GTR+T" -te trees.nwk
 
 The above command will *link* GTR parameters across all the trees. That means all trees will have the same GTR model. IQ-TREE will check the number of trees inside the newick file, and then estimate the model parameters and the weights of each tree: the proportion of sites belonging to each tree.
 
@@ -315,11 +315,11 @@ An example of the newick file with 3 topologies:
 
 You can also link the GTR parameters, frequency array, and the rate-heterogeneity-across-site (RHAS) model across all the trees by including the frequency and the RHAS model in the model option (`-m`). For example:
 
-    iqtree -s data.fst -m "GTR+FO+G+T" -te trees.nwk
+    iqtree2 -s data.fst -m "GTR+FO+G+T" -te trees.nwk
     
 If one would like to have *unlink* components across the trees (for example, each tree has its own substitution model, frequency array and RHAS model), one can specify the unlinked components via the `TMIX` keyword in the model string. For example:
 
-    iqtree -s data.fst -m "TMIX{GTR+FO+G,JC+FO+R3,HKY+FO+I}+T" -te trees.nwk
+    iqtree2 -s data.fst -m "TMIX{GTR+FO+G,JC+FO+R3,HKY+FO+I}+T" -te trees.nwk
 
 The above command specifies the `GTR+FO+G` model for the first topology (inside the newick file), the `JC+FO+R3` model for the second topology, and the `HKY+FO+I` model for the third topology. These components are given in curly brackets and separated with a comma. Note that the number of components has to match with the number of topologies in the newick file.
 
@@ -344,7 +344,7 @@ Note: subst - substitution model; freq - DNA/AA frequency array; RHAS - rate het
 One can use `+TR` instead of `+T` to represent the branch-length-Restricted MAST model.
 In this model, the length of branch `x` of a tree <code>T<sub>i</sub></code> is constrained to be equal to the length of branch `y` of a tree <code>T<sub>j</sub></code> if the branches `x` and `y` split the trees <code>T<sub>i</sub></code> and <code>T<sub>j</sub></code> into the same two sets of taxa. For example:
 
-	iqtree -s data.fst -m "GTR+FO+G+TR" -te trees.nwk
+	iqtree2 -s data.fst -m "GTR+FO+G+TR" -te trees.nwk
 
 In the above command, all trees share the same GTR model, DNA frequencies and gamma model, and the lengths of the branches across the trees which split the taxa set into the same partition are restricted the same.
 
@@ -352,7 +352,7 @@ In the above command, all trees share the same GTR model, DNA frequencies and ga
 
 One can define a constraint array following `+T` to restrict the tree weights. The constraint array can be defined as <code>[s<sub>1</sub>,s<sub>2</sub>,...,s<sub>n</sub>]</code> where <code>s<sub>i</sub></code> can be any string. The weight of tree <code>T<sub>i</sub></code> and that of tree <code>T<sub>j</sub></code> are restricted the same value if <code>s<sub>i</sub> = s<sub>j</sub></code>. For example, assuming there are 3 topologies in the newick file:
 
-	iqtree -s data.fst -m "GTR+FO+G+T[x,x,y]" -te trees.nwk
+	iqtree2 -s data.fst -m "GTR+FO+G+T[x,x,y]" -te trees.nwk
 
 In the above command, all trees share the same GTR model, DNA frequencies and gamma model, and the weight of the first tree is constrained as the same as the weight of the second tree.
 
