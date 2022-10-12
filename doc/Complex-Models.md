@@ -326,7 +326,7 @@ The above command specifies the `GTR+FO+G` model for the first topology (inside 
 There is a flexibility to set substitution model, frequencies or RHAS model *linked* or *unlinked* separately. The followings show some examples of different situations, assuming there are 2 topologies in the newick file:
 
 
-| | Model option | Linked parameters | Description |
+| Model | Model option | Linked parameters | Description |
 | -- | ------ | ------------ | ----------- |
 | 1 | `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | &#x2718;&nbsp;subst<br>&#x2718;&nbsp;freq<br>&#x2718;&nbsp;RHAS | Each tree has its own GTR model, DNA frequencies and gamma model |
 | 2 | `"TMIX{GTR+FO,GTR+FO}+G+T"` | &#x2718;&nbsp;subst<br>&#x2718;&nbsp;freq<br>&#x2714;&nbsp;RHAS | Each tree has its own GTR model and DNA frequencies but all share the same gamma model |
@@ -363,7 +363,7 @@ In the above command, all trees share the same GTR model, DNA frequencies and ga
 | `.treefile` | By using the MAST model, IQ-TREE will report multiple trees inside this file. Their topologies should match the input topologies in the newick file. |
 | `.iqtree` | All the estimated model parameters for each tree and the tree weights (i.e. proportions of the sites belonging to the tree and the model) are shown in this file. The order of the tree weights follows the order of the input topologies in the newick file. |
 
-Please note that, in any MAST model with more than one substitution model (i.e. models 1 - 5 in the above table), the weights can only be interpreted as the linked weight of the model and the tree. So the weights are not unique to the tree. In other words, IQ-TREE will report the weights pertaining only to the trees for the model #6 in the above table.
+Please note that, in any MAST model with more than one substitution model (i.e. models 1 - 5 in the previous table), the weights can only be interpreted as the linked weight of the model and the tree. So the weights are not unique to the tree. In other words, IQ-TREE will report the weights pertaining only to the trees for the model 6 in the previous table.
 
 [Brown et al. (2013)]: https://doi.org/10.1098/rspb.2013.1755
 [Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112
