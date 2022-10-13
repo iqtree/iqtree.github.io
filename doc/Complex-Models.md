@@ -326,7 +326,7 @@ The above command specifies the `GTR+FO+G` model for the first topology (inside 
 There is a flexibility to set substitution model, frequencies or RHAS model *linked* or *unlinked* separately. The followings show some examples of different situations, assuming there are 2 topologies in the newick file:
 
 
-| Model | Model option | Linked parameters | Description |
+| | Model option | Linked parameters | Description |
 | -- | ------ | ------------ | ----------- |
 | 1 | `"TMIX{GTR+FO+G,GTR+FO+G}+T"` | &#x2718;&nbsp;subst<br>&#x2718;&nbsp;freq<br>&#x2718;&nbsp;RHAS | Each tree has its own GTR model, DNA frequencies and gamma model |
 | 2 | `"TMIX{GTR+FO,GTR+FO}+G+T"` | &#x2718;&nbsp;subst<br>&#x2718;&nbsp;freq<br>&#x2714;&nbsp;RHAS | Each tree has its own GTR model and DNA frequencies but all share the same gamma model |
