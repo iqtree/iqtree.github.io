@@ -324,9 +324,9 @@ You can also link the GTR parameters, frequency array, and the rate-heterogeneit
     
 If one would like to have *unlink* components across the trees (for example, each tree has its own substitution model, frequency array and RHAS model), one can specify the unlinked components via the `TMIX` keyword in the model string. For example:
 
-    iqtree2 -s data.fst -m "TMIX{GTR+FO+G,JC+FO+R3,HKY+FO+I}+T" -te trees.nwk
+    iqtree2 -s data.fst -m "TMIX{GTR+FO+G,F81+FO+R3,HKY+FO+I}+T" -te trees.nwk
 
-The above command specifies the `GTR+FO+G` model for the first topology (inside the newick file), the `JC+FO+R3` model for the second topology, and the `HKY+FO+I` model for the third topology. These components are given in curly brackets and separated with a comma. Note that the number of components has to match with the number of topologies in the newick file.
+The above command specifies the `GTR+FO+G` model for the first topology (inside the newick file), the `F81+FO+R3` model for the second topology, and the `HKY+FO+I` model for the third topology. These components are given in curly brackets and separated with a comma. Note that the number of components has to match with the number of topologies in the newick file.
 
 There is a flexibility to set substitution model, frequencies or RHAS model *linked* or *unlinked* separately. The followings show some examples of different situations, assuming there are 2 topologies in the newick file:
 
