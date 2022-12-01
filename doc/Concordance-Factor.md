@@ -32,9 +32,11 @@ If you use this feature please cite:
 
 __Minh B.Q., Hahn M.W., Lanfear R.__ (2020) New methods to calculate concordance factors for phylogenomic datasets. _Molecular Biology and Evolution_, 37:2727–2733. <https://doi.org/10.1093/molbev/msaa106>
 
->**NOTE**: For this feature please use IQ-TREE version 2!
+For sCF we recommend that you use the more accurate version of sCF based on maximum likelihood (`--scfl` option instead of `--scf`) that is available since IQ-TREE v2.2.2. In that case please cite:
 
-> See [very nice tips on how to use and interpret concordance factors](http://www.robertlanfear.com/blog/files/concordance_factors.html) by Rob Lanfear.
+__Mo Y.K., Lanfear R., Hahn M.W., and Minh B.Q.__ (2022) Updated site concordance factors minimize effects of homoplasy and taxon sampling. _Bioinformatics_, in press. <https://doi.org/10.1093/bioinformatics/btac741>
+
+> HINT: See [very nice tips on how to use and interpret concordance factors](http://www.robertlanfear.com/blog/files/concordance_factors.html) written by Rob Lanfear.
 {: .tip}
 
 Inferring species tree
@@ -85,7 +87,7 @@ If you omit `--prefix`, all output files will be written to `concat.treefile.*`.
 Site concordance factor (sCF)
 -----------------------------
 
->**NOTE**: From version 2.2.2 IQ-TREE provides a new and more accurate sCF based on likelihood via `--scfl` option (whereas the original sCF is based on parsimony). It is described in the paper "Updated site concordance factors minimize effects of homoplasy and taxon sampling" by Yu et al. [preprint available soon]. You can download [this version from here](https://github.com/iqtree/iqtree2/releases/tag/v2.2.2).
+>**NOTE**: From version 2.2.2 IQ-TREE provides a new and more accurate sCF based on likelihood via `--scfl` option ([Mo et al., 2022]), whereas the original sCF is based on parsimony. You can download [this version from here](https://github.com/iqtree/iqtree2/releases/tag/v2.2.2).
  
 Given the species tree `concat.treefile` and the alignment, you can calculate sCF for each branch of the species tree as the fraction of decisive alignment sites supporting that branch:
 
@@ -96,7 +98,7 @@ Given the species tree `concat.treefile` and the alignment, you can calculate sC
 	
 `--scf` specifies the number of quartets (randomly sampled around each internal branch) for computing sCF. We recommend at least 100 quartets for stable sCF values. Note that running this command several times may lead to slightly different sCF due to randomness. To make it reproducible, you need to use `-seed` option to provide a random number generator seed.
 
-Note that the `--scfl` option from IQ-TREE v2.2.1 will invoke model selection with ModelFinder and also tree search if you don't specify a tree with `-te` option. If you already have a best-fit model from a previous run, you can ignore ModelFinder (and thus speed up this run) by provide the model with `-m` option.
+Note that the `--scfl` option from IQ-TREE v2.2.2 will invoke model selection with ModelFinder and also tree search if you don't specify a tree with `-te` option. If you already have a best-fit model from a previous run, you can ignore ModelFinder (and thus speed up this run) by provide the model with `-m` option.
 
 Instead of `-s`, you can alternatively provide a directory or a partition file. IQ-Tree then computes sCF for the concatenated alignment:
 
@@ -198,3 +200,5 @@ To one of these, where we add the two extra commands via `-blfix` and `-m`, to f
 	iqtree2 -te concat.treefile -s ALN_FILE --scfl 100 --prefix concord2 -blfix -m "Q.plant+I{0.177536}+R8{0.147295,0.0935335,0.114418,0.190578,0.108376,0.538389,0.113777,0.804005,0.0898871,1.30004,0.137297,1.95653,0.0958285,3.48597,0.0155849,6.09904}"
 
 All this does is tells IQ-TREE to use the model parameters and branch lengths you already calculated. On large datasets this can save a lot of analysis time.
+
+[Mo et al., 2022]: https://doi.org/10.1093/bioinformatics/btac741
