@@ -104,6 +104,14 @@ members:
       - title: envelope #use for email address
         url: https://www.researchgate.net/profile/Diep_Hoang6
 
+  - name: Piyumal Demotte
+    position:
+    text: Inferring time tree.
+    img: piyumal.jpg
+    gscholar:
+    social:
+      - title: envelope #use for email address
+        url: https://bqminh.github.io/people/demotte/
 
 ##### Past members ####
 past_members:
