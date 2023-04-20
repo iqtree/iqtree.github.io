@@ -17,7 +17,7 @@ members:
     position:
     text: ModelFinder 2
     img: thomas.jpg
-    gscholar: 
+    gscholar: https://scholar.google.com/citations?user=zZT0fKUAAAAJ
     social:
       - title: home #use for email address
         url: https://bqminh.github.io/people/wong/
@@ -53,7 +53,7 @@ members:
     position:
     text: sequence simulations.
     img: nhan.jpg
-    gscholar: 
+    gscholar: https://scholar.google.com/citations?user=0SPfIN4AAAAJ
     social:
       - title: home #use for email address
         url: https://bqminh.github.io/people/ly/
@@ -99,7 +99,7 @@ members:
     position:
     text: Improving ultrafast bootstrap.
     img: diep.jpg
-    gscholar:
+    gscholar: https://scholar.google.com/citations?user=dZyMRT0AAAAJ
     social:
       - title: envelope #use for email address
         url: https://www.researchgate.net/profile/Diep_Hoang6
@@ -108,7 +108,7 @@ members:
     position:
     text: Inferring time tree.
     img: piyumal.jpg
-    gscholar:
+    gscholar: https://scholar.google.com/citations?user=CATSwmgAAAAJ
     social:
       - title: envelope #use for email address
         url: https://bqminh.github.io/people/demotte/
