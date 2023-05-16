@@ -189,9 +189,9 @@ Users can use `--length` option to change the length of the root sequence:
 
     iqtree2 --alisim alignment_5000 -m JC -t tree.nwk --length 5000
 
-will simulate an alignment with 5000 sites. Users could also output the alignment in FASTA format with `-af` option:
+will simulate an alignment with 5000 sites. Users could also output the alignment in FASTA format with `--out-format` option:
 
-    iqtree2 --alisim alignment -m JC -t tree.nwk -af fasta
+    iqtree2 --alisim alignment -m JC -t tree.nwk --out-format fasta
     
 will print the alignment to `alignment.fa` file.
 
@@ -617,7 +617,7 @@ All the options available in AliSim are shown below:
 | `--write-all` | Enable outputting internal sequences. |
 | `-seed <NUMBER>` | Specify the seed number. <br>*Default: the clock of the PC*. <br>Be careful! To make the AliSim reproducible, users should specify the seed number. |
 | `-gz` | Enable output compression. It may take a longer running time.<br>*By default, output compression is disabled*. |
-| `-af <FORMAT>` | Set the output format (`fasta`, `phy`, or `maple` for FASTA, PHYLIP, or [MAPLE](https://www.nature.com/articles/s41588-023-01368-0) format, respectively).<br>*Default: phy* |
+| `--out-format <FORMAT>` | Set the output format (`fasta`, `phy`, or `maple` for FASTA, PHYLIP, or [MAPLE](https://www.nature.com/articles/s41588-023-01368-0) format, respectively).<br>*Default: phy* |
 
 
 [Gaston et al. 2011]: https://doi.org/10.1093/bioinformatics/btr470
