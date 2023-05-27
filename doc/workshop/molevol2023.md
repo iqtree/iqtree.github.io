@@ -20,9 +20,10 @@ IQ-TREE 2 Tutorial (Workshop on Molecular Evolution, Woods Hole 2023)
 - [3) Applying partition model](#3-applying-partition-model)
 - [4) Choosing the best partitioning scheme](#4-choosing-the-best-partitioning-scheme)
 - [5) Tree topology tests](#5-tree-topology-tests)
-- [6) Identifying most influential genes](#6-identifying-most-influential-genes)
-- [7) Removing influential genes](#7-removing-influential-genes)
-- [8) Concordance factors](#8-concordance-factors)
+- [6) Tree mixture model](#6-tree-mixture-model) (NEW THIS YEAR)
+- [7) Identifying most influential genes](#7-identifying-most-influential-genes)
+- [8) Removing influential genes](#8-removing-influential-genes)
+- [9) Concordance factors](#9-concordance-factors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -239,7 +240,7 @@ Options explained:
 > * Can you reject this tree according to the Shimodaira Hasegawa test, assuming a 
 >   p-value cutoff of 0.05?
 >  
-> * Can you reject this tree according to the Approximately Unbiased test, 
+> * Can you reject this tree according to the Approximately Unbiased test,
 >   assuming a p-value cutoff of 0.05?
 {: .tip}
 
@@ -266,7 +267,7 @@ under that tree. Unlike partition models, tree mixture model does not need to a
 partition file, and thus is actually simpler to run.
 
 Your task is now to apply the MAST model to the Turtle data. To use this model, you
-will need to use the option `-m` to specify the model, and adding a "+T" in the model name.
+will need to use the option `-m` to specify the model, and adding "+T" to the model name.
 For example, you can use `-m GTR+T`, but this model is a bit too simple. The better way is
 to look again the best model found in step 2, and add "+T" to that model name in a run
 like this:
@@ -283,10 +284,12 @@ Options explained:
 * `--prefix` is the option you know already to avoid overwriting output files from 
   previous run.
 
-> **QUESTIONS**
+> **QUESTIONS:**
 > 
 > * Look at `turle.mix.iqtree` for the line printing the tree weights. Which tree 
->   has a higher weight?
+>   has a higher weight? Is it the tree having higher likelihood found in step 5?
+>
+{: .tip}
 
 7) Identifying most influential genes
 -------------------------------------
@@ -348,10 +351,11 @@ You will need to figure out a command line to run IQ-TREE yourself here.
 > * Does this tree agree with the published tree ([Chiari et al., 2012])?
 {: .tip}
 
-9) Concordance factors (optional)
+9) Concordance factors
 ----------------------
 <div class="hline"></div>
 
+> This task is optional
 
 So far we have assumed that gene trees and species tree are equal. However, it is 
 well known that gene trees might be discordant. Therefore, we now want to quantify 
