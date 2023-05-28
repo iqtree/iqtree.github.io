@@ -93,21 +93,48 @@ This folder contains two input files (which can also be downloaded from the foll
  
 You can now start to reconstruct a maximum-likelihood (ML) tree
 for the Turtle data set (assuming that you are in the same folder where the alignment is 
-stored):
+stored).
 
-    iqtree2 -s turtle.fa -B 1000 -T AUTO
+> What is the command line to run `iqtree2` that takes 
+> the alignment file `turtle.fa` as input, performs 1000 ultrafast bootstrap replicates,
+> and automatically determines the best number of cores to use (`-T AUTO` option)?
+
+<script type="text/javascript">
+function myFunction(buttonid, commandid) {
+  var x = document.getElementById(commandid);
+  var y = document.getElementById(buttonid);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.innerText = "Hide the command line";
+  } else {
+    x.style.display = "none";
+    y.innerText = "Show me the command line";
+  }
+}
+</script>
+
+<button type="button" class="btn btn-primary" id="button2" onclick="myFunction('button2','command2')">
+Show me the command line</button>
+<div id="command2" style="display: none; border:1px solid gray;">
+
+<pre><code>iqtree2 -s turtle.fa -B 1000 -T AUTO</code></pre>
 
 Options explained:
-
-* `-s turtle.fa` to specify the input alignment as `turtle.fa`.
-* `-B 1000` to specify 1000 replicates for the ultrafast bootstrap ([Minh et al., 2013]).
-* `-T AUTO` to determine the best number of CPU cores to speed up the analysis.
+<ul>
+<li>`-s turtle.fa` to specify the input alignment as `turtle.fa`.</li>
+<li>`-B 1000` to specify 1000 replicates for the ultrafast bootstrap ([Minh et al., 2013]).</li>
+<li>`-T AUTO` to determine the best number of CPU cores to speed up the analysis.</li>
+</ul>
 
 This simple command will perform three important steps in one go:
 
-1. Select best-fit model using ModelFinder ([Kalyaanamoorthy et al., 2017]).
-2. Reconstruct the ML tree using the IQ-TREE search algorithm ([Nguyen et al., 2015]).
-3. Assess branch supports using the ultrafast bootstrap - UFBoot ([Minh et al., 2013]).
+<ol>
+<li>Select best-fit model using ModelFinder ([Kalyaanamoorthy et al., 2017]).</li>
+<li>Reconstruct the ML tree using the IQ-TREE search algorithm ([Nguyen et al., 2015]).</li>
+<li>Assess branch supports using the ultrafast bootstrap - UFBoot ([Minh et al., 2013]).</li>
+</ol>
+
+</div>
 
 Once the run is done, IQ-TREE will write several output files including:
 
@@ -142,16 +169,29 @@ Once the run is done, IQ-TREE will write several output files including:
 
 
 We now perform a partition model analysis ([Chernomor et al., 2016]), where one allows 
-each partition to have its own model:
+each partition to have its own model. 
 
-	iqtree2 -s turtle.fa -p turtle.nex -B 1000 -T AUTO
+> What is the command line to run `iqtree2` that takes `turtle.fa` as input alignment,
+> `turtle.nex` as input partition file, performs 1000 ultrafast bootstrap replicates,
+> and automatically determines the best number of cores?
+
+<button type="button" class="btn btn-primary" id="button3" onclick="myFunction('button3','command3')">
+Show me the command line</button>
+<div id="command3" style="display: none; border:1px solid gray;">
+
+<pre><code>iqtree2 -s turtle.fa -p turtle.nex -B 1000 -T AUTO</code></pre>
 
 Options explained:
 
-* `-p turtle.nex` to specify an *edge-linked proportional* partition model 
+<ul>
+<li>`-p turtle.nex` to specify an *edge-linked proportional* partition model 
   ([Chernomor et al., 2016]). That means, there is one set of branch lengths. 
   But each partition can have proportionally shorter or longer tree length, 
-  representing slow or fast evolutionary rate, respectively.
+  representing slow or fast evolutionary rate, respectively.</li>
+</ul>
+
+</div>
+
 
 > **QUESTIONS:**
 > 
@@ -172,17 +212,32 @@ Options explained:
 <div class="hline"></div>
 
 We now perform the PartitionFinder algorithm ([Lanfear et al., 2012]) that tries to 
-merge partitions to reduce the potential over-parameterization:
+merge partitions to reduce the potential over-parameterization.
 
-	iqtree2 -s turtle.fa -p turtle.nex -B 1000 -T AUTO -m MFP+MERGE -rcluster 10 --prefix turtle.merge
+> What is the command line to run `iqtree2` that takes `turtle.fa` as input alignment,
+> `turtle.nex` as input partition file, performs 1000 ultrafast bootstrap replicates,
+> merges the partitions with relaxed clustering algorithm,
+> and automatically determines the best number of cores?
+
+* Please use `--prefix turtle.merge` to set the prefix for all output files as `turtle.merge.*`. 
+  This is to avoid overwriting outputs from the previous analysis.
+
+
+<button type="button" class="btn btn-primary" id="button4" onclick="myFunction('button4','command4')">
+Show me the command line</button>
+<div id="command4" style="display: none; border:1px solid gray;">
+
+<pre><code>iqtree2 -s turtle.fa -p turtle.nex -B 1000 -T AUTO -m MFP+MERGE -rcluster 10 --prefix turtle.merge</code></pre>
 
 Options explained:
 
-* `-m MFP+MERGE` to perform PartitionFinder followed by tree reconstruction.
-* `-rcluster 10` to reduce computations by only examining the top 10% partitioning 
-  schemes using the *relaxed clustering algorithm* ([Lanfear et al., 2014]).
-* `--prefix turtle.merge` to set the prefix for all output files as `turtle.merge.*`. 
-  This is to avoid overwriting outputs from the previous analysis.
+<ul>
+<li>`-m MFP+MERGE` to perform PartitionFinder followed by tree reconstruction.</li>
+<li>`-rcluster 10` to reduce computations by only examining the top 10% partitioning 
+  schemes using the *relaxed clustering algorithm* ([Lanfear et al., 2014]). </li>
+</ul>
+
+</div>
 
 > **QUESTIONS:**
 > 
@@ -217,20 +272,34 @@ For Windows:
 
 	type turtle.fa.treefile turtle.nex.treefile >turtle.trees
 	
-Now pass this file into IQ-TREE via `-z` option:
+Now you can pass this file into IQ-TREE via `-z` option.
 
-	iqtree2 -s turtle.fa -p turtle.merge.best_scheme.nex -z turtle.trees -zb 10000 -au -n 0 --prefix turtle.test
+> What is the command line to run `iqtree2` that takes `turtle.fa` as input alignment,
+> `turtle.merge.best_scheme.nex` as input partition file, 
+> `turtle.trees` as input trees file, performs topology tests with 10,000 replicates,
+> performs the approximately unbiased (AU) test,
+> and no tree search to save time?
+
+* Please use `--prefix turtle.test` to set the prefix for all output files as `turtle.test.*`. 
+
+<button type="button" class="btn btn-primary" id="button5" onclick="myFunction('button5','command5')">
+Show me the command line</button>
+<div id="command5" style="display: none; border:1px solid gray;">
+
+<pre><code>iqtree2 -s turtle.fa -p turtle.merge.best_scheme.nex -z turtle.trees -zb 10000 -au -n 0 --prefix turtle.test</code></pre>
 
 Options explained:
 
-* `-p turtle.merge.best_scheme.nex` to provide the best partitioning scheme found 
-  previously to avoid running ModelFinder again.
-* `-z turtle.trees` to input a set of trees.
-* `-zb 10000` to specify 10000 replicates for *approximate* boostrap for tree topology tests.
-* `-au` is to perform the Approximately Unbiased test. 
-* `-n 0` to avoid tree search and just perform tree topology tests.
-* `--prefix turtle.test` to set the prefix for all output files as `turtle.test.*`. 
+<ul>
+<li>`-p turtle.merge.best_scheme.nex` to provide the best partitioning scheme found 
+  previously to avoid running ModelFinder again.</li>
+<li>`-z turtle.trees` to input a set of trees.</li>
+<li>`-zb 10000` to specify 10000 replicates for *approximate* boostrap for tree topology tests.</li>
+<li>`-au` is to perform the Approximately Unbiased test.</li>
+<li>`-n 0` to avoid tree search and just perform tree topology tests.</li>
+</ul>
 
+</div>
 
 > **QUESTIONS:**
 > 
@@ -269,26 +338,37 @@ partition file, and thus is actually simpler to run.
 Your task is now to apply the MAST model to the Turtle data. To use this model, you
 will need to use the option `-m` to specify the model, and adding "+T" to the model name.
 For example, you can use `-m GTR+T`, but this model is a bit too simple. The better way is
-to look again the best model found in step 2, and add "+T" to that model name in a run
-like this:
+to look again the best model found in step 2, and add "+T" to that model name.
 
-	iqtree2 -s turtle.fa -m BEST_MODEL_NAME+T -te turtle.trees --prefix turtle.mix
+> What is the command line to run `iqtree2` that takes `turtle.fa` as input alignment,
+> `turtle.trees` as input trees file, applies the MAST model combined with the best
+> model found in step 2?
+
+* Please use `--prefix turtle.mix` to set the prefix for all output files as `turtle.mix.*`. 
+
+<button type="button" class="btn btn-primary" id="button6" onclick="myFunction('button6','command6')">
+Show me the command line</button>
+<div id="command6" style="display: none; border:1px solid gray;">
+
+<pre><code>iqtree2 -s turtle.fa -m BEST_MODEL_NAME+T -te turtle.trees --prefix turtle.mix
+</code></pre>
 	
 Options explained:	
-	
-* `BEST_MODEL_NAME` is the model string found in step 2, that you need to replace with for
-  this command line to run properly.
-* `-te` is to specify a file containing the set of trees for the MAST model. 
+
+<ul>	
+<li>`BEST_MODEL_NAME` is the model string found in step 2, that you need to replace with for
+  this command line to run properly.</li>
+<li>`-te` is to specify a file containing the set of trees for the MAST model. 
   Currently, MAST only accepts a set of fixed tree topologies provided by the users. 
-  It doesn't yet have the ability to automatically find the optimal trees.
-* `--prefix` is the option you know already to avoid overwriting output files from 
-  previous run.
+  It doesn't yet have the ability to automatically find the optimal trees.</li>
+</ul>
+
+</div>
 
 > **QUESTIONS:**
 > 
-> * Look at `turle.mix.iqtree` for the line printing the tree weights. Which tree 
->   has a higher weight? Is it the tree having higher likelihood found in step 5?
->
+> * Look at `turle.mix.iqtree` for the line printing the tree weights. Which tree has a higher weight? 
+> * Is it the tree having higher likelihood found in step 5?
 {: .tip}
 
 7) Identifying most influential genes
