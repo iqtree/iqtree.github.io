@@ -552,6 +552,31 @@ AliSim supports the [FunDi model](https://doi.org/10.1093/bioinformatics/btr470)
 
 This example simulates a new alignment under the Juke-Cantor model from the input tree `tree.nwk` with the default sequence length of 1,000 sites. Since the user specifies FunDi model with `<RHO>` = 0.1, thus, in the sequences of Taxon A, and C, 100 random sites (sequence length * `<RHO>` = 1,000 * 0.1) are permuted with each other.
 
+Pre-define mutations
+----------------------------
+AliSim allows users to pre-define mutations that occur at some specific branches along the tree. To do so, one needs to: (1) specify an ancestral sequence at the root of the tree by adding `--root-seq <ALN_FILE>,<SEQ_NAME>` to the execution command; then (2) specify those mutations in the input tree file.
+
+Assuming that we have an alignment named `root_aln.phy`, which contains the ancestral sequence `S1` as in the following. (Note that `S2` and `S3` are not mandatorily presented).
+
+    3 40
+    S1        GTTTACTGGCAGATTTTCATAGATGATGTAAGATCAGACA
+    S2        GTTTACAGGCATATTTTCATAGATGATGTAAGTTCAGACA
+    S3        GTTTACTGGCAGATTTTCATTGATGATGTAAGATCAGACA
+
+One can specify a list of pre-defined mutations that occur at each branch using `[&mutations={<list_of_mutations>}]` in the tree file. Mutations in the list are separated by a forward slash `/` as in the following tree file `tree_mutations.nwk`.
+
+    (T1:0.2,(T2[&mutations={C25A/A5G}]:0.3,T4:0.1)I1[&mutations={C39G/T17A/G25C}]:0.4,T3:0.1);
+    
+In the above tree, we specify:
+
+* Three mutations `C39G` (i.e., C is substituted by G at site 39), `T17A`, and `G25C` occur along the branch connecting the root node and the internal node `I1`;
+* Two mutations `C25A` and `A5G` occur along the branch connecting the internal node `I1` and taxon `T2`.
+
+The following command
+    
+    iqtree2 --alisim example_mutations --root-seq root_aln.phy,S1  -t tree_mutations.nwk -m JC
+    
+ will simulate an alignment with 4 sequences (each with 40 sites) under the [Jukes-Cantor model](http://doi.org/10.1016/B978-1-4832-3211-9.50009-7) where sites 5, 17, 25, and 39 are substituted according to the above pre-defined mutations.     
 
 Parallel sequence simulations
 ----------------------------
@@ -564,7 +589,7 @@ This example simulates a new alignment under the Juke-Cantor model from the inpu
 **NOTES**: 
 
 - The performance of AliSim-OpenMP-IM is affected by a memory limit factor (=0.2 (by default) and can be set in the range (0 to 1]): a small factor will potentially increase the runtime; a large factor will increase the memory consumption. To specify this memory limit factor, one can use `--mem-limit <FACTOR>` option.
-- In AliSim-OpenMP-EM algorithm, the simulated sequences will be written in an arbitrary order to the alignment (which is not a matter in most phylogenetic software). However, if users want to maintain the sequence order (based on the preorder traversal of the tree), they can use `--keep-seq-order` option, but it will sacrifice a certain runtime.
+- If using AliSim-OpenMP-EM algorithm, the simulated sequences will be written in an arbitrary order to the alignment (which is not a matter in most phylogenetic software). However, if users want to maintain the sequence order (based on the preorder traversal of the tree), they can use `--keep-seq-order` option, but it will sacrifice a certain runtime.
 - If using AliSim-OpenMP-EM algorithm, one can use `--no-merge` to skip the concatenation step to save the runtime. Note that, when simulating an alignment of length L with K threads, AliSim will output the alignment as K sub-alignment files of L/K sites. 
 
 To simulate many alignments, one can use the MPI version of AliSim:
@@ -578,6 +603,8 @@ To simulate many large alignments, users can employ both MPI and OpenMP on a hig
     mpirun -np 10 --map-by node:PE=4 --rank-by core iqtree2-mpi --alisim many_large_alignment -t tree.nwk --length 1000000 -m JC --num-alignments 100 -nt 4
    
 This example uses 10 MPI processes, each having 4 threads (i.e. a total of 40 threads will be run) to simulate 100 large alignments under the Juke-Cantor model from the input tree `tree.nwk` with the sequence length of 1,000,000 sites. 
+
+**NOTES**: Our MPI implementation supports Indels as the original version of AliSim, while the OpenMP algorithm does not. Therefore, one can employ only MPI to simulate many alignments with Indels.  
 
 Command reference
 -----------------
