@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Command Reference"
-author: Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, Minh Bui
-date:    2021-05-19
+author: Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Trongnhan Uit
+date:    2023-06-02
 docid: 19
 icon: book
 doctype: manual
@@ -491,7 +491,7 @@ This feature is newly introduced in version 1.6. You can combine this feature wi
 |----------|------------------------------------------------------------------------------|
 | `-asr`     | Write ancestral sequences (by empirical Bayesian method) for all nodes of the tree to `.state` file. |
 | `-asr-min` | Specify the minimum threshold of posterior probability to determine the best ancestral state. Default: observed state frequency from the alignment. | 
-| `-te`      | Specify a user-defined tree to determine ancestral sequences along this tree. You can assign each node of this tree with a node name, and IQ-TREE will report the ancestral sequences of the corresponding nodes. If nodes do not have names, IQ-TREE will automatically assign node namdes as Node1, Node2, etc. |
+| `-te`      | Specify a user-defined tree to determine ancestral sequences along this tree. You can assign each node of this tree with a node name, and IQ-TREE will report the ancestral sequences of the corresponding nodes. If nodes do not have names, IQ-TREE will automatically assign node names as Node1, Node2, etc. |
 
 ### Example usages:
 
