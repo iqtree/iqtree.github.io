@@ -567,9 +567,9 @@ Assuming that we have an alignment named `root_aln.phy`, which contains the ance
     S2        GTTTACAGGCATATTTTCATAGATGATGTAAGTTCAGACA
     S3        GTTTACTGGCAGATTTTCATTGATGATGTAAGATCAGACA
 
-One can specify a list of pre-defined mutations that occur at each branch using `[&mutations={<list_of_mutations>}]` in the tree file. Mutations in the list are separated by a forward slash `/` as in the following tree file `tree_mutations.nwk`.
+One can specify a list of pre-defined mutations that occur at each branch using `[&mutations={<list_of_mutations>}]` in the tree file. Mutations in the list are separated by a comma `,` as in the following tree file `tree_mutations.nwk`.
 
-    (T1:0.2,(T2[&mutations={C25A/A5G}]:0.3,T4:0.1)I1[&mutations={C39G/T17A/G25C}]:0.4,T3:0.1);
+    (T1:0.2,(T2[&mutations={C25A,A5G}]:0.3,T4:0.1)I1[&mutations={C39G,T17A,G25C}]:0.4,T3:0.1);
     
 In the above tree, we specify:
 
