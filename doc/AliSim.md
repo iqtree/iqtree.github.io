@@ -38,6 +38,10 @@ sections:
   url: heterotachy-ghost-model
 - name: Functional divergence model
   url: functional-divergence-model
+- name: Pre-define mutations
+  url: pre-define-mutations
+- name: Parallel sequence simulations
+  url: parallel-sequence-simulations
 - name: Command reference
   url: command-reference  
 ---
