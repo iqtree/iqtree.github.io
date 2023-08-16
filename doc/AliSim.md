@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Simulating sequence alignments"
 author: Minh Bui, Trongnhan Uit
-date:    2023-08-10
+date:    2023-08-12
 docid: 9
 icon: info-circle
 doctype: tutorial
@@ -38,6 +38,10 @@ sections:
   url: heterotachy-ghost-model
 - name: Functional divergence model
   url: functional-divergence-model
+- name: Pre-define mutations
+  url: pre-define-mutations
+- name: Parallel sequence simulations
+  url: parallel-sequence-simulations
 - name: Command reference
   url: command-reference  
 ---
@@ -554,29 +558,39 @@ This example simulates a new alignment under the Juke-Cantor model from the inpu
 
 Pre-define mutations
 ----------------------------
-AliSim allows users to pre-define mutations that occur at some specific branches along the tree. To do so, one needs to: (1) specify an ancestral sequence at the root of the tree by adding `--root-seq <ALN_FILE>,<SEQ_NAME>` to the execution command; then (2) specify those mutations in the input tree file.
+AliSim allows users to pre-define mutations that occur at some specific branches along the tree. To do so, one can specify those mutations via either a separate file or an input tree file.
 
-Assuming that we have an alignment named `root_aln.phy`, which contains the ancestral sequence `S1` as in the following. (Note that `S2` and `S3` are not mandatorily presented).
+### Pre-define mutations via a separate file
+Given a tree file `tree_example.nwk`
+     
+    (T1:0.2,(T2:0.3,T4:0.1)I1:0.4,T3:0.1);
 
-    3 40
-    S1        GTTTACTGGCAGATTTTCATAGATGATGTAAGATCAGACA
-    S2        GTTTACAGGCATATTTTCATAGATGATGTAAGTTCAGACA
-    S3        GTTTACTGGCAGATTTTCATTGATGATGTAAGATCAGACA
+One can specify some predefined mutations in a separate file `mutations.txt` as in the following.
 
-One can specify a list of pre-defined mutations that occur at each branch using `[&mutations={<list_of_mutations>}]` in the tree file. Mutations in the list are separated by a forward slash `/` as in the following tree file `tree_mutations.nwk`.
+    I1	C39G,T17A,G25C
+    T2	C25A,A5G
 
-    (T1:0.2,(T2[&mutations={C25A/A5G}]:0.3,T4:0.1)I1[&mutations={C39G/T17A/G25C}]:0.4,T3:0.1);
-    
-In the above tree, we specify:
+Each line starts with a `<node name>`, followed by a tab `\t`, and ends up with a `<list_of_mutations>`. Mutations in the list are separated by a comma `,`. The above file `mutations.txt` specifies:
 
-* Three mutations `C39G` (i.e., C is substituted by G at site 39), `T17A`, and `G25C` occur along the branch connecting the root node and the internal node `I1`;
-* Two mutations `C25A` and `A5G` occur along the branch connecting the internal node `I1` and taxon `T2`.
+* Three mutations `C39G` (i.e., C is substituted by G at site 39), `T17A`, and `G25C` occur along the branch connecting (the internal) node `I1` and its parent node (i.e., the root node);
+* Two mutations `C25A` and `A5G` occur along the branch connecting node `T2` and its parent node (i.e., node `I1').
+
 
 The following command
     
-    iqtree2 --alisim example_mutations --root-seq root_aln.phy,S1  -t tree_mutations.nwk -m JC
+    iqtree2 --alisim example_mutations  -t tree_example.nwk -m JC --mutation mutations.txt
     
- will simulate an alignment with 4 sequences (each with 40 sites) under the [Jukes-Cantor model](http://doi.org/10.1016/B978-1-4832-3211-9.50009-7) where sites 5, 17, 25, and 39 are substituted according to the above pre-defined mutations.     
+ will simulate an alignment with 4 sequences (i.e., T1, T2, T3, and T4) under the [Jukes-Cantor model](http://doi.org/10.1016/B978-1-4832-3211-9.50009-7) where sites 5, 17, 25, and 39 are substituted according to the above pre-defined mutations.     
+
+### Pre-define mutations via the input tree file
+Another option to specify mutations is using the input tree. One can specify a list of mutations that occur at each branch using the syntax `[&mutations={<list_of_mutations>}]`. To reproduce the above example (in *Pre-define mutations via a separate file* section), one can specify the tree file `tree_mutations.nwk` as in the following.
+
+    (T1:0.2,(T2[&mutations={C25A,A5G}]:0.3,T4:0.1)I1[&mutations={C39G,T17A,G25C}]:0.4,T3:0.1);
+    
+Then execute AliSim by:
+    
+    iqtree2 --alisim example_mutations  -t tree_mutations.nwk -m JC
+
 
 Parallel sequence simulations
 ----------------------------
