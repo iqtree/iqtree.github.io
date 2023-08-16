@@ -575,7 +575,7 @@ Each line starts with a `<node name>`, followed by a tab `\t`, and ends up with 
 * Three mutations `C39G` (i.e., C is substituted by G at site 39), `T17A`, and `G25C` occur along the branch connecting (the internal) node `I1` and its parent node (i.e., the root node);
 * Two mutations `C25A` and `A5G` occur along the branch connecting node `T2` and its parent node (i.e., node `I1').
 
-Note that, by default, the site indexes start from 0 (to make AliSim compatible with VGsim's output). One can add the option `--index-from-one` to set the site indexes start from 1.
+Note that the site indexes, by default, start from 0 (to make AliSim compatible with VGsim's output). One can use the option `--index-from-one` to set the site indexes starting from 1.
 
 
 The following command
