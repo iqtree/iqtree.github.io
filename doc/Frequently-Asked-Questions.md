@@ -292,4 +292,5 @@ C A
 
 [Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
 [Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
+[Ranwez et al., 2011]: https://doi.org/10.1371/journal.pone.0022594
 
