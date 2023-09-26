@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Beginner's Tutorial"
 author: Diep Thi Hoang, Heiko Schmidt, Jana, Minh Bui
-date:    2019-12-01
+date:    2023-09-08
 docid: 3
 icon: info-circle
 doctype: tutorial
@@ -80,6 +80,12 @@ This tiny alignment contains 7 DNA sequences from several animals with the seque
 
 >**TIP**: From version 2 you can input a directory of alignment files. IQ-TREE 2 will load and concatenate all alignments within the directory, eliminating the need for users to manually perform this step.
 {: .tip}
+
+Not all special characters are allowed in sequence names, because they may interfere with the structure encoding in the Newick tree files. To avoid problems with downstream software (like tree viewers), IQ-Tree (and also other phylogenetic software) checks the names for such potentially interfering characters and substitutes them by underscores `_`. 
+Permitted characters in sequence names are alphanumeric letters, underscores `_`, dash `-`, dot `.`, slash `\` and vertical bar `|`. All other characters are substituted, like e.g. `hawk's-eye` is converted to `hawk_s-eye` as which it will appear in the tree.
+
+Please note, this can lead to duplicate names if you, for instance, already have two sequences named `hawk_s-eye` and `hawk's-eye`. In such cases you will obtain an error and you need to adjust the names in the original input alignment.
+
 
 First running example
 ---------------------
