@@ -164,7 +164,7 @@ Here, we change the LRT p-value to 0.01. To use information criteria instead of 
 
 	iqtree -s example.phy -m MF+MIX -lrt 0 -merit BIC
 	
-Here, `-lrt 0` means turn off the LRT, then `-merit BIC` means using BIC to assess the number of classes. (Note that: `-merit` also decides the creterion for selecting subtitution model type in each classes. If using LRT for assessing the number of classes, the default creterion for selecting subtitution model type is BIC.)
+Here, `-lrt 0` means turning off the LRT, then `-merit BIC` means using BIC to assess the number of classes. (Note that: `-merit` also decides the creterion for selecting subtitution model type in each classes. If using LRT for assessing the number of classes, the default creterion for selecting subtitution model type is BIC.)
 
 Options for ModelFinder also work for MixtureFinder, e.g.:
 
