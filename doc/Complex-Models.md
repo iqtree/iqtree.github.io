@@ -170,7 +170,7 @@ Options for ModelFinder also work for MixtureFinder, e.g.:
 
 	iqtree -s example.phy -m MF+MIX -mset HKY,GTR -mrate E,I,G,I+G
 	
-The `-mset HKY,GTR` means we select subtitution model type among only `HKY` and `GTR` substitution models. The `-mrate E,I,G,I+G` means we select the rate heterogeneity across sites models among `+E`, `+I`, `G` and `+I+G` models.
+The `-mset HKY,GTR` means we select subtitution model type among only `HKY` and `GTR` substitution models in each iteration of adding one more class. The `-mrate E,I,G,I+G` means we select the rate heterogeneity across sites models among `+E`, `+I`, `G` and `+I+G` models.
 
 Other options for MixtureFinder:
 | Model option  | Description                                                                                                    |
