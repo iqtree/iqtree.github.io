@@ -146,6 +146,38 @@ Mixture models can be combined with rate heterogeneity, e.g.:
 
 Here, we specify two mixture components and four Gamma rate categories. Effectively, this means that there are eight mixture components. Each site has a probability belonging to either `JC` or `HKY` and to one of the four rate categories.
 
+### MixtureFinder
+
+MixtureFinder is an approach to select the optimum number of classes for a mixture model of Q matrices. To run MixtureFinder:
+
+	iqtree -s example.phy -m MF+MIX
+	
+Here, we estimate the optimal Q mixture model. To select mixture model and then do the tree search:
+
+	iqtree -s example.phy -m MFP+MIX
+	
+Likelihood ratio test (LRT) with p-value = 0.05 is the default method to assess the number of classes in the Q mixture model. To change the p-value:
+
+	iqtree -s example.phy -m MF+MIX -lrt 0.01
+	
+Here, we change the LRT p-value to 0.01. To use information criteria instead of LRT to assess the number of classes:
+
+	iqtree -s example.phy -m MF+MIX -lrt 0 -merit BIC
+	
+Here, `-lrt 0` means turn of the LRT, then `-merit BIC` means using BIC to assess the number of classes. (Note that: `-merit` also decides the creterion for selecting subtitution model type in each classes. If using LRT for assessing the number of classes, the default creterion for selecting subtitution model type is BIC.)
+
+Options for ModelFinder also work for MixtureFinder, e.g.:
+
+	iqtree -s example.phy -m MF+MIX -mset HKY,GTR -mrate E,I,G,I+G
+	
+The `-mset HKY,GTR` means we select subtitution model type among only `HKY` and `GTR` substitution models. The `-mrate E,I,G,I+G` means we select the rate heterogeneity across sites models among `+E`, `+I`, `G` and `+I+G` models.
+
+Other options for MixtureFinder:
+| Model option  | Description                                                                                                    |
+| ------------- | -------------------------------------------------------------------------------------------------------------- |
+| `-qmax`       | Maximum number of Q-mixture classes (default: 10). Specify a number after the option (e.g., `-qmax 5`).        |
+| `-mate-twice` | estimate the rate heterogeneity across sites models again after select the best Q-mixture model (default: off) |
+
 
 ### Profile mixture models
 
