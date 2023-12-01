@@ -367,6 +367,8 @@ Then, simulate an alignment by
       iqtree2 --alisim alignment_example_1 -t input_tree.nwk -m JC
     
 Here, AliSim uses the [Juke-Cantor model](http://doi.org/10.1016/B978-1-4832-3211-9.50009-7) to simulate an alignment along the input tree. However, the `HKY` with random parameters is used to simulate the sequence of taxon C. Similarly, the `GTR` model with the specified parameters is used to generate the sequence of taxon E.
+
+**NOTE:** A branch-specific model is only applied to a specific branch, meaning that it will not be inherited by descendant branches. To apply a new model to an entire subtree, one needs to specify that branch-specific model at all descendant branches.
   
 To mimic heterotachy (rate heterogeneity across branches), users can supply a set of branch-lengths containing `n` lengths corresponding to the `n` categories of the model via `lengths=<length_1>,...,<length_n>`, for example:
 
