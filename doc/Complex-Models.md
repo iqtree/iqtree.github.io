@@ -173,10 +173,10 @@ Options for ModelFinder also work for MixtureFinder, e.g.:
 The `-mset HKY,GTR` means we select subtitution model type among only `HKY` and `GTR` substitution models in each iteration of adding one more class. The `-mrate E,I,G,I+G` means we select the rate heterogeneity across sites models among `+E`, `+I`, `G` and `+I+G` models.
 
 Other options for MixtureFinder:
-| Model option   | Description                                                                                                   |
-| -------------- | ------------------------------------------------------------------------------------------------------------- |
-| `-qmax`        | Maximum number of Q-mixture classes (default: 10). Specify a number after the option (e.g., `-qmax 5`).       |
-| `-mrate-twice` | estimate the rate heterogeneity across sites models again after select the best Q-mixture model (default: on) |
+| Model option   | Description                                                                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `-qmax`        | Maximum number of Q-mixture classes (default: 10). Specify a number after the option (e.g., `-qmax 5`).                              |
+| `-mrate-twice` | Whether estimate the rate heterogeneity across sites models again after select the best Q-mixture model. 1: yes, 0: no. (default: 1) |
 
 
 ### Profile mixture models
