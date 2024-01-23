@@ -150,25 +150,25 @@ Here, we specify two mixture components and four Gamma rate categories. Effectiv
 
 MixtureFinder is an approach to select the optimum number of classes and the substitution model in each class for a mixture model of Q matrices. To run MixtureFinder:
 
-	iqtree -s example.phy -m MF+MIX
+	iqtree -s example.phy -m MIX+MF
 	
 Here, we estimate the optimal Q mixture model. To select mixture model and then do the tree search:
 
-	iqtree -s example.phy -m MFP+MIX
+	iqtree -s example.phy -m MIX+MFP
 	
 Likelihood ratio test (LRT) with p-value = 0.05 is the default method to assess the number of classes in the Q mixture model. To change the p-value:
 
-	iqtree -s example.phy -m MF+MIX -lrt 0.01
+	iqtree -s example.phy -m MIX+MF -lrt 0.01
 	
 Here, we change the LRT p-value to 0.01. To use information criteria instead of LRT to assess the number of classes:
 
-	iqtree -s example.phy -m MF+MIX -lrt 0 -merit BIC
+	iqtree -s example.phy -m MIX+MF -lrt 0 -merit BIC
 	
 Here, `-lrt 0` means turning off the LRT, then `-merit BIC` means using BIC to assess the number of classes. (Note that: `-merit` also decides the creterion for selecting subtitution model type in each classes. If using LRT for assessing the number of classes, the default creterion for selecting subtitution model type is BIC.)
 
 Options for ModelFinder also work for MixtureFinder, e.g.:
 
-	iqtree -s example.phy -m MF+MIX -mset HKY,GTR -mrate E,I,G,I+G
+	iqtree -s example.phy -m MIX+MF -mset HKY,GTR -mrate E,I,G,I+G
 	
 The `-mset HKY,GTR` means we select subtitution model type among only `HKY` and `GTR` substitution models in each iteration of adding one more class. The `-mrate E,I,G,I+G` means we select the rate heterogeneity across sites models among `+E`, `+I`, `G` and `+I+G` models.
 
