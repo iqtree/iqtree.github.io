@@ -59,9 +59,7 @@ If you use AliSim please cite the following paper(s):
 
 - Nhan Ly-Trong, Suha Naser-Khdour, Robert Lanfear, Bui Quang Minh, AliSim: A Fast and Versatile Phylogenetic Sequence Simulator for the Genomic Era, Molecular Biology and Evolution, Volume 39, Issue 5, May 2022, msac092, <https://doi.org/10.1093/molbev/msac092>
 
-- Nhan Ly-Trong, Giuseppe M.J. Barca, Bui Quang Minh (2023) 
-AliSim-HPC: parallel sequence simulator for phylogenetics.
-<https://doi.org/10.1101/2023.01.15.524158> (*for the parallel version*)
+- Nhan Ly-Trong, Giuseppe M.J. Barca, Bui Quang Minh, AliSim-HPC: parallel sequence simulator for phylogenetics, Bioinformatics, Volume 39, Issue 9, Sep 2023, btad540, <https://doi.org/10.1093/bioinformatics/btad540> (*for the parallel version*)
 
 
 Simulating an alignment from a tree and model
