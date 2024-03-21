@@ -14,6 +14,8 @@ sections:
   url: partition-models
 - name: Mixture models
   url: mixture-models
+- name: Linked GTR exchangeabilities models
+  url: linked-gtr-exchangeabilities-models
 - name: Site-specific frequency models
   url: site-specific-frequency-models
 - name: Heterotachy models
@@ -194,6 +196,36 @@ Sometimes one only wants to model the changes in nucleotide or amino-acid freque
     end;
 
 >**NOTE**: The amino-acid order in this file is: A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V.
+
+Linked GTR exchangeabilities models
+---------------------------------------
+<div class="hline"></div>
+
+Starting with version 2.2.X.X, IQ-TREE allows the user to estimate exchangeabilities under profile mixture models.
+
+### Exchangeability estimation
+
+To start with, we show an example:
+
+    iqtree -s <alignment> -m GTR20+C60+G4 --link-exchange-rates -te  <guide_tree> -me 0.99
+
+In this example exchangeabilities will be estimated for a profile mixture model `C60+G4` but any profile mixture model and rates can be used. To estimate a single set of linked exchangeabilities, in the model definition the matrix `GTR20` must be specified (resp. GTR for nucleotide data) together with the flag `--link-exchange-rates`. While a guide tree is not needed, we highly recommend using a fixed tree topology to estimate exchangeabilities.  Since matrix estimation can be time-consuming, we also recommend using the flag `-me 0.99` to reduce the optimization threshold for faster optimization. Simulations have shown that changing this parameter has no significant effect on exchangeability estimation.
+
+The user can determine the starting exchangeabilities before optimization. Choosing adequate exchangeabilities can make estimation considerably faster. For example:
+
+    iqtree -s example.phy -m GTR20+C60+G4 --link-exchange-rates --gtr20-model LG  -te  <guide_tree> -me 0.99
+
+specifies the LG matrix as the starting matrix via the flag `--gtr20-model` (the default starting matrix is POISSON, i.e. equal exchangeabilities). For this flag, the user can specify any matrix, even those matrices defined by the user via the `-mdef` flag. If the user is agnostic of the exchangeabilities, we recommend using the default matrix (although it can be time-consuming).
+
+Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchange abilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths  and rates has been shown to perform adequately for estimation of exchangeabilities) 
+
+There is an additional flag `--rates-file` that will produce a nexus file with the exchangeability matrix obtained from the optimization. This file can be later used for phylogenetic inference with the use of the `-mdef` flag.
+
+
+If you use this routine in a publication please cite:
+
+> __H. Banos et al.__ (2024) Estimating Linked Exchangeabilities for Profile Mixture Models. _Bioraxiv.
+
 
 Here, the NEXUS file contains a `models` block to define new models. More explicitly, we define four AA profiles `Fclass1` to `Fclass4`, each containing 20 AA frequencies. Then, the frequency mixture is defined with
 

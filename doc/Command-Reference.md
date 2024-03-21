@@ -326,6 +326,21 @@ Further options:
         iqtree -s prot.phy -m LG+C10+F+G
 
 
+| Option | Usage and meaning |
+|----------|------------------------------------------------------------------------------|
+| `--link-exchange-rates` | Turn on linked exchangeability estimation for a profile mixture model. Note that the model must have specified `GTR20` exchangeabilities for eg.`GTR20+C20+G`. |
+| `--gtr20-model` | Specify the initial exchangeabilities for linked exchangeability estimation. Note that this must be used with `--link-exchange-rates.` |
+| `--rates-file` | Produces a nexus file with the exchangeability matrix obtained from the optimization. This file can be later used for phylogenetic inference with the use of the `-mdef` flag  |
+
+### Example usages:
+
+* Estimate linked exchangeabilities for a protein alignment `prot.phy` under C60+G model and a guide tree `guide.treefile`, where optimization is initialized from LG exchangeabilities
+
+        iqtree -s prot.phy -m GTR20+C60+G --link-exchange-rates --gtr20-model LG -te guide.treefile
+
+>**NOTE**: For better and faster performance, read the [recommendations](Complex-Models#linked-gtr-exchangeabilities-models) provided in the Complex Models section.
+
+
 Rate heterogeneity
 ------------------
 <div class="hline"></div>
