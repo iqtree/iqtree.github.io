@@ -201,7 +201,7 @@ Linked GTR exchangeabilities models
 ---------------------------------------
 <div class="hline"></div>
 
-Starting with version 2.2.X.X, IQ-TREE allows the user to estimate exchangeabilities under profile mixture models.
+Starting with version 2.3.1, IQ-TREE allows the user to estimate exchangeabilities under profile mixture models.
 
 ### Exchangeability estimation
 
@@ -358,9 +358,9 @@ Hundreds or thousands of loci are now routinely used in modern phylogenomic stud
 We applied the MAST model to multiple primate datasets and found that it can recover the signal of incomplete lineage sorting in the Great Apes, as well as the asymmetry in minor trees caused by introgression among several macaque species. When applied to a dataset of four Platyrrhine species for which standard concatenated maximum likelihood and gene tree approaches disagree, we find that MAST gives the highest weight to the tree favored by gene tree approaches. These results suggest that the MAST model is able to analyse a concatenated alignment using maximum likelihood, while avoiding some of the biases that come with assuming there is only a single tree. The MAST model can therefore offer unique biological insights when applied to datasets with multiple evolutionary histories.
 
 
-Meanwhile the manuscript is under review. If you use this model in a publication please cite:
+If you use this model in a publication please cite:
 
-> __T.K.F. Wong, C. Cherryh, A.G. Rodrigo, M.W. Hahn, B.Q. Minh and R. Lanfear__ (2022) MAST: Phylogenetic Inference with Mixtures Across Sites and Trees. *bioRxiv*. <https://doi.org/10.1101/2022.10.06.511210>
+> __T.K.F. Wong, C. Cherryh, A.G. Rodrigo, M.W. Hahn, B.Q. Minh and R. Lanfear__ (2024) MAST: Phylogenetic Inference with Mixtures Across Sites and Trees. _Syst. Biol._ <https://doi.org/10.1093/sysbio/syae008>
 
 
 ### Quick usage
@@ -370,7 +370,7 @@ Meanwhile the manuscript is under review. If you use this model in a publication
 > Of course, you should *always* do this anyway, but we put this warning here because multitree mixture models are new, somewhat complex, and may be easy to over-parameterise. So, if you are using these models for your research, please keep your biological head screwed on, and before interpreting any output (e.g. the weights of the classes in the mixture) check that the branch lengths of the trees look sensible, that the model parameters (e.g. base frequencies, transition rates, rates across sites) look sensible. Remember that if you are going to interpret any part of the model, you are also putting your faith in all of the other parameters.
 
 
-Make sure that you have IQ-TREE [version 2.2.0.7.mix](https://github.com/iqtree/iqtree2/releases/tag/v2.2.0.7.mx). The MAST model is executed by adding `+T` to the model option (`-m`) and providing a newick file with multiple trees by the option (`-te`). For example if one wants to fit a MAST model with different topologies contained in `trees.nwk` in conjunction with the `GTR` model to sequences in `data.fst`, one would use the following command:
+Starting with version 2.3.0, the MAST model can be executed by adding `+T` to the model option (`-m`) and providing a newick file with multiple trees by the option (`-te`). For example if one wants to fit a MAST model with different topologies contained in `trees.nwk` in conjunction with the `GTR` model to sequences in `data.fst`, one would use the following command:
 
     iqtree2 -s data.fst -m "GTR+T" -te trees.nwk
 
