@@ -182,7 +182,7 @@ Other options for MixtureFinder:
 
 If you use MixtureFinder in a publication please cite:
 
-> __H. Ren, T.K.F. Wong, B.Q. Minh, R. Lanfear__ (2024) MixtureFinder: Estimating DNA mixture models for phylogenetic analyses. _Bioraxiv.
+> __H. Ren, T.K.F. Wong, B.Q. Minh, R. Lanfear__ (2024) MixtureFinder: Estimating DNA mixture models for phylogenetic analyses. _BioRxiv_. https://doi.org/10.1101/2024.03.20.586035
 
 
 
