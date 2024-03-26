@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Simulating sequence alignments"
 author: Minh Bui, Trongnhan Uit
-date:    2023-08-16
+date:    2024-02-01
 docid: 9
 icon: info-circle
 doctype: tutorial
@@ -59,9 +59,7 @@ If you use AliSim please cite the following paper(s):
 
 - Nhan Ly-Trong, Suha Naser-Khdour, Robert Lanfear, Bui Quang Minh, AliSim: A Fast and Versatile Phylogenetic Sequence Simulator for the Genomic Era, Molecular Biology and Evolution, Volume 39, Issue 5, May 2022, msac092, <https://doi.org/10.1093/molbev/msac092>
 
-- Nhan Ly-Trong, Giuseppe M.J. Barca, Bui Quang Minh (2023) 
-AliSim-HPC: parallel sequence simulator for phylogenetics.
-<https://doi.org/10.1101/2023.01.15.524158> (*for the parallel version*)
+- Nhan Ly-Trong, Giuseppe M.J. Barca, Bui Quang Minh, AliSim-HPC: parallel sequence simulator for phylogenetics, Bioinformatics, Volume 39, Issue 9, Sep 2023, btad540, <https://doi.org/10.1093/bioinformatics/btad540> (*for the parallel version*)
 
 
 Simulating an alignment from a tree and model
@@ -367,6 +365,8 @@ Then, simulate an alignment by
       iqtree2 --alisim alignment_example_1 -t input_tree.nwk -m JC
     
 Here, AliSim uses the [Juke-Cantor model](http://doi.org/10.1016/B978-1-4832-3211-9.50009-7) to simulate an alignment along the input tree. However, the `HKY` with random parameters is used to simulate the sequence of taxon C. Similarly, the `GTR` model with the specified parameters is used to generate the sequence of taxon E.
+
+**NOTE:** A branch-specific model is only applied to a specific branch, meaning that it will not be inherited by descendant branches. To apply a new model to an entire subtree, one needs to specify that branch-specific model at all descendant branches.
   
 To mimic heterotachy (rate heterogeneity across branches), users can supply a set of branch-lengths containing `n` lengths corresponding to the `n` categories of the model via `lengths=<length_1>,...,<length_n>`, for example:
 

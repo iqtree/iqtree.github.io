@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Complex Models"
-author: Dominik Schrempf, Jana Trifinopoulos, Minh Bui, Rob Lanfear, Thomaskf, Trongnhan Uit
-date:    2022-10-13
+author: 928003585, Dominik Schrempf, Jana Trifinopoulos, Minh Bui, Rob Lanfear, Thomaskf, Trongnhan Uit
+date:    2024-03-22
 docid: 11
 icon: book
 doctype: manual
@@ -14,6 +14,8 @@ sections:
   url: partition-models
 - name: Mixture models
   url: mixture-models
+- name: Linked GTR exchangeabilities models
+  url: linked-gtr-exchangeabilities-models
 - name: Site-specific frequency models
   url: site-specific-frequency-models
 - name: Heterotachy models
@@ -146,6 +148,44 @@ Mixture models can be combined with rate heterogeneity, e.g.:
 
 Here, we specify two mixture components and four Gamma rate categories. Effectively, this means that there are eight mixture components. Each site has a probability belonging to either `JC` or `HKY` and to one of the four rate categories.
 
+### MixtureFinder
+
+MixtureFinder is an approach to select the optimum number of classes and the substitution model in each class for a mixture model of Q matrices. Starting with version 2.3.1, MixtureFinder is available in IQ-TREE. To run MixtureFinder:
+
+	iqtree -s example.phy -m MIX+MF
+	
+Here, we estimate the optimal Q mixture model. To select mixture model and then do the tree search:
+
+	iqtree -s example.phy -m MIX+MFP
+	
+Likelihood ratio test (LRT) with p-value = 0.05 is the default method to assess the number of classes in the Q mixture model. To change the p-value:
+
+	iqtree -s example.phy -m MIX+MF -lrt 0.01
+	
+Here, we change the LRT p-value to 0.01. To use information criteria instead of LRT to assess the number of classes:
+
+	iqtree -s example.phy -m MIX+MF -lrt 0 -merit BIC
+	
+Here, `-lrt 0` means turning off the LRT, then `-merit BIC` means using BIC to assess the number of classes. (Note that: `-merit` also decides the creterion for selecting subtitution model type in each classes. If using LRT for assessing the number of classes, the default creterion for selecting subtitution model type is BIC.)
+
+Options for ModelFinder also work for MixtureFinder, e.g.:
+
+	iqtree -s example.phy -m MIX+MF -mset HKY,GTR -mrate E,I,G,I+G
+	
+The `-mset HKY,GTR` means we select subtitution model type among only `HKY` and `GTR` substitution models in each iteration of adding one more class. The `-mrate E,I,G,I+G` means we select the rate heterogeneity across sites models among `+E`, `+I`, `G` and `+I+G` models.
+
+Other options for MixtureFinder:
+
+| Model option   | Description                                                                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `-qmax`        | Maximum number of Q-mixture classes (default: 10). Specify a number after the option (e.g., `-qmax 5`).                              |
+| `-mrate-twice` | Whether estimate the rate heterogeneity across sites models again after select the best Q-mixture model. 1: yes, 0: no. (default: 1) |
+
+If you use MixtureFinder in a publication please cite:
+
+> __H. Ren, T.K.F. Wong, B.Q. Minh, R. Lanfear__ (2024) MixtureFinder: Estimating DNA mixture models for phylogenetic analyses. _BioRxiv_. <https://doi.org/10.1101/2024.03.20.586035>
+
+
 
 ### Profile mixture models
 
@@ -162,6 +202,36 @@ Sometimes one only wants to model the changes in nucleotide or amino-acid freque
     end;
 
 >**NOTE**: The amino-acid order in this file is: A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V.
+
+Linked GTR exchangeabilities models
+---------------------------------------
+<div class="hline"></div>
+
+Starting with version 2.3.1, IQ-TREE allows the user to estimate exchangeabilities under profile mixture models.
+
+### Exchangeability estimation
+
+To start with, we show an example:
+
+    iqtree -s <alignment> -m GTR20+C60+G4 --link-exchange-rates -te  <guide_tree> -me 0.99
+
+In this example exchangeabilities will be estimated for a profile mixture model `C60+G4` but any profile mixture model and rates can be used. To estimate a single set of linked exchangeabilities, in the model definition the matrix `GTR20` must be specified (resp. GTR for nucleotide data) together with the flag `--link-exchange-rates`. While a guide tree is not needed, we highly recommend using a fixed tree topology to estimate exchangeabilities.  Since matrix estimation can be time-consuming, we also recommend using the flag `-me 0.99` to reduce the optimization threshold for faster optimization. Simulations have shown that changing this parameter has no significant effect on exchangeability estimation.
+
+The user can determine the starting exchangeabilities before optimization. Choosing adequate exchangeabilities can make estimation considerably faster. For example:
+
+    iqtree -s example.phy -m GTR20+C60+G4 --link-exchange-rates --gtr20-model LG  -te  <guide_tree> -me 0.99
+
+specifies the LG matrix as the starting matrix via the flag `--gtr20-model` (the default starting matrix is POISSON, i.e. equal exchangeabilities). For this flag, the user can specify any matrix, even those matrices defined by the user via the `-mdef` flag. If the user is agnostic of the exchangeabilities, we recommend using the default matrix (although it can be time-consuming).
+
+Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchange abilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths  and rates has been shown to perform adequately for estimation of exchangeabilities) 
+
+There is an additional flag `--rates-file` that will produce a nexus file with the exchangeability matrix obtained from the optimization. This file can be later used for phylogenetic inference with the use of the `-mdef` flag.
+
+
+If you use this routine in a publication please cite:
+
+> __H. Banos et al.__ (2024) Estimating Linked Exchangeabilities for Profile Mixture Models. _Bioraxiv.
+
 
 Here, the NEXUS file contains a `models` block to define new models. More explicitly, we define four AA profiles `Fclass1` to `Fclass4`, each containing 20 AA frequencies. Then, the frequency mixture is defined with
 
@@ -294,9 +364,9 @@ Hundreds or thousands of loci are now routinely used in modern phylogenomic stud
 We applied the MAST model to multiple primate datasets and found that it can recover the signal of incomplete lineage sorting in the Great Apes, as well as the asymmetry in minor trees caused by introgression among several macaque species. When applied to a dataset of four Platyrrhine species for which standard concatenated maximum likelihood and gene tree approaches disagree, we find that MAST gives the highest weight to the tree favored by gene tree approaches. These results suggest that the MAST model is able to analyse a concatenated alignment using maximum likelihood, while avoiding some of the biases that come with assuming there is only a single tree. The MAST model can therefore offer unique biological insights when applied to datasets with multiple evolutionary histories.
 
 
-Meanwhile the manuscript is under review. If you use this model in a publication please cite:
+If you use this model in a publication please cite:
 
-> __T.K.F. Wong, C. Cherryh, A.G. Rodrigo, M.W. Hahn, B.Q. Minh and R. Lanfear__ (2022) MAST: Phylogenetic Inference with Mixtures Across Sites and Trees. *bioRxiv*. <https://doi.org/10.1101/2022.10.06.511210>
+> __T.K.F. Wong, C. Cherryh, A.G. Rodrigo, M.W. Hahn, B.Q. Minh and R. Lanfear__ (2024) MAST: Phylogenetic Inference with Mixtures Across Sites and Trees. _Syst. Biol._ <https://doi.org/10.1093/sysbio/syae008>
 
 
 ### Quick usage
@@ -306,7 +376,7 @@ Meanwhile the manuscript is under review. If you use this model in a publication
 > Of course, you should *always* do this anyway, but we put this warning here because multitree mixture models are new, somewhat complex, and may be easy to over-parameterise. So, if you are using these models for your research, please keep your biological head screwed on, and before interpreting any output (e.g. the weights of the classes in the mixture) check that the branch lengths of the trees look sensible, that the model parameters (e.g. base frequencies, transition rates, rates across sites) look sensible. Remember that if you are going to interpret any part of the model, you are also putting your faith in all of the other parameters.
 
 
-Make sure that you have IQ-TREE [version 2.2.0.7.mix](https://github.com/iqtree/iqtree2/releases/tag/v2.2.0.7.mx). The MAST model is executed by adding `+T` to the model option (`-m`) and providing a newick file with multiple trees by the option (`-te`). For example if one wants to fit a MAST model with different topologies contained in `trees.nwk` in conjunction with the `GTR` model to sequences in `data.fst`, one would use the following command:
+Starting with version 2.3.0, the MAST model can be executed by adding `+T` to the model option (`-m`) and providing a newick file with multiple trees by the option (`-te`). For example if one wants to fit a MAST model with different topologies contained in `trees.nwk` in conjunction with the `GTR` model to sequences in `data.fst`, one would use the following command:
 
     iqtree2 -s data.fst -m "GTR+T" -te trees.nwk
 
@@ -368,7 +438,7 @@ In the above command, all trees share the same GTR model, DNA frequencies and ga
 | `.treefile` | By using the MAST model, IQ-TREE will report multiple trees inside this file. Their topologies should match the input topologies in the newick file. |
 | `.iqtree` | All the estimated model parameters for each tree and the tree weights (i.e. proportions of the sites belonging to the tree and the model) are shown in this file. The order of the tree weights follows the order of the input topologies in the newick file. |
 
-Please note that, in any MAST model with more than one substitution model (i.e. models 1 - 5 in the previous table), the weights can only be interpreted as the linked weight of the model and the tree. So the weights are not unique to the tree. In other words, IQ-TREE will report the weights pertaining only to the trees for the model 6 in the previous table.
+Please note that, in any MAST model with more than one substitution model (i.e. models 1 - 5 in the previous table), the weights can only be interpreted as the linked weight of the model and the tree. So the weights are not unique to the tree. In other words, IQ-TREE will report the weights pertaining only to the trees for the model 6 in the previous table. 
 
 [Brown et al. (2013)]: https://doi.org/10.1098/rspb.2013.1755
 [Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112
