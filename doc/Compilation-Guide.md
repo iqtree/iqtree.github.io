@@ -115,6 +115,9 @@ Compiling under Mac OS X
 ------------------------
 <div class="hline"></div>
 
+>**TIP**: A ready made IQ-TREE package is provided via the * [Homebrew tap brewsci/bio](https://github.com/brewsci/homebrew-bio/blob/master/Formula/iqtree2.rb). Simply run `brew install brew install brewsci/bio/iqtree2` to install.
+{: .tip}
+
 * Make sure that Clang compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
 
 * If you installed cmake with Homebrew 
