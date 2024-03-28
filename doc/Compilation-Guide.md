@@ -66,7 +66,7 @@ For IQ-TREE version 1 please use:
 
 Alternatively, if you have `git` installed, you can also clone the source code from GitHub with:
 
-    git clone https://github.com/iqtree/iqtree2.git
+    git clone --recursive https://github.com/iqtree/iqtree2.git
 
 For IQ-TREE version 1 please clone:
 
@@ -115,7 +115,7 @@ Compiling under Mac OS X
 ------------------------
 <div class="hline"></div>
 
->**TIP**: A ready made IQ-TREE package is provided by * [Homebrew](https://github.com/brewsci/homebrew-science/blob/master/Formula/iqtree.rb) by simply running `brew install homebrew/science/iqtree2`.
+>**TIP**: A ready made IQ-TREE package is provided via the * [Homebrew tap brewsci/bio](https://github.com/brewsci/homebrew-bio/blob/master/Formula/iqtree2.rb). Simply run `brew install brewsci/bio/iqtree2` to install.
 {: .tip}
 
 * Make sure that Clang compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
@@ -126,15 +126,9 @@ Compiling under Mac OS X
 
 The steps to compile IQ-TREE are similar to Linux (see above), except that you need to specify `clang` as compiler when configuring source code with CMake (step 4):
 
-    cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..
+    cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_FLAGS="-Dthread_local=" ..
 
 (please change `cmake` to absolute path like `/Applications/CMake.app/Contents/bin/cmake`).
-
-To compile the multicore version, the default installed Clang unfortunately does not support OpenMP (which might change in the near future). However, the latest Clang 3.7 supports OpenMP, which can be downloaded from <http://clang.llvm.org>. After that you can run CMake with:
-
-    cmake -DIQTREE_FLAGS=omp -DCMAKE_C_COMPILER=clang-3.7 -DCMAKE_CXX_COMPILER=clang++-3.7 ..
-
-(assuming that `clang-3.7` and `clang++-3.7` points to the installed Clang 3.7).
 
 
 Compiling under Windows
