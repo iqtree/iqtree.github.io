@@ -225,7 +225,6 @@ specifies the LG matrix as the starting matrix via the flag `--gtr20-model` (the
 
 Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchange abilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths  and rates has been shown to perform adequately for estimation of exchangeabilities) 
 
-There is an additional flag `--rates-file` that will produce a nexus file with the exchangeability matrix obtained from the optimization. This file can be later used for phylogenetic inference with the use of the `-mdef` flag.
 
 
 If you use this routine in a publication please cite:
