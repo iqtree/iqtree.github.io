@@ -203,35 +203,6 @@ Sometimes one only wants to model the changes in nucleotide or amino-acid freque
 
 >**NOTE**: The amino-acid order in this file is: A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V.
 
-Linked GTR exchangeabilities models
----------------------------------------
-<div class="hline"></div>
-
-Starting with version 2.3.1, IQ-TREE allows the user to estimate exchangeabilities under profile mixture models.
-
-### Exchangeability estimation
-
-To start with, we show an example:
-
-    iqtree -s <alignment> -m GTR20+C60+G4 --link-exchange-rates -te  <guide_tree> -me 0.99
-
-In this example exchangeabilities will be estimated for a profile mixture model `C60+G4` but any profile mixture model and rates can be used. To estimate a single set of linked exchangeabilities, in the model definition the matrix `GTR20` must be specified (resp. GTR for nucleotide data) together with the flag `--link-exchange-rates`. While a guide tree is not needed, we highly recommend using a fixed tree topology to estimate exchangeabilities.  Since matrix estimation can be time-consuming, we also recommend using the flag `-me 0.99` to reduce the optimization threshold for faster optimization. Simulations have shown that changing this parameter has no significant effect on exchangeability estimation.
-
-The user can determine the starting exchangeabilities before optimization. Choosing adequate exchangeabilities can make estimation considerably faster. For example:
-
-    iqtree -s example.phy -m GTR20+C60+G4 --link-exchange-rates --gtr20-model LG  -te  <guide_tree> -me 0.99
-
-specifies the LG matrix as the starting matrix via the flag `--gtr20-model` (the default starting matrix is POISSON, i.e. equal exchangeabilities). For this flag, the user can specify any matrix, even those matrices defined by the user via the `-mdef` flag. If the user is agnostic of the exchangeabilities, we recommend using the default matrix (although it can be time-consuming).
-
-Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchange abilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths  and rates has been shown to perform adequately for estimation of exchangeabilities) 
-
-
-
-If you use this routine in a publication please cite:
-
-> __H. Banos et al.__ (2024) Estimating Linked Exchangeabilities for Profile Mixture Models. _Bioraxiv.
-
-
 Here, the NEXUS file contains a `models` block to define new models. More explicitly, we define four AA profiles `Fclass1` to `Fclass4`, each containing 20 AA frequencies. Then, the frequency mixture is defined with
 
     FMIX{empirical,Fclass1,Fclass2,Fclass3,Fclass4}
@@ -240,8 +211,7 @@ This means, we have five components: the first corresponds to empirical AA frequ
 
     iqtree -s some_protein.aln -mdef mymodels.nex -m JTT+CF4model+G
 
-The `-mdef` option specifies the NEXUS file containing user-defined models. Here, the `JTT` matrix is applied for all alignment sites and one varies the AA profiles along the alignment. One can use the NEXUS syntax to define all other profile mixture models such as `C10` to `C60`.
-
+The `-mdef` option specifies the NEXUS file containing user-defined models (see below). Here, the `JTT` matrix is applied for all alignment sites and one varies the AA profiles along the alignment. One can use the NEXUS syntax to define all other profile mixture models such as `C10` to `C60`.
 
 ### NEXUS model file
 
@@ -263,6 +233,35 @@ In fact, IQ-TREE uses this NEXUS model file internally to define all [protein mi
 Here, we first define the four matrices `LG4M1`, `LG4M2`, `LG4M3` and `LG4M4` in PAML format (see [protein models](Substitution-Models#protein-models)). Then `LG4M` is defined as mixture model with these four components *fused* with Gamma rate heterogeneity (via `*G4` syntax instead of `+G4`). This means that, in total, we have 4 mixture components instead of 16. The first component `LG4M1` is rescaled by the rate of the lowest Gamma rate category. The fourth component `LG4M4` corresponds to the highest rate.
 
 Note that both `frequency` and `model` commands can be embedded into a single model file.
+
+
+Linked GTR exchangeabilities models
+-----------------------------------
+<div class="hline"></div>
+
+Starting with version 2.3.1, IQ-TREE allows the user to estimate exchangeabilities under profile mixture models.
+
+### Exchangeability estimation
+
+To start with, we show an example:
+
+    iqtree -s <alignment> -m GTR20+C60+G4 --link-exchange-rates -te  <guide_tree> -me 0.99
+
+In this example exchangeabilities will be estimated for a profile mixture model `C60+G4` but any profile mixture model and rates can be used. To estimate a single set of linked exchangeabilities, in the model definition the matrix `GTR20` must be specified (resp. GTR for nucleotide data) together with the flag `--link-exchange-rates`. While a guide tree is not needed, we highly recommend using a fixed tree topology to estimate exchangeabilities.  Since matrix estimation can be time-consuming, we also recommend using the flag `-me 0.99` to reduce the optimization threshold for faster optimization. Simulations have shown that changing this parameter has no significant effect on exchangeability estimation.
+
+The user can determine the starting exchangeabilities before optimization. Choosing adequate exchangeabilities can make estimation considerably faster. For example:
+
+    iqtree -s example.phy -m GTR20+C60+G4 --link-exchange-rates --gtr20-model LG  -te  <guide_tree> -me 0.99
+
+specifies the LG matrix as the starting matrix via the flag `--gtr20-model` (the default starting matrix is POISSON, i.e. equal exchangeabilities). For this flag, the user can specify any matrix, even those matrices defined by the user via the `-mdef` flag. If the user is agnostic of the exchangeabilities, we recommend using the default matrix (although it can be time-consuming).
+
+Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchange abilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths  and rates has been shown to perform adequately for estimation of exchangeabilities) 
+
+
+If you use this routine in a publication please cite:
+
+> __H. Banos et al.__ (2024) GTRpmix: A linked general-time reversible model for profile mixture models. _BioRxiv_. <https://doi.org/10.1101/2024.03.29.587376>
+
 
 
 Site-specific frequency models
