@@ -108,10 +108,10 @@ Compiling under Linux
     
 This creates an executable `iqtree2` (`iqtree` for version 1). It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree2`.
 
+To compile IQ-TREE under Linux with ARM processor, use either GCC 10 (but not above), or Clang 14 or above.
+
 >**TIP**: The above guide typically compiles IQ-TREE with `gcc`. If you have Clang installed and want to compile with Clang, the compilation will be similar to Mac OS X like below.
 {: .tip}
-
->**TIP**: To compile IQ-TREE under Linux with ARM processor, use Clang 14 or above.
 
 Compiling under Mac OS X
 ------------------------
