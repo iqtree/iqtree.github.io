@@ -255,8 +255,11 @@ The user can determine the starting exchangeabilities before optimization. Choos
 
 specifies the LG matrix as the starting matrix via the flag `--gtr20-model` (the default starting matrix is POISSON, i.e. equal exchangeabilities). For this flag, the user can specify any matrix, even those matrices defined by the user via the `-mdef` flag. If the user is agnostic of the exchangeabilities, we recommend using the default matrix (although it can be time-consuming).
 
-Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchange abilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths  and rates has been shown to perform adequately for estimation of exchangeabilities) 
+Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchangeabilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths and rates has been shown to perform adequately for the estimation of exchangeabilities).
 
+When the option `--link-exchange-rates` is used, an output file named `GTRPMIX.nex` will be generated. This file contains the optimized exchangeabilities in nexus format, this is so one can use these estimated exchangeabilties in later analyses (without re-estimating them)  using a command line:
+
+    iqtree -s <alignment> -mdef <GTRPMIX.nex file> -m GTRPMIX+C60+G4
 
 If you use this routine in a publication please cite:
 
