@@ -14,8 +14,6 @@ sections:
   url: partition-models
 - name: Mixture models
   url: mixture-models
-- name: Linked GTR exchangeabilities models
-  url: linked-gtr-exchangeabilities-models
 - name: Site-specific frequency models
   url: site-specific-frequency-models
 - name: Heterotachy models

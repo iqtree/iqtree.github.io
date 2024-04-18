@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Estimating amino acid substitution models"
-author: Cuong Dang
-date: 2021-10-16
+author: _AUTHOR_
+date: _DATE_
 docid: 8
 icon: info-circle
 doctype: tutorial
@@ -11,9 +11,13 @@ tags:
 description: Estimating amino acid substitution models.
 sections:
 - name: Estimating a model from a single concatenated alignment
-  url: Estimating a model from a single concatenated alignment
+  url: estimating-a-model-from-a-single-concatenated-alignment
 - name: Estimating a model from a folder of alignments
-  url: Estimating a model from a folder of alignments
+  url: estimating-a-model-from-a-folder-of-alignments
+- name: Estimating a non-reversible model
+  url: estimating-a-non-reversible-model  
+- name: Estimating linked exchangeabilities
+  url: estimating-linked-exchangeabilities
 ---
 
 
@@ -165,8 +169,8 @@ To estimate a non-reversible model from a folder of alignments:
 	grep -A 22 "can be used as input for IQ-TREE" train_plant.NONREV.iqtree | tail -n21 > NQ.plant
 
 
-Estimating linked GTR exchangeabilities
----------------------------------------
+Estimating linked exchangeabilities
+-----------------------------------
 
 Starting with version 2.3.1, IQ-TREE allows users to estimate linked exchangeabilities under [profile mixture models](Substitution-Models#protein-mixture-models).
 
