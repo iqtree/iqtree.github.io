@@ -131,6 +131,33 @@ The resulting `NQ.plant` matrix may now look like:
 
 Note: To assess the statistical support of the root position with bootstraping (-B 1000 option), users can use [this tutorial](Rootstrap).
 
+### Estimating linked GTR exchangeabilities
+Starting with version 2.3.1, IQ-TREE allows the user to estimate exchangeabilities under profile mixture models.
+
+#### Exchangeability estimation
+
+To start with, we show an example:
+
+    iqtree -s <alignment> -m GTR20+C60+G4 --link-exchange-rates -te  <guide_tree> -me 0.99
+
+In this example exchangeabilities will be estimated for a profile mixture model `C60+G4` but any profile mixture model and rates can be used. To estimate a single set of linked exchangeabilities, in the model definition the matrix `GTR20` must be specified (resp. GTR for nucleotide data) together with the flag `--link-exchange-rates`. While a guide tree is not needed, we highly recommend using a fixed tree topology to estimate exchangeabilities.  Since matrix estimation can be time-consuming, we also recommend using the flag `-me 0.99` to reduce the optimization threshold for faster optimization. Simulations have shown that changing this parameter has no significant effect on exchangeability estimation.
+
+The user can determine the starting exchangeabilities before optimization. Choosing adequate exchangeabilities can make estimation considerably faster. For example:
+
+    iqtree -s example.phy -m GTR20+C60+G4 --link-exchange-rates --gtr20-model LG  -te  <guide_tree> -me 0.99
+
+specifies the LG matrix as the starting matrix via the flag `--gtr20-model` (the default starting matrix is POISSON, i.e. equal exchangeabilities). For this flag, the user can specify any matrix, even those matrices defined by the user via the `-mdef` flag. If the user is agnostic of the exchangeabilities, we recommend using the default matrix (although it can be time-consuming).
+
+Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchangeabilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths and rates has been shown to perform adequately for the estimation of exchangeabilities).
+
+When the option `--link-exchange-rates` is used, an output file named `GTRPMIX.nex` will be generated. This file contains the optimized exchangeabilities in nexus format, this is so one can use these estimated exchangeabilties in later analyses (without re-estimating them)  using a command line:
+
+    iqtree -s <alignment> -mdef <GTRPMIX.nex file> -m GTRPMIX+C60+G4
+
+If you use this routine in a publication please cite:
+
+> __H. Banos et al.__ (2024) GTRpmix: A linked general-time reversible model for profile mixture models. _BioRxiv_. <https://doi.org/10.1101/2024.03.29.587376>
+
 ## Estimating a model from a folder of alignments
 ### Estimating a reversible model
 We will now estimate a reversible model from a folder of alignments. Please first download the file [plant_10alignments.zip](data/plant_10alignments.zip). There is a sub-folder named `train_plant` in the downloaded folder. We use `-S` option instead of `-s` and `-p` options to allow each alignment having a separate tree. This -S option is typically used with a folder of alignments. The three commands are:
