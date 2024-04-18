@@ -261,6 +261,19 @@ The compiled `iqtree` binary will automatically choose the proper computational 
     IQ-TREE multicore Xeon Phi KNL version 1.6.beta for Linux 64-bit built May  7 2017
     
 
+Compiling IQ-TREE2 lib file
+---------------------------
+<div class="hline"></div>
+
+Starting with version 2.3.3, you can compile and create IQ-TREE2 lib file.
+
+If you want to compile the IQ-TREE2 lib file, simply run:
+
+    cmake -DMAKE_LIB=ON ..
+    make -j4
+
+
+<!--
 Compling with deep learning kernel for ModelFinder 2
 --------------------------------------------------
 
@@ -284,7 +297,7 @@ where 1.11.0 is the version of onnxruntime at the time of writing this document.
 Now you will need to run cmake by additional options:
 
 	cmake -Donnxruntime_INCLUDE_DIRS=/usr/local/Cellar//onnxruntime/1.11.0/include/onnxruntime/core/session/ -Donnxruntime_LIBRARIES=/usr/local/Cellar//onnxruntime/1.11.0/lib/libonnxruntime.dylib ..
-
+-->
 
 About precompiled binaries
 --------------------------
