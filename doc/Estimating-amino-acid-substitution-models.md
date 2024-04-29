@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Estimating amino acid substitution models"
-author: Cuong Dang
-date: 2021-10-16
+author: Cuongbb, Minh Bui, Thomaskf
+date:    2024-04-18
 docid: 8
 icon: info-circle
 doctype: tutorial
@@ -11,27 +11,29 @@ tags:
 description: Estimating amino acid substitution models.
 sections:
 - name: Estimating a model from a single concatenated alignment
-  url: Estimating a model from a single concatenated alignment
+  url: estimating-a-model-from-a-single-concatenated-alignment
 - name: Estimating a model from a folder of alignments
-  url: Estimating a model from a folder of alignments
+  url: estimating-a-model-from-a-folder-of-alignments
+- name: Estimating a non-reversible model
+  url: estimating-a-non-reversible-model  
+- name: Estimating linked exchangeabilities
+  url: estimating-linked-exchangeabilities
 ---
 
 
 Estimating amino acid substitution models
 ==========================
-Amino acid substitution models are a key component in phylogenetic analyses of protein sequences. All amino acid models available to date are time-reversible, an assumption designed for computational convenience but not for biological reality. Another significant downside to time-reversible models is that they do not allow inference of rooted trees without outgroups.
-In our recent papers ([Dang et al., 2021], [Minh et al., 2021]), we introduced QMaker and nQMaker, both using maximum likelihood approach that respectively allow the estimation of time reversible and time non-reversible amino acid substitution models from a single concatenated alignment or from a set of protein sequence alignments. Both reversible models estimated with QMaker and non-reversible models estimated with nQMaker fit better to empirical alignments than existing models, across a wide range of datasets. Moreover, the non-reversible models recovered correctly the commonly known root placements for the plant and bird trees with high statistical support without the need to use an outgroup.
-Six new reversible models (Q.pfam, Q.plant, Q.mammal, Q.bird, Q.insect, Q.yeast) and six new non-reversible models (NQ.pfam, NQ.plant, NQ.mammal, NQ.bird, NQ.insect, NQ.yeast) are implemented in the latest version of IQ-TREE.
-This tutorial provides an easy-to-use approach for users to estimate non-reversible models and rooted phylogenies from their own protein datasets. Please make sure 
-that you use the lateset version of IQ-TREE for full features and cite our manuscripts:
 
->  Bui Quang Minh, Cuong Cao Dang, Le Sy Vinh, and Robert Lanfear (2021), QMaker: Fast and Accurate Method to Estimate Empirical Models of Protein Evolution. <https://doi.org/10.1093/sysbio/syab010>
+Amino acid substitution models are a key component in phylogenetic analyses of protein sequences. Most, if not all, analyses use [empirical amino-acid models](Substitution-Models#protein-models), which were obtained from protein databases; but there has been no useful tool to estimate them for modern datasets at hand. Therefore, we introduced QMaker ([Minh et al., 2021]) as a fast and convenient tool as part of IQ-TREE version 2 to infer a replacement matrix Q for any set of protein alignments. 
 
-> Cuong Cao Dang, Bui Quang Minh, Hanon McShea, Joanna Masel, Jennifer Eleanor James, Le Sy Vinh, and Robert Lanfear (2021), nQMaker: estimating time non-reversible amino acid substitution models. <https://doi.org/10.1101/2021.10.18.464754>
+If you use QMaker or new models (Q.pfam, Q.plant, Q.mammal, Q.bird, Q.insect, Q.yeast), please cite:
 
-## Estimating a model from a single concatenated alignment
-### Estimating a reversible model
-We first demonstrate the estimation of a reversible model for a clade-specific dataset. Please download and extract the [sample training data](data/plant_10loci.zip). This sample data was exctracted from plant data ([Ran et al., 2018]). There are two files in the downloaded folder: 
+>  Bui Quang Minh, Cuong Cao Dang, Le Sy Vinh, and Robert Lanfear (2021), QMaker: Fast and Accurate Method to Estimate Empirical Models of Protein Evolution. _Systematic Biology_ 70: 1046–1060. <https://doi.org/10.1093/sysbio/syab010>
+
+Estimating a model from a single concatenated alignment
+-------------------------------------------------------
+
+We first demonstrate the estimation of a reversible model for a clade-specific dataset. Please download and extract the [sample training data](data/plant_10loci.zip). This example data was subsampled from a plant dataset ([Ran et al., 2018]). There are two files in the downloaded folder: 
 
 * `alignment.nex` contains the alignment in NEXUS format.
 * `train.nex` contains the training partitions  in NEXUS format.
@@ -92,8 +94,32 @@ The amino-acid order in this file is:
     Ala Arg Asn Asp Cys Gln Glu Gly His Ile Leu Lys Met Phe Pro Ser Thr Trp Tyr Val
 
 
-### Estimating a non-reversible model
-To estimate a non-reversible model, we use `--model-joint NONREV+FO` option instead of `--model-joint GTR20+FO` (in step 2). The three commands now are:
+Estimating a model from a folder of alignments
+----------------------------------------------
+
+We will now estimate a reversible model from a folder of alignments. Please first download the file [plant_10alignments.zip](data/plant_10alignments.zip). There is a sub-folder named `train_plant` in the downloaded folder. We use `-S` option instead of `-s` and `-p` options to allow each alignment having a separate tree. This -S option is typically used with a folder of alignments. The three commands are:
+
+	# step 1: infer a  separate tree for each alignment with reversible models as initial models
+	iqtree2 -seed 1 -T AUTO -S train_plant -mset LG,WAG,JTT -cmax 4 -pre train_plant
+	
+	# step 2: estimate a join reversible matrix across all alignments
+	iqtree2 -seed 1 -T AUTO -S train_plant.best_model.nex -te train_plant.treefile --model-joint GTR20+FO --init-model LG -pre train_plant.GTR20
+
+	# step 3: extract the resulting reversible matrix
+	grep -A 21 "can be used as input for IQ-TREE" train_plant.GTR20.iqtree | tail -n20 > Q.plant
+
+
+Estimating a non-reversible model
+---------------------------------
+
+QMaker assumes time-reversible models, an assumption designed for computational convenience but not for biological reality. A variant of QMaker, called nQMaker ([Dang et al., 2022]), can estimate _non-reversible_ models and _rooted_ trees from any set of protein alignments.
+
+If you use nQMaker or any new non-reversible models (NQ.pfam, NQ.plant, NQ.mammal, NQ.bird, NQ.insect, NQ.yeast), please cite:
+
+> Cuong Cao Dang, Bui Quang Minh, Hanon McShea, Joanna Masel, Jennifer Eleanor James, Le Sy Vinh, and Robert Lanfear (2022), nQMaker: estimating time non-reversible amino acid substitution models. Systematic Biology 71: 1110–1123. <https://doi.org/10.1101/2021.10.18.464754>
+
+
+To estimate a non-reversible model for a concatenated alignment, you can use `--model-joint NONREV+FO` option instead of `--model-joint GTR20+FO`:
 
 	# step 1: infer an single edge-linked tree with reversible models as initial models
 	iqtree2 --seed 1 -T AUTO -s alignment.nex -p train.nex -m MFP -mset LG,WAG,JTT -cmax 4 --prefix train_plant
@@ -129,25 +155,11 @@ The resulting `NQ.plant` matrix may now look like:
 
     0.076646 0.049413 0.038372 0.049451 0.010780 0.037824 0.063761 0.052468 0.015186 0.065770 0.104298 0.072672 0.019435 0.049968 0.035179 0.078294 0.045874 0.013490 0.033377 0.087742
 
-Note: To assess the statistical support of the root position with bootstraping (-B 1000 option), users can use [this tutorial](Rootstrap).
+> HINT: To assess the statistical support of the root position with bootstraping (-B 1000 option), users can use [this tutorial](Rootstrap).
 
-## Estimating a model from a folder of alignments
-### Estimating a reversible model
-We will now estimate a reversible model from a folder of alignments. Please first download the file [plant_10alignments.zip](data/plant_10alignments.zip). There is a sub-folder named `train_plant` in the downloaded folder. We use `-S` option instead of `-s` and `-p` options to allow each alignment having a separate tree. This -S option is typically used with a folder of alignments. The three commands are:
+To estimate a non-reversible model from a folder of alignments:
 
-	# step 1: infer a  separate tree for each alignment with reversible models as initial models
-	iqtree2 -seed 1 -T AUTO -S train_plant -mset LG,WAG,JTT -cmax 4 -pre train_plant
-	
-	# step 2: estimate a join reversible matrix across all alignments
-	iqtree2 -seed 1 -T AUTO -S train_plant.best_model.nex -te train_plant.treefile --model-joint GTR20+FO --init-model LG -pre train_plant.GTR20
-
-	# step 3: extract the resulting reversible matrix
-	grep -A 21 "can be used as input for IQ-TREE" train_plant.GTR20.iqtree | tail -n20 > Q.plant
-
-### Estimating a non-reversible model
-Same as estimating a non-reversible model from a single concatenated alignment, we change `--model-joint GTR20+FO` option (in step 2) to `--model-joint NONREV+FO`.
-
-	# step 1: infer a  separate tree for each alignment with reversible models as initial models
+	# step 1: infer a separate tree for each alignment with reversible models as initial models
 	iqtree2 -seed 1 -T AUTO -S train_plant -mset LG,WAG,JTT -cmax 4 -pre train_plant
 	
 	# step 2: estimate a join non-reversible matrix across all alignments
@@ -156,7 +168,44 @@ Same as estimating a non-reversible model from a single concatenated alignment, 
 	# step 3: extract the resulting non-reversible matrix
 	grep -A 22 "can be used as input for IQ-TREE" train_plant.NONREV.iqtree | tail -n21 > NQ.plant
 
-[Dang et al., 2021]: https://doi.org/10.1101/2021.10.18.464754
+
+Estimating linked exchangeabilities
+-----------------------------------
+
+Starting with version 2.3.1, IQ-TREE allows users to estimate linked exchangeabilities under [profile mixture models](Substitution-Models#protein-mixture-models).
+
+To start with, we show an example:
+
+    iqtree2 -s <alignment> -m GTR20+C60+G4 --link-exchange-rates -te  <guide_tree> -me 0.99
+
+Here, IQ-TREE applies a (freely-estimated) 20x20 rate matrix `GTR20` with the
+[profile mixture model](Substitution-Models#protein-mixture-models) `C60` (other model such as C10 can also be used) and Gamma rate heterogeneity across sites. The option `--link-exchange-rates` tells
+IQ-TREE to link GTR20 rates across all 60 mixture classes: without this option
+IQ-TREE will estimate 60 GTR20 matrices!
+
+The other options are not mandatory but meant to speed up this process:
+
+* `-te` option is to provide a _guide tree_, which is fixed throughout the estimation. This guide tree can be obtained previously from, for example, LG+C60+G or the simpler LG+G. Without this option, IQ-TREE will invoke a full tree search intertwined with model estimation, which may become very time consuming for large datasets.
+
+* `-me 0.99` is to set the log-likelihood difference threshold of determining convergence: higher value will make the optimisation faster. Simulations have shown that changing this parameter has no significant effect on exchangeability estimation.
+
+
+This command will produce an output file with suffix `.GTRPMIX.nex`. This file contains the optimized exchangeabilities in NEXUS format, that can be applied in later analyses (without re-estimating them) to reconstruct a tree, for example:
+
+    iqtree2 -s <alignment> -mdef <.GTRPMIX.nex file> -m GTRPMIX+C60+G4
+
+
+The optimizer in IQ-TREE by default initializes exchangeability rates to be all equal, which are the least biased but may make the subsequent optimization quite slow. If users have a good guess of the rate values, the option `--gtr20-model` can be used. For example, `--gtr20-model LG` will intialize the exchangeability to that
+of the LG model before optimization. Choosing good starting values can make estimation considerably faster. Apart from LG, users can specify any matrix, including those defined by the `-mdef` option with a [NEXUS model file](Complex-Models#nexus-model-file). Another use of this option is to _test the robustness_ of the optimizer with different starting points.
+
+Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchangeabilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths and rates has been shown to perform adequately for the estimation of exchangeabilities).
+
+If you use this routine in a publication please cite:
+
+> __H. Banos et al.__ (2024) GTRpmix: A linked general-time reversible model for profile mixture models. _BioRxiv_. <https://doi.org/10.1101/2024.03.29.587376>
+
+
+[Dang et al., 2022]: https://doi.org/10.1093/sysbio/syac007
 [Minh et al., 2021]: https://doi.org/10.1093/sysbio/syab010
 [Naser-Khdour et al., 2021]: https://doi.org/10.1093/sysbio/syab067
 [El-Gebali et al., 2018]: https://doi.org/10.1093/nar/gky995

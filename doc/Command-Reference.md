@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Command Reference"
-author: Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Thomaskf, Trongnhan Uit
-date:    2024-03-21
+author: 95438353+HectorBanos, Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Thomaskf, Trongnhan Uit
+date:    2024-04-17
 docid: 19
 icon: book
 doctype: manual
@@ -328,9 +328,8 @@ Further options:
 
 | Option | Usage and meaning |
 |----------|------------------------------------------------------------------------------|
-| `--link-exchange-rates` | Turn on linked exchangeability estimation for a profile mixture model. Note that the model must have specified `GTR20` exchangeabilities for eg.`GTR20+C20+G`. |
+| `--link-exchange-rates` | Turn on linked exchangeability estimation for a profile mixture model. Note that the model must have specified `GTR20` exchangeabilities for eg.`GTR20+C20+G`. This option also produces a nexus file `GTRPMIX.nex` with the exchangeability matrix obtained from the optimization. This file can be later used for phylogenetic inference with the use of the `-mdef` flag|
 | `--gtr20-model` | Specify the initial exchangeabilities for linked exchangeability estimation. Note that this must be used with `--link-exchange-rates.` |
-| `--rates-file` | Produces a nexus file with the exchangeability matrix obtained from the optimization. This file can be later used for phylogenetic inference with the use of the `-mdef` flag  |
 
 ### Example usages:
 
