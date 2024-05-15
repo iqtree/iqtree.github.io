@@ -200,6 +200,8 @@ of the LG model before optimization. Choosing good starting values can make esti
 
 Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchangeabilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths and rates has been shown to perform adequately for the estimation of exchangeabilities).
 
+Because these routines can be computationally expensive, we also provide two exchangeability matrices estimated from large concatenated phylogenomic-supermatrices under the C60 profile mixture model to be used for phylogenetic analyses. One, called Eukaryotic Linked Mixture (ELM), is designed for phylogenetic analysis of proteins encoded by nuclear genomes of eukaryotes, and the other, Eukaryotic and Archeal Linked mixture (EAL), for reconstructing relationships between eukaryotes and Archaea, see [Protein models](Substitution-Models#protein-models).
+
 If you use this routine in a publication please cite:
 
 > __H. Banos et al.__ (2024) GTRpmix: A linked general-time reversible model for profile mixture models. _BioRxiv_. <https://doi.org/10.1101/2024.03.29.587376>
