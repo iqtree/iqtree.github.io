@@ -446,17 +446,32 @@ are very similar to each other).
 |----------|------------------------------------------------------------------------------|
 | `--pathogen` | Apply CMAPLE tree search algorithm if sequence divergence is low, otherwise, apply IQ-TREE algorithm. |
 | `--pathogen-force` | Apply CMAPLE tree search algorithm regardless of sequence divergence. |
+| `-alrt`   | Specify number of replicates (>=1000) to perform SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). |
+| `-T` | Specify the number of CPU cores to use only for the SH-aLRT test. If `-T AUTO` is specified, IQ-TREE will use all available cores. NOTE: this option has no effect on tree search, which is still single-threaded. |
 
 ### Example usages:
 
 * Infer a maximum-likelihood tree for an alignment, automatically switching to CMAPLE algorithm 
   if sequence divergence is low:
 
-        iqtree -s data.phy --pathogen --prefix pathogen
+        iqtree2 -s data.phy --pathogen --prefix pathogen
         
-It will print the best ML tree to the file `pathogen.treefile`. If you want to do other
-analyses on this tree and thus saving the tree search time, 
-add `-te pathogen.treefile` to the command line to fix this tree topology.
+It will print two output files:
+
+* `pathogen.treefile`: The best approximate maximum-likelihood tree in NEWICK format.
+* `pathogen.log`: The log file.
+
+
+If you want to do other analyses on this tree and thus saving the tree search time, 
+add `-te pathogen.treefile` to the command line of a subsequent IQ-TREE run to fix this tree topology
+and remove `--pathogen` option to invoke the default IQ-TREE machinery.
+
+* Infer a tree like above and additionally assign branch supports using SH-aLRT test 
+  with 1000 replicates using 4 CPU cores:
+
+        iqtree2 -s data.phy --pathogen --alrt 1000 -T 4 --prefix pathogen
+
+The tree `pathogen.treefile` will contain branch supports for all internal branches.
 
 Ultrafast bootstrap parameters
 ------------------------------
