@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Estimating amino acid substitution models"
-author: Cuongbb, Minh Bui, Thomaskf
-date:    2024-04-18
+author: 95438353+HectorBanos, Cuongbb, Minh Bui, Thomaskf
+date:    2024-05-14
 docid: 8
 icon: info-circle
 doctype: tutorial
@@ -199,6 +199,8 @@ The optimizer in IQ-TREE by default initializes exchangeability rates to be all 
 of the LG model before optimization. Choosing good starting values can make estimation considerably faster. Apart from LG, users can specify any matrix, including those defined by the `-mdef` option with a [NEXUS model file](Complex-Models#nexus-model-file). Another use of this option is to _test the robustness_ of the optimizer with different starting points.
 
 Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchangeabilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths and rates has been shown to perform adequately for the estimation of exchangeabilities).
+
+Because these routines can be computationally expensive, two exchangeability matrices estimated from large concatenated phylogenomic-supermatrices under the C60 profile mixture model are provided to be used for phylogenetic analyses. One, called Eukaryotic Linked Mixture (ELM), is designed for phylogenetic analysis of proteins encoded by nuclear genomes of eukaryotes, and the other, Eukaryotic and Archeal Linked mixture (EAL), for reconstructing relationships between eukaryotes and Archaea, see [Protein models](Substitution-Models#protein-models).
 
 If you use this routine in a publication please cite:
 

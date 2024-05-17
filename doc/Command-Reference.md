@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Command Reference"
 author: 95438353+HectorBanos, Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Thomaskf, Trongnhan Uit
-date:    2024-04-17
+date:    2024-05-16
 docid: 19
 icon: book
 doctype: manual
@@ -28,6 +28,8 @@ sections:
     url: site-specific-frequency-model-options
   - name: Tree search parameters
     url: tree-search-parameters
+  - name: Tree search for pathogen data
+    url: tree-search-for-pathogen-data
   - name: Ultrafast bootstrap parameters
     url: ultrafast-bootstrap-parameters
   - name: Nonparametric bootstrap
@@ -431,6 +433,46 @@ The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters 
 
         iqtree -s data.phy -m TEST -g constraint.tree
 
+Tree search for pathogen data
+-----------------------------
+<div class="hline"></div>
+
+For pathogen data such as SARS-CoV-2 virus alignments, version 2.3.4.cmaple implements
+the MAPLE algorithm ([De Maio et al., 2023]) that performs tree search very quickly by
+exploiting the low divergent property of the sequences (i.e., sequences in the alignment
+are very similar to each other).
+
+| Option | Usage and meaning |
+|----------|------------------------------------------------------------------------------|
+| `--pathogen` | Apply CMAPLE tree search algorithm if sequence divergence is low, otherwise, apply IQ-TREE algorithm. |
+| `--pathogen-force` | Apply CMAPLE tree search algorithm regardless of sequence divergence. |
+| `-alrt`   | Specify number of replicates (>=1000) to perform SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). |
+| `-T` | Specify the number of CPU cores to use only for the SH-aLRT test. If `-T AUTO` is specified, IQ-TREE will use all available cores. NOTE: this option has no effect on tree search, which is still single-threaded. |
+
+### Example usages:
+
+* Infer a maximum-likelihood tree for an alignment, automatically switching to CMAPLE algorithm 
+  if sequence divergence is low:
+
+        iqtree2 -s data.phy --pathogen --prefix pathogen
+        
+It will print two output files:
+
+* `pathogen.treefile`: The best approximate maximum-likelihood tree in NEWICK format.
+* `pathogen.log`: The log file.
+
+
+If you want to do other analyses on this tree and thus saving the tree search time, 
+add `-te pathogen.treefile` to the command line of a subsequent IQ-TREE run to fix this tree topology
+and remove `--pathogen` option to invoke the default IQ-TREE machinery.
+
+* Infer a tree like above and additionally assign branch supports using SH-aLRT test 
+  with 1000 replicates using 4 CPU cores:
+
+        iqtree2 -s data.phy --pathogen --alrt 1000 -T 4 --prefix pathogen
+
+The tree `pathogen.treefile` will contain branch supports for all internal branches.
+
 Ultrafast bootstrap parameters
 ------------------------------
 <div class="hline"></div>
@@ -729,6 +771,7 @@ The first few lines of the output file example.phy.sitelh (printed by `-wslr` op
 [Adachi and Hasegawa, 1996b]: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.476.8552
 [Anisimova and Gascuel 2006]: https://doi.org/10.1080/10635150600755453
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
+[De Maio et al., 2023]: https://doi.org/10.1038/s41588-023-01368-0
 [Felsenstein, 1985]: https://doi.org/10.2307/2408678
 [Flouri et al., 2015]: https://doi.org/10.1093/sysbio/syu084
 [Gadagkar et al., 2005]: https://doi.org/10.1002/jez.b.21026
