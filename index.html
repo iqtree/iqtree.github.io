@@ -3,9 +3,9 @@ layout: default
 title: "IQ-TREE: Efficient phylogenomic software by maximum likelihood"
 permalink: /
 version: 1.6.12
-version_new: 2.3.2
+version_new: 2.3.4
 releasedate: August 15, 2019
-releasedate_new: April 10, 2024
+releasedate_new: April 26, 2024
 v1_url: https://github.com/Cibiv/IQ-TREE/releases/download
 v2_url: https://github.com/iqtree/iqtree2/releases/download
 ---
@@ -19,8 +19,7 @@ v2_url: https://github.com/iqtree/iqtree2/releases/download
             <h3>Latest release {{page.version_new}} ({{page.releasedate_new}})</h3>
             <p>
             <a id="downloadwin_new" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for Windows</a>            
-            <a id="downloadmac_new" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-macOS-intel.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for macOS Intel</a>
-            <a id="downloadmac_new2" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-macOS-arm.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for macOS Apple Mx</a>
+            <a id="downloadmac_new" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-macOS.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for macOS Universal</a>
             <a id="downloadlinux_new" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux-intel.tar.gz" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for Linux Intel</a>
             <a id="downloadlinux_new2" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux-arm.tar.gz" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for Linux ARM</a>
             </p>
@@ -68,7 +67,6 @@ v2_url: https://github.com/iqtree/iqtree2/releases/download
     } else if (os == "macOS") {
         document.getElementById("downloadmac").style.display = "inline";
         document.getElementById("downloadmac_new").style.display = "inline";
-        document.getElementById("downloadmac_new2").style.display = "inline";
     } else if (os == "Linux") {
         document.getElementById("downloadlinux").style.display = "inline";
         document.getElementById("downloadlinux_new").style.display = "inline";
@@ -212,7 +210,6 @@ v2_url: https://github.com/iqtree/iqtree2/releases/download
                 <h4>Windows</h4>
                 <div class="list-group">
                     <a class="list-group-item list-group-item-info" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows.zip">64-bit Windows</a>
-                    <!--<a class="list-group-item list-group-item-success" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows32.zip">32-bit Windows</a>-->
                 </div>
             </div>		 				
 
@@ -220,6 +217,7 @@ v2_url: https://github.com/iqtree/iqtree2/releases/download
                 <i class="fa fa-apple"></i>
                 <h4>macOS</h4>
                 <div class="list-group">
+                    <a class="list-group-item list-group-item-info" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-macOS.zip">64-bit macOS Universal</a>
                     <a class="list-group-item list-group-item-info" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-macOS-intel.zip">64-bit macOS Intel</a>
                     <a class="list-group-item list-group-item-success" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-macOS-arm.zip">64-bit macOS Apple Mx</a>
                 </div>
@@ -231,7 +229,6 @@ v2_url: https://github.com/iqtree/iqtree2/releases/download
                 <div class="list-group">
                     <a class="list-group-item list-group-item-info" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux-intel.tar.gz">64-bit Linux Intel</a>
                     <a class="list-group-item list-group-item-info" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux-arm.tar.gz">64-bit Linux ARM</a>
-                    <!--<a class="list-group-item list-group-item-success" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux32.tar.gz">32-bit Linux</a>-->
                 </div>
             </div>		 
             
