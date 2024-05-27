@@ -164,9 +164,9 @@ So, suppose that in the first step of the analysis you ran the command as above:
 
 That command will have figured out for you the model of evolution, all the parameters of that model, and the branch lengths of the corresponding tree. We can re-use all of that useful information in the final step. It just takes a little bit of effort to find what you need.
 
-First we'll get the model parameters we need. If you take a look at the end of the `concat.log` file you will find a little section called `ALISIM COMMAND`. You can find it like this on mac/linux (or just open the `concat.log` file in a text editor and scroll to the end:
+First we'll get the model parameters we need. If you take a look at the end of the `concat.iqtree` file you will find a little section called `ALISIM COMMAND`. You can find it like this on mac/linux (or just open the `concat.iqtree` file in a text editor and scroll to the end:
 
-	tail concat.log
+	tail concat.iqtree
 
 You should see something like this:
 
@@ -189,7 +189,7 @@ To put all of that together, we are going to change the final command of the tut
 	# compute site concordance factor using likelihood with v2.2.2
 	iqtree2 -te concat.treefile -s ALN_FILE --scfl 100 --prefix concord2
 
-To one of these, where we add the two extra commands via `-blfix` and `-m`, to fix all the parameters we already calculated. A reminder - do NOT use the exact commandlines above. You have to replace everything after the `-m` with what you found in your own `concat.log` file:
+To one of these, where we add the two extra commands via `-blfix` and `-m`, to fix all the parameters we already calculated. A reminder - do NOT use the exact commandlines above. You have to replace everything after the `-m` with what you found in your own `concat.iqtree` file:
 
 	# faster analysis, using pre-computed model parameters, with per-locus alignments
 	# compute site concordance factor using likelihood with v2.2.2
