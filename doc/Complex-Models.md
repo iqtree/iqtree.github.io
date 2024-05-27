@@ -148,7 +148,7 @@ Here, we specify two mixture components and four Gamma rate categories. Effectiv
 
 ### MixtureFinder
 
-MixtureFinder is an approach to select the optimum number of classes and the substitution model in each class for a mixture model of Q matrices. To run MixtureFinder:
+MixtureFinder is an approach to select the optimum number of classes and the substitution model in each class for a mixture model of Q matrices. Starting with version 2.3.1, MixtureFinder is available in IQ-TREE. To run MixtureFinder:
 
 	iqtree -s example.phy -m MIX+MF
 	
@@ -173,10 +173,16 @@ Options for ModelFinder also work for MixtureFinder, e.g.:
 The `-mset HKY,GTR` means we select subtitution model type among only `HKY` and `GTR` substitution models in each iteration of adding one more class. The `-mrate E,I,G,I+G` means we select the rate heterogeneity across sites models among `+E`, `+I`, `G` and `+I+G` models.
 
 Other options for MixtureFinder:
+
 | Model option   | Description                                                                                                                          |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `-qmax`        | Maximum number of Q-mixture classes (default: 10). Specify a number after the option (e.g., `-qmax 5`).                              |
 | `-mrate-twice` | Whether estimate the rate heterogeneity across sites models again after select the best Q-mixture model. 1: yes, 0: no. (default: 1) |
+
+If you use MixtureFinder in a publication please cite:
+
+> __H. Ren, T.K.F. Wong, B.Q. Minh, R. Lanfear__ (2024) MixtureFinder: Estimating DNA mixture models for phylogenetic analyses. _BioRxiv_. <https://doi.org/10.1101/2024.03.20.586035>
+
 
 
 ### Profile mixture models
@@ -203,8 +209,7 @@ This means, we have five components: the first corresponds to empirical AA frequ
 
     iqtree -s some_protein.aln -mdef mymodels.nex -m JTT+CF4model+G
 
-The `-mdef` option specifies the NEXUS file containing user-defined models. Here, the `JTT` matrix is applied for all alignment sites and one varies the AA profiles along the alignment. One can use the NEXUS syntax to define all other profile mixture models such as `C10` to `C60`.
-
+The `-mdef` option specifies the NEXUS file containing user-defined models (see below). Here, the `JTT` matrix is applied for all alignment sites and one varies the AA profiles along the alignment. One can use the NEXUS syntax to define all other profile mixture models such as `C10` to `C60`.
 
 ### NEXUS model file
 
@@ -326,9 +331,9 @@ Hundreds or thousands of loci are now routinely used in modern phylogenomic stud
 We applied the MAST model to multiple primate datasets and found that it can recover the signal of incomplete lineage sorting in the Great Apes, as well as the asymmetry in minor trees caused by introgression among several macaque species. When applied to a dataset of four Platyrrhine species for which standard concatenated maximum likelihood and gene tree approaches disagree, we find that MAST gives the highest weight to the tree favored by gene tree approaches. These results suggest that the MAST model is able to analyse a concatenated alignment using maximum likelihood, while avoiding some of the biases that come with assuming there is only a single tree. The MAST model can therefore offer unique biological insights when applied to datasets with multiple evolutionary histories.
 
 
-Meanwhile the manuscript is under review. If you use this model in a publication please cite:
+If you use this model in a publication please cite:
 
-> __T.K.F. Wong, C. Cherryh, A.G. Rodrigo, M.W. Hahn, B.Q. Minh and R. Lanfear__ (2022) MAST: Phylogenetic Inference with Mixtures Across Sites and Trees. *bioRxiv*. <https://doi.org/10.1101/2022.10.06.511210>
+> __T.K.F. Wong, C. Cherryh, A.G. Rodrigo, M.W. Hahn, B.Q. Minh and R. Lanfear__ (2024) MAST: Phylogenetic Inference with Mixtures Across Sites and Trees. _Syst. Biol._ <https://doi.org/10.1093/sysbio/syae008>
 
 
 ### Quick usage
@@ -338,7 +343,7 @@ Meanwhile the manuscript is under review. If you use this model in a publication
 > Of course, you should *always* do this anyway, but we put this warning here because multitree mixture models are new, somewhat complex, and may be easy to over-parameterise. So, if you are using these models for your research, please keep your biological head screwed on, and before interpreting any output (e.g. the weights of the classes in the mixture) check that the branch lengths of the trees look sensible, that the model parameters (e.g. base frequencies, transition rates, rates across sites) look sensible. Remember that if you are going to interpret any part of the model, you are also putting your faith in all of the other parameters.
 
 
-Make sure that you have IQ-TREE [version 2.2.0.7.mix](https://github.com/iqtree/iqtree2/releases/tag/v2.2.0.7.mx). The MAST model is executed by adding `+T` to the model option (`-m`) and providing a newick file with multiple trees by the option (`-te`). For example if one wants to fit a MAST model with different topologies contained in `trees.nwk` in conjunction with the `GTR` model to sequences in `data.fst`, one would use the following command:
+Starting with version 2.3.0, the MAST model can be executed by adding `+T` to the model option (`-m`) and providing a newick file with multiple trees by the option (`-te`). For example if one wants to fit a MAST model with different topologies contained in `trees.nwk` in conjunction with the `GTR` model to sequences in `data.fst`, one would use the following command:
 
     iqtree2 -s data.fst -m "GTR+T" -te trees.nwk
 
