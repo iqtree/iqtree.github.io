@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Compilation Guide"
 author: Dominik Schrempf, Jana Trifinopoulos, Meaningseeking, Minh Bui, Thomaskf
-date:    2024-04-18
+date:    2024-05-25
 docid: 20
 icon: book
 doctype: manual
@@ -269,7 +269,7 @@ Starting with version 2.3.3, you can compile and create IQ-TREE2 lib file.
 
 If you want to compile the IQ-TREE2 lib file, simply run:
 
-    cmake -DMAKE_LIB=ON ..
+    cmake -DBUILD_LIB=ON ..
     make -j4
 
 
