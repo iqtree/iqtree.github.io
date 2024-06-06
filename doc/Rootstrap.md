@@ -107,12 +107,12 @@ as the run above to infer an unrooted tree using reversible models:
 
 This run will also write the best partitioning scheme to `rev_dna.best_scheme.nex` file.
 In the second step, we will re-use this best scheme but replace the substitution model 
-with the most general non-reversible DNA model, 12.12 or UNREST 
+with the most general non-reversible DNA model, UNREST or 12.12
 (see [this doc](Substitution-Models#lie-markov-models)) to obtain a rooted tree:
 
-    iqtree2 -s bovidae.phy -p rev_dna.best_scheme.nex --model-joint 12.12 -B 1000 -T AUTO --prefix nonrev_dna
+    iqtree2 -s bovidae.phy -p rev_dna.best_scheme.nex --model-joint UNREST -B 1000 -T AUTO --prefix nonrev_dna
 
-The option `--model-joint 12.12` tells IQ-TREE use a linked substitution model 12.12 across
+The option `--model-joint UNREST` tells IQ-TREE use a linked substitution model UNREST across
 all partitions. This is to avoid potential over-parameterization as this is very 
 parameter-rich model with 12 parameters.
 
