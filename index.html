@@ -79,40 +79,38 @@ v2_url: https://github.com/iqtree/iqtree2/releases/download
 <div class="service container">
 
     <div class="row centered">
-        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-        <br>
-            <div class="list-group">
-                <div class="list-group-item list-group-item-warning">
-                    <h4 class="centered">LATEST NEWS</h4>
-                    March 25, 2024: You can run IQ-TREE for macOS new M1-3 chips and several <a href="doc/Complex-Models">mixture models</a> in v2.3.X<br>
-                    March 25, 2022: You can now <a href="doc/AliSim">simulate alignments</a> under a wide variety of models in v2.2.X<br>
-                </div>
-            </div>
-        </div>
         <div class="col-sm-12">
-            <br><h3>IQ-TREE key features</h3>
+            <br><h3>IQ-TREE feature highlights</h3>
         </div>
         <div class="col-sm-6">
             <i class="fa fa-usb fa-rotate-270"></i>
             <h4>IQ-TREE - Efficient Tree Reconstruction</h4>
-            <p>A fast and effective stochastic algorithm to infer phylogenetic trees by maximum likelihood. <em>IQ-TREE compares favorably to RAxML and PhyML</em> in terms of likelihoods with similar computing time (<a href="http://dx.doi.org/10.1093/molbev/msu300">Nguyen et al., 2015</a>).</p>
+            <p>A fast search algorithm (<a href="http://dx.doi.org/10.1093/molbev/msu300">Nguyen et al., 2015</a>)
+            to infer phylogenetic trees by maximum likelihood. 
+            IQ-TREE compares favorably to RAxML and PhyML.</p>
         </div>
         <div class="col-sm-6">
             <i class="fa fa-user-md"></i>
             <h4>ModelFinder - Fast and Accurate Model Selection</h4>
-            <p>ModelFinder (<a href="http://dx.doi.org/10.1038/nmeth.4285">Kalyaanamoorthy et al., 2017</a>) enables a free rate variation model and is <em>10 to 100 times faster than jModelTest and ProtTest</em>. It also finds best-fit partitioning scheme like <a href="http://www.robertlanfear.com/partitionfinder/">PartitionFinder</a>.</p>
+            <p>ModelFinder (<a href="http://dx.doi.org/10.1038/nmeth.4285">Kalyaanamoorthy et al., 2017</a>) 
+            is <em>10 to 100 times faster than jModelTest and ProtTest</em>. It also finds best-fit 
+            partitioning scheme like <a href="http://www.robertlanfear.com/partitionfinder/">PartitionFinder</a>.</p>
         </div>		 				
     </div>
     <div class="row centered">
         <div class="col-sm-6">
             <i class="fa fa-fighter-jet"></i>
             <h4>UFBoot - Ultrafast Bootstrap Approximation</h4>
-            <p>UFBoot provides approximately unbiased branch support values and runs 100X faster than nonparametric bootstrap and 10 to 40 times faster than RAxML rapid bootstrap (<a href="http://dx.doi.org/10.1093/molbev/mst024">Minh et al., 2013</a>).</p>
+            <p>UFBoot (<a href="http://dx.doi.org/10.1093/molbev/mst024">Minh et al., 2013</a>) 
+            provides approximately unbiased branch support values and runs 100X faster than 
+            nonparametric bootstrap and 10 to 40 times faster than RAxML rapid bootstrap.</p>
         </div>
         <div class="col-sm-6">
             <i class="fa fa-tasks"></i>
-            <h4>Big Data Analysis</h4>
-            <p>Supporting huge datasets with thousands of sequences or millions of alignment sites via <a href="doc/Command-Reference#checkpointing-to-resume-stopped-run">checkpointing</a>, safe numerical and low memory mode. <a href="doc/Tutorial#utilizing-multi-core-cpus">Multicore CPUs</a> and <a href="doc/Compilation-Guide#compiling-mpi-version">parallel MPI system</a> are utilized to speedup analysis.</p>
+            <h4>AliSim - Alignment Simulator <span class="label label-danger"><em>New!</em></span></h4>
+            <p>AliSim (<a href="https://doi.org/10.1093/molbev/msac092">Ly-Trong et al., 2022</a>) allows to 
+            quickly <a href="doc/AliSim">simulate multiple sequence alignments</a> under more realistic models than Seq-Gen and INDELible.
+            </p>
         </div>		 				
     </div>
     <br>
@@ -120,17 +118,20 @@ v2_url: https://github.com/iqtree/iqtree2/releases/download
         <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
             <div class="list-group">
                 <div class="list-group-item list-group-item-warning">
-                    <h4 class="centered">Version 2.0 Highlights </h4>
+                    <h4 class="centered">Version 2.0 Highlights</h4>
                     <ul>
-                    <li>Input alignment (-s option) or partition (-p) can be a directory of alignment files</li>
-                    <li>Inference of rooted trees using non-reversible models</li>
-                    <li>Faster tree search under topological constraint (-g option)</li>
-                    <li>Gene/locus trees inference (-S option) and <a href="https://doi.org/10.1101/487801">concordance factor analysis</a> (--gcf)</li>
+                    <li>Supporting large datasets with <a href="doc/Command-Reference#checkpointing-to-resume-stopped-run">checkpointing</a>, 
+            		<a href="doc/Command-Reference#general-options">safe numerical and low memory mode</a></li>
+            		<li>High performance computing with <a href="doc/Tutorial#utilizing-multi-core-cpus">Multicore CPUs</a> 
+            		and <a href="doc/Compilation-Guide#compiling-mpi-version">distributed MPI system</a></li>
+                    <li>Input alignment or partition can be a directory of alignment files</li>
+                    <li>Inference of <a href="doc/Rootstrap">rooted trees</a> using non-reversible models</li>
+                    <li>Faster tree search under <a href="doc/Advanced-Tutorial#constrained-tree-search">topological constraint</a></li>
+                    <li>Gene/locus trees inference and <a href="doc/Concordance-Factor">concordance factor analysis</a></li>
                     <li><a href="https://doi.org/10.1093/sysbio/syu062">ModelOMatic model selection</a> between DNA, protein and codon models (--modelomatic option)</li>
-                    <li><a href="https://doi.org/10.1093/gbe/evz193">Tests of model violations</a> (--symtest option)</li>
-                    <li><a href="https://doi.org/10.1038/s41586-018-0043-0">Transfer bootstrap expectation</a> (--tbe option)</li>
-                    <li>Site rate estimation by maximum likelihood (--mlrate option)</li>
-                    <li><a href="https://doi.org/10.1093/bioinformatics/bty384">Terrace analysis</a> for partitioned models</li>
+                    <li><a href="doc/Assessing-Phylogenetic-Assumptions">Tests of model violations</a></li>
+                    <li><a href="doc/Advanced-Tutorial#inferring-site-specific-rates">Site rate estimation</a> by maximum likelihood</li>
+                    <li><span class="label label-danger"><em>New!</em></span> Version 2.3.X supports macOS M1-3 (ARM) chips and new <a href="doc/Complex-Models">mixture models</a> (25 March 2024)</li>
                     </ul>
                     <a href="https://doi.org/10.1093/molbev/msaa015">&rarr; IQ-TREE 2 paper in Mol. Biol. Evol.</a>
                 </div>
@@ -171,18 +172,17 @@ v2_url: https://github.com/iqtree/iqtree2/releases/download
         </div>
         <div class="col-sm-4">
             <i class="fa fa-globe"></i>
-            <h4>W-IQ-TREE Web Service</h4>
+            <h4>Online Web Service</h4>
             Easy to use web servers provided by:<br>
             <a href="http://iqtree.cibiv.univie.ac.at" target="_blank">Center for Integrative Bioinformatics Vienna, Austria</a><br>
-            <a href="https://www.hiv.lanl.gov/content/sequence/IQTREE/iqtree.html" target="_blank">Los Alamos National Laboratory, USA</a> <span class="label label-danger"><em>New!</em></span>
+            <a href="https://www.hiv.lanl.gov/content/sequence/IQTREE/iqtree.html" target="_blank">Los Alamos National Laboratory, USA</a>
         </div>		 
         <div class="col-sm-4">
             <i class="fa fa-question-circle"></i>
             <h4>User Support</h4>
             Please refer to <a href="doc/Frequently-Asked-Questions">Frequently Asked Questions</a>.
             For further questions and feedback, please create a new topic on
-            <a href="https://github.com/iqtree/iqtree2/discussions">IQ-TREE GitHub discussions</a>
-            (We no longer use <a href="https://groups.google.com/d/forum/iqtree">Google group</a>).
+            <a href="https://github.com/iqtree/iqtree2/discussions">IQ-TREE GitHub discussions</a> <span class="label label-danger"><em>New!</em></span>
         </div>
         <div class="col-sm-4">
             <a href="doc/">
