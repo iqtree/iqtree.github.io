@@ -133,7 +133,6 @@ v2_url: https://github.com/iqtree/iqtree2/releases/download
                     <li><a href="doc/Advanced-Tutorial#inferring-site-specific-rates">Site rate estimation</a> by maximum likelihood</li>
                     <li><span class="label label-danger"><em>New!</em></span> Version 2.3.X supports macOS M1-3 (ARM) chips and new <a href="doc/Complex-Models">mixture models</a> (25 March 2024)</li>
                     </ul>
-                    <a href="https://doi.org/10.1093/molbev/msaa015">&rarr; IQ-TREE 2 paper in Mol. Biol. Evol.</a>
                 </div>
             </div>
         </div>
@@ -296,37 +295,17 @@ v2_url: https://github.com/iqtree/iqtree2/releases/download
             <br><h2 class="centered">How to cite?</h2>
             <div class="list-group">
                 <div class="list-group-item list-group-item-danger">
-                To maintain IQ-TREE, support users and secure fundings, it is important for us that you cite the following papers, whenever the corresponding features were applied for your analysis. Note that the paper of Nguyen et al. (2015) only described the tree search algorithm. Thus, it is not enough to only cite this paper if you, for example, use partition models, where <A HREF="http://dx.doi.org/10.1093/sysbio/syw037">Chernomor et al. (2016)</A> should be cited.
+                To maintain IQ-TREE, support users and obtain fundings,
+                it is important that you not only cite the IQ-TREE version 2 paper
+                (<a href="https://doi.org/10.1093/molbev/msaa015">Minh et al., 2020</a>) 
+                but also additional papers typically mentioned in the documentation
+                of the features/options you are using in your analysis.
+                These papers are also <a href="https://github.com/iqtree/iqtree2#citations">listed here</a>.
                 </div>
             </div>
         </div>
     </div>
     
-{% for pub in site.data.pubdata.references %}
-	<div class="well well-sm">
-	    <div class="row">
-	        <div class="col-xs-10 col-md-11">
-		    	<H4>{{pub.message}}
-		    		{% if pub.new %}
-		    		<span class="label label-danger"><em>New!</em></span>
-		    		{% endif %}
-		    	</H4>
-		        <strong>
-		        	{% for author in pub.author %}
-		        		{{author.given}} {{author.family}}{% if author != pub.author.last %}, {% endif %}
-		        	{% endfor %}
-		        </strong> 
-		        ({{pub.issued.year}}) {{pub.title}}.
-		        <EM>{{pub.container-title}}</EM>{% if pub.volume %}, {{pub.volume}}:{{pub.page}}. {% endif %}
-		        <A href="https://doi.org/{{pub.DOI}}">https://doi.org/{{pub.DOI}}</A>
-		    </div><!--col-->
-	        <div class="col-xs-2  col-md-1">
-	            <div data-badge-popover="left" data-badge-type="donut" data-doi="{{pub.DOI}}" data-hide-less-than="10" class="altmetric-embed"></div>
-	        </div><!--col-->
-        </div><!--row-->
-    </div><!--well-->
-{% endfor %}
-
     <div class="row">
         <div class="col-md-12">
             <h3 class="centered">IQ-TREE would not be possible without generous fundings by:</h3><br>
