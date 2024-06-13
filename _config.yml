@@ -32,7 +32,7 @@ colors:  #in hex code if not noted else
 # Social networks usernames. Many more available: google-plus, flickr, linkedin, etc). Shown in footer.
 social:
   - title: github
-    url: https://github.com/Cibiv/IQ-TREE
+    url: https://github.com/iqtree/iqtree2
 
 twitter_username: bq_minh
     
@@ -40,15 +40,14 @@ twitter_username: bq_minh
 address:
   - lines: 
 
-email: minh.bui(at)univie.ac.at
+email: m.bui(at)anu.edu.au
 
 links:
-  - <a href="http://www.cibiv.at">Center for Integrative Bioinformatics Vienna</a>
-  - <a href="https://www.univie.ac.at">University of Vienna</a>
-  - <a href="http://www.fwf.ac.at/">Austrian Science Fund</a>
+  - <a href="https://anu-phylogenomics.github.io">Computational Phylogenomics Lab</a>
+  - <a href="https://www.anu.edu.au">Australian National University</a>
 
 supports:
-  - <a href="https://groups.google.com/d/forum/iqtree">IQ-TREE Google group</a>
+  - <a href="https://github.com/iqtree/iqtree2/discussions">IQ-TREE GitHub discussions</a>
 
 ### GENERAL DATA FOR VARIOUS LOCATIONS ###
 
@@ -58,7 +57,7 @@ supports:
 #    img: client03.png
     
 # Short text about your company. Shown in footer on every page and also separately on Home and Contact page.
-about: IQ-TREE code is hosted at <a href="https://github.com/Cibiv/IQ-TREE">GitHub repository</a>.
+about: IQ-TREE code is hosted at <a href="https://github.com/iqtree/iqtree2">GitHub repository</a>.
 
 # Testimonial content. Shown on Home and About page. 
 #testimonial:
