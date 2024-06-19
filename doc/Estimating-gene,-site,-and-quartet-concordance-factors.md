@@ -22,10 +22,15 @@ conda activate concordance
 conda install -c bioconda iqtree astral-tree
 ```
 
-* Finally, you need the data. The data for this recipe is 500 randomly-selected alignments of intergenic regions from the paper ["Complexity of avian evolution revealed by family-level genomes" by Stiller et al. in 2024](https://doi.org/10.1038/s41586-024-07323-1). You can download these from here: [bird_500.tar.gz](https://github.com/user-attachments/files/15894214/bird_500.tar.gz). You will need to decompress this data using the following command
+* Finally, you need the data. The data for this recipe is 400 randomly-selected alignments of intergenic regions from the paper ["Complexity of avian evolution revealed by family-level genomes" by Stiller et al. in 2024](https://doi.org/10.1038/s41586-024-07323-1). You can download these from here: [bird_400.tar.gz](https://github.com/user-attachments/files/15894364/bird_400.tar.gz)
+
+
+
+
+. You will need to decompress this data using the following command
 
 ```bash
-tar -xzf bird_500.tar.gz
+tar -xzf bird_400.tar.gz
 ```
 
 For the sake of reproducibility, you can also create your own set of 500 randomly-selected loci from the intergenic regions sequenced for this paper using the following commands:
@@ -37,8 +42,16 @@ wget https://erda.ku.dk/archives/341f72708302f1d0c461ad616e783b86/B10K/data_uplo
 # decompress it
 tar -xvzf 63430.alns.tar.gz
 
-# select 500 random loci, then compress them
-mkdir -p bird_500
-find 63k_alns/ -type f | shuf -n 500 | xargs -I {} mv {} bird_500/
-tar -czf bird_500.tar.gz -C bird_500 .
+# select 400 random loci, then compress them
+mkdir -p bird_400
+find 63k_alns/ -type f ! -name '.*' | shuf -n 400 | xargs -I {} mv {} bird_400/ # avoid files that start with '.'
+tar -czf bird_400.tar.gz -C bird_400 .
+```
+
+# Estimating the gene trees and the species tree
+
+To estimate the gene trees, we'll use IQ-TREE2. Just set `-T` to the highest number of threads you have available
+
+```bash
+iqtree2 -S bird_500 --prefix loci -T 256
 ```
