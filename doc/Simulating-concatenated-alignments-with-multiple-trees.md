@@ -13,7 +13,7 @@ Hopefully the combination of these two recipes will give you a good idea of how 
 
 I use conda to install both of these, and suggest you do to. If you want to do that, here's one way to do it:
 
-```{bash}
+```bash
 # set up a fresh environment and activate it
 conda create --name simaln
 conda activate simaln
@@ -59,7 +59,7 @@ With a few tricks from bash, we can easily generalise the above into a method of
 
 Here's the script, with comments to help decipher it. I'm not all that flash with bash, so there are likely simpler ways to do some of this. But it will get the job done.
 
-```{bash}
+```bash
 #!/bin/bash
 
 # set the lengths as a list
