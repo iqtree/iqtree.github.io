@@ -13,7 +13,7 @@ Hopefully the combination of these two recipes will give you a good idea of how 
 
 I use conda to install both of these, and suggest you do to. If you want to do that, here's one way to do it:
 
-```
+```{bash}
 # set up a fresh environment and activate it
 conda create --name simaln
 conda activate simaln
