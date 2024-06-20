@@ -121,14 +121,46 @@ We use IQ-TREE to calculate gene and site concordance factors (for more details 
 
 In the following command lines:
 
-* `-te` tells IQ-TREE to use a fixed input tree
-* `-p loci.best_model.nex` tells IQ-TREE to use the loci from `bird_400` and the models we estimated previously when calculating the gene trees
+* `-te` tells IQ-TREE to use a fixed input tree (note that we keep updating the tree to that from the previous command)
 * `--gcf` is the command to calculate the gCF using the gene trees we estimated above
-* `--scfl 100` is the command to calculate the likelihood-based sCF with 100 replicates
 * `-prefix` is the prefix for the output files
 * `-T` is the number of threads (change this to suit your machine)
+* `--scfl 100` is the command to calculate the likelihood-based sCF with 100 replicates
+* `-p loci.best_model.nex` tells IQ-TREE to use the loci from `bird_400` and the models we estimated previously when calculating the gene trees (this saves a huge amount of time)
 
 ```bash
 iqtree2 -te astral_species_annotated.tree --gcf loci.treefile --prefix gcf -T 128
 iqtree2 -te gcf.cf.tree -p loci.best_model.nex --scfl 100 --prefix gcf_scfl -T 128
 ```
+
+These two command lines will produce a lot of output files, but the key files are:
+
+* `gcf.cf.stat`: a table with the gCF values, as well as gDF1, gDF2, gDFP, and many other things (including all the ASTRAL labels)
+* `gcf_scfl.cf.stat`: the equivalent table for scfl values (including all the ASTRAL labels)
+* `gcf_scfl.cf.tree`: the tree file with all the annotations. 
+
+You can download these files here: 
+[gcf_scf.zip](https://github.com/user-attachments/files/15909874/gcf_scf.zip)
+
+Each branch in `gcf_scfl.cf.tree` will be annotated like this:
+
+`'[q1=0.570241231975882;q2=0.17602481596980715;q3=0.25373395205431093;f1=207.567808439221;f2=64.0730330130098;f3=92.3591585477691
+7;pp1=1.0;pp2=1.575119358351017E-20;pp3=2.952157354351003E-20;QC=8496;EN=364.0]'/47.0/25.4:0.0055956557`
+
+The key information for our purposes is:
+
+* `q1=0.570241231975882`: this is the quartet concordance factor
+* `47.0`: this is the gene concordance factor
+* `25.4`: this is the site concordance factor
+* `0.0055956557` this is the branch length in **substitutions per site**
+
+If you look into the `gcf.cf.stat` file, you will also be able to see the branch length in coalescent units, as calculated by ASTRAL (this is because in this analysis we didn't re-estimate any branch lengths on the tree, thus these branch lengths come straight from the input tree which was from ASTRAL). 
+
+# Generate the concordance vectors for each branch
+
+There are many ways to do this, but here are three. 
+
+### View the tree file
+
+The simplest approach is just to open the file `gcf_scfl.cf.tree` in a tree viewer like [DendroScope](https://github.com/husonlab/dendroscope3/releases/latest). This allows you to view and manipulate the tree, and also to put the labels on every edge. To do this, just load the tree in Dendroscope, specify that the labels are edge labels when you are asked, and that's it. You can then re-root the tree, change the layout, and zoom in and out to see the edge labels you are interested in. 
+
