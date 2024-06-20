@@ -62,11 +62,24 @@ This analysis will produce output files with lots of information, for convenienc
 
 # Estimating the species tree
 
-As in the original paper, we'll use ASTRAL to estimate the species tree from the gene trees. (Note that in the original paper they collapse some branches that have low aLRT scores, but we skip that here for simplicity). 
+You should estimate your species tree using whatever the best approach is for your data, for example a joint Bayesian analysis using BEAST or *BEAST, a two-step analysis e.g. using ASTRAL, or a concatentated analysis using IQ-TREE or RAxML. You may also have a species tree that has already been estimated elsewhere, and just want to map the concordance factors onto that. In that case, you can skip this step. 
+
+For the purposes of this tutorial, we'll follow the original paper on bird phylogenomics and use ASTRAL to estimate the species tree from the gene trees we just estimated. Note that in the original paper they collapse some branches that have low aLRT scores, but we skip that here for simplicity. This analysis will take just a few minutes.
 
 > Here we just calculate the species tree, we'll add concordance factors and branch support values later
 
 ```bash
-astral -i loci.treefile -o astral_species.tree > astral_species.log
+astral -i loci.treefile -o astral_species.tree 2> astral_species.log
 ```
+
+This analysis will produce two files. For convenience you can download these here: 
+[astral.zip](https://github.com/user-attachments/files/15907833/astral.zip)
+
+
+* `astral_species.tree`: the species tree estimated from ASTRAL (this might be quite different to the tree in the paper, because we used only 400 genes, on 63000!)
+* `astral_species.log`: the log file from ASTRAL
+
+# Estimating concordance factors
+
+Now we want to calculate gene, site, and quartet concordance factors for every branch in our species tree. To do that, we need our species tree (of course); our gene trees (gene and quartet concordance factors are calculated from these); our alignments (site concordance factors are calculated from these).
 
