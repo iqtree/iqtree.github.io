@@ -79,7 +79,45 @@ This analysis will produce two files. For convenience you can download these her
 * `astral_species.tree`: the species tree estimated from ASTRAL (this might be quite different to the tree in the paper, because we used only 400 genes, on 63000!)
 * `astral_species.log`: the log file from ASTRAL
 
-# Estimating concordance factors
+# Estimating concordance factors and support values
 
-Now we want to calculate gene, site, and quartet concordance factors for every branch in our species tree. To do that, we need our species tree (of course); our gene trees (gene and quartet concordance factors are calculated from these); our alignments (site concordance factors are calculated from these).
+Now we want to calculate gene, site, and quartet concordance factors, and posterior probabilities (support values calculated by ASTRAL) for every branch in our species tree. To do that, we need our species tree (of course); our gene trees (gene and quartet concordance factors are calculated from these); our alignments (site concordance factors are calculated from these).
+
+### Estimate the support and quartet concordance factors in ASTRAL
+
+We use ASTRAL to calculate quartet concordance factors and posterior support values (which calculated from quartet support values). 
+
+* `-q` tells ASTRAL it to use a fixed tree topology, we use the species tree we calculated above
+* `-t 2` tells ASTRAL to calculate all of the things we need and annotate the tree
+
+```bash
+astral -q astral_species.tree -i loci.treefile -t 2 -o astral_species_annotated.tree 2> astral_species_annotated.log
+```
+
+There are two output files here, which you can download here: 
+[astral_annotated.zip](https://github.com/user-attachments/files/15908295/astral_annotated.zip)
+
+
+* `astral_species_annotated.tree`: a tree with support values in the format `[pp1=1;pp2=0;pp3=0]` on each node. (`pp1` is the support for the node in the tree, while `pp2` and `pp3` are the support for the alternative NNI resolutions of that node.
+* `astral_species_annotated.log`: the log file for ASTRAL
+
+The annotated tree contains a lot of extra information on every node, e.g.:
+
+```
+[q1=0.9130236794171221;q2=0.04753773093937029;q3=0.03943858964350768;f1=334.1666666666667;f2=17.398809523809526;f3=14.43452380952381;pp1
+=1.0;pp2=0.0;pp3=0.0;QC=200178;EN=366.0]
+```
+
+These are explained in detail in the [ASTRAL tutorial](https://github.com/smirarab/ASTRAL/blob/master/astral-tutorial.md), but for our purposes we are interested in:
+
+* `q1`: the quartet concordance factor at a node
+* `pp1`: the ASTRAL posterior probability for a node (roughly, the probability that `q1` is the highest of the three q values)
+
+### Estimate the gene and site concordance factors in IQ-TREE
+
+We use IQ-TREE to calculate gene and site concordance factors as follows:
+
+```bash
+iqtree -te astral_species_annotated.tree --gcf loci.treefile --scfl 100 --prefix astral_gcf_scf -T 128
+```
 
