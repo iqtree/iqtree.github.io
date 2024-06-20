@@ -22,6 +22,8 @@ conda activate concordance
 conda install -c bioconda iqtree astral-tree
 ```
 
+After installation, double check that you have the latest versions of both pieces of software. You will need IQ-TREE version 2.3 or above for this. 
+
 * Finally, you need the data. The data for this recipe is 400 randomly-selected alignments of intergenic regions from the paper ["Complexity of avian evolution revealed by family-level genomes" by Stiller et al. in 2024](https://doi.org/10.1038/s41586-024-07323-1). You can download these from here: [bird_400.tar.gz](https://github.com/user-attachments/files/15894364/bird_400.tar.gz). You will need to decompress this data using the following command
 
 ```bash
@@ -115,9 +117,18 @@ These are explained in detail in the [ASTRAL tutorial](https://github.com/smirar
 
 ### Estimate the gene and site concordance factors in IQ-TREE
 
-We use IQ-TREE to calculate gene and site concordance factors as follows:
+We use IQ-TREE to calculate gene and site concordance factors (for more details see the [concordance factor page](http://www.iqtree.org/doc/Concordance-Factor).
+
+In the following command lines:
+
+* `-te` tells IQ-TREE to use a fixed input tree
+* `-p loci.best_model.nex` tells IQ-TREE to use the loci from `bird_400` and the models we estimated previously when calculating the gene trees
+* `--gcf` is the command to calculate the gCF using the gene trees we estimated above
+* `--scfl 100` is the command to calculate the likelihood-based sCF with 100 replicates
+* `-prefix` is the prefix for the output files
+* `-T` is the number of threads (change this to suit your machine)
 
 ```bash
-iqtree -te astral_species_annotated.tree --gcf loci.treefile --scfl 100 --prefix astral_gcf_scf -T 128
+iqtree2 -te astral_species_annotated.tree --gcf loci.treefile --prefix gcf -T 128
+iqtree2 -te gcf.cf.tree -p loci.best_model.nex --scfl 100 --prefix gcf_scfl -T 128
 ```
-
