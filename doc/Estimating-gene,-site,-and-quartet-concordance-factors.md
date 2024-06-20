@@ -45,16 +45,28 @@ tar -czf bird_400.tar.gz -C bird_400 .
 
 # Estimating the gene trees
 
-To estimate the gene trees, we'll use IQ-TREE2. Just set `-T` to the highest number of threads you have available. This step might take some time (a couple of hours with my 128 threads). If you prefer to skip it then you can download the resulting gene trees here: 
+To estimate the gene trees, we'll use IQ-TREE2. Just set `-T` to the highest number of threads you have available. This step might take some time (about 3.5 hours with my 128 threads). If you prefer to skip it then you can download the key output files from this analysis here: 
+[loci.zip](https://github.com/user-attachments/files/15907618/loci.zip)
+
 
 ```bash
 iqtree2 -S bird_400 --prefix loci -T 128
 ```
 
+This analysis will produce output files with lots of information, for convenience you can download the key files here: [loci.zip](https://github.com/user-attachments/files/15907618/loci.zip), this zip file includes:
+
+* `loci.best_model.nex`: the models in nexus format - these have every parameter value for every estimated model
+* `loci.iqtree`: a summary file with tons of useful information neatly summarised
+* `loci.log`: the full log file from the run
+* `loci.treefile`: the ML trees estimated using the best-fit models (these are what we really want)
+
 # Estimating the species tree
 
-As in the original paper, we'll use ASTRAL to estimate the species tree:
+As in the original paper, we'll use ASTRAL to estimate the species tree from the gene trees. (Note that in the original paper they collapse some branches that have low aLRT scores, but we skip that here for simplicity). 
+
+> Here we just calculate the species tree, we'll add concordance factors and branch support values later
 
 ```bash
-
+astral -i loci.treefile -o astral_species.tree > astral_species.log
 ```
+
