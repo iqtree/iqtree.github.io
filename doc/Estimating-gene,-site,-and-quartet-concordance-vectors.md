@@ -145,7 +145,8 @@ These two command lines will produce a lot of output files, but the key files ar
 * `gcf_scfl.cf.tree`: the tree file with all the annotations. 
 
 You can download these files here: 
-[gcf_scf.zip](https://github.com/user-attachments/files/15909874/gcf_scf.zip)
+[gcf_scfl.zip](https://github.com/user-attachments/files/15921683/gcf_scfl.zip)
+
 
 Each branch in `gcf_scfl.cf.tree` will be annotated like this:
 
@@ -169,6 +170,8 @@ One useful thing to do is to look at these labels in the context of your species
 
 The final step of this tutorial is to get the full gene, site, and quartet concordance vectors. 
 
-The information we need to calculate these is in two files: `gcf.cf.stat` and `gcf_scfl.cf.stat`. These are described above, and you can download them above or here: [gcf_scf.zip](https://github.com/user-attachments/files/15909874/gcf_scf.zip)
+The information we need to calculate these is in two files: `gcf.cf.stat` and `gcf_scfl.cf.stat`. These are described above, and you can download them above or here: [gcf_scfl.zip](https://github.com/user-attachments/files/15921683/gcf_scfl.zip)
+
+
 
 We'll use R to organise these files.  
