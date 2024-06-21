@@ -1,8 +1,13 @@
 # Intro
 
-This recipe provides a worked example of estimating gene, site, and quartet concordance factors using IQ-TREE2 and ASTRAL-III, beginning with a set of individual locus alignments.
+This recipe provides a worked example of estimating gene, site, and quartet concordance vectors using IQ-TREE2 and ASTRAL-III, beginning with a set of individual locus alignments. A concordance vector consists of four numbers, which include the concordance factor and three other numbers describing all the discordant trees:
 
-> Citation: this recipe accompanies the paper "[The meaning and measure of concordance factors in phylogenomics](https://doi.org/10.32942/X27617)" by Rob Lanfear and Matt Hahn. Please cite that paper if you use this recipe. 
+* &#936;<sub>1</sub> (the concordance factor for the branch of interest in the species tree)
+* &#936;<sub>2</sub> (the largest of the two discordance factors from a single NNI rearrangement of the branch of interest)
+* &#936;<sub>3</sub> (the smallest of the two discordance factors from a single NNI rearrangement of the branch of interest)
+* &#936;<sub>4</sub> (the sum of the discordance factors that do not make up &#936;<sub>2</sub> and &#936;<sub>3</sub>; note that site and quartet concordance factors always assume that this number is zero)
+
+> Citation: this recipe accompanies the paper "[The meaning and measure of concordance factors in phylogenomics](https://doi.org/10.32942/X27617)" by Rob Lanfear and Matt Hahn. Please cite that paper if you use this recipe. This article also describes concordance vectors in a lot more detail.
 
 # What you need
 
@@ -64,11 +69,11 @@ This analysis will produce output files with lots of information, for convenienc
 
 # Estimating the species tree
 
-You should estimate your species tree using whatever the best approach is for your data, for example a joint Bayesian analysis using BEAST or *BEAST, a two-step analysis e.g. using ASTRAL, or a concatentated analysis using IQ-TREE or RAxML. You may also have a species tree that has already been estimated elsewhere, and just want to map the concordance factors onto that. In that case, you can skip this step. 
+You should estimate your species tree using whatever the best approach is for your data, for example a joint Bayesian analysis using BEAST or *BEAST, a two-step analysis e.g. using ASTRAL, or a concatentated analysis using IQ-TREE or RAxML. You may also have a species tree that has already been estimated elsewhere, and just want to map the concordance vectors onto that. In that case, you can skip this step. 
 
 For the purposes of this tutorial, we'll follow the original paper on bird phylogenomics and use ASTRAL to estimate the species tree from the gene trees we just estimated. Note that in the original paper they collapse some branches that have low aLRT scores, but we skip that here for simplicity. This analysis will take just a few minutes.
 
-> Here we just calculate the species tree, we'll add concordance factors and branch support values later
+> Here we just calculate the species tree, we'll add concordance vectors and branch support values later
 
 ```bash
 astral -i loci.treefile -o astral_species.tree 2> astral_species.log
@@ -81,16 +86,16 @@ This analysis will produce two files. For convenience you can download these her
 * `astral_species.tree`: the species tree estimated from ASTRAL (this might be quite different to the tree in the paper, because we used only 400 genes, on 63000!)
 * `astral_species.log`: the log file from ASTRAL
 
-# Estimating concordance factors and support values
+# Estimating concordance vectors and support values
 
-Now we want to calculate gene, site, and quartet concordance factors, and posterior probabilities (support values calculated by ASTRAL) for every branch in our species tree. To do that, we need our species tree (of course); our gene trees (gene and quartet concordance factors are calculated from these); our alignments (site concordance factors are calculated from these).
+Now we want to calculate gene, site, and quartet concordance vectors, and posterior probabilities (support values calculated by ASTRAL) for every branch in our species tree. To do that, we need our species tree (of course); our gene trees (gene and quartet concordance vectors are calculated from these); our alignments (site concordance vectors are calculated from these).
 
-### Estimate the support and quartet concordance factors in ASTRAL
+### Estimate the support and quartet concordance vectors in ASTRAL
 
-We use ASTRAL to calculate quartet concordance factors and posterior support values (which calculated from quartet support values). 
+We use ASTRAL to calculate quartet concordance vectors and posterior support values (which calculated from quartet support values). 
 
 * `-q` tells ASTRAL it to use a fixed tree topology, we use the species tree we calculated above
-* `-t 2` tells ASTRAL to calculate all of the things we need and annotate the tree
+* `-t 2` tells ASTRAL to calculate all of the things we need and annotate the tree with them
 
 ```bash
 astral -q astral_species.tree -i loci.treefile -t 2 -o astral_species_annotated.tree 2> astral_species_annotated.log
@@ -100,7 +105,7 @@ There are two output files here, which you can download here:
 [astral_annotated.zip](https://github.com/user-attachments/files/15908295/astral_annotated.zip)
 
 
-* `astral_species_annotated.tree`: a tree with support values in the format `[pp1=1;pp2=0;pp3=0]` on each node. (`pp1` is the support for the node in the tree, while `pp2` and `pp3` are the support for the alternative NNI resolutions of that node.
+* `astral_species_annotated.tree`: the species tree with annotations on every branch 
 * `astral_species_annotated.log`: the log file for ASTRAL
 
 The annotated tree contains a lot of extra information on every node, e.g.:
@@ -112,12 +117,12 @@ The annotated tree contains a lot of extra information on every node, e.g.:
 
 These are explained in detail in the [ASTRAL tutorial](https://github.com/smirarab/ASTRAL/blob/master/astral-tutorial.md), but for our purposes we are interested in:
 
-* `q1`: the quartet concordance factor at a node
-* `pp1`: the ASTRAL posterior probability for a node (roughly, the probability that `q1` is the highest of the three q values)
+* `q1`, `q2`, and `q3`: form the quartet concordance vector (ASTRAL calls these 'quartet frequencies', 'normalised quartet frequencies', and sometimes 'quartet support values'; we argue in our paper that they are very much *not* support values)
+* `pp1`: the ASTRAL posterior probability for a branch (roughly, the probability that `q1` is the highest of the three q values)
 
-### Estimate the gene and site concordance factors in IQ-TREE
+### Estimate the gene and site concordance vectors in IQ-TREE
 
-We use IQ-TREE to calculate gene and site concordance factors (for more details see the [concordance factor page](http://www.iqtree.org/doc/Concordance-Factor).
+We use IQ-TREE to calculate gene and site concordance vectors (for more details see the [concordance factor page](http://www.iqtree.org/doc/Concordance-Factor).
 
 In the following command lines:
 
@@ -162,12 +167,7 @@ One useful thing to do is to look at these labels in the context of your species
 
 # Generate the concordance vectors for each branch
 
-The final step of this tutorial is to get the full gene, site, and quartet concordance vectors. As described in the Lanfear and Hahn paper, this consists of four numbers: 
-
-* &#936;<sub>1</sub> (the concordance factor for the branch of interest in the species tree)
-* &#936;<sub>2</sub> (the largest of the two discordance factors from a single NNI rearrangement of the branch of interest)
-* &#936;<sub>3</sub> (the smallest of the two discordance factors from a single NNI rearrangement of the branch of interest)
-* &#936;<sub>4</sub> (the sum of the discordance factors that do not make up &#936;<sub>2</sub> and &#936;<sub>3</sub>; note that site and quartet concordance factors always assume that this number is zero)
+The final step of this tutorial is to get the full gene, site, and quartet concordance vectors. 
 
 The information we need to calculate these is in two files: `gcf.cf.stat` and `gcf_scfl.cf.stat`. These are described above, and you can download them above or here: [gcf_scf.zip](https://github.com/user-attachments/files/15909874/gcf_scf.zip)
 
