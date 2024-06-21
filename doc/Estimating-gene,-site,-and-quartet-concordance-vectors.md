@@ -152,15 +152,23 @@ The key information for our purposes is:
 * `q1=0.570241231975882`: this is the quartet concordance factor
 * `47.0`: this is the gene concordance factor
 * `25.4`: this is the site concordance factor
-* `0.0055956557` this is the branch length in **substitutions per site**
+* `0.0055956557` this is the branch length in **substitutions per site** calculated when we calculated the site concordance factors
 
 If you look into the `gcf.cf.stat` file, you will also be able to see the branch length in coalescent units, as calculated by ASTRAL (this is because in this analysis we didn't re-estimate any branch lengths on the tree, thus these branch lengths come straight from the input tree which was from ASTRAL). 
 
-# Generate the concordance vectors for each branch
-
-There are many ways to do this, but here are three. 
-
 ### View the tree file
 
-The simplest approach is just to open the file `gcf_scfl.cf.tree` in a tree viewer like [DendroScope](https://github.com/husonlab/dendroscope3/releases/latest). This allows you to view and manipulate the tree, and also to put the labels on every edge. To do this, just load the tree in Dendroscope, specify that the labels are edge labels when you are asked, and that's it. You can then re-root the tree, change the layout, and zoom in and out to see the edge labels you are interested in. 
+One useful thing to do is to look at these labels in the context of your species tree. To do this, you can open the file `gcf_scfl.cf.tree` in a tree viewer like [DendroScope](https://github.com/husonlab/dendroscope3/releases/latest). Just load the tree in Dendroscope, specify that the labels are edge labels when you are asked, and that's it. You can then re-root the tree, change the layout, and zoom in and out to see the edge labels you are interested in. However, the edge labels so far don't contain the full concordance vectors, so we'll get those next. 
 
+# Generate the concordance vectors for each branch
+
+The final step of this tutorial is to get the full gene, site, and quartet concordance vectors. As described in the Lanfear and Hahn paper, this consists of four numbers: 
+
+* &#936;<sub>1</sub> (the concordance factor for the branch of interest in the species tree)
+* &#936;<sub>2</sub> (the largest of the two discordance factors from a single NNI rearrangement of the branch of interest)
+* &#936;<sub>3</sub> (the smallest of the two discordance factors from a single NNI rearrangement of the branch of interest)
+* &#936;<sub>4</sub> (the sum of the discordance factors that do not make up &#936;<sub>2</sub> and &#936;<sub>3</sub>; note that site and quartet concordance factors always assume that this number is zero)
+
+The information we need to calculate these is in two files: `gcf.cf.stat` and `gcf_scfl.cf.stat`. These are described above, and you can download them above or here: [gcf_scf.zip](https://github.com/user-attachments/files/15909874/gcf_scf.zip)
+
+We'll use R to organise these files.  
