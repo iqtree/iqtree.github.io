@@ -13,12 +13,13 @@ This recipe provides a worked example of estimating gene, site, and quartet conc
 
 ### Software
 
-First you need these two pieces of software:
+First you need the following software:
 
 * The latest stable version of IQ-TREE2 for your system: http://www.iqtree.org/
 * ASTRAL-III: https://github.com/smirarab/ASTRAL/releases/latest
+* R and tidyverse
 
-I use conda to install both of these, and suggest you do too. If you want to do that, here's one way to do it:
+I use conda to install all of these, and suggest you do too. If you want to do that, here's one way to do it:
 
 ```bash
 # set up a fresh environment and activate it
@@ -27,6 +28,7 @@ conda activate concordance
 
 # install what we need for this recipe
 conda install -c bioconda iqtree astral-tree
+conda install -c conda-forge r-base r-tidyverse
 ```
 
 After installation, double check that you have the latest versions of both pieces of software. You will need IQ-TREE version 2.3 or above for this. 
