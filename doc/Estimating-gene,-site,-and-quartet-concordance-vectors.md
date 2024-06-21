@@ -11,6 +11,8 @@ This recipe provides a worked example of estimating gene, site, and quartet conc
 
 # What you need
 
+### Software
+
 First you need these two pieces of software:
 
 * The latest stable version of IQ-TREE2 for your system: http://www.iqtree.org/
@@ -29,7 +31,9 @@ conda install -c bioconda iqtree astral-tree
 
 After installation, double check that you have the latest versions of both pieces of software. You will need IQ-TREE version 2.3 or above for this. 
 
-* Finally, you need the data. The data for this recipe is 400 randomly-selected alignments of intergenic regions from the paper ["Complexity of avian evolution revealed by family-level genomes" by Stiller et al. in 2024](https://doi.org/10.1038/s41586-024-07323-1). You can download these from here: [bird_400.tar.gz](https://github.com/user-attachments/files/15894364/bird_400.tar.gz). You will need to decompress this data using the following command
+### Data
+
+Next you need the data. The data for this recipe is 400 randomly-selected alignments of intergenic regions from the paper ["Complexity of avian evolution revealed by family-level genomes" by Stiller et al. in 2024](https://doi.org/10.1038/s41586-024-07323-1). You can download these 400 alignments from here: [bird_400.tar.gz](https://github.com/user-attachments/files/15894364/bird_400.tar.gz). You will need to decompress this data using the following command
 
 ```bash
 tar -xzf bird_400.tar.gz
@@ -54,7 +58,6 @@ tar -czf bird_400.tar.gz -C bird_400 .
 
 To estimate the gene trees, we'll use IQ-TREE2. Just set `-T` to the highest number of threads you have available. This step might take some time (about 3.5 hours with my 128 threads). If you prefer to skip it then you can download the key output files from this analysis here: 
 [loci.zip](https://github.com/user-attachments/files/15907618/loci.zip)
-
 
 ```bash
 iqtree2 -S bird_400 --prefix loci -T 128
@@ -139,12 +142,19 @@ iqtree2 -te astral_species_annotated.tree -p loci.best_model.nex --scfl 100 --pr
 
 # next calculate the gene concordance vectors
 iqtree2 -te scfl.cf.tree --gcf loci.treefile --prefix gcf -T 128
+
+# finally we do a dummy analysis, just to get the branch lengths in coalescent units from ASTRAL to add to our table at the end
+# note the -blfix option, which keeps the original branch lengths - this makes the scfs meaningless, but is here 
+# simply to allow us to extract branch lengths in coalescent units frmo the ASTRAL tree in a convenient table
+# we set scfl to 1, which saves time given the scfs are already meaningless, never use the sCFs from this analysis!!!
+iqtree2 -te astral_species_annotated.tree -blfix -p loci.best_model.nex --scfl 1 --prefix coalescent_bl -T 128
 ```
 
-These two command lines will produce a lot of output files, but the key files are:
+These three command lines will produce a lot of output files, but the key files are:
 
 * `gcf.cf.stat`: a table with the gCF values, as well as gDF1, gDF2, gDFP, and many other things (including all the ASTRAL labels)
 * `scfl.cf.stat`: the equivalent table for scfl values (including all the ASTRAL labels)
+* `coalescent_bl.cf.stat`: the dummy table from which we'll get our coalescent branch lengths
 * `gcf.cf.tree`: the tree file with lots of annotations 
 
 You can download these files here: [scfl_gcf.zip](https://github.com/user-attachments/files/15922034/scfl_gcf.zip)
