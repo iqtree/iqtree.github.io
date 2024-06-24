@@ -74,7 +74,7 @@ To estimate the gene trees, we'll use IQ-TREE2. Just set `-T` to the highest num
 iqtree2 -S bird_400 --prefix loci -T 128
 ```
 
-This analysis will produce output files with lots of information, for convenience you can download the key files here: [loci.zip](https://github.com/user-attachments/files/15907618/loci.zip), this zip file includes:
+This analysis will produce output files with lots of information, these include (all in the zip file `loci.zip` linked above):
 
 * `loci.best_model.nex`: the substitution models in nexus format - these have every parameter value for every estimated model, e.g. for one locus, the GTR+F+R5 model has the following entry:
 `GTR{1.07109,5.24905,0.776093,1.28398,3.93731}+F{0.212586,0.260909,0.256934,0.269571}+R5{0.0670095,0.202443,0.44871,0.605428,0.379555,1.13675,0.0791399,2.21831,0.0255857,4.21162}: chr10_1260000_1270000.1k.start299.fasta{17.1377}`
@@ -88,7 +88,7 @@ You should estimate your species tree using whatever the best approach is for yo
 
 For the purposes of this tutorial, we'll follow the original paper on bird phylogenomics and use ASTRAL to estimate the species tree from the gene trees we just estimated. Note that in the original paper they collapse some branches in the single-locus trees that have low aLRT (approximate Likelihood Ratio Test: a way of asking whether a branch has a length that differs significantly from zero) scores, but we skip that here for simplicity. This analysis will take just a few minutes.
 
-> Here we just calculate the species tree, we'll add concordance vectors and branch support values later
+> Here we just calculate the species tree, we'll calculate concordance vectors and branch support values later
 
 ```bash
 astral -i loci.treefile -o astral_species.tree 2> astral_species.log
