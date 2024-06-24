@@ -276,9 +276,9 @@ The first number is the branch ID, and the next three are the three concordance 
 
 ![bird_tree](https://github.com/iqtree/iqtree2/assets/895251/81c16ca5-95a9-4bdf-95d6-c09f70137886)
 
-* Node 642, which groups *Balaeniceps rex* (the shoebill) and *Scopus umbretta* (the hamerkop) has concordance factors very close to a third
-* Node 641, which adds *Pelecanus crispus* (the Dalmatian pelican) to the group, has much higher gene and quartet concordance factors, but a low site concordance factor
-* Node 640, which adds *Mesembrinibis cayennensis* (the green ibis) and *Nipponia nippon* (the crested ibis) also has low concordance factors (node 643, which groups the ibises, has very high concordance factors)
+* **Node 642**, which groups *Balaeniceps rex* (the shoebill) and *Scopus umbretta* (the hamerkop) has concordance factors very close to a third
+* **Node 641**, which adds *Pelecanus crispus* (the Dalmatian pelican) to the group, has much higher gene and quartet concordance factors, but a low site concordance factor
+* **Node 640**, which adds *Mesembrinibis cayennensis* (the green ibis) and *Nipponia nippon* (the crested ibis) also has low concordance factors (node 643, which groups the ibises, has very high concordance factors)
 
 The concordance factors tell you a certain amount, but to understand things better, you really need to examine the concordance vectors. 
 
