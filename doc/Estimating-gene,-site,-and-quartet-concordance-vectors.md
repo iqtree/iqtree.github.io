@@ -256,6 +256,32 @@ This table has a lot of columns. For easy reference, here's a description of eve
 | length_coalescent      | branch length in coalescent units            					| Calcualted in ASTRAL from the quartet concordance vector                                                             |
 
 
+# Put concordance factors (or other numbers!) on a tree
+
+A common aim is to annotate your tree with the statistics you are interested in. The output tree above has rather unwieldy labels on each branch like this:
+
+`'[q1=0.570241231975882;q2=0.17602481596980715;q3=0.25373395205431093;f1=207.567808439221;f2=64.0730330130098;f3=92.3591585477691 7;pp1=1.0;pp2=1.575119358351017E-20;pp3=2.952157354351003E-20;QC=8496;EN=364.0]'/25.4/47.0:0.0055956557`
+
+But we can use the tree with branch IDs to put any label on a tree. An example is in the `change_labels.R` script. As written, this script just updates the branch ID labels in the `gcf.cf.branch` tree to show the ID and the three concordance factors (the &#936;<sub>1</sub> values), each labelled with the first letter of the input data (i.e. `g` for genes, `s` for sites, and `q` for quartets), like so. You can run this script like so:
+
+```
+Rscript change_labels.R
+```
+
+This will output a nexus-formatted tree file called `id_gcf_scf_qcf.nex`. Each branch on this tree is labelled as follows:
+
+`391-g98.54-s84.09-q98.54`
+
+The first number is the branch ID, and the next three are the three concordance factors. This can be useful for exploring your data. For example, in my analysis, this part of the tree has some interesting nodes:
+
+![bird_tree](https://github.com/iqtree/iqtree2/assets/895251/81c16ca5-95a9-4bdf-95d6-c09f70137886)
+
+* Node 642, which groups *Balaeniceps rex* (the shoebill) and *Scopus umbretta* (the hamerkop) has concordance factors very close to a third
+* Node 641, which adds *Pelecanus crispus* (the Dalmatian pelican) to the group, has much higher gene and quartet concordance factors, but a low site concordance factor
+* Node 640, which adds *Mesembrinibis cayennensis* (the green ibis) and *Nipponia nippon* (the crested ibis) also has low concordance factors (node 643, which groups the ibises, has very high concordance factors)
+
+The concordance factors tell you a certain amount, but to understand things better, you really need to examine the concordance vectors. 
+
 # Generate concordance tables for branches of interest
 
 Finally, we can use the `concordance_vectors.csv` file to generate
