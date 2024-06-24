@@ -328,3 +328,14 @@ And the CSV looks like this:
 
 You'll notice that both include 95% confidence intervals for the concordance and discordance factors. These are calculated using 1000 bootstraps of the count data, and provide useful context for interpreting the values, and particularly for interpreting potential *differences* in the values.
  
+You'll notice that for node 642, there is an enormous amount of discordance. Indeed, the first three entries of the vector all have confidence intervals that overlap considerably for gene and quartet concordance factors. So although ASTRAL did what it is supposed to do and chose the node with the highest quartet concordance factor, it would be difficult to be extremely confident that this is the correct topology for the species tree. In support of that, examining the `concordance_vectors.csv` file shows that the posterior probability for this branch is just 0.5, which is extremely low.
+
+In contrast, node 641 has a lot less discordance:
+
+![concordance_table_641](https://github.com/iqtree/iqtree2/assets/895251/e2968f22-9201-433e-94ea-c0d5c7095134)
+
+Almost all genes and quartets are concordance with this node. The sites have more discordance, and &#936;<sub>2</sub> seems a lot higher for sites than the other entries in the vector. This deserves further investigation, but *could* occur if a lot of the genes that support &#936;<sub>2</sub> are very informative, and/or if there's lot of homoplasy.
+
+# Conclusion
+
+We hope this recipe provides some useful guidance on calculating concordance vectors for your data!
