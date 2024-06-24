@@ -192,7 +192,7 @@ One useful thing to do is to look at these labels in the context of your species
 
 The final step of this tutorial is to get the full gene, site, and quartet concordance vectors. 
 
-The information we need to calculate these is in two files: `gcf.cf.stat` and `scfl.cf.stat`. These are described above, and you can download them above or here: [scfl_gcf.zip](https://github.com/user-attachments/files/15922034/scfl_gcf.zip)
+The information we need to calculate these is in two files: `gcf.cf.stat` and `scfl.cf.stat`. These are described above, and you can download them above or here: [stat_and_tree_files.zip](https://github.com/user-attachments/files/15949141/stat_and_tree_files.zip)
 
 We'll use the R script you downloaded to organise these files into concordance vectors:
 
