@@ -254,3 +254,8 @@ This table has a lot of columns. For easy reference, here's a description of eve
 | quartet_psi3_pp        | ASTRAL posterior probability for &#936;<sub>3</sub>              | Smaller `pp2` and `pp3` from `scfl.cf.stat` 'Label' column (calculated in ASTRAL)                    |
 | length_subs_per_site   | branch length in substitutions per site             				| Calculated in IQ-TREE using a concatenated analysis                                                     |
 | length_coalescent      | branch length in coalescent units            					| Calcualted in ASTRAL from the quartet concordance vector                                                             |
+
+
+# Generate concordance tables for branches of interest
+
+Finally, we can use the `concordance_vectors.csv` file to generate
