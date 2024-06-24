@@ -304,7 +304,7 @@ iqtree2 -p FOLDER_NAME --out-aln OUTFILE_NAME
 ```
 
 This will produce:
-* OUTFILE_NAME: the concatenated alignment (default is fasta format)
+* OUTFILE_NAME: the concatenated alignment (default is phylip format)
 * OUTFILE_NAME.nex: the partition file in nexus format
 * OUTFILE_NAME.partitions: the partition file in RAxML format
 
