@@ -204,7 +204,7 @@ We'll use the R script you downloaded to organise these files into concordance v
 Rscript concordance_vector.R
 ```
 
-This will produce a file called `concordance_vectors.csv` (you can download a copy here: [concordance_vectors.csv](https://github.com/user-attachments/files/15949143/concordance_vectors.csv)), which has gene, site, and quartet concordance vectors, along with branch lengths in units of substitutions per site and coalescent units, and branch IDs which correspond to the `gcf.cf.branch` tree file.
+This will produce a file called `concordance_vectors.csv` (you can download a copy here: [concordance_vectors.csv](https://github.com/user-attachments/files/15949742/concordance_vectors.csv)), which has gene, site, and quartet concordance vectors, along with branch lengths in units of substitutions per site and coalescent units, and branch IDs which correspond to the `gcf.cf.branch` tree file.
 
 The first five rows of your csv file should look something like this:
 
