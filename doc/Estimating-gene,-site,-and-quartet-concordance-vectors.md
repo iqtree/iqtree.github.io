@@ -170,7 +170,7 @@ These three command lines will produce a lot of output files, but the key files 
 * `coalescent_bl.cf.stat`: the dummy table from which we'll get our coalescent branch lengths
 * `gcf.cf.tree`: the tree file with lots of annotations 
 
-You can download these files here: [scfl_gcf.zip](https://github.com/user-attachments/files/15922034/scfl_gcf.zip)
+You can download these files here: [stat_and_tree_files.zip](https://github.com/user-attachments/files/15949141/stat_and_tree_files.zip)
 
 Each internal branch in `gcf.cf.tree` will be annotated like this:
 
@@ -200,9 +200,10 @@ We'll use the R script you downloaded to organise these files into concordance v
 Rscript concordance_vector.R
 ```
 
-This will produce a file called `concordance_vectors.csv`, which has gene, site, and quartet concordance vectors, along with branch lengths in units of substitutions per site and coalescent units, and branch IDs which correspond to the `gcf.cf.branch` tree file.
+This will produce a file called `concordance_vectors.csv` (you can download a copy here: [concordance_vectors.csv](https://github.com/user-attachments/files/15949143/concordance_vectors.csv)), which has gene, site, and quartet concordance vectors, along with branch lengths in units of substitutions per site and coalescent units, and branch IDs which correspond to the `gcf.cf.branch` tree file.
 
 The first five rows of your csv file should look something like this:
+
 | ID  | gene_psi1 | gene_psi2 | gene_psi3 | gene_psi4 | gene_psi1_N | gene_psi2_N | gene_psi3_N | gene_psi4_N | gene_N | site_psi1 | site_psi2 | site_psi3 | site_psi4 | site_psi1_N | site_psi2_N | site_psi3_N | site_psi4_N | site_N  | quartet_psi1 | quartet_psi2 | quartet_psi3 | quartet_psi1_N | quartet_psi2_N | quartet_psi3_N | quartet_N | quartet_psi1_pp | quartet_psi2_pp | quartet_psi3_pp | length_subs_per_site | length_coalescent |
 |-----|-----------|-----------|-----------|-----------|-------------|-------------|-------------|-------------|--------|-----------|-----------|-----------|-----------|-------------|-------------|-------------|-------------|---------|--------------|--------------|--------------|----------------|----------------|----------------|------------|------------------|------------------|------------------|---------------------|-------------------|
 | 364 | 83        | 8.5       | 7.37      | 1.13      | 293         | 30          | 26          | 4           | 353    | 51.51     | 24.77     | 23.72     | 0         | 1867.35     | 898         | 859.86      | 0           | 3625.21 | 0.84         | 0.09         | 0.07         | 296.48         | 30.25          | 26.27          | 353        | 1                | 0                | 0                | 0.0137341            | 0.0531013         |
