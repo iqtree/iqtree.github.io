@@ -168,9 +168,11 @@ These three command lines will produce a lot of output files, but the key files 
 * `gcf.cf.stat`: a table with the gCF values, as well as gDF1, gDF2, gDFP, and many other things (including all the ASTRAL labels)
 * `scfl.cf.stat`: the equivalent table for scfl values (including all the ASTRAL labels)
 * `coalescent_bl.cf.stat`: the dummy table from which we'll get our coalescent branch lengths
-* `gcf.cf.tree`: the tree file with lots of annotations 
+* `gcf.cf.tree`: the tree file with lots of annotations about concordance factors (plus all the ASTRAL annotations) 
+* `gcf.cf.branch`: the tree file annotated with branch IDs that match those in the `.stat` files
 
-You can download these files here: [stat_and_tree_files.zip](https://github.com/user-attachments/files/15949141/stat_and_tree_files.zip)
+You can download these files here: 
+[stat_and_tree_files.zip](https://github.com/user-attachments/files/15949173/stat_and_tree_files.zip)
 
 Each internal branch in `gcf.cf.tree` will be annotated like this:
 
@@ -192,7 +194,7 @@ One useful thing to do is to look at these labels in the context of your species
 
 The final step of this tutorial is to get the full gene, site, and quartet concordance vectors. 
 
-The information we need to calculate these is in two files: `gcf.cf.stat` and `scfl.cf.stat`. These are described above, and you can download them above or here: [stat_and_tree_files.zip](https://github.com/user-attachments/files/15949141/stat_and_tree_files.zip)
+The information we need to calculate these is in two files: `gcf.cf.stat` and `scfl.cf.stat`. These are described above, and you can download them above or here: [stat_and_tree_files.zip](https://github.com/user-attachments/files/15949173/stat_and_tree_files.zip)
 
 We'll use the R script you downloaded to organise these files into concordance vectors:
 
