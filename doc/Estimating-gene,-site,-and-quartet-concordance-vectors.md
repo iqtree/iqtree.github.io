@@ -306,7 +306,8 @@ The output includes:
 
 The PDF looks like this:
 
-[concordance_table_642.pdf](https://github.com/user-attachments/files/15951332/concordance_table_642.pdf)
+![concordance_table_642](https://github.com/iqtree/iqtree2/assets/895251/7834d8e1-c1fc-4fd3-8e79-9ae29787c95d)
+
 
 And the CSV looks like this:
 
