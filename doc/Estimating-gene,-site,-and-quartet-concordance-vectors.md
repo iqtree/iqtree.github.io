@@ -282,6 +282,46 @@ The first number is the branch ID, and the next three are the three concordance 
 
 The concordance factors tell you a certain amount, but to understand things better, you really need to examine the concordance vectors. 
 
+> If you want to put different labels on your tree, that is relatively simple to do by editing the `change_labels.R` script, which you can get from GitHub here: [https://github.com/roblanf/concordance_vectors/blob/main/change_labels.R](https://github.com/roblanf/concordance_vectors/blob/main/change_labels.R)
+
 # Generate concordance tables for branches of interest
 
-Finally, we can use the `concordance_vectors.csv` file to generate
+A concordance table is just a table of the three concordance vectors, as shown in the Lanfear and Hahn paper. The `concordance_table.R` script lets you generate concordance tables for any node, based on the branch ID. Let's do that for node 642. The script takes two input files:
+
+* the `concordance_vectors.csv` file we generated above
+* the branch ID, `642` in this case
+
+You can run it like this
+
+```
+Rscript concordance_table.R concordance_vectors.csv 642
+```
+
+The output includes:
+
+* a PDF of the table, e.g. `concordance_table_642.pdf`
+* a CSV file of the table, e.g. `concordance_table_642.csv`
+
+The PDF looks like this:
+
+[concordance_table_642.pdf](https://github.com/user-attachments/files/15951332/concordance_table_642.pdf)
+
+And the CSV looks like this:
+
+| type   | psi | value | lower_CI    | upper_CI    |
+|--------|-----|-------|-------------|-------------|
+| gene   | 1   | 33.73 | 28.95522388 | 39.10447761 |
+| gene   | 2   | 32.84 | 27.76119403 | 37.91044776 |
+| gene   | 3   | 31.64 | 26.55970149 | 36.71641791 |
+| gene   | 4   | 1.79  | 0.597014925 | 3.28358209  |
+| site   | 1   | 32.65 | 30.58737165 | 34.44726267 |
+| site   | 2   | 37.56 | 35.6225236  | 39.5765296  |
+| site   | 3   | 29.79 | 27.81097945 | 31.76380902 |
+| site   | 4   | 0     | 0           | 0           |
+| quartet| 1   | 34.41 | 29.25373134 | 39.40298507 |
+| quartet| 2   | 33.42 | 28.05970149 | 38.20895522 |
+| quartet| 3   | 32.17 | 26.56716418 | 37.01492537 |
+| quartet| 4   | 0     | 0           | 0           |
+
+You'll notice that both include 95% confidence intervals for the concordance and discordance factors. These are calculated using 1000 bootstraps of the count data, and provide useful context for interpreting the values, and particularly for interpreting potential *differences* in the values.
+ 
