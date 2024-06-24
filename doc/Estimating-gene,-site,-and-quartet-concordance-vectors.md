@@ -40,7 +40,9 @@ After installation, double check that you have the latest versions of both piece
 
 ### Data
 
-Next you need the data. The data for this recipe is 400 randomly-selected alignments of intergenic regions from the paper ["Complexity of avian evolution revealed by family-level genomes" by Stiller et al. in 2024](https://doi.org/10.1038/s41586-024-07323-1). You can download these 400 alignments from here: [bird_400.tar.gz](https://github.com/user-attachments/files/15894364/bird_400.tar.gz). You will need to decompress this data using the following command
+Next you need the data. The data for this recipe is 400 randomly selected alignments of intergenic regions from the paper ["Complexity of avian evolution revealed by family-level genomes" by Stiller et al. in 2024](https://doi.org/10.1038/s41586-024-07323-1). Each locus has up to  363 species represented from across the diversity of birds, and to the best of the author's ability to carefully sequence and filter the data, each locus is also a single-copy orthologue. This means that we can go ahead and use these alignments to estimate gene trees, species trees, and concordance vectors. 
+
+You can download these 400 alignments from here: [bird_400.tar.gz](https://github.com/user-attachments/files/15894364/bird_400.tar.gz). You will need to decompress this data using the following command
 
 ```bash
 tar -xzf bird_400.tar.gz
@@ -61,6 +63,8 @@ find 63k_alns/ -type f ! -name '.*' | shuf -n 400 | xargs -I {} mv {} bird_400/ 
 tar -czf bird_400.tar.gz -C bird_400 .
 ```
 
+The last set of commands will produce a file just like the one you can download above, with 400 randomly-selected loci. Note that you should expect to get a slightly different species tree and concordance factors, because there's a *lot* of discordance along the backbone of the species tree of birds, so different groups of 400 loci are highly likely to give different species trees. 
+
 # Estimating the gene trees
 
 To estimate the gene trees, we'll use IQ-TREE2. Just set `-T` to the highest number of threads you have available. This step might take some time (about 3.5 hours with my 128 threads). If you prefer to skip it then you can download the key output files from this analysis here: 
@@ -72,16 +76,17 @@ iqtree2 -S bird_400 --prefix loci -T 128
 
 This analysis will produce output files with lots of information, for convenience you can download the key files here: [loci.zip](https://github.com/user-attachments/files/15907618/loci.zip), this zip file includes:
 
-* `loci.best_model.nex`: the models in nexus format - these have every parameter value for every estimated model
-* `loci.iqtree`: a summary file with tons of useful information neatly summarised
-* `loci.log`: the full log file from the run
-* `loci.treefile`: the ML trees estimated using the best-fit models (these are what we really want)
+* `loci.best_model.nex`: the substitution models in nexus format - these have every parameter value for every estimated model, e.g. for one locus, the GTR+F+R5 model has the following entry:
+`GTR{1.07109,5.24905,0.776093,1.28398,3.93731}+F{0.212586,0.260909,0.256934,0.269571}+R5{0.0670095,0.202443,0.44871,0.605428,0.379555,1.13675,0.0791399,2.21831,0.0255857,4.21162}: chr10_1260000_1270000.1k.start299.fasta{17.1377}`
+* `loci.iqtree`: a summary file of the entire analysis with tons of useful information neatly summarised
+* `loci.log`: the full log file from the run (i.e. everything that was printed to the screen during the run)
+* `loci.treefile`: the Maximum Likelihood single-locus trees estimated using the best-fit models (these trees are what we really want)
 
 # Estimating the species tree
 
 You should estimate your species tree using whatever the best approach is for your data, for example a joint Bayesian analysis using BEAST or *BEAST, a two-step analysis e.g. using ASTRAL, or a concatentated analysis using IQ-TREE or RAxML. You may also have a species tree that has already been estimated elsewhere, and just want to map the concordance vectors onto that. In that case, you can skip this step. 
 
-For the purposes of this tutorial, we'll follow the original paper on bird phylogenomics and use ASTRAL to estimate the species tree from the gene trees we just estimated. Note that in the original paper they collapse some branches that have low aLRT scores, but we skip that here for simplicity. This analysis will take just a few minutes.
+For the purposes of this tutorial, we'll follow the original paper on bird phylogenomics and use ASTRAL to estimate the species tree from the gene trees we just estimated. Note that in the original paper they collapse some branches in the single-locus trees that have low aLRT (approximate Likelihood Ratio Test: a way of asking whether a branch has a length that differs significantly from zero) scores, but we skip that here for simplicity. This analysis will take just a few minutes.
 
 > Here we just calculate the species tree, we'll add concordance vectors and branch support values later
 
@@ -93,7 +98,7 @@ This analysis will produce two files. For convenience you can download these her
 [astral.zip](https://github.com/user-attachments/files/15907833/astral.zip)
 
 
-* `astral_species.tree`: the species tree estimated from ASTRAL (this might be quite different to the tree in the paper, because we used only 400 genes, on 63000!)
+* `astral_species.tree`: the species tree estimated from ASTRAL (this might be quite different to the tree in the paper, because we used only 400 genes, not the full set of more than 63000!)
 * `astral_species.log`: the log file from ASTRAL
 
 # Estimating concordance vectors and support values
@@ -102,9 +107,9 @@ Now we want to calculate gene, site, and quartet concordance vectors, and poster
 
 ### Estimate the support and quartet concordance vectors in ASTRAL
 
-We use ASTRAL to calculate quartet concordance vectors and posterior support values (which calculated from quartet support values). 
+We use ASTRAL to calculate quartet concordance vectors and posterior support values (which are calculated from the quartet support values, see below for an explanation of both). 
 
-* `-q` tells ASTRAL it to use a fixed tree topology, we use the species tree we calculated above
+* `-q` tells ASTRAL to use a fixed tree topology, we use the species tree we calculated above
 * `-t 2` tells ASTRAL to calculate all of the things we need and annotate the tree with them
 
 ```bash
@@ -132,11 +137,11 @@ These are explained in detail in the [ASTRAL tutorial](https://github.com/smirar
 
 ### Estimate the gene and site concordance vectors in IQ-TREE
 
-We use IQ-TREE to calculate gene and site concordance vectors (for more details see the [concordance factor page](http://www.iqtree.org/doc/Concordance-Factor).
+We use IQ-TREE to calculate gene and site concordance vectors (for more details see the [concordance factor page](http://www.iqtree.org/doc/Concordance-Factor)).
 
 In the following command lines:
 
-* `-te` tells IQ-TREE to use a fixed input tree (note that we keep updating the tree to that from the previous command)
+* `-te` tells IQ-TREE to use a fixed input tree (note that the tree we pass with `-te` differs in the two commands: the latter command uses the tree output by the former command, which sequentially adds to the labels on the tree for convenience)
 * `--gcf` is the command to calculate the gCF using the gene trees we estimated above
 * `-prefix` is the prefix for the output files
 * `-T` is the number of threads (change this to suit your machine)
@@ -150,7 +155,8 @@ iqtree2 -te astral_species_annotated.tree -p loci.best_model.nex --scfl 100 --pr
 # next calculate the gene concordance vectors
 iqtree2 -te scfl.cf.tree --gcf loci.treefile --prefix gcf -T 128
 
-# finally we do a dummy analysis, just to get the branch lengths in coalescent units from ASTRAL to add to our table at the end
+# finally we do a dummy analysis in IQ-TREE. The only point of this is to get the branch lengths in coalescent units 
+# from the ASTRAL analysis, in a format that is output by IQ-TREE in a convenient table with IQ-TREE branch ID's 
 # note the -blfix option, which keeps the original branch lengths - this makes the scfs meaningless, but is here 
 # simply to allow us to extract branch lengths in coalescent units frmo the ASTRAL tree in a convenient table
 # we set scfl to 1, which saves time given the scfs are already meaningless, never use the sCFs from this analysis!!!
