@@ -18,7 +18,7 @@ First you need the following software:
 * The latest stable version of IQ-TREE2 for your system: http://www.iqtree.org/
 * ASTRAL-III: https://github.com/smirarab/ASTRAL/releases/latest
 * R, and the `tidyverse` and `boot` packages
-* An R script to process lots of output files and produce concordance vectors: [concordance_vector.R](https://raw.githubusercontent.com/roblanf/concordance_vectors/main/concordance_vector.R)
+* A few R scripts to process lots of output files and produce concordance vectors, tree files, and tables from: [https://github.com/roblanf/concordance_vectors](https://github.com/roblanf/concordance_vectors)
 
 I use conda to install all of these, and suggest you do too. If you want to do that, here's one way to do it:
 
@@ -33,6 +33,8 @@ conda install -c conda-forge r-base r-tidyverse r-boot
 
 # get the R script
 wget https://raw.githubusercontent.com/roblanf/concordance_vectors/main/concordance_vector.R
+wget https://raw.githubusercontent.com/roblanf/concordance_vectors/main/concordance_table.R
+wget https://raw.githubusercontent.com/roblanf/concordance_vectors/main/change_labels.R
 
 ```
 
