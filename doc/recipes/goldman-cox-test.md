@@ -1,3 +1,11 @@
+---
+layout: workshop
+title: "Perform a Goldman-Cox test"
+author: _AUTHOR_
+date: _DATE_
+docid: 100
+---
+
 # Perform a Goldman-Cox test 
 
 ## What's a Goldman-Cox test
