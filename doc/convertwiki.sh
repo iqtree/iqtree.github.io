@@ -14,7 +14,7 @@ file_changed=0
 
 files="Front.md Home.md Quickstart.md Web-Server-Tutorial.md Tutorial.md Advanced-Tutorial.md Assessing-Phylogenetic-Assumptions.md Concordance-Factor.md Dating.md Rootstrap.md AliSim.md Command-Reference.md Substitution-Models.md Complex-Models.md Polymorphism-Aware-Models.md Compilation-Guide.md Frequently-Asked-Questions.md"
 
-for f in *.md workshop/*.md; do
+for f in *.md workshop/*.md recipes/*.md; do
     if [ "$f" == "_Footer.md" -o "$f" == "_Sidebar.md" ]; then
         continue
     fi

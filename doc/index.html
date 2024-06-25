@@ -28,7 +28,11 @@ doctypes:
                 {% if post.sections %}
                     <ul>
                     {% for section in post.sections %}
-                    <li><a href="{{ post.url | prepend: site.baseurl }}#{{ section.url }}">{{ section.name }}</a></li>
+                      {% if post.sections_new_page %}
+                      <li><a href="{{ post.url | prepend: site.baseurl }}{{ section.url }}">{{ section.name }}</a></li>
+                      {% else %}
+                      <li><a href="{{ post.url | prepend: site.baseurl }}#{{ section.url }}">{{ section.name }}</a></li>
+                      {% endif %}
                     {% endfor %}
                     </ul>
                 {% endif %}
