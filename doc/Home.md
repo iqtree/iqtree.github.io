@@ -59,7 +59,8 @@ Key features
 
 * __Efficient search algorithm__: Fast and effective stochastic algorithm to reconstruct phylogenetic trees by maximum likelihood. IQ-TREE compares favorably to RAxML and PhyML in terms of likelihood while requiring similar amount of computing time ([Nguyen et al., 2015]).
 * __Ultrafast bootstrap__: An ultrafast bootstrap approximation (UFBoot) to assess branch supports. UFBoot is 10 to 40 times faster than RAxML rapid bootstrap and obtains less biased support values ([Minh et al., 2013]; [Hoang et al., 2018]).
-* __Ultrafast model selection__: An ultrafast and automatic model selection (ModelFinder) which is 10 to 100 times faster than jModelTest and ProtTest. ModelFinder also finds best-fit partitioning scheme like PartitionFinder.
+* __Ultrafast model selection__: An ultrafast and automatic model selection (ModelFinder) which is 10 to 100 times faster than jModelTest and ProtTest. ModelFinder also finds best-fit partitioning scheme like PartitionFinder ([Kalyaanamoorthy et al., 2017]).
+* __Simulating sequences__: A fast sequence alignment simulator (AliSim) which is much more realistic than Seq-Gen and INDELible ([Ly-Trong et al., 2023]). 
 * __Big Data Analysis__: Supporting huge datasets with thousands of sequences or millions of alignment sites via [checkpointing](Command-Reference#checkpointing-to-resume-stopped-run), safe numerical and low memory mode. [Multicore CPUs](Tutorial#utilizing-multi-core-cpus) and [parallel MPI system](Compilation-Guide#compiling-mpi-version) are utilized to speedup analysis.
 * __Phylogenetic testing__: Several fast branch tests like SH-aLRT and aBayes test ([Anisimova et al., 2011]) and tree topology tests like the approximately unbiased (AU) test ([Shimodaira, 2002]).
 
@@ -84,11 +85,12 @@ User support
 ------------
 <div class="hline"></div>
 
-Please refer to the [user documentation](http://www.iqtree.org/doc/) and [frequently asked questions](http://www.iqtree.org/doc/Frequently-Asked-Questions). If you have further questions, feedback, feature requests, and bug reports, please sign up the following Google group (if not done yet) and post a topic to the 
+Please refer to the [user documentation](http://www.iqtree.org/doc/) and 
+[frequently asked questions](http://www.iqtree.org/doc/Frequently-Asked-Questions). 
 
-<https://groups.google.com/d/forum/iqtree>
-
-_The average response time is two working days._
+If you find a bug (e.g. when IQ-TREE prints a crash message) or want to request a new feature,
+please post an issue on GitHub: <https://github.com/iqtree/iqtree2/issues>. For other
+questions and feedback, please ask in GitHub discussions: <https://github.com/iqtree/iqtree2/discussions>
 
 
 Documentation
@@ -249,10 +251,11 @@ Some parts of the code were taken from the following packages/libraries: [Phylog
 
 IQ-TREE was funded by the [Austrian Science Fund](http://www.fwf.ac.at/) (grant no. I760-B17 from 2012-2015 and I 2508-B29 from 2016-2017), the [University of Vienna](https://www.univie.ac.at/) (Initiativkolleg I059-N from 2012-2015), the [Australian National University](https://www.anu.edu.au) (2018-onwards), [Chan-Zuckerberg Initiative](https://chanzuckerberg.com) (2020).
 
-
+[Ly-Trong et al., 2023]: https://doi.org/10.1093/bioinformatics/btad540
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
 [Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
 [Hoang et al., 2018]: https://doi.org/10.1093/molbev/msx281
+[Kalyaanamoorthy et al., 2017]: https://doi.org/10.1038/nmeth.4285
 [Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: https://doi.org/10.1093/molbev/msu300
 [Schrempf et al., 2016]: https://doi.org/10.1016/j.jtbi.2016.07.042
