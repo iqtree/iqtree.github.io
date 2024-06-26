@@ -3,9 +3,9 @@ layout: userdoc
 title: "Estimating amino acid substitution models"
 author: _AUTHOR_
 date: _DATE_
-docid: 8
+docid: 12
 icon: info-circle
-doctype: tutorial
+doctype: manual
 tags:
 - tutorial
 description: Estimating amino acid substitution models.
