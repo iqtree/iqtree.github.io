@@ -29,7 +29,7 @@ conda activate concordance
 
 # install what we need for this recipe
 conda install -c bioconda iqtree astral-tree
-conda install -c conda-forge r-base r-tidyverse r-boot
+conda install -c conda-forge r-base r-tidyverse r-boot r-ape r-ggtext
 
 # get the R script
 wget https://raw.githubusercontent.com/roblanf/concordance_vectors/main/concordance_vector.R
@@ -264,7 +264,7 @@ A common aim is to annotate your tree with the statistics you are interested in.
 
 `'[q1=0.570241231975882;q2=0.17602481596980715;q3=0.25373395205431093;f1=207.567808439221;f2=64.0730330130098;f3=92.3591585477691 7;pp1=1.0;pp2=1.575119358351017E-20;pp3=2.952157354351003E-20;QC=8496;EN=364.0]'/25.4/47.0:0.0055956557`
 
-But we can use the tree with branch IDs to put any label on a tree. An example is in the `change_labels.R` script. As written, this script just updates the branch ID labels in the `gcf.cf.branch` tree to show the ID and the three concordance factors (the &#936;<sub>1</sub> values), each labelled with the first letter of the input data (i.e. `g` for genes, `s` for sites, and `q` for quartets), like so. You can run this script like so:
+But we can use the tree with branch IDs to put any label on a tree. An example is in the `change_labels.R` script. As written, this script just updates the branch ID labels in the `gcf.cf.branch` tree to show the ID and the three concordance factors (the &#936;<sub>1</sub> values), each labelled with the first letter of the input data (i.e. `g` for genes, `s` for sites, and `q` for quartets). You can run this script like so:
 
 ```
 Rscript change_labels.R
@@ -274,13 +274,9 @@ This will output a nexus-formatted tree file called `id_gcf_scf_qcf.nex`. Each b
 
 `391-g98.54-s84.09-q98.54`
 
-The first number is the branch ID, and the next three are the three concordance factors. This can be useful for exploring your data. For example, in my analysis, this part of the tree has some interesting nodes:
+The first number is the branch ID, and the next three are the three concordance factors. This can be useful for exploring your data. For example, if you look at the part of the species tree we inferred in this recipe that groups the kiwis (genus *Apteryx*), you can see that there is a lot of concordance in this part of the tree:
 
-![bird_tree](https://github.com/iqtree/iqtree2/assets/895251/81c16ca5-95a9-4bdf-95d6-c09f70137886)
-
-* **Node 642**, which groups *Balaeniceps rex* (the shoebill) and *Scopus umbretta* (the hamerkop) has concordance factors very close to a third
-* **Node 641**, which adds *Pelecanus crispus* (the Dalmatian pelican) to the group, has much higher gene and quartet concordance factors, but a low site concordance factor
-* **Node 640**, which adds *Mesembrinibis cayennensis* (the green ibis) and *Nipponia nippon* (the crested ibis) also has low concordance factors (node 643, which groups the ibises, has very high concordance factors)
+![kiwis](https://github.com/iqtree/iqtree2/assets/895251/e3ab2493-4105-4099-b822-5ddc4b5583aa)
 
 The concordance factors tell you a certain amount, but to understand things better, you really need to examine the concordance vectors. 
 
@@ -288,54 +284,60 @@ The concordance factors tell you a certain amount, but to understand things bett
 
 # Generate concordance tables for branches of interest
 
-A concordance table is just a table of the three concordance vectors, as shown in the Lanfear and Hahn paper. The `concordance_table.R` script lets you generate concordance tables for any node, based on the branch ID. Let's do that for node 642. The script takes two input files:
+A concordance table is just a table of the three concordance vectors, as shown in the Lanfear and Hahn paper. The `concordance_table.R` script lets you generate a concordance table for any node, based on the branch ID. Here we'll do that for two branches that were recovered in the original Nature paper, discussed in Lanfear and Hahn, and also recovered in the ASTRAL tree we estimated here from 400 loci (I found the branch IDs for these branches by studying the tree labelled with branch IDs that I made above):
+
+* **Branch 598**: the Palaeognathae (kiwis and other cool birds)
+* **Branch 545**: the Telluraves (passerines and other closely related groups)
+
+The `concordance_table.R` script takes two input variables:
 
 * the `concordance_vectors.csv` file we generated above
-* the branch ID, `642` in this case
+* the branch ID
 
-You can run it like this
+So to get the tables for our two branches, we run it once for each as follows:
 
 ```
-Rscript concordance_table.R concordance_vectors.csv 642
+Rscript concordance_table.R concordance_vectors.csv 598
+Rscript concordance_table.R concordance_vectors.csv 545
 ```
 
-The output includes:
+The output includes 2 files for each run:
 
-* a PDF of the table, e.g. `concordance_table_642.pdf`
-* a CSV file of the table, e.g. `concordance_table_642.csv`
+* a PDF of the table, e.g. `concordance_table_598.pdf`
+* a CSV file of the table, e.g. `concordance_table_598.csv`
 
-The PDF looks like this:
+The CSV looks like this (using Telluraves as an example):
 
-![concordance_table_642](https://github.com/iqtree/iqtree2/assets/895251/7834d8e1-c1fc-4fd3-8e79-9ae29787c95d)
+| type | psi | value | lower_CI | upper_CI |
+|------|-----|-------|----------|----------|
+| gene | 1   | 5.60  | 3.562341 | 7.888041 |
+| gene | 2   | 0.25  | 0.000000 | 0.769720 |
+| gene | 3   | 0.00  | 0.000000 | 0.000000 |
+| gene | 4   | 94.15 | 91.857506 | 96.183206 |
+| site | 1   | 45.63 | 42.518891 | 48.434787 |
+| site | 2   | 18.70 | 16.490210 | 20.934787 |
+| site | 3   | 16.00 | 13.710630 | 18.320910 |
+| site | 4   | 19.67 | 17.383025 | 21.849787 |
+| site | 5   | 0.00  | 0.000000 | 0.000000 |
+| site | 6   | 0.00  | 0.000000 | 0.000000 |
+| site | 7   | 0.00  | 0.000000 | 0.000000 |
+| site | 8   | 0.00  | 0.000000 | 0.000000 |
+| site | 9   | 0.00  | 0.000000 | 0.000000 |
+| site | 10  | 0.00  | 0.000000 | 0.000000 |
 
+And the PDF looks like this:
 
-And the CSV looks like this:
+![concordance_table_545_telluraves](https://github.com/iqtree/iqtree2/assets/895251/ec7c1b35-0441-4e18-85cc-8a543fda4155)
 
-| type   | psi | value | lower_CI    | upper_CI    |
-|--------|-----|-------|-------------|-------------|
-| gene   | 1   | 33.73 | 28.95522388 | 39.10447761 |
-| gene   | 2   | 32.84 | 27.76119403 | 37.91044776 |
-| gene   | 3   | 31.64 | 26.55970149 | 36.71641791 |
-| gene   | 4   | 1.79  | 0.597014925 | 3.28358209  |
-| site   | 1   | 32.65 | 30.58737165 | 34.44726267 |
-| site   | 2   | 37.56 | 35.6225236  | 39.5765296  |
-| site   | 3   | 29.79 | 27.81097945 | 31.76380902 |
-| site   | 4   | 0     | 0           | 0           |
-| quartet| 1   | 34.41 | 29.25373134 | 39.40298507 |
-| quartet| 2   | 33.42 | 28.05970149 | 38.20895522 |
-| quartet| 3   | 32.17 | 26.56716418 | 37.01492537 |
-| quartet| 4   | 0     | 0           | 0           |
+Clearly there is substantial discordance around this branch! Compare this to the palaeognathae, which have far less discordance:
 
-You'll notice that both include 95% confidence intervals for the concordance and discordance factors. These are calculated using 1000 bootstraps of the count data, and provide useful context for interpreting the values, and particularly for interpreting potential *differences* in the values.
- 
-You'll notice that for node 642, there is an enormous amount of discordance. Indeed, the first three entries of the vector all have confidence intervals that overlap considerably for gene and quartet concordance factors. So although ASTRAL did what it is supposed to do and chose the node with the highest quartet concordance factor, it would be difficult to be extremely confident that this is the correct topology for the species tree. In support of that, examining the `concordance_vectors.csv` file shows that the posterior probability for this branch is just 0.5, which is extremely low.
+![concordance_table_598_palaeognathae](https://github.com/iqtree/iqtree2/assets/895251/5cf10aae-6c7c-4850-bdbb-90c5c0219c46)
 
-In contrast, node 641 has a lot less discordance:
+These tables allow you to quickly dig into the concordance vectors on any given branch in your tree. 
 
-![concordance_table_641](https://github.com/iqtree/iqtree2/assets/895251/e2968f22-9201-433e-94ea-c0d5c7095134)
+### Confidence intervals on the concordance vectors
 
-Almost all genes and quartets are concordance with this node. The sites have more discordance, and &#936;<sub>2</sub> seems a lot higher for sites than the other entries in the vector. This deserves further investigation, but *could* occur if a lot of the genes that support &#936;<sub>2</sub> are very informative, and/or if there's lot of homoplasy.
+You'll notice that the tables include 95% confidence intervals for the concordance and discordance factors. These are calculated using 1000 bootstraps of the count data, and provide useful context for interpreting the values, and particularly for interpreting potential *differences* in the values.
 
-# Conclusion
+These bootstrap confidence intervals are calculated by resampling from the counts for each concordance vector. The total sample size for each category (genes, sites, and quartets) is shown on the table underneath the y axis label. Note that for sites and quartets, the counts are not always whole numbers because of how they are calculated. This can also mean that the bootstrap confidence intervals can be a little off for very low counts, because the numbers have to be rounded to integers in order to calculate them.  
 
-We hope this recipe provides some useful guidance on calculating concordance vectors for your data!
