@@ -52,7 +52,7 @@ You can download these 400 alignments from here: [bird_400.tar.gz](https://githu
 tar -xzf bird_400.tar.gz
 ```
 
-For the sake of reproducibility, you can also create your own set of 400 randomly-selected loci from the intergenic regions sequenced for this paper using the following commands:
+For the sake of reproducibility, you can also create your own set of 400 randomly selected loci from the intergenic regions sequenced for this paper using the following commands:
 
 ```bash
 # Get the data from the paper's supplementary data repository
@@ -67,7 +67,7 @@ find 63k_alns/ -type f ! -name '.*' | shuf -n 400 | xargs -I {} mv {} bird_400/ 
 tar -czf bird_400.tar.gz -C bird_400 .
 ```
 
-The last set of commands will produce a file just like the one you can download above, with 400 randomly-selected loci. Note that you should expect to get a slightly different species tree and concordance factors, because there's a *lot* of discordance along the backbone of the species tree of birds, so different groups of 400 loci are highly likely to give different species trees. 
+The last set of commands will produce a file just like the one you can download above, with 400 randomly selected loci. Note that you should expect to get a slightly different species tree and concordance factors, because there's a *lot* of discordance along the backbone of the species tree of birds, so different groups of 400 loci are highly likely to give different species trees. 
 
 # Estimating the gene trees
 
@@ -109,6 +109,8 @@ This analysis will produce two files. For convenience you can download these her
 
 Now we want to calculate gene, site, and quartet concordance vectors, and posterior probabilities (support values calculated by ASTRAL) for every branch in our species tree. To do that, we need our species tree (of course); our gene trees (gene and quartet concordance vectors are calculated from these); our alignments (site concordance vectors are calculated from these).
 
+> Note that concordance factors and support values apply to *branches* in trees, not nodes. 
+
 ### Estimate the support and quartet concordance vectors in ASTRAL
 
 We use ASTRAL to calculate quartet concordance vectors and posterior support values (which are calculated from the quartet support values, see below for an explanation of both). 
@@ -127,7 +129,7 @@ There are two output files here, which you can download here:
 * `astral_species_annotated.tree`: the species tree with annotations on every branch 
 * `astral_species_annotated.log`: the log file for ASTRAL
 
-The annotated tree contains a lot of extra information on every node, e.g.:
+The annotated tree contains a lot of extra information on every branch, e.g.:
 
 ```
 [q1=0.9130236794171221;q2=0.04753773093937029;q3=0.03943858964350768;f1=334.1666666666667;f2=17.398809523809526;f3=14.43452380952381;pp1
@@ -284,7 +286,7 @@ The concordance factors tell you a certain amount, but to understand things bett
 
 # Generate concordance tables for branches of interest
 
-A concordance table is just a table of the three concordance vectors, as shown in the Lanfear and Hahn paper. The `concordance_table.R` script lets you generate a concordance table for any node, based on the branch ID. Here we'll do that for two branches that were recovered in the original Nature paper, discussed in Lanfear and Hahn, and also recovered in the ASTRAL tree we estimated here from 400 loci (I found the branch IDs for these branches by studying the tree labelled with branch IDs that I made above):
+A concordance table is just a table of the three concordance vectors, as shown in the Lanfear and Hahn paper. The `concordance_table.R` script lets you generate a concordance table for any branch, based on the branch ID. Here we'll do that for two branches that were recovered in the original Nature paper, discussed in Lanfear and Hahn, and also recovered in the ASTRAL tree we estimated here from 400 loci (I found the branch IDs for these branches by studying the tree labelled with branch IDs that I made above):
 
 * **Branch 598**: the Palaeognathae (kiwis and other cool birds)
 * **Branch 545**: the Telluraves (passerines and other closely related groups)
