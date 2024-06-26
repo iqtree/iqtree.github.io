@@ -3,9 +3,9 @@ layout: userdoc
 title: "Estimating amino acid substitution models"
 author: 95438353+HectorBanos, Cuongbb, Minh Bui, Thomaskf
 date:    2024-05-14
-docid: 8
+docid: 12
 icon: info-circle
-doctype: tutorial
+doctype: manual
 tags:
 - tutorial
 description: Estimating amino acid substitution models.
