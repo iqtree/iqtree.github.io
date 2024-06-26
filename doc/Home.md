@@ -114,47 +114,99 @@ How to cite IQ-TREE?
 --------------------
 <div class="hline"></div>
 
-> **To maintain IQ-TREE, support users and secure fundings, it is important for us that you cite the following papers, whenever the corresponding features were applied for your analysis.**
+> To maintain IQ-TREE, support users and secure fundings, it is important for us that 
+> you cite the following papers, whenever the corresponding features were applied for your analysis.**
 >
-> * Example 1: *We obtained branch supports with the ultrafast bootstrap (Hoang et al., 2018) implemented in the IQ-TREE software (Nguyen et al., 2015).* 
+> Example 1: We obtained branch supports with the ultrafast bootstrap (Hoang et al., 2018) 
+> implemented in the IQ-TREE 2 software (Minh et al., 2020).
 >
-> * Example 2: *We inferred the maximum-likelihood tree using the edge-linked partition model in IQ-TREE (Chernomor et al., 2016; Nguyen et al., 2015).*
+> Example 2: We used IQ-TREE 2 (Minh et al., 2020) to infer the maximum-likelihood tree using the edge-linked 
+> partition model (Chernomor et al., 2016).
 
-If you performed the tests of symmetry, please cite:
+General citation for IQ-TREE 2:
 
-* __S. Naser-Khdour, B.Q. Minh, W. Zhang, E.A. Stone, R. Lanfear__ (2019) The prevalence and pmpact of model violations in phylogenetic analysis, _Genome Biol. Evol._, in press. <https://doi.org/10.1093/gbe/evz193>
+* B.Q. Minh, H.A. Schmidt, O. Chernomor, D. Schrempf, M.D. Woodhams, A. von Haeseler, R. Lanfear (2020) 
+  IQ-TREE 2: New models and efficient methods for phylogenetic inference in the genomic era.
+  *Mol. Biol. Evol.*, 37:1530-1534. <https://doi.org/10.1093/molbev/msaa015>
 
-If you used the polymorphism-aware models please cite:
+When using tree mixture models (MAST) please cite:
 
-* __D. Schrempf, B.Q. Minh, A. von Haeseler, and C. Kosiol__ (2019) Polymorphism-aware species trees with advanced mutation models, bootstrap, and rate heterogeneity. *Mol. Biol. Evol.*, 36:1294-1301. <https://doi.org/10.1093/molbev/msz043>
+* T.K.F. Wong, C. Cherryh, A.G. Rodrigo, M.W. Hahn, B.Q. Minh, R. Lanfear (2024)
+  MAST: Phylogenetic Inference with Mixtures Across Sites and Trees.
+  _Syst. Biol._, in press. <https://doi.org/10.1093/sysbio/syae008>
 
-If you used the heterotachy model (GHOST) please cite:
+When computing concordance factors please cite:
 
-* __S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin, A. von Haeseler__ (2019) GHOST: Recovering historical signal from heterotachously-evolved sequence alignments. *Syst. Biol.*, in press. <https://doi.org/10.1093/sysbio/syz051>
+* Y.K. Mo, R. Lanfear, M.W. Hahn, B.Q. Minh (2023)
+  Updated site concordance factors minimize effects of homoplasy and taxon sampling.
+  _Bioinformatics_, 39:btac741. <https://doi.org/10.1093/bioinformatics/btac741>
 
-If you performed the ultrafast bootstrap (UFBoot) please cite:
+When using AliSim to simulate alignments please cite:
 
-* __D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh__ (2018) UFBoot2: Improving the ultrafast bootstrap approximation. *Mol. Biol. Evol.*, 35:518–522. <https://doi.org/10.1093/molbev/msx281>
+* N. Ly-Trong, S. Naser-Khdour, R. Lanfear, B.Q. Minh (2022)
+  AliSim: A Fast and Versatile Phylogenetic Sequence Simulator for the Genomic Era.
+  *Mol. Biol. Evol.*, 39:msac092. <https://doi.org/10.1093/molbev/msac092>
 
-If you used posterior mean site frequency model please cite:
+When estimating amino-acid Q matrix please cite:
 
-* __H.C. Wang, B.Q. Minh, S. Susko and A.J. Roger__ (2018) Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. _Syst. Biol._, 67:216-235. <https://doi.org/10.1093/sysbio/syx068>
+* B.Q. Minh, C. Cao Dang, L.S. Vinh, R. Lanfear (2021)
+  QMaker: Fast and accurate method to estimate empirical models of protein evolution.
+  _Syst. Biol._, 70:1046–1060. <https://doi.org/10.1093/sysbio/syab010>
 
-If you used ModelFinder please cite:
+When using the heterotachy GHOST model "+H" please cite:
 
-* __S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, and L.S. Jermiin__ (2017) ModelFinder: Fast Model Selection for Accurate Phylogenetic Estimates, *Nature Methods*, 14:587–589. <https://doi.org/10.1038/nmeth.4285>
+* S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin, A. von Haeseler (2020)
+  GHOST: Recovering Historical Signal from Heterotachously Evolved Sequence Alignments.
+  _Syst. Biol._, 69:249-264. <https://doi.org/10.1093/sysbio/syz051>
 
-If you performed tree reconstruction please cite:
+When using the tests of symmetry please cite:
 
-* __L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, and B.Q. Minh__ (2015) IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies. *Mol. Biol. Evol.*, 32:268-274. <https://doi.org/10.1093/molbev/msu300>
+* S. Naser-Khdour, B.Q. Minh, W. Zhang, E.A. Stone, R. Lanfear (2019) 
+  The Prevalence and Impact of Model Violations in Phylogenetic Analysis. 
+  *Genome Biol. Evol.*, 11:3341-3352. <https://doi.org/10.1093/gbe/evz193>
 
-If you used partition models e.g., for phylogenomic analysis please cite:
+When using polymorphism-aware models please cite:
 
-* __O. Chernomor, A. von Haeseler, and B.Q. Minh__ (2016) Terrace aware data structure for phylogenomic inference from supermatrices. *Syst. Biol.*, 65:997-1008. <https://doi.org/10.1093/sysbio/syw037>
+* D. Schrempf, B.Q. Minh, A. von Haeseler, C. Kosiol (2019) 
+  Polymorphism-aware species trees with advanced mutation models, bootstrap, and rate heterogeneity. 
+  *Mol. Biol. Evol.*, 36:1294–1301. <https://doi.org/10.1093/molbev/msz043>
 
-If you used the [IQ-TREE web server](http://iqtree.cibiv.univie.ac.at/) please cite:
+For the ultrafast bootstrap (UFBoot) please cite:
 
-* __J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, and B.Q. Minh__ (2016) W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis. *Nucleic Acids Res.*, 44 (W1):W232-W235. <https://doi.org/10.1093/nar/gkw256>
+* D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh (2018) 
+  UFBoot2: Improving the ultrafast bootstrap approximation. 
+  *Mol. Biol. Evol.*, 35:518–522. <https://doi.org/10.1093/molbev/msx281>
+
+When using posterior mean site frequency model (PMSF) please cite:
+
+* H.C. Wang, B.Q. Minh, S. Susko, A.J. Roger (2018) 
+  Modeling site heterogeneity with posterior mean site frequency profiles 
+  accelerates accurate phylogenomic estimation. 
+  *Syst. Biol.*, 67:216–235. <https://doi.org/10.1093/sysbio/syx068>
+
+When using ModelFinder please cite:
+
+* S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, L.S. Jermiin (2017) 
+  ModelFinder: Fast model selection for accurate phylogenetic estimates. 
+  *Nat. Methods*, 14:587-589. <https://doi.org/10.1038/nmeth.4285>
+
+When using partition models please cite:
+
+* O. Chernomor, A. von Haeseler, B.Q. Minh (2016) 
+  Terrace aware data structure for phylogenomic inference from supermatrices. 
+  *Syst. Biol.*, 65:997-1008. <https://doi.org/10.1093/sysbio/syw037>
+
+When using IQ-TREE web server please cite:
+
+* J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, B.Q. Minh (2016) 
+  W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis.
+  *Nucleic Acids Res.*, 44:W232-W235. <https://doi.org/10.1093/nar/gkw256>
+
+When using IQ-TREE version 1 please cite:
+
+* L. Nguyen, H.A. Schmidt, A. von Haeseler, B.Q. Minh (2015)
+  IQ-TREE: A Fast and Effective Stochastic Algorithm for Estimating Maximum-Likelihood Phylogenies.
+  _Mol. Biol. and Evol._, 32:268-274. <https://doi.org/10.1093/molbev/msu300>
 
 
 Development team
