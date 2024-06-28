@@ -172,7 +172,7 @@ To estimate a non-reversible model from a folder of alignments:
 Estimating linked exchangeabilities
 -----------------------------------
 
-Starting with version 2.3.1, IQ-TREE allows users to estimate linked exchangeabilities under [profile mixture models](Substitution-Models#protein-mixture-models).
+Starting with version 2.3.5, IQ-TREE allows users to estimate linked exchangeabilities under [profile mixture models](Substitution-Models#protein-mixture-models).
 
 To start with, we show an example:
 
