@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Estimating amino acid substitution models"
 author: 95438353+HectorBanos, Cuongbb, Minh Bui, Thomaskf
-date:    2024-05-14
+date:    2024-06-28
 docid: 12
 icon: info-circle
 doctype: manual
@@ -172,14 +172,14 @@ To estimate a non-reversible model from a folder of alignments:
 Estimating linked exchangeabilities
 -----------------------------------
 
-Starting with version 2.3.1, IQ-TREE allows users to estimate linked exchangeabilities under [profile mixture models](Substitution-Models#protein-mixture-models).
+Starting with version 2.3.5, IQ-TREE allows users to estimate linked exchangeabilities under [profile mixture models](Substitution-Models#protein-mixture-models).
 
 To start with, we show an example:
 
-    iqtree2 -s <alignment> -m GTR20+C60+G4 --link-exchange-rates -te  <guide_tree> -me 0.99
+    iqtree2 -s <alignment> -m GTR20+C60+G4 --link-exchange -te  <guide_tree> -me 0.99
 
 Here, IQ-TREE applies a (freely-estimated) 20x20 rate matrix `GTR20` with the
-[profile mixture model](Substitution-Models#protein-mixture-models) `C60` (other model such as C10 can also be used) and Gamma rate heterogeneity across sites. The option `--link-exchange-rates` tells
+[profile mixture model](Substitution-Models#protein-mixture-models) `C60` (other model such as C10 can also be used) and Gamma rate heterogeneity across sites. The option `--link-exchange` tells
 IQ-TREE to link GTR20 rates across all 60 mixture classes: without this option
 IQ-TREE will estimate 60 GTR20 matrices!
 
@@ -195,7 +195,7 @@ This command will produce an output file with suffix `.GTRPMIX.nex`. This file c
     iqtree2 -s <alignment> -mdef <.GTRPMIX.nex file> -m GTRPMIX+C60+G4
 
 
-The optimizer in IQ-TREE by default initializes exchangeability rates to be all equal, which are the least biased but may make the subsequent optimization quite slow. If users have a good guess of the rate values, the option `--gtr20-model` can be used. For example, `--gtr20-model LG` will intialize the exchangeability to that
+The optimizer in IQ-TREE by default initializes exchangeability rates to be all equal, which are the least biased but may make the subsequent optimization quite slow. If users have a good guess of the rate values, the option `--init-exchange` can be used. For example, `--init-exchange LG` will intialize the exchangeability to that
 of the LG model before optimization. Choosing good starting values can make estimation considerably faster. Apart from LG, users can specify any matrix, including those defined by the `-mdef` option with a [NEXUS model file](Complex-Models#nexus-model-file). Another use of this option is to _test the robustness_ of the optimizer with different starting points.
 
 Note that the user can estimate exchangeabilities jointly with weights of the profiles, branch lengths, and rates. This can be very time-consuming. If the goal is to optimize exchangeabilities, one can fix the other parameters to reasonable estimates (for eg. fixing branch lengths and rates has been shown to perform adequately for the estimation of exchangeabilities).
