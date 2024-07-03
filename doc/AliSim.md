@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Simulating sequence alignments"
 author: Minh Bui, Trongnhan Uit
-date:    2024-02-01
+date:    2024-07-03
 docid: 9
 icon: info-circle
 doctype: tutorial
@@ -55,11 +55,20 @@ Sequence simulators play an important role in phylogenetics. Simulated data has 
 
 To use AliSim please make sure that you download the IQ-TREE version 2.2.0 or later.
 
-If you use AliSim please cite the following paper(s):
+If you use AliSim please cite:
 
-- Nhan Ly-Trong, Suha Naser-Khdour, Robert Lanfear, Bui Quang Minh, AliSim: A Fast and Versatile Phylogenetic Sequence Simulator for the Genomic Era, Molecular Biology and Evolution, Volume 39, Issue 5, May 2022, msac092, <https://doi.org/10.1093/molbev/msac092>
+- Nhan Ly-Trong, Giuseppe M.J. Barca, Bui Quang Minh (2023) 
+  AliSim-HPC: parallel sequence simulator for phylogenetics.
+  Bioinformatics, Volume 39, Issue 9, btad540.
+  <https://doi.org/10.1093/bioinformatics/btad540>
 
-- Nhan Ly-Trong, Giuseppe M.J. Barca, Bui Quang Minh, AliSim-HPC: parallel sequence simulator for phylogenetics, Bioinformatics, Volume 39, Issue 9, Sep 2023, btad540, <https://doi.org/10.1093/bioinformatics/btad540> (*for the parallel version*)
+For the original algorithms of AliSim please cite:
+
+- Nhan Ly-Trong, Suha Naser-Khdour, Robert Lanfear, Bui Quang Minh (2022)
+  AliSim: A Fast and Versatile Phylogenetic Sequence Simulator for the Genomic Era.
+  _Molecular Biology and Evolution_, Volume 39, Issue 5, msac092.
+  <https://doi.org/10.1093/molbev/msac092>
+
 
 
 Simulating an alignment from a tree and model
