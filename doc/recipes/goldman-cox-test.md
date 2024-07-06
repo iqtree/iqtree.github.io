@@ -8,7 +8,7 @@ docid: 100
 
 # Perform a Goldman-Cox test 
 
-## What's a Goldman-Cox test
+## What is a Goldman-Cox test?
 
 Nick Goldman explains the Goldman-Cox (GC) test in [this paper](https://link.springer.com/article/10.1007/BF00166252)
 
