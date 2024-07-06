@@ -1,4 +1,15 @@
-# Intro
+---
+layout: workshop
+title: "Estimating gene, site, and quartet concordance vectors"
+author: _AUTHOR_
+date: _DATE_
+docid: 100
+---
+
+# Estimating gene, site, and quartet concordance vectors
+
+
+## Introduction
 
 This recipe provides a worked example of estimating gene, site, and quartet concordance vectors using IQ-TREE2 and ASTRAL-III, beginning with a set of individual locus alignments. A concordance vector consists of four numbers, which include the concordance factor and three other numbers describing all the discordant trees:
 
@@ -9,7 +20,7 @@ This recipe provides a worked example of estimating gene, site, and quartet conc
 
 > Citation: this recipe accompanies the paper "[The meaning and measure of concordance factors in phylogenomics](https://doi.org/10.32942/X27617)" by Rob Lanfear and Matt Hahn. Please cite that paper if you use this recipe. This article also describes concordance vectors in a lot more detail.
 
-# What you need
+## What you need
 
 ### Software
 
@@ -69,7 +80,7 @@ tar -czf bird_400.tar.gz -C bird_400 .
 
 The last set of commands will produce a file just like the one you can download above, with 400 randomly selected loci. Note that you should expect to get a slightly different species tree and concordance factors, because there's a *lot* of discordance along the backbone of the species tree of birds, so different groups of 400 loci are highly likely to give different species trees. 
 
-# Estimating the gene trees
+## Estimating the gene trees
 
 To estimate the gene trees, we'll use IQ-TREE2. Just set `-T` to the highest number of threads you have available. This step might take some time (about 3.5 hours with my 128 threads). If you prefer to skip it then you can download the key output files from this analysis here: 
 [loci.zip](https://github.com/user-attachments/files/15907618/loci.zip)
@@ -86,7 +97,7 @@ This analysis will produce output files with lots of information, these include 
 * `loci.log`: the full log file from the run (i.e. everything that was printed to the screen during the run)
 * `loci.treefile`: the Maximum Likelihood single-locus trees estimated using the best-fit models (these trees are what we really want)
 
-# Estimating the species tree
+## Estimating the species tree
 
 You should estimate your species tree using whatever the best approach is for your data, for example a joint Bayesian analysis using BEAST or *BEAST, a two-step analysis e.g. using ASTRAL, or a concatentated analysis using IQ-TREE or RAxML. You may also have a species tree that has already been estimated elsewhere, and just want to map the concordance vectors onto that. In that case, you can skip this step. 
 
@@ -105,7 +116,7 @@ This analysis will produce two files. For convenience you can download these her
 * `astral_species.tree`: the species tree estimated from ASTRAL (this might be quite different to the tree in the paper, because we used only 400 genes, not the full set of more than 63000!)
 * `astral_species.log`: the log file from ASTRAL
 
-# Estimating concordance vectors and support values
+## Estimating concordance vectors and support values
 
 Now we want to calculate gene, site, and quartet concordance vectors, and posterior probabilities (support values calculated by ASTRAL) for every branch in our species tree. To do that, we need our species tree (of course); our gene trees (gene and quartet concordance vectors are calculated from these); our alignments (site concordance vectors are calculated from these).
 
@@ -196,7 +207,7 @@ This doesn't contain all the information for the concordance vectors (see below 
 
 One useful thing to do is to look at these labels in the context of your species tree. To do this, you can open the file `gcf.cf.tree` in a tree viewer like [DendroScope](https://github.com/husonlab/dendroscope3/releases/latest). Just load the tree in Dendroscope, specify that the labels are edge labels when you are asked, and that's it. You can then re-root the tree, change the layout, and zoom in and out to see the edge labels you are interested in. However, the edge labels so far don't contain the full concordance vectors, so we'll get those next. 
 
-# Generate the concordance vectors for each branch
+## Generate the concordance vectors for each branch
 
 The final step of this tutorial is to get the full gene, site, and quartet concordance vectors. 
 
@@ -260,7 +271,7 @@ This table has a lot of columns. For easy reference, here's a description of eve
 | length_coalescent      | branch length in coalescent units            					| Calcualted in ASTRAL from the quartet concordance vector                                                             |
 
 
-# Put concordance factors (or other numbers!) on a tree
+## Put concordance factors (or other numbers!) on a tree
 
 A common aim is to annotate your tree with the statistics you are interested in. The output tree above has rather unwieldy labels on each branch like this:
 
@@ -284,7 +295,7 @@ The concordance factors tell you a certain amount, but to understand things bett
 
 > If you want to put different labels on your tree, that is relatively simple to do by editing the `change_labels.R` script, which you can get from GitHub here: [https://github.com/roblanf/concordance_vectors/blob/main/change_labels.R](https://github.com/roblanf/concordance_vectors/blob/main/change_labels.R)
 
-# Generate concordance tables for branches of interest
+## Generate concordance tables for branches of interest
 
 A concordance table is just a table of the three concordance vectors, as shown in the Lanfear and Hahn paper. The `concordance_table.R` script lets you generate a concordance table for any branch, based on the branch ID. Here we'll do that for two branches that were recovered in the original Nature paper, discussed in Lanfear and Hahn, and also recovered in the ASTRAL tree we estimated here from 400 loci (I found the branch IDs for these branches by studying the tree labelled with branch IDs that I made above):
 
