@@ -16,7 +16,7 @@ sections:
 - name: Perform a Goldman-Cox test 
   url: goldman-cox-test
 - name: Estimating gene, site, and quartet concordance vectors 
-  url: Estimating-gene%2C-site%2C-and-quartet-concordance-vectors
+  url: concordance-vector
 ---
 
 # Recipes
@@ -27,4 +27,4 @@ If you'd like to request a recipe, please head over to the issues page and use t
 
 * [How to do phylogenetic placement](phylogenetic-placement)
 * [How to perform a Goldman-Cox test](goldman-cox-test)
-* [Estimating gene, site, and quartet concordance vectors](Estimating-gene%2C-site%2C-and-quartet-concordance-vectors)
+* [Estimating gene, site, and quartet concordance vectors](concordance-vector)
