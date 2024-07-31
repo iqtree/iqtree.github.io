@@ -156,13 +156,13 @@ Here, we estimate the optimal Q mixture model. To select mixture model and then 
 
 	iqtree -s example.phy -m MIX+MFP
 	
-BIC is the default criterion to assess the number of classes in the Q mixture model. AIC, AICc or Likelihood ratio test (LRT) are also available to assess the number of classes.
+BIC is the default criterion to assess the number of classes in the Q mixture model. AIC, AICc or likelihood ratio test (LRT) are also available to assess the number of classes.
 
 To use AIC:
 
 	iqtree -s example.phy -m MIX+MF -merit AIC
 	
-To useLikelihood ratio test (LRT) with p-value = 0.05 to assess the number of classes:
+To use likelihood ratio test with p-value = 0.05 to assess the number of classes:
 
 	iqtree -s example.phy -m MIX+MF -lrt 0.05 
 	
@@ -415,5 +415,6 @@ Please note that, in any MAST model with more than one substitution model (i.e. 
 [Le et al., 2012]: https://doi.org/10.1093/molbev/mss112
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Wang et al., 2008]: https://doi.org/10.1186/1471-2148-8-331
+
 
 
