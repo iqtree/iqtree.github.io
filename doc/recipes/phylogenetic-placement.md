@@ -1,3 +1,11 @@
+---
+layout: workshop
+title: "Phylogenetic placement"
+author: _AUTHOR_
+date: _DATE_
+docid: 100
+---
+
 # Phylogenetic placement
 
 ### The general problem

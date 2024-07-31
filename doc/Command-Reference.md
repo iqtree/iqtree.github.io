@@ -28,6 +28,8 @@ sections:
     url: site-specific-frequency-model-options
   - name: Tree search parameters
     url: tree-search-parameters
+  - name: Tree search for pathogen data
+    url: tree-search-for-pathogen-data
   - name: Ultrafast bootstrap parameters
     url: ultrafast-bootstrap-parameters
   - name: Nonparametric bootstrap
@@ -328,17 +330,16 @@ Further options:
 
 | Option | Usage and meaning |
 |----------|------------------------------------------------------------------------------|
-| `--link-exchange-rates` | Turn on linked exchangeability estimation for a profile mixture model. Note that the model must have specified `GTR20` exchangeabilities for eg.`GTR20+C20+G`. |
-| `--gtr20-model` | Specify the initial exchangeabilities for linked exchangeability estimation. Note that this must be used with `--link-exchange-rates.` |
-| `--rates-file` | Produces a nexus file with the exchangeability matrix obtained from the optimization. This file can be later used for phylogenetic inference with the use of the `-mdef` flag  |
+| `--link-exchange` | Turn on linked exchangeability estimation for a profile mixture model. Note that the model must have specified `GTR20` exchangeabilities for eg.`GTR20+C20+G`. This option also produces a nexus file `GTRPMIX.nex` with the exchangeability matrix obtained from the optimization. This file can be later used for phylogenetic inference with the use of the `-mdef` flag|
+| `--init-exchange` | Specify the initial exchangeabilities for linked exchangeability estimation. Note that this must be used with `--link-exchange`. |
 
 ### Example usages:
 
 * Estimate linked exchangeabilities for a protein alignment `prot.phy` under C60+G model and a guide tree `guide.treefile`, where optimization is initialized from LG exchangeabilities
 
-        iqtree -s prot.phy -m GTR20+C60+G --link-exchange-rates --gtr20-model LG -te guide.treefile
+        iqtree -s prot.phy -m GTR20+C60+G --link-exchange --init-exchange LG -te guide.treefile
 
->**NOTE**: For better and faster performance, read the [recommendations](Complex-Models#linked-gtr-exchangeabilities-models) provided in the Complex Models section.
+>**NOTE**: For better and faster performance, read the [recommendations](Estimating-amino-acid-substitution-models#estimating-linked-exchangeabilities) provided in the Estimating amino acid substitution models section.
 
 
 Rate heterogeneity
@@ -431,6 +432,46 @@ The new IQ-TREE search algorithm ([Nguyen et al., 2015]) has several parameters 
 * Infer an ML tree for an alignment `data.phy` obeying a topological constraint tree `constraint.tree`:
 
         iqtree -s data.phy -m TEST -g constraint.tree
+
+Tree search for pathogen data
+-----------------------------
+<div class="hline"></div>
+
+For pathogen data such as SARS-CoV-2 virus alignments, version 2.3.4.cmaple implements
+the MAPLE algorithm ([De Maio et al., 2023]) that performs tree search very quickly by
+exploiting the low divergent property of the sequences (i.e., sequences in the alignment
+are very similar to each other).
+
+| Option | Usage and meaning |
+|----------|------------------------------------------------------------------------------|
+| `--pathogen` | Apply CMAPLE tree search algorithm if sequence divergence is low, otherwise, apply IQ-TREE algorithm. |
+| `--pathogen-force` | Apply CMAPLE tree search algorithm regardless of sequence divergence. |
+| `-alrt`   | Specify number of replicates (>=1000) to perform SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). |
+| `-T` | Specify the number of CPU cores to use only for the SH-aLRT test. If `-T AUTO` is specified, IQ-TREE will use all available cores. NOTE: this option has no effect on tree search, which is still single-threaded. |
+
+### Example usages:
+
+* Infer a maximum-likelihood tree for an alignment, automatically switching to CMAPLE algorithm 
+  if sequence divergence is low:
+
+        iqtree2 -s data.phy --pathogen --prefix pathogen
+        
+It will print two output files:
+
+* `pathogen.treefile`: The best approximate maximum-likelihood tree in NEWICK format.
+* `pathogen.log`: The log file.
+
+
+If you want to do other analyses on this tree and thus saving the tree search time, 
+add `-te pathogen.treefile` to the command line of a subsequent IQ-TREE run to fix this tree topology
+and remove `--pathogen` option to invoke the default IQ-TREE machinery.
+
+* Infer a tree like above and additionally assign branch supports using SH-aLRT test 
+  with 1000 replicates using 4 CPU cores:
+
+        iqtree2 -s data.phy --pathogen --alrt 1000 -T 4 --prefix pathogen
+
+The tree `pathogen.treefile` will contain branch supports for all internal branches.
 
 Ultrafast bootstrap parameters
 ------------------------------
@@ -730,6 +771,7 @@ The first few lines of the output file example.phy.sitelh (printed by `-wslr` op
 [Adachi and Hasegawa, 1996b]: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.476.8552
 [Anisimova and Gascuel 2006]: https://doi.org/10.1080/10635150600755453
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
+[De Maio et al., 2023]: https://doi.org/10.1038/s41588-023-01368-0
 [Felsenstein, 1985]: https://doi.org/10.2307/2408678
 [Flouri et al., 2015]: https://doi.org/10.1093/sysbio/syu084
 [Gadagkar et al., 2005]: https://doi.org/10.1002/jez.b.21026

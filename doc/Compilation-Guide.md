@@ -66,7 +66,7 @@ For IQ-TREE version 1 please use:
 
 Alternatively, if you have `git` installed, you can also clone the source code from GitHub with:
 
-    git clone https://github.com/iqtree/iqtree2.git
+    git clone --recursive https://github.com/iqtree/iqtree2.git
 
 For IQ-TREE version 1 please clone:
 
@@ -108,15 +108,14 @@ Compiling under Linux
     
 This creates an executable `iqtree2` (`iqtree` for version 1). It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree2`.
 
+To compile IQ-TREE under Linux with ARM processor, use either GCC 10 (but not above), or Clang 14 or above.
+
 >**TIP**: The above guide typically compiles IQ-TREE with `gcc`. If you have Clang installed and want to compile with Clang, the compilation will be similar to Mac OS X like below.
 {: .tip}
 
 Compiling under Mac OS X
 ------------------------
 <div class="hline"></div>
-
->**TIP**: A ready made IQ-TREE package is provided by * [Homebrew](https://github.com/brewsci/homebrew-science/blob/master/Formula/iqtree.rb) by simply running `brew install homebrew/science/iqtree2`.
-{: .tip}
 
 * Make sure that Clang compiler is installed, which is typically the case if you installed Xcode and the associated command line tools.
 
@@ -130,13 +129,18 @@ The steps to compile IQ-TREE are similar to Linux (see above), except that you n
 
 (please change `cmake` to absolute path like `/Applications/CMake.app/Contents/bin/cmake`).
 
-To compile the multicore version, the default installed Clang unfortunately does not support OpenMP (which might change in the near future). However, the latest Clang 3.7 supports OpenMP, which can be downloaded from <http://clang.llvm.org>. After that you can run CMake with:
+* To compile IQ-TREE under Mac with ARM processor, use Clang 17 or above.
 
-    cmake -DIQTREE_FLAGS=omp -DCMAKE_C_COMPILER=clang-3.7 -DCMAKE_CXX_COMPILER=clang++-3.7 ..
+* If the OpenMP include or lib files cannot be found, then you can specify the location of OpenMP include or lib files, for example:
 
-(assuming that `clang-3.7` and `clang++-3.7` points to the installed Clang 3.7).
+		export LDFLAGS="-L/opt/homebrew/opt/libomp/lib"
 
+    	export CPPFLAGS="-I/opt/homebrew/opt/libomp/include"
 
+    	cmake -DCMAKE_CXX_FLAGS="$LDFLAGS $CPPFLAGS" -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ..
+
+(please change the path to the installed location of your OpenMP library)
+    
 Compiling under Windows
 -----------------------
 <div class="hline"></div>
@@ -257,6 +261,19 @@ The compiled `iqtree` binary will automatically choose the proper computational 
     IQ-TREE multicore Xeon Phi KNL version 1.6.beta for Linux 64-bit built May  7 2017
     
 
+Compiling IQ-TREE2 lib file
+---------------------------
+<div class="hline"></div>
+
+Starting with version 2.3.3, you can compile and create IQ-TREE2 lib file.
+
+If you want to compile the IQ-TREE2 lib file, simply run:
+
+    cmake -DBUILD_LIB=ON ..
+    make -j4
+
+
+<!--
 Compling with deep learning kernel for ModelFinder 2
 --------------------------------------------------
 
@@ -280,7 +297,7 @@ where 1.11.0 is the version of onnxruntime at the time of writing this document.
 Now you will need to run cmake by additional options:
 
 	cmake -Donnxruntime_INCLUDE_DIRS=/usr/local/Cellar//onnxruntime/1.11.0/include/onnxruntime/core/session/ -Donnxruntime_LIBRARIES=/usr/local/Cellar//onnxruntime/1.11.0/lib/libonnxruntime.dylib ..
-
+-->
 
 About precompiled binaries
 --------------------------

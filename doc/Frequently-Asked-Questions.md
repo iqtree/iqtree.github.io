@@ -75,10 +75,26 @@ How do I interpret ultrafast bootstrap (UFBoot) support values?
 ---------------------------------------------------------------
 <div class="hline"></div>
 
-The ultrafast bootstrap (UFBoot) feature (`-bb` option) was published in  ([Minh et al., 2013]). One of the main conclusions is, that UFBoot support values are more unbiased: 95% support correspond roughly to a probability of 95% that a clade is true. So this has a different meaning than the normal bootstrap supports (where you start to believe in the clade if it has >80% BS support). For UFBoot, you should only start to believe in a clade if its support is >= 95%. Thus, the interpretations are different and you should not compare BS% with UFBoot% directly. 
+The ultrafast bootstrap (UFBoot) feature (`-bb` option) was published in ([Minh et al., 2013]). 
+One conclusions from the __analysis of many gene trees__ is that UFBoot support values are
+more unbiased: 95% support correspond roughly to a probability of 95% that a
+clade is true. So this has a different meaning than the normal (more conservative) 
+bootstrap supports.
+For UFBoot, you should only start to rely on a branch if its support is >=
+95%. Thus, the interpretations are different and you should not compare BS% with
+UFBoot% directly.
 
-Moreover, it is recommended to also perform the SH-aLRT test ([Guindon et al., 2010]) by adding `-alrt 1000` into the IQ-TREE command line. Each branch will then be assigned with SH-aLRT and UFBoot supports. One would typically start to rely on the clade if its SH-aLRT >= 80% and UFboot >= 95%. 
+Moreover, it is recommended to also perform the SH-aLRT test ([Guindon et al., 2010]), 
+e.g., by adding `-alrt 1000` into the IQ-TREE command line. Each branch will
+then be assigned with SH-aLRT and UFBoot supports. One would be more confident 
+if a clade has its SH-aLRT >= 80% and UFboot >= 95%. 
 
+> NOTE: These recommendations only apply to single gene trees. If you reconstruct
+> a "concatenation" tree from many genes in a phylogenomic analysis, they do not
+> hold anymore. In fact, UFBoot supports and even the more conservative Felsenstein's 
+> bootstrap supports will tend to be 100% and there has been plenty of literature
+> about this issue. You are recommended to compute concordance factors for
+> any phylogenomic analysis.
 
 How does IQ-TREE treat gap/missing/ambiguous characters?
 ---------------------------------------------------------
@@ -294,3 +310,24 @@ C A
 [Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
 [Ranwez et al., 2011]: https://doi.org/10.1371/journal.pone.0022594
 
+Can I use IQ-TREE to concatenate alignments?
+--------------------------------------------
+
+Yes! If you put all of your alignments you want to concatenate into a single folder, you can do this:
+
+```
+iqtree2 -p FOLDER_NAME --out-aln OUTFILE_NAME
+```
+
+This will produce:
+* OUTFILE_NAME: the concatenated alignment (default is phylip format)
+* OUTFILE_NAME.nex: the partition file in nexus format
+* OUTFILE_NAME.partitions: the partition file in RAxML format
+
+Optionally, you can add `--out-format FASTA|NEXUS` option to specify concatenated alignment format, e.g.
+
+```
+iqtree2 -p FOLDER_NAME --out-aln OUTFILE_NAME --out-format NEXUS
+```
+
+would output the alignment in nexus format.

@@ -165,6 +165,8 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | cpREV    | chloroplast |chloroplast matrix ([Adachi et al., 2000]). |
 | Dayhoff  | nuclear | General matrix ([Dayhoff et al., 1978]). |
 | DCMut    | nuclear | Revised `Dayhoff` matrix ([Kosiol and Goldman, 2005]). |
+| EAL      | nuclear | General matrix. To be used with profile mixture models (for eg. EAL+C60) for reconstructing relationships between eukaryotes and Archaea ([Banos et al., 2024]). |
+| ELM      | nuclear | General matrix. To be used with profile mixture models (for eg. ELM+C60) for phylogenetic analysis of proteins encoded by nuclear genomes of eukaryotes ([Banos et al., 2024]).|
 | FLAVI    | viral | Flavivirus ([Le and Vinh, 2020]). | 
 | FLU      | viral | Influenza virus ([Dang et al., 2010]). |
 | GTR20    | general | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments).* |
@@ -411,6 +413,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Abascal et al., 2007]: https://doi.org/10.1093/molbev/msl136
 [Adachi and Hasegawa, 1996]: https://doi.org/10.1007/BF02498640
 [Adachi et al., 2000]: https://doi.org/10.1007/s002399910038
+[Banos et al., 2024]: https://doi.org/10.1101/2024.03.29.587376
 [Bielawski and Gold, 2002]: https://doi.org/10.1093/genetics/161.4.1589
 [Dang et al., 2010]: https://doi.org/10.1186/1471-2148-10-99
 [Dang et al., 2022]: https://doi.org/10.1093/sysbio/syac007
