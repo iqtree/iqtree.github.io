@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Complex Models"
 author: 928003585, 95438353+HectorBanos, Dominik Schrempf, Jana Trifinopoulos, Minh Bui, Rob Lanfear, Thomaskf, Trongnhan Uit
-date:    2024-04-18
+date:    2024-07-31
 docid: 11
 icon: book
 doctype: manual
@@ -156,15 +156,17 @@ Here, we estimate the optimal Q mixture model. To select mixture model and then 
 
 	iqtree -s example.phy -m MIX+MFP
 	
-Likelihood ratio test (LRT) with p-value = 0.05 is the default method to assess the number of classes in the Q mixture model. To change the p-value:
+BIC is the default criterion to assess the number of classes in the Q mixture model. AIC, AICc or likelihood ratio test (LRT) are also available to assess the number of classes.
 
-	iqtree -s example.phy -m MIX+MF -lrt 0.01
-	
-Here, we change the LRT p-value to 0.01. To use information criteria instead of LRT to assess the number of classes:
+To use AIC:
 
-	iqtree -s example.phy -m MIX+MF -lrt 0 -merit BIC
+	iqtree -s example.phy -m MIX+MF -merit AIC
 	
-Here, `-lrt 0` means turning off the LRT, then `-merit BIC` means using BIC to assess the number of classes. (Note that: `-merit` also decides the creterion for selecting subtitution model type in each classes. If using LRT for assessing the number of classes, the default creterion for selecting subtitution model type is BIC.)
+To use likelihood ratio test with p-value = 0.05 to assess the number of classes:
+
+	iqtree -s example.phy -m MIX+MF -lrt 0.05 
+	
+(Note that: `-merit` also decides the creterion for selecting subtitution model type in each classes. If using LRT for assessing the number of classes, the default creterion for selecting subtitution model type is BIC.)
 
 Options for ModelFinder also work for MixtureFinder, e.g.:
 
@@ -177,7 +179,7 @@ Other options for MixtureFinder:
 | Model option   | Description                                                                                                                          |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `-qmax`        | Maximum number of Q-mixture classes (default: 10). Specify a number after the option (e.g., `-qmax 5`).                              |
-| `-mrate-twice` | Whether estimate the rate heterogeneity across sites models again after select the best Q-mixture model. 1: yes, 0: no. (default: 1) |
+| `-mrate-twice` | Whether estimate the rate heterogeneity across sites models again after select the best Q-mixture model. 1: yes, 0: no. (default: 0) |
 
 If you use MixtureFinder in a publication please cite:
 
@@ -413,5 +415,6 @@ Please note that, in any MAST model with more than one substitution model (i.e. 
 [Le et al., 2012]: https://doi.org/10.1093/molbev/mss112
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Wang et al., 2008]: https://doi.org/10.1186/1471-2148-8-331
+
 
 
