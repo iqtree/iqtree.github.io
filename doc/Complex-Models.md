@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Complex Models"
 author: 928003585, 95438353+HectorBanos, Dominik Schrempf, Jana Trifinopoulos, Minh Bui, Rob Lanfear, Thomaskf, Trongnhan Uit
-date:    2024-07-31
+date:    2025-01-08
 docid: 11
 icon: book
 doctype: manual
@@ -183,7 +183,7 @@ Other options for MixtureFinder:
 
 If you use MixtureFinder in a publication please cite:
 
-> __H. Ren, T.K.F. Wong, B.Q. Minh, R. Lanfear__ (2024) MixtureFinder: Estimating DNA mixture models for phylogenetic analyses. _BioRxiv_. <https://doi.org/10.1101/2024.03.20.586035>
+> __H. Ren, T.K.F. Wong, B.Q. Minh, R. Lanfear__ (2024) MixtureFinder: Estimating DNA mixture models for phylogenetic analyses. _Mol. Biol. Evol_. <https://doi.org/10.1093/molbev/msae264>
 
 
 
