@@ -652,7 +652,7 @@ All the options available in AliSim are shown below:
 | `--length <LENGTH>` | Set the root sequence length.<br>*Default: 1,000* |
 | `--num-alignments <NUMBER>` | Set the number of output datasets.<br>*Default: 1* |
 | `--root-seq <ALN_FILE>,<SEQ_NAME>`   | Specify the root sequence from an alignment.<br>AliSim automatically sets the output sequence length (`--length`) equally to the length of the root sequence. |
-|  `-t RANDOM{<MODEL>/<NUM_TAXA>}` | Specify the model and the number of taxa to generate a random tree (see [Simulating along a random tree](#simulating-along-a random-tree). |
+|  `-t RANDOM{<MODEL>/<NUM_TAXA>}` | Specify the model and the number of taxa to generate a random tree (see [Simulating along a random tree](#simulating-along-a-random-tree)). |
 |  `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`  | Specify three numbers: minimum, mean and maximum branch lengths when generating a random tree with `-t RANDOM{<MODEL>/<NUM_TAXA>}`. <br>*Default: -rlen 0.001 0.1 0.999.* |
 | `-s <ALIGNMENT>` | Specify an input alignment file in PHYLIP, FASTA, NEXUS, CLUSTAL or MSF format.|
 | `--no-copy-gaps` | Disable copying gaps from the input alignment.|
