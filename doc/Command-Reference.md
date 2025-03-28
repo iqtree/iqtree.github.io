@@ -448,8 +448,8 @@ are very similar to each other).
 | `--pathogen-force` | Apply CMAPLE tree search algorithm regardless of sequence divergence. |
 | `--alrt <num_rep>`   | Specify the number of replicates to compute SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). |
 | `--sprta`           | Compute SPRTA ([De Maio et al., 2024]) branch supports. |
-| `--zero-branch-supp`| Compute SPRTA supports for zero-length branches.|
-| `--out-alter-spr`   | Output alternative SPRs and their SPRTA supports.|
+| `--sprta-zero-branch`| Compute SPRTA supports for zero-length branches.|
+| `--sprta-other-places`   | Output alternative SPRs and their SPRTA supports.|
 | `-T <num_thread>`   | Specify the number of threads used for computing branch supports (SH-aLRT or SPRTA). If `-T AUTO` is specified, all available cores will be used.|
 
 ### Example usages:
@@ -474,13 +474,13 @@ and remove `--pathogen` option to invoke the default IQ-TREE machinery.
 
         iqtree2 -s data.phy --pathogen --alrt 1000 -T 4 --prefix pathogen_sh_alrt
 
-The output file `pathogen_sh_alrt.nexus` will contain SH-aLRT branch supports for all internal branches.
+The output file `pathogen_sh_alrt.treefile` will contain SH-aLRT branch supports for all internal branches.
 
-* Infer a tree like above and additionally assign SPRTA branch supports using 4 CPU cores:
+* Infer a tree like above and additionally assign SPRTA branch supports:
 
-        iqtree2 -s data.phy --pathogen-force --sprta -T 4 --prefix pathogen_sprta
+        iqtree2 -s data.phy --pathogen-force --sprta --prefix pathogen_sprta
 
-The output file `pathogen_sprta.nexus` will contain SPRTA branch supports for all (internal and external) branches.
+The output file `pathogen_sprta.nex` will contain SPRTA branch supports for all (internal and external) branches.
 
 Ultrafast bootstrap parameters
 ------------------------------
