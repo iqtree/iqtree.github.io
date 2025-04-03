@@ -6,6 +6,11 @@ date: _DATE_
 docid: 100
 ---
 
+
+There is now a much simpler way. Please read:
+
+[Topology-unlinked partition model](../AliSim#topology-unlinked-partition-model)
+
 # Introduction
 
 This recipe explains how to simulate an alignment which comes from multiple
