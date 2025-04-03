@@ -17,6 +17,8 @@ sections:
   url: goldman-cox-test
 - name: Estimating gene, site, and quartet concordance vectors 
   url: concordance-vector
+- name: Simulating concatenated alignments with multiple trees
+  url: Simulating-concatenated-alignments-with-multiple-trees
 ---
 
 # Recipes
@@ -28,3 +30,4 @@ If you'd like to request a recipe, please head over to the issues page and use t
 * [How to do phylogenetic placement](phylogenetic-placement)
 * [How to perform a Goldman-Cox test](goldman-cox-test)
 * [Estimating gene, site, and quartet concordance vectors](concordance-vector)
+* [Simulating concatenated alignments with multiple trees](Simulating-concatenated-alignments-with-multiple-trees)

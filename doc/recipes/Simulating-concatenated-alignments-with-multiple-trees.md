@@ -1,4 +1,12 @@
-# Intro
+---
+layout: workshop
+title: "Simulating concatenated alignments with multiple trees"
+author: _AUTHOR_
+date: _DATE_
+docid: 100
+---
+
+# Introduction
 
 This recipe explains how to simulate an alignment which comes from multiple
 trees.
