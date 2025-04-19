@@ -125,7 +125,13 @@ How to cite IQ-TREE?
 > Example 2: We used IQ-TREE 2 (Minh et al., 2020) to infer the maximum-likelihood tree using the edge-linked 
 > partition model (Chernomor et al., 2016).
 
-General citation for IQ-TREE 2:
+General citation for IQ-TREE 3:
+
+* T.K.F. Wong, N. Ly-Trong, H. Ren, H. Baños, A. Roger, E. Susko, C. Bielow, N. De Maio, N. Goldman, M.W. Hahn, G. Huttley, R. Lanfear, B.Q. Minh (2025)
+  IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+  *ecoevorxiv*. <https://ecoevorxiv.org/repository/view/8916/>
+
+Citation for IQ-TREE 2:
 
 * B.Q. Minh, H.A. Schmidt, O. Chernomor, D. Schrempf, M.D. Woodhams, A. von Haeseler, R. Lanfear (2020) 
   IQ-TREE 2: New models and efficient methods for phylogenetic inference in the genomic era.

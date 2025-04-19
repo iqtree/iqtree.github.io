@@ -496,7 +496,7 @@ If you already know the best-fit model for the alignment, you can use specify it
     iqtree -s example.phy -m GTR+R10 -n 0 --rate 
     # for version 1.x change --rate to -wsr
 
-Finally, IQ-TREE 2 allows to estimate rates by maximum likelihood via `--mlrate` option:
+Finally, IQ-TREE 3 allows to estimate rates by maximum likelihood via `--mlrate` option:
 
     iqtree -s example.phy -n 0 --mlrate 
 
