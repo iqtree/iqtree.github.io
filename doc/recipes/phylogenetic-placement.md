@@ -107,7 +107,7 @@ Here's some code to build this example yourself from scratch. Note that this ass
 
 ```
 # simulate an alignment of 20 sequences (set the seed for reproducibility only)
-iqtree2 --alisim sequences -t RANDOM{yh/20} -seed 438579088 -af fasta -m JC
+iqtree3 --alisim sequences -t RANDOM{yh/20} -seed 438579088 -af fasta -m JC
 
 # check the names
 grep '>' sequences.fa

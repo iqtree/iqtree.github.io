@@ -39,7 +39,7 @@ IQ-TREE provides three matched-pairs tests of symmetry ([Naser-Khdour et al., 20
 test the two assumptions of _stationarity_ and _homogeneity_. 
 A simple analysis:
 
-	iqtree2 -s example.phy -p example.nex --symtest-only
+	iqtree3 -s example.phy -p example.nex --symtest-only
 
 will perform the three tests of symmetry on every partition of the alignment
 and print the result into a `.symtest.csv` file. `--symtest-only` option tells
@@ -83,14 +83,14 @@ stationary assumption.
 
 Now you may want to perform the phylogenetic analysis excluding all "bad" partitions by:
 
-	iqtree2 -s example.phy -p example.nex --symtest-remove-bad
+	iqtree3 -s example.phy -p example.nex --symtest-remove-bad
 
 that will remove all "bad" partitions where SymPval < 0.05 and continue the analysis with the
 remaining "good" partitions. You may then compare the trees from "all" partitions
 and from "good" only partitions to see if there is significant difference between them 
 with [tree topology tests](Advanced-Tutorial#tree-topology-tests).
 
-Other options can be seen when running `iqtree2 -h`:
+Other options can be seen when running `iqtree3 -h`:
 
 ```
 TEST OF SYMMETRY:

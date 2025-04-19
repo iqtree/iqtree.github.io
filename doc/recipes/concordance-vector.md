@@ -86,7 +86,7 @@ To estimate the gene trees, we'll use IQ-TREE2. Just set `-T` to the highest num
 [loci.zip](https://github.com/user-attachments/files/15907618/loci.zip)
 
 ```bash
-iqtree2 -S bird_400 --prefix loci -T 128
+iqtree3 -S bird_400 --prefix loci -T 128
 ```
 
 This analysis will produce output files with lots of information, these include (all in the zip file `loci.zip` linked above):
@@ -167,17 +167,17 @@ In the following command lines:
 
 ```bash
 # first calculate the site concordance vectors
-iqtree2 -te astral_species_annotated.tree -p loci.best_model.nex --scfl 100 --prefix scfl -T 128
+iqtree3 -te astral_species_annotated.tree -p loci.best_model.nex --scfl 100 --prefix scfl -T 128
 
 # next calculate the gene concordance vectors
-iqtree2 -te scfl.cf.tree --gcf loci.treefile --prefix gcf -T 128
+iqtree3 -te scfl.cf.tree --gcf loci.treefile --prefix gcf -T 128
 
 # finally we do a dummy analysis in IQ-TREE. The only point of this is to get the branch lengths in coalescent units 
 # from the ASTRAL analysis, in a format that is output by IQ-TREE in a convenient table with IQ-TREE branch ID's 
 # note the -blfix option, which keeps the original branch lengths - this makes the scfs meaningless, but is here 
 # simply to allow us to extract branch lengths in coalescent units frmo the ASTRAL tree in a convenient table
 # we set scfl to 1, which saves time given the scfs are already meaningless, never use the sCFs from this analysis!!!
-iqtree2 -te astral_species_annotated.tree -blfix -p loci.best_model.nex --scfl 1 --prefix coalescent_bl -T 128
+iqtree3 -te astral_species_annotated.tree -blfix -p loci.best_model.nex --scfl 1 --prefix coalescent_bl -T 128
 ```
 
 These three command lines will produce a lot of output files, but the key files are:

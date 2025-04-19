@@ -54,8 +54,8 @@ tree of 20 taxa
 * `--length [NUMBER]` to specify the length of each alignment
 
 ``` 
-iqtree2 --alisim part1 -t RANDOM{yh/20} -m GTR+I+R8 --length 9000 
-iqtree2 --alisim part2 -t RANDOM{yh/20} -m GTR+I+R8 --length 1000 
+iqtree3 --alisim part1 -t RANDOM{yh/20} -m GTR+I+R8 --length 9000 
+iqtree3 --alisim part2 -t RANDOM{yh/20} -m GTR+I+R8 --length 1000 
 ```
 
 Now you'll see that you have `part1.phy` and `part2.phy`. Next we concatenate
@@ -101,7 +101,7 @@ to_concat=( )
 for (( i=0; i<$N; i++ )); do len=${lengths[$i]}
 
   # print to show what we're doing
-  echo "index: $i, length: $len" iqtree2 --alisim $i -t RANDOM{yh/20} -m
+  echo "index: $i, length: $len" iqtree3 --alisim $i -t RANDOM{yh/20} -m
   GTR+I+R8 --length $len
 
   # add the filename to the list of things to concatenate
