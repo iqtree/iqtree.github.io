@@ -1,8 +1,8 @@
 ---
 layout: workshop
 title: "Estimating gene, site, and quartet concordance vectors"
-author: _AUTHOR_
-date: _DATE_
+author: Rob Lanfear
+date:    2024-08-02
 docid: 100
 ---
 

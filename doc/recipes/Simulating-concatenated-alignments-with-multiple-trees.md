@@ -1,8 +1,8 @@
 ---
 layout: workshop
 title: "Simulating concatenated alignments with multiple trees"
-author: _AUTHOR_
-date: _DATE_
+author: Minh Bui
+date:    2025-04-03
 docid: 100
 ---
 

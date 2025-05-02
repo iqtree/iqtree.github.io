@@ -1,8 +1,8 @@
 ---
 layout: workshop
 title: "Phylogenetic placement"
-author: _AUTHOR_
-date: _DATE_
+author: Rob Lanfear
+date:    2022-06-01
 docid: 100
 ---
 

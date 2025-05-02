@@ -1,8 +1,8 @@
 ---
 layout: workshop
 title: "Perform a Goldman-Cox test"
-author: _AUTHOR_
-date: _DATE_
+author: Minh Bui, Rob Lanfear
+date:    2024-07-06
 docid: 100
 ---
 
