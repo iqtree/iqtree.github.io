@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Complex Models"
-author: _AUTHOR_
-date: _DATE_
+author: 928003585, Hector Banos, Dominik Schrempf, Jana Trifinopoulos, Minh Bui, Rob Lanfear, Thomas Wong, Nhan Ly-Trong
+date:    2025-03-12
 docid: 11
 icon: book
 doctype: manual

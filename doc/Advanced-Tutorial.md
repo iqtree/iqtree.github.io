@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Advanced Tutorial"
-author: _AUTHOR_
-date: _DATE_
+author: Jana Trifinopoulos, Minh Bui
+date:    2021-05-19
 docid: 4
 icon: info-circle
 doctype: tutorial

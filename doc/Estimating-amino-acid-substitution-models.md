@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Estimating amino acid substitution models"
-author: _AUTHOR_
-date: _DATE_
+author: Hector Banos, Cuong Cao Dang, Minh Bui, Thomas Wong
+date:    2024-06-28
 docid: 12
 icon: info-circle
 doctype: manual

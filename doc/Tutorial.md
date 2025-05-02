@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Beginner's Tutorial"
-author: _AUTHOR_
-date: _DATE_
+author: Diep Thi Hoang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui
+date:    2023-09-08
 docid: 3
 icon: info-circle
 doctype: tutorial

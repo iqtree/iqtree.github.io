@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Introduction"
-author: _AUTHOR_
-date: _DATE_
+author: Jana Trifinopoulos, Minh Bui, Lam-Tung Nguyen
+date:    2024-06-27
 docid: 0
 icon: info-circle
 doctype: tutorial

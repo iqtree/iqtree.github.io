@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Concordance Factor"
-author: _AUTHOR_
-date: _DATE_
+author: Minh Bui, Rob Lanfear, Nhan Ly-Trong
+date:    2024-05-27
 docid: 6
 icon: info-circle
 doctype: tutorial

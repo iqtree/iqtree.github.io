@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Getting Started"
-author: _AUTHOR_
-date: _DATE_
+author: Dominik Schrempf, Meaningseeking, Minh Bui
+date:    2020-07-22
 docid: 1
 icon: info-circle
 doctype: tutorial

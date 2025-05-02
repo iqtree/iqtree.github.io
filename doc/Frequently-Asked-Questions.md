@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Frequently Asked Questions"
-author: _AUTHOR_
-date: _DATE_
+author: Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Rob Lanfear
+date:    2024-06-29
 docid: 9
 icon: question-circle
 doctype: manual

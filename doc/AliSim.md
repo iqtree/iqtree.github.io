@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Simulating sequence alignments"
-author: _AUTHOR_
-date: _DATE_
+author: Heiko Schmidt, Minh Bui, Nhan Ly-Trong
+date:    2025-02-21
 docid: 9
 icon: info-circle
 doctype: tutorial

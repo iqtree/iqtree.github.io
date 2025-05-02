@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Substitution Models"
-author: _AUTHOR_
-date: _DATE_
+author: Hector Banos, Cuong Cao Dang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Nhan Ly-Trong
+date:    2024-05-14
 docid: 10
 icon: book
 doctype: manual

@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Compilation Guide"
-author: _AUTHOR_
-date: _DATE_
+author: Dominik Schrempf, Jana Trifinopoulos, Meaningseeking, Minh Bui, Thomas Wong
+date:    2024-05-25
 docid: 20
 icon: book
 doctype: manual

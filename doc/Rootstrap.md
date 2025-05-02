@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Rooting phylogenies"
-author: _AUTHOR_
-date: _DATE_
+author: Minh Bui, Suha Naser
+date:    2024-06-07
 docid: 8
 icon: info-circle
 doctype: tutorial

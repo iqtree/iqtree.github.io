@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Command Reference"
-author: _AUTHOR_
-date: _DATE_
+author: Hector Banos, Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Thomas Wong, Nhan Ly-Trong
+date:    2025-03-28
 docid: 19
 icon: book
 doctype: manual

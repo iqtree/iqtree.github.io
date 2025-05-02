@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Assessing Phylogenetic Assumptions"
-author: _AUTHOR_
-date: _DATE_
+author: Minh Bui
+date:    2021-03-15
 docid: 5
 icon: info-circle
 doctype: tutorial
