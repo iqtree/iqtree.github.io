@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Phylogenetic Dating"
-author: Minh Bui, Piyumalanthony, Rob Lanfear
-date:    2025-02-27
+author: _AUTHOR_
+date: _DATE_
 docid: 7
 icon: info-circle
 doctype: tutorial

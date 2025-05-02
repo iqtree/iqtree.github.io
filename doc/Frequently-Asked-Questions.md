@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Frequently Asked Questions"
-author: Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Rob Lanfear
-date:    2024-06-29
+author: _AUTHOR_
+date: _DATE_
 docid: 9
 icon: question-circle
 doctype: manual
@@ -316,7 +316,7 @@ Can I use IQ-TREE to concatenate alignments?
 Yes! If you put all of your alignments you want to concatenate into a single folder, you can do this:
 
 ```
-iqtree2 -p FOLDER_NAME --out-aln OUTFILE_NAME
+iqtree3 -p FOLDER_NAME --out-aln OUTFILE_NAME
 ```
 
 This will produce:
@@ -327,7 +327,7 @@ This will produce:
 Optionally, you can add `--out-format FASTA|NEXUS` option to specify concatenated alignment format, e.g.
 
 ```
-iqtree2 -p FOLDER_NAME --out-aln OUTFILE_NAME --out-format NEXUS
+iqtree3 -p FOLDER_NAME --out-aln OUTFILE_NAME --out-format NEXUS
 ```
 
 would output the alignment in nexus format.

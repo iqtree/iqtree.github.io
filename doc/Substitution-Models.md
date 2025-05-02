@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Substitution Models"
-author: 95438353+HectorBanos, Cuongbb, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Trongnhan Uit
-date:    2024-05-14
+author: _AUTHOR_
+date: _DATE_
 docid: 10
 icon: book
 doctype: manual

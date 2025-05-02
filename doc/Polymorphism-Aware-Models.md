@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Polymorphism-Aware Models"
-author: Dominik Schrempf, Minh Bui
-date:    2018-01-02
+author: _AUTHOR_
+date: _DATE_
 docid: 13
 icon: book
 doctype: manual

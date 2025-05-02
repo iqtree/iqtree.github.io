@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Developer Guide"
-author: Minh Bui
-date:    2017-04-12
+author: _AUTHOR_
+date: _DATE_
 docid: 30
 icon: codepen
 doctype: manual

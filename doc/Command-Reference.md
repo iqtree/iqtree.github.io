@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Command Reference"
-author: 95438353+HectorBanos, Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Thomaskf, Trongnhan Uit
-date:    2025-03-28
+author: _AUTHOR_
+date: _DATE_
 docid: 19
 icon: book
 doctype: manual
@@ -457,7 +457,7 @@ are very similar to each other).
 * Infer a maximum-likelihood tree for an alignment, automatically switching to CMAPLE algorithm 
   if sequence divergence is low:
 
-        iqtree2 -s data.phy --pathogen --prefix pathogen
+        iqtree3 -s data.phy --pathogen --prefix pathogen
         
 It will print two output files:
 
@@ -472,13 +472,13 @@ and remove `--pathogen` option to invoke the default IQ-TREE machinery.
 * Infer a tree like above and additionally assign branch supports using SH-aLRT test 
   with 1000 replicates using 4 CPU cores:
 
-        iqtree2 -s data.phy --pathogen --alrt 1000 -T 4 --prefix pathogen_sh_alrt
+        iqtree3 -s data.phy --pathogen --alrt 1000 -T 4 --prefix pathogen_sh_alrt
 
 The output file `pathogen_sh_alrt.treefile` will contain SH-aLRT branch supports for all internal branches.
 
 * Infer a tree like above and additionally assign SPRTA branch supports:
 
-        iqtree2 -s data.phy --pathogen-force --sprta --prefix pathogen_sprta
+        iqtree3 -s data.phy --pathogen-force --sprta --prefix pathogen_sprta
 
 The output file `pathogen_sprta.nex` will contain SPRTA branch supports for all (internal and external) branches.
 

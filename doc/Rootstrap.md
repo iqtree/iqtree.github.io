@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Rooting phylogenies"
-author: Minh Bui, Suha Naser
-date:    2024-06-07
+author: _AUTHOR_
+date: _DATE_
 docid: 8
 icon: info-circle
 doctype: tutorial
@@ -53,7 +53,7 @@ This is a subset of the mammal dataset ([Wu et al., 2018]).
 
 To infer an unrooted tree, run:
 
-	iqtree2 -s bovidae_outgroup.phy -p bovidae.nex -B 1000 -T AUTO --prefix rev_dna_outg
+	iqtree3 -s bovidae_outgroup.phy -p bovidae.nex -B 1000 -T AUTO --prefix rev_dna_outg
 	
 that will invoke the ultrafast bootstrap with 1000 replicates (`-B 1000`), detect the
 optimal number of threads (`-T AUTO`) and write all output files with the prefix `rev_dna_outg`.
@@ -62,7 +62,7 @@ The input alignment contains protein-coding genes. We can ask IQ-TREE to transla
 the alignment into protein sequences using the standard genetic code (`-st NT2AA`) and perform
 an amino-acid analysis on the translated alignment with:
 
-	iqtree2 -s bovidae_outgroup.phy -p bovidae.nex -B 1000 -T AUTO -st NT2AA --prefix rev_aa_outg
+	iqtree3 -s bovidae_outgroup.phy -p bovidae.nex -B 1000 -T AUTO -st NT2AA --prefix rev_aa_outg
 	
 where setting the prefix to `rev_aa_outg` avoids file overwriting with the previous run.
 The resulting tree may now look like (extracted from `rev_aa_outg.iqtree`):
@@ -103,14 +103,14 @@ We can re-use the same partition file.
 To speed up the analysis, we will perform two steps. The first step is the same
 as the run above to infer an unrooted tree using reversible models:
 
-	iqtree2 -s bovidae.phy -p bovidae.nex -B 1000 -T AUTO --prefix rev_dna
+	iqtree3 -s bovidae.phy -p bovidae.nex -B 1000 -T AUTO --prefix rev_dna
 
 This run will also write the best partitioning scheme to `rev_dna.best_scheme.nex` file.
 In the second step, we will re-use this best scheme but replace the substitution model 
 with the most general non-reversible DNA model, UNREST or 12.12
 (see [this doc](Substitution-Models#lie-markov-models)) to obtain a rooted tree:
 
-    iqtree2 -s bovidae.phy -p rev_dna.best_scheme.nex --model-joint UNREST -B 1000 -T AUTO --prefix nonrev_dna
+    iqtree3 -s bovidae.phy -p rev_dna.best_scheme.nex --model-joint UNREST -B 1000 -T AUTO --prefix nonrev_dna
 
 The option `--model-joint UNREST` tells IQ-TREE use a linked substitution model UNREST across
 all partitions. This is to avoid potential over-parameterization as this is very 
@@ -162,10 +162,10 @@ We will now try the amino-acid model to see if that helps. We again use `-st NT2
 option to conveniently perform this analysis:
 
 	# step 1: infer unrooted tree with reversible models
-	iqtree2 -s bovidae.phy -p bovidae.nex -B 1000 -T AUTO -st NT2AA --prefix rev_aa
+	iqtree3 -s bovidae.phy -p bovidae.nex -B 1000 -T AUTO -st NT2AA --prefix rev_aa
 	
 	# step 2: infer rooted tree with linked non-reversible models
-	iqtree2 -s bovidae.phy -p rev_aa.best_scheme.nex --model-joint NONREV -B 1000 -T AUTO -st NT2AA --prefix nonrev_aa
+	iqtree3 -s bovidae.phy -p rev_aa.best_scheme.nex --model-joint NONREV -B 1000 -T AUTO -st NT2AA --prefix nonrev_aa
 	
 The option `--model-joint NONREV` tells IQ-TREE to use the most general amino-acid model
 NONREV and to link the NONREV model parameters across all partitions: NONREV has
@@ -204,7 +204,7 @@ statistical test. Alternatively, we can apply the [tree topology tests](Advanced
 on every branch of the ML tree. IQ-TREE v2.1.3 provides a convenient option `--root-test`
 that will re-root the tree on every branch and perform the test for you. So you can run:
 
-	iqtree2 -s bovidae.phy -p rev_aa.best_scheme.nex --model-joint NONREV -st NT2AA --root-test -zb 1000 -au -te nonrev_aa.treefile --prefix nonrev_aa_test
+	iqtree3 -s bovidae.phy -p rev_aa.best_scheme.nex --model-joint NONREV -st NT2AA --root-test -zb 1000 -au -te nonrev_aa.treefile --prefix nonrev_aa_test
 
 `-zb 1000 -au` is to perform several tree topology tests including the approximately-unbiased (AU) test for the tree found above (`-te nonrev_aa.treefile`). This run will
 write a file `nonrev_aa_test.roottest.csv` which might look like:

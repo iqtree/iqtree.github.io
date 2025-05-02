@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Compilation Guide"
-author: Dominik Schrempf, Jana Trifinopoulos, Meaningseeking, Minh Bui, Thomaskf
-date:    2024-05-25
+author: _AUTHOR_
+date: _DATE_
 docid: 20
 icon: book
 doctype: manual
@@ -58,7 +58,7 @@ Downloading source code
 
 Choose the source code (`zip` or `tar.gz`) of the IQ-TREE release you want to use from:
 
-<https://github.com/iqtree/iqtree2/releases>
+<https://github.com/iqtree/iqtree3/releases>
 
 For IQ-TREE version 1 please use:
 
@@ -66,7 +66,7 @@ For IQ-TREE version 1 please use:
 
 Alternatively, if you have `git` installed, you can also clone the source code from GitHub with:
 
-    git clone --recursive https://github.com/iqtree/iqtree2.git
+    git clone --recursive https://github.com/iqtree/iqtree3.git
 
 For IQ-TREE version 1 please clone:
 
@@ -106,7 +106,7 @@ Compiling under Linux
     
     `j` option tells it to use all CPU cores to speed up the compilation. Without this option, `make` uses only one core, which might be slow.
     
-This creates an executable `iqtree2` (`iqtree` for version 1). It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree2`.
+This creates an executable `iqtree3` (`iqtree` for version 1). It can be copied to your system search path so that IQ-TREE can be called from the Terminal simply with the command line `iqtree3`.
 
 To compile IQ-TREE under Linux with ARM processor, use either GCC 10 (but not above), or Clang 14 or above.
 

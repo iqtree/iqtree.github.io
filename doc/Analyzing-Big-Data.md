@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Analyzing Big Data"
-author: Minh Bui
-date:    2018-11-19
+author: _AUTHOR_
+date: _DATE_
 docid: 31
 icon: info-circle
 doctype: manual

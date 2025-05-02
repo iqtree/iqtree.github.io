@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Web Server Tutorial"
-author: Jana Trifinopoulos, Minh Bui
-date:    2018-11-30
+author: _AUTHOR_
+date: _DATE_
 docid: 2
 icon: info-circle
 doctype: tutorial

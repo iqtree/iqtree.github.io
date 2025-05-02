@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Recipes (How-To)"
-author: Minh Bui, Rob Lanfear
-date:    2025-04-03
+author: _AUTHOR_
+date: _DATE_
 docid: 9.5
 icon: question-circle
 doctype: manual

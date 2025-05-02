@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Estimating amino acid substitution models"
-author: 95438353+HectorBanos, Cuongbb, Minh Bui, Thomaskf
-date:    2024-06-28
+author: _AUTHOR_
+date: _DATE_
 docid: 12
 icon: info-circle
 doctype: manual
@@ -41,7 +41,7 @@ We first demonstrate the estimation of a reversible model for a clade-specific d
 The estimation (training) then can be accomplished with three commands in IQ-TREE. The first command is:
 
 	# step 1: infer an single edge-linked tree with reversible models as initial models
-	iqtree2 --seed 1 -T AUTO -s alignment.nex -p train.nex -m MFP -mset LG,WAG,JTT -cmax 4 --prefix train_plant
+	iqtree3 --seed 1 -T AUTO -s alignment.nex -p train.nex -m MFP -mset LG,WAG,JTT -cmax 4 --prefix train_plant
 
 - `-seed 1` sets the random seed.
 - `-T AUTO` sets the number of computing threads to automatically detection, `-T 10` will let IQ-TREE utilize up to 10 CPU threads.
@@ -55,7 +55,7 @@ Note: If you don't have the partition file `train.nex`, simply ignore the `-p` o
 This will run ModelFinder to find the best model for each loci. The best models and the best trees will be saved to `train_plant.best_model.nex` and to `train_plant.treefile`, respectively. These two files will be used as the input for the second command that estimate a join reversible matrix:
 
 	# step 2: estimate a join non-reversible matrix across all loci
-	iqtree2 -seed 1 -T AUTO -s alignment.nex -p train_plant.best_model.nex -te train_plant.treefile --init-model LG --model-joint GTR20+FO --prefix plant_GTR20_FO
+	iqtree3 -seed 1 -T AUTO -s alignment.nex -p train_plant.best_model.nex -te train_plant.treefile --init-model LG --model-joint GTR20+FO --prefix plant_GTR20_FO
 - `--init-model LG` option specifies the initial matrix
 - `-p train_plant.best_model.nex` and `-te train_plant.treefile` options specify the best models and trees found in step 1.
 
@@ -100,10 +100,10 @@ Estimating a model from a folder of alignments
 We will now estimate a reversible model from a folder of alignments. Please first download the file [plant_10alignments.zip](data/plant_10alignments.zip). There is a sub-folder named `train_plant` in the downloaded folder. We use `-S` option instead of `-s` and `-p` options to allow each alignment having a separate tree. This -S option is typically used with a folder of alignments. The three commands are:
 
 	# step 1: infer a  separate tree for each alignment with reversible models as initial models
-	iqtree2 -seed 1 -T AUTO -S train_plant -mset LG,WAG,JTT -cmax 4 -pre train_plant
+	iqtree3 -seed 1 -T AUTO -S train_plant -mset LG,WAG,JTT -cmax 4 -pre train_plant
 	
 	# step 2: estimate a join reversible matrix across all alignments
-	iqtree2 -seed 1 -T AUTO -S train_plant.best_model.nex -te train_plant.treefile --model-joint GTR20+FO --init-model LG -pre train_plant.GTR20
+	iqtree3 -seed 1 -T AUTO -S train_plant.best_model.nex -te train_plant.treefile --model-joint GTR20+FO --init-model LG -pre train_plant.GTR20
 
 	# step 3: extract the resulting reversible matrix
 	grep -A 21 "can be used as input for IQ-TREE" train_plant.GTR20.iqtree | tail -n20 > Q.plant
@@ -122,10 +122,10 @@ If you use nQMaker or any new non-reversible models (NQ.pfam, NQ.plant, NQ.mamma
 To estimate a non-reversible model for a concatenated alignment, you can use `--model-joint NONREV+FO` option instead of `--model-joint GTR20+FO`:
 
 	# step 1: infer an single edge-linked tree with reversible models as initial models
-	iqtree2 --seed 1 -T AUTO -s alignment.nex -p train.nex -m MFP -mset LG,WAG,JTT -cmax 4 --prefix train_plant
+	iqtree3 --seed 1 -T AUTO -s alignment.nex -p train.nex -m MFP -mset LG,WAG,JTT -cmax 4 --prefix train_plant
 	
 	# step 2: estimate a join non-reversible matrix across all loci
-	iqtree2 -seed 1 -T AUTO -s alignment.nex -p train_plant.best_model.nex -te train_plant.treefile --model-joint NONREV+FO --prefix plant_NONREV_FO
+	iqtree3 -seed 1 -T AUTO -s alignment.nex -p train_plant.best_model.nex -te train_plant.treefile --model-joint NONREV+FO --prefix plant_NONREV_FO
 	
 	# step 3: extract the resulting non-reversible matrix
 	grep -A 22 "can be used as input for IQ-TREE" plant_NONREV_FO.iqtree | tail -n21 > NQ.plant
@@ -160,10 +160,10 @@ The resulting `NQ.plant` matrix may now look like:
 To estimate a non-reversible model from a folder of alignments:
 
 	# step 1: infer a separate tree for each alignment with reversible models as initial models
-	iqtree2 -seed 1 -T AUTO -S train_plant -mset LG,WAG,JTT -cmax 4 -pre train_plant
+	iqtree3 -seed 1 -T AUTO -S train_plant -mset LG,WAG,JTT -cmax 4 -pre train_plant
 	
 	# step 2: estimate a join non-reversible matrix across all alignments
-	iqtree2 -seed 1 -T AUTO -S train_plant.best_model.nex -te train_plant.treefile --model-joint NONREV+FO --init-model LG -pre train_plant.NONREV
+	iqtree3 -seed 1 -T AUTO -S train_plant.best_model.nex -te train_plant.treefile --model-joint NONREV+FO --init-model LG -pre train_plant.NONREV
 
 	# step 3: extract the resulting non-reversible matrix
 	grep -A 22 "can be used as input for IQ-TREE" train_plant.NONREV.iqtree | tail -n21 > NQ.plant
@@ -176,7 +176,7 @@ Starting with version 2.3.5, IQ-TREE allows users to estimate linked exchangeabi
 
 To start with, we show an example:
 
-    iqtree2 -s <alignment> -m GTR20+C60+G4 --link-exchange -te  <guide_tree> -me 0.99
+    iqtree3 -s <alignment> -m GTR20+C60+G4 --link-exchange -te  <guide_tree> -me 0.99
 
 Here, IQ-TREE applies a (freely-estimated) 20x20 rate matrix `GTR20` with the
 [profile mixture model](Substitution-Models#protein-mixture-models) `C60` (other model such as C10 can also be used) and Gamma rate heterogeneity across sites. The option `--link-exchange` tells
@@ -192,7 +192,7 @@ The other options are not mandatory but meant to speed up this process:
 
 This command will produce an output file with suffix `.GTRPMIX.nex`. This file contains the optimized exchangeabilities in NEXUS format, that can be applied in later analyses (without re-estimating them) to reconstruct a tree, for example:
 
-    iqtree2 -s <alignment> -mdef <.GTRPMIX.nex file> -m GTRPMIX+C60+G4
+    iqtree3 -s <alignment> -mdef <.GTRPMIX.nex file> -m GTRPMIX+C60+G4
 
 
 The optimizer in IQ-TREE by default initializes exchangeability rates to be all equal, which are the least biased but may make the subsequent optimization quite slow. If users have a good guess of the rate values, the option `--init-exchange` can be used. For example, `--init-exchange LG` will intialize the exchangeability to that

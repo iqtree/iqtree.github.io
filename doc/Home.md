@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Introduction"
-author: Jana Trifinopoulos, Minh Bui, Nltung
-date:    2024-06-27
+author: _AUTHOR_
+date: _DATE_
 docid: 0
 icon: info-circle
 doctype: tutorial
@@ -89,8 +89,8 @@ Please refer to the [user documentation](http://www.iqtree.org/doc/) and
 [frequently asked questions](http://www.iqtree.org/doc/Frequently-Asked-Questions). 
 
 If you find a bug (e.g. when IQ-TREE prints a crash message) or want to request a new feature,
-please post an issue on GitHub: <https://github.com/iqtree/iqtree2/issues>. For other
-questions and feedback, please ask in GitHub discussions: <https://github.com/iqtree/iqtree2/discussions>
+please post an issue on GitHub: <https://github.com/iqtree/iqtree3/issues>. For other
+questions and feedback, please ask in GitHub discussions: <https://github.com/iqtree/iqtree3/discussions>
 
 
 Documentation
@@ -125,90 +125,138 @@ How to cite IQ-TREE?
 > Example 2: We used IQ-TREE 2 (Minh et al., 2020) to infer the maximum-likelihood tree using the edge-linked 
 > partition model (Chernomor et al., 2016).
 
-General citation for IQ-TREE 2:
+General citation for IQ-TREE 3:
 
-* B.Q. Minh, H.A. Schmidt, O. Chernomor, D. Schrempf, M.D. Woodhams, A. von Haeseler, R. Lanfear (2020) 
-  IQ-TREE 2: New models and efficient methods for phylogenetic inference in the genomic era.
-  *Mol. Biol. Evol.*, 37:1530-1534. <https://doi.org/10.1093/molbev/msaa015>
+* Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger, Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn, Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
+  IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+  *Submitted*. <https://ecoevorxiv.org/repository/view/8916/>
 
-When using tree mixture models (MAST) please cite:
+When using MixtureFinder please cite:
 
-* T.K.F. Wong, C. Cherryh, A.G. Rodrigo, M.W. Hahn, B.Q. Minh, R. Lanfear (2024)
+* Huaiyan Ren, Thomas KF Wong, Bui Quang Minh, Robert Lanfear (2025) 
+  MixtureFinder: Estimating DNA Mixture Models for Phylogenetic Analyses.
+  *Mol. Biol. Evol.*, 42:msae264. <https://doi.org/10.1093/molbev/msae264>
+
+When using GTRpmix please cite:  
+
+* Hector Banos, Thomas KF Wong, Justin Daneau, Edward Susko, Bui Quang Minh, Robert Lanfear, Matthew W Brown, Laura Eme, Andrew J Roger (2025)
+  GTRpmix: A linked general-time reversible model for profile mixture models.
+  *Mol. Biol. Evol.*, 92:msae174. <https://doi.org/10.1093/molbev/msae174>
+
+When using CMAPLE please cite:
+
+* Nhan Ly-Trong, Chris Bielow, Nicola De Maio, Bui Quang Minh (2024)
+  CMAPLE: Efficient phylogenetic inference in the pandemic era.
+  *Mol. Biol. Evol.*, 41:msae134. <https://doi.org/10.1093/molbev/msae134>
+
+When using the MAST model please cite:
+
+* Thomas KF Wong, Caitlin Cherryh, Allen G Rodrigo, Matthew W Hahn, Bui Quang Minh, Robert Lanfear (2024)
   MAST: Phylogenetic Inference with Mixtures Across Sites and Trees.
-  _Syst. Biol._, in press. <https://doi.org/10.1093/sysbio/syae008>
+  *Syst. Biol.*, 73:375–391. <https://doi.org/10.1093/sysbio/syae008>
 
-When computing concordance factors please cite:
+When using site/gene concordance factor please cite:
 
-* Y.K. Mo, R. Lanfear, M.W. Hahn, B.Q. Minh (2023)
+* Yu K Mo, Robert Lanfear, Matthew W Hahn, Bui Quang Minh (2023)
   Updated site concordance factors minimize effects of homoplasy and taxon sampling.
-  _Bioinformatics_, 39:btac741. <https://doi.org/10.1093/bioinformatics/btac741>
+  *Bioinformatics*, 39:btac741. <https://doi.org/10.1093/bioinformatics/btac741>
 
-When using AliSim to simulate alignments please cite:
+When using AliSim please cite:
 
-* N. Ly-Trong, G.M.J. Barca, B.Q. Minh (2023)
+* Nhan Ly-Trong, Giuseppe MJ Barca, Bui Quang Minh (2023)
   AliSim-HPC: parallel sequence simulator for phylogenetics.
   *Bioinformatics*, 39:btad540. <https://doi.org/10.1093/bioinformatics/btad540>
 
-When estimating amino-acid Q matrix please cite:
+When using QMaker for estimating protein Q matrix please cite:
 
-* B.Q. Minh, C. Cao Dang, L.S. Vinh, R. Lanfear (2021)
-  QMaker: Fast and accurate method to estimate empirical models of protein evolution.
-  _Syst. Biol._, 70:1046–1060. <https://doi.org/10.1093/sysbio/syab010>
+* Bui Quang Minh, Cuong Cao Dang, Le Sy Vinh, Robert Lanfear (2021)
+  QMaker: Fast and Accurate Method to Estimate Empirical Models of Protein Evolution.
+  *Syst. Biol.*, 70:1046–1060. <https://doi.org/10.1093/sysbio/syab010>
 
-When using the heterotachy GHOST model "+H" please cite:
+When using nQMaker for estimating non-reversible Q matrix please cite:
 
-* S.M. Crotty, B.Q. Minh, N.G. Bean, B.R. Holland, J. Tuke, L.S. Jermiin, A. von Haeseler (2020)
+* Cuong Cao Dang, Bui Quang Minh, Hanon McShea, Joanna Masel, Jennifer E James, Le Sy Vinh,   Robert Lanfear (2022)
+  nQMaker: Estimating Time Nonreversible Amino Acid Substitution Models.
+  *Syst. Biol.*, 71:1110–1123. <https://doi.org/10.1093/sysbio/syac007>
+
+When using Rootstrap please cite:
+
+* Suha Naser-Khdour, Bui Quang Minh, Robert Lanfear (2022)
+  Assessing Confidence in Root Placement on Phylogenies: An Empirical Study Using Nonreversible Models for Mammals.
+  *Syst. Biol.*, 71:959–972. <https://doi.org/10.1093/sysbio/syab067>
+
+When using the GHOST \"+H\" model please cite:
+
+* Stephen M Crotty, Bui Quang Minh, Nigel G Bean, Barbara R Holland, Jonathan Tuke, Lars S Jermiin, Arndt Von Haeseler (2020)
   GHOST: Recovering Historical Signal from Heterotachously Evolved Sequence Alignments.
-  _Syst. Biol._, 69:249-264. <https://doi.org/10.1093/sysbio/syz051>
+  *Syst. Biol.*, 69:249-264. <https://doi.org/10.1093/sysbio/syz051>
 
-When using the tests of symmetry please cite:
+When using tests of symmetry please cite:
 
-* S. Naser-Khdour, B.Q. Minh, W. Zhang, E.A. Stone, R. Lanfear (2019) 
-  The Prevalence and Impact of Model Violations in Phylogenetic Analysis. 
+* Suha Naser-Khdour, Bui Quang Minh, Wenqi Zhang, Eric A Stone, Robert Lanfear (2019)
+  The Prevalence and Impact of Model Violations in Phylogenetic Analysis.
   *Genome Biol. Evol.*, 11:3341-3352. <https://doi.org/10.1093/gbe/evz193>
-
-When using polymorphism-aware models please cite:
-
-* D. Schrempf, B.Q. Minh, A. von Haeseler, C. Kosiol (2019) 
-  Polymorphism-aware species trees with advanced mutation models, bootstrap, and rate heterogeneity. 
-  *Mol. Biol. Evol.*, 36:1294–1301. <https://doi.org/10.1093/molbev/msz043>
-
-For the ultrafast bootstrap (UFBoot) please cite:
-
-* D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, and L.S. Vinh (2018) 
-  UFBoot2: Improving the ultrafast bootstrap approximation. 
-  *Mol. Biol. Evol.*, 35:518–522. <https://doi.org/10.1093/molbev/msx281>
-
-When using posterior mean site frequency model (PMSF) please cite:
-
-* H.C. Wang, B.Q. Minh, S. Susko, A.J. Roger (2018) 
-  Modeling site heterogeneity with posterior mean site frequency profiles 
-  accelerates accurate phylogenomic estimation. 
-  *Syst. Biol.*, 67:216–235. <https://doi.org/10.1093/sysbio/syx068>
 
 When using ModelFinder please cite:
 
-* S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, L.S. Jermiin (2017) 
+* Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler, and Lars S Jermiin (2017)
   ModelFinder: Fast model selection for accurate phylogenetic estimates. 
-  *Nat. Methods*, 14:587-589. <https://doi.org/10.1038/nmeth.4285>
+  *Nat. Methods*, 14:587–589. <https://doi.org/10.1038/nmeth.4285>    
+
+When using polymorphism-aware models please cite:
+    
+* Dominik Schrempf, Bui Quang Minh, Arndt von Haeseler, Carolin Kosiol (2019)
+  Polymorphism-Aware Species Trees with Advanced Mutation Models, Bootstrap, and Rate Heterogeneity.
+  *Mol. Biol. Evol.*, 36:1294–1301. <https://doi.org/10.1093/molbev/msz043>
+
+When using site-specific frequency model please cite:
+
+* Huai-Chun Wang, Edward Susko, Bui Quang Minh, and Andrew J. Roger (2018)
+  Modeling site heterogeneity with posterior mean site frequency profiles accelerates accurate phylogenomic estimation. 
+  *Syst. Biol.*, 67:216–235. <https://doi.org/10.1093/sysbio/syx068>
+
+
+When using ultrafast bootstrap (UFBoot) please cite:
+
+* Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh, and Le Sy Vinh (2018) 
+  UFBoot2: Improving the ultrafast bootstrap approximation. 
+  *Mol. Biol. Evol.*, 35:518–522. <https://doi.org/10.1093/molbev/msx281>
 
 When using partition models please cite:
 
-* O. Chernomor, A. von Haeseler, B.Q. Minh (2016) 
+* Olga Chernomor, Arndt von Haeseler, and Bui Quang Minh (2016)
   Terrace aware data structure for phylogenomic inference from supermatrices. 
   *Syst. Biol.*, 65:997-1008. <https://doi.org/10.1093/sysbio/syw037>
+
+When using terrace analysis please cite:
+
+* Biczok R, Bozsoky P, Eisenmann P, Ernst J, Ribizel T, Scholz F, Trefzer A, Weber F, Hamann M, Stamatakis A. (2018)
+  Two C++ libraries for counting trees on a phylogenetic terrace. 
+  *Bioinformatics*, 34:3399–3401. <https://doi.org/10.1093/bioinformatics/bty384>
+
+When using least square dating (LSD) please cite:
+
+* Thu-Hien To, Matthieu Jung, Samantha Lycett, Olivier Gascuel (2016)
+  Fast dating using least-squares criteria and algorithms. 
+  *Syst. Biol.*, 65:82-97. <https://doi.org/10.1093/sysbio/syv068>
 
 When using IQ-TREE web server please cite:
 
 * J. Trifinopoulos, L.-T. Nguyen, A. von Haeseler, B.Q. Minh (2016) 
   W-IQ-TREE: a fast online phylogenetic tool for maximum likelihood analysis.
   *Nucleic Acids Res.*, 44:W232-W235. <https://doi.org/10.1093/nar/gkw256>
+  
+When using IQ-TREE 2 please cite:
+
+* B.Q. Minh, H.A. Schmidt, O. Chernomor, D. Schrempf, M.D. Woodhams, A. von Haeseler, R. Lanfear (2020) 
+  IQ-TREE 2: New models and efficient methods for phylogenetic inference in the genomic era.
+  *Mol. Biol. Evol.*, 37:1530-1534. <https://doi.org/10.1093/molbev/msaa015>
 
 When using IQ-TREE version 1 please cite:
 
 * L. Nguyen, H.A. Schmidt, A. von Haeseler, B.Q. Minh (2015)
   IQ-TREE: A Fast and Effective Stochastic Algorithm for Estimating Maximum-Likelihood Phylogenies.
-  _Mol. Biol. and Evol._, 32:268-274. <https://doi.org/10.1093/molbev/msu300>
+  *Mol. Biol. Evol.*, 32:268-274. <https://doi.org/10.1093/molbev/msu300>
 
 
 Development team
@@ -268,5 +316,3 @@ IQ-TREE was funded by the [Austrian Science Fund](http://www.fwf.ac.at/) (grant 
 [Nguyen et al., 2015]: https://doi.org/10.1093/molbev/msu300
 [Schrempf et al., 2016]: https://doi.org/10.1016/j.jtbi.2016.07.042
 [Shimodaira, 2002]: https://doi.org/10.1080/10635150290069913
-
-
