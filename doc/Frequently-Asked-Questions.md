@@ -331,3 +331,4 @@ iqtree3 -p FOLDER_NAME --out-aln OUTFILE_NAME --out-format NEXUS
 ```
 
 would output the alignment in nexus format.
+

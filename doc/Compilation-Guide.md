@@ -338,3 +338,4 @@ Many developers in MacOS use Xcode to develop the code. To generate an XCode pro
     cmake -G Xcode <IQTREE_SOURCE_DIR>
 
 This will generate a a subfolder `build-xcode/iqtree.xcodeproj`, which you can open in Xcode now.
+
