@@ -1,7 +1,7 @@
 ---
 layout: workshop
 title: "Workshop"
-date:    2023-05-27
+date:    2025-05-02
 ---
 
 Throughout the year, members of IQ-TREE development team teach workshops on molecular evolution, phylogenetics, phylogenomics, and maximum likelihood using IQ-TREE.
@@ -11,10 +11,7 @@ Throughout the year, members of IQ-TREE development team teach workshops on mole
 
 | Date |  Course Name and Materials | Location | Instructor |
 |------|---------------|----------------------------|-------------|
-| Aug 4-9, 2024 | [28th Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology (VEME)](https://veme.climade.health/) | Brasilia, Brazil | Heiko Schmidt |
-| Jul 15-19, 2024 | [Croucher Summer Course on Virus Evolution and Epidemiology](https://projects.croucher.org.hk/summer-courses/virus-evolution-and-epidemiology) | Hongkong | Heiko Schmidt |
-| May 26 - Jun 5, 2023 | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), [IQ-TREE 2 tutorial](molevol2023) | Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
-| Aug 20-25, 2023 | [27th Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology (VEME)](https://veme.climade.health/27th-international-bioinformatics-workshop-on-virus-evolution-and-molecular-epidemiology-veme/) | Stellenbosch, South Africa | Heiko Schmidt |
+| May 22 - Jun 1, 2025 | [Workshop on Molecular Evolution](https://molevolworkshop.github.io) | Marine Biological Laboratory, Woods Hole, USA | Course Assistants |
 
 ### Past Workshops
 
@@ -22,6 +19,10 @@ IQ-TREE was taught as part of the following workshops:
 
 | Date |  Course Title | Location | Instructor |
 |------|---------------|----------------------------|-------------|
+| Aug 4-9, 2024 | [28th Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology (VEME)](https://veme.climade.health/) | Brasilia, Brazil | Heiko Schmidt |
+| Jul 15-19, 2024 | [Croucher Summer Course on Virus Evolution and Epidemiology](https://projects.croucher.org.hk/summer-courses/virus-evolution-and-epidemiology) | Hongkong | Heiko Schmidt |
+| May 26 - Jun 5, 2023 | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), [IQ-TREE 2 tutorial](molevol2023) | Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
+| Aug 20-25, 2023 | [27th Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology (VEME)](https://veme.climade.health/27th-international-bioinformatics-workshop-on-virus-evolution-and-molecular-epidemiology-veme/) | Stellenbosch, South Africa | Heiko Schmidt |
 | July 27-29, 2022 | [IQ-TREE workshop tutorial](sydney2022) | [13th Sydney Phylogenetics Workshop](https://meep.sydney.edu.au/workshops/), Online | Bui Quang Minh |
 | Aug 21-26, 2022 | Several sessions | [26th Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology (VEME)](https://rega.kuleuven.be/cev/veme-workshop/2022), Panama | Heiko Schmidt |
 | May 28 - Jun 7, 2022 | [IQ-TREE Workshop](molevol2022) | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), Marine Biological Laboratory, Woods Hole, USA | Bui Quang Minh |
