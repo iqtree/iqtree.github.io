@@ -316,3 +316,4 @@ IQ-TREE was funded by the [Austrian Science Fund](http://www.fwf.ac.at/) (grant 
 [Nguyen et al., 2015]: https://doi.org/10.1093/molbev/msu300
 [Schrempf et al., 2016]: https://doi.org/10.1016/j.jtbi.2016.07.042
 [Shimodaira, 2002]: https://doi.org/10.1080/10635150290069913
+

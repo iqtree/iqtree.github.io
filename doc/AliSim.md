@@ -349,7 +349,7 @@ For other model, uses can specify `u`, `cat`, or `bal` for Uniform, Caterpillar,
 
 `<NUM_TAXA>` can be a fixed number, or a list `{<NUM_1>/<NUM_2>/.../<NUM_N>}`, or a Uniform distribution `U{<LOWER_BOUND>/<UPPER_BOUND>}` where the number of taxa is randomly generated from the given list or distribution.
 
-In the above examples, AliSim generates `alignment_yh.phy` or `alignment_bd.phy` under the Jukes-Cantor DNA model. If you want to change the model, use -m option as [described above](#simulating-alignments-with-custom-models).
+In the above examples, AliSim generates `alignment_yh.phy` or `alignment_bd.phy` under the Jukes-Cantor DNA model. If you want to change the model, use -m option as [described above](#specifying-model-parameters).
 
 
 For the distribution of branch lengths, users could adjust the minimum, mean and maximum of the exponential distribution via the option `-rlen <MIN_LEN> <MEAN_LEN> <MAX_LEN>`.
@@ -420,7 +420,7 @@ the [partition model tutorial](Complex-Models#partition-models). An example part
 This means that we define an alignment with 5 genes (partitions). The gene positions are described in `charset` command 
 and the models for each gene are specified in `charpartition` command. Moreover, we use the [HKY model](https://dx.doi.org/10.1007%2FBF02101694) for gene_1 with
 transition-transversion ratio of 2 and nucleotide frequencies of 0.2, 0.3, 0.1, 0.4 for A, C, G and T, respectively.
-See also the [custom model section](#simulating-alignments-with-custom-models) for how to specify model parameters.
+See also the [custom model section](#specifying-model-parameters) for how to specify model parameters.
 
 Assuming we name this partition file `multi_genes.nex`. Then, you can simulate an alignment consisting of these five genes by
 
@@ -590,7 +590,7 @@ the sequence at internal node `Node5` to be `G`, `A` and `C`.
 * The 26th and 6th positions of
 the sequence at the taxon `T2` to be `A` and `G`, respectively.
 
-> NOTE: Site index starts from 0 to make AliSim compatible with VGsim's output). If you want to start from 1, use the option `--index-from-one`.
+> NOTE: Site index starts from 0 to make AliSim compatible with VGsim output). If you want to start from 1, use the option `--index-from-one`.
 
 
 The following command
@@ -629,8 +629,8 @@ This example uses 10 MPI processes, each having 4 threads (i.e. a total of 40 th
 
 **NOTES**: Our MPI implementation supports Indels as the original version of AliSim, while the OpenMP algorithm does not. Therefore, one can employ only MPI to simulate many alignments with Indels.  
 
-Command reference
------------------
+All AliSim options
+------------------
 
 All the options available in AliSim are shown below:
 
