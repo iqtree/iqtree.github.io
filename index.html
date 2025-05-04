@@ -11,9 +11,9 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
 ---
 <!-- ========================== HEADER ========================== -->
 <div id="headerwrap">
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col">
             <h1><img src="assets/img/iqtree-logo.svg" width="200"> IQ-TREE</h1>
             <h3>Efficient software for phylogenomic inference</h3>
             <h3>Latest release {{page.version_new}} ({{page.releasedate_new}})</h3>
@@ -107,15 +107,15 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
         </div>
         <div class="col-sm-6">
             <i class="fa fa-tasks"></i>
-            <h4>AliSim - Alignment Simulator <span class="label label-danger"><em>New!</em></span></h4>
+            <h4>AliSim - Alignment Simulator <span class="badge text-bg-danger"><em>New!</em></span></h4>
             <p>AliSim (<a href="https://doi.org/10.1093/bioinformatics/btad540">Ly-Trong et al., 2023</a>) allows to 
             quickly <a href="doc/AliSim">simulate multiple sequence alignments</a> under more realistic models than Seq-Gen and INDELible.
             </p>
         </div>		 				
     </div>
     <br>
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
             <div class="list-group">
                 <div class="list-group-item list-group-item-warning">
                     <h4 class="centered">Version 2.0 Highlights</h4>
@@ -131,7 +131,7 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
                     <li><a href="https://doi.org/10.1093/sysbio/syu062">ModelOMatic model selection</a> between DNA, protein and codon models (--modelomatic option)</li>
                     <li><a href="doc/Assessing-Phylogenetic-Assumptions">Tests of model violations</a></li>
                     <li><a href="doc/Advanced-Tutorial#inferring-site-specific-rates">Site rate estimation</a> by maximum likelihood</li>
-                    <li><span class="label label-danger"><em>New!</em></span> Version 2.3.X supports macOS M1-3 (ARM) chips and new <a href="doc/Complex-Models">mixture models</a> (25 March 2024)</li>
+                    <li><span class="badge text-bg-danger"><em>New!</em></span> Version 2.3.X supports macOS M1-3 (ARM) chips and new <a href="doc/Complex-Models">mixture models</a> (25 March 2024)</li>
                     </ul>
                 </div>
             </div>
@@ -181,7 +181,7 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
             <h4>User Support</h4>
             Please refer to <a href="doc/Frequently-Asked-Questions">Frequently Asked Questions</a>.
             For further questions and feedback, please create a new topic on
-            <a href="https://github.com/iqtree/iqtree2/discussions">IQ-TREE GitHub discussions</a> <span class="label label-danger"><em>New!</em></span>
+            <a href="https://github.com/iqtree/iqtree2/discussions">IQ-TREE GitHub discussions</a> <span class="badge text-bg-danger"><em>New!</em></span>
         </div>
         <div class="col-sm-4">
             <a href="doc/">
@@ -192,8 +192,9 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
         </div>		 
     </div><!--row-->
 </div> <!-- /container -->
+<br><div class="hline"></div><br>
 <!-- ========================== DOWNLOAD ========================== -->
-<div id="download" class="service jumbotron">
+<div id="download" class="service">
     <div class="container">
         <div class="row centered">
             <div class="col-sm-12">
@@ -201,7 +202,7 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
             </div>
             
             <div class="col-sm-12">
-                <p>Latest release {{page.version_new}} ({{page.releasedate_new}})</p>
+                <h3>Latest release {{page.version_new}} ({{page.releasedate_new}})</h3>
             </div>
 
             <div class="col-sm-4">
@@ -232,7 +233,8 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
             </div>		 
             
             <div class="col-sm-12">
-                <p>IQ-TREE version {{page.version}} ({{page.releasedate}})</p>
+            	<br>
+                <h4>IQ-TREE version {{page.version}} ({{page.releasedate}})</h4>
             </div>
             <div class="col-sm-4">
                 <div class="list-group">
@@ -257,7 +259,7 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
             </div>		 
 
         </div> <!-- row -->
-
+		<br>
 
         <div class="row">
             <div class="col-sm-4">
@@ -285,14 +287,14 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
     </div> <!-- /container -->
 </div><!-- /jumbotron -->
 
-
     
+<br><div class="hline"></div><br>
 <!-- ========================== How to cite IQ-TREE? ========================== -->
 <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
 
 <div class="service container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
             <br><h2 class="centered">How to cite?</h2>
             <div class="list-group">
                 <div class="list-group-item list-group-item-danger">
@@ -306,7 +308,7 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
             </div>
         </div>
     </div>
-    
+    <br>
     <div class="row">
         <div class="col-md-12">
             <h3 class="centered">IQ-TREE would not be possible without generous fundings by:</h3><br>

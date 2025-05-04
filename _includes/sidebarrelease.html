@@ -2,7 +2,7 @@
 {% else %}
     {% assign num_releases = 5 %}
 {% endif %}
-<div class="well well-sm">
+<div class="card card-body bg-light">
     <h4>{% if num_releases == 5 %}Recent{% endif %} IQ-TREE releases</h4>
     <div class="row">
         <div class="popular-posts">
@@ -17,3 +17,4 @@
     <p><strong><a href="{{site.baseurl}}/release">&#8594; All release history</a></strong></p>
     {% endif %}
 </div>
+<br>

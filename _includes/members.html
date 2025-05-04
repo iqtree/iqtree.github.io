@@ -7,7 +7,7 @@
         {% endif %}
             <div class="col-sm-4">
                 <a href="{{ member.social.first.url }}">
-                    <img class="img-circle" src="{{'/assets/img/members/' | prepend: site.baseurl }}{{member.img}}">
+                    <img style="border-radius: 50%;" class="img-circle" src="{{'/assets/img/members/' | prepend: site.baseurl }}{{member.img}}">
                 </a>
                 <h4><a href="{{ member.social.first.url }}">{{ member.name }}</a></h4>
                 <em>{{ member.position }}</em>

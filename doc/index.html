@@ -7,8 +7,8 @@ doctypes:
 ---
 
 <div class="container mtb">
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+    <div class="row justify-content-center g-2">
+        <div class="col-sm-10 col-md-8 p-2">
             <div class="list-group">
                 <div class="list-group-item list-group-item-success centered">
                 <h4><a href="iqtree-doc.pdf"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i> IQ-TREE Tutorials and Manual in one PDF</a></h4>
@@ -22,7 +22,7 @@ doctypes:
             {% assign sorted_posts = site.pages | where: 'doctype', dt | sort: 'docid' %}
             {% for post in sorted_posts %}
             <!-- Document -->
-            <div class="well">
+            <div class="card card-body bg-light">
                 <h2>{{ post.title }}</h2>
                 <p>{{ post.description }}</p>
                 {% if post.sections %}
@@ -38,6 +38,7 @@ doctypes:
                 {% endif %}
                 <p><a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-primary" role="button">&#8594; Read All {{post.title}} Here</a></p>
             </div>
+	        <br>
             {% endfor %}
         </div>
         {% endfor %}

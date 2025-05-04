@@ -1,32 +1,38 @@
 <!-- Fixed navbar -->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{{ "/"  | prepend: site.baseurl }}">{{ site.title }}</a>
-    </div>
-    <div class="navbar-collapse collapse navbar-right">
-      <ul class="nav navbar-nav">
-        <li {% if page.title == "XXX" %}class="active"{% endif %}><a data-toggle="collapse" data-target=".navbar-collapse" href="{{"/#download" | prepend: site.baseurl }}">Download</a></li>
-        <li {% if page.title == "News" %}class="active"{% endif %}><a href="{{"/news/" | prepend: site.baseurl }}">News</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Web server
-            <span class="caret"></span></a>
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ "/"  | prepend: site.baseurl }}">{{ site.title }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-0 mb-lg-0">
+        <li {% if page.title == "XXX" %}class="nav-item active"{% else %}class="nav-item"{% endif %}>
+          <a class="nav-link" aria-current="page" href="{{"/#download" | prepend: site.baseurl }}">Download</a>
+        </li>
+        <li {% if page.title == "News" %}class="nav-item active"{% else %}class="nav-item"{% endif %}>
+          <a class="nav-link" href="{{"/news/" | prepend: site.baseurl }}">News</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Web server
+          </a>
           <ul class="dropdown-menu">
-            <li><a href="http://iqtree.cibiv.univie.ac.at" target="_blank">CIBIV, Austria</a></li>
-            <li><a href="https://www.hiv.lanl.gov/content/sequence/IQTREE/iqtree.html" target="_blank">Los Alamos Lab, USA</a></li>
-            <li><a href="https://www.phylo.org" target="_blank">CIPRES Gateway, USA</a></li>
+            <li><a class="dropdown-item" href="http://iqtree.cibiv.univie.ac.at" target="_blank">CIBIV, Austria</a></li>
+            <li><a class="dropdown-item" href="https://www.hiv.lanl.gov/content/sequence/IQTREE/iqtree.html" target="_blank">Los Alamos Lab, USA</a></li>
+            <li><a class="dropdown-item" href="https://www.phylo.org" target="_blank">CIPRES Gateway, USA</a></li>
           </ul>
         </li>
-        <li {% if page.title == "Documentation" or page.categories.first == "doc" %}class="active"{% endif %}><a href="{{"/doc/" | prepend: site.baseurl }}">Docs</a></li>
-        <li {% if page.title == "Workshops"%}class="active"{% endif %}><a href="{{"/workshop/" | prepend: site.baseurl }}">Workshop</a></li>
-        <li {% if page.title == "About IQ-TREE" %}class="active"{% endif %}><a href="{{"/about/" | prepend: site.baseurl }}">About</a></li>
+        <li {% if page.title == "Documentation" or page.categories.first == "doc" %}class="nav-item active"{% else %}class="nav-item"{% endif %}>
+          <a class="nav-link" href="{{"/doc/" | prepend: site.baseurl }}">Docs</a>
+        </li>
+        <li {% if page.title == "Workshops"%}class="nav-item active"{% else %}class="nav-item"{% endif %}>
+          <a class="nav-link" href="{{"/workshop/" | prepend: site.baseurl }}">Workshop</a>
+        </li>
+        <li {% if page.title == "About IQ-TREE" %}class="nav-item active"{% else %}class="nav-item"{% endif %}>
+          <a class="nav-link" href="{{"/about/" | prepend: site.baseurl }}">About</a>
+        </li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
-</div>
+</nav>

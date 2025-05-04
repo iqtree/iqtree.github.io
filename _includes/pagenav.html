@@ -1,16 +1,16 @@
 <nav aria-label="...">
-  <ul class="pager">
+  <ul class="pagination">
     {% if page.pageid != 1 %}
         {% if page.pageid == 2 %}
             {% assign previd = '' %}
         {% else %}
             {% assign previd = page.pageid | minus: 1 %}
         {% endif %}
-        <li><a href="../news{{previd}}"><span aria-hidden="true">&larr;</span> Newer posts</a></li>
+        <li class="page-item"><a class="page-link" href="../news{{previd}}"><span aria-hidden="true">&larr;</span> Newer posts</a></li>
     {% endif %}
     {% if page.pageid != site.num_pages %}
         {% assign nextid = page.pageid | plus: 1 %}
-        <li><a href="../news{{nextid}}">Older posts <span aria-hidden="true">&rarr;</span></a></li>
+        <li class="page-item"><a class="page-link" href="../news{{nextid}}">Older posts <span aria-hidden="true">&rarr;</span></a></li>
     {% endif %}
   </ul>
 </nav>

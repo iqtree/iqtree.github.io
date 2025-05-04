@@ -5,10 +5,11 @@
     <div class="spacing"></div>-->
 
 
-<div class="well well-sm">
+<div class="card card-body bg-light">
     <a href="iqtree-doc.pdf"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i> Download Tutorials and Manual in one PDF</a>
 </div>
-<div class="well well-sm" id="sidebar">
+<br>
+<div class="card card-body bg-light" id="sidebar">
     <h4>Documentation</h4>
     {% assign sorted_posts = (site.pages | where: "layout", "userdoc" | sort: 'docid') %}
     {% for post in sorted_posts %}
@@ -39,3 +40,4 @@
         {% endif %}
     {% endfor %}
 </div>
+<br>
