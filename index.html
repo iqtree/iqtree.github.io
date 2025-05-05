@@ -20,8 +20,7 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
             <p>
             <a id="downloadwin_new" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Windows.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for Windows</a>            
             <a id="downloadmac_new" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-macOS.zip" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for macOS Universal</a>
-            <a id="downloadlinux_new" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux-intel.tar.gz" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for Linux Intel</a>
-            <a id="downloadlinux_new2" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux-arm.tar.gz" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for Linux ARM</a>
+            <a id="downloadlinux_new" style="display: none;" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux.tar.gz" class="btn btn-danger btn-lg" role="button">Download v{{page.version_new}} for Linux Universal</a>
             </p>
             <h3>Legacy release {{page.version}} ({{page.releasedate}})</h3>
             <p>
@@ -70,7 +69,6 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
     } else if (os == "Linux") {
         document.getElementById("downloadlinux").style.display = "inline";
         document.getElementById("downloadlinux_new").style.display = "inline";
-        document.getElementById("downloadlinux_new2").style.display = "inline";
     } else  document.getElementById("downloadall").innerHTML="Download";
 
 </script>
@@ -227,6 +225,7 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
                 <i class="fa fa-linux"></i>
                 <h4>Linux</h4>
                 <div class="list-group">
+                	<a class="list-group-item list-group-item-info" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux.tar.gz">64-bit Linux Universal</a>
                     <a class="list-group-item list-group-item-info" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux-intel.tar.gz">64-bit Linux Intel</a>
                     <a class="list-group-item list-group-item-success" href="{{page.v2_url}}/v{{page.version_new}}/iqtree-{{page.version_new}}-Linux-arm.tar.gz">64-bit Linux ARM</a>
                 </div>
