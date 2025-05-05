@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Phylogenetic Dating"
-author: Minh Bui, Piyumal Demotte, Rob Lanfear
-date:    2025-02-27
+author: Piyumal Demotte, Minh Bui, Rob Lanfear
+date:    2025-05-05
 docid: 7
 icon: info-circle
 doctype: tutorial
@@ -42,14 +42,14 @@ Phylogenetic Dating
 Bayesian dating with MCMCtree
 ------------------------------------------------------------
 
-From IQ-TREE 2.5 onwards, we provide the functionality in IQ-TREE to infer time trees
+From IQ-TREE version 3.0.1 onwards, we provide the functionality in IQ-TREE to infer time trees
 using Bayesian MCMCtree method.
 
 If you use this feature, please cite:
 
-> __P. Demotte, M. Panchaksaram, N. Ly-Trong, M. dos Reis  and B.Q. Minh__
+> __P. Demotte, M. Panchaksaram, H. Kumarasinghe, N. Ly-Trong, M. dos Reis  and B.Q. Minh__
 >(2025) IQ2MC: A New Framework to Infer Phylogenetic Time Trees Using IQ-TREE
->and MCMCtree.
+>and MCMCtree with Mixture Models. Submitted.
 
 IQ2MC workflow for time tree inference
 --------------------------------------
@@ -90,7 +90,7 @@ If the alignment file is called `example.phy` and the rooted tree file is called
 `example_tree.nwk`,
 
 ```
-iqtree -s example.phy -m GTR+G4 -te example_tree.nwk --dating mcmctree --prefix example
+iqtree3 -s example.phy -m GTR+G4 -te example_tree.nwk --dating mcmctree --prefix example
 ```
 
 
@@ -118,7 +118,7 @@ You can specify more parameters in the workflow to generate the control file
 accurately for the analysis with IQ-TREE.
 
 ```
-iqtree -s example.phy -m GTR+G4 -te example_tree.nwk --dating mcmctree --mcmc-iter 20000,200,50000 --mcmc-bds 1,1,0.5 --mcmc-clock IND
+iqtree3 -s example.phy -m GTR+G4 -te example_tree.nwk --dating mcmctree --mcmc-iter 20000,200,50000 --mcmc-bds 1,1,0.5 --mcmc-clock IND
 ```
 
 * `--mcmc-iter burnin,samplefreq,nsample` : use to set number of burin samples,
@@ -134,56 +134,35 @@ Currently supported clocks models are EQUAL: global clock with equal rates, IND:
 independent rates model with independent rates across lineages and CORR:
 correlated clock model with auto-correlated rates across the lineages.
 
-Using partitions and Mixture models for approximate likelihood dating
+Using partitions and mixture models for approximate likelihood dating
 ---------------------------------------------------------------------
 
 IQ-TREE supports three partition models for approximate likelihood dating. Under
-the Edge-unlinked (EUL) model, IQ-TREE generates the Hessian file which contains
+the Edge-unlinked (EUL) model (`-Q` option), IQ-TREE generates the Hessian file which contains
 separate gradients and Hessian for each partition. For the Edge-linked (EL) 
-partition model, the Hessian file contains only one gradient vector and a
-Hessian as branches are shared across partitions. 
-
-Since IQ-TREE supports RAxML and NEXUS style partitions input file, you can use
-partitions defined in the following format.
+partition model (`-p` option), the Hessian file contains only one gradient vector and a
+Hessian as branches are shared across partitions. See [Complex Models](Complex-Models)
+for how to specify partition and mixture models. If your partition file is called `example.nex`:
 
 ```
-DNA, part1 = 1-100
-DNA, part2 = 101-450
+# -Q option is to specify egde-unlinked partition model
+iqtree3 -s example.phy  -Q example.nex -m GTR+G4 -te example_tree.nwk --dating mcmctree 
 ```
-If your partition file is called `example.nex`,
-
-```
-iqtree -s example.phy  -Q example.nex -m GTR+G4 -te example_tree.nwk --dating mcmctree 
-```
-
-Here, IQ-TREE generates the Hessian file using the `GTR+G4` model for all
-partitions. If you need to use different models for each partition, you need to
-create a more flexible NEXUS file like the following.
-
-```
-#nexus
-begin sets;
-    charset part1 = 1-100;
-    charset part2 = 101-450;
-    charpartition mine = GTR+G4:part1, HKY:part2;
-end;
-```
-Here, IQ-TREE uses `GTR+G4` model for partition 1, and `HKY` model for partition
-2 respectively. Using `-q` and `-p` options, you can generate the Hessian file
-which considers `edge-linked equal branch partition models` and `edge-linked
-proportional branch length models` respectively.
 
 IQ-TREE also supports mixture models for the Hessian file generation. You can
 simply specify DNA or Amino Acid Mixture model as following,
 
 ```
-iqtree -s example.phy  -m "MIX{GTR,HKY}+G4" -te example_tree.nwk –-dating mcmctree 
+iqtree3 -s example.phy  -m "MIX{GTR,HKY}+G4" -te example_tree.nwk –-dating mcmctree 
 ```
+(Or you can also invoke [MixtureFinder](Complex-Models#mixturefinder) with `-m MIX+MFP` to determine mixture models automatically).
+
 If you need to use an Amino Acid profile mixture model such as C60 model,
 
 ```
-iqtree -s example.phy  -m LG+G4+C60 -te example_tree.nwk –-dating mcmctree 
+iqtree3 -s example_aa.phy  -m LG+G4+C60 -te example_aa_tree.nwk –-dating mcmctree 
 ```
+
 If you are using ModelFinder or MixtureFinder, you need to follow a two-step
 approach. First, you can estimate the best-fit model for the data using
 ModelFinder or MixtureFinder. Then, the Hessian file can be generated using
@@ -192,17 +171,19 @@ ModelFinder or MixtureFinder. Then, the Hessian file can be generated using
 How to run MCMCtree
 -------------------
 
-You can directly run MCMCtree from the control file generated by IQ-TREE in step
-2. The command to run MCMCtree with the control file is,
+You need to download a modified version of MCMCTree from <https://github.com/iqtree/paml>.
+This version has some changes to make the workflow more convenient.
+You can then directly run MCMCtree from the control file generated by IQ-TREE in step 2. 
+The command to run MCMCtree with the control file is:
 
 ```
 mcmctree example.mcmctree.ctl
 ```
 
 
-The control file generated by IQ-TREE has the following format. You can simply
-edit the control file as necessary. For an example you may need to increase
-burin and sample frequency for MCMC convergence.
+The control file generated by IQ-TREE has the following format. You can
+edit the control file before running `mcmctree` as necessary. For example, you can increase
+burnin and sample frequency for MCMC convergence.
 
 ```
 seed = -1                        * The computer’s current time is used when seed < 0.
@@ -252,8 +233,8 @@ alpha_gamma = 1 1     * alpha and beta parameter of Gamma distribution for heter
 
 Note that, if you generate the `hessain file` from IQ-TREE, it is necessary to
 use the rooted tree file generated by IQ-TREE to be used in MCMCtree. The
-`ckpfile` and `hessianfile` options are new and only work for the PAML release
-in IQ-TREE (https://github.com/iqtree/paml). If you use another MCMCtree
+`ckpfile` and `hessianfile` options are new and only work with our modified
+[PAML code](https://github.com/iqtree/paml). If you use another MCMCtree
 version/release, you can simply remove those options from control file and
 rename the `hessian file` to `in.BV` to run MCMCtree without any errors.
 
