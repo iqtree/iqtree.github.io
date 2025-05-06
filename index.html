@@ -116,21 +116,16 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
         <div class="col-md-10 col-lg-8">
             <div class="list-group">
                 <div class="list-group-item list-group-item-warning">
-                    <h4 class="centered">Version 2.0 Highlights</h4>
+                    <h4 class="centered">Version 3.0 Highlights</h4>
                     <ul>
-                    <li>Supporting large datasets with <a href="doc/Command-Reference#checkpointing-to-resume-stopped-run">checkpointing</a>, 
-            		<a href="doc/Command-Reference#general-options">safe numerical and low memory mode</a></li>
-            		<li>High performance computing with <a href="doc/Tutorial#utilizing-multi-core-cpus">Multicore CPUs</a> 
-            		and <a href="doc/Compilation-Guide#compiling-mpi-version">distributed MPI system</a></li>
-                    <li>Input alignment or partition can be a directory of alignment files</li>
-                    <li>Inference of <a href="doc/Rootstrap">rooted trees</a> using non-reversible models</li>
-                    <li>Faster tree search under <a href="doc/Advanced-Tutorial#constrained-tree-search">topological constraint</a></li>
-                    <li>Gene/locus trees inference and <a href="doc/Concordance-Factor">concordance factor analysis</a></li>
-                    <li><a href="https://doi.org/10.1093/sysbio/syu062">ModelOMatic model selection</a> between DNA, protein and codon models (--modelomatic option)</li>
-                    <li><a href="doc/Assessing-Phylogenetic-Assumptions">Tests of model violations</a></li>
-                    <li><a href="doc/Advanced-Tutorial#inferring-site-specific-rates">Site rate estimation</a> by maximum likelihood</li>
-                    <li><span class="badge text-bg-danger"><em>New!</em></span> Version 2.3.X supports macOS M1-3 (ARM) chips and new <a href="doc/Complex-Models">mixture models</a> (25 March 2024)</li>
+                    <li><a href="doc/Complex-Models#mixture-models">MixtureFinder</a> to find the best-fit mixture model, as a complement for PartitionFinder.</li>
+                    <li><a href="doc/Complex-Models#multitree-models">Multiple-tree mixture models (MAST)</a> to allow different evolutionary histories along sequences.</li>
+                    <li><a href="doc/Concordance-Factor">Concordance factors (CF)</a> to quantify concordance between genes (gCF) and sites (sCF).</li>
+                    <li><a href="doc/Estimating-amino-acid-substitution-models">QMaker</a> to estimate protein substitution matrix.</li>
+                    <li><a href="doc/Command-Reference#tree-search-for-pathogen-data">CMAPLE to infer pathogen trees</a> with millions of sequences such as SARS-CoV-2.</li>
+                    <li><a href="doc/Dating">IQ2MC to infer time trees</a> with MCMCtree.</li>
                     </ul>
+                    If you use IQ-TREE version 3 in a publication, please cite <a href="https://doi.org/10.32942/X2P62N">Wong et al. 2025</a>.
                 </div>
             </div>
         </div>
@@ -271,7 +266,7 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
             <div class="col-sm-4">
                 <div class="list-group">
                   <a href="release/" class="list-group-item">
-                    <div class="list-group-item-text"><h4>Version 1</h4>Downloads and release notes of IQ-TREE 1.</div>
+                    <div class="list-group-item-text"><h4>Release notes</h4>Downloads and release notes of older versions.</div>
                   </a>
                 </div>
             </div>
@@ -300,6 +295,7 @@ v2_url: https://github.com/iqtree/iqtree3/releases/download
                 To maintain IQ-TREE, support users and obtain fundings,
                 it is important that you not only cite the IQ-TREE version 2 paper
                 (<a href="https://doi.org/10.1093/molbev/msaa015">Minh et al., 2020</a>) 
+                or version 3 (<a href="https://doi.org/10.32942/X2P62N">Wong et al. 2025</a>)
                 but also additional papers typically mentioned in the documentation
                 of the features/options you are using in your analysis.
                 These papers are also <a href="doc/Home#how-to-cite-iq-tree">listed here</a>.
