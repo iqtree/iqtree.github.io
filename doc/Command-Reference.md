@@ -437,10 +437,7 @@ Tree search for pathogen data
 -----------------------------
 <div class="hline"></div>
 
-For pathogen data such as SARS-CoV-2 virus alignments, version 2.3.4.cmaple implements
-the MAPLE algorithm ([De Maio et al., 2023]) that performs tree search very quickly by
-exploiting the low divergent property of the sequences (i.e., sequences in the alignment
-are very similar to each other).
+For pathogen data such as SARS-CoV-2 virus alignments, version 2.3.4.cmaple (and all versions from 3.0.0 onward) integrate CMAPLE ([Nhan Ly-Trong et al., 2024]), an efficient implementation of the MAPLE algorithm ([De Maio et al., 2023]) that performs tree search very quickly by exploiting the low divergent property of the sequences (i.e., sequences in the alignment are very similar to each other).
 
 | Option | Usage and meaning |
 |----------|------------------------------------------------------------------------------|
@@ -781,6 +778,7 @@ The first few lines of the output file example.phy.sitelh (printed by `-wslr` op
 [Anisimova and Gascuel 2006]: https://doi.org/10.1080/10635150600755453
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
 [De Maio et al., 2023]: https://doi.org/10.1038/s41588-023-01368-0
+[Nhan Ly-Trong et al., 2024]: https://doi.org/10.1093/molbev/msae134
 [De Maio et al., 2024]: https://doi.org/10.1101/2024.10.21.619398
 [Felsenstein, 1985]: https://doi.org/10.2307/2408678
 [Flouri et al., 2015]: https://doi.org/10.1093/sysbio/syu084
