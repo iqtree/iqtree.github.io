@@ -49,7 +49,7 @@ If you use this feature, please cite:
 
 > __P. Demotte, M. Panchaksaram, H. Kumarasinghe, N. Ly-Trong, M. dos Reis  and B.Q. Minh__
 >(2025) IQ2MC: A New Framework to Infer Phylogenetic Time Trees Using IQ-TREE
->and MCMCtree with Mixture Models. Submitted.
+>and MCMCtree with Mixture Models. <https://doi.org/10.32942/X2CD2X>
 
 IQ2MC workflow for time tree inference
 --------------------------------------
