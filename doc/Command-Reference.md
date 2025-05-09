@@ -437,7 +437,7 @@ Tree search for pathogen data
 -----------------------------
 <div class="hline"></div>
 
-For pathogen data such as SARS-CoV-2 virus alignments, version 2.3.4.cmaple (and all versions from 3.0.0 onward) integrate CMAPLE ([Nhan Ly-Trong et al., 2024]), an efficient implementation of the MAPLE algorithm ([De Maio et al., 2023]) that performs tree search very quickly by exploiting the low divergent property of the sequences (i.e., sequences in the alignment are very similar to each other).
+For pathogen data such as SARS-CoV-2 virus alignments, version 2.3.4.cmaple (and all versions from 3.0.0 onward) integrate CMAPLE ([Ly-Trong et al., 2024]), an efficient implementation of the MAPLE algorithm ([De Maio et al., 2023]) that performs tree search very quickly by exploiting the low divergent property of the sequences (i.e., sequences in the alignment are very similar to each other).
 
 | Option | Usage and meaning |
 |----------|------------------------------------------------------------------------------|
@@ -778,7 +778,6 @@ The first few lines of the output file example.phy.sitelh (printed by `-wslr` op
 [Anisimova and Gascuel 2006]: https://doi.org/10.1080/10635150600755453
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
 [De Maio et al., 2023]: https://doi.org/10.1038/s41588-023-01368-0
-[Nhan Ly-Trong et al., 2024]: https://doi.org/10.1093/molbev/msae134
 [De Maio et al., 2024]: https://doi.org/10.1101/2024.10.21.619398
 [Felsenstein, 1985]: https://doi.org/10.2307/2408678
 [Flouri et al., 2015]: https://doi.org/10.1093/sysbio/syu084
@@ -786,12 +785,13 @@ The first few lines of the output file example.phy.sitelh (printed by `-wslr` op
 [Gu et al., 1995]: http://mbe.oxfordjournals.org/content/12/4/546.abstract
 [Guindon et al., 2010]: https://doi.org/10.1093/sysbio/syq010
 [Hoang et al., in press]: https://doi.org/10.1093/molbev/msx281
-[Kishino et al., 1990]: https://doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: https://doi.org/10.1007/BF02100115
+[Kishino et al., 1990]: https://doi.org/10.1007/BF02109483
 [Lanfear et al., 2012]: https://doi.org/10.1093/molbev/mss020
 [Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
 [Lanfear et al., 2017]: https://doi.org/10.1093/molbev/msw260
 [Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112
+[Ly-Trong et al., 2024]: https://doi.org/10.1093/molbev/msae134
 [Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
 [Nguyen et al., 2015]: https://doi.org/10.1093/molbev/msu300
 [Seo et al., 2005]: https://doi.org/10.1073/pnas.0408313102
