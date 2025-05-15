@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Advanced Tutorial"
-author: Jana Trifinopoulos, Minh Bui
-date:    2021-05-19
+author: Jana Trifinopoulos, Minh Bui, Qin Liu
+date:    2025-05-15
 docid: 4
 icon: info-circle
 doctype: tutorial
@@ -30,6 +30,8 @@ sections:
     url: user-defined-substitution-models
   - name: Inferring site-specific rates
     url: inferring-site-specific-rates
+  - name: Trimming alignment sites by likelihood
+    url: trimming-alignment-sites-by-likelihood
 ---
 
 Advanced tutorial
@@ -521,30 +523,53 @@ This will print an output file `example.phy.mlrate` that looks like:
 	10      0.00001
 
 
-Robust phylogenetics analysis using trimmed log-likelihood method
-----------------------
+Trimming alignment sites by likelihood
+--------------------------------------
 <div class="hline"></div>
 
-Phylogenetic inference can be highly sensitive to fast-evolving, saturated or erroneous sites in a sequence alignment. To address this issue,  IQ-TREE implements the `trimmed log-likelihood` method - a robust and dynamic approach that improves tree inference by selectively down-weighting problematic sites. 
+Phylogenetic inference can be highly sensitive to fast-evolving, saturated or
+erroneous sites in a sequence alignment. To address this issue,  IQ-TREE
+implements the **trimmed log-likelihood** method - a robust and dynamic approach
+that improves tree inference by selectively down-weighting problematic sites. 
 
-This method works by dynamically excluding a user-defined proportion of sites with the lowest log-likelihood values during the tree search. As the search progresses,  the likelihood of each site is recalculated at each step using current tree and model parameters.  This ensures that site removal is always conditional on the current model, tree topology and branch lengths, avoiding circularity.
+This method works by dynamically excluding a user-defined proportion of sites
+with the lowest log-likelihood values during the tree search. As the search
+progresses,  the likelihood of each site is recalculated at each step using
+current tree and model parameters.  This ensures that site removal is always
+conditional on the current model, tree topology and branch lengths, avoiding
+circularity.
 
-To use the trimmed log-likelihood method, please make sure that IQ-TREE version 3.0 or later is installed. In the command-line interface, the method is invoked using the option `--robust-phy`. Although it is referred to here as the trimmed log-likelihood method, IQ-TREE uses the name `--robust-phy` to reflect the broader goal of improving the robustness of phylogenetic inference.
+To use the trimmed log-likelihood method, please make sure that IQ-TREE version
+3.0 or later is installed. In the command-line interface, the method is invoked
+using the option `--robust-phy`. Although it is referred to here as the trimmed
+log-likelihood method, IQ-TREE uses the name `--robust-phy` to reflect the
+broader goal of improving the robustness of phylogenetic inference.
 
-You can run the trimmed log-likelihood method from the command line by specifying the alignment, a substitution model, and the proportion of sites to retain:
+You can run the trimmed log-likelihood method from the command line by
+specifying the alignment, a substitution model, and the proportion of sites to
+retain:
 
-  iqtree3 -s <MY_ALIGNMENT> --robust-phy <PROPORTION_TO_RETAIN> -m <MODEL>  
+```
+iqtree3 -s <MY_ALIGNMENT> --robust-phy <PROPORTION_TO_RETAIN> -m <MODEL>  
+```
 
-Additional options are available to assist downstream analysis. For instance, IQ-TREE can write site log-likelihoods to a `.sitelh` file, allowing users to identify the excluded sites by examining their log-likelihood values.
+Additional options are available to assist downstream analysis. For instance,
+IQ-TREE can write site log-likelihoods to a `.sitelh` file, allowing users to
+identify the excluded sites by examining their log-likelihood values.
 
-For example, for a dataset `data.phy`, if users apply a `JC` model and trim `2%` of sites (i.e., retain `98%` of sites) and wish to generate an output that includes the site log-likelihoods, the corresponding command would be:
+For example, for a dataset `data.phy`, if users apply a `GTR+G` model and trim `2%`
+of sites (i.e., retain `98%` of sites) and wish to generate an output that
+includes the site log-likelihoods, the corresponding command would be:
 
-  iqtree3 -s <data.phy> --robust-phy <0.98> -m <JC> -wsl
+```
+iqtree3 -s data.phy --robust-phy 0.98 -m GTR+G -wsl
+```
 
 If you use the trimmed log-likelihood method in a publication, please cite:
 
-> __Liu, Qin, Bui Quang Minh, Robert Lanfear, Michael A. Charleston, Shane A. Richards, and Barbara R. Holland__ Robust Phylogenetics. _bioRxiv_ (2025): 2025-04. 
-    <https://doi.org/10.1101/2025.04.01.646540>
+> __Q. Liu, B.Q. Minh, R. Lanfear, M.A. Charleston,__
+> __S.A. Richards, and B.R. Holland__ (2025) Robust Phylogenetics.
+> _bioRxiv_. <https://doi.org/10.1101/2025.04.01.646540>
 
 Where to go from here?
 ----------------------

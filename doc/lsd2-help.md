@@ -5,7 +5,6 @@ author: Minh Bui
 date:    2025-05-05
 docid: 7.5
 icon: info-circle
-doctype: tutorial
 tags:
 - tutorial
 description: "All LSD2 command"
