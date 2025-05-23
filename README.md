@@ -15,7 +15,8 @@ IQ-TREE at a workshop, you can update the markdown files in the
 <https://iqtree.github.io/workshop/>. Below are the guidelines how to
 contribute.
 
-First, you should clone the repo to your local machine using git:
+First, you should clone the repo to your local machine using git via the command
+line:
 
 ```
 git clone https://github.com/iqtree/iqtree.github.io.git
@@ -71,13 +72,68 @@ git commit -am "Message about this commit"
 Please make the message concise but informative about what you did. Then you
 can make a pull request to ask us to update the main repo. An IQ-TREE team
 member will review your pull request before deciding to merge it into the main
-site, optional modifications to your pull request. Occasionally, the
+site, optionally with modifications to your pull request. Occasionally, the
 IQ-TREE member may ask you to revise your pull request, before making decision.
 
 Updating a workshop
 -------------------
 
 The workshop materials are in the [workshop](workshop/) subfolder. There are already
-some past workshops that you can have a look.
+some past workshops that you can have a look. If you are teaching a new workshop,
+you can copy and reuse past ones, e.g.,
 
+```
+# copy file under Linux or Mac, assuming your current directory is workshop/
+cp molevol2023.md myworkshop.md
+```
+
+Then you can change `myworkshop.md` and add it to git:
+
+```
+git add myworkshop.md
+```
+
+Moreover, you may want to change `index.md` file ([link](workshop/index.md)) to
+add yours to the list of workshops showing at
+<https://iqtree.github.io/workshop/>.
+
+And make sure that you also update the header fields `author` and `date` as
+shown in the [previous section](#updating-iq-tree-documentation). Once you are
+satisfied with the changes you can then commit it:
+
+```
+git commit -am "Message about this commit"
+```
+
+Please make the message concise but informative about what you did. Then you
+can make a pull request to ask us to update the main repo. An IQ-TREE team
+member will review your pull request before deciding to merge it into the main
+site, optionally with modifications to your pull request. Occasionally, the
+IQ-TREE member may ask you to revise your pull request, before making decision.
+
+Creating a local website for double-checking
+--------------------------------------------
+
+Before making a pull request, you can optionally create the website locally on
+your own machine using the [jekyll](https://jekyllrb.com) tool (in fact, GitHub
+also uses `jekyll` to auto-create the website). That way, you can check yourself
+whether the changes will display as what you intended.
+
+You need to first have `jekyll` installed. On a MacOS, if you have Homebrew installed,
+you can install `jekyll` via a simple command:
+
+```
+brew install jekyll
+```
+
+If not, check the [jekyll](https://jekyllrb.com) website for an installation guide.
+
+Then in the `iqtree.github.io` folder, please run the command line:
+
+```
+jekyll serve
+```
+
+This will create a virtual website at http://127.0.0.1:4000/. You can go to this address
+on a web browser to see how it looks like.
 
