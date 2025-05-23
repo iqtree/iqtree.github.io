@@ -11,7 +11,7 @@ Throughout the year, members of IQ-TREE development team teach workshops on mole
 
 | Date |  Course Name and Materials | Location | Instructor |
 |------|---------------|----------------------------|-------------|
-| May 22 - Jun 1, 2025 | [Workshop on Molecular Evolution](https://molevolworkshop.github.io) | Marine Biological Laboratory, Woods Hole, USA | Course Assistants |
+| May 22 - Jun 1, 2025 | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), [IQ-TREE 3 tutorial](molevol_tutorial2025) | Marine Biological Laboratory, Woods Hole, USA | Course Assistants |
 
 ### Past Workshops
 
