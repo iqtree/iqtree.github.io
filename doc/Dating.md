@@ -47,9 +47,8 @@ using Bayesian MCMCtree method.
 
 If you use this feature, please cite:
 
-> __P. Demotte, M. Panchaksaram, H. Kumarasinghe, N. Ly-Trong, M. dos Reis  and B.Q. Minh__
->(2025) IQ2MC: A New Framework to Infer Phylogenetic Time Trees Using IQ-TREE
->and MCMCtree with Mixture Models. <https://doi.org/10.32942/X2CD2X>
+> __P. Demotte, M. Panchaksaram, H. Kumarasinghe, N. Ly-Trong, M. dos Reis, and B.Q. Minh__
+>(2025) IQ2MC: A New Framework to Infer Phylogenetic Time Trees Using IQ-TREE 3 and MCMCTree with Mixture Models. <https://doi.org/10.32942/X2CD2X>
 
 IQ2MC workflow for time tree inference
 --------------------------------------
@@ -69,7 +68,10 @@ tree, the MSA, and the substitution model for step 2.
 and the Hessian/Hessians of the branch lengths calculated at maximum likelihood
 estimates. Given the rooted tree with fossil/tip calibrations, the substitution
 model, and the MSA, IQ-TREE generates the Hessian file containing the gradients
-and the Hessian/Hessian and all required files to run MCMCtree for dating.
+and the Hessian/Hessian and all required files to run MCMCtree for dating. If the 
+rooted tree provided for this step does not include fossil/tip calibrations, users
+need to calibrate the tree with commonly used tree editing tools such as FigTree
+or iTOL before step 3.
 * `step3`: Now, you can directly run MCMCtree from the IQ-TREE output of step 2
 and infer the time tree. 
 
@@ -122,12 +124,12 @@ iqtree3 -s example.phy -m GTR+G4 -te example_tree.nwk --dating mcmctree --mcmc-i
 ```
 
 * `--mcmc-iter burnin,samplefreq,nsample` : use to set number of burin samples,
-sample frequency and number of MCMC samples in the control file. In the above
-example, burnin =20000, samplefreq = 200 and nsample = 50000
+sample frequency, and number of MCMC samples in the control file. In the above
+example, burnin =20000, samplefreq = 200, and nsample = 50000
 
 * `--mcmc-bds birth-rate,death-rate,sampling-fraction`: use to set the
 parameters for birth-death prior in MCMCtree. In the above example, 
-birth-rate=1, death-rate=1 and sampling-fraction=0.5
+birth-rate=1, death-rate=1, and sampling-fraction=0.5
 
 * `--mcmc-clock <EQUAL|IND|CORR>` : use to set clock model for MCMCtree.
 Currently supported clocks models are EQUAL: global clock with equal rates, IND:
@@ -163,11 +165,6 @@ If you need to use an Amino Acid profile mixture model such as C60 model,
 iqtree3 -s example_aa.phy  -m LG+G4+C60 -te example_aa_tree.nwk –-dating mcmctree 
 ```
 
-If you are using ModelFinder or MixtureFinder, you need to follow a two-step
-approach. First, you can estimate the best-fit model for the data using
-ModelFinder or MixtureFinder. Then, the Hessian file can be generated using
-`--dating mcmctree` option using the estimated models.
-
 How to run MCMCtree
 -------------------
 
@@ -201,7 +198,7 @@ usedata = 2     * 0: sampling from priors with no data; 1: exact slow likelihood
 clock = 2       * 1: global clock with equal rates; 2: independent rates; 3: correlated rates
 RootAge = <1.0  * safe constraint on root age, used if no fossil for root in the rooted tree file.
 
-BDparas = 1,1,0.5    * birth-rate, death rate, sampling priors for sampling times
+BDparas = 1 1 0.5    * birth-rate, death rate, sampling priors for sampling times
 finetune = 1: 0.1  0.1  0.1  0.01 .5  * auto (0 or 1) : times, musigma2, rates, mixing, paras, FossilErr
 print = 1            * 1: normal output; 2: verbose output
 
@@ -276,7 +273,7 @@ Inferring time tree with tip dates
 This is a common scenario e.g. in virus datasets where you have sampling time
 for many sequences. You need first to prepare a _date file_, which comprises
 several lines, each with a taxon name (from your sequence alignment) and its
-date separated by spaces, tabs or blanks. Note that it is not required to have
+date separated by spaces, tabs, or blanks. Note that it is not required to have
 dates for all tips. For example, this date file is part of the new corona virus
 dataset:
 
