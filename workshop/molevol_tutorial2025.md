@@ -29,7 +29,7 @@ IQ-TREE 3 Tutorial (Workshop on Molecular Evolution, Woods Hole 2025)
 
 <!--more-->
 
-In the virtual machine established by the organisers you can run IQ-TREE version 2.2.2.6 
+In the virtual machine established by the organizers you can run IQ-TREE version 3.0.1 
 from the command line:
 
 	iqtree3
@@ -254,49 +254,6 @@ Options explained:
 {: .tip}
 
 
-X) Applying a mixture model
----------------------------
-<div class="hline"></div>
-
-
-We now perform a mixture model analysis ([Ren et al., 2025]), where one allows 
-each site to be described as a mixture of models. 
-
-> What is the command line to run `iqtree3` that takes `turtle.fa` as input alignment,
-> estimates the phylogeny under the best model from step 1, but now as mixture model with two separate classes?
-> This command should also perform 1000 ultrafast bootstrap replicates and automatically determine the best number of cores.
-
-<button type="button" class="btn btn-primary" id="buttonX" onclick="myFunction('buttonX','commandX')">
-Show me the command line</button>
-<div id="commandX" style="display: none; border:1px solid gray;">
-
-<pre><code>iqtree3 -s turtle.fa -m MIX"{GTR+FO,GTR+FO}"+I+R3 -B 1000 --prefix turtle2</code></pre>
-
-Options explained:
-
-<ul>
-<li>`-m MIX"{GTR+FO,GTR+FO}"+I+R3` to specify a mixture model with two separate GTR models ([Ren et al., 2025]) with optimized nucleotide frequencies as well as invariant sites and 3 freerate categories. The quotes aroung the curly braces are important, otherwise bash will try to do variable expansion.</li>
-<li>`--prefix turtle2` to keep file names informative and tidy. </li>
-</ul>
-
-> Now use the same command structure to try mixture models with 3, 4, and 5 classes!
-
-</div>
-
-
-> **QUESTIONS:**
-> 
-> * Look at the report file `turtle2.iqtree`, 'turtle3.iqtree', etc. What are the AIC/AICc/BIC scores of the various mixture models? Is it better than a 1-class model?
-> 
-> * Look at the tree in `turtle2.iqtree` or visualize `turtle2.treefile` 
->   in FigTree. What relationship among [three trees](#1-input-data) does this tree support? What about for the 3-, 4-, and 5-class models?
-> 
-> * What is the ultrafast bootstrap support (%) for the relevant clade under each model?
-> 
-> * Which of these trees agree with the published tree ([Chiari et al., 2012])?
-{: .tip}
-
-
 5) Tree topology tests
 ----------
 <div class="hline"></div>
@@ -411,7 +368,7 @@ Options explained:
 
 > **QUESTIONS:**
 > 
-> * Look at `turle.mix.iqtree` for the line printing the tree weights. Which tree has a higher weight? 
+> * Look at `turtle.mix.iqtree` for the line printing the tree weights. Which tree has a higher weight? 
 > * Is it the tree having higher likelihood found in step 5?
 {: .tip}
 
@@ -461,7 +418,7 @@ log-likelikehood subtraction as pointed out above).
 We now try to construct a tree without these "influential" genes. 
 To do so, copy the partition file `turtle.nex` to a new file and 
 remove the lines defining the `charset` of these genes, and then
-repeat the IQ-TREE run with a parititon model (see section 4).
+repeat the IQ-TREE run with a partition model (see section 4).
 You will need to figure out a command line to run IQ-TREE yourself here.
 
 > **QUESTIONS:**
@@ -546,10 +503,61 @@ Similarly, you can compute gCF and sCF for the tree under unpartitioned model:
 >   contradicting branch?
 {: .tip}
 
+
+10) Applying a mixture model
+---------------------------
+<div class="hline"></div>
+
+
+We now perform a mixture model analysis ([Ren et al., 2025]), where 
+each site is described as a mixture of models. For this exercise we will use a slightly different model, GTR+FO+I+R3, which is the best fit to the entire turtle dataset. 
+
+Estimate a phylogeny under this model as a baseline:
+
+	iqtree3 -s turtle.fa -m GTR+FO+I+R3 -B 1000 -T AUTO --prefix turtlebest
+
+> What is the command line to run `iqtree3` that takes `turtle.fa` as input alignment and 
+> estimates the phylogeny under GTR+FO+I+R3, but now as mixture model with two separate classes?
+> This command should also perform 1000 ultrafast bootstrap replicates and automatically determine the best number of cores.
+
+<button type="button" class="btn btn-primary" id="buttonX" onclick="myFunction('buttonX','commandX')">
+Show me the command line</button>
+<div id="commandX" style="display: none; border:1px solid gray;">
+
+<pre><code>iqtree3 -s turtle.fa -m MIX"{GTR+FO,GTR+FO}"+I+R3 -B 1000 -T AUTO --prefix turtle2</code></pre>
+
+Options explained:
+
+<ul>
+<li>`-m MIX"{GTR+FO,GTR+FO}"+I+R3` to specify a mixture model with two separate GTR models ([Ren et al., 2025]) with optimized nucleotide frequencies as well as invariant sites and 3 freerate categories. The quotes aroung the curly braces are important, otherwise bash will try to do variable expansion. </li>
+<li>`--prefix turtle2` to keep file names informative and tidy. </li>
+</ul>
+
+> Now use the same command structure to try a mixture model with 4 classes, and another one with 6 classes! These will take some time to run, more as the number of classes increases. In the meantime, check out  [Ren et al., 2025], which performed a similar analysis of mixture models with different numbers of model classes - on a larger turtles dataset.
+
+</div>
+
+
+> **QUESTIONS:**
+> 
+> * Look at the report files `turtlebest.iqtree`, `turtle2.iqtree`, `turtle4.iqtree`, and `turtle6.iqtree`. What are the  BIC scores of the various mixture models? Which is best?
+> 
+> * Look at the tree in `turtle2.iqtree` or visualize `turtle2.treefile` 
+>   in FigTree. What relationship among [three trees](#1-input-data) does this tree support? What about for the 4- and 6-class models?
+> 
+> * What is the ultrafast bootstrap support (%) for the relevant clade under each model?
+> 
+> * Which of these trees agree with the published tree ([Chiari et al., 2012])? Do the relationships or ultrafast bootstrap values change with model complexity?
+> * [Ren et al., 2025] performed a similar analysis of the effect of number of model classes on the relationships between turtle, bird, and crocodile. What relationship among [three trees](#1-input-data) do these authors find supported by a 1-class model? What about a 6-class model? Do our results agree?
+{: .tip}
+
+
 > **FINAL QUESTIONS:**
 > 
 > * Given all analyses you have done in this tutorial, which relationship between 
 >   Turtle, Crocodile and Bird is true in your opinion?
+
+
 
 [Adachi and Hasegawa, 1996]: http://www.is.titech.ac.jp/~shimo/class/doc/csm96.pdf
 [Anisimova et al., 2011]: https://doi.org/10.1093/sysbio/syr041
@@ -573,6 +581,7 @@ Similarly, you can compute gCF and sCF for the tree under unpartitioned model:
 [Minh et al., 2020]: https://doi.org/10.1093/molbev/msaa106
 [Nei et al., 2001]: https://doi.org/10.1073/pnas.051611498
 [Nguyen et al., 2015]: https://doi.org/10.1093/molbev/msu300
+[Ren et al., 2025]: https://doi.org/10.1093/molbev/msae264
 [Shimodaira and Hasegawa, 1999]: https://doi.org/10.1093/oxfordjournals.molbev.a026201
 [Shimodaira, 2002]: https://doi.org/10.1080/10635150290069913
 [Strimmer and Rambaut, 2002]: https://doi.org/10.1098/rspb.2001.1862
