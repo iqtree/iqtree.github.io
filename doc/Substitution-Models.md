@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Substitution Models"
-author: Hector Banos, Cuong Cao Dang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Nhan Ly-Trong
-date:    2024-05-14
+author: Hector Banos, Cuong Cao Dang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Nhan Ly-Trong, Hiroaki Sato
+date:    2024-05-26
 docid: 10
 icon: book
 doctype: manual
@@ -360,15 +360,23 @@ Binary and morphological models
 
 The binary alignments should contain state `0` and `1`, whereas for morphological data, the valid states are `0` to `9` and `A` to `Z`.
 
-| Model   | Explanation |
-|---------|------------------------------------------------------------------------|
-| JC2     | Jukes-Cantor type model for binary data.|
-| GTR2    | General time reversible model for binary data.|
-| MK      | Jukes-Cantor type model for morphological data.|
-| ORDERED | Allowing exchange of neighboring states only.|
+| Model      | Explanation |
+|------------|------------------------------------------------------------------------|
+| JC2        | Jukes-Cantor type model for binary data.|
+| GTR2       | General time reversible model for binary data.|
+| MK         | Jukes-Cantor type model for morphological data with equal rates.|
+| GTRX (GTR) | General time reversible model for morphological (or rather, multistate; **see the warning below**) data with unequal rates.|
+| ORDERED    | Allowing exchange of neighboring states only.|
 
-Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies.
+Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies. Users can change how state frequencies are modeled in morphological models by appending `+FQ`, `+F`, `+F{...}`, or `+FO`.
 
+> **WARNING**: Models with unequal rates and/or frequencies (e.g., `GTR2+FO`, `MK+FO`, `GTRX+FQ`, `GTRX+FO`) should **never** be applied to general morphological characters (transformational morphological characters; for the term, see [Sereno, 2007]) as their state labels are fundamentally arbitrary. These models are for data with non-arbitrary state labels (e.g., recoded amino acids [for practical application, see [Najle et al., 2023]; [xgrau/recoded-mixture-models]] and certain types of genomic information).
+
+> **WARNING**: If you use `GTRX` for your multistate data, because of its sometimes very great number of free parameters, please make sure your data are sufficiently large and always test for model fit.
+
+
+> **TIP**: For binary morphological characters where `0`s represent ancestral conditions and `1`s represent derived conditions, mainly neomorphic (`absent`/`present`) morphological characters (for the term, see [Sereno, 2007]), applying the `GTR2` model, with unequal state frequencies, would make sense (see e.g. [Pyron, 2017]; [Sun et al., 2018]; https://ms609.github.io/hyoliths/bayesian.html). This analytical condition is called the MkA model ([Pyron, 2017]).
+{: .tip}
 
 >**TIP**: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model (`+ASC`)](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
 {: .tip}
@@ -462,5 +470,9 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
 [Yang et al., 1998]: http://mbe.oxfordjournals.org/content/15/12/1600.abstract
 [Zharkikh, 1994]: https://doi.org/10.1007/BF00160155
-
+[Sereno, 2007]: https://doi.org/10.1111/j.1096-0031.2007.00161.x
+[Pyron, 2017]: https://doi.org/10.1093/sysbio/syw068
+[Sun et al., 2018]: https://doi.org/10.1098/rspb.2018.1780
+[xgrau/recoded-mixture-models]: https://github.com/xgrau/recoded-mixture-models
+[Najle et al., 2023]: https://doi.org/10.1016/j.cell.2023.08.027
 
