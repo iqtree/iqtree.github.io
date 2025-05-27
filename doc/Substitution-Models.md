@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Substitution Models"
-author: Hector Banos, Cuong Cao Dang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Nhan Ly-Trong
-date:    2024-05-14
+author: Hector Banos, Cuong Cao Dang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Nhan Ly-Trong, Hiroaki Sato
+date:    2024-05-27
 docid: 10
 icon: book
 doctype: manual
@@ -358,7 +358,7 @@ Binary and morphological models
 -------------------------------
 <div class="hline"></div>
 
-The binary alignments should contain state `0` and `1`, whereas for morphological data, the valid states are `0` to `9` and `A` to `Z`.
+The binary alignments should contain state `0` and `1`, whereas for morphological data, the valid states are `0` to `9` and `A` to `V`.
 
 | Model   | Explanation |
 |---------|------------------------------------------------------------------------|
