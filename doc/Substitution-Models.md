@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Substitution Models"
 author: Hector Banos, Cuong Cao Dang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Nhan Ly-Trong, Hiroaki Sato
-date:    2024-05-27
+date:    2024-05-28
 docid: 10
 icon: book
 doctype: manual
@@ -378,7 +378,7 @@ Except for `GTR2` that has unequal state frequencies, all other models have equa
 > **TIP**: Recent studies have indicated that applying a single morphological model to morphological data with heterogeneity of state space among characters may not be appropriate ([Khakurel et al., 2024]; [Mulvey et al., 2025]; [Huang, 2025 preprint]), and users may need to partition data by the number of states in each character before analyzing them in IQ-TREE. For information on how to analyze partitioned morphological data in IQ-TREE and some caveats about it, please refer to [davidcerny/GEOS26100-Fall2022], https://davidcerny.github.io/post/teaching_revbayes/, [Černý & Simonoff (2023)], and [ej91016/MorphoParse].
 {: .tip}
 
-> **TIP**: For binary morphological characters where `0`s represent ancestral conditions and `1`s represent derived conditions, mainly neomorphic (`absent`/`present`) morphological characters (for the term, see [Sereno, 2007]), applying the `GTR2` model, with unequal state frequencies, would make sense (see e.g. [Pyron, 2017]; [Sun et al., 2018]; https://ms609.github.io/hyoliths/bayesian.html). This analytical condition is called the MkA model ([Pyron, 2017]).
+> **TIP**: For binary morphological characters where `0`s represent ancestral conditions and `1`s represent derived conditions, mainly neomorphic (`absent`/`present`) morphological characters (for the term, see [Sereno, 2007]), allowing asymmetrical frequencies in models would make sense (see e.g. [Pyron, 2017]; [Sun et al., 2018]; https://ms609.github.io/hyoliths/bayesian.html). This can be achieved in IQ-TREE, for example, by using the `GTR2` model.
 {: .tip}
 
 >**TIP**: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model (`+ASC`)](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
