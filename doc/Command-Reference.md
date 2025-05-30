@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Command Reference"
 author: Hector Banos, Diep Thi Hoang, Dominik Schrempf, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Thomas Wong, Nhan Ly-Trong, Hiroaki Sato
-date:    2025-05-26
+date:    2025-05-30
 docid: 19
 icon: book
 doctype: manual
@@ -295,7 +295,7 @@ The following `MODEL`s are available:
 | Protein    | Mixture models: C10, ..., C60 (CAT model) ([Lartillot and Philippe, 2004]), EX2, EX3, EHO, UL2, UL3, EX_EHO, LG4M, LG4X, CF4. See [Protein models](Substitution-Models#protein-models) for more details. |
 | Codon      | MG, MGK, MG1KTS, MG1KTV, MG2K, GY, GY1KTS, GY1KTV, GY2K, ECMK07/KOSI07, ECMrest, ECMS05/SCHN05 and combined empirical-mechanistic models. See [Codon models](Substitution-Models#codon-models) for more details. |
 | Binary     | JC2, GTR2. See [Binary and morphological models](Substitution-Models#binary-and-morphological-models) for more details. |
-| Morphology | MK, (GTRX), ORDERED. WARNING: GTRX (which can also be invoked as GTR) can only be applied to data with non-arbitrary state labels (e.g., recoded amino acids [for practical application, see [Najle et al., 2023]; [xgrau/recoded-mixture-models]] and certain types of genomic information) and should **never** be used for general morphological characters (transformational morphological characters; for the term, see [Sereno, 2007]). See [Binary and morphological models](Substitution-Models#binary-and-morphological-models) for more details. |
+| Morphology | MK, (GTRX), ORDERED. WARNING: GTRX (which can also be invoked as GTR) can only be applied to data with non-arbitrary state labels (e.g., recoded amino acids [for practical application, see [Najle et al., 2023]; [xgrau/recoded-mixture-models]] and certain types of genomic information) and should not be used for general morphological characters (transformational morphological characters; for the term, see [Sereno, 2007]). See [Binary and morphological models](Substitution-Models#binary-and-morphological-models) for more details. |
 
 The following `FreqType`s are supported:
 

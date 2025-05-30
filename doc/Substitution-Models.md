@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Substitution Models"
 author: Hector Banos, Cuong Cao Dang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Nhan Ly-Trong, Hiroaki Sato
-date:    2024-05-28
+date:    2024-05-30
 docid: 10
 icon: book
 doctype: manual
@@ -370,7 +370,7 @@ The binary alignments should contain state `0` and `1`, whereas for morphologica
 
 Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies. Users can change how state frequencies are modeled in morphological models by appending `+FQ`, `+F`, `+F{...}`, or `+FO`.
 
-> **WARNING**: Models with unequal rates and/or frequencies (e.g., `GTR2+FO`, `MK+FO`, `GTRX+FQ`, `GTRX+FO`) should **never** be applied to general morphological characters (transformational morphological characters; for the term, see [Sereno, 2007]) as their state labels are fundamentally arbitrary. These models are for data with non-arbitrary state labels (e.g., recoded amino acids [for practical application, see [Najle et al., 2023]; [xgrau/recoded-mixture-models]] and certain types of genomic information). For morphological data, it is the common practice to apply the `MK+FQ+ASC` model (or for ordered [additive] characters `ORDERED+FQ+ASC`) (for `+ASC`, see below) with or without rate heterogeneity across characters parameters.
+> **WARNING**: Models with unequal rates and/or frequencies (e.g., `GTR2+FO`, `MK+FO`, `GTRX+FQ`, `GTRX+FO`) should not be applied to general morphological characters (transformational morphological characters; for the term, see [Sereno, 2007]) as their state labels are fundamentally arbitrary. These models are for data with non-arbitrary state labels (e.g., recoded amino acids [for practical application, see [Najle et al., 2023]; [xgrau/recoded-mixture-models]] and certain types of genomic information). For morphological data, it is the common practice to apply the `MK+FQ+ASC` model (or for ordered [additive] characters `ORDERED+FQ+ASC`) (for `+ASC`, see below) with or without rate heterogeneity across characters parameters.
 
 > **WARNING**: If you use `GTRX` for your multistate data, because of its sometimes very great number of free parameters, please make sure your data are sufficiently large and always test for model fit.
 
