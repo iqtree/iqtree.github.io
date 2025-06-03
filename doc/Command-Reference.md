@@ -78,7 +78,7 @@ General options are mainly intended for specifying input and output files:
 | `-t`   | Specify a file containing starting tree for tree search. The special option `-t BIONJ` starts tree search from BIONJ tree and `-t RANDOM` starts tree search from completely random tree. *DEFAULT: 100 parsimony trees + BIONJ tree* |
 | `-te`  | Like `-t` but fixing user tree. That means, no tree search is performed and IQ-TREE computes the log-likelihood of the fixed user tree. |
 | `-o`   | Specify an outgroup taxon name to root the tree. The output tree in `.treefile` will be rooted accordingly. *DEFAULT: first taxon in alignment* |
-| `-pre` | Specify a prefix for all output files. *DEFAULT: either alignment file name (`-s`) or partition file name (`-q`, `-spp` or `-sp`)* |
+| `-pre` | Specify a prefix for all output files. *DEFAULT: either alignment file name (`-s`) or partition file name (`-q`, `-spp`, `-p`, `-sp` or `-Q`)* |
 | `-nt` | Specify the number of CPU cores for the multicore version. A special option `-nt AUTO` will tell IQ-TREE to automatically determine the best number of cores given the current data and computer. |
 | `-ntmax` | Specify the maximal number of CPU cores `-nt AUTO` is allowed to allocate *DEFAULT: #CPU cores on the current machine* |
 | `-seed` | Specify a random number seed to reproduce a previous run. This is normally used for debugging purposes. *DEFAULT: based on current machine clock* |
@@ -377,11 +377,11 @@ Partition model options
 
 Partition models are used for phylogenomic data with multiple genes. You first have to prepare [a partition file in NEXUS or RAxML-style format](Complex-Models#partition-file-format). Then use the following options to input the partition file:
 
-| Option | Usage and meaning |
-|--------|------------------------------------------------------------------------------|
-| `-q`   | Specify partition file for edge-equal [partition model](Complex-Models#partition-models). That means, all partitions share the same set of branch lengths (like `-q` option of RAxML). |
-| `-spp` | Like `-q` but allowing partitions to have different evolutionary speeds ([edge-proportional partition model](Complex-Models#partition-models)). |
-| `-sp`  | Specify partition file for [edge-unlinked partition model](Complex-Models#partition-models). That means, each partition has its own set of branch lengths (like `-M` option of RAxML). This is the most parameter-rich partition model to accomodate *heterotachy*. |
+| Option         | Usage and meaning |
+|----------------|------------------------------------------------------------------------------|
+| `-q`           | Specify partition file for edge-equal [partition model](Complex-Models#partition-models). That means, all partitions share the same set of branch lengths (like `-q` option of RAxML). |
+| `-spp` or `-p` | Like `-q` but allowing partitions to have different evolutionary speeds ([edge-proportional partition model](Complex-Models#partition-models)). |
+| `-sp`  or `-Q` | Specify partition file for [edge-unlinked partition model](Complex-Models#partition-models). That means, each partition has its own set of branch lengths (like `-M` option of RAxML). This is the most parameter-rich partition model to accomodate *heterotachy*. |
 
 Site-specific frequency model options
 -------------------------------------
