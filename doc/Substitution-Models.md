@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Substitution Models"
 author: Hector Banos, Cuong Cao Dang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Nhan Ly-Trong, Hiroaki Sato
-date:    2025-06-05
+date:    2025-06-10
 docid: 10
 icon: book
 doctype: manual
@@ -364,8 +364,8 @@ The binary alignments should contain state `0` and `1`, whereas for morphologica
 |------------|------------------------------------------------------------------------|
 | JC2        | Jukes-Cantor type model for binary data.|
 | GTR2       | General time reversible model for binary data.|
-| MK         | Jukes-Cantor type model for morphological data with equal rates.|
-| GTRX (GTR) | General time reversible model for morphological (or rather, multistate; **see the warning below**) data with unequal rates.|
+| MK         | Jukes-Cantor type model with equal rates for morphological data.|
+| GTRX (GTR) | General time reversible model with unequal rates for morphological (or rather, multistate; **see the warning below**) data.|
 | ORDERED    | Allowing exchange of neighboring states only.|
 
 Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies. Users can change how state frequencies are modeled in morphological models by appending `+FQ`, `+F`, `+F{...}`, or `+FO`.
