@@ -2,7 +2,7 @@
 layout: userdoc
 title: "Substitution Models"
 author: Hector Banos, Cuong Cao Dang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Nhan Ly-Trong, Hiroaki Sato
-date:    2024-05-30
+date:    2025-06-10
 docid: 10
 icon: book
 doctype: manual
@@ -364,21 +364,21 @@ The binary alignments should contain state `0` and `1`, whereas for morphologica
 |------------|------------------------------------------------------------------------|
 | JC2        | Jukes-Cantor type model for binary data.|
 | GTR2       | General time reversible model for binary data.|
-| MK         | Jukes-Cantor type model for morphological data with equal rates.|
-| GTRX (GTR) | General time reversible model for morphological (or rather, multistate; **see the warning below**) data with unequal rates.|
+| MK         | Jukes-Cantor type model with equal rates for morphological data.|
+| GTRX (GTR) | General time reversible model with unequal rates for morphological (or rather, multistate; **see the warning below**) data.|
 | ORDERED    | Allowing exchange of neighboring states only.|
 
 Except for `GTR2` that has unequal state frequencies, all other models have equal state frequencies. Users can change how state frequencies are modeled in morphological models by appending `+FQ`, `+F`, `+F{...}`, or `+FO`.
 
-> **WARNING**: Models with unequal rates and/or frequencies (e.g., `GTR2+FO`, `MK+FO`, `GTRX+FQ`, `GTRX+FO`) should not be applied to general morphological characters (transformational morphological characters; for the term, see [Sereno, 2007]) as their state labels are fundamentally arbitrary. These models are for data with non-arbitrary state labels (e.g., recoded amino acids [for practical application, see [Najle et al., 2023]; [xgrau/recoded-mixture-models]] and certain types of genomic information). For morphological data, it is the common practice to apply the `MK+FQ+ASC` model (or for ordered [additive] characters `ORDERED+FQ+ASC`) (for `+ASC`, see below) with or without rate heterogeneity across characters parameters.
+> **WARNING**: Models with unequal rates and/or frequencies (e.g., `GTR2+FO`, `MK+FO`, `GTRX+FQ`, `GTRX+FO`) should not be applied to general morphological characters (most transformational morphological characters; for the term, see [Sereno, 2007]) as their state labels are fundamentally arbitrary. These models are for data with non-arbitrary state labels (e.g., recoded amino acids [for practical application, see [Najle et al., 2023]; [xgrau/recoded-mixture-models]] and certain types of genomic information). For morphological data, it is the common practice to apply the `MK+FQ+ASC` model (or for ordered [additive] characters `ORDERED+FQ+ASC`) (for `+ASC`, see below) with or without rate heterogeneity across characters parameters.
 
 > **WARNING**: If you use `GTRX` for your multistate data, because of its sometimes very great number of free parameters, please make sure your data are sufficiently large and always test for model fit.
 
 
-> **TIP**: Recent studies have indicated that applying a single morphological model to morphological data with heterogeneity of state space among characters may not be appropriate ([Khakurel et al., 2024]; [Mulvey et al., 2025]; [Huang, 2025 preprint]), and users may need to partition data by the number of states in each character before analyzing them in IQ-TREE. For information on how to analyze partitioned morphological data in IQ-TREE and some caveats about it, please refer to [davidcerny/GEOS26100-Fall2022], https://davidcerny.github.io/post/teaching_revbayes/, [Černý & Simonoff (2023)], and [ej91016/MorphoParse].
+> **TIP**: Recent studies have indicated that applying a single morphological model to morphological data with heterogeneity of state space among characters may not be appropriate ([Khakurel et al., 2024]; [Mulvey et al., 2025]; [Huang, 2025 preprint]), and users may need to partition data by the number of states in each character before analyzing them in IQ-TREE. For information on how to analyze partitioned morphological data in IQ-TREE and some caveats about it, please refer to [davidcerny/GEOS26100-Fall2022], <https://davidcerny.github.io/post/teaching_revbayes/>, [Černý & Simonoff (2023)], and [ej91016/MorphoParse].
 {: .tip}
 
-> **TIP**: For binary morphological characters where `0`s represent ancestral conditions and `1`s represent derived conditions, mainly neomorphic (`absent`/`present`) morphological characters (for the term, see [Sereno, 2007]), allowing asymmetrical frequencies in models would make sense (see e.g. [Pyron, 2017]; [Sun et al., 2018]; https://ms609.github.io/hyoliths/bayesian.html). This can be achieved in IQ-TREE, for example, by using the `GTR2` model.
+> **TIP**: For binary morphological characters where `0`s represent ancestral conditions and `1`s represent derived conditions, mainly neomorphic (`absent`/`present`) morphological characters (for the term, see [Sereno, 2007]), allowing asymmetrical frequencies in models would make sense (see e.g. [Pyron, 2017]; [Sun et al., 2018]; <https://ms609.github.io/hyoliths/bayesian.html>). This can be achieved in IQ-TREE, for example, by using the `GTR2` model.
 {: .tip}
 
 >**TIP**: If morphological alignments do not contain constant sites (typically the case), then [an ascertainment bias correction model (`+ASC`)](#ascertainment-bias-correction) should be applied to correct the branch lengths for the absence of constant sites.
