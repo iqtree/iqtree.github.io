@@ -11,7 +11,7 @@ Throughout the year, members of IQ-TREE development team teach workshops on mole
 
 | Date |  Course Name and Materials | Location | Instructor |
 |------|---------------|----------------------------|-------------|
-| May 22 - Jun 1, 2025 | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), [IQ-TREE 3 tutorial](molevol_tutorial2025) | Marine Biological Laboratory, Woods Hole, USA | Hanon Solomon McShea |
+| Sep 18, 2025 | [Introduction to Phylogenetics](https://www.eventbrite.com/e/mig-workshop-intro-to-phylogenetics-tickets-1246832522639) | Melbourne Integrative Genomics, Australia | Rob Lanfear |
 
 ### Past Workshops
 
@@ -19,6 +19,7 @@ IQ-TREE was taught as part of the following workshops:
 
 | Date |  Course Title | Location | Instructor |
 |------|---------------|----------------------------|-------------|
+| May 22 - Jun 1, 2025 | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), [IQ-TREE 3 tutorial](molevol_tutorial2025) | Marine Biological Laboratory, Woods Hole, USA | Hanon Solomon McShea |
 | Aug 4-9, 2024 | [28th Bioinformatics Workshop on Virus Evolution and Molecular Epidemiology (VEME)](https://veme.climade.health/) | Brasilia, Brazil | Heiko Schmidt |
 | Jul 15-19, 2024 | [Croucher Summer Course on Virus Evolution and Epidemiology](https://projects.croucher.org.hk/summer-courses/virus-evolution-and-epidemiology) | Hongkong | Heiko Schmidt |
 | May 24 - Jun 3, 2024 | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), IQ-TREE 2 tutorial | Marine Biological Laboratory, Woods Hole, USA | Blake Fauskee |
