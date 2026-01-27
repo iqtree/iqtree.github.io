@@ -375,7 +375,10 @@ Then, simulate an alignment by
     
 Here, AliSim uses the [Juke-Cantor model](http://doi.org/10.1016/B978-1-4832-3211-9.50009-7) to simulate an alignment along the input tree. However, the `HKY` with random parameters is used to simulate the sequence of taxon C. Similarly, the `GTR` model with the specified parameters is used to generate the sequence of taxon E.
 
-**NOTE:** A branch-specific model is only applied to a specific branch, meaning that it will not be inherited by descendant branches. To apply a new model to an entire subtree, one needs to specify that branch-specific model at all descendant branches.
+**NOTE:** 
+
+- A branch-specific model is only applied to a specific branch, meaning that it will not be inherited by descendant branches. To apply a new model to an entire subtree, one needs to specify that branch-specific model at all descendant branches. 
+- If rate heterogeneity models are specified for multiple branches, they operate independently. For example, specifying `+G{0.5}` on two branches results in separate, independent rate-to-site assignments for those branches.
   
 To mimic heterotachy (rate heterogeneity across branches), users can supply a set of branch-lengths containing `n` lengths corresponding to the `n` categories of the model via `lengths=<length_1>,...,<length_n>`, for example:
 
