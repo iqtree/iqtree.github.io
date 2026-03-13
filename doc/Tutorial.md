@@ -148,7 +148,14 @@ For this example data the resulting maximum-likelihood tree may look like this (
                                     +-------------Opossum
 
 
-This makes sense as the mammals (`Human` to `Opossum`) form a clade, whereas the reptiles (`Turtle` to `Crocodile`) and `Bird` form a separate sister clade. Here the tree is drawn at the *outgroup* Lungfish which is more accient than other species in this example. However, please note that IQ-TREE always produces an **unrooted tree** as it knows nothing about this biological background; IQ-TREE simply draws the tree this way as `LngfishAu` is the first sequence occuring in the alignment. 
+This makes sense as the mammals (`Human` to `Opossum`) form a clade, whereas 
+the reptiles (`Turtle` to `Crocodile`) and `Bird` form a separate sister clade. 
+Here the tree is drawn at the *outgroup* Lungfish, which is known to be more 
+distantly related to other 
+species in this example. However, please note that IQ-TREE always produces an 
+**unrooted tree** as it knows nothing about this biological background; 
+IQ-TREE simply draws the tree this way as `LngfishAu` is the first sequence 
+occuring in the alignment. 
 
 During the example run above, IQ-TREE periodically wrote to disk a checkpoint file `example.phy.ckp.gz` (gzip-compressed to save space). This checkpoint file is used to resume an interrupted run, which is handy if you have a very large data sets or time limit on a cluster system. If the run did not finish, invoking IQ-TREE again with the very same command line will recover the analysis from the last stopped point, thus saving all computation time done before. 
 
