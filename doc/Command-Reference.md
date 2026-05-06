@@ -448,7 +448,7 @@ For pathogen data such as SARS-CoV-2 virus alignments, version 2.3.4.cmaple (and
 | `--sprta`           | Compute SPRTA ([De Maio et al., 2024]) branch supports. |
 | `--sprta-zero-branch`| Compute SPRTA supports for zero-length branches.|
 | `--sprta-other-places`   | Output alternative SPRs and their SPRTA supports.|
-| `-nt <num_thread>`   | Set the number of CPU cores for parallelization. One can use -nt AUTO to use all CPU cores available on the current machine. DEFAULT: 1|
+| `-T <num_thread>`   | Set the number of CPU cores for parallelization. One can use -T AUTO to use all CPU cores available on the current machine. DEFAULT: 1|
 | `--disable-local-ref`   | Disable the use of multiple local references (introduced in CMAPLEv2.0.0) and revert to use a single reference genome at the root. DEFAULT: FALSE|
 | `--estimate-MAT`   | Infer mutations along each branch and output a mutation-annotated tree (MAT) in NEXUS format, with posterior probabilities for inferred mutations.|
 
@@ -460,7 +460,7 @@ For pathogen data such as SARS-CoV-2 virus alignments, version 2.3.4.cmaple (and
 * Infer a maximum-likelihood tree for an alignment using 8 threads, automatically switching to CMAPLE algorithm 
   if sequence divergence is low:
 
-        iqtree3 -s data.phy --pathogen -nt 8 --prefix pathogen
+        iqtree3 -s data.phy --pathogen -T 8 --prefix pathogen
         
 It will print two output files:
 
@@ -475,13 +475,13 @@ and remove `--pathogen` option to invoke the default IQ-TREE machinery.
 * Infer a tree like above and additionally assign branch supports using SH-aLRT test 
   with 1000 replicates using 8 threads:
 
-        iqtree3 -s data.phy --pathogen --alrt 1000 -nt 8 --prefix pathogen_sh_alrt
+        iqtree3 -s data.phy --pathogen --alrt 1000 -T 8 --prefix pathogen_sh_alrt
 
 The output file `pathogen_sh_alrt.treefile` will contain SH-aLRT branch supports for all internal branches.
 
 * Infer a tree like above and additionally assign SPRTA branch supports using 8 threads:
 
-        iqtree3 -s data.phy --pathogen-force --sprta -nt 8 --prefix pathogen_sprta
+        iqtree3 -s data.phy --pathogen-force --sprta -T 8 --prefix pathogen_sprta
 
 The output file `pathogen_sprta.nex` will contain SPRTA branch supports for all (internal and external) branches.
 
