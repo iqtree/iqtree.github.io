@@ -284,7 +284,7 @@ To apply a codon model one should use the option `-st CODON` to tell IQ-TREE tha
 
 | Code    | Genetic code meaning |
 |---------|------------------------------------------------------------------------|
-| CODON1  | The Standard Code (same as `-st CODON`)|
+| CODON1  | The Standard Code (same as `-st CODON`) |
 | CODON2  | The Vertebrate Mitochondrial Code |
 | CODON3  | The Yeast Mitochondrial Code |
 | CODON4  | The Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code |
@@ -309,24 +309,35 @@ To apply a codon model one should use the option `-st CODON` to tell IQ-TREE tha
 
 IQ-TREE supports several codon models:
 
-| Model            | Explanation |
-|------------------|------------------------------------------------------------------------|
-| MG               | Nonsynonymous/synonymous (dn/ds) rate ratio ([Muse and Gaut, 1994]).
-| MGK              | Like `MG` with additional transition/transversion (ts/tv) rate ratio.
-| MG1KTS or MGKAP2 | Like `MG` with a transition rate ([Kosiol et al., 2007]).
-| MG1KTV or MGKAP3 | Like `MG` with a transversion rate ([Kosiol et al., 2007]).
-| MG2K or MGKAP4   | Like `MG` with a transition rate and a transversion rate ([Kosiol et al., 2007]).
-| GY               | Nonsynonymous/synonymous and transition/transversion rate ratios ([Goldman and Yang, 1994]).
-| GY1KTS or GYKAP2 | Like `GY` with a transition rate ([Kosiol et al., 2007]).
-| GY1KTV or GYKAP3 | Like `GY` with a transversion rate ([Kosiol et al., 2007]).
-| GY2K or GYKAP4   | Like `GY` with a transition rate and a transversion rate ([Kosiol et al., 2007]).
-| ECMK07 or KOSI07 | Empirical codon model ([Kosiol et al., 2007]).
-| ECMrest          | Restricted version of `ECMK07` that allows only one nucleotide exchange.
-| ECMS05 or SCHN05 | Empirical codon model ([Schneider et al., 2005]).
+| Model                   | Explanation |
+|-------------------------|------------------------------------------------------------------------|
+| MG                      | Nonsynonymous/synonymous (dn/ds) rate ratio ([Muse and Gaut, 1994]). |
+| MGK                     | Like `MG` with a transition/transversion (ts/tv) rate ratio. |
+| MG1KTS or MGKAP2        | Like `MG` with a transition (ts) rate ([Kosiol et al., 2007]). |
+| MG1KTV or MGKAP3        | Like `MG` with a transversion (tv) rate ([Kosiol et al., 2007]). |
+| MG2K or MGKAP4          | Like `MG` with a transition (ts) rate and a transversion (tv) rate ([Kosiol et al., 2007]). |
+| GY0K or GYKAP1          | Nonsynonymous/synonymous (dn/ds) rate ratio. |
+| GY                      | Like `GY0K` with a transition/transversion (ts/tv) rate ratio ([Goldman and Yang, 1994]). |
+| GY1KTS or GYKAP2        | Like `GY0K` with a transition (ts) rate ([Kosiol et al., 2007]). |
+| GY1KTV or GYKAP3        | Like `GY0K` with a transversion (tv) rate ([Kosiol et al., 2007]). |
+| GY2K or GYKAP4          | Like `GY0K` with a transition (ts) rate and a transversion (tv) rate ([Kosiol et al., 2007]). |
+| ECM or ECMK07 or KOSI07 | Empirical codon model ([Kosiol et al., 2007]). |
+| ECMrest                 | Restricted version of `ECMK07` that allows only one nucleotide exchange. |
+| ECMS05 or SCHN05        | Empirical codon model ([Schneider et al., 2005]). |
 
-Users could specify the model parameters (e.g., Nonsynonymous/synonymous (dn/ds) rate ratio, and/or transition/transversion (ts/tv) rate ratio, and/or transition rate, and/or a transversion rate) by `<Model_Name>{<omega>,[<kappa>],[<kappa2>]}`. For example, `MG2K{1.0,0.3,0.5}` specifies the nonsynonymous/synonymous (dn/ds) rate ratio, the transition rate, and the transversion rate are 1.0, 0.3, 0.5, respectively. The number of input parameters depends on the definition of each model.
+The mechanistic models compute rates as follows:
 
-The last three models (`ECMK07`, `ECMrest` or `ECMS05`) are called *empirical* codon models, whereas the others are called *mechanistic* codon models.
+* For `MG` and `GY0K`, *omega* = dn/ds. *Rate* = 1.0 if synonymous else *omega*. This is the base rate *r* used below.
+* For `MGK` and `GY`, *kappa* = ts/tv. *Rate* = *r* &times; (1.0 if *number_of_transversions* > 0 else *kappa*).
+* For `MG1KTS`/`GY1KTS`, *kappa* = ts. *Rate* = *r* &times; (*kappa* ^ *number_of_transitions*).
+* For `MG1KTV`/`GY1KTV`, *kappa* = tv. *Rate* = *r* &times; (*kappa* ^ *number_of_transversions*).
+* For `MG2K`/`GY2K`, *kappa* = ts, *kappa2* = tv. *Rate* = *r* &times; (*kappa* ^ *number_of_transitions*) &times; (*kappa2* ^ *number_of_transversions*).
+
+`MG` and `GY0K` differ in how they handle codon frequencies. See the next section for more details.
+
+Users could specify the model parameters by `<Model_Name>{<omega>,[<kappa>],[<kappa2>]}`. For example, `MG2K{1.0,0.3,0.5}` specifies dn/ds = 1.0, ts = 0.3, tv = 0.5. The number of input parameters depends on the definition of each model.
+
+The last three models (`ECMK07`, `ECMrest`, and `ECMS05`) are called *empirical* codon models, whereas the others are called *mechanistic* codon models. The empirical models can only be used with the standard genetic code.
 
 Moreover, IQ-TREE supports combined empirical-mechanistic codon models using an underscore separator (`_`). For example:
 
@@ -344,8 +355,8 @@ Thus, there can be many such combinations.
 
 IQ-TREE supports the following codon frequencies:
 
-| FreqType | Explanation |
-|----------|------------------------------------------------------------------------|
+| FreqType | df | Explanation |
+|----------|----|------------------------------------------------------------------------|
 | +F       | Empirical codon frequencies counted from the data. In AliSim, if users neither specify base frequencies nor supply an input alignment, AliSim will generate base frequencies from empirical distributions.|
 | +FQ      | Equal codon frequencies.|
 | +F1X4    | Unequal nucleotide frequencies but equal nt frequencies over three codon positions. In AliSim, if users don't supply an input alignment, the base frequencies are randomly generated based on empirical distributions, or users could specify the frequencies via `+F1X4{<freq_0>,...,<freq_4>}`.|
