@@ -443,18 +443,24 @@ For pathogen data such as SARS-CoV-2 virus alignments, version 2.3.4.cmaple (and
 |----------|------------------------------------------------------------------------------|
 | `--pathogen` | Apply CMAPLE tree search algorithm if sequence divergence is low, otherwise, apply IQ-TREE algorithm. |
 | `--pathogen-force` | Apply CMAPLE tree search algorithm regardless of sequence divergence. |
+| `--tree-search <SEARCH_TYPE>` | Set the tree search type: `FAST` (placement only, no SPR moves), `NORMAL` (SPR moves at newly-added nodes only), or `EXHAUSTIVE` (SPR moves at all nodes). For more details, see the [CMAPLE User Manual](https://github.com/iqtree/cmaple/wiki/User-Manual#4-set-the-tree-search-type). *DEFAULT: NORMAL* |
 | `--alrt <num_rep>`   | Specify the number of replicates to compute SH-like approximate likelihood ratio test (SH-aLRT) ([Guindon et al., 2010]). |
 | `--sprta`           | Compute SPRTA ([De Maio et al., 2024]) branch supports. |
 | `--sprta-zero-branch`| Compute SPRTA supports for zero-length branches.|
 | `--sprta-other-places`   | Output alternative SPRs and their SPRTA supports.|
-| `-T <num_thread>`   | Specify the number of threads used for computing branch supports (SH-aLRT or SPRTA). If `-T AUTO` is specified, all available cores will be used.|
+| `-T <num_thread>`   | Set the number of CPU cores for parallelization. One can use -T AUTO to use all CPU cores available on the current machine. DEFAULT: 1|
+| `--disable-local-ref`   | Disable the use of multiple local references (introduced in CMAPLEv2.0.0) and revert to use a single reference genome at the root. DEFAULT: FALSE|
+| `--estimate-MAT`   | Infer mutations along each branch and output a mutation-annotated tree (MAT) in NEXUS format, with posterior probabilities for inferred mutations.|
+
+
+> **Note:** When CMAPLE is selected (by `--pathogen` or `--pathogen-force`), only the options described in this section (and `-s`, `-t`, `-m`, `-blfix`, `--prefix`, `-redo`, `-st`) are applicable. All other options for the native IQ-TREE algorithm will be ignored.
 
 ### Example usages:
 
-* Infer a maximum-likelihood tree for an alignment, automatically switching to CMAPLE algorithm 
+* Infer a maximum-likelihood tree for an alignment using 8 threads, automatically switching to CMAPLE algorithm 
   if sequence divergence is low:
 
-        iqtree3 -s data.phy --pathogen --prefix pathogen
+        iqtree3 -s data.phy --pathogen -T 8 --prefix pathogen
         
 It will print two output files:
 
@@ -467,17 +473,24 @@ add `-te pathogen.treefile` to the command line of a subsequent IQ-TREE run to f
 and remove `--pathogen` option to invoke the default IQ-TREE machinery.
 
 * Infer a tree like above and additionally assign branch supports using SH-aLRT test 
-  with 1000 replicates using 4 CPU cores:
+  with 1000 replicates using 8 threads:
 
-        iqtree3 -s data.phy --pathogen --alrt 1000 -T 4 --prefix pathogen_sh_alrt
+        iqtree3 -s data.phy --pathogen --alrt 1000 -T 8 --prefix pathogen_sh_alrt
 
 The output file `pathogen_sh_alrt.treefile` will contain SH-aLRT branch supports for all internal branches.
 
-* Infer a tree like above and additionally assign SPRTA branch supports:
+* Infer a tree like above and additionally assign SPRTA branch supports using 8 threads:
 
-        iqtree3 -s data.phy --pathogen-force --sprta --prefix pathogen_sprta
+        iqtree3 -s data.phy --pathogen-force --sprta -T 8 --prefix pathogen_sprta
 
 The output file `pathogen_sprta.nex` will contain SPRTA branch supports for all (internal and external) branches.
+
+* Perform sample placement onto an existing tree (without further tree search):
+
+        iqtree3 -s data.phy -t tree.nwk --pathogen-force --tree-search FAST
+        
+Here `tree.nwk` is an incomplete tree (i.e., it does not contain all taxa in `data.phy`). With `--search FAST`, CMAPLE places the missing taxa onto the tree without performing any subsequent SPR moves. 
+
 
 Ultrafast bootstrap parameters
 ------------------------------
