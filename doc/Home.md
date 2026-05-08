@@ -127,9 +127,11 @@ How to cite IQ-TREE?
 
 General citation for IQ-TREE 3:
 
-* Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger, Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn, Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
+* Thomas KF Wong, Nhan Ly-Trong, Huaiyan Ren, Piyumal Demotte, Hector Banos, Andrew J Roger, 
+  Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W Hahn, 
+  Mario dos Reis, Le Sy Vinh, Gavin Huttley, Robert Lanfear, Bui Quang Minh (2026)
   IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
-  *Submitted*. <https://ecoevorxiv.org/repository/view/8916/>
+  *Mol. Biol. Eviol.*. <https://doi.org/10.1093/molbev/msag117>
 
 When using MixtureFinder please cite:
 
