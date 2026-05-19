@@ -1,8 +1,8 @@
 ---
 layout: userdoc
 title: "Substitution Models"
-author: Hector Banos, Cuong Cao Dang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Nhan Ly-Trong, Hiroaki Sato
-date:    2025-06-10
+author: Hector Banos, Cuong Cao Dang, Heiko Schmidt, Jana Trifinopoulos, Minh Bui, Nhan Ly-Trong, Hiroaki Sato, Ryo Harada
+date:    2026-05-19
 docid: 10
 icon: book
 doctype: manual
@@ -170,6 +170,7 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | FLAVI    | viral | Flavivirus ([Le and Vinh, 2020]). | 
 | FLU      | viral | Influenza virus ([Dang et al., 2010]). |
 | GTR20    | general | General time reversible models with 190 rate parameters. *WARNING: Be careful when using this parameter-rich model as parameter estimates might not be stable, especially when not having enough phylogenetic information (e.g. not long enough alignments).* |
+| G.pfam   | nuclear | General GTRpmix exchangeability matrix estimated from Pfam version 31 database ([El-Gebali et al., 2018]). To be used with profile mixture models (for eg. G.pfam+C60)<!-- ([Harada et al., 2026])-->. |
 | HIVb     | viral | HIV between-patient matrix HIV-B<sub>m</sub> ([Nickle et al., 2007]). |
 | HIVw     | viral | HIV within-patient matrix HIV-W<sub>m</sub> ([Nickle et al., 2007]). |
 | JTT      | nuclear | General matrix ([Jones et al., 1992]). |
@@ -215,12 +216,16 @@ IQ-TREE also supports a series of protein mixture models:
 | LG4M       | Four-matrix model fused with [Gamma rate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
 | LG4X       | Four-matrix model fused with [FreeRate heterogeneity](#rate-heterogeneity-across-sites) ([Le et al., 2012]).
 | CF4        | Five-profile mixture model ([Wang et al., 2008]).
+| S10pfamC60, S28pfamC59, S28pfamC60 | General GTRspmix models estimated from Pfam version 31 database ([El-Gebali et al., 2018]). Profiles from the C60 set are grouped into 10 or 28 clusters using Site Posterior Probability Co-occurrence (SPPC), with each profile cluster linked to a unique exchangeability matrix. `S28pfamC59` and `S28pfamC60` are variants optimized by adjusting a low-weight profile<!-- ([Harada et al., 2026])-->.
+| S10pfamC10, S20pfamC20, S30pfamC30 | Computationally efficient general GTRspmix models estimated from the Pfam version 31 database ([El-Gebali et al., 2018]). Each profile in the C10, C20, or C30 sets is directly linked to its own unique exchangeability matrix, designed to minimize computational cost for massive datasets<!-- ([Harada et al., 2026])-->.
+
 
 One can even combine a protein matrix with a profile mixture model like:
 
 * `LG+C20`: Applying `LG` matrix instead of `Poisson` for all 20 classes of AA profiles and a Gamma rate heterogeneity.
 * `LG+C20+F`: Applying `LG` matrix for 20 classes plus the 21th class of empirical AA profile (counted from the current data) and Gamma rate heterogeneity.
 * `JTT+CF4+G`: Applying `JTT` matrix for all 5 classes of AA profiles and Gamma rate heteorogeneity.
+* `S28pfamC60+G`: Applying `S28pfamC60` mixture model with Gamma rate heterogeneity.
 
 Moreover, one can override the Gamma rate by FreeRate heterogeneity:
 
@@ -495,4 +500,4 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [ej91016/MorphoParse]: https://github.com/ej91016/MorphoParse
 [davidcerny/GEOS26100-Fall2022]: https://github.com/davidcerny/GEOS26100-Fall2022
 [Černý & Simonoff (2023)]: https://doi.org/10.1038/s41598-023-35784-3
-
+<!--[Harada et al., 2026]: https://doi.org/XXXXX-->
