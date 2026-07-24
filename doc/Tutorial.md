@@ -178,7 +178,7 @@ change the prefix with:
 This prevents output files being overwritten when you perform multiple analyses on the same alignment within the same folder.
 
 
-Choosing the right substitution model
+Choosing the best-fitting substitution model
 -------------------------------------
 <div class="hline"></div>
 

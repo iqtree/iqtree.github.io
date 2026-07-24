@@ -171,6 +171,17 @@ To estimate a non-reversible model from a folder of alignments:
 	grep -A 22 "can be used as input for IQ-TREE" train_plant.NONREV.iqtree | tail -n21 > NQ.plant
 
 
+Filtering substitution model training alignments
+-----------------------------------
+
+Multiple sequence alignments often contain errors that can inflate the rates of less mutationally accessible amino acid substitutions that require 2-3 nucleotide substitutions ([Wheeler et al., 2026]). To train cleaned QC substitution models, we recommend using the program Divvier to filter each alignment in the training set, using the partial filtering option ([Ali et al., 2019]). Divvier can be found at (https://github.com/simonwhelan/Divvier). 
+
+The filtered alignments can then be used to infer Q matrices as described above. Because the amino acid frequency parameters inferred for a QC matrix will reflect the frequencies of the filtered alignments rather than the originals, QC substitution models should always use emperical amino acid frequencies with the +F setting. Note that the +F option is not valid for nonreversible NQ matrices, which cannot be separated into symmetric exchangeability scores and amino acid frequencies. Therefore filtered alignments should not be used to train NQ models.
+
+If you use the new models trained on cleaned multiple sequence alignments (QC.pfam…), please cite:
+
+>  Andrew L. Wheeler, Chiragdeep Chatur, Peter W Goodman, Robert C Edgar, Gavin A Huttley, Joanna Masel (2026), Improved gene tree inference from removing alignment errors both from focal genes and when training substitution models. in press at Molecular Biology & Evolution. <https://doi.org/10.64898/2025.12.01.691663>
+
 Estimating linked exchangeabilities
 -----------------------------------
 
@@ -240,3 +251,5 @@ If you use the GTRspmix model, please cite the following paper:
 [Ran et al., 2018]: https://doi.org/10.1098/rspb.2018.1012
 [Banos et al., 2024]: https://doi.org/10.1093/molbev/msae174
 [Harada et al., 2026]: https://doi.org/10.64898/2026.06.18.729217
+[Wheeler et al., 2026]: https://doi.org/10.1093/molbev/msag182
+[Ali et al., 2019]: https://doi.org/10.1093/molbev/msz142

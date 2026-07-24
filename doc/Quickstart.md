@@ -122,9 +122,13 @@ A few typically analyses are listed in the following. Note that it is assumed th
 
         iqtree -s example.phy
 
-* Infer maximum-likelihood tree using `GTR+I+G` model:
+* Infer maximum-likelihood tree using `GTR+I+R` model:
 
-        iqtree -s example.phy -m GTR+I+G
+        iqtree -s example.phy -m GTR+I+R
+  
+* Infer maximum-likelihood tree for protein sequence using `QC.pfam+F+I+R` model:
+
+      iqtree -s aa_example.phy -m QC.pfam+F+I+R
 
 * Perform ModelFinder without subsequent tree inference:
         

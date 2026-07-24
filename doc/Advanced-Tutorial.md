@@ -523,19 +523,16 @@ This will print an output file `example.phy.mlrate` that looks like:
 	10      0.00001
 
 
-Trimming alignment sites by likelihood
+Trimming alignments
 --------------------------------------
 <div class="hline"></div>
 
-Phylogenetic inference can be highly sensitive to fast-evolving, saturated or
-erroneous sites in a sequence alignment. Many studies used Gblocks 
-([Castresana, 2000]) or trimAl ([Capella-Gutiérrez et al., 2009])
-to trim alignment sites prior to phylogenetic reconstruction.
-Here, we present an alternative approach called  **trimmed log-likelihood**, a 
-robust phylogenetics method, that automatically detects and trims such sites 
-during tree search directly.
+Aligned sites that do not share a common ancestry do not provide useful information for phylogenetic inference. Prequal is designed to remove non-homologous sequences prior to alignment ([Whelan et al., 2018]). 
 
-The trimed log-likelihood method works by dynamically excluding a user-defined proportion of sites
+Even when sequences as a whole are homologous, there can still be sites that are not homologous for all sequences in the alignment. Removing whole alignment columns can risk losing information about closely related species. Three programs that convert predicted misaligned characters to dashes without removing whole columns are Divvier ([Ali et al., 2019]), Taper ([Zhang et al., 2021]), and CLOAK ([Wheeler et al., 2026]). There is a tradeoff between precision and recall in alignmet filtering, with stricter filters removing more errors, but also removing more correctly aligned characters. These three programs performed best out of the tested alignment filtering methods on a precision recall curve, with Divvier being the strictest filter and CLOAK being the gentlest filter ([Wheeler et al., 2026]). 
+
+IQ-Tree contains a method for trimming sites directly during tree search called **trimmed log-likelihood**. 
+The trimmed log-likelihood method works by dynamically excluding a user-defined proportion of sites
 with the lowest log-likelihood values during the tree search. As the search
 progresses,  the likelihood of each site is recalculated at each step using
 current tree and model parameters.  This ensures that site removal is always
@@ -580,8 +577,6 @@ Where to go from here?
 
 See [Command Reference](Command-Reference) for a complete list of all options available in IQ-TREE.
 
-[Capella-Gutiérrez et al., 2009]: https://doi.org/10.1093/bioinformatics/btp348
-[Castresana, 2000]: https://doi.org/10.1093/oxfordjournals.molbev.a026334
 [Gadagkar et al., 2005]: https://doi.org/10.1002/jez.b.21026
 [Kishino et al., 1990]: https://doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: https://doi.org/10.1007/BF02100115
@@ -595,4 +590,7 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 [Strimmer and Rambaut, 2002]: https://doi.org/10.1098/rspb.2001.1862
 [Mayrose et al., 2004]: https://doi.org/10.1093/molbev/msh194
 [Yang, 1995]: http://www.genetics.org/content/139/2/993.abstract
-
+[Whelan et al., 2018]: https://doi.org/10.1093/bioinformatics/bty448
+[Ali et al., 2019]: https://doi.org/10.1093/molbev/msz142
+[Zhang et al., 2021]: https://doi.org/10.1111/2041-210X.13696
+[Wheeler et al., 2026]: https://doi.org/10.1093/molbev/msag182

@@ -197,9 +197,20 @@ IQ-TREE supports all common empirical amino-acid exchange rate matrices (alphabe
 | Q.pfam   | nuclear | General Q matrix ([Minh et al., 2021]) estimated from Pfam version 31 database ([El-Gebali et al., 2018]). | 
 | Q.plant  | nuclear | Q matrix ([Minh et al., 2021]) estimated for plants ([Ran et al., 2018]). | 
 | Q.yeast  | nuclear | Q matrix ([Minh et al., 2021]) estimated for yeasts ([Shen et al., 2018]). | 
+| QC.archaea  | nuclear | Q matrix ([Minh et al., 2021]) estimated on cleaned alignments ([Wheeler et al., 2026]) for archaeal from the HAMAP database ([Lima et al., 2009]). | 
+| QC.bacteria   | nuclear | Q matrix ([Minh et al., 2021]) estimated on cleaned alignments ([Wheeler et al., 2026]) for bacteria from the HAMAP database ([Lima et al., 2009]). | 
+| QC.bird | nuclear | Q matrix ([Minh et al., 2021]) estimated on cleaned alignments ([Wheeler et al., 2026]) for birds ([Jarvis et al., 2015]) . | 
+| QC.insect | nuclear | Q matrix ([Minh et al., 2021]) estimated on cleaned alignments ([Wheeler et al., 2026]) for insects ([Misof et al., 2014]) . | 
+| QC.mammal | nuclear | Q matrix ([Minh et al., 2021]) estimated on cleaned alignments ([Wheeler et al., 2026]) for mammals from OrthoMaM database version 12 ([Allio et al., 2024]) . | 
+| QC.pfam   | nuclear | Q matrix ([Minh et al., 2021]) estimated on cleaned alignments ([Wheeler et al., 2026]) from Pfam version 31 database ([El-Gebali et al., 2018]). | 
+| QC.plant | nuclear | Q matrix ([Minh et al., 2021]) estimated on cleaned alignments ([Wheeler et al., 2026]) for plants ([Ran et al., 2018]) . | 
+| QC.yeast | nuclear | Q matrix ([Minh et al., 2021]) estimated on cleaned alignments ([Wheeler et al., 2026]) for for yeasts ([Shen et al., 2018]) . | 
 | rtREV    | viral | Retrovirus ([Dimmic et al., 2002]). |
 | VT       | nuclear | General 'Variable Time' matrix ([Mueller and Vingron, 2000]). |
 | WAG      | nuclear | General matrix ([Whelan and Goldman, 2001]). |
+
+>**TIP**: Cleaned "QC" substitution models make mammalian single copy ortholog trees on average more similar to the mammalian species tree ([Wheeler, et al. 2026]). Nevertheless, alignment errors in the focal gene alignment will cause ModelFinder to prefer unfiltered Q to QC. If QC is desired, ModelFinder should not be used. QC models should always be used in conjunction with the +F option to use empirical amino acid frequencies. 
+{: .tip}
 
 ### Protein mixture models
 
@@ -425,10 +436,10 @@ IQ-TREE supports all common rate heterogeneity across sites models:
 | +G       | discrete Gamma model ([Yang, 1994]) with default 4 rate categories. The number of categories can be changed with e.g. `+G8`. |
 | +GC       | continuous Gamma model ([Yang, 1994]) (for AliSim only). |
 | +I+G     | invariable site plus discrete Gamma model ([Gu et al., 1995]). |
-| +R       | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes the `+G` model by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). The FreeRate model typically fits data better than the `+G` model and is recommended for analysis of large data sets. |
+| +R       | FreeRate model ([Yang, 1995]; [Soubrier et al., 2012]) that generalizes the `+G` model by relaxing the assumption of Gamma-distributed rates. The number of categories can be specified with e.g. `+R6` (default 4 categories if not specified). Gamma models produce artifacts, especially for large datasets ([Ferretti et al., 2026]). FreeRate models are therefore recommended. |
 | +I+R     | invariable site plus FreeRate model. |
 
->**TIP**: The new ModelFinder (`-m MFP` option) tests the FreeRate model, whereas the standard procedure (`-m TEST`) does not.
+>**TIP**: TIP: ModelFinder (-m MFP option) tests the FreeRate model, whereas the outdated (-m TEST) does not. To test only the FreeRate model, use (-mrate I,R,I+R).
 {: .tip}
 
 Users can fix the parameters of the model. For example, `+I{0.2}` will fix the proportion of invariable sites (pinvar) to 0.2; `+G{0.9}` will fix the Gamma shape parameter (alpha) to 0.9; `+I{0.2}+G{0.9}` will fix both pinvar and alpha. To fix the FreeRate model parameters, use the syntax `+Rk{w1,r1,...,wk,rk}` (replacing `k` with the number of categories). Here, `w1, ..., wk` are the weights and `r1, ..., rk` the rates for each category. 
@@ -501,3 +512,7 @@ Users can fix the parameters of the model. For example, `+I{0.2}` will fix the p
 [davidcerny/GEOS26100-Fall2022]: https://github.com/davidcerny/GEOS26100-Fall2022
 [Černý & Simonoff (2023)]: https://doi.org/10.1038/s41598-023-35784-3
 [Harada et al., 2026]: https://doi.org/10.64898/2026.06.18.729217
+[Wheeler et al., 2026]: https://doi.org/10.1093/molbev/msag182
+[Allio et al., 2024]: https://doi.org/10.1093/nar/gkad834
+[Lima et al., 2009]: https://doi.org/10.1093/nar/gkn661
+[Ferretti et al., 2026]: https://doi.org/10.1093/sysbio/syag037
