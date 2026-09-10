@@ -143,8 +143,7 @@ Choosing the right partitioning scheme
 --------------------------------------
 <div class="hline"></div>
 
-ModelFinder implements a greedy strategy ([Lanfear et al., 2012]) that starts with the full partition model and subsequentially
-merges two genes until the model fit does not increase any further:
+ModelFinder integrates the PartitionFinder algorithm ([Lanfear et al., 2012]) that starts with the full partition model and subsequently merges two partition subsets until the model fit does not increase any further: 
 
     iqtree -s example.phy -p example.nex -m MFP+MERGE
     # for version 1.x change -p to -spp
@@ -166,16 +165,14 @@ To resemble PartitionFinder and save time:
     iqtree -s example.phy -p example.nex -m TESTMERGEONLY
     # for version 1.x change -p to -spp
 
+Starting with version 3.1.4, PartitionFinder supports the marginal Akaike Information Criterion (mAIC; [Susko et al., 2026]) as an optional criterion for partition merging. To apply PartitionFinder-mAIC:
 
-To reduce the computational burden IQ-TREE implements the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]), which is invoked via `-rcluster` option:
+    iqtree -s example.phy -p example.nex -m MFP+MERGE -merit mAIC
 
-    iqtree -s example.phy -p example.nex -m MF+MERGE -rcluster 10
-    # for version 1.x change -p to -spp
+If you use PartitionFinder-mAIC in a publication, please cite:
+> __H. Ren, T.K.F. Wong, C. Jiang, E. Susko, R. Lanfear, B.Q. Minh__ (2026) PartitionFinder-mAIC: Phylogenetic Partitioning using Marginal Akaike Information Criterion _bioRxiv_. <https://doi.org/10.64898/2026.09.04.749328>
 
-
-to only examine the top 10% partition merging schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
-
-
+The PartitionFinder implementation includes several algorithms. The options for controlling the details of partitioning scheme selection are documented in the [Automatic model selection](https://iqtree.github.io/doc/Command-Reference#automatic-model-selection) section of the Command Reference.
 
 Ultrafast bootstrapping with partition model
 --------------------------------------------
@@ -586,6 +583,7 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 [Kishino et al., 1990]: https://doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: https://doi.org/10.1007/BF02100115
 [Lanfear et al., 2012]: https://doi.org/10.1093/molbev/mss020
+[Susko et al., 2026]: https://doi.org/10.1093/sysbio/syag013
 [Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Nei et al., 2001]: https://doi.org/10.1073/pnas.051611498

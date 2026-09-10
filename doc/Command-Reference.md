@@ -204,8 +204,7 @@ Automatic model selection
 -------------------------
 <div class="hline"></div>
 
-The default model (e.g., `HKY+F` for DNA, `LG` for protein data) may not fit well to the data. Therefore, IQ-TREE
-allows to automatically determine the best-fit model via a series of `-m TEST...` option:
+The default model (e.g., `HKY+F` for DNA, `LG` for protein data) may not fit well to the data. Therefore, IQ-TREE allows to automatically determine the best-fit model via a series of `-m TEST...` option:
 
 |Option| Usage and meaning |
 |----------------------|------------------------------------------------------------------------------|
@@ -231,33 +230,34 @@ IQ-TREE version 1.6 or later allows to additionally test [Lie Markov DNA models]
 
 When [a partition file is specified](#partition-model-options) then you can append `MERGE` keyword into `-m` option to find the best-fit partitioning scheme like PartitionFinder ([Lanfear et al., 2012]). More specifically, 
 
-|Option| Usage and meaning |
-|----------------------|------------------------------------------------------------------------------|
-| `-m TESTMERGEONLY`     | Select best-fit partitioning scheme by possibly merging partitions to reduce over-parameterization and increase model fit. It implements the greedy algorithm of PartitionFinder. |
-| `-m TESTMERGE`         | Like `-m TESTMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found.     |
-| `-m TESTNEWMERGEONLY` or `-m MF+MERGE` | Like `-m TESTMERGEONLY` but additionally includes FreeRate model. |
-| `-m TESTNEWMERGE` or `-m MFP+MERGE` | Like `-m MF+MERGE` but immediately followed by tree reconstruction using the best partitioning scheme found. |
-| `-rcluster` | Specify the percentage for the relaxed clustering algorithm ([Lanfear et al., 2014]) to speed up the computation instead of the default slow greedy algorithm. This is similar to `--rcluster-percent` option of PartitionFinder. For example, with `-rcluster 10` only the top 10% partition schemes are considered to save computations. |
-| `-rclusterf` | Similar to `-rcluster` but using the **fast** relaxed clustering algorithm ([Lanfear et al., 2017]) of PartitionFinder2. Introduced in version 1.6. |
-| `-rcluster-max` | Specify the absolute maximum number of partition pairs in the paritition merging phase. Default: the larger of 1000 and 10 times the number of partitions. This option is similar to `--rcluster-max` option of PartitionFinder2. |
+| Option                                 | Usage and meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-m TESTMERGEONLY`                     | Select best-fit partitioning scheme by possibly merging partitions to reduce over-parameterization and increase model fit. It implements the greedy algorithm of PartitionFinder.                                                                                                                                                                                                                                                                                                             |
+| `-m TESTMERGE`                         | Like `-m TESTMERGEONLY` but immediately followed by tree reconstruction using the best partitioning scheme found.                                                                                                                                                                                                                                                                                                                                                                             |
+| `-m TESTNEWMERGEONLY` or `-m MF+MERGE` | Like `-m TESTMERGEONLY` but additionally includes FreeRate model.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `-m TESTNEWMERGE` or `-m MFP+MERGE`    | Like `-m MF+MERGE` but immediately followed by tree reconstruction using the best partitioning scheme found.                                                                                                                                                                                                                                                                                                                                                                                  |
+| `--merge`                              | Specify either `rcluster` (relaxed clustering algorithm: at each iteration, evaluates only the top k% partition schemes and merges best one; [Lanfear et al., 2014]), `rclusterf` (**fast** relaxed clustering algorithm: similar to `rcluster` but merges multiple compatible schemes at once; [Lanfear et al., 2017]) or `greedy` (greedy algorithm: at each iteration, evaluates all candidate schemes and merges the best one;  [Lanfear et al., 2012]) algorithm. *DEFAULT: `rclusterf`* |
+| `-rcluster`                            | Specify the percentage for the relaxed clustering algorithm. This is similar to `--rcluster-percent` option of PartitionFinder. For example, with `-rcluster 10` only the top 10% partition schemes are evaluated. This automatically selects the relaxed clustering algorithm. *DEFAULT: 10*                                                                                                                                                                                                 |
+| `-rclusterf`                           | Similar to `-rcluster` but using the **fast** relaxed clustering algorithm of PartitionFinder2. This automatically selects the fast relaxed clustering algorithm. Introduced in version 1.6. *DEFAULT: 10*                                                                                                                                                                                                                                                                                    |
+| `-rcluster-max`                        | Specify the absolute maximum number of partition pairs in the paritition merging phase.  This option is similar to `--rcluster-max` option of PartitionFinder2. *DEFAULT: 10 times the number of partitions*                                                                                                                                                                                                                                                                                  |
 
 > **WARNING**: For versions <= 1.5.X, all commands with `-m ...MERGE...` will always perform an edge-unlinked partition scheme finding even if `-spp` option is used. Only in the next phase of tree reconstruction, then an edge-linked partition model is used. However, for versions 1.6.X onwards, the edge-linked partition finding is performed by `-spp` option.
 
 Several parameters can be set to e.g. reduce computations:
 
-|Option| Usage and meaning |
-|-------------|------------------------------------------------------------------------------|
-| `-mset`     | Specify the name of a program (`raxml`, `phyml` or `mrbayes`) to restrict to only those models supported by the specified program. Alternatively, one can specify a comma-separated list of base models. For example, `-mset WAG,LG,JTT` will restrict model selection to WAG, LG, and JTT instead of all 18 AA models to save computations. |
-| `-msub`     | Specify either `nuclear`, `mitochondrial`, `chloroplast` or `viral` to restrict to those AA models designed for specified source. |
-| `-mfreq`    | Specify a comma-separated list of frequency types for model selection. *DEFAULT: `-mfreq FU,F` for protein models (FU = AA frequencies given by the protein matrix, F = empirical AA frequencies from the data), `-mfreq ,F1x4,F3x4,F` for codon models* |
-| `-mrate`    | Specify a comma-separated list of rate heterogeneity types for model selection. *DEFAULT: `-mrate E,I,G,I+G` for standard procedure, `-mrate E,I,G,I+G,R` for new selection procedure*. (E means Equal/homogeneous rate model). |
-| `-cmin`     | Specify minimum number of categories for FreeRate model. *DEFAULT: 2* |
-| `-cmax`     | Specify maximum number of categories for FreeRate model. It is recommended to increase if alignment is long enough. *DEFAULT: 10* |
-| `-merit` | Specify either `AIC`, `AICc` or `BIC` for the optimality criterion to apply for new procedure. *DEFAULT: all three criteria are considered* |
-| `-mtree`    | Turn on full tree search for each model considered, to obtain more accurate result. Only recommended if enough computational resources are available. *DEFAULT: fixed starting tree* |
-| `-mredo`    | Ignore model checkpoint file computed earlier. *DEFAULT: model checkpoint file (if exists) is loaded to reuse previous computations* |
-| `-madd`     | Specify a comma-separated list of mixture models to additionally consider for model selection. For example, `-madd LG4M,LG4X` to additionally include these two [protein mixture models](Substitution-Models#protein-models). |
-| `-mdef`     | Specify a [NEXUS model file](Complex-Models#nexus-model-file) to define new models. |
+| Option   | Usage and meaning                                                                                                                                                                                                                                                                                                                            |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-mset`  | Specify the name of a program (`raxml`, `phyml` or `mrbayes`) to restrict to only those models supported by the specified program. Alternatively, one can specify a comma-separated list of base models. For example, `-mset WAG,LG,JTT` will restrict model selection to WAG, LG, and JTT instead of all 18 AA models to save computations. |
+| `-msub`  | Specify either `nuclear`, `mitochondrial`, `chloroplast` or `viral` to restrict to those AA models designed for specified source.                                                                                                                                                                                                            |
+| `-mfreq` | Specify a comma-separated list of frequency types for model selection. *DEFAULT: `-mfreq FU,F` for protein models (FU = AA frequencies given by the protein matrix, F = empirical AA frequencies from the data), `-mfreq ,F1x4,F3x4,F` for codon models*                                                                                     |
+| `-mrate` | Specify a comma-separated list of rate heterogeneity types for model selection. *DEFAULT: `-mrate E,I,G,I+G` for standard procedure, `-mrate E,I,G,I+G,R` for new selection procedure*. (E means Equal/homogeneous rate model).                                                                                                              |
+| `-cmin`  | Specify minimum number of categories for FreeRate model. *DEFAULT: 2*                                                                                                                                                                                                                                                                        |
+| `-cmax`  | Specify maximum number of categories for FreeRate model. It is recommended to increase if alignment is long enough. *DEFAULT: 10*                                                                                                                                                                                                            |
+| `-merit` | Specify either `AIC`, `AICc` or `BIC` for the optimality criterion to apply for model selection. Addtionally, `mAIC` option ([Susko et al., 2026]) is available as partition model selection criterion. *DEFAULT: `BIC`*                                                                                                                     |
+| `-mtree` | Turn on full tree search for each model considered, to obtain more accurate result. Only recommended if enough computational resources are available. *DEFAULT: fixed starting tree*                                                                                                                                                         |
+| `-mredo` | Ignore model checkpoint file computed earlier. *DEFAULT: model checkpoint file (if exists) is loaded to reuse previous computations*                                                                                                                                                                                                         |
+| `-madd`  | Specify a comma-separated list of mixture models to additionally consider for model selection. For example, `-madd LG4M,LG4X` to additionally include these two [protein mixture models](Substitution-Models#protein-models).                                                                                                                |
+| `-mdef`  | Specify a [NEXUS model file](Complex-Models#nexus-model-file) to define new models.                                                                                                                                                                                                                                                          |
 
 >**NOTE**: Some of the above options require a comma-separated list, which should not contain any empty space!
 
@@ -271,7 +271,7 @@ Several parameters can be set to e.g. reduce computations:
 
         iqtree -s prot.phy -m MF -mset WAG,LG,JTT
         
-* Find the best partitioning scheme for alignment `data.phy` and partition file `partition.nex` with a relaxed clustering at 10% to save time:
+* Find the best partitioning scheme for alignment `data.phy` and partition file `partition.nex` with a relaxed clustering at 10%:
 
         iqtree -s data.phy -spp partition.nex -m TESTMERGEONLY -rcluster 10
 
@@ -803,6 +803,7 @@ The first few lines of the output file example.phy.sitelh (printed by `-wslr` op
 [Lanfear et al., 2012]: https://doi.org/10.1093/molbev/mss020
 [Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
 [Lanfear et al., 2017]: https://doi.org/10.1093/molbev/msw260
+[Susko et al., 2026]: https://doi.org/10.1093/sysbio/syag013
 [Lartillot and Philippe, 2004]: https://doi.org/10.1093/molbev/msh112
 [Ly-Trong et al., 2024]: https://doi.org/10.1093/molbev/msae134
 [Minh et al., 2013]: https://doi.org/10.1093/molbev/mst024
