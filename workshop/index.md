@@ -1,7 +1,7 @@
 ---
 layout: workshop
 title: "Workshop"
-date:    2025-05-02
+date:    2026-09-14
 ---
 
 Throughout the year, members of IQ-TREE development team teach workshops on molecular evolution, phylogenetics, phylogenomics, and maximum likelihood using IQ-TREE.
@@ -18,6 +18,8 @@ IQ-TREE was taught as part of the following workshops:
 
 | Date |  Course Title | Location | Instructor |
 |------|---------------|----------------------------|-------------|
+| Sep 6-11, 2026 | [29th International Bioinformatics and Virus Evolution and Molecular Epidemiology (VEME)](https://veme.climade.health/) | Stellenbosch, South Africa | Heiko Schmidt |
+| Jun 29 - 3 July, 2026 | [Croucher summer course on Virus Evolution and Epidemiology](https://projects.croucher.org.hk/summer-courses/virus-evolution-and-epidemiology-1) | University of Hongkong | Heiko Schmidt |
 | May 17 - 27, 2026 | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), [IQ-TREE 3 tutorial](molevol_tutorial2026) | Marine Biological Laboratory, Woods Hole, USA | Solomon McShea |
 | Sep 18, 2025 | [Introduction to Phylogenetics](https://www.eventbrite.com/e/mig-workshop-intro-to-phylogenetics-tickets-1246832522639) | Melbourne Integrative Genomics, Australia | Rob Lanfear |
 | May 22 - Jun 1, 2025 | [Workshop on Molecular Evolution](https://molevolworkshop.github.io), [IQ-TREE 3 tutorial](molevol_tutorial2025) | Marine Biological Laboratory, Woods Hole, USA | Solomon McShea |
