@@ -122,9 +122,13 @@ A few typically analyses are listed in the following. Note that it is assumed th
 
         iqtree -s example.phy
 
-* Infer maximum-likelihood tree using `GTR+I+G` model:
+* Infer maximum-likelihood tree using `GTR+I+R` model for DNA alignment:
 
-        iqtree -s example.phy -m GTR+I+G
+        iqtree -s example.phy -m GTR+I+R
+
+* Infer maximum-likelihood tree using `QC.PFAM+F+I+R` model for protein alignment:
+
+        iqtree -s prot.phy -m QC.PFAM+F+I+R
 
 * Perform ModelFinder without subsequent tree inference:
         
